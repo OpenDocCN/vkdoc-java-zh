@@ -1,0 +1,4738 @@
+<p><img src="images/978-1-4842-6345-7_CoverFigure.jpg"/></p>
+<p></p>
+
+
+
+
+
+
+<aside aria-label="Article Note 1" class="ArticleNote ArticleNoteESMHint BookFrontmatterArticleNote">
+<p>Any source code or other supplementary material referenced by the
+author in this book is available to readers on GitHub via the book’s
+product page, located at <a href="http://www.apress.com/978-1-4842-6344-0">www.​apress.​com/​978-1-4842-6344-0</a>.
+For more detailed information, please visit <a href="http://www.apress.com/source-code">www.​apress.​com/​source-code</a>.</p>
+</aside>
+
+ ISBN 978-1-4842-6344-0e-ISBN 978-1-4842-6345-7
+
+
+<a href="https://doi.org/10.1007/978-1-4842-6345-7">https://doi.org/10.1007/978-1-4842-6345-7</a>
+
+
+© Atri Sharma 2020
+
+
+Standard Apress
+
+
+The use of general descriptive names, registered names, trademarks,
+service marks, etc. in this publication does not imply, even in the
+absence of a specific statement, that such names are exempt from the
+relevant protective laws and regulations and therefore free for general
+use.
+
+
+The publisher, the authors and the editors are safe to assume that the
+advice and information in this book are believed to be true and accurate
+at the date of publication. Neither the publisher nor the authors or the
+editors give a warranty, expressed or implied, with respect to the
+material contained herein or for any errors or omissions that may have
+been made. The publisher remains neutral with regard to jurisdictional
+claims in published maps and institutional affiliations.
+
+
+Distributed to the book trade worldwide by Springer Science+Business
+Media New York, 233 Spring Street, 6th Floor, New York, NY 10013. Phone
+1-800-SPRINGER, fax (201) 348-4505, e-mail orders-ny@springer-sbm.com,
+or visit www.springeronline.com. Apress Media, LLC is a California LLC
+and the sole member (owner) is Springer Science + Business Media Finance
+Inc (SSBM Finance Inc). SSBM Finance Inc is a Delaware corporation.
+
+
+
+<p><em>Dedicated to my mentors (Merlin Moncure,</em> Mike
+McCandless<em>, and Adrien Grand).</em></p>
+<p><em>Dedicated to my family.</em></p>
+<p><em>Dedicated to the Almighty.</em></p>
+
+
+
+Introduction
+
+
+<p>Lucene has singlehandedly conquered the world of search. This project
+has come a long way in the context of features and user base from its
+initial days when being developed by Doug Cutting.</p>
+<p>Fast forward, and the world is changing. With the advent of big data
+and machine learning, Lucene has to embrace the upcoming change and
+ensure that the search quality that people have come to expect of the
+project remains constant.</p>
+<p>Lucene 8 is a step in that direction. With major new features
+introduced into the system, users need an updated look at how to use
+Lucene, which this book provides.</p>
+
+
+
+
+Acknowledgments
+
+
+<p>I would like to acknowledge the Lucene/Solr community for the great
+product that they have built and the support they provided me when I was
+writing this book.</p>
+
+
+
+
+
+
+
+About the Author
+
+
+
+
+
+
+
+About the Technical Reviewer
+
+
+
+
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">1. Hola, Lucene!</h1>
+
+
+<!--End Abstract-->
+
+<p>Welcome to your journey into the mystic and fun world of search!</p>
+<p>This chapter discusses information-retrieval (IR)
+systems, focusing on Lucene, and includes a number of terms and
+key bits of information that you will find handy as we delve deeper into
+the innards of Lucene and build some cool applications.</p>
+<p>
+Before we begin, let’s review some commonly asked questions and their
+answers.
+<blockquote>
+<p><em>Is Lucene a search engine?</em></p>
+</blockquote>
+</p>
+<p>I would generally respond, “Well, yes and no.”</p>
+<p>
+Lucene is a library and platform used to build a variety of IR systems,
+search engines
+being the most well known. Other areas where Lucene applies include the
+following:
+
+</p>
+
+<ul>
+<li><p><em>Document
+analytics</em> : Loading and traversing text documents based on
+some given criteria, finding the top terms from documents, aggregating
+on specific fields.</p></li>
+<li><p><em>Log
+analytics</em> : Analyzing application logs with high-performance
+dashboards built directly on top of Lucene.</p></li>
+<li><p><em>Geospatial
+search</em> : With the recent advent of geospatial queries and
+data structures, Lucene is fast becoming a popular choice for indexing
+latitudinal and longitudinal data and queries such as colocation
+searches.</p></li>
+</ul>
+
+<p>
+<blockquote>
+<p><em>Do I need a background in information retrieval?</em></p>
+</blockquote>
+</p>
+<p>A background in IR is good to have, but it is not mandatory in your
+quest to understand Lucene. Although this book covers some background
+theory, any complex information is explained in such a way as to allow
+you to build a contextual understanding.</p>
+
+
+Note
+
+<p>Information
+retrieval is a vast subject, and this book does not aim to be
+exhaustively authoritative on the topic. Instead, this book focuses on
+enhancing your understanding of Lucene. For a more robust understanding
+of IR in general, consult an IR book to complement this one.
+Introduction to Information Retrieval by Manning is a good reference
+book to start with.</p>
+
+<p>
+<blockquote>
+<p><em>Does Lucene support SQL or SQL dialects?</em></p>
+</blockquote>
+</p>
+<p>No, Lucene has a set of supported queries (discussed in
+further chapters). You can use those queries, however, to construct
+execution plans that can be derived from SQL-ish languages. Some engines
+have done exactly that, but Lucene has no native support for it.</p>
+<p>Lucene is a library that enables you to build your search application. Use
+Lucene when you need fast indexing and search capabilities in your
+application. Lucene puts a lot of power in the user’s hands, but with
+great power comes great responsibility. So, it is crucial that the
+discerning user understand trade-offs and the best-fit cases for
+Lucene’s more advanced features (as discussed in later chapters).</p>
+
+<h2 class="Heading">Key Features of Lucene</h2>
+<p>
+Lucene has been around for a while, and a number of its features and capabilities have made
+it quite popular, including the following:
+
+</p>
+
+<ul>
+<li><p><em>Scalable, high-performance indexing</em>: Lucene enables very
+fast indexing (over 150GB/hour on modern hardware).</p></li>
+<li><p><em>Incremental
+indexing</em> : Indexes are added as new documents come in, with
+no need to modify existing indexes (and thus avoiding excess index
+churn).</p></li>
+<li><p><em>Top N queries</em>: Lucene is efficient at scanning through
+large volumes of data and getting the top N documents which match the
+query, ranked by the scoring function used.</p></li>
+<li><p><em>Myriad query
+types</em> : Phrase queries, wildcard queries, proximity queries,
+range queries, and more.</p></li>
+<li><p><em>Single-field and multifield</em> <em>searching</em> :
+Lucene allows searching on a single field or multiple fields — allowing
+ranking across multiple fields.</p></li>
+<li><p><em>Sorting</em>
+ <em>and</em> <em>faceting</em> :
+Lucene allows ordering results on a specific field (think of SQL ORDER
+BY). Lucene also allows faceting on different attributes (think of SQL
+GROUP BY).</p></li>
+<li><p><em>Multi-index
+searches</em> : Lucene allows a single query to query multiple
+indices and then merge results from all of the indices to a final result
+set.</p></li>
+<li><p><em>Concurrent
+indexing</em>  <em>and</em> <em>searching</em> :
+Lucene allows using multiple threads for a single indexing or a search
+request. This can speed up the performance of a single request
+significantly.</p></li>
+<li><p><em>Highlighting, joins, and result grouping</em>: Lucene allows
+joins across different indices with certain conditions.</p></li>
+<li><p><em>Pluggable ranking models</em>: Including the <a href="http://en.wikipedia.org/wiki/Vector_Space_Model">vector space model</a> and <a href="http://en.wikipedia.org/wiki/Okapi_BM25">Okapi BM25</a>.</p></li>
+<li><p><em>Custom codecs
+for storage</em> : It is possible to implement and use custom
+storage formats in Lucene, thus allowing flexibility when using Lucene
+in the search application.</p></li>
+</ul>
+
+<p>Although by no means comprehensive, the preceding list highlights
+some of the more popular features available in Lucene that enable you to
+build high-performance systems while maintaining a high degree of
+relevance in the returned results.</p>
+
+
+<h2 class="Heading">Information Retrieval Basics</h2>
+<p>Before  delving
+deeper into the innards of Lucene, let’s review what search in IR
+systems is really about. Although this discussion does not go into the
+full complexity of IR, it should allow you to grasp the finer details of
+Lucene as we progress.</p>
+<p><em>Search</em>, in the context of IR systems, is the art of
+extracting information with high relevance for a given query.</p>
+<p><em>Indexing</em>
+, in the context of IR systems, is building inverted indexes from
+the given text. The process is described in the chapter on indexing.
+Note that the indexing referred to here and in later chapters differs
+from typical indexing in relational database systems. Relational
+database systems typically refer to indexing as the creation of a
+secondary data structure such as B-tree on top of a table attribute for
+faster searching. In this context, indexing refers to building an
+inverted index on top of the given dataset.</p>
+<p>Consider a thick book for which a sequential search (line by line)
+for a specific combination of terms is impossible. For example, in a
+children’s bedtime stories book, we might search for the following: all
+stories containing the words “sunshine” and “candies” and not containing
+the word “ghosts.”</p>
+<p>
+From an IR system perspective, the query can be shown as follows:
+
+</p>
+
+<ul>
+<li><p>sunshine AND candies AND NOT ghosts</p></li>
+</ul>
+
+<p>The following sections discuss the ways in which this query can be
+executed.</p>
+
+
+<h2 class="Heading">Linear Scan</h2>
+<p>A <em>linear scan</em>
+ is a simple process of sequentially going through each line in
+the system and checking for the parameters (i.e., conditions in the
+given query). This is precisely how Unix's <code>grep</code> command works,
+and it also works fairly well with wildcards and regular expressions. If
+the size of data set being searched size is not too large and the
+hardware being used is reasonably powerful, linear search is the
+simplest way.</p>
+<p>However, linear search starts showing performance degradations beyond
+a million medium-sized documents. The world around us is experiencing an
+information explosion. In fact, the amount of data that needs to be
+processed to extract relevant information has quadrupled over the last
+10 years, thanks to the advent of connected world, hand held devices and
+IoT. Linear search cannot scale to meet those needs, and so we need
+something more sophisticated and performant that can handle massive
+datasets while still providing relevant results at reasonable
+speeds.</p>
+<p>Linear
+searches 
+also limit what kind of queries can be answered. For example, there is
+no way to define a query that seeks “close” matches of a given pattern.
+Suppose, for instance, that we search for documents with the words
+“flower” and “sunshine” within a proximity of three words in a document.
+Doing so with linear search is impossible. Also, there is no notion of
+ranked results. That is, given a query, a result is either a match or
+not for a linear scan. If we want some sort of ranking, we cannot use a
+linear scan.</p>
+<p>An <em>inverted
+index</em>  is a data structure used to store data in an
+“inverted” manner (i.e., terms are mapped to documents in which the
+terms appear). Any unique term appearing in any document is made a part
+of the inverted index.</p>
+<p>
+As shown in Figure <a href="#485809_1_En_1_Chapter.xhtml#Fig1">1-1</a>, this data
+structure proves useful for answering questions like “find me the
+documents containing Term1” in an optimized manner. As you can see, a
+single-term search is a constant-time operation.
+
+
+</p>
+
+
+
+<p>Table 1-1.</p>
+
+
+<table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; ">
+<thead>
+<tr class="header">
+<th style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>Query</p></th>
+<th style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>Application</p></th>
+<th style="text-align: left; border-bottom: 0.5pt solid;"><p>Sample
+Query</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>TermQuery</p></td>
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>Single-term
+match</p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p>“Foo”:”Bar”</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>PhraseQuery</p></td>
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>Several
+terms Coupled together</p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p>“All Cars
+With Black Tyres”</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>RangeQuery</p></td>
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>Range
+of terms, excluding or including the endpoints</p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p>“AGE”:[13-19]</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>PrefixQuery </p></td>
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>Matches
+given prefix</p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p>Foo*</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>FuzzyQuery</p></td>
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>Levenshtein
+algorithm for closeness matching</p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p>Foo~</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>WildcardQuery</p></td>
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>Regular
+expression Like matching</p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p>F??bar</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid;"><p>BooleanQuery</p></td>
+<td style="text-align: left; border-right: 0.5pt solid;"><p>Multiple
+queries connected by logical clauses</p></td>
+<td style="text-align: left;"><p>“NAME:Ramesh” AND
+“AGE”:[13-19]</p></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+<img src="images/485809_1_En_1_Chapter/485809_1_En_1_Fig1_HTML.jpg" style="width:34.12em" alt="../images/485809_1_En_1_Chapter/485809_1_En_1_Fig1_HTML.jpg"/>
+</p>
+
+<p>Figure 1-1.</p>
+<p>A Representation of Inverted Index</p>
+
+
+<p>To create an inverted index, the fields within the document are first
+split and tokenized, a sorted list of all the unique terms is created,
+and the documents that contain the corresponding terms are
+populated.</p>
+<p>While being fast for a single-term query, inverted indexes
+can also answer an important class of questions: similarity queries.</p>
+<p>
+Figure <a href="#485809_1_En_1_Chapter.xhtml#Fig2">1-2</a> shows the
+typical way a query is processed in IR systems. A query comes in and is
+parsed and split into individual tokens. A token is an independent
+term having its own semantics in a query.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_1_Chapter/485809_1_En_1_Fig2_HTML.jpg" style="width:35.48em" alt="../images/485809_1_En_1_Chapter/485809_1_En_1_Fig2_HTML.jpg"/>
+</p>
+
+<p>Figure 1-2.</p>
+<p>Control Flow of Query Process</p>
+
+
+<p>
+For example, consider the following query:
+
+</p>
+
+<ul>
+<li><p>Find all people who drove to college yesterday</p></li>
+</ul>
+
+<p>In this scenario, tokenizing the
+query will lead to independent terms such as “drove,” “college,”
+“yesterday,” and “to.”</p>
+
+
+<h2 class="Heading">Stop List</h2>
+<p>A <em>stop list</em>
+ consists of words that are used in the associated language to
+form the structure of sentences but are not necessarily useful for semantic matching and
+searching. For
+example, in the sentence “Alex went to London,” we see that the word
+“to” is a stop word because that helps form the structure of the query.
+However, it cannot necessarily contribute anything to the semantic
+assessment of a potential document match, and so it should not be
+considered on the same lines.</p>
+<p>Stop words are filtered out before further processing to help limit
+the number of tokens in the index to the ones that can contribute to the
+relevance of the document. Of course, later on, we might discover that
+some of the semantically-able words are not useful in matching relevant
+documents, but that is done stage by stage, and we do not want to overoptimize.</p>
+
+
+<h2 class="Heading">Stemming</h2>
+<p>Queries can
+contain words in different forms, with different tenses, spellings, and
+associated grammatical semantics. For example,
+“drive,” “driving,” and “drives” are all based on the same word but
+differ in their structure. However, for semantic matching, the actual
+structure of the word is of little value. What really matters is the
+root word, which will contribute to calculating the overall relevance of
+a document to the query.</p>
+<p>Another advantage of discounting different structures of the same
+word is to allow one to match the remaining. For example, a query
+containing the word “drive” should match documents containing the word
+“driving.” This increases the <em>recall</em> of the query results.
+Recall is defined
+as the breadth of the returned results (i.e., how many documents match a
+given query). Unlike a relational database, IR systems can answer
+queries with a semantic element with them; that is, any document can
+match the given query. The trick is to identify the most relevant ones
+and eliminate the unnecessary noise.</p>
+
+
+Note
+
+<p><em>Recall</em> is the width of documents in the returned results.
+However, too high a recall, and the returned results will have lower
+correctness. Too low a recall, and the returned results are very small
+in size. Most IR systems struggle with this trade-off.</p>
+
+<p><em>Stemming</em>
+ is the process of reducing words to their base word and removing
+the structural differences between words that originate from the same
+root. However, stemming can be crude in its operations. For example,
+stemming can employ a crude heuristic to remove parts of words, which
+can sometimes lead to weird semantic outputs. While this is efficient
+and works most of the time, a more sophisticated way to deal with this
+requirement is the art of lemmatization: rewriting words using a given
+vocabulary and depending on morphological analysis of the tokens of the
+query. Lemmatization is beyond
+the scope of the current discussion.</p>
+<p>
+To avoid linear search, you can index the set of documents in advance
+and use special queries to get the right set of results. Consider, for
+instance, a set of documents with a range of words present. Let’s use a
+group of related books, as shown here:
+
+</p>
+
+<ul>
+<li><p>Databases in Action World of Lucene Introduction to Information
+Retrieval</p></li>
+</ul>
+
+<p>Let’s now assume that we have to serve queries across all three of
+these books. Doing so requires that we index data across all three books
+so that we can be efficient in query operations. Note that there are
+multiple ways to do the same thing. We can create a separate index per
+book, or index all three books in the same index. To see what kind of
+index are we building, refer back to Figure <a href="#485809_1_En_1_Chapter.xhtml#Fig1">1-1</a>.</p>
+<p>Note that these books will have some key terms in common. For
+example, we expect “search” to be present across all three of the texts.
+Similarly, “bytes” is another term that can repeat across all three
+texts.</p>
+<p>A naive indexing technique is to maintain independent metadata about
+each of the documents, effectively discarding the common terms present.
+This method is a waste of space, and is also inefficient for serving
+queries that seek matches across all the texts.</p>
+<p>To implement inverted indexes as outlined in Figure <a href="#485809_1_En_1_Chapter.xhtml#Fig1">1-1</a>, you first need
+to understand the concepts of a term and a term-document incidence matrix.</p>
+
+
+<h2 class="Heading">Term</h2>
+<p>A <em>term</em>
+ is an independent indexable unit in an IR system. Terms are
+generally words, but they can be more complex and structured types as
+well. Examples pertaining to our data set are “search” and “bytes.”</p>
+
+
+<h2 class="Heading">Term-Document Incidence Matrix</h2>
+<p>A <em>term-document
+incidence matrix</em>  is what maps a term to the documents that
+hold the given term. Simply put, it is a two-dimensional matrix, where
+the column represents the name of the book, and the row represents the
+terms involved.</p>
+<p>
+Figure <a href="#485809_1_En_1_Chapter.xhtml#Fig3">1-3</a> shows a
+term-incidence matrix for a given set
+of books and terms.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_1_Chapter/485809_1_En_1_Fig3_HTML.png" style="width:20.1em" alt="../images/485809_1_En_1_Chapter/485809_1_En_1_Fig3_HTML.png"/>
+</p>
+
+<p>Figure 1-3.</p>
+<p>Term Incidence Matrix</p>
+
+
+
+
+<h2 class="Heading">Serving Queries Using a Term-Document Incidence
+Matrix</h2>
+<p>
+This section explains how to serve queries using the built structure. A
+simple model using a term-document incidence
+matrix 
+involves building vectors for queries being served. For example,
+consider a query:
+
+</p>
+
+<ul>
+<li><p>TERM and INDEX and not RESULT</p></li>
+</ul>
+
+<p>
+Using the vectors for each of the associated terms, we perform the
+following:
+
+</p>
+
+<ul>
+<li><p>vector(term) AND vector(index) AND NOT vector(result)</p></li>
+</ul>
+
+<p>The AND NOT vector(result) can be converted into AND ~vector(result),
+where ~ represent the complement of the boolean vector.</p>
+<p>
+This converts to the following:
+
+</p>
+
+<ul>
+<li><p>vector(term) AND vector(index) AND ~vector(result)</p></li>
+</ul>
+
+<p>
+Replacing with actual boolean vectors
+
+</p>
+
+<ul>
+<li><p>01 AND 11 AND 10</p></li>
+</ul>
+
+<p>yields the final result of the query: Book2.</p>
+<p>Now that you have a basic understanding of how inverted indexes work,
+are built, and are used for querying, let’s take a look at actual Lucene
+implementations.</p>
+
+
+<h2 class="Heading">Basic Terminology</h2>
+<p>
+Before discussing the finer aspects of Lucene’s data structures, here
+are some general terms you want to understand. These terms will help you
+navigate your journey through Lucene:
+
+</p>
+
+<ul>
+<li><p><em>Document</em>
+: A record; the unit of search; the thing returned as search
+results</p></li>
+<li><p><em>Field</em>
+: A typed slot in a document for storing and indexing
+values</p></li>
+<li><p><em>Index</em>
+: A collection of documents, typically with the same
+schema</p></li>
+<li><p><em>Corpus</em>
+: The entire set of documents in an index</p></li>
+<li><p><em>Inverted
+index</em> : Internal data structure that maps terms to documents
+by a unique identifier.</p></li>
+<li><p><em>Term</em>
+: Value extracted from source document, used for building the
+inverted index</p></li>
+<li><p><em>Vocabulary</em> :
+The full set of distinct terms in a corpus</p></li>
+<li><p><em>Field
+data</em> : Array of all field values per field, sorted by
+document identifiers</p></li>
+<li><p><em>Doc
+values</em> : Columnar store representing field values</p></li>
+</ul>
+
+
+
+<h2 class="Heading">Heart of Lucene’s Data Representation</h2>
+<p>Note that at its most basic, Lucene stores data in the form of an
+inverted index, similar to what we discussed earlier. However, the
+actual representation, construction, and storage of the inverted index
+are optimized and specific for Lucene, as discussed next.</p>
+
+
+<h2 class="Heading">Lucene’s Inverted Index Structure</h2>
+<p>
+Before looking closer at the semantics of this format, let’s first
+review some basic elements of Lucene’s indexing and searching
+terminology:
+
+</p>
+
+<ul>
+<li><p><em>Term</em>: Term in Lucene is the
+equivalent of a token in the English language, only much more powerful
+and semantically augmented than its English language counterpart. Terms
+can be analyzed or not analyzed in Lucene, although non-analyzed terms
+hold little value. Consider the following input to Lucene:</p></li>
+</ul>
+
+<p>“Foo” : “Bar”</p>
+<p>This converts into the term “Bar” and is queryable in that format by
+any such Lucene queries.</p>
+<p>
+Remember that a term is the basic unit of both indexing and search.
+Lucene stores its underlying data as terms, and user queries are
+deconstructed into terms and then sent for further processing.
+
+</p>
+
+<ul>
+<li><p><em>Term dictionary</em>: A term dictionary is what
+holds the terms indexed in the Lucene index and their corresponding
+document frequencies.</p></li>
+</ul>
+
+
+
+<h2 class="Heading">On-Disk Representation of a Lucene Index</h2>
+<p>The on-disk representation of a Lucene index is optimized to be
+efficient in reads and writes, and it allows searches into required
+areas of the index.</p>
+<p>At the heart of Lucene lies the Lucene index file format. Post Lucene
+4, formats are pluggable (using custom codecs, as discussed later in
+this chapter). However, the default file format is what is published on
+Lucene’s official website and what this section covers.</p>
+<p>
+Referring to Figure <a href="#485809_1_En_1_Chapter.xhtml#Fig4">1-4</a>, the basic
+components to start defining are as follows:
+
+</p>
+
+<ul>
+<li>
+<em>Field definition</em>: Field definitions are
+stored in an independent file named FieldInfos (with the extension
+.fnm).
+
+
+<p>
+<img src="images/485809_1_En_1_Chapter/485809_1_En_1_Fig4_HTML.jpg" style="width:35.62em" alt="../images/485809_1_En_1_Chapter/485809_1_En_1_Fig4_HTML.jpg"/>
+</p>
+
+<p>Figure 1-4.</p>
+<p>Lucene Index Structure</p>
+
+
+</li>
+</ul>
+
+<p>From the official definition:</p>
+<p>
+FieldInfos (.fnm) --&gt; FNMVersion,FieldsCount, &lt;FieldName,
+FieldBits&gt; FieldsCount
+
+</p>
+
+<ul>
+<li><p>FNMVersion, FieldsCount --&gt; VInt</p></li>
+<li><p>FieldName --&gt; Strings</p></li>
+<li><p>FieldBits --&gt; Byte</p></li>
+<li><p>The low-order bit is one for indexed fields, and zero for
+nonindexed fields.</p></li>
+<li><p>The second lowest-order bit is one for fields that have term
+vectors stored, and zero for fields without term vectors.</p></li>
+<li><p>If the third lowest-order bit is set (0x04), term positions are
+stored with the term vectors.</p></li>
+<li><p>If the fourth lowest-order bit is set (0x08), term offsets are
+stored with the term vectors.</p></li>
+<li><p>If the fifth lowest-order bit is set (0x10), norms are omitted
+for the indexed field.</p></li>
+</ul>
+
+<p>If the sixth lowest-order bit is set (0x20), payloads are stored for
+the indexed field.</p>
+
+<h3 class="Heading">Terms Dictionary</h3>
+<p>The terms dictionary is represented by two files:</p>
+<p>The term infos (or tis) file holds metadata about the term, such as
+term name, skip information, and document frequency (i.e., the count of
+documents that hold the term). A tis file also holds useful information
+that helps Lucene build structures for more optimal access of relevant
+documents for a given term (Lucene uses skip data structures internally
+to make access faster, and the tis file holds data to help build this
+structure.) In addition, metadata such as term frequencies in this file
+allows faster access in other files.</p>
+<p>The term infos index file (extension .tii)
+holds metadata to allow random access to the term infos file.</p>
+
+
+
+<h2 class="Heading">Frequencies File</h2>
+<p>The frequencies
+file (extension .frq) maps documents to a term. That is, it
+contains a list of all documents that contain a term present in the
+terms dictionary, along with the frequency of each term in the
+document.</p>
+
+
+<h2 class="Heading">Positions File</h2>
+<p>The positions file
+(extension .prx) represents the list of positions at which each
+term occurs within documents.</p>
+
+
+<h2 class="Heading">Queries on Lucene</h2>
+<p>Queries are the
+life and soul of how applications interact and extract data from
+Lucene.</p>
+<p>Lucene has multiple core capabilities on this front and allows rich
+and semantically diverse queries to be built. One key feature in
+Lucene’s query engine is the extensibility and the ability to set custom
+parameters to customize search and ranking according to the user’s
+desire, as discussed in later chapters.</p>
+<p>Contrary to common expectations, Lucene does not support SQL or
+SQL-ish syntax. Lucene has a custom query syntax designed to make the
+best use of all that Lucene has to offer.</p>
+
+
+<h2 class="Heading">Structure of a Lucene Query</h2>
+<p>
+Lucene’s queries
+consist of two principal parts: terms and operators. Because we have
+discussed the definition and semantic relevance of terms earlier, there
+is no need to details that again here. However, two important
+categorizations of terms will prove useful for our further discussion:
+
+</p>
+
+<ul>
+<li><p><em>Single terms</em>: Single terms are terms
+that consist of a single token (e.g., “walk”). They are generally atomic
+and constitute the fundamental construct of a query.</p></li>
+<li><p><em>Phrases</em>: Phrases are a multiterm
+phenomenon consisting of groups of single terms. An example is “Walk
+This Way.” A phrase allows richer query matching and retrieval and a
+more semantically powerful way to express queries. Table <a href="#485809_1_En_1_Chapter.xhtml#Tab1">1-1</a> gives a
+description of the queries and their equivalent applications and a
+sample query for each.</p></li>
+</ul>
+
+
+
+<h2 class="Heading">Fields</h2>
+<p>Fields are used
+to specify predicates when defining a query. Fields are data corpus
+specific and can be used during query construction. Any valid field that
+is queryable can be specified upon. When performing a search, you can
+specify the field in which you want to search. You can use any existing
+field name as a field name. You can specify multiple fields in some
+types of queries.</p>
+
+
+<h2 class="Heading">Types of Queries in Lucene</h2>
+<p>This section covers the different query types available in
+Lucene, their applications, and a short example.</p>
+<p>
+Figure <a href="#485809_1_En_1_Chapter.xhtml#Fig5">1-5</a> shows a way to
+instantiate a composite query and set a set of clauses in it. Most
+queries support a single predicate, but some queries, such as BooleanQuery, support
+multiple and diverse clauses, thus allowing for more complex search.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_1_Chapter/485809_1_En_1_Fig5_HTML.jpg" style="width:35.62em" alt="../images/485809_1_En_1_Chapter/485809_1_En_1_Fig5_HTML.jpg"/>
+</p>
+
+<p>Figure 1-5.</p>
+
+
+
+
+<h2 class="Heading">Lucene vs. Relational Databases</h2>
+<p>
+Although  similar
+in many ways, IR systems differ inherently from traditional relational
+database systems. Key differences include the following:
+
+</p>
+
+<ul>
+<li><p>Databases offer the strictness of schemas, thus enforcing that
+the data fed to the system is cast in a specific structure. IR systems,
+in contrast, tend to be schema-less and work on a tuple-based
+model.</p></li>
+<li><p>Databases, building on top of schemas, allow data modeling (such
+as an entity relationship diagram). IR systems do not have that
+capability (and neither do they need it).</p></li>
+<li><p>Databases 
+have to be queried with precise values, but IR systems allow imprecise
+search and semantics.</p></li>
+<li><p>Databases are typically used for precise and exact retrievals,
+whereas IR systems are normally used for imprecise and “wide” searches,
+where all documents can match a query, and hence the concepts of ranking
+and relevance apply.</p></li>
+</ul>
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">2. Hello World: The Lucene Way</h1>
+
+
+<!--End Abstract-->
+
+<p>This chapter covers indexing data with Lucene, specifically how
+Lucene stores and represents data, Lucene query nuances, and how Lucene
+facilitates multiparameter search.</p>
+
+<h2 class="Heading">Indexing Data in Lucene</h2>
+<p><code>IndexWriter</code>  is the main user-facing
+class responsible for indexing data in Lucene. <code>IndexWriter</code> 
+is used for analyzing documents, opening directories, and writing the
+data to directories.</p>
+<p>
+Figure <a href="#485809_1_En_2_Chapter.xhtml#Fig1">2-1</a> shows the
+overall flow of an indexing operation. A document consisting of various
+fields is first passed to the analyzer, after which it is given to an
+<code>IndexWriter</code>
+instance. <code>IndexWriter</code> interacts
+with the internals of Lucene to open the relevant directory, forms the
+index in the correct and required format, and writes the same to the
+underlying directory. Any readers opened after this have access
+(visibility) to that document.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_2_Chapter/485809_1_En_2_Fig1_HTML.jpg" style="width:35.2em" alt="../images/485809_1_En_2_Chapter/485809_1_En_2_Fig1_HTML.jpg"/>
+</p>
+
+<p>Figure 2-1</p>
+<p>Flow of an indexing
+operation</p>
+
+
+<p>Let’s now take a closer look at the classes involved in this process.</p>
+
+
+<h2 class="Heading">Document</h2>
+<p><code>Document</code>  is
+the base class representing a document and its associated contents in
+Lucene. A document is the macro unit for both indexing and search; both
+indexing and search process data in document units.</p>
+<p>A <code>Document</code>
+consists of one or more instances of the <code>Field</code> class. A field
+is a combination of a key and a value. A field can be stored or not. A
+stored field is returned with search hits, and so ideally each document
+should contain at least one stored field. However, stored fields can
+significantly add to the storage footprint of the index. In worst cases
+(where all fields are stored), field storage can lead to an increase of
+about 30% in the overall storage size of the on-disk index.</p>
+<p>When you create a Document class’ instance, you can mark each field
+as analyzed or not. A field marked as analyzed is run through an analyzer.</p>
+
+
+<h2 class="Heading">Analyzers</h2>
+<p>Analyzers analyze data before it that data is passed as input to
+another Lucene class. You can use analyzers for both indexing and
+searching, and their use is generally recommended. Analyzers typically
+split the input text into tokens, using a set of tokenizers already
+defined and applying a set of filters. The following sections cover a
+few of the available analyzers in Lucene.</p>
+
+<h3 class="Heading">StandardAnalyzer </h3>
+<p>Most Lucene users use <code>StandardAnalyzer</code>, a
+one-size-fits-all analyzer designed for simplicity, generic behavior,
+and ease of use.</p>
+<p><code>StandardAnalyzer</code>
+removes stop words from the input, which is a great help when processing
+naturally occurring text. <code>StandardAnalyzer</code> also
+converts text to lowercase (an important point to note because case
+issues can lead to subtle bugs in application code when searching for
+data indexed with <code>StandardAnalyzer</code>).</p>
+
+
+Note
+
+<p><code>StandardAnalyzer</code>
+lowercases data. So, remember this and ensure that you use the same
+analyzer while searching or converting the text to lowercase
+yourself.</p>
+
+<p>
+Here is an example:
+
+</p>
+
+<ul>
+<li><p><em>Input:</em> “Lucene Is A Library”</p></li>
+<li><p><em>Output:</em> [Lucene] [a] [Library]</p></li>
+</ul>
+
+
+
+<h3 class="Heading">StopAnalyzer </h3>
+<p><code>StopAnalyzer</code>
+is similar to <code>StandardAnalyzer</code>, but
+it performs stop-word removal using the <code>StopFilter</code>.</p>
+
+
+<h3 class="Heading">SimpleAnalyzer </h3>
+<p><code>SimpleAnalyzer</code> is
+again similar to <code>StandardAnalyzer</code>, but
+it cannot remove stop words and cannot recognize URLs.</p>
+<p>
+Here is an example:
+
+</p>
+
+<ul>
+<li><p><em>Input:</em> "Lucene Is A Library"</p></li>
+<li><p><em>Output:</em> [Lucene] [is] [a] [Library]</p></li>
+</ul>
+
+<p>
+The following code sample shows an input analyzer used to analyze a
+piece of text and return a tokenized result. Note that the tokenized
+result depends on the analyzer being used and the characteristics of the
+analyzer:
+
+</p>
+<pre>public List performAnalyze(String input, Analyzer analyser) throws IOException {
+List result = new ArrayList();
+TokenStream tokenStream = analyser.tokenStream("field_name", input);
+CharTermAttribute attr = tokenStream.addAttribute(CharTermAttribute.class);
+tokenStream.reset();
+while(tokenStream.incrementToken()) {
+result.add(attracts.toString());
+}
+return result;
+}</pre>
+
+
+<h3 class="Heading">IndexWriter </h3>
+<p><code>IndexWriter</code>
+creates and writes data to an index. Because <code>IndexWriter</code> is a
+crucial component of the indexing process, users building applications
+need to understand it.</p>
+<p><code>IndexWriter</code>
+enables you to both create a new index and open an existing index.
+Remember that Lucene indexes are append only. That is, once data is
+written, it is immutable until a process known as segment merging
+(discussed later) merges older data. This immutability allows an <code>IndexWriter</code> to work
+on existing indexes that currently just serve queries. The currently
+running queries just use a snapshot of the index and do not interfere in
+the <code>IndexWriter</code>’s
+data-writing process.</p>
+<p><code>IndexWriter</code>
+supports a diverse set of application programming interfaces (APIs) to
+interact with the underlying data and to allow complex and custom
+interactions with the data. New documents can be added with <code>addDocument()</code>,
+documents can be deleted with <code>deleteDocuments()</code>,
+and an existing document can be updated with <code>updateDocument()</code>.
+Note that <code>deleteDocuments()</code> can
+be passed in a query as well, and all documents matching the query will
+be deleted. Updating a document implies a delete and an insert because
+Lucene indexes are append only.</p>
+<p><code>IndexWriter</code>
+writes data to a new segment within the index. A segment is a logical
+unit of data within a Lucene index. Calling <code>commit()</code> forces the
+creation of a new segment. However, calling <code>commit()</code> after each
+document insertion is an expensive operation and a bad idea. Note that
+<code>commit()</code> is an
+atomic operation .</p>
+
+
+
+<h2 class="Heading">Directory</h2>
+<p><code>Directory</code>
+represents the logical representation of a filesystem-level directory.
+<code>Directory</code>
+allows creation and access of indexes and supports random accesses.
+Lucene supports a variety of <code>Directory</code>
+implementations, such as one using Java’s Non-blocking I/O (NIO) (<code>NIOFSDirectory</code>),
+another one that MMaps files (<code>MMapDirectory</code>), and
+so forth.</p>
+<p>
+Let’s now create documents and index them with the following high-level
+steps:
+
+</p>
+
+<ol>
+<li>
+
+<p>Create documents.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Create index and open it for writing.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Index data.</p>
+
+
+ 
+</li>
+</ol>
+
+
+<h3 class="Heading">Create Documents</h3>
+<p>
+For this example, assume that we get a <code>File</code> instance as the
+input. We then complete the following steps:
+
+</p>
+
+<ol>
+<li>
+
+<p>Get fields from the raw <code>File</code> instance.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Create Lucene <code>Field</code> instances from
+the data you get in step 1.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Set relevant properties for each field.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Create a Lucene document.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Add the fields to the document.</p>
+
+
+ 
+</li>
+</ol>
+
+<p>
+The following code follows the above steps in given order:
+
+</p>
+<pre>private Document parseAndCreateDocument(File file) throws IOException {
+//Assume we have a parser that returns different fields from the file
+FancyParser fancyParser = FancyParser.getParser().parse(file);
+//Step 1
+String firstTest = fancyParser.getFirst();
+String secondText = fancyParser.getSecond();
+String thirdText = fancyParser.getThird();
+//Steps 2 and 3
+Field firstField = new Field("first_field", firstText, Field.Store.YES, Field.Index.NOT_ANALYZED);
+Field secondField = new Field("second_field", secondText, Field.Store.YES, Field.Index.NOT_ANALYZED);
+Field thirdField = new Field("third_field", thirdText, Field.Store.YES, Field.Index.NOT_ANALYZED);
+//Step 4
+Document document = new Document();
+//Step 5
+document.add(firstField);
+document.add(secondField);
+document.add(thirdField);
+return document;
+}</pre>
+
+
+<h3 class="Heading">Create Index and Write Documents</h3>
+<p>In this section, we create a new index and use it to index documents.
+As described earlier, the main components involved in this process are
+<code>IndexWriter</code> and
+<code>Directory</code>.
+<code>IndexWriter</code>
+enables both creation of the index and writing to the index. <code>IndexWriter</code> 
+uses a directory below it to actually write the needed data.</p>
+<p>
+The high-level steps are as follows:
+
+</p>
+
+<ol>
+<li>
+
+<p>Create an <code>IndexWriter</code>
+instance.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Create a Lucene directory in which to storage the index.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Initialize the <code>IndexWriter</code> with the
+correct configuration.</p>
+
+
+ 
+</li>
+</ol>
+
+<p>
+Implementing the above steps:
+
+</p>
+<pre>public IndexWriter getIndexWriter(String path) throws IOException {
+//Step 1
+IndexWriter indexWriter;
+//Step 2
+FSDirectory.open(new File(path));
+//Step 3
+indexWriter = new IndexWriter(indexDirectory,
+new StandardAnalyzer(Version.LUCENE_80), true,
+IndexWriter.MaxFieldLength.UNLIMITED);
+return indexWriter;
+}</pre>
+
+
+<h3 class="Heading">Adding Data to the Index</h3>
+<p>
+You can add data to the index just created in a number of ways. Note
+that <code>IndexWriter</code> is not
+just used to create but also to add/delete and update documents in the
+index. The analyzer passed in as a parameter during creation of an <code>IndexWriter</code> instance
+determines how the input documents are analyzed before they are added to
+the index. The following code shows a simple example of an <code>IndexWriter</code> instance
+writing a document into its corresponding index:
+
+</p>
+<pre>private void doIndexing(File file, IndexWriter indexWriter) throws IOException {
+//Check that the indexWriter is not null and is open
+if (indexWriter == null) {
+throw new IllegalArgumentsException("IndexWriter instance must not be null");
+}
+if (!indexWriter.isOpen()) {
+throw new IllegalArgumentsException("IndexWriter instance must be open");
+}
+Document document = parseAndCreateDocument(file);
+indexWriter.addDocument(document);
+}</pre>
+
+
+<h3 class="Heading">Bringing It All Together</h3>
+<p>
+Here is the final class with all components:
+
+</p>
+<pre>public class DemoIndexing {
+private final String indexPath;
+public Indexer(String indexDirectoryPath) throws I0Exception {
+this.indexPath = indexDirectoryPath;
+}
+private Document parseAndCreateDocument(File file) throws I0Exception {
+Document document = new Document();
+//Assume we have a parser that returns different
+//fields from the file
+FancyParser fancyParser = FancyParser.getParser().parse(file);
+String        firstText   =  fancyParser.getFirst();
+String        secondText  =  fancyParser.getSecond();
+String        thirdText   =  fancyParser.getThird();
+Field firstField = new Field("first_field", firstText,
+Field.Store.YES,Field.Index.NOT_ANALYZED);
+Field secondField = new Field("second_field", secondText,
+Field.Store.YES,Field.Index.NOT_ANALYZED);
+Field thirdField = new Field("third_field", thirdText,
+Field.Store.YES,Field.Index.NOT_ANALYZED);
+document.add(firstField);
+document.add(secondField);
+document.add(thirdField);
+return document;
+}
+public IndexWriter getIndexWriter(String path) throws I0Exception {
+IndexWriter indexWriter;
+Directory indexDirectory = FSDirectory.open(new File(path));
+//Create the indexer
+indexWriter = new IndexWriter(indexDirectory,
+new StandardAnalyzer(Version.LUCENE_80),true,
+IndexWriter.MaxFieldLength.UNLIMITED);
+return indexWriter;
+}
+private void doIndexing(File file, IndexWriter indexWriter) throws I0Exception {
+//Check that the indexWriter is not null and is open
+if (indexWriter == null) {
+throw new IllegalArgumentsException("IndexWriter instance must not be null");
+}
+if (!indexWriter.isOpen() {
+throw new IllegalArgumentsException("IndexWriter instance must be open");
+}
+//Get the document using the method we wrote earlier
+Document document = parseAndCreateDocument(file);
+writer.addDocument(document);
+}
+public void index(List files) {
+IndexWriter indexWriter = getIndexWriter(indexPath);
+for (File file : files) {
+doIndexing(file, indexWriter);
+}
+}
+}</pre>
+
+
+
+<h2 class="Heading">TestClass</h2>
+<p>
+The following <code>TestClass</code> 
+demonstrates a class's functionality:
+
+</p>
+<pre>public class TestClass {
+DemoIndexer demoIndexer;
+List files;
+public TestClass(List files) {
+this.files = files;
+}
+public static void main(String[] args) {
+//args[0] is the directory name
+try {
+index();
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+private void index() throws IOException {
+demoIndexer.index(files);
+}
+}</pre>
+<p>Let’s now take a look at how to query the data we just wrote to the
+index.</p>
+
+
+<h2 class="Heading">Document Search</h2>
+<p>
+The Lucene search API takes a query and optionally a number of top hits
+to return. The documents to be returned are ordered by relevance and
+score. The score represents the “closeness” of the hit to the given
+parameters. The next chapter discusses Lucene ranking and scoring
+models. The following code executes a search and returns top N hits.
+
+</p>
+<pre>private void performIndexSearch(File indexDir, String query, int maxHits) throws Exception {
+Directory directory = FSDirectory.open(indexDir);
+//Contents is the default field to be analyzed
+QueryParser parser = new QueryParser(Version.LUCENE_80, "contents', new StandardAnalyzer());
+Query query = parser.parse(query);
+TopDocs topDocs = searcher.search(query. maxHits);
+//Get the top documents that were returned for this
+//query (specified by maxHits)
+ScoreDoc[] hits = topDocs.scoreDocs;
+for (int i = 0; i &lt; hits.length; i++) {
+int docId = hits[I].doc;
+System.out.println(docId);
+}
+}</pre>
+<p>Let’s now look at specifics of the code.</p>
+<p><code>Directory</code> is
+the underlying implementation that allows accessing, loading, and
+reading the index being searched.</p>
+
+<h3 class="Heading">QueryParser</h3>
+<p><code>QueryParser</code>
+  generates
+a <code>Query</code>
+instance out of a query string. A query can consist of a family of
+clauses. A clause can be prefixed by <code>+</code> or <code>-</code>, indicating that
+the clause is <code>MUST</code> or <code>MUST_NOT</code>. as the
+preceding code shows, the constructor invoked defines the codec to be
+used (<code>LUCENE_80</code>), the
+default field (<code>"contents"</code>) and the
+analyzer to be used (<code>StandardAnalyzer()</code>).</p>
+
+
+<h3 class="Heading">TopDocs</h3>
+<p><code>TopDocs</code>   is the representation
+of the top documents that match the given query. They are a generic
+representation and do not necessarily depend on the underlying algorithm
+used to calculate how the top documents are calculated. <code>TopDocs</code> consist of
+two components: <code>scoreDocs</code> (the <code>documentIDs</code> of the
+top N hits, where N was the requested value) and the score of each of
+those hits. The score of a document is an Lucene internal concept
+discussed later in this chapter.</p>
+<p>The second part of <code>TopDocs</code> is <code>totalHits</code>, which
+represents the total number of hits.</p>
+<p>In the preceding code sample, we get <code>TopDocs</code> by specifying
+the query and the number of hits we want returned .</p>
+
+
+<h3 class="Heading">IndexSearcher</h3>
+<p><code>IndexSearcher</code>
+  is the
+abstraction present in Lucene that executes search over a single Lucene
+index. <code>IndexSearcher</code> is
+opened on top of <code>IndexReader</code>, which is
+used to read the underlying index using the <code>Directory</code> and
+corresponding abstractions. Note that we need <code>IndexReader</code> since the
+<code>Directory</code> might
+represent the index in a format that is not immediately useful for
+searching (hence the need for an abstraction to deal with the
+scenario).</p>
+<p><code>IndexSearcher</code>
+instances are expensive to build and so should be reused unless the
+underlying index changes and the user wants to see the updated values.
+The <code>reuse</code> can
+be done by reopening the searcher with <code>DirectoryReader.openIfChanged(DirectoryReader)</code>.
+The constructor used in the preceding code opens an <code>IndexSearcher</code> with
+the given directory.</p>
+<p>  </p>
+
+
+<h3 class="Heading">IndexReader</h3>
+<p>
+<code>IndexReader</code>
+  is an
+abstraction provided to allow an interface to access an index. The two
+types of <code>IndexReader</code> are as
+follows:
+
+</p>
+
+<ul>
+<li><p><code>AtomicReader</code> :
+These readers read actual files such as postings, doc values, terms, and
+stored fields. These operations are atomic.</p></li>
+<li><p><code>CompositeReader</code>
+: <code>CompositeReader</code>
+instances are used to get stored fields from underlying <code>AtomicReaders</code>. Note
+that it is not possible to directly get a postings list from <code>CompositeReader</code>
+instances; you still need to get the underlying <code>AtomicReader</code>
+instances.</p></li>
+</ul>
+
+
+
+
+<h2 class="Heading">Searching</h2>
+<p>At the core of Lucene’s information-retrieval mechanism lies the
+scoring algorithms that determine the relevance of a document to the
+given query.</p>
+<p>Let’s first look at the query-execution model that Lucene uses.</p>
+
+<h3 class="Heading">Boolean Model</h3>
+<p>In the boolean
+model , a
+query is expressed as a family of AND, OR, and NOT connected predicates
+to find the documents that match a query.</p>
+<p>For example, the query x AND y AND z will only match documents that
+have x and y and z present.</p>
+
+
+<h3 class="Heading">What Is Relevance?</h3>
+<p>
+Relevance  refers to the measure
+of similarity (that is, how relevant a document is to a given query).
+Each document is assigned a score that is used to filter documents out
+and return top hits (see Figure <a href="#485809_1_En_2_Chapter.xhtml#Fig2">2-2</a>). Note that
+relevance is calculated per query for all documents.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_2_Chapter/485809_1_En_2_Fig2_HTML.jpg" style="width:35.57em" alt="../images/485809_1_En_2_Chapter/485809_1_En_2_Fig2_HTML.jpg"/>
+</p>
+
+<p>Figure 2-2</p>
+<p>Search layout</p>
+
+
+<p>Following the boolean model described earlier, let’s assume that the
+query consists of multiple clauses, each of which can be the same or
+different.</p>
+<p>Each clause contributes to the scoring differently, and not all
+clauses necessarily contribute to scoring .</p>
+<p>Note that the parameters for relevance (or similarity) as seen by
+each type of query are different.</p>
+
+
+<h3 class="Heading">Scoring Algorithms</h3>
+<p>Scoring
+algorithms are what determine the “similarity” of documents given
+a query (that is, how close a given document is to the given query).</p>
+<p>Lucene has a number of scoring algorithms. The following subsections
+describe the most common ones.</p>
+
+<h4 class="Heading">TF/IDF</h4>
+<p>Term frequency/inverse
+document frequency (TF/IDF) is the default scoring algorithm
+Lucene uses.</p>
+<p>
+The following factors contribute to TF/IDF’s scoring model:
+
+</p>
+
+<ul>
+<li><p><em>Term frequency</em>: Term frequency is simply the
+frequency of a repetition rate of a term in the document. A repetition
+of 5 is better than 1.</p></li>
+<li><p><em>Inverse document frequency</em> : Inverse document
+frequency is the measure of how frequently the term appears across
+documents. This defines the “rare” words from the</p>
+<p>“common.” For example, if a word occurs only in one document, that
+might be a more interesting hit than some word that occurs in 80% of the
+documents.</p></li>
+<li><p><em>Field length norm</em>: Field length is an
+important aspect of measuring the relevance of a term and a hit
+document. The longer the matched field, the lesser the probability of
+the field being only about the term. The shorter the field, the higher
+the probability.</p></li>
+</ul>
+
+<p>These three factors in conjunction generate a weight that signals the
+significance of the document.</p>
+
+
+<h4 class="Heading">Vector Space Model</h4>
+<p>The Vector Space
+Model  uses
+a vector model to compare against multiple terms in a query. Every term
+in the vector represents the TF/IDF score of one term of the query. Note
+that TF/IDF is one option. Any other scoring model can also be used
+here.</p>
+<p>Consider a query for “foo bar,” for example. For this query,
+calculate the weight of each term for each document, construct a vector
+for each document, and plot them with the vector for the query. The
+angle between the vectors gives the deviation or, conversely, the
+relevance.</p>
+
+
+<h4 class="Heading">Scoring Example</h4>
+<p>Consider a document containing 100 words wherein the word “cat”
+appears 3 times. The term frequency (tf) for “cat” is then (3 / 100) =
+0.03. Now, assume we have 10 million documents, and the word “cat”
+appears in 1,000 of these. Then, the inverse document frequency (idf) is
+calculated as log(10,000,000 / 1,000) = 4. Therefore, the tf-idf weight
+is the product of these quantities: 0.03 * 4 = 0.12. </p>
+
+
+
+<h3 class="Heading">Lucene’s Scoring Model</h3>
+<p>Whereas single-term queries are good for learning and <code>their</code> internals, real
+production workloads deal with multiterm queries. Lucene builds a model
+combining all of what was discussed earlier in this chapter into a
+single generic model.</p>
+<p>Lucene’s core querying model is built on a boolean model; all
+multiterm queries are a family of clauses connected by predicates.</p>
+<p>The core idea for Lucene’s scoring algorithm is that it takes stock
+of the number of times a term appears in a document relative to the
+number of times the term appears in all documents in the said
+collection. If a document has 100 occurrences of the term, and the times
+the term appears in all documents is 10,000, that is a worse score than
+when a term appears 5 times in a document and 7 times across all
+documents in the collection.</p>
+
+<h4 class="Heading">Fields</h4>
+<p>Fields are the
+building blocks of documents. Documents consist of a set of fields. Note
+that Lucene’s scoring works on fields and not documents, so field
+representations are crucial in the way scores are computed.</p>
+
+
+<h4 class="Heading">Similarity</h4>
+<p>The <code>Similarity</code> 
+class is what is responsible for the final “closeness” computation for a
+given term. Similarity can be overridden, and advanced users can write
+their own similarity. However, those are tricky waters to chart, so
+caution is advised.</p>
+<p>Once the boolean clauses identified for filtering terms are used to
+approve documents, they are then scored using the <code>Similarity</code> class  defined. The default
+scoring model works on TF/IDF and computes results that are then
+returned upstream for further processing.</p>
+
+
+
+
+<h2 class="Heading">Boosting</h2>
+<p>
+Boosting can be
+done at three levels:
+
+</p>
+
+<ul>
+<li><p><em>Document-level
+boosting</em> <em>:</em> Can be specified at index time</p></li>
+<li><p><em>Field-level
+boosting</em> <em>:</em> Can be specified at the time of adding
+the field to the document</p></li>
+<li><p><em>Query level
+boosting</em> <em>:</em> Can be specified during querying by
+specifying boost on a specific clause in the query</p></li>
+</ul>
+
+<p>Boosts allow influencing the entire scoring decision and giving
+priorities to a specific document, field, or clause in a query.</p>
+
+
+<h2 class="Heading">Collectors</h2>
+<p>Collectors are
+the “file vault” of querying in Lucene. They collect hits as dictated by
+the given query. Collectors are very useful because they define the
+structure of results and can be used to process hits in a much more
+helpful manner. Examples include top-score docs collectors (described in
+the next section), elastic search aggregations, and so on.</p>
+<p>Users can write their custom collectors by implementing the <code>Collector</code> interface
+defined in Lucene. This facility allows for great flexibility in terms
+of what can be done with hits collected and how hits are
+returned/ranked.</p>
+<p>In most common search cases, the user cares only about the top N
+relevant hits for a given query and dataset. Top N query supported in
+Lucene is useful for building search engines, searching for items, and
+so on.</p>
+<p>Lucene provides a special mechanism to serve this exact specific set
+of queries. These are known as top N hits queries.</p>
+<p>Typically , a
+user must specify a <code>Collector</code> and a <code>Query</code> to the
+underlying <code>IndexSearcher</code> to get
+the query to populate the results needed. However, for the top N hits,
+the user can specify the query and the number of hits requested, and
+Lucene will internally create a <code>Collector</code> from a
+family of collectors (known as <code>TopScoreDocsCollector</code>)
+and return an object of a class named <code>TopDocs</code>. TopDocs is
+responsible for holding the top N hits of the given query.</p>
+<p>Internally, <code>TopScoreDocCollector</code>
+ uses a priority queue to maintain documents according to their
+score. When the collection completes, the priority queue is used to
+return the top N hits.</p>
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">3. Core Search Fundamentals</h1>
+
+
+<!--End Abstract-->
+
+<p>Queries are the fundamental building blocks in any application using
+Lucene, and so they should be. After all, Lucene is much loved because
+of its powerful search capabilities built on top of its sophisticated
+indexing models.</p>
+<p>This chapter covers Lucene core search fundamentals, the components
+involved in the process, and the more commonly used constructs used to
+tap into the power of Lucene search.</p>
+<p>As an overview, this chapter introduces you to the basics without
+delving too deeply into complex details.</p>
+
+<h2 class="Heading">Codecs</h2>
+<p>Codecs enable
+the reading and writing of indexes.</p>
+<p>Lucene defines an abstract class, <code>Codec</code>, which outlines
+the contract that users of <code>Codec</code> should be
+expecting as the model of usage. Each physical codec needs to implement
+the contract and ensure that it is as performant as possible. (Remember
+that codecs are generally actively used in the critical path of
+indexing, so any performance leaks there can impact the overall
+performance of index creation/updating/deletion.)</p>
+<p>A salient aspect of <code>Codec</code> is that it
+abstracts the complexity and low-level details of how an index is
+stored. Recall from earlier chapters that Lucene represents its indexes
+in a multifaceted manner, with quite a bit of low-level tuning to ensure
+that the corresponding read and write operations are fast. In this way,
+Lucene allows a wide variety of operations to be performed easily on the
+data structures. Codecs honor that promise while hiding the specific
+details from the user.</p>
+<p>The abstract representation also ensures flexibility to change the
+underlying implementation of the codec without any user breakage,
+because all codecs must implement the same contract.</p>
+<p>A codec returns a concrete instance of the <code>Format</code> class for
+different types of components of the underlying index.</p>
+<p>
+<code>Format</code>
+implementations used/returned by <code>Codec</code> include the
+following:
+
+</p>
+
+<ul>
+<li><p><code>StoredFieldsFormat</code>
+: Represents the fields stored in the underlying index</p></li>
+<li><p><code>FieldsInfoFormat</code>
+: Has the per-field metadata</p></li>
+<li><p><code>PostingsFormat</code>
+: Represents the underlying postings list, including fields,
+terms, documents, offsets, and so on</p></li>
+<li><p><code>DocValuesFormat</code>
+: Represents the columnar store (used for operations like
+grouping, range queries, and sorted access)</p></li>
+</ul>
+
+<p>A new type of format, <code>CompoundFormat</code>
+, is used when compound indexes are enabled. Traditionally,
+Lucene stores the different layouts within its index in different files
+on disk. However, in newer versions of Lucene, compound indexes can be
+turned on, leading to a singular representation of the physical files of
+the index (and leading to codecs returning <code>CompoundFormat</code>, which
+enables accessing the same).</p>
+
+
+<h2 class="Heading">DocValues</h2>
+<p>Lucene uses its inverted index functionality to store data in an
+inverted format and allow matching queries to generate results. However,
+this way of doing things limits Lucene’s ability to perform other
+interesting stuff. For example, if we want to group by a field, or sort,
+or facet, inverted indexes cannot provide this functionality.</p>
+<p>Lucene has an important component for solving this specific use case:
+<code>DocValues</code> .
+DocValues are a columnar store, an uninverted form of the inverted
+index. Specifically, <code>DocValues</code> allow
+access to specific fields. All the values associated with a field are
+colocated, making accesses efficient.</p>
+<p>One common argument in that direction is that stored fields provide
+similar functionality (i.e., accessing specific values for fields).
+However, stored fields work best when their data is bulk loaded into the
+system’s memory. They are not optimal for point seeks in the field’s
+values.</p>
+<p>Think of <code>DocValues</code> as an
+inverted index that reverse maps what Lucene’s regular inverted index
+maps. (That is, <code>DocValues</code> map
+document IDs to field values.) Storing field values in a colocated
+manner also helps with disk reads, because reads typically happen in
+blocks (and hence colocated values will most likely be loaded when a
+block from a disk is read into main memory). In this scenario, further
+seeks should have a much lower latency because ideally the data should
+already be present in the memory.</p>
+<p>To think about uses, consider a scenario in which a field is being
+used for sorting hits identified by the scoring criteria. To sort, we
+need actual field values. One way to do this is to do a document read
+using the document ID of the hit, and you then use the necessary
+field/fields to get the needed values.</p>
+<p>However, this method is inefficient and a performance unworthy for
+this type of queries. The optimal way to execute such queries is to have
+a columnar store that maps document IDs to field values, giving all the
+benefits described earlier. So, the value of using <code>DocValues</code> 
+should be obvious to you now.</p>
+<p>
+You can add a <code>DocValue</code> to a
+document as follows:
+
+</p>
+<pre>doc.add(new SortedDocValuesField ("date", new BytesRef(date) ));</pre>
+
+
+<h2 class="Heading">Phrase Queries</h2>
+<p>
+Phrase queries are used to match “phrases” of terms. A group of terms
+given in a sequence are searched, and documents maintaining that
+sequence are then returned, as follows:
+
+</p>
+<pre>private void searchPhraseQuery(String[] phrases)
+throws I0Exception, ParseException {
+searcher = new Searcher(indexDir);
+long startTime = System.currentTimeMillis();
+PhraseQuery query = new PhraseQuery();
+query.setSlop(0);
+for(String word:phrases) {
+query.add(new Term(LuceneConstants.FILE_NAME,word));
+}
+TopDocs hits = searcher.search(query);
+long endTime = System.currentTimeMillis();
+for(ScoreDoc scoreDoc : hits.scoreDocs) {
+Document doc = searcher.getDocument(scoreDoc);
+System.out.println("File: "+ doc.get(LuceneConstants.FILE_PATH));
+}
+searcher.close();
+}</pre>
+<p>Phrase queries mandate that the given terms occur in any document in
+sequence. For example, “hi friend” as a phrase needs to match “hi” and
+“friend,” and “friend” needs to immediately succeed “hi.”</p>
+<p>You can lift this restriction, however, by giving a value for the
+<code>slop</code> parameter.
+The <code>slop</code>
+parameter   allows N number of
+words to occur between words in the phrase for a document to match. The
+higher the value of <code>slop</code>, the more the
+number of hits. (A higher value might not necessarily be a good idea,
+though, because a high value of <code>slop</code> can lead to
+unnecessary noise in the returned documents.)</p>
+
+
+<h2 class="Heading">Term Vectors</h2>
+<p>As you may recall, a term is the basic searchable unit in Lucene. It
+consists of a pair of strings, the field name, and the value.</p>
+<p>Term vectors
+are a field-level data structure that are useful for a wide variety of
+operations. If a term vector is enabled for a field, all terms in the
+field will be present in the term vector, and the corresponding metadata
+will be computed for each term.</p>
+<p>Let’s take a look at a couple of use cases to understand the value of
+term vectors.</p>
+<p>Consider a case in which a user wants to mine similarity between two
+documents, or wants to get a preview of a data field from the hits given
+by a query. In both scenarios, the underlying task is to get extra
+metadata about hits once a query generates the corresponding hits.</p>
+<p>This kind of operation is hard in an inverted index because the
+structure and layout of inverted indexes do not allow easy fetching of
+content around a hit. To solve that specific issue, term vectors come to
+the rescue.</p>
+<p>
+We can use term vectors to get such data and to perform complex ranking
+(such as in the Vector Space Model), or similarity ranking, or just to
+get a text summary from a hit.
+
+</p>
+<pre>RAMDirectory ramDir = new RAMDirectory();
+//Index some made-up content
+IndexWriter writer = new IndexWriter(ramDir, new StandardAnalyzer(), true,
+IndexWriter.MaxFieldLength.UNLIMITED);
+for (int i = 0; i &lt; DOCS.length; i++){
+Document doc = new Document();
+Field id = new Field("id", "doc_" + i, Field.Store.YES,
+Field.Index.NOT_ANALYZED_NO_NORMS);
+doc.add(id);
+//Store both position and offset information
+Field text = new Field("content", DOCS[i], Field.Store.NO, Field.Index.ANALYZED,
+Field.TermVector.WITH_POSITIONS_OFFSETS);
+doc.add(text);
+writer.addDocument(doc);
+}
+writer.close();</pre>
+<p>Think of term vectors as micro inverted indexes against a single
+document.</p>
+<p>The various modes of term vector construction include the
+following:</p>
+<p>
+
+</p>
+
+<ul>
+<li><p><code>TermVector.YES</code>: Only
+store the number of occurrences.</p></li>
+<li><p><code>TermVector.WITH_POSITIONS</code>:
+Store the number of occurrence and positions of terms, but no
+offset.</p></li>
+<li><p><code>TermVector.WITH_OFFSETS</code>:
+Store the number of occurrence and offsets of terms, but no
+positions.</p></li>
+<li><p><code>TermVector.WITH_POSITIONS_OFFSETS</code>:
+Store the number of occurrence and positions, and store the offsets of
+terms.</p></li>
+<li><p><code>TermVector.NO</code>: Don't
+store any term vector information.</p></li>
+</ul>
+
+<p>
+Term vectors store
+myriad metadata about the terms for the field that has the term vector
+enabled. Information stored includes the following:
+
+</p>
+
+<ul>
+<li><p>Document ID</p></li>
+<li><p>Field name</p></li>
+<li><p>Actual text of the term</p></li>
+<li><p>Frequency</p></li>
+<li><p>Position</p></li>
+<li><p>offsets</p></li>
+</ul>
+
+
+
+<h2 class="Heading">BooleanQuery</h2>
+<p><code>BooleanQuery</code> 
+is a fundamental construct used in querying Lucene and getting relevant
+documents. Because of its generic behavior and the diversity and
+expressiveness of its clauses, <code>BooleanQuery</code> is one
+of the most used query types.</p>
+<p><code>BooleanQuery</code>
+allows specifying multiple clauses and their significance in the entire
+scoring/selection process.</p>
+<p>The boolean model was discussed in Chapter <a href="#485809_1_En_2_Chapter.xhtml">2</a> — this chapter talks about <code>BooleanQuery</code>
+implementation in Lucene.</p>
+<p>
+You can assign three types of “levels” to a clause in a query:
+
+</p>
+
+<ul>
+<li><p><code>MUST</code>:
+This clause must be matched by a document to be deemed a hit.</p></li>
+<li><p><code>SHOULD</code>:
+These clauses are good to have and increase scores.</p></li>
+<li><p><code>MUST NOT</code>: To be considered a hit, these clauses should not occur in
+the document.</p></li>
+</ul>
+
+<p>
+The following method carries out a <code>BooleanQuery</code> :
+
+</p>
+<pre>private void booleanQueryExample(String firstQuery,
+String secondQuery) throws I0Exception, ParseException {
+searcher = new Searcher(indexDir);
+long startTime = System.currentTimeMillis();
+Term firstTerm = new Term("foo", firstQuery);
+Query internalFirstQuery = new TermQuery(firstTerm);
+Term secondTerm = new Term("bar", secondQuery);
+Query internalSecondQuery = new PrefixQuery(secondTerm);
+BooleanQuery query = new BooleanQuery();
+query.add(firstInternalQuery, BooleanClause.Occur.MUST_NOT);
+query.add(secondInternalQuery, BooleanClause.Occur.MUST);
+TopDocs hits = searcher.search(query);
+long endTime = System.currentTimeMillis();
+for(ScoreDoc scoreDoc : hits.scoreDocs) {
+Document doc = searcher.getDocument(scoreDoc);
+}
+searcher. Close();
+}</pre>
+
+
+<h2 class="Heading">MultiTermQuery</h2>
+<p><code>MultiTermQuery</code>
+ is a query type that matches a subset of terms and returns
+corresponding results.</p>
+<p>Multiterm queries are great when a query needs to filter by multiple
+terms. They are the equivalent of <code>IN</code> and <code>NOT IN</code> SQL
+constructs. Think of them as powerful tools for dynamic filtering. They
+prove especially useful when autogenerating queries through an
+application.</p>
+<p>Multiterm queries require a <code>FilteredTermsEnum</code> to
+be passed in for defining the set of terms to be used for filtering. A
+<code>FilteredTermsEnum</code>
+ is an iterator of terms, which is basically a subset.</p>
+<p>Multiterm queries cannot be used directly (by invoking a
+constructor). Instead, they must be passed in a <code>FilteredTermsEnum</code>’s
+concrete implementation, and then <code>getTerms()</code> needs to
+be invoked.</p>
+<p>
+One popular version of <code>MultiTermQuery</code>
+ is <code>TermRangeQuery</code>
+. <code>TermRangeQuery</code> allows
+specifying a range of terms to be used as the filter, both ends
+inclusive. Any term greater than or equal to a lower term and lesser
+than or equal to an upper term will match.
+
+</p>
+<pre>//Assume the index already exists
+IndexReader reader = DirectoryReader.open(dir);
+IndexSearcher searcher = newSearcher(reader);
+TermRangeQuery query = new TermRangeQuery("content", new Term("foo"),
+new Term("bar"), true, true);
+searcher.search(query);</pre>
+<p>The preceding code defines a range of terms, from “foo” to “bar.”</p>
+
+
+<h2 class="Heading">QueryCache</h2>
+<p><code>QueryCache</code> 
+proves useful when you want to enable heavy query performance. <code>QueryCache</code> defines an
+interface that allows caching queries at the junction when it is needed
+most: at the start of the query.</p>
+<p>The <code>QueryCache</code>
+implementation used is <code>LRUQueryCache</code>
+. As the name implies, <code>LRUQueryCache</code> uses
+the Least Recently Used algorithm to evict keys when the cache is
+full.</p>
+<p>
+As described in Chapter <a href="#485809_1_En_2_Chapter.xhtml">2</a>, each query creates a <code>Weight</code> instance
+(associated with the corresponding <code>IndexSearcher</code>). The
+default <code>IndexSearcher</code> 
+implementation uses an instance of <code>LRUQueryCache</code> to
+cache the incoming query and create a cacheable <code>Weight</code> instance. When
+the scoring starts, the cacheable <code>Weight</code> instance
+checks whether the query is present in the cache. If it is present, the
+cached version is retrieved and returned. Otherwise, a cache load is
+done, and the corresponding instance is returned (see Figure <a href="#485809_1_En_3_Chapter.xhtml#Fig1">3-1</a>).
+
+</p>
+
+<p>
+<img src="images/485809_1_En_3_Chapter/485809_1_En_3_Fig1_HTML.jpg" style="width:35.22em" alt="../images/485809_1_En_3_Chapter/485809_1_En_3_Fig1_HTML.jpg"/>
+</p>
+
+<p>Figure 3-1</p>
+<p><code>QueryCache</code>
+in action</p>
+
+
+<p><code>QueryCache</code>s
+greatly speed up performance under high-load and repetitive queries.
+However, for a large number of distinct queries, <code>QueryCache</code>s can
+actually increase query latencies because of the additional query cache
+loading times. Also, if the query being cached is large, that becomes a
+significant overhead in the entire query’s latency.</p>
+<p><code>Weight</code>  represents the
+per-<code>IndexSearcher</code> 
+statistics associated with a query. This is essential because it allows
+a query to be reused (as discussed with regard to <code>QueryCache</code> earlier in
+the chapter). Therefore, the same query can be used across multiple
+<code>IndexSearcher</code>s,
+but each <code>IndexSearcher</code> will
+have its own <code>Weight</code> instance.
+Remember that <code>Weight</code> is correlated
+to <code>IndexSearcher</code> + <code>Query</code>, not just one
+of the two.</p>
+<p>When a query is given to an <code>IndexSearcher</code> 
+for execution, the <code>IndexSearcher</code>
+instance creates a <code>Weight</code> instance for
+the same. The lifetime of the <code>Weight</code> is limited to
+the query’s execution lifetime within the <code>IndexSearcher</code>.</p>
+<p><code>Weight</code> is
+also responsible for participating in the scoring process. <code>Weight</code> creates the
+corresponding <code>Scorer</code> (described in
+the next section), and the <code>Scorer</code> is then
+invoked on various documents that the query is being evaluated
+against.</p>
+<p>Note that the <code>Weight</code> is completely
+owned by the <code>IndexSearcher</code>. It is
+only maintaining statistics for a particular query, and the <code>IndexSearcher</code>
+  is free
+to play with the <code>Weight</code>’s data as much
+as it wants, with no side effects impacting other parts of the
+system.</p>
+
+
+<h2 class="Heading">Scorer as Part of the Search Process</h2>
+<p><code>Scorer</code>  is the
+core of the search process in Lucene. <code>Scorer</code> is responsible
+for identifying matches and scoring hits from the set of documents
+present.</p>
+<p><code>Scorer</code> is a
+special class. It is also an extension of a class known as <code>DocIdSetIterator</code>
+. <code>DocIdSetIterator</code>
+allows “iteration” over document IDs, thus allowing seeks over the index
+to get specific documents or to iterate over all documents. Note that
+the iterator can go forward only; it cannot go backward. This
+restriction simplifies the underlying codec supporting the iterator.</p>
+<p>
+<code>DocIdSetIterator</code>
+  provides
+three useful methods:
+
+</p>
+
+<ul>
+<li><p><code>docID()</code> : Get
+the internal index document ID for this document. This method always
+returns monotonically increasing document IDs.</p></li>
+<li><p><code>nextDoc()</code>: Iterate to
+the next document.</p></li>
+<li><p><code>advance(location)</code>:
+Advance to the location specified.</p></li>
+</ul>
+
+<p>This interface allows a <code>Scorer</code> to iterate
+over all documents and determine whether they are relevant to the
+query.</p>
+<p>The <code>Scorer</code>  works
+by implementing the <code>score()</code> method on top
+of the iterators. The <code>score()</code> method gets
+the current document ID, gets the current document, and returns a score
+for the same. <code>IndexReader</code> 
+has statistics about the current document that can be fully utilized by
+the <code>Scorer</code> to
+determine a score. If term vectors are enabled for the field, the <code>Scorer</code> can get access
+to the term vector and perform even more elaborate operations.</p>
+<p>
+How scoring is performed is discussed in Chapter <a href="#485809_1_En_2_Chapter.xhtml">2</a>. Here you’ll see how it all fits
+together (see Figure <a href="#485809_1_En_3_Chapter.xhtml#Fig2">3-2</a>).
+
+</p>
+
+<p>
+<img src="images/485809_1_En_3_Chapter/485809_1_En_3_Fig2_HTML.jpg" style="width:35.3em" alt="../images/485809_1_En_3_Chapter/485809_1_En_3_Fig2_HTML.jpg"/>
+</p>
+
+<p>Figure 3-2</p>
+<p>A <code>Scorer</code>  in a
+search</p>
+
+
+<p>The user issues a query with an instance of the <code>Query</code> class. The
+query is given to an <code>IndexSearcher</code>, which
+first rewrites the query recursively (invoking any
+modifications/simplifications if possible). Upon completion of the
+rewrite, an instance of the <code>Weight</code> class is
+created, which is specific to the <code>Query</code> + <code>IndexSearcher</code>
+combination. This <code>Weight</code> will contain
+all the query-specific statistics that apply to the execution of this
+query.</p>
+<p>During the scoring, the <code>Weight</code> creates a
+<code>Scorer</code>, which
+iterates over all documents in the index, filters out the irrelevant
+documents, and applies the scoring algorithm on the candidate documents.
+The scoring algorithm can be anything that the user chooses to implement
+or use, but typically is a version of term frequency/inverse document
+frequency (TF/IDF) family.</p>
+<p>The <code>Scorer</code> 
+interacts with the <code>IndexReader</code> to get
+the relevant details from the underlying file directory. If a term
+vector is present, the <code>Scorer</code> can choose to
+use features from that as well to calculate the score for the document.
+The <code>Scorer</code> is
+expected to return a score per document it iterates on.</p>
+<p>After scoring completes, the results are returned to the collector,
+which then chooses the next set of steps. If the top N hits are
+requested, the collector typically will maintain a priority queue to
+identify the top N hits and then return them back to the user.</p>
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">4. Spatial Indexing</h1>
+
+
+<!--End Abstract-->
+
+<p>Lucene provides a rich set of application programming
+interfaces (APIs) to index and query spatial fields, which allows
+for a variety of queries to be performed. Lucene allows either
+flat-plane or spherical models of spatial search.</p>
+<p>Some key features of Lucene in that space are multidimensional
+points, latitude and longitudinal points, and box queries.</p>
+<p>Lucene has a spatial module, which is the core engine responsible for
+spatial indexing and searching. The next section examines the API
+exposed by the module.</p>
+
+<h2 class="Heading">Spatial Module</h2>
+<p>The spatial
+module is based on Spatial4j, an Apache-licensed library that
+provides implementations for various shapes, such as points, rectangles,
+and circles, and additionally supports polygons with an extra
+dependency.</p>
+<p>
+<code>SpatialStrategy</code>
+ is the core interface used to interact with the spatial module,
+index spatial data, and perform spatial queries. <code>SpatialStrategy</code>
+defines the way to index and query based on shapes. From Lucene's
+javadocs, the points defined by a <code>SpatialStrategy</code> are
+as follows:
+
+</p>
+
+<ul>
+<li><p>Can it index more than one shape per field?</p></li>
+<li><p>What types of shapes can be indexed?</p></li>
+<li><p>What types of query shapes can be used?</p></li>
+<li><p>What types of query operations are supported? This might vary per
+shape.</p></li>
+</ul>
+
+<p>Remember that if a different shape is attempted to be indexed than
+what is defined by the corresponding <code>SpatialStrategy</code>, an
+exception will be thrown.</p>
+<p>
+Prefix trees form the foundation of spatial index data structures in
+Lucene. A prefix tree acts as a trie (a tree data structure where shapes
+are decomposed into strings, each string representing a rectangular
+spatial region). Figure <a href="#485809_1_En_4_Chapter.xhtml#Fig1">4-1</a> shows a prefix
+tree of the words “Car,” “Cat,” “Do,” and “Don.”
+
+</p>
+
+<p>
+<img src="images/485809_1_En_4_Chapter/485809_1_En_4_Fig1_HTML.jpg" style="width:35.45em" alt="../images/485809_1_En_4_Chapter/485809_1_En_4_Fig1_HTML.jpg"/>
+</p>
+
+<p>Figure 4-1</p>
+<p>A prefix
+tree</p>
+
+
+<p>Lucene defines an abstract class, <code>SpatialPrefixTree</code>
+ , which
+represents abstract representations of a prefix tree. The class defines
+all the necessary methods, such as getting the number of levels, getting
+a cell at a level, and so on, that are required for working with prefix
+trees during searches.</p>
+<p>As discussed in upcoming sections, Lucene consists of two concrete
+implementations of <code>SpatialPrefixTree</code>:
+<code>QuadPrefixTree</code>
+ and <code>GeoHashPrefixTree</code>
+.</p>
+
+
+<h2 class="Heading">What Are Geohashes?</h2>
+<p>A geohash is a method of encoding an object of geographic information in the form
+of a short string of letters and digits.</p>
+<p>Geohashes are hierarchal and offer variable precision (reducing the
+length of the representation by removing characters from the end of the
+string, and reducing the corresponding precision).</p>
+<p>The value that geohashes bring is the simplicity by which two
+geographic information objects can be compared for similarity.</p>
+<p>For two given objects represented in their geohash representations, a
+prefix match will give a value of how similar the two objects are. The
+higher the degree of the prefixes that match, the more the similarity
+between the two geographic objects.</p>
+<p><code>GeoHashPrefixTree</code>
+ is based on the concept of geohashes, and it uses this technique
+to implement Lucene's <code>Prefix</code> tree class for similarity and
+matching.</p>
+
+<h3 class="Heading">Quad Trees</h3>
+<p>A quad tree  is a spatial data
+structure where each node has exactly four children. A quad tree splits
+a spatial dimension into four each time a new level is added to the
+tree.</p>
+<p>
+Quad trees are notable for two use properties:
+
+</p>
+
+<ul>
+<li><p>The higher-level nodes of quad trees help representation of the
+overall data in a less-granular level (i.e., the depth of detail stored
+in the top level is less than that stored in the leaf-level
+nodes).</p></li>
+<li><p>Quad trees are great for searching two-dimensional spaces. For
+example, given a two-dimensional space, to find a point closest to the
+given coordinates, a simple traversal of the quad tree will lead to the
+result.</p></li>
+</ul>
+
+<p>
+Figure <a href="#485809_1_En_4_Chapter.xhtml#Fig2">4-2</a> shows a quad
+tree.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_4_Chapter/485809_1_En_4_Fig2_HTML.jpg" style="width:35.55em" alt="../images/485809_1_En_4_Chapter/485809_1_En_4_Fig2_HTML.jpg"/>
+</p>
+
+<p>Figure 4-2</p>
+<p>A quad tree </p>
+
+
+
+
+<h3 class="Heading">K-D Trees</h3>
+<p>A K-D tree  is a
+space-partitioning tree that allows splitting a plane of space into a K
+dimensional space.</p>
+<p>A K-D tree is a binary tree, with each node representing a K
+dimensional point. Put simply, given a collection of points, the range
+is split using an axis value. For example, if a node represents the X
+axis, and a split using the X axis is done, the left being all the
+points that have an X axis value less than the split value, the right
+tree having all values greater than the same.</p>
+<p>
+K-D trees prove useful for a variety of query types, such as point and
+range queries. For this reason, they are an important member of Lucene’s
+indexing capabilities. Figure <a href="#485809_1_En_4_Chapter.xhtml#Fig3">4-3</a> shows an example
+of a K-D tree.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_4_Chapter/485809_1_En_4_Fig3_HTML.jpg" style="width:35.38em" alt="../images/485809_1_En_4_Chapter/485809_1_En_4_Fig3_HTML.jpg"/>
+</p>
+
+<p>Figure 4-3</p>
+<p>A K-D tree </p>
+
+
+<p>Lucene’s implementation uses a Block-KD (BKD) tree,
+which is an efficient version that is I/O friendly and restricts I/O
+usage.</p>
+
+
+<h3 class="Heading">BKD Trees</h3>
+<p>BKD trees  are built in the same
+manner as K-D trees, recursing and partitioning the N dimensional space,
+and performing an equal split at each recursion. However, BKD trees stop
+recursing once there are fewer than 1024 points.</p>
+<p>At that point, all points are written to one block on the disk.</p>
+<p>When a point is indexed in the BKD tree, it is converted into its
+equivalent byte[] representation. Lucene then buffers the points being
+indexed and then writes them using a <code>PointsFormat</code>. All
+default Lucene codecs now support points being indexed.</p>
+<p>
+As evident in Figure <a href="#485809_1_En_4_Chapter.xhtml#Fig4">4-4</a>, a BKD tree is a
+K-D tree with a B tree incorporated into it. Nodes have compressed keys
+of their children and define key ranges with equivalent pointers into
+their children.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_4_Chapter/485809_1_En_4_Fig4_HTML.jpg" style="width:35.48em" alt="../images/485809_1_En_4_Chapter/485809_1_En_4_Fig4_HTML.jpg"/>
+</p>
+
+<p>Figure 4-4</p>
+<p>A BKD tree </p>
+
+
+
+
+
+<h2 class="Heading">Using Spatial Indexing</h2>
+<p>Let’s now look at an example of how to use Lucene’s spatial indexing
+capabilities to
+express spatial data and corresponding queries (the same example present
+in Lucene's repository).</p>
+<p>
+We start by creating the index first:
+
+</p>
+<pre>final SpatialContext spatialCxt = SpatialContext.GEO;
+final ShapeFactory shapeFactory = spatialCxt.getShapreFactory();
+spatialCxt.getShapeFactory();
+// Define how the spatial tree will be constructed — we will add prefixes to the tree using "Coordinates" as the key. The maximum depth of the tree is 5
+// being the tree to be used with level depth 5. "Coordinates" is the field to be used as key.
+final SpatialStrategy coordinatesStrategy = new RecursivePrefixTreeStrategy(new GeohashPrefixTree(spatialCxt, 5), "coordinates");
+// Create an index
+Final Directory directory = new RAMDirectory();
+IndexWriterConfig iwConfig = new IndexWriterConfig();
+IndexWriter indexWriter = new IndexWriter(directory, iwConfig);</pre>
+<p>Clearly, we are creating a geohash-based prefix tree on top of the
+standard <code>IndexWriter</code>
+  class
+that we have seen before. This will now allow us to directly index
+points into the prefix tree using the created instance.</p>
+<p>
+Now let’s index some documents:
+
+</p>
+<pre>//Index some documents
+var r = new Random();
+for (int i = 0; i &lt; 3000; i++) {
+double latitude = ThreadLocalRandom.current().nextDouble(50.4D, 51.4D);
+double longitude = ThreadLocalRandom.current().nextDouble(8.2D, 11.2D);
+Document doc = new Document();
+doc.add(new StoredField("id", r.nextInt())));
+var point = shapeFactory.pointXY(longitude, latitude);
+for (var field: coordinatesStrategy.createIndexableFields(point)) {
+doc.add(field);
+}
+doc.add(new StoredField(coordinatesStrategy.getFieldName(), latitude + ":" + longitude));
+indexWriter.addDocument(doc);
+}
+indexWriter.forceMerge(1);
+indexWriter.close();</pre>
+<p>Note that the <code>SpatialContext</code>
+class   being used is a class
+present in Spatial4j, a dependency of Lucene’s spatial module. <code>SpatialContext</code> allows
+the creation of points from a variety of sources (in this context, from
+the latitude and the longitude). The point is then indexed into the data
+structure.</p>
+<p>
+Now let’s query the index:
+
+</p>
+<pre>//Query the index
+final IndexReader indexReader = DirectoryReader.open(directory);
+IndexSearcher indexSearcher = new IndexSearcher(indexReader);
+// Get the search range
+double latitude = ThreadLocalRandom.current().nextDouble(50.4D, 51.4D)
+double longitude = TheradLocalRandom.current().nextDouble(8.2D, 11.2D);
+/// Approximate radius degree
+final double NEARBY_RADIUS_DEGREE = DistanceUtils.dist2Degrees(100, DistanceUtils.EARTH_MEAN_RADIUS_KM);
+final var spatialArgs = new SpatialArgs(SpatialOperation.IsWithin, shapeFactory.circle(longitude, latitude, NEARBY_RADIUS_DEGREE));
+final Query q = coordinatesStratefy.makeQuery(spatialArgs);
+try {
+final TopDocs topDocs = indexSearcher.search(q, 1 // Number of docs);
+if (topDocs.totalHits == 0) {
+return;
+}
+// Get the doc
+var doc = indexSearcher.doc(topDocs.scoreDocs[0].doc);
+// Get the ID
+var id = doc.getField("id").numericValue();
+} catch (IOException e) {
+e.printStackTrace();
+}</pre>
+<p>Here we generate random latitude and
+longitude values. We then create a spatial “bounding box” of a circle
+with the relation that the point should be inside the circle. Hence, a
+point will be qualified as a hit only when it lies within the defined
+circle.</p>
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">5. Location-Aware Search Engines</h1>
+
+
+<!--End Abstract-->
+
+<p>Location-aware search engines are pretty crucial today, both as
+standalone search engines as well as components supporting business
+logic and operations (think of a food-delivery application). With the
+advent of location-enabled smart devices, this data is available more
+than ever, but that also signifies an information explosion in the
+amount of data that is available at any given point in time for such
+queries. Hence it is imperative that we build storage, indexing, and
+searching strategies that scale with the data while consistently
+delivering a reasonable degree of performance.</p>
+
+
+Note
+
+<p>This is a theoretical chapter that builds on what we’ve covered
+previously. The concepts will help reinforce what you already know and
+give you a foundation for building a location-aware search engine.</p>
+
+
+<h2 class="Heading">Why Use a Search Engine for Geographic
+Searches?</h2>
+<p>Many geographic
+information system (GIS) tools that are available do the task of
+performing geographic searches. However, the advantage of leveraging a
+search engine for this use case is that you can combine structured and
+unstructured data. This advantage implies that queries can be expressed
+that allow seeking across text and geographic data. A query can query on
+text data and create filters on geographic data and vice versa.</p>
+<p>Another advantage of having search engines handle the
+functionality is the availability of things such as faceting,
+highlighting, and spell checking, which enable users to have greater
+control when expressing queries.</p>
+<p>The next section first reviews some of the core query options exposed
+by Lucene that enable you to build such applications. The discussion
+then turns to geospatial searching basics, and then we work through a
+relevant project.</p>
+<p>Knowledge of geospatial systems is not necessary, although it is good
+to understand latitude and longitude generalities. This chapter provides
+enough background context to help you make sense of the concepts
+covered.</p>
+
+
+<h2 class="Heading">Range Queries</h2>
+<p>
+Range queries  and range filters allow you
+to restrict a given space of input. In a range query, the user specifies
+a bounding range. The bounding range acts as a bounding box for the
+documents in the index, and the query returns only the documents lying
+within the given range. This query model proves useful because it allows
+the application to filter down on geographic ranges and thus perform
+complex operations on only a subset of the dataset.
+
+</p>
+<pre>mod_date:[20020101 TO 20030101]</pre>
+<p>Internally, Lucene must enumerate all documents and match them
+against the given criteria to ensure that they match and choose only the
+ones that match the range (and discard others in accordance with the
+query). This process can be expensive, and so it is crucial to define
+the geographic data that you have so that these queries are not slowed
+down significantly.</p>
+
+
+<h2 class="Heading">Function Queries </h2>
+<p>
+Lucene also features function queries, which basically allow
+participation of the value of a field into the scoring mechanism instead
+of using just the default scoring mechanism. We use function queries to
+incorporate latitude and longitude data into our scoring mechanism later
+in this chapter.
+
+</p>
+<pre>q={!func}div(popularity,price)&amp;fq={!frange l=1000}customer_ratings</pre>
+
+
+<h2 class="Heading">Geospatial Basics</h2>
+<p>When building a geospatial search engine,
+it is important to define how the data will be represented. A bad
+representation can lead to slow and inefficient queries, thus leading to
+an overall degraded end-user experience.</p>
+<p>Geospatial data
+is typically available in various flavors. From high-level abstract
+models such as states and cities to granular forms such as latitude and
+longitude, geospatial data’s form determines its use cases. Data such as
+countries and their general locations is good for things like world maps
+but not good for hyperlocal delivery apps (for which actual longitude
+and latitude are vital). Hence, there is no silver bullet.</p>
+<p>Another consideration is the representation of the data in the search
+engine. Once we decide which data format we want to use, it is important
+to define how the data is stored in our indexes and how the query path
+works. In general, a bad representation can lead to an explosion in the
+size of the index, with a commensurate rise in the overall storage cost.
+In addition, Lucene queries are fan out, so the amount of data examined
+also increases, which can increase latency.</p>
+<p>As you can understand already from this discussion, the use of a
+search engine often proves advantageous compared to using a pure GIS
+application. A search engine allows you to use multiple focal points to
+build a composite result. As mentioned earlier, a combination of data
+such as locations and semantic data can provide powerful insight to
+applications.</p>
+
+
+<h2 class="Heading">Representing Spatial Data</h2>
+<p>An obvious way to represent spatial data is to just store an
+identifier for the location. For example, consider indexing the name of
+a city as a token in the inverted index. Doing so allows for searching
+on the city name.</p>
+<p>However, this method is restrictive because it allows just a single
+dimension of search to be performed. In this case, only search term
+queries on city names are served.</p>
+<p>Therefore, we need to move to a deeper and richer data model that
+will allow finer queries to be served.</p>
+<p>One thing to consider is the system used in our application to
+represent the said data. The spatial reference used to define the
+representation of the data being indexed is crucial. The most common
+spatial reference is the World Geodetic System, and we shall assume we
+are using a standard system across our engine.</p>
+<p>The data that we will store for our search is latitudinal and
+longitudinal representation of the locations that we want to index and
+store. Latitude and longitude are generally expressed in degrees,
+minutes, and seconds from the prime meridian.</p>
+<p>One catch when using latitudes and longitudes is the possibility of
+information explosion. This depends solely on how the overall geographic
+horizon is structured. What that means is that the granularity at which
+data is stored is of crucial importance. Too granular the data being
+stored, the larger the index size. Too macro level, the more degradation
+of search quality.</p>
+<p>
+Figure <a href="#485809_1_En_5_Chapter.xhtml#Fig1">5-1</a> shows the size
+of the index with the increase in the granularity of the latitude and
+longitude pairs stored for the same geographic area. The X-axis
+represents the number of pairs stored, and the Y-axis represents the
+size in gigabytes (GB).
+
+</p>
+
+<p>
+<img src="images/485809_1_En_5_Chapter/485809_1_En_5_Fig1_HTML.jpg" style="width:28.95em" alt="../images/485809_1_En_5_Chapter/485809_1_En_5_Fig1_HTML.jpg"/>
+</p>
+
+<p>Figure 5-1</p>
+<p>Granularity vs.
+storage size</p>
+
+
+<p>
+Figure <a href="#485809_1_En_5_Chapter.xhtml#Fig2">5-2</a> shows the search
+precision vs. the index size. As evident, search precision eventually
+peaks out with increasing index size.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_5_Chapter/485809_1_En_5_Fig2_HTML.jpg" style="width:29.52em" alt="../images/485809_1_En_5_Chapter/485809_1_En_5_Fig2_HTML.jpg"/>
+</p>
+
+<p>Figure 5-2</p>
+<p>Search precision vs.
+index size
+</p>
+
+
+<p>How do we solve this problem of storage vs. search quality? The next
+section answers this question for you.</p>
+
+
+<h2 class="Heading">Tiered Design for Storage</h2>
+<p>Instead of storing all latitudes and longitudes
+in the same index, we break down the overall geographic spectrum into
+areas. This trade-off between precision and storage is a way to reach
+equilibrium.</p>
+<p>The division is done using Cartesian tiers. Each Cartesian tier
+focuses on a specific part of the geographic spectrum. For example, a
+tier may focus on one half of the city, and another tier may focus on a
+different part of the same city.</p>
+<p>This design helps divide the data space into logical partitions, and
+helps in defining independent indexes for groups of partitions (thus
+reducing both the memory footprint of a query and the overall latency).
+However, because two different design layouts in the same engine can
+cause correctness issues, it is imperative to ensure that no confusion
+or ambiguity exists when inserting new records or reading the data.</p>
+
+
+<h2 class="Heading">Geohashes</h2>
+<p>Geohashes  are a popular way to
+represent latitudes and longitudes. From Lucene’s point of view, a
+latitude and longitude can be represented as two separate fields, but
+such a representation can result in query and indexing performance
+issues.</p>
+<p>Geohashes provide an alternative way to represent this data.
+Representing the point on a Z order curve, a geohash is a hash for a
+given location. A Z order curve is a way of mapping multidimensional
+data to a single dimension without losing information.</p>
+<p>Imagine the world divided into a grid with 32 cells. The first
+character in a geohash identifies the initial location as 1 of the 32
+cells.</p>
+<p>This cell will also contain 32 cells, and each of these will contain
+32 cells (and so on ad infinitum). Adding characters to the geohash
+subdivides a cell, effectively zooming in to a more detailed area.</p>
+<p>
+Figure <a href="#485809_1_En_5_Chapter.xhtml#Fig3">5-3</a> shows a geohash
+at three different levels.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_5_Chapter/485809_1_En_5_Fig3_HTML.jpg" style="width:35.38em" alt="../images/485809_1_En_5_Chapter/485809_1_En_5_Fig3_HTML.jpg"/>
+</p>
+
+<p>Figure 5-3</p>
+<p>Three levels of a geohash</p>
+
+
+<p>The use of a geohash  allows indexing as a
+single field in Lucene and thus can save some performance cycles.
+However, the encoding and decoding cost their own CPU cycles (something
+to consider when performance planning).</p>
+
+
+<h2 class="Heading">Spatial Data with Text
+Search</h2>
+<p>
+A typical location search engine will typically have these requirements
+from the indexed data:
+
+</p>
+
+<ul>
+<li><p><em>Distance calculation</em>: Given two points, calculate their
+distance.</p></li>
+<li><p><em>Bounding box filter</em>: Given an area, find all documents
+that match in the area.</p></li>
+<li><p><em>Sorting</em>: Sort all documents by their distance from an
+origin</p></li>
+<li><p><em>Relevancy enhancement</em>: Use the distance as a boost in
+the ranking algorithm.</p></li>
+<li><p><em>Query parsing</em>: Given an abstract query, convert it into
+an actual internal representation.</p></li>
+</ul>
+
+
+
+<h2 class="Heading">Distance Calculations</h2>
+<p>Suppose that we need to define a metric and a method to calculate the
+distance between two points. The easiest option is to treat the earth as
+a flat model and calculate the distance between two points using a
+Euclidean model. This model allows straight distance calculations with
+minimal complications. However, this model does not scale as distances
+grow and higher precision is needed.</p>
+<p>The other option is to treat earth as a sphere and calculate
+distances using a spherical model. While more computationally expensive,
+this model provides better accuracy.</p>
+
+<h3 class="Heading">Bounding Box Filter</h3>
+<p>Bounding box
+filters 
+are used to specify bounding filters for creating a candidate space of
+documents that match a geospatial filter. Consider a query that contains
+a textual filter and a geospatial filter. Since a geospatial index will
+contain a high number of points, it makes sense to first narrow down the
+set of documents to a small subset and then apply further filters on the
+subset to allow optimal performance of the query. This is where bounding
+box filters come in. Optimally, the first phase of a geospatial search
+should perform a high-level bounding box filter and then apply more
+sophisticated searching methods to the result of the first phase.</p>
+<p>Typically, when latitudes and longitudes are stored in the system,
+you can define an area around a given latitude and longitude and thus
+define an area in which the documents involved are qualified and
+participate in the overall filtering at a higher level.</p>
+<p>Note that you can ensure a higher degree of accuracy if the system
+use geohashes instead of latitudes and longitudes.</p>
+
+
+<h3 class="Heading">A Point on Distance
+Calculation</h3>
+<p>For search engines with geospatial searches, a key question is the
+distance algorithm used to serve and evaluate queries. Which algorithm
+you use depends on how accurate you want your searches to be. In some
+scenarios, being off by a mile is fine. In other scenarios, however, a
+few inches off may cause havoc.</p>
+<p>In most cases, using Euclidean distance is good enough for all kinds
+of queries. However, for an earth-like model, the Haversine calculation
+algorithm works really well. For higher accuracy, Vincenty’s model makes
+sense.</p>
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">6. Introducing Machine Learning with
+Apache Mahout</h1>
+
+
+<!--End Abstract-->
+
+<p>This chapter covers Apache Mahout and the synergy between Apache
+Mahout and Lucene.</p>
+<p>Apache Mahout is a library of machine-learning algorithms designed to
+for scalability.</p>
+
+<h2 class="Heading">Origin of Apache Mahout</h2>
+<p>Mahout’s origin
+derives from Apache Lucene. In 2008, Lucene had a few algorithms for
+doing some sort of clustering by default.</p>
+<p>Lucene kept adding machine-learning algorithms on top of its existing
+capabilities, to a point where it did not make sense to keep the
+capability in Lucene but to instead make it an independent engine that
+could function on its own. This was the birth of the Apache Mahout
+project. Mahout started as a subproject of Apache Lucene and then became
+a top-level project.</p>
+
+
+<h2 class="Heading">Why Apache Mahout?</h2>
+<p>Apache Mahout is
+only one of the numerous ways in which machine-learning engines can be
+built. We are examining Apache Mahout here because it started as a
+subproject of Apache Lucene, and therefore Mahout has an inherent
+complementary architecture that supports machine learning on data
+present in Lucene.</p>
+
+
+<h2 class="Heading">Introduction to Machine Learning</h2>
+<p>Machine-learning
+uses range from game playing to fraud detection to stock market
+analysis.</p>
+<p>Machine learning enables system builds such as Amazon’s
+recommendation system, which attempts to divine user purchasing
+intentions, and such as Netflix recommendation system, which builds upon
+past viewing history and recommends related or complementary shows.</p>
+<p>Machine learning leverages algorithms and mathematics to define the
+kinds of expected results. Categorization and filtering are two powerful
+use cases that apply machine learning.</p>
+
+<h3 class="Heading">Learning</h3>
+<p><em>Learning</em>
+ (in a machine-learning context) is the process of “learning” new
+information about the data and making decisions with a rising
+probability of being correct.</p>
+<p>
+The two main types of learning are supervised and unsupervised
+learning:
+
+</p>
+
+<ul>
+<li><p><em>Supervised
+learning</em>  is when sample data is available for training the
+machine-learning model to anticipate and understand the expected
+output.</p></li>
+<li><p><em>Unsupervised
+learning</em>  works without any input data. Instead, it learns
+from results as it goes along. With this is mechanism, the algorithm
+starts from a very low correctness probability and then, using feedback,
+eventually works its way to more correct probability.</p></li>
+</ul>
+
+<p>Clustering is a
+good way to perform first-level filtering and to eliminate pieces that
+you do not want included in the final search results.</p>
+
+
+<h3 class="Heading">Collaborative Filtering</h3>
+<p>
+Collaboration is not a complex concept. Here is a simple example: If you
+want to watch a movie, you ask your friends for recommendations.
+Likewise, collaborative filtering takes a nearest-neighbor approach when
+performing filtering. Figure <a href="#485809_1_En_6_Chapter.xhtml#Fig1">6-1</a> shows a
+collaborative-filtering model in which users recommend items. As shown,
+Item 3 gets the highest rating because both users recommend that item.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_6_Chapter/485809_1_En_6_Fig1_HTML.jpg" style="width:35.18em" alt="../images/485809_1_En_6_Chapter/485809_1_En_6_Fig1_HTML.jpg"/>
+</p>
+
+<p>Figure 6-1</p>
+<p>Collaborative
+filtering
+</p>
+
+
+
+
+<h3 class="Heading">Clustering</h3>
+<p><em>Clustering</em>
+  is the
+art of creating groups of similar objects.</p>
+<p>Clustering involves segregating myriad objects into groups in which
+each group’s objects are most similar to each other compared to their
+similarity to objects in other groups.</p>
+<p>Clustering proves useful when you want to segregate objects into
+different buckets and then process them on a per-bucket basis.</p>
+<p>Clustering and collaborative filtering are similar in the sense that
+they both calculate similarity between objects. However, clustering is
+involved only in the segregation, whereas CF goes a step further.</p>
+<p>Given two vectors (value tuples), we can actually perform different
+analysis to determine the “closeness” of the two (such as Manhattan
+distance, cosine similarity, Euclidean distance, and so on).</p>
+<p>
+The two most popular ways to cluster are top down and bottom up.
+Top-down clustering starts with a large cluster and iteratively breaks
+down the large cluster into smaller subclusters, with increasing
+similarity between objects of a cluster as the cluster granularity  increases. Bottom-up
+clustering works the other way around. It merges small clusters into
+larger clusters to form the final configuration. Popular approaches
+include K-means and hierarchical clustering. Figure <a href="#485809_1_En_6_Chapter.xhtml#Fig2">6-2</a> shows a
+clustered set of documents using a K-means algorithm.
+
+</p>
+
+<p>
+<img src="images/485809_1_En_6_Chapter/485809_1_En_6_Fig2_HTML.jpg" style="width:29.48em" alt="../images/485809_1_En_6_Chapter/485809_1_En_6_Fig2_HTML.jpg"/>
+</p>
+
+<p>Figure 6-2</p>
+<p>Clustering </p>
+
+
+
+
+<h3 class="Heading">Categorization</h3>
+<p>The goal of categorization  (often also called
+classification) is to label unseen objects and thus group them
+together.</p>
+<p>Categorization is putting the “unseen” in a known bucket as soon as
+it is viewed. This process can involve learning from previous candidates
+and seeing which kinds of properties the unseen object has, and then
+building a model using the known features of those properties to assign
+a category to the new object with a probability.</p>
+<p>Features for classification can be anything that makes sense in the
+context of the object being classified. It can be parts of speech, tags,
+phrases, and so forth.</p>
+
+
+
+<h2 class="Heading">Converting from Lucene Components to Mahout
+Components</h2>
+<p>In the Mahout world, a feature vector is an object or a subset of a
+document. Explicitly, a feature vector is a tuple of attributes used for
+a document to represent a specific property. In a general case, it can
+be a set of weights.</p>
+<p>Feature vectors form the basis of the integration between Lucene and
+Mahout. Most Mahout algorithms run off feature vectors.</p>
+
+
+<h2 class="Heading">Integrating Lucene with Mahout</h2>
+<p>The key difference between Lucene and Mahout is that Lucene requires
+features that enable a search and Mahout requires features relevant for
+machine learning.</p>
+<p>There are two standard ways to integrate Lucene with Mahout, as
+discussed in the following two subsections.</p>
+
+<h3 class="Heading">lucene.vector</h3>
+<p>The <code>lucene.vector</code> 
+utility  enables
+the conversion of Lucene vectors to Mahout vectors. Note that the
+version of Lucene that creates the vectors should be the same as the
+Lucene vector used in Mahout.</p>
+<p>The first step is to create term vectors before the conversion.</p>
+<p>
+Here, we create a field with term vectors:
+
+</p>
+<pre>Field fld = new Field("text", "foo", Field.Store.NO, Field.Index.ANALYZED, Field.TermVector.YES)</pre>
+<p>
+Convert the created Lucene index directly in Mahout with the following:
+
+</p>
+<pre>/bin/mahout lucene.vector –dir / example/solr/data/index/ –output /tmp/ foo/part-out.vec –field title-clustering – idField id –dictOut </pre>
+
+
+<h3 class="Heading">Lucene2seq </h3>
+<p>
+The preceding section showed you how to convert Lucene term vectors into
+Mahout vectors for Mahout incorporation and processing. This section
+shows you how to convert Lucene stored fields into Mahout consumable
+objects (and thus available for Mahout processing). Run the following to
+see the options:
+
+</p>
+
+<table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; ">
+<thead>
+<tr class="header">
+<th style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p>$
+bin/mahout lucene2seq – help<code>Job-Specific Options:</code></p></th>
+<th style="text-align: left; border-bottom: 0.5pt solid;"> </th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--output (-o) output</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>The directory pathname for</code></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"> </td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>output.</code></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--dir (-d) dir</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>The Lucene directory</code></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--idField (-i) idField</code>
+ </p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>The field in the index</code></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>containing the id</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"> </td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--fields (-f) fields</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>The stored field(s) in the</code></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>index containing text</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"> </td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--query (-q) query</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>(Optional) Lucene query.</code></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>Defaults to</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>MatchAllDocsQuery</code></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--maxHits (-n) maxHits</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>(Optional) Max hits.</code></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>Defaults to 2147483647</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"> </td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--method (-xm) method</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>The execution method to use:</code></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>sequential or</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>mapreduce. Default is</code></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>mapreduce</code>  </p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"> </td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--help (-h)</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>Print out help</code></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--tempDir tempDir</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>Intermediate output</code></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>directory</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"> </td>
+</tr>
+<tr class="even">
+<td style="text-align: left; border-right: 0.5pt solid; border-bottom: 0.5pt solid;"><p><code>--startPhase startPhase</code></p></td>
+<td style="text-align: left; border-bottom: 0.5pt solid;"><p><code>First phase to run</code></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; border-right: 0.5pt solid;"><p><code>--endPhase endPhase</code></p></td>
+<td style="text-align: left;"><p><code>Last phase to run</code></p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The tool fetches all documents and creates a set of key-value pairs,
+the key being the value of the ID of the field and value being a
+concatenated value of the stored fields associated with that key.</p>
+<p><code>Lucene2seq</code>
+converts   into sequence files
+(which are Mahout components).</p>
+
+
+<h3 class="Heading">Java Version of Lucene2seq</h3>
+<p>
+Another way to use <code>lucene2seq</code> is to
+write a Java program. An equivalent Java class is <code>LuceneStorageConfiguration</code>:
+
+</p>
+<pre>LuceneStorageConfiguration luceneStorageConf = new LuceneStorageConfiguration(configuration, asList(index), seqFilesOutputPath, "id", asList("title", "description"));
+LuceneIndexToSequenceFiles lucene2Seq = new LuceneIndexToSequenceFiles();
+lucene2Seq.run(luceneStorageConf);</pre>
+
+
+
+<h2 class="Heading">Putting It All Together</h2>
+<p>In this section, we use everything discussed in this chapter to write
+a clustering program for Mahout with data accumulated from Lucene
+indexes.</p>
+<p>Note that this uses <code>LuceneIndexToSequenceFiles</code>
+ to convert Lucene indexes to Mahout sequence files.</p>
+<p>
+It then performs clustering based on standard Mahout techniques (with
+nothing Lucene specific in this part of the code):
+
+</p>
+<pre>import org.apache.hadoop.conf.Configuration; import org.apache.hadoop.fs.FileSystem; import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable; import org.apache.hadoop.io.SequenceFile; import org.apache.hadoop.util.ToolRunner; import org.apache.mahout.clustering.Cluster;
+import org.apache.mahout.clustering.canopy.CanopyDriver;
+import org.apache.mahout.clustering.classify.WeightedPropertyVectorWritable;
+import org.apache.mahout.clustering.kmeans.KMeansDriver;
+import org.apache.mahout.common.distance.TanimotoDistanceMeasure;
+import org.apache.mahout.text.LuceneStorageConfiguration;
+import org.apache.mahout.text.SequenceFilesFromLuceneStorage;
+importorg.apache.mahout.vectorizer.SparseVectorsFromSequenceFiles;
+import com.google.common.collect.Lists;
+import java.util.Arrays;
+import java.util.List;
+//Perform a simple K-means clustering to segregate documents
+public class SimpleKMeansClustering {
+public static void main(String args[]) throws Exception {
+Configuration conf = new Configuration(); FileSystem fs = FileSystem.get(conf);
+//Use Lucene indexes as input data sources
+Path indexFilesPath = new Path("lucene/indexes/educations");
+//ML model data inputs—training data
+Path sequenceFilesPath = new Path("clustering/testdata/sequencefiles/");
+Path sparseVectorsPath = new Path("clustering/testdata/sparsevectors/");
+//For TF IDF calculation
+Path tfVectorsPath = new Path("clustering/testdata/sparsevectors/tf-vectors");
+Path inputClustersPath = new Path("clustering/testdata/input-clusters");
+Path finishedInputClustersPath = new Path("clustering/testdata/input-clusters/clusters-0-final");
+Path finalClustersPath = new Path("clustering/output");
+//Create sequence files from a Lucene index
+LuceneStorageConfiguration luceneStorageConf = new LuceneStorageConfiguration(conf, Arrays.asList(indexFilesPath),
+sequenceFilesPath, "id", Arrays.asList("name", "description"));
+SequenceFilesFromLuceneStorage sequenceFilefromLuceneStorage = new SequenceFilesFromLuceneStorage();
+sequenceFilefromLuceneStorage.run(luceneStorageConf);
+//Generate Sparse vectors from sequence files
+generateSparseVectors(true, true, true, 5, 4, sequenceFilesPath, sparseVectorsPath);
+//Generate input clusters for K-means (instead of having K
+//randomly initiated)
+TanimotoDistanceMeasure tanimoDistance = new TanimotoDistanceMeasure();
+CanopyDriver.run(tfVectorsPath, inputClustersPath, tanimoDistance, (float) 3.1, (float) 2.1, false, (float) 0.2, true);
+//Generate K-means clusters
+KMeansDriver.run(conf, tfVectorsPath, finishedInputClustersPath, finalClustersPath, 0.001, 10, true, 0, true);
+//Read and print out the clusters in the console
+//SequenceFile.Reader reader = new
+SequenceFile.Reader(fs, new Path("clustering/output/" + Cluster.CLUSTERED_POINTS_DIR + "/part-m-0"), conf);
+IntWritable key = new IntWritable(); WeightedPropertyVectorWritable value = new WeightedPropertyVectorWritable();
+while (reader.next(key, value)) {
+System.out.println(value.toString() + " belongs to cluster " + key.toString());
+}
+reader.close();
+}
+//Use Mahout to generate weights
+public static void generateSparseVectors (boolean tfWeighting, boolean sequential, boolean named, double maxDFSigma, int numDocs, Path inputPath, Path outputPath) throws Exception {
+List argList = Lists.newLinkedList();
+argList.add("-i");
+argList.add(inputPath.toString());
+argList.add("-o");
+argList.add(outputPath.toString());
+if (sequential) {
+argList.add("-seq");
+}
+if (named) {
+argList.add("-nv");
+}
+if (maxDFSigma &gt;= 0) {
+argList.add("--maxDFSigma");
+argList.add(String.valueOf(maxDFSigma));
+}
+if (tfWeighting) {
+argList.add("--weight");
+argList.add("tf");
+}
+String[] args = argList.toArray(new String[argList.size()]);
+ToolRunner.run(new SparseVectorsFromSequenceFiles(), args);
+}
+}</pre>
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">7. Improving Lucene’s
+Performance</h1>
+
+
+<!--End Abstract-->
+
+<p>This chapter focuses on how to tune Lucene for optimal performance.
+You can use Lucene in multiple ways, but core performance ideally
+focuses on two aspects: indexing and querying (as discussed throughout
+this chapter).</p>
+<p>This short chapter provides pointers for problem solving and is
+therefore light on theoretical concepts. The contents of this chapter
+build on what you’ve learned in earlier chapters. Here we just discuss
+best practices. The chapter does not really introduce anything new. (And
+because you have carefully read through the book to this point, you
+already understand the reasoning behind most of these practices.)</p>
+
+<h2 class="Heading">Increase Indexing Speed</h2>
+<p>
+Let’s start with speed
+increases:
+
+</p>
+
+<ul>
+<li><p>Reduce the number of concurrently open writers. Open one writer
+and use it for the duration of the session.</p></li>
+<li><p>Too many concurrent writers can cause an excessive load and thus
+cause a general slowdown in the write performance. You should use a
+single writer throughout the cycle of existence of the search
+application.</p></li>
+</ul>
+
+
+
+<h2 class="Heading">Reuse Field Instances</h2>
+<p>To add new documents, create <code>Field</code> instances  , assign them values,
+and then assign them to a document. Post the addition of the document to
+the index, reassign values to the fields, assign them to a new document,
+and add the new document.</p>
+
+
+<h2 class="Heading">The Curious Case of Large Commits</h2>
+<p><code>IndexWriter</code> 
+instances can create excess overhead when merging large files. Switching
+to <code>autoCommit=false</code>
+ensures optimal performance in such cases. However, such a switch also
+leads to open searchers not being able to see changes until the <code>IndexWriter</code> is
+closed. The ideal method is to chunk data in smaller blocks (batch your
+documents) and keep <code>autoCommit</code>  to
+true.</p>
+
+
+<h2 class="Heading">Reuse
+Tokens in Analyzers</h2>
+<p>Analyzers create
+a new token for every term in the sequence.</p>
+<p>
+Reusing tokens is a sensible strategy to follow.
+
+</p>
+<pre>StoredFieldsWriter.MergeVisitor.tokenStream(Analyzer analyzer, TokenStream reuse)</pre>
+
+
+<h2 class="Heading">Tuning Flush Intervals</h2>
+<p>Lucene enables you to define flush intervals  based on different
+criteria, such as the number of documents or the RAM usage. RAM usage
+flush intervals allow better utilization of RAM and result in less disk
+churn from frequent flushing when working with small/average document
+lengths. See the class <code>LiveIndexWriterConfig</code>.</p>
+
+
+<h2 class="Heading">Increase mergeFactor</h2>
+<p>Increasing <code>mergeFactor</code>
+  by small
+deltas should increase the indexing speed.</p>
+
+
+<h2 class="Heading">Choosing the Correct Analyzers</h2>
+<p>Analyzers  play an important role
+in indexing speed. Slow analyzers cause the overall indexing speed to
+decrease.</p>
+
+
+<h2 class="Heading">Use Multiple Threads with One IndexWriter</h2>
+<p>Using concurrency in <code>IndexWriter</code> 
+can increase the indexing speed and utilize CPU core power better.
+However, there is a tipping point, so beware of overdoing it. The
+setting should be no more than the number of cores in the machine. See
+the <code>setMaxThreadCount</code>
+method  of your
+<code>MergeScheduler</code>
+instance .</p>
+
+
+<h2 class="Heading">Index into Separate Indexes and Then Merge</h2>
+<p>If you have a very large amount of content to index, you can break
+your content into N “silos,” index each silo on a separate machine, and
+then use <code>writer.addIndexes</code>
+ to merge them all into one final index.</p>
+
+
+<h2 class="Heading">Improve Search Performance</h2>
+<p>This and the preceding section are not necessarily mutually exclusive
+and can depend on the kind of juice you are focusing on for your
+indexing. Remember that indexing and search are mostly happening on the
+same machine and that a resource overlap can happen.</p>
+
+
+<h2 class="Heading">Use the Latest Version of Lucene</h2>
+<p>If you are not using the latest version of
+Lucene, you risk missing out on upgrades and the latest of what
+Lucene has to offer.</p>
+
+
+<h2 class="Heading">Use IndexReader with the readOnly Attribute Equal to
+True</h2>
+<p>Using <code>IndexReader</code> with
+<code>readOnly=true</code>  reduces thread
+contention to some extent and thus improves performance.</p>
+
+
+<h2 class="Heading">Use MMapDirectory/NIOFSDirectory</h2>
+<p>Both <code>MMapDirectory</code> 
+and <code>NIOFSDirectory</code>
+ give a substantially better I/O performance and thus improve
+overall performance. Note that <code>NIOFSDirectory</code> and
+<code>MMapDirectory</code>
+implementations face file-channel issues in Windows. It is best to use
+<code>FSDirectory.open()</code>,
+and Lucene will give the appropriate Directory implementation to the
+current environment.</p>
+
+
+<h2 class="Heading">Decrease mergeFactor</h2>
+<p>A reduced <code>mergeFactor</code>
+  will lead
+to a fewer number of segments and thus reduce the fan out and hence
+improve query performance. However, this can be detrimental to
+performance of indexing and so needs to be done carefully.</p>
+
+
+<h2 class="Heading">
+Ignore First Query’s Performance</h2>
+<p>The first query usually deals with cold caches, so disregard its
+performance. You need a larger dataset to be give you a holistic answer
+regarding performance characteristics.</p>
+
+
+<h2 class="Heading">Avoid Reopening IndexSearcher Instances</h2>
+<p>Reopening <code>IndexSearcher</code>
+instances   is expensive. Don’t do
+it unless absolutely necessary.</p>
+
+
+<h2 class="Heading">Share
+IndexSearcher Instances</h2>
+<p>Continuing the previous point, it is a good idea to share <code>IndexSearcher</code>
+instances  to so
+that you have less contention.</p>
+
+
+<h2 class="Heading">Use Stored Fields and Term
+Vectors Sparingly</h2>
+<p>Stored fields
+and term vectors
+typically constitute a significant portion in the overall memory usage
+of the system. Indiscriminate usage of these can lead to a higher memory
+footprint.</p>
+
+
+<h2 class="Heading">Use Filters</h2>
+<p>Filters  can reduce the overall
+disk seek that needs to be done by Lucene to fetch the required hits for
+a result set. Filters disable score computation and reduce the dataset
+being looked at. Wrap the query in <code>ConstantScoreQuery</code> or
+use filters.</p>
+
+
+<h2 class="Heading">Final Thoughts on Best Practices</h2>
+<p>While not a conclusive list, this chapter identified some ways to
+improve the overall performance of indexing and search in Lucene. Keep
+in mind that it is easy to optimize early and then see degraded
+performance. A better strategy is to first build your search application
+using vanilla configurations and measure performance. Only after you
+identify bottlenecks should you focus on improving performance.</p>
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">8. Your First Lucene Patch</h1>
+
+
+<!--End Abstract-->
+
+<p>This chapter covers some best practices for contributing to Apache
+Lucene. The walkthrough provides details about the Apache Software
+Foundation, the Apache way, and how to write your first patch and
+interact with the community.</p>
+
+<h2 class="Heading">Why Contribute to Open Source Projects?</h2>
+<p>Contributing to open source projects can be intimidating. Everyone is
+busy. Perhaps you have a million other things to do. Why would you want
+to contribute to open source and not do something else instead?</p>
+<p>This is a tricky question, and everybody has different motivations
+for contributing to open source. Read on for some of the common
+motivations. Some of these might encourage you to contribute.</p>
+
+<h3 class="Heading">Improve Projects Based on Real-World Experience and
+Proven, Working Solutions</h3>
+<p>This is a no-brainer. We use a piece of open source software and
+realize that it can be improved based on our use case and actual
+experience with it. Active actual user feedback enables improvement of
+the product. You’ll feel warm and fuzzy contributing code back to
+products you love.</p>
+
+
+<h3 class="Heading">Discover and Share Project
+Internals</h3>
+<p>Your contribution to an open source project may help a user learn
+more about the product/project and the internals of the system being
+using. Your contribution might even lead to a deeper usage pattern,
+where the use is based on an enhanced understanding system
+operation.</p>
+<p>You might enable users to leverage the system in the best manner
+possible while also avoiding complex/costly pitfalls. Open source
+contributions are also a great opportunity for you (and other users) to
+enter the engineering space and peek under the hood. You can learn from
+this because most popular open source projects are engineered to
+perfection and have a high-quality bar for submissions.</p>
+
+
+<h3 class="Heading">Enhance Your Reputation, Boost Your
+Career</h3>
+<p>Contributing to an open source project can help establish/enhance
+your reputation and credibility as an engineer and developer. You have
+the change to showcase your capabilities, and because the Internet is
+written in ink and not pencil, your contributions are everlasting and
+ever-present. Your contribution can be referred to whenever needed.</p>
+
+
+<h3 class="Heading">Mitigate Future
+Risks</h3>
+<p>Unlike a closed source project, an open source project publishes its
+roadmap clearly and is also explicit about risks such as end of life,
+deprecations, and component removal. Being part of the open source
+community for a project you care about can help alleviate these risks
+while ensuring that you are able to plan for the future, know what is on
+the horizon, and note salient points of interest in upcoming
+releases.</p>
+
+
+<h3 class="Heading">Derive Personal
+Satisfaction</h3>
+<p>You might just have a desire to contribute to an open source project
+for the sake of contributing and building something that might
+potentially affect a lot of people. What else can you do to impact the
+world in such a massive way?</p>
+
+
+
+<h2 class="Heading">How to Contribute to Open Source
+Projects</h2>
+<p>
+Although there is no strict process to contribute to an open source
+project, the following steps generally work well when looking to
+contribute a feature:
+
+</p>
+
+<ol>
+<li>
+
+<p>Determine which part of your solution is worth contributing.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Study the contribution guidelines of the target project.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Obtain and build the project.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Extract the relevant code fragments.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Adapt the code and integrate the desired changes.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Provide the required level of automated test cases and
+documentation.</p>
+
+
+ 
+</li>
+<li>
+
+<p>File an issue.</p>
+
+
+ 
+</li>
+<li>
+
+<p>Submit the change.</p>
+
+
+ 
+</li>
+</ol>
+
+
+
+<h2 class="Heading">Apache
+Software Foundation</h2>
+<p>From Wikipedia:</p>
+<p><em>The Apache Software Foundation /ə</em>ˈ<em>pætʃi/ (ASF) is an
+American nonprofit corporation (classified as a 501(c)(3) organization
+in the United States) to support Apache software projects, including the
+Apache HTTP Server. The ASF was formed from the Apache Group and
+incorporated on March 25, 1999.[2][3]</em></p>
+<p><em>The Apache Software Foundation is a decentralized open source
+community of developers. The software they produce is distributed under
+the terms of the Apache License and is free and open-source software
+(FOSS). The Apache projects are characterized by a collaborative,
+consensus-based development process and an open and pragmatic software
+license. Each project is managed by a self-selected team of technical
+experts who are active contributors to the project. The ASF is a
+meritocracy, implying that membership of the foundation is granted only
+to volunteers who have actively contributed to Apache projects. The ASF
+is considered a second generation[4] open-source organization, in that
+commercial support is provided without the risk of platform
+lock-in.</em></p>
+<p>Note that the foundation is based on the principles of decentralized,
+free software and focuses on meritocracy and a consensus-based software
+development approach. These represent the core principles on which the
+Apache Lucene/Solr community is based. Potential contributors need to be
+aware of these principles and respect all standards their standards.
+After all, a core idea of the Apache Software Foundation is “community
+over code.”</p>
+
+
+<h2 class="Heading">Working with Git</h2>
+<p>To interact with the community and create patches, potential
+contributors must have a basic knowledge of Git. Git is the CVS that the
+Lucene/Solr community uses, and contributing is made easy by raising
+pull requests.</p>
+
+<h3 class="Heading">Basic Git Terminology</h3>
+
+<h4 class="Heading">Blobs</h4>
+<p>Blob  stands for Binary Large
+OBject. A blob is an generic way of storing and representing a file in
+Git. Any file changed in a Git-controlled repository is represented in a
+delta as a blob.</p>
+
+
+<h4 class="Heading">Trees </h4>
+<p>A tree is an object that represents a directory. It holds blobs and
+other subdirectories. A tree is a binary file that stores references to
+blobs and subtrees. (These references are also called the SHA-1 hash of
+the tree object.)</p>
+
+
+<h4 class="Heading">Commits </h4>
+<p>A commit holds the current state of the repository. Every commit is
+like a node in a linked list, with each commit having a pointer to its
+parent commit (and thus allowing a chain of hierarchy to be built).
+Every commit is named with the SHA-1 of its content. If a commit has
+multiple parent commits, that particular commit has been created by
+merging two branches.</p>
+
+
+<h4 class="Heading">Branches </h4>
+<p>Branches are used to create another line of development. By default,
+Git has a master branch, which is same as a trunk in Subversion. Usually
+a branch is created to work on a new feature. Once the feature is
+completed, it is merged back with the master branch, and we delete the
+branch. Every branch is referenced by <code>HEAD</code>, which points to
+the latest commit in the branch. Whenever you make a commit, <code>HEAD</code> is updated with
+the latest commit.</p>
+
+
+<h4 class="Heading">Tags </h4>
+<p>Tags are used to mark checkpoints in the repository. Think of tags as
+read-only branches that are snapshots of given branches. Typically tags
+are used to mark releases, but they can be used for other purposes as
+well.</p>
+
+
+<h4 class="Heading">Clones </h4>
+<p>Clones are used to create a copy of the entire repository. A clone is
+not just a mirror; it is a fully functional copy of the main code base.
+Generally these are used to keep local copies of the code.</p>
+
+
+<h4 class="Heading">Pull</h4>
+<p>A pull
+operation copies the changes from a remote repository instance to
+a local one. A pull synchronizes two repositories and allows changes
+from the main one to be synchronized into the fork.</p>
+
+
+<h4 class="Heading">Push</h4>
+<p>A push
+operation allows local changes to be pushed to the remote
+repository.</p>
+
+
+
+
+<h2 class="Heading">JIRA</h2>
+<p>JIRA is the issue tracker used by the Apache Lucene/Solr community.
+JIRA is simple to use and is the default community interaction
+mechanism.</p>
+<p>The simplest way to interact with the community when an issue is
+found is to raise a JIRA. Do proper due diligence before raising a JIRA,
+and include the following in your JIRA: the issue, steps to reproduce,
+proposed fix (if any), and so on.</p>
+
+<h3 class="Heading">Writing a Patch</h3>
+<p>If you have identified what you want to change in Lucene/Solr and
+have a good idea about how to do so, it makes sense to write a patch. A
+patch is a change delta. Think of it as a “change” you want to make in
+the code base.</p>
+<p>How you do this is by first forking the Lucene/Solr code base on
+Github. Post that, and then clone the repository by using <code>git clone</code>. Post that,
+and then create a branch by using <code>git checkout -b &lt;foobar&gt;</code>. Remember that the commit that you raise into the
+Lucene/Solr code base has to be marked with the JIRA number of the JIRA
+that you are working against. So, ensure that you have set up the JIRA
+number beforehand.</p>
+<p>After making the changes locally in your repository, do a <code>git diff</code> to ensure
+that you have written the code the way you want and that no unintended
+changes occurred.</p>
+<p>Do a <code>git commit</code> to create a commit and ensure that you have it pushed to
+your fork.</p>
+
+
+<h3 class="Heading">Tests</h3>
+<p>Here is an important reminder: Test every change and validate all
+functionality that your patch affects. You also need to confirm that all
+existing tests pass; there are no regressions.</p>
+<p>
+It is a good idea to run <code>ant test</code> on the
+project to ensure that all tests pass. If a specific test is causing
+issues, use the following:
+
+</p>
+<pre>ant beast -Dtestcase= -Dtests.method= -Dbeast.iters=</pre>
+
+
+<h3 class="Heading">Writing Good Commit Messages</h3>
+<p>
+Although not fixed rules, these following guidelines apply when you
+write commit messages:
+
+</p>
+
+<ul>
+<li><p>Separate the subject from the body with a blank line.</p></li>
+<li><p>Limit the subject line to 50 characters.</p></li>
+<li><p>Capitalize the subject line.</p></li>
+<li><p>Do not end the subject line with a period.</p></li>
+<li><p>Use the imperative mood in the subject line.</p></li>
+<li><p>Wrap the body at 72 characters.</p></li>
+<li><p>Use the body to explain what and why vs. how.</p></li>
+</ul>
+
+
+<h4 class="Heading">Writing
+Documentation</h4>
+<p>You need to accompany any nontrivial changes with proper
+documentation (in code, configurations, and reference documents). Doing
+anything less will result in less-than-positive feedback from the
+community.</p>
+
+
+<h4 class="Heading">Raise a Pull Request</h4>
+<p>Now that you have completed a review-ready patch, you’re ready to
+raise a pull request. Go to Github’s UI and raise a pull request from
+your repository. Make sure that you track comments on it, actively
+iterate, respect feedback, and improve it. Hopefully, your changes will
+be incorporated.</p>
+
+
+<h4 class="Heading">Interacting with the Community</h4>
+<p>It is a good idea to drop an email to dev@lucene.apache.org stating
+your changes and asking for feedback. Generally, people will respond
+with constructive feedback. Remember that the most important goal is to
+improve the project; so although your work might be criticized, take it
+as constructive criticism.</p>
+<p>Being a good community member is
+important, so you want to follow decorum and respect established norms
+and standards.</p>
+
+
+
+
+
+<p></p>
+
+
+
+
+
+Index
+
+
+
+
+
+A
+
+
+
+
+Analyzers
+
+
+IndexWriter
+
+
+SimpleAnalyzer
+
+
+StandardAnalyzer
+
+
+StopAnalyzer
+
+
+
+
+Apache Mahout
+
+
+
+
+Apache Software Foundation
+
+
+
+
+Application programming interfaces (APIs)
+
+
+
+
+AtomicReader
+
+
+
+
+autoCommit
+
+
+
+
+
+
+B
+
+
+
+
+Blobs
+
+
+
+
+Block-KD (BKD) tree
+
+
+
+
+Boolean model
+
+
+
+
+BooleanQuery
+
+
+
+
+Boosting
+
+
+
+
+Bounding box filters
+
+
+
+
+Branches
+
+
+
+
+
+
+C
+
+
+
+
+Categorization
+
+
+
+
+Clones
+
+
+
+
+Clustering
+
+
+
+
+Codecs
+
+
+
+
+Collaborative filtering
+
+
+
+
+Collectors
+
+
+
+
+Commit messages
+
+
+community interaction
+
+
+pull request
+
+
+writing documentation
+
+
+
+
+Commits
+
+
+
+
+CompositeReader
+
+
+
+
+CompoundFormat
+
+
+
+
+Concurrent indexing
+
+
+
+
+Corpus
+
+
+
+
+Custom codecs for storage
+
+
+
+
+
+
+D, E
+
+
+
+
+Directory
+
+
+adding data to index
+
+
+documents creation
+
+
+index and write documents, creation
+
+
+
+
+Distance calculations
+
+
+bounding box filters
+
+
+point
+
+
+
+
+docID()
+
+
+
+
+DocIdSetIterator
+
+
+
+
+Document
+
+
+
+
+Document analytics
+
+
+
+
+Document-level boosting
+
+
+
+
+Document search
+
+
+IndexReader
+
+
+IndexSearcher
+
+
+QueryParser
+
+
+TopDocs
+
+
+
+
+DocValues
+
+
+
+
+DocValuesFormat
+
+
+
+
+Dynamic filtering
+
+
+
+
+
+
+F
+
+
+
+
+Faceting
+
+
+
+
+Features, Lucerne
+
+
+
+
+Field instances
+
+
+
+
+Field-level boosting
+
+
+
+
+Fields
+
+
+data
+
+
+definitions
+
+
+length
+
+
+
+
+FieldsInfoFormat
+
+
+
+
+FilteredTermsEnum
+
+
+
+
+Filters
+
+
+
+
+Flush intervals
+
+
+
+
+Frequencies file
+
+
+
+
+Function queries
+
+
+
+
+
+
+G, H
+
+
+
+
+Geographic information system (GIS) tools
+
+
+
+
+Geohashes
+
+
+BKD trees
+
+
+encoding, geographic information
+
+
+K-D tree
+
+
+quad tree
+
+
+
+
+GeoHashPrefixTree
+
+
+
+
+Geospatial data
+
+
+
+
+Geospatial search engine
+
+
+
+
+Git terminology
+
+
+blob
+
+
+branches
+
+
+clones
+
+
+commits
+
+
+pull
+
+
+push
+
+
+tags
+
+
+trees
+
+
+
+
+Granularity <em>vs.</em> storage size
+
+
+
+
+
+
+I
+
+
+
+
+Incremental indexing
+
+
+
+
+Indexing
+
+
+data
+
+
+operation
+
+
+
+
+IndexReader
+
+
+
+
+IndexSearcher
+
+
+
+
+IndexSearcher instances
+
+
+
+
+IndexWriter
+
+
+
+
+Information-retrieval (IR) systems
+
+
+
+
+Integrating Lucene with Mahout
+
+
+Lucene2seq
+
+
+lucene.vector
+
+
+
+
+Inverse document frequency (IDF)
+
+
+
+
+Inverted index
+
+
+
+
+
+
+J
+
+
+
+
+JIRA
+
+
+
+
+
+
+K
+
+
+
+
+K-D trees
+
+
+
+
+
+
+L
+
+
+
+
+Learning
+
+
+
+
+Lemmatization
+
+
+
+
+Linear scan
+
+
+
+
+Linear searches
+
+
+
+
+Location-aware search engines
+
+
+function queries
+
+
+geohashes
+
+
+geospatial basics
+
+
+range queries
+
+
+
+
+Log analytics
+
+
+
+
+LRUQueryCache
+
+
+
+
+Lucene
+
+
+data representation
+
+
+features and capabilities
+
+
+indexing and searching terminology
+
+
+search application
+
+
+search engines
+
+
+terminology
+
+
+
+
+LuceneIndexToSequenceFiles
+
+
+
+
+Lucene <em>vs.</em> relational databases
+
+
+
+
+Lucene2seq
+
+
+
+
+lucene.vector utility
+
+
+
+
+
+
+M
+
+
+
+
+Machine-learning
+
+
+categorization
+
+
+clustering
+
+
+collaborative filtering
+
+
+description
+
+
+supervised and unsupervised learning
+
+
+
+
+mergeFactor
+
+
+
+
+MergeScheduler instance
+
+
+
+
+MMapDirectory
+
+
+
+
+Multi-index searches
+
+
+
+
+MultiTermQuery
+
+
+
+
+Myriad query types
+
+
+
+
+
+
+N
+
+
+
+
+NIOFSDirectory
+
+
+
+
+
+
+O
+
+
+
+
+On-disk representation of Lucene index
+
+
+
+
+Open source projects
+
+
+contribution
+
+
+discover and share project internals
+
+
+mitigate future risks
+
+
+personal satisfaction
+
+
+real-world experience
+
+
+reputation
+
+
+
+
+
+
+P
+
+
+
+
+Patch writing
+
+
+
+
+Performance
+
+
+analyzers
+
+
+field instances
+
+
+filters
+
+
+flush intervals
+
+
+IndexReader with readOnly=true
+
+
+latest version of Lucene
+
+
+measurement
+
+
+mergeFactor
+
+
+reopening IndexSearcher instances
+
+
+reuse tokens in analyzers
+
+
+search
+
+
+speed increases
+
+
+stored fields and term vectors
+
+
+
+
+Phrases
+
+
+
+
+Positions file (extension .prx)
+
+
+
+
+PostingsFormat
+
+
+
+
+Prefix tree
+
+
+
+
+Pull operation
+
+
+
+
+Push operation
+
+
+
+
+
+
+Q
+
+
+
+
+QuadPrefixTree
+
+
+
+
+Quad trees
+
+
+
+
+Queries
+
+
+Lucene
+
+
+structure
+
+
+term-document incidence matrix
+
+
+types
+
+
+
+
+QueryCache
+
+
+
+
+Query level boosting
+
+
+
+
+QueryParser
+
+
+
+
+
+
+R
+
+
+
+
+Range filters
+
+
+
+
+Range queries
+
+
+
+
+Relevance
+
+
+
+
+
+
+S
+
+
+
+
+Scorer
+
+
+
+
+Scoring algorithms
+
+
+TF/IDF
+
+
+vector space model
+
+
+
+
+Scoring model
+
+
+fields
+
+
+similarity
+
+
+
+
+Search engines
+
+
+
+
+Searching
+
+
+boolean model
+
+
+layout
+
+
+relevance
+
+
+scoring algorithms
+
+
+
+
+Search precision <em>vs.</em> index size
+
+
+
+
+Semantic matching
+
+
+
+
+Semantics
+
+
+
+
+setMaxThreadCount method
+
+
+
+
+Share IndexSearcher instances
+
+
+
+
+Similarity class
+
+
+
+
+SimpleAnalyzer
+
+
+
+
+Single terms
+
+
+
+
+Slop parameter
+
+
+
+
+Sorting
+
+
+
+
+SpatialContext class
+
+
+
+
+Spatial data representation
+
+
+
+
+Spatial data with text search
+
+
+
+
+Spatial indexing
+
+
+
+
+Spatial module
+
+
+
+
+SpatialPrefixTree
+
+
+
+
+SpatialStrategy
+
+
+
+
+StandardAnalyzer
+
+
+
+
+Stemming
+
+
+
+
+StopAnalyzer
+
+
+
+
+Stored fields
+
+
+
+
+StoredFieldsFormat
+
+
+
+
+Supervised learning
+
+
+
+
+
+
+T
+
+
+
+
+Tags
+
+
+
+
+Term
+
+
+
+
+Term dictionary
+
+
+
+
+Term-document incidence matrix
+
+
+
+
+Term-document matrix
+
+
+
+
+Term frequency/inverse document frequency (TF/IDF)
+
+
+
+
+TermRangeQuery
+
+
+
+
+Term vectors
+
+
+
+
+TestClass
+
+
+
+
+Tests
+
+
+
+
+Tiered design for storage
+
+
+
+
+Token
+
+
+
+
+TopDocs
+
+
+
+
+TopScoreDocCollector
+
+
+
+
+Trees
+
+
+
+
+
+
+U
+
+
+
+
+Unsupervised learning
+
+
+
+
+
+
+V
+
+
+
+
+Vector space model
+
+
+
+
+Vocabulary
+
+
+
+
+
+
+W, X, Y, Z
+
+
+
+
+writer.addIndexes
+
+
+
+
+
+

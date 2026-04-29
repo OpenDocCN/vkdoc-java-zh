@@ -1,0 +1,6616 @@
+- '
+
+
+  ![](img/978-1-4842-8625-8_CoverFigure.jpg)
+
+
+  ISBN 978-1-4842-8624-1e-ISBN 978-1-4842-8625-8 [`doi.org/10.1007/978-1-4842-8625-8`](https://doi.org/10.1007/978-1-4842-8625-8)
+  © Dr. Almas Baimagambetov 2022 标准 Apress 商标名、徽标和图片可能出现在本书中。我们不会在每次出现商标名、徽标或图片时都使用商标符号，而是仅在编辑风格下使用这些名称、徽标和图片，以维护商标所有者的利益，且无意侵犯商标权。本出版物中使用的商品名、商标、服务标志及类似术语，即使未明确标识，也不应被视为对其是否受专有权利保护的表达。出版商、作者和编辑可以假定，本书中的建议和信息在出版之日是真实准确的。出版商、作者或编辑均不对本文所含材料或可能存在的任何错误或遗漏提供明示或暗示的担保。出版商对已出版地图和机构归属中的管辖权主张保持中立。
+
+
+  本 Apress 印记由注册公司 APress Media, LLC（Springer Nature 的一部分）出版。
+
+
+  注册公司地址为：1 New York Plaza, New York, NY 10004, U.S.A.
+
+
+  关于作者 关于技术审校者
+
+
+  '
+- '# 1. 引言
+
+
+  JavaFX 是一个用于 Java 的现代高性能图形用户界面（GUI）工具包。它在包括桌面、移动和嵌入式在内的多种平台上提供硬件加速支持，从而能够开发跨平台应用程序。然而，要使用
+  JavaFX 高效地开发游戏，需要掌握许多特定领域的知识。为了满足这一需求，FXGL 游戏引擎扩展了 JavaFX，并引入了对真实游戏开发技术的支持（示例如图
+  1-1 所示）。这些技术包括实体-组件模型、寻路、物理、粒子系统、精灵表动画以及许多其他功能。因此，JavaFX 开发者可以借助 FXGL 更快速、更高效地制作游戏，并轻松将游戏打包为原生平台镜像，包括
+  Android 和 iOS。
+
+
+  ![](img/522865_1_En_1_Fig1_HTML.png)
+
+
+  一张截图展示了使用 FXGL 游戏引擎开发的不同游戏场景的截图合集。
+
+
+  图 1-1
+
+
+  使用 FXGL 开发的游戏截图合集
+
+
+  FXGL 游戏引擎是完全开源的。这使得任何 FXGL 用户都可以向项目贡献新功能或修复 Bug。该项目完全由社区用户（无论是个人还是公司）支持。在撰写本书时，所有开发团队成员都是利用自己的业余时间参与该项目。项目源代码可在
+  [`https://github.com/AlmasB/FXGL`](https://github.com/AlmasB/FXGL) 找到。
+
+
+  FXGL 项目最初只是一组代码片段，用于帮助在布莱顿大学讲授游戏开发课程，并协助制作 YouTube 教程。随着代码库的增长，将其开发成一个公开可用的 Java
+  游戏引擎变得顺理成章。因此，FXGL 并非旨在与现有引擎竞争，而是为 Java 用户提供一种替代工具，用于开发高性能应用程序。在开发的早期阶段，以下软件项目对引擎的架构和实现产生了重要影响：Unity、Unreal
+  Engine、libGDX、jMonkey、CRYENGINE、X-Ray、OpenJK、Duality 和 Phaser。
+
+
+  底层基础设施和渲染引擎由 JavaFX GUI 工具包提供。JavaFX 是 Swing 的现代替代品，用于在 Java 中构建富客户端应用程序。它与许多个人和公司合作开发，不断改善其在广泛支持平台上的表现。基于这种支持，FXGL
+  能够开发出真正跨平台且具备众多游戏特定功能的游戏。
+
+
+  FXGL 提供的功能可分为以下几类：内部框架服务、游戏逻辑、人工智能（AI）、物理、游戏玩法、输入、用户界面（UI）、图形、音频、文件输入输出（IO）、网络、硬件访问和外部工具集成。这些类别可描述如下：
+
+
+  ![](img/522865_1_En_1_Fig2_HTML.jpg)
+
+
+  一张截图展示了多个不同颜色的 3D 形状。
+
+
+  图 1-2
+
+
+  FXGL 中 3D 场景的示例
+
+
+  *   内部框架服务提供对引擎计时器和生命周期的访问，允许监听特定事件并从代码中适当处理它们。
+
+
+  *   在 FXGL 中，游戏逻辑通过实体-组件模型（定义游戏对象）和游戏世界（作为游戏对象的容器）的组合来实现。与任何流行的数据结构一样，游戏世界允许查询和过滤数据（游戏对象），以满足开发者的需求。
+
+
+  *   AI 类别主要包括两个领域：导航和行为。导航系统允许游戏对象在游戏关卡中自行寻路而不穿过障碍物，而行为逻辑则为游戏对象提供一定水平的人工智能。
+
+
+
+  *   物理类别也可分为两类：碰撞检测和刚体模拟。前者用于判断两个游戏对象是否重叠，进而可用于各种游戏机制，例如拾取医疗包。后者也称为刚体动力学，可用于模拟游戏对象交互的一系列物理属性，例如摩擦力、弹性和密度。
+
+
+  *   在游戏玩法方面，FXGL 提供了成就系统、游戏内通知、快速反应事件以及内置小游戏等功能。
+
+
+  *   用户输入通过用户操作（例如射击或跳跃）与触发器（例如空格键或鼠标左键）之间直观的绑定集来处理。相同的 API（可从代码访问的函数集）可用于在移动设备上运行时模拟物理触发器。
+
+
+  *   引擎的用户界面部分构建在 JavaFX 之上，并增强了其视觉控件。例如，FXGL 提供了游戏内菜单、覆盖层、摄像机动画和九宫格 UI 生成。
+
+
+  *   FXGL 的图形功能也构建在 JavaFX 提供的功能之上，因为该引擎使用了 JavaFX 的渲染管线。改进之处包括高度可定制的粒子系统、运行时纹理操作以及可编辑的自定义
+  3D 形状。图 1-2 展示了一个包含一些内置 3D 形状的示例应用程序。
+
+
+  *   音频服务允许开发者播放短音效和长背景音乐文件。它还控制某些音频属性，例如音量。
+
+
+  *   所有 IO 调用都由文件系统服务封装，这简化了对本地存储（无论是在桌面端还是移动端）的写入和读取操作。
+
+
+  *   网络服务是通过扩展标准 JDK（Java 开发工具包）功能来实现的。例如，高级接口不区分 TCP 和 UDP 连接，并提供统一的方式来处理传入和传出的消息。
+
+
+  *   硬件支持包括 Xbox 和 PlayStation 手柄，以及来自 Gluon Attach 项目的一系列 API，该项目提供了对移动硬件功能的访问。
+
+
+  *   最后，支持以下外部工具：用于构建游戏世界关卡的 Tiled 地图编辑器，以及用于轻松生成游戏角色之间复杂对话的 FXGL 对话编辑器。
+
+
+  为完整起见，应注意这些功能并非 FXGL 独有。进入 Java 游戏开发世界时，还有其他替代方案。特别是，流行的框架和引擎包括 libGDX 和 jMonkeyEngine。与
+  FXGL 相比，这两个项目都开发了更长的时间。这些项目为 Java 游戏开发者提供了大量成熟的游戏开发工具。FXGL 项目并非旨在与这些技术竞争；相反，其目标是提供一种替代的
+  Java 游戏开发方法，特别是针对那些已经熟悉 JavaFX API 集的 JavaFX 开发者。
+
+
+  本书旨在适合 Java 和/或 JavaFX 的初学者和专家，他们希望使用 FXGL 开发应用程序和游戏，同时提升 Java 和/或 JavaFX 技能。完成本书后，读者将能够：
+
+
+  *   运用高级 Java 和 JavaFX 概念
+
+  *   用通用编程语言（如 Java）解释和实现现实世界的游戏开发概念
+
+  *   使用 FXGL 游戏引擎开发专业的跨平台（包括桌面和移动端）应用程序和游戏
+
+  *   在 FXGL 中设计和实现涉及物理、人工智能和图形系统的可扩展游戏特定功能
+
+  *   使用特定于平台的原生镜像部署 JavaFX 和 FXGL 应用程序和游戏
+
+
+  本书的高层概述如下：
+
+
+  *   在第 2 章中，我们涵盖了本书中将使用的 Java 和 JavaFX 的必要概念。我们还将向读者介绍 FXGL 游戏引擎及其开发工作流程。
+
+  *   我们在第 3 章开始游戏开发之旅，开发一个类似于 Pong 的街机游戏。通过这个过程，我们将学习 FXGL 中用于创建游戏世界强大抽象的实体-组件模型。
+
+  *   我们在第 4 章中以此为基础，使用物理引擎开发一个平台游戏，并学习碰撞检测。
+
+  *   第 5 章通过开发一个类似 Pac-Man 的迷宫动作游戏，涵盖了游戏 AI 的一个重要概念。
+
+  *   第 6 章将讨论许多与图形和渲染相关的视觉复杂功能。在本章中，我们还涵盖了 FXGL 中的 UI 元素和动画系统。
+
+  *   第 7 章专注于可以使用 FXGL 开发的通用（非游戏）应用程序。这些包括商业应用程序、图形编辑器和可视化工具。本章还涵盖了 JavaFX 和 FXGL
+  应用程序（包括游戏）的打包，以便后续部署给最终用户。
+
+  *   最后，在第 8 章中，我们进行总结，并讨论可以在本书内容基础上构建的未来项目的细节。
+
+
+  每一章都以前一章为基础逐步构建，并引入一个新主题。本书中提供的代码片段要么是 Java 代码，要么是类似于 Java 的伪代码。给出的示例使用了以下软件版本：
+
+
+  *   Java 17
+
+  *   JavaFX 17
+
+  *   FXGL 17
+
+  *   IntelliJ 2021
+
+
+  下一章将提供一个使用这些技术的示例设置项目。鼓励读者使用相同或更新的版本。但是，应注意较新版本的工作流程可能不完全相同，可能需要进行一些调整。就此而言，让我们开始使用
+  FXGL 17 的旅程。
+
+
+  '
+- '# 2. 必要概念
+
+
+  在本章中，我们将涵盖 Java、JavaFX 和 FXGL 的基本概念。理解本书内容需要这些知识。更具体地说，我们将了解：
+
+
+  *   Java 理论——类和方法
+
+  *   如何使用 IntelliJ 和 Maven 添加外部依赖
+
+  *   如何创建一个带有基本用户界面控件的简单 JavaFX 应用程序
+
+  *   如何创建一个简单的 FXGL 应用程序
+
+
+  熟悉这些主题的读者可以跳过本章或其中的部分内容。
+
+
+  ## Java 基础
+
+
+  本节将介绍（或为已熟悉这些概念的读者复习）Java 基础知识，包括类和方法。我们将考虑如何创建类、实例级（非静态）变量和类级（静态）变量。我们还将复习如何向类添加非静态和静态方法。最后，我们将简要讨论继承和
+  `@Override` 注解。
+
+
+
+
+  ### 类
+
+
+  在 Java 及许多其他编程语言中，类是对象的模板。类用于建模或表示某些抽象概念（例如碰撞检测处理器）或现实世界中的事物（例如椅子）。定义一个类非常简单：
+
+
+  ```
+
+  class Chair { }
+
+  ```
+
+
+  上述代码通常存储在名为 `Chair.java` 的文件中，文件名需与类名保持一致。需要注意的是，根据 Java 语言的命名规范，类名以大写字母开头。如果类名包含多个单词，每个单词的首字母也需大写。因此，如果我们为另一种类型的椅子（例如“木椅”）定义一个类，其名称应为
+  `WoodenChair`。
+
+
+  创建类的实例被称为实例化该类：
+
+
+  ```
+
+  Chair diningChair = new Chair();
+
+  ```
+
+
+  在上述代码中，我们创建了一个名为 `diningChair` 的 `Chair` 类实例。该实例（`diningChair`）也被称为对象。对象就是任何类的实例。类可以包含变量，用于存储信息。当在类定义中添加变量时，该类的每个实例都会拥有这些变量的独立副本，并可对其进行操作。例如，我们可以添加一个
+  `int` 类型的变量（注意，`int` 或整数表示整数值）：
+
+
+  ```
+
+  class Chair {
+
+  int cost;
+
+  }
+
+  ```
+
+
+  变量 `cost` 可用于存储与单个椅子价格相关的信息：
+
+
+  ```
+
+  diningChair.cost = 50;
+
+  ```
+
+
+  因此，椅子 `diningChair` 的价格为 50 个货币单位。我们可以从同一个类创建另一个对象，并为其赋予不同的价格值：
+
+
+  ```
+
+  Chair officeChair = new Chair();
+
+  officeChair.cost = 75;
+
+  ```
+
+
+  请注意，尽管对象 `diningChair` 和 `officeChair` 都是 `Chair` 类型，但它们是两个不同的对象：椅子 `diningChair`
+  价格为 50，而椅子 `officeChair` 价格为 75。如果我们更改 `diningChair` 中某些变量的值，`officeChair` 中变量的值不会随之改变。这是面向对象编程的核心概念之一：每个对象都拥有自己的属性。
+
+
+  我们刚刚讨论了属于对象的变量。这种仅影响其所属实例的变量被称为实例级变量。在上述示例中，变量 `cost` 就是一个实例级变量。除了实例级变量，我们还可以定义类级变量，即静态变量。顾名思义，它们属于类，而非对象。请看以下示例：
+
+
+  ```
+
+  class Chair {
+
+  static int quality;
+
+  int cost;
+
+  }
+
+  ```
+
+
+  我们刚刚创建了一个名为 `quality` 的 `int` 类型静态变量，它属于 `Chair` 类，而非 `Chair` 类型的某个具体对象。由于 `quality`
+  是类级变量，我们通常通过类而非对象来访问它：
+
+
+  ```
+
+  Chair.quality = 3;
+
+  ```
+
+
+  我们会注意到，所有访问 `quality` 值的对象都将读取到相同的值 3，因为只有一个静态变量。在介绍了“类”概念的基础知识后，我们现在来讨论方法。
+
+
+  ### 方法
+
+
+  如前所述，变量允许我们按对象或按类存储信息。方法则允许我们定义可执行的操作，同样也是按对象或按类进行。我们将继续使用 `Chair` 类，并为其添加一个名为 `move`
+  的简单方法，如代码清单 2-1 所示。
+
+
+  ```
+
+  class Chair {
+
+  static int quality;
+
+  int cost;
+
+  void move(int x, int y) {
+
+  // some code
+
+  }
+
+  }
+
+  代码清单 2-1
+
+  向类中添加方法的示例
+
+  ```
+
+
+  方法（在某些语言中称为函数或过程）是可重用的代码块。一个方法定义包含四个重要部分：
+
+
+  *   **名称：** 我们的方法名称为“move”。通常，名称应是一个有意义的动作，因为方法定义了操作——即对象能做什么。按照惯例，方法名以小写字母开头，后续每个单词的首字母大写。
+
+
+  *   **返回类型：** 在我们的示例中，返回类型是 `void`，这是一个特殊关键字，表示该方法不返回任何值。可以使用任何类型（例如 `int`）替代“void”，以表示该方法返回该类型的值。从方法中返回值是从方法中提取结果的一种常见方式。但在我们的示例中，没有预期需要返回的有意义结果，因此我们使用了“void”。
+
+
+  *   **参数列表：** 参数列表显示了方法在被调用时期望接收的参数类型。在上述示例中，有两个 `int` 类型的预期参数：`x` 和 `y`。使用参数是开发者向方法传递信息的一种常见方式。
+
+
+  *   **方法体：** 最后，方法体是位于该方法的花括号“{”和“}”之间的代码块。在我们的示例中，为了清晰说明，我们添加了“// some code”占位符来代替方法体。方法体本质上是在方法被调用时（即方法被调用时）将要执行的代码。
+
+
+  与变量可以是静态的一样，方法也可以使用 `static` 关键字作为前缀，在这种情况下，它们属于类。假设我们希望有一个操作，能够确定通过调用 `new Chair()`
+  生成的椅子对象的材质。假设在我们的抽象模型中，所有椅子都具有相同的材质（某种名为 `Material` 的类型），那么 `c1` 的材质和 `c2` 的材质之间就没有区别。如果是这种情况，我们可以简单地在
+  `Chair` 类中添加一个名为 `getMaterial()` 的静态方法，如代码清单 2-2 所示。
+
+
+  ```
+
+  class Chair {
+
+  static int quality;
+
+  int cost;
+
+  static Material getMaterial() {
+
+  // some code
+
+  }
+
+  void move(int x, int y) {
+
+  // some code
+
+  }
+
+  }
+
+  代码清单 2-2
+
+  静态方法的示例
+
+  ```
+
+
+  与静态变量的访问方式类似（即通过类访问），静态方法也以这种方式访问。因此，要调用新创建的方法，我们会编写 `Chair.getMaterial()`，而不是 `c1.getMaterial()`。如果在后续开发中，我们决定每把椅子可以拥有自己的材质，那么我们可以从方法中移除
+  `static` 关键字。此时该方法变为非静态方法，我们需要像之前一样通过 `c1.getMaterial()` 或 `c2.getMaterial()` 来调用它。
+
+
+  有时，定义具有相似但不同类型特征的类会很有用。例如，考虑餐椅和办公椅。这两者都属于椅子类型，并且它们确实有一些共同的功能，但它们的全部功能集并不相同。一个简单的例子是，办公椅有轮子，而餐椅没有。如果我们为这两种椅子分别创建单独的类，例如：
+
+
+  ```
+
+  class DiningChair
+
+  class OfficeChair
+
+  ```
+
+
+
+  那么我们会很容易发现需要重复编写大量代码。显然，这并不是一个理想的解决方案。为了避免这种情况，Java 作为一种语言，提供了继承特性。简单来说，我们可以定义一个名为
+  Chair 的“超类型”，在其中保留椅子应具备的所有通用功能，然后定义从 Chair “扩展”而来的“子类型”（或子类）`DiningChair` 和 `OfficeChair`，它们只包含与自身相关的代码。因此，通过这种方法，我们可以为代码重复这个小问题提供一个简洁干净的解决方案。要扩展一个类，可以编写如下代码：
+
+
+  ```
+
+  class DiningChair extends Chair {}
+
+  class OfficeChair extends Chair {}
+
+  ```
+
+
+  在某些情况下，两个（或更多）子类型可能共享功能（比如方法），但每个子类型都以自己的方式执行该功能。针对这个概念，我们换一个与椅子无关的例子。许多教科书常用的是
+  `Animal` 类及其 `speak()` 方法。
+
+
+  ```
+
+  class Animal {
+
+  void speak() { }
+
+  }
+
+  ```
+
+
+  假设 Animal 有两个子类型：Cat 和 Dog。两种类型都能说话，但方式不同。因此，虽然功能保持不变，但 Animal 的每个子类型执行该功能的方式却各不相同。
+
+
+  要在 Java 中实现此功能，我们有 `@Override` 注解，可以将其添加到方法上，以表明它覆盖了超类型类中同名的方法。让我们看一下清单 2-3 中的具体示例。首先要注意的是
+  `speak()` 方法上的 `@Override` 注解。它告诉开发者，`Cat` 类中的 `speak()` 覆盖了 `Animal` 类中的 `speak()`
+  方法。因此，当用户调用 `speak()` 时，如果调用对象是 `Cat` 类型，则会调用 `Cat` 类中的 `speak()` 方法，而不是 `Animal`
+  类中的那个。在构建 FXGL 游戏时，我们会在几个地方使用“覆盖”；因此，随着本书的深入，这个概念会变得越来越重要。当用到时，我们会提醒读者其用法。
+
+
+  ```
+
+  class Dog extends Animal {
+
+  @Override
+
+  void speak() {
+
+  // 汪汪叫
+
+  }
+
+  }
+
+  class Cat extends Animal {
+
+  @Override
+
+  void speak() {
+
+  // 喵喵叫
+
+  }
+
+  }
+
+  清单 2-3
+
+  使用 @Override 注解的示例
+
+  ```
+
+
+  回顾了 Java 基础知识后，我们现在将考虑如何向 Java 项目添加库。库是可重用的预构建代码集合，是解决已知问题的常见方式。它们是任何开发者工具库中的重要工具。
+
+
+  ## 添加外部库
+
+
+  在本节中，我们将了解如何使用 IntelliJ IDE 和内置的 Maven 支持向 Java 项目添加外部库。我们还将下载任何必要的软件。如果你的系统上尚未安装
+  JDK 17，可以从 [`https://jdk.java.net/17/`](https://jdk.java.net/17/) 下载适用于所有主流操作系统平台（Windows、macOS
+  和 Linux）的通用 JDK 17 版本。你只需下载相应的“.zip”文件并将其解压到所选位置即可。
+
+
+  在 Java 中，有几种方法可以向项目添加外部库。你可以使用 Maven、Gradle 或独立的“.jar”文件。我们将考虑一种使用 Maven 的常见方法，Maven
+  是一种依赖管理（或构建）工具。构建工具负责下载软件项目所需的依赖项（例如 JavaFX 和 FXGL），这样开发者就不必浪费时间手动安装这些外部库。现代开发工具，如
+  IntelliJ 编辑器（可从 [`www.jetbrains.com/idea/`](http://www.jetbrains.com/idea/) 获取），已经内置了
+  Maven 支持。为了简化任务，我们将使用此支持并创建一个简单的 Maven 项目。
+
+
+  ![](img/522865_1_En_2_Fig1_HTML.jpg)
+
+
+  截图显示了一个菜单栏，其中文件、新建和项目被高亮显示。
+
+
+  图 2-1
+
+
+  IntelliJ IDE 2021.2.2（社区版）中的文件 ➤ 新建 ➤ 项目菜单
+
+
+  打开 IntelliJ，然后按照图 2-1 所示的菜单选项进行操作。具体来说，选项是文件 ➤ 新建 ➤ 项目。此序列将引导你进入图 2-2 中的窗口。首先要确保你的项目
+  SDK 显示为 17（或更高版本）。在图 2-2 中，项目 SDK（靠近图像顶部）显示版本 17.0.1，即 JDK 17。如果你选择了不同的版本，可以单击下拉菜单并选择适当的版本，或单击“添加
+  JDK”，然后导航到你从之前给出的链接下载的 JDK 安装文件夹。现在，既然你已选择了合适的 JDK，我们将选择左侧的 Maven 项目（见图 2-2），然后单击“下一步”。在下一个窗口中，我们可以为项目命名，例如
+  JavaFXApp（或 BasicFXGLGame），并选择源代码将存储的目录。
+
+
+  ![](img/522865_1_En_2_Fig2_HTML.png)
+
+
+  新建项目向导窗口的截图显示左侧有 6 个选项卡，其中 Maven 被选中。选项卡右侧是一个标签“项目 SDK”，显示 17，版本 17.0.1。中央是原型列表，底部有
+  4 个按钮，其中“下一步”按钮被高亮显示。
+
+
+  图 2-2
+
+
+  IntelliJ IDE 中的新建项目向导窗口
+
+
+  图 2-3 显示了如何修改 Maven 项目详细信息。一旦你为项目选择了名称，可以保持其他部分为默认值不变。单击“完成”。IntelliJ 现在应该会生成一个项目，其视图类似于图
+  2-4，但没有 FXGL 依赖项。你在右侧看到的 xml 文件称为项目对象模型文件，简称 pom.xml。此文件包含构建项目所需的信息。更高级的 pom 文件还可能包含与如何管理项目资源、测试生成的构建、生成项目文档甚至部署最终产物相关的额外详细信息。
+
+
+  ![](img/522865_1_En_2_Fig4_HTML.png)
+
+
+  窗口截图，包含菜单栏、工具和构建项目的信息。窗口右侧是标题为 pom.xml 的代码行。
+
+
+  图 2-4
+
+
+  带有生成的项目对象模型 (pom.xml) 和额外 FXGL 依赖项的 Maven 项目
+
+
+  ![](img/522865_1_En_2_Fig3_HTML.jpg)
+
+
+  标题为“新建项目”的窗口截图显示两个文本框，标签和内容如下：1. 名称：Basic FXGL game。2. 位置：tilde slash Almas underscore
+  workspace slash java slash basic FXGL game。
+
+
+  图 2-3
+
+
+  IntelliJ 中的新建 Maven 项目窗口
+
+
+  现在，我们将通过在 pom.xml 文件中添加一个新的“dependency”项，向项目添加 FXGL 依赖项（其中包含 JavaFX）。一个依赖项包含三个部分：组
+  ID、工件名称和版本。这些详细信息在图 2-4 和清单 2-4 中给出。
+
+
+  按照图 2-4 所示添加依赖项后，单击 IntelliJ IDE 右上角的“刷新”图标，FXGL 依赖项将自动下载并可供使用。
+
+
+  ```
+
+
+  com.github.almasb
+
+  fxgl
+
+
+  清单 2-4
+
+  在 xml 文件中添加 FXGL 依赖项
+
+  ```
+
+
+  此步骤完成了使用 IntelliJ 和 Maven 向 Java 项目添加外部库的操作。现在，我们将继续使用 JavaFX 和 FXGL 构建一些示例应用程序。
+
+
+
+
+  ## JavaFX 基础：创建简单应用
+
+
+  在本节中，我们将构建一个包含常用控件的简单 JavaFX 应用。首先从一个最小化的 JavaFX 应用开始，其代码如清单 2-5 所示。
+
+
+  ```
+
+  import javafx.application.Application;
+
+  import javafx.scene.Scene;
+
+  import javafx.scene.layout.Pane;
+
+  import javafx.stage.Stage;
+
+  public class FXApp extends Application {
+
+  @Override
+
+  public void start(Stage stage) throws Exception {
+
+  stage.setScene(new Scene(new Pane(), 800, 600));
+
+  stage.show();
+
+  }
+
+  public static void main(String[] args) {
+
+  launch(args);
+
+  }
+
+  }
+
+  清单 2-5
+
+  一个最小化的 JavaFX 应用
+
+  ```
+
+
+  要运行此应用，请使用 IntelliJ，首先在项目的 `src/main/java` 目录下创建一个名为 `FXApp` 的新 Java 类——该目录在图 2-4
+  中已高亮显示。然后将清单 2-5 中的代码输入到新创建的 FXApp.java 文件中。最后，右键单击该文件并选择“运行”，即可看到这个简单的 JavaFX 应用运行起来。
+
+
+  这段源代码中有几个关键点需要注意：
+
+
+  *   任何 JavaFX 应用都会有一个继承 Application 的类。通常这个类也包含程序的入口点——`public static void main(String[]
+  args)`，它仅调用 `launch(args)`。这是大多数 JavaFX 和 FXGL 应用的启动方式。
+
+
+  *   另一个重要的代码片段是 `start()` 方法，它重写了 Application 类中同名的方法。这是一个必要的重写，允许开发者在启动阶段配置他们的
+  JavaFX 应用。在我们的例子中，我们做了两件事：将场景设置到舞台对象上，并显示舞台。Stage 类是对操作系统特定窗口的抽象，我们将在第 6 章讨论图形时更详细地介绍。
+
+
+  现在我们将介绍基础知识，包括用户输入、交互和输出。为此，我们在之前的最小示例基础上，扩展出清单 2-6 中的独立示例，它给出了如何实现这三个基本概念的总体思路。
+
+
+  ```
+
+  import javafx.application.Application;
+
+  import javafx.scene.Parent;
+
+  import javafx.scene.Scene;
+
+  import javafx.scene.control.Button;
+
+  import javafx.scene.control.TextField;
+
+  import javafx.scene.layout.VBox;
+
+  import javafx.scene.text.Font;
+
+  import javafx.scene.text.Text;
+
+  import javafx.stage.Stage;
+
+  public class BasicApp extends Application {
+
+  @Override
+
+  public void start(Stage stage) throws Exception {
+
+  stage.setScene(new Scene(createContent()));
+
+  stage.show();
+
+  }
+
+  private Parent createContent() {
+
+  TextField input = new TextField();
+
+  Text output = new Text();
+
+  Button button = new Button("Press");
+
+  button.setOnAction(e -> {
+
+  output.setText(input.getText());
+
+  });
+
+  VBox root = new VBox(input, button, output);
+
+  root.setPrefSize(600, 600);
+
+  return root;
+
+  }
+
+  public static void main(String[] args) {
+
+  launch(args);
+
+  }
+
+  }
+
+  清单 2-6
+
+  一个基础 JavaFX 应用的示例
+
+  ```
+
+
+  清单 2-6 中主要的增加部分是 `createContent()` 方法——其他部分都相当直接。我们将详细分析这个方法：
+
+
+  1.  首先，我们创建 TextField，用于接收用户输入。
+
+
+  2.  接着，我们创建 Text 对象，它将作为向用户输出某些信息的载体。
+
+
+  3.  在输出之后，我们创建一个名为“Press”的按钮，并提供一些在按钮按下时要执行的代码。具体来说，这段代码会将输入的文本数据设置到输出文本中。
+
+
+  4.  最后，我们创建根布局容器，它定义了控件（输入框、按钮、输出文本）在屏幕上的放置方式。这里我们使用 VBox，它会将其内部的所有控件垂直排列。我们还为此布局容器设置了首选大小，以便窗口自动调整以适应此尺寸。然后，该方法返回根容器，将其设置为场景的根节点。
+
+
+  如果你运行该应用（和之前一样，右键单击 Java 文件并点击运行），结果应类似于图 2-5 中的截图。正如我们所见，项目的布局是垂直排列的。
+
+
+  ![](img/522865_1_En_2_Fig5_HTML.jpg)
+
+
+  程序输出显示一个窗口。窗口右上角有最小化、最大化和关闭选项。在左上角，从上到下，窗口显示一行文本，内容为 hello world，接着是一个标有 press 的按钮，以及一行文本，内容为
+  hello world。
+
+
+  图 2-5
+
+
+  一个包含三个基本控件（TextField、Button 和 Text 对象）的基础 JavaFX 应用
+
+
+  最后一个要考虑的主要特性是 JavaFX 属性以及如何将一个属性绑定到另一个属性。在 JavaFX 中，属性充当值的包装器。这些值可以是任何类型。一些常用的类型包括
+  int、double、boolean、String 和通用 Object。与我们已经熟悉的 int 等类型相比，使用属性的主要优势在于绑定的属性会自动更新。假设我们有一个要求用户输入姓名的
+  `TextField` 和一个仅复制用户输入姓名的 Text 对象。如果没有属性，我们必须监听 `TextField` 上的每个按键事件，然后在用户输入或删除字符时手动更新
+  Text 对象：
+
+
+  ```
+
+  text.setText(textField.getText());
+
+  ```
+
+
+  使用属性，上述功能可以以一种简洁的方式实现，只需调用一次，无需为任何监听器编写代码。
+
+
+  ```
+
+  text.textProperty().bind(textField.textProperty());
+
+  ```
+
+
+  至此，本书后续将使用的基本 JavaFX 特性概述完毕。现在我们将专注于构建一个简单的 FXGL 应用。
+
+
+
+
+  ## FXGL 基础：创建简单应用
+
+
+  在本节中，我们将构建一个简单的 FXGL 应用程序，这将是我们的第一个游戏示例。在开始之前，让我们先为这个简单游戏定义一些需求：
+
+
+  1.  游戏将有一个 600×600 的窗口。
+
+
+  2.  屏幕上有一个玩家，由一个蓝色矩形表示。
+
+
+  3.  玩家可以通过键盘上的 W、S、A 和 D 键进行控制。
+
+
+  4.  用户界面（UI）由一段文本表示，显示玩家移动了多少像素。
+
+
+  5.  当玩家移动时，UI 文本将相应地更新。
+
+
+  在本节结束时，你应该拥有一个类似于图 2-6 所示的游戏。虽然这看起来可能远非一个真正的游戏，但它的开发将帮助你理解 FXGL 中的基本特性。因此，完成本节后，你将能够构建各种简单的游戏。
+
+
+  ![](img/522865_1_En_2_Fig6_HTML.jpg)
+
+
+  程序输出显示一个标题为“basic game app 0 dot 1”的窗口。窗口右上角有最小化、最大化和关闭选项。窗口内显示一个彩色方块，方块左上角显示数字
+  75。
+
+
+  图 2-6
+
+
+  一个基本的 FXGL 应用程序
+
+
+  第一步是准备我们的开发环境。从上一节中，你应该已经清楚如何创建新项目并将 FXGL 添加为依赖项；因此，我们将立即从在 `src/main/java` 中为我们的游戏创建一个
+  Java 包开始。为简单起见，我们将该包命名为“tutorial”。在该包中，我们将创建一个名为“BasicGameApp”的 Java 类。在 JavaFX
+  应用程序中，通常会在包含 `main()` 方法的类名后附加“App”。这使其他开发人员能够轻松识别应用程序的主入口点。为了让你后续步骤更轻松，我们可以打开 BasicGameApp
+  类并添加清单 2-7 中给出的常用 FXGL 导入。
+
+
+  ```
+
+  import com.almasb.fxgl.app.GameApplication;
+
+  import com.almasb.fxgl.app.GameSettings;
+
+  import com.almasb.fxgl.dsl.FXGL;
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import com.almasb.fxgl.input.Input;
+
+  import com.almasb.fxgl.input.UserAction;
+
+  import javafx.scene.input.KeyCode;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.scene.shape.Rectangle;
+
+  import javafx.scene.text.Text;
+
+  import java.util.Map;
+
+  清单 2-7
+
+  常用的 FXGL 导入
+
+  ```
+
+
+  现在我们可以开始编写一些代码了。要开始使用 FXGL，你的“App”类需要继承 `GameApplication` 并重写 `initSettings()` 方法：
+
+
+  ```
+
+  public class BasicGameApp extends GameApplication {
+
+  @Override
+
+  protected void initSettings(GameSettings settings) {}
+
+  }
+
+  ```
+
+
+  一旦你添加了 extends 子句，你的 IDE 很可能会提示自动生成重写的方法。在接下来的小节中，我们将介绍其他常用的重写方法。
+
+
+  通过 `initSettings()` 方法和 `settings` 对象，你可以更改大量游戏设置，并以适合你需求的方式配置应用程序。然而，目前我们只想尽快让应用程序运行起来。因此，我们暂时先不处理这个方法。我们要添加的下一个方法是：
+
+
+  ```
+
+  public static void main(String[] args) {
+
+  launch(args);
+
+  }
+
+  ```
+
+
+  我们已经在前面章节中介绍过一个简单的 JavaFX 应用程序，所以这个方法并不新鲜。这是启动普通 JavaFX 应用程序的方式。由于 FXGL 与 JavaFX
+  无缝集成，这也是启动 FXGL 应用程序的方式。随着你阅读本书的深入，你会意识到 FXGL 就是带有游戏开发功能的 JavaFX。此时，你的应用程序已经可以运行，因此你可以启动游戏（通常通过右键单击并选择“运行”），查看结果，最后关闭它。
+
+
+  ### 需求 1：打开窗口
+
+
+  现在，我们将依次实现之前定义的每个需求，来开发我们的游戏。第一个需求是打开一个 600×600 的窗口，我们的游戏将在其中运行。正如我们之前提到的，要更改设置，我们可以使用
+  `initSettings()` 方法，如清单 2-8 所示。
+
+
+  ```
+
+  @Override
+
+  protected void initSettings(GameSettings settings) {
+
+  settings.setWidth(600);
+
+  settings.setHeight(600);
+
+  settings.setTitle("Basic Game App");
+
+  settings.setVersion("0.1");
+
+  }
+
+  清单 2-8
+
+  initSettings() 方法允许提供游戏特定的设置
+
+  ```
+
+
+  使用 settings 对象，我们将宽度和高度更改为 600。我们还设置了游戏的标题和版本。一旦设置完成，这些设置在运行时就不能更改。这并不意味着你不能调整应用程序的大小；相反，这意味着提供的值是启动时要使用的设置。现在你可以在
+  IDE 中点击“运行”，这将启动一个 600×600 的窗口，窗口标题为“Basic Game App”。至此，我们完成了第一个需求。你可以看到这个需求实现起来很简单。你会注意到其他需求也并不复杂。这就是
+  FXGL 的总体目标：让 JavaFX 游戏开发变得显著更简单、更高效。
+
+
+  ### 需求 2：添加玩家
+
+
+  第二个需求是向我们的游戏添加一个玩家对象。我们将在 `initGame()` 中完成此操作。简而言之，这是你设置游戏开始前需要准备好的所有内容的地方。代码如清单
+  2-9 所示。
+
+
+  ```
+
+  private Entity player;
+
+  @Override
+
+  protected void initGame() {
+
+  player = FXGL.entityBuilder()
+
+  .at(300, 300)
+
+  .view(new Rectangle(25, 25, Color.BLUE))
+
+  .buildAndAttach();
+
+  }
+
+  清单 2-9
+
+  initGame() 方法允许设置游戏及其游戏对象
+
+  ```
+
+
+  我们将逐一方法地慢慢讲解。
+
+
+  *   有一个名为 player 的实例级字段，类型为 Entity。实体本质上是一个游戏对象，正如 FXGL 所定义的那样。这是现阶段你需要了解的全部内容。我们将在下一章更详细地讨论实体。`FXGL.entityBuilder()`
+  是构建实体的首选方式。
+
+
+  *   接下来，通过调用 `.at()`，我们可以设置正在创建的实体的位置。在本例中，x = 300，y = 300。请注意，任何实体的位置都在其左上角点，与
+  JavaFX 中一样。
+
+
+  *   然后，我们告诉实体构建器创建我们实体的视图。具体来说，我们希望使用 Rectangle 对象，它直接来自 JavaFX，所以这里没有新内容。我们通过提供宽度
+  = 25、高度 = 25 和颜色来构造矩形。这里需要注意的重要一点是，你可以使用任何 JavaFX Node 而不是矩形来传递给 view 方法，从而提供实体的视觉表示。
+
+
+  *   最后，我们调用 `.buildAndAttach()`。通过调用 build，我们可以获得正在构建的实体的引用。至于 attach 部分，它方便地允许我们将构建好的实体直接添加到游戏世界中。我们将在下一章介绍游戏世界及其含义。现在，只需将其视为实体存在和生存的地方。
+
+
+  如果你现在运行游戏，你应该会在窗口中心附近看到一个蓝色矩形。这一步完成了需求 2。
+
+
+
+
+  ### 需求 3：添加输入
+
+
+  需求 3 指出，我们应该能够使用键盘控制玩家实体。现在我们将着手处理用户输入。在 FXGL 中，通常所有与输入相关的代码都放在 `initInput()` 方法中。清单
+  2-10 中的代码展示了如何添加一个输入动作。FXGL 中的大部分输入都以此格式处理。开发者需要指定一个动作（要运行的代码），然后将其绑定到一个触发器（鼠标按钮、按键或某种其他输入方式，例如控制器）。
+
+
+  ```
+
+  @Override
+
+  protected void initInput() {
+
+  FXGL.onKey(KeyCode.D, () -> {
+
+  player.translateX(5); // 向右移动 5 像素
+
+  });
+
+  }
+
+  清单 2-10
+
+  initInput() 方法允许将用户输入绑定到游戏内动作
+
+  ```
+
+
+  让我们逐行分析清单 2-10。通过调用 FXGL 的 `onKey()` 方法，我们实际上是在说“当某个键被按下时，执行一个动作”。在这个例子中，按键是 `KeyCode.D`。同样，如果你之前使用过
+  JavaFX，你就会知道这些与标准事件处理器中使用的键码完全相同。正如你所注意到的，要使用 FXGL 的大部分功能，你只需调用 `FXGL.***`，你的 IDE
+  就会通过自动补全显示所有可能的函数。
+
+
+  回顾需求，我们希望执行的动作是移动玩家。所以当按下 D 键时，我们希望将玩家向右移动。我们调用 `player.translateX(5)`，这会将实体的 X
+  坐标移动 5 像素。请注意，“translate”是计算机图形学（以及 JavaFX）中使用的术语，意思是移动。你会注意到 FXGL 的 API 非常简洁。这种简洁的
+  API 在 FXGL 的上下文中通常被称为 DSL（领域特定语言）。如果我们使用静态导入，这甚至可以进一步简化。你可以通过添加以下导入行来静态导入 FXGL 调用：
+
+
+  ```
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  ```
+
+
+  既然我们已经熟悉了单个按键的输入处理，那么剩下的代码就很简单了，如清单 2-11 所示。
+
+
+  ```
+
+  @Override
+
+  protected void initInput() {
+
+  FXGL.onKey(KeyCode.D, () -> {
+
+  player.translateX(5); // 向右移动 5 像素
+
+  });
+
+  FXGL.onKey(KeyCode.A, () -> {
+
+  player.translateX(-5); // 向左移动 5 像素
+
+  });
+
+  FXGL.onKey(KeyCode.W, () -> {
+
+  player.translateY(-5); // 向上移动 5 像素
+
+  });
+
+  FXGL.onKey(KeyCode.S, () -> {
+
+  player.translateY(5); // 向下移动 5 像素
+
+  });
+
+  }
+
+  清单 2-11
+
+  所有四个方向的 initInput() 方法实现
+
+  ```
+
+
+  填充了 `initInput()` 方法后，需求 3 就完成了。
+
+
+  ### 需求 4：添加 UI
+
+
+  下一个需求是 UI，我们在 `initUI()` 方法中处理，如清单 2-12 所示。
+
+
+  ```
+
+  @Override
+
+  protected void initUI() {
+
+  Text textPixels = new Text();
+
+  textPixels.setTranslateX(50); // x = 50
+
+  textPixels.setTranslateY(100); // y = 100
+
+  FXGL.getGameScene().addUINode(textPixels); // 添加到屏幕
+
+  }
+
+  清单 2-12
+
+  initUI() 方法允许在屏幕上添加用户界面对象
+
+  ```
+
+
+  在清单 2-12 中，`Text` 类是直接来自 JavaFX 的。实际上，对于大多数 UI 对象，我们直接使用 JavaFX 控件，因为没必要重复造轮子。你应该注意到，当我们向世界添加实体时，游戏场景会自动识别该实体具有关联的视图。因此，游戏场景会神奇地将该实体添加到场景图中。对于
+  UI 对象，我们需要负责将它们添加到场景图中，而调用 `getGameScene().addUINode()` 正是为了完成这个操作。稍后我们将处理 UI 更新，例如玩家移动的像素数。
+
+
+  ### 需求 5：更新 UI
+
+
+  为了完成最后一个需求，我们将使用一个游戏变量。在 FXGL 中，可以从游戏的任何部分访问和修改游戏变量。从某种意义上说，它是一个全局变量，其作用域绑定到 FXGL
+  游戏实例。此外，这些变量可以像 JavaFX 属性一样进行绑定。我们首先创建这样一个变量：
+
+
+  ```
+
+  @Override
+
+  protected void initGameVars(Map vars) {
+
+  vars.put("pixelsMoved", 0);
+
+  }
+
+  ```
+
+
+  上述代码创建了一个名为“pixelsMoved”的游戏变量，初始值为 0。请注意，FXGL 会根据初始值自动推断变量的类型，在本例中为整数。例如，如果我们使用
+  0.0，那么游戏变量的类型将是双精度浮点数。接下来，我们需要在玩家移动时更新该变量。我们可以在代码的输入处理部分执行此操作。
+
+
+  ```
+
+  FXGL.onKey(KeyCode.D, () -> {
+
+  player.translateX(5); // 向右移动 5 像素
+
+  FXGL.inc("pixelsMoved", +5);
+
+  });
+
+  ```
+
+
+  你可以对剩下的移动动作（即向左、向上和向下）执行相同的操作。最后一步是将我们之前创建的 UI 文本对象绑定到变量 `pixelsMoved`。最终，这允许 FXGL
+  根据 `pixelsMoved` 的值自动更新 UI，这样我们就不需要手动更新 UI 了。在 `initUI()` 中，一旦我们创建了 `textPixels`
+  对象，就可以执行以下操作：
+
+
+  ```
+
+  textPixels.textProperty().bind(FXGL.getWorldProperties().intProperty("pixelsMoved").asString());
+
+  ```
+
+
+  进一步解释一下，我们获取 `textPixels` UI 对象的文本属性，并将其绑定到 `pixelsMoved` 值，由于该值是整数，需要先将其转换为字符串。这是我们对这个示例所做的最后一项更改，现在你应该拥有一个简单的
+  FXGL 游戏了。
+
+
+  我们还有很多领域没有涉及，例如资源加载、物理、AI 和图形——这些以及其他特性将在我们继续阅读本书的过程中讨论。
+
+
+  ## 本章小结
+
+
+  在本章中，我们介绍了本书中使用的必要概念。我们回顾了关于类和方法的 Java 基础知识。我们了解了如何创建一个类来模拟抽象或现实世界中的对象，以及方法如何为这些类提供功能。接下来，我们使用
+  IntelliJ 通过内置的 Maven 支持添加了 JavaFX（通过 FXGL）外部库，这简化了流程。随后，我们使用 JavaFX 库创建了一个包含三个 UI
+  控件（文本输出、文本输入和按钮）的简单应用程序。最后，我们使用 FXGL 库作为外部依赖，实现了一个简单的游戏演示。该演示向我们展示了如何使用输入、创建实体（即游戏对象），以及如何与
+  JavaFX UI 控件交互。在下一章中，我们将进一步了解实体以及它们如何帮助我们创建复杂的游戏世界。
+
+
+  '
+- "# 3. 实体-组件案例研究：开发 Pong 游戏\n\n在本章中，我们将开始游戏开发之旅，开发一个 Pong 街机游戏的克隆版。我们将开始构建你关于使用 FXGL\
+  \ 进行游戏开发过程的知识。通过这个过程，我们将学习：\n\n*   实体及其如何表示游戏对象\n*   组件及其如何向实体添加数据和行为\n*   游戏世界以及如何执行查询以访问世界中的特定实体\n\
+  \n游戏对象构成了任何游戏的基本概念。游戏越大，游戏对象的实现就应该越健壮，以便能够适当地扩展。具有深厚面向对象编程背景的开发者可能会陷入一个陷阱，即继承最终与游戏对象功能交织在一起，导致软件架构的可扩展性降低。继承倾向于垂直层次结构，在一系列用例中（包括中小型游戏）非常有益。然而，实体-组件模型倾向于水平层次结构，它提供了自身的优势，并且可能更适合大型游戏项目。随着你继续阅读本章，这种模型的好处将变得更加清晰。我们将从定义什么是实体开始。\n\
+  \n\n\n## 实体\n\n你能想到的任何游戏对象（例如：玩家、敌人、金币、子弹、强化道具、墙壁、泥土、武器、宝箱等等）都是一个实体。就其本身而言，实体只是一个通用对象。如果不添加组件，几乎无法区分一个实体与另一个实体。组件是关键对象，它们携带数据和行为，以独特的方式定义每个实体。我们将在接下来的章节中对此进行详细阐述。\n\
+  \n在 FXGL 中，有许多有用的方法可以在实体上调用。\n\n这些方法包括：\n\n*   `addComponent(Component c)` / `removeComponent(Component\
+  \ c)` – 允许添加新组件和移除现有组件。\n\n*   `setProperty(String key, Object value)` – 允许向实体添加任何类型的变量。如果你不想创建新组件来存储数据，这些变量会很有用。可以通过调用\
+  \ `getInt(String key)`、`getString(String key)`、`getObject(String key)` 以及其他类似方法来获取这些值。\n\
+  \n*   `getComponents()` – 检索附加到实体上的所有组件列表。\n\n*   `getPosition()` / `setPosition(Point2D\
+  \ p)` – 返回/设置实体在二维空间中的位置。更具体地说，该方法会请求 `TransformComponent` 提供/修改此数据（正如我们所知，实体本身不存储任何数据，只有它们的组件才存储数据）。\n\
+  \n*   `translate(Point2D vector)` – 按给定的向量移动实体。更具体地说，该方法会请求 `TransformComponent`\
+  \ 修改位置数据。\n\n*   `isVisible()` / `setVisible(boolean b)` – 检查实体是否正在被绘制/如果设置为 false，则实体将不会被绘制。\n\
+  \n*   `getType()` / `setType(Object type)` – 允许检索/设置实体类型。通常，枚举类值被用作类型。\n\n现在我们对实体是什么以及可以在其上调用哪些方法有了更多了解，接下来我们将考虑组件。\n\
+  \n## 作为数据的组件\n\n在本节中，我们将看到组件如何向实体添加数据。在 FXGL 的实体-组件模型上下文中，组件是实体的一部分。一个组件可以携带你希望实体拥有的任何数据。我们将借助在\
+  \ Java 中向类定义添加实例字段的类比来说明：\n\n```\nclass Car {\n    int moveSpeed;\n    Color color;\n\
+  }\n```\n\n因此，如果我们想为汽车添加一个新属性（字段），就必须修改前面的类。在游戏中，对象通常会“失去”旧属性并“获得”新属性，这意味着我们需要有能力在运行时修改前面的类，而这并非易事。\n\
+  \n此外，让我们考虑使用 `Car` 类更深层次的含义。在前面的例子中，`Car` 类包含一个实例字段 `moveSpeed`，这意味着它可以移动。现在，想象一下我们还有一个玩家角色，它也可以移动。我们可以将\
+  \ `moveSpeed` 添加到 `Player` 类中。然而，还有许多其他可移动的游戏对象。所以也许我们应该改用继承，并创建一个抽象类 `MovableGameObject`，或者更好的做法是使用一个接口\
+  \ `Movable`。这固然很好，但如果我们想要一个有时可以移动、有时不能移动的对象呢？例如，由玩家控制的汽车可以移动，但它自身不能移动。我们不能简单地移除一个接口，然后在需要时再把它附加回去。很明显，使用继承无法简单地解决这个问题。\n\
+  \n好消息是，在计算机科学中，对于任何给定的问题通常都有不止一种解决方案。继承并不是我们武器库中唯一的工具。你可能听说过“组合优于继承”这句话。嗯，组件在某种程度上是这种思想的极端版本。它们允许我们在运行时附加字段和方法——这有多酷？考虑一下代码清单\
+  \ 3-1 中的代码片段，它是 `Car` 类的等价物，但用组件重写了：\n\n```\nEntity entity = new Entity();\nentity.addComponent(new\
+  \ MoveSpeedComponent());\nentity.addComponent(new ColorComponent());\n// 一段时间后，我们可以让它不可移动\n\
+  entity.removeComponent(MoveSpeedComponent.class);\n// 或者像普通字段一样更改组件的值\nentity.getComponentOptional(ColorComponent.class).ifPresent(color\
+  \ -> {\n    color.setValue(Color.RED);\n});\n代码清单 3-1\n添加、移除和访问组件的示例\n```\n\n我们可以看到，使用组件，我们之前描述的继承问题变得非常容易解决。这种问题表示方式的改变是计算机科学中的一种常用技术。这种技术允许以一种易于通过已知方法解决的方式重新表述问题。此外，使用组件的方法将逻辑隔离在每个组件中。这意味着我们可以将这个\
+  \ `MoveSpeedComponent` 附加到任何实体上。我们还可以向一个实体添加任意数量的不同组件，这使得这种方法具有高度的可扩展性。最后，它严格遵守单一职责原则（来自\
+  \ SOLID 原则），因此所有需要修改（例如，移动）的更改都将发生在一个单独的组件内，即 `MoveSpeedComponent`。\n\n在创建实体时，最好预先添加你知道实体将拥有的所有组件。然后，你可以根据需要启用或禁用组件。例如，`CollidableComponent`\
+  \ 表示一个实体可以与其他物体碰撞。假设我们不希望实体在创建时可碰撞。与其在实体变得可碰撞时再添加组件，不如在创建时直接添加组件并将其值设置为 false（在\
+  \ Java 中，我们可以使用 `var` 代替左侧的类型来缩短代码）：\n\n```\nvar c = new CollidableComponent();\n\
+  c.setValue(false);\nentity.addComponent(c);\n```\n\n在考虑了组件作为数据容器的情况之后，我们现在将重点讨论如何使用组件向实体添加行为。\n\
+  \n## 作为行为的组件\n\n组件也可以携带行为信息，从而有效地让实体获得新方法并能够执行新操作。事实上，我们之前演示了将带有数据的组件类比为向类添加字段。嗯，添加带有行为的组件就像添加方法。组件允许我们让实体做一些事情，从而定义实体的行为。在我们创建自定义组件之前，让我们先考虑一下\
+  \ `Component` 类中的内置方法：\n\n*   `onAdded()` – 当组件被添加到实体时，会调用此回调函数。\n\n*   `onRemoved()`\
+  \ – 当组件从实体中移除时，会调用此回调函数。\n\n*   `onUpdate()` – 每帧都会调用此回调函数，以允许组件更新其逻辑。\n\n*   `pause()`\
+  \ – 调用此方法将使组件暂停处理 `onUpdate()` 中的任何更新。\n\n*   `resume()` – 调用此方法将使组件恢复处理 `onUpdate()`\
+  \ 中的任何更新。\n\n任何继承自 `Component` 的自定义类都可以访问这些方法。\n\n\n\n### 自定义组件\n\n假设我们希望实体成为一个升降机，以便能将玩家运送到山顶。如前所述，为实体添加这样一个组件非常简单：\n\
+  \n```\nentity.addComponent(new LiftComponent());\n```\n\n现在我们来考虑如何实现这样一个 `LiftComponent`。每个组件都有一个\
+  \ `onUpdate()` 方法，可以通过重写该方法来提供所需的功能（回顾第 2 章，此类重写需使用 `@Override` 注解）。利用这种方法，我们可以构建如代码清单\
+  \ 3-2 所示的代码片段，该代码能将任何实体变成一个升降机。\n\n```\npublic class LiftComponent extends Component\
+  \ {\nLocalTimer timer = ...;\nboolean isGoingUp = true;\ndouble speed = ...;\n@Override\n\
+  public void onUpdate(double tpf) {\nif (timer.elapsed(duration)) {\nisGoingUp =\
+  \ ! isGoingUp;\ntimer.capture();\n}\nentity.translateY(isGoingUp? -speed * tpf :\
+  \ speed * tpf);\n}\n}\n代码清单 3-2\n一个自定义组件的示例\n```\n\n你会注意到，我们无需初始化对“entity”对象的引用。当我们将其添加到实体时，它会自动注入到组件中。这个\
+  \ FXGL 特性极大地简化了开发者的代码。另一个避免额外样板代码的类似特性是组件注入。\n\n### 组件注入\n\n自动组件注入的常见用例是当你拥有两个组件，即\
+  \ `Component1` 和 `Component2`，并且 `Component2` 需要持有对 `Component1` 的引用时：\n\n```\n\
+  class Component1 extends Component {}\nclass Component2 extends Component {\nprivate\
+  \ Component1 comp;\n}\n```\n\n在这种情况下，你无需在 `Component2` 类中手动获取对 `Component1` 的引用。在组件添加过程中，FXGL\
+  \ 会自动将该对象注入到“comp”字段中。需要注意的是，`Component2` 要求实体上必须存在 `Component1`，因为它是一个依赖项。对所需组件的检查会在组件添加时执行，因此确保所有必需的组件都先被添加至关重要。在这种情况下，`Component1`\
+  \ 应该在 `Component2` 之前添加；否则，FXGL 会抛出异常。\n\n让我们看看这种注入在实践中是如何工作的。例如，代码清单 3-3 展示了一个非常简单的玩家组件，其中包含\
+  \ up、down、left 和 right 方法，这些方法允许对组件将要附加到的实体进行基本移动。\n\n```\npublic class PlayerComponent\
+  \ extends Component {\n// 注意：此组件是自动注入的\nprivate TransformComponent position;\nprivate\
+  \ double speed = 0;\n@Override\npublic void onUpdate(double tpf) {\nspeed = tpf\
+  \ * 60;\n}\npublic void up() {\nposition.translateY(-5 * speed);\n}\npublic void\
+  \ down() {\nposition.translateY(5 * speed);\n}\npublic void left() {\nposition.translateX(-5\
+  \ * speed);\n}\npublic void right() {\nposition.translateX(5 * speed);\n}\n}\n代码清单\
+  \ 3-3\n自定义 PlayerComponent 类的一种可能实现\n```\n\n我们可以看到，`position` 组件字段无需由开发者初始化。它会被\
+  \ FXGL 自动注入，从而减少了代码量。\n\n现在我们已经熟悉了实体和组件，是时候关注游戏世界了，实体的大部分生命周期都在其中度过。\n\n## 游戏世界\n\
+  \n在本节中，我们将探讨游戏世界及其在有效存储和查询实体方面的重要性。游戏世界本质上是一个包含实体的数据结构。它还负责向游戏添加、更新和移除实体。最后，游戏世界提供了通过各种条件查询（在世界中搜索）实体的方法。例如，你可以收集所有敌人实体，以便在玩家升级时提升它们的属性。\n\
+  \n将实体添加到世界也意味着将其添加到游戏中。同样，要从游戏中移除实体，你只需将其从世界中移除即可。当前在游戏世界中的实体被视为活跃的——它们的 `isActive()`\
+  \ 方法将返回 true。让我们创建一个简单的实体并将其添加到游戏世界中。在 FXGL 中，可以通过调用以下代码获取游戏世界：\n\n```\nvar world\
+  \ = FXGL.getGameWorld();\n```\n\n要向其中添加一个实体 `e`，我们可以调用：\n\n```\nworld.addEntity(e);\n\
+  ```\n\n最后，要移除该实体，我们可以调用：\n\n```\nworld.removeEntity(e);\n```\n\n我们现在能够根据需要添加和移除实体了，因此我们的注意力转向了游戏世界查询。\n\
+  \n### 世界查询\n\n在世界中搜索实体的方法有多种。通常，这类方法以“get”开头。例如，`getEntitiesByType()`。我们将依次考虑通过以下方式查询实体：\n\
+  \n*   **类型（需要 TypeComponent）** – 假设我们有一个名为 EntityType 的枚举，其中包含游戏中实体的有效类型。你可能希望获取游戏中的所有敌人，以便对它们应用增益效果，以此增加游戏难度。这可以通过调用以下代码轻松实现：\n\
+  \n*   **ID（需要 IDComponent）** – 假设你可能允许复制实体。这对于 RPG 类游戏尤其有用，因为这类游戏中会有大量重复的物品。所以，我们可能在游戏世界中放置了多个熔炉，并为每个熔炉分配了一个唯一的\
+  \ IDComponent。虽然名称相同，都是“熔炉”，但其数字 ID 是不同的。以下代码允许你获取游戏中特定熔炉的引用：\n\n```\nvar enemies\
+  \ = world.getEntitiesByType(EntityType.ENEMY);\n```\n\n*   **单例** – 在很多情况下，某种类型的实体只有一个，例如玩家。通过遍历实体列表来获取我们想要的那个可能会很麻烦。因此，FXGL\
+  \ 为此提供了一个便捷的实用查询方法：\n\n```\nvar forge123 = world.getEntityByID(\"Forge\", 123);\n\
+  ```\n\n*   **随机** – 在游戏玩法中，引入一些随机元素是很常见的。如果你想要炸毁一个随机敌人，可以通过以下方式获取一个随机的敌人实体：\n\n\
+  ```\nvar player = world.getSingleton(EntityType.PLAYER);\n```\n\n*   **组件** – 某些游戏内逻辑只应在具有特定组件的实体上执行。获取所有具有给定组件的实体的一种简单方法如下：\n\
+  \n```\nvar enemy = world.getRandom(EntityType.ENEMY);\n```\n\n*   **范围** – 游戏玩法逻辑，例如触发与实体的交互或对半径范围内的实体造成伤害，可以通过查询特定范围内的实体来实现。例如，为了实现这一点，我们可以调用以下方法来获取位于给定矩形内（完全或部分）的所有实体：\n\
+  \n```\nvar entsWithComponent = world.getEntitiesByComponent(MyComponent.class);\n\
+  ```\n\n*   **过滤器** – 最后，我们可以通过使用自定义过滤器以通用方式查询实体。过滤器本质上是一个函数，给定一个实体，返回 true 或 false。如果结果为\
+  \ true，则该实体将被添加到要返回的列表中：\n\n```\nvar entitiesNearby = world.getEntitiesInRange(new\
+  \ Rectangle2D(5, 5, 30, 30));\n```\n\n```\nvar entsWithHP10 = world.getEntitiesFiltered(e\
+  \ -> e.getInt(\"hp\") == 10);\n```\n\n至此，我们完成了对游戏世界及其与存储和查询实体相关的常见功能的概述。现在，我们将专注于在一个\
+  \ Pong 克隆游戏中运用这些概念。\n\n\n\n## 乒乓球\n\n在本节中，我们将为乒乓球游戏构建一个功能完整的基础框架。最新的完整源代码可在 [`https://github.com/AlmasB/FXGLGames`](https://github.com/AlmasB/FXGLGames)\
+  \ 的 Pong 目录下获取。\n\n在图 3-1（左侧图片）中，您可以看到本节将要实现的效果。诚然，游戏看起来略显单调，但您将学到大量关于 FXGL 工作流程的基础知识，以及如何以预设模板化的方式开发游戏。在本书后续内容中，您将学习图形效果，这将使您能够在保留原始美学风格的同时，让这款经典游戏在视觉上更具吸引力，如图\
+  \ 3-1（右侧图片）所示。\n\n![](img/522865_1_En_3_Fig1_HTML.png)\n\n2 张截图。左侧屏幕显示有两条细小的垂直粗线。右侧屏幕显示有两条细小的垂直粗线、两个小圆圈以及一条带有图形效果的线条。\n\
+  \n图 3-1\n\n乒乓球游戏：简单版（左）与视觉增强版（右）\n\n开发 FXGL 游戏时，一种常见的方法是首先定义我们计划在游戏中拥有的实体类型。在本示例中，我们将包含：\n\
+  \n*   玩家球拍\n*   敌方球拍\n*   球\n*   墙壁\n\n如前所述，我们可以将类型定义为 Java 枚举。枚举是一种特殊的类，只能包含一组预定义的值。要实现这些类型，我们可以创建以下枚举：\n\
+  \n```\npublic enum EntityType {\nPLAYER_BAT, ENEMY_BAT, BALL, WALL\n}\n```\n\n###\
+  \ 构建玩家球拍组件\n\n正如我们之前通过组件所看到的，FXGL 架构提倡关注点分离，这使我们能够独立开发游戏的各个部分。这种独立开发的方式为开发者提供了灵活性，并符合单一职责原则（该原则是\
+  \ SOLID 原则的一部分；更多信息可在网上找到）。基于此，我们可以通过先创建组件来开始构建游戏实体的逻辑。在乒乓球游戏中，有两种类型的对象：球拍（挡板）和球。我们将从\
+  \ `BatComponent` 开始，其代码如代码清单 3-4 所示。\n\n```\nimport com.almasb.fxgl.dsl.FXGL;\n\
+  import com.almasb.fxgl.entity.component.Component;\nimport com.almasb.fxgl.physics.PhysicsComponent;\n\
+  public class BatComponent extends Component {\nprivate static final double BAT_SPEED\
+  \ = 420;\nprotected PhysicsComponent physics;\npublic void up() {\nif (entity.getY()\
+  \ >= BAT_SPEED / 60)\nphysics.setVelocityY(-BAT_SPEED);\nelse\nstop();\n}\npublic\
+  \ void down() {\nif (entity.getBottomY() <= FXGL.getAppHeight() - (BAT_SPEED / 60))\n\
+  physics.setVelocityY(BAT_SPEED);\nelse\nstop();\n}\npublic void stop() {\nphysics.setLinearVelocity(0,\
+  \ 0);\n}\n}\n代码清单 3-4\nBatComponent 类\n```\n\n与其他代码片段一样，我们将全面介绍 `BatComponent` 类。首先，我们注意到三个导入语句，它们使我们能够使用\
+  \ FXGL 方法、通用的 `Component` 类以及 `PhysicsComponent` 类。要创建自定义组件，我们需要定义名称（此处为 `BatComponent`）并继承\
+  \ `Component`。\n\n接下来，我们定义球拍移动速度的静态常量值。将其声明为顶部的变量（而不是在代码中作为硬编码值使用），以便于查找该变量并在以后需要修改时轻松更改其值。进一步思考，如果您希望在运行时能够更改变量，甚至可以移除“final”修饰符。\n\
+  \n随后，我们声明了 `PhysicsComponent` 的引用，命名为 physics。回顾本章“组件注入”小节，我们不需要显式地为引用赋值，因为在实体创建过程中，组件会被自动注入。当然，我们需要记得在\
+  \ `BatComponent` 之前添加 `PhysicsComponent`，这样才能正常工作。我们稍后会回到实体创建的话题，并了解在实体工厂类中如何添加组件。\n\
+  \n`BatComponent` 包含三个方法：up、down 和 stop。顾名思义，这些方法负责移动球拍实体。这些方法的实现很简单——我们检查是否可以向某个方向（例如向上）移动，如果检查通过则执行移动。更具体地说，当尝试向上移动时，我们检查球拍实体的\
+  \ Y 值是否低于游戏（屏幕）的顶部。这意味着有足够的空间可以移动。如果检查失败，我们通过将速度设置为 0 来停止球拍移动。\n\n此时，您可能会对检查中使用的\
+  \ `BAT_SPEED / 60` 而非直接使用 `BAT_SPEED` 感到疑惑。原因在于秒与帧之间的差异。我们通过物理系统设置的速度是每秒 `BAT_SPEED`，而通常每秒有\
+  \ 60 帧。因此，每帧我们实际移动 `BAT_SPEED / 60` 个单位。所以，我们使用这个值来检查是否有足够的空间供球拍实体移动。\n\n### 构建敌方球拍组件\n\
+  \n通过继承（回顾第 2 章中关于继承的概念）我们的 `BatComponent`，我们可以定义 `EnemyBatComponent`，因为大部分功能保持不变。`EnemyBatComponent`\
+  \ 可以编写为代码清单 3-5 所示。\n\n```\nimport com.almasb.fxgl.entity.Entity;\npublic class\
+  \ EnemyBatComponent extends BatComponent {\nprivate Entity ball;\n@Override\npublic\
+  \ void onUpdate(double tpf) {\nif (ball == null) {\nball = entity.getWorld()\n.getSingletonOptional(EntityType.BALL)\n\
+  .orElse(null);\n} else {\nmoveAI();\n}\n}\nprivate void moveAI() {\nEntity bat =\
+  \ entity;\nboolean isBallToLeft = ball.getRightX()  bat.getY()) {\nif (isBallToLeft)\n\
+  down();\nelse\nup();\n} else {\nstop();\n}\n}\n}\n代码清单 3-5\nEnemyBatComponent 类\n\
+  ```\n\n让我们详细分析这个类。您会注意到，这个新组件包含一个对球实体的引用。在游戏开始时，我们不知道球是否存在于游戏世界中，因此我们在 `onUpdate()`\
+  \ 方法内部初始化球。为此，我们检查球是否为 `null`——在游戏开始时，它确实是 `null`。因此，在游戏运行的第一帧，将从游戏世界中查询球实体类型并进行初始化。通过查看\
+  \ if 语句的“else”分支，我们可以看到调用了 `moveAI()`。本质上，从高层次来看，这个检查可以描述如下：如果球引用为 null，则初始化它；否则，移动敌方球拍。\n\
+  \n敌方球拍的 AI 实际上非常简单。我们将在未来的章节中考虑复杂的 AI。目前，我们的 AI 仅由几个 if 语句组成。我们知道敌方球拍位于屏幕的右侧。因此，我们首先检查球是否在球拍的左侧，这意味着我们应该尝试接住它。相反，如果球在右侧，那么我们希望避免碰到它；否则，球会在球拍和墙壁之间不断弹跳，持续为玩家球拍加分。完成此检查后，唯一剩下的事情就是判断球是在敌方球拍的上方还是下方，并相应地移动。\n\
+  \n\n### 构建球体组件\n\n在考虑了双方球拍的逻辑之后，让我们深入探讨球体实体的逻辑。下一个组件是 `BallComponent`，如代码清单 3-6\
+  \ 所示。\n\n```\nimport com.almasb.fxgl.entity.component.Component;\nimport com.almasb.fxgl.physics.PhysicsComponent;\n\
+  import javafx.geometry.Point2D;\nimport static com.almasb.fxgl.dsl.FXGL.*;\nimport\
+  \ static java.lang.Math.*;\npublic class BallComponent extends Component {\nprivate\
+  \ PhysicsComponent physics;\n@Override\npublic void onUpdate(double tpf) {\nlimitVelocity();\n\
+  checkOffscreen();\n}\nprivate void limitVelocity() {\n// 防止 X 方向移动过慢\nif (abs(physics.getVelocityX())\
+  \ < 5 * 60) {\nphysics.setVelocityX(signum(physics.getVelocityX()) * 5 * 60);\n\
+  }\n// 防止 Y 方向移动过快\nif (abs(physics.getVelocityY()) > 5 * 60 * 2) {\nphysics.setVelocityY(signum(physics.getVelocityY())\
+  \ * 5 * 60);\n}\n}\n// 我们使用了物理引擎，因此球有可能被推过墙壁而超出屏幕，故需进行此检查\nprivate void checkOffscreen()\
+  \ {\nvar viewport = getGameScene().getViewport();\nvar visArea = viewport.getVisibleArea();\n\
+  if (getEntity().getBoundingBoxComponent().isOutside(visArea)) {\nphysics.overwritePosition(new\
+  \ Point2D(\ngetAppWidth() / 2,\ngetAppHeight() / 2\n));\n}\n}\n}\n代码清单 3-6\nBallComponent\
+  \ 类\n```\n\n我们再次从查看 `onUpdate()` 方法开始。这里的高级逻辑是：(a) 限制球的速度，使其不会突破音障；(b) 检查球是否移出屏幕。每个元素都在各自的方法中实现。`limitVelocity()`\
+  \ 方法检查当前在 X 轴和 Y 轴上的速度，并根据需要将值限制在 `5 * 60`。最后，我们检查球是否在屏幕之外。这种情况可能发生，因为我们使用物理引擎来运行刚体的碰撞模拟。在某些情况下，球可能会被猛烈地推向墙壁，以至于正确的数值计算会将其置于墙壁之外。因此，有一个简单的检查来测试球是否在视口的可见区域内。如果不是，则只需将球移动到屏幕中心。\n\
+  \n### 构建实体工厂\n\n一旦我们通过前面提到的组件实现了每个实体的逻辑，就可以继续添加一个工厂来生成实体。工厂代码如代码清单 3-7 所示，其中有两个值得注意的方法。\n\
+  \n```\nimport com.almasb.fxgl.entity.Entity;\nimport com.almasb.fxgl.entity.EntityFactory;\n\
+  import com.almasb.fxgl.entity.SpawnData;\nimport com.almasb.fxgl.entity.Spawns;\n\
+  import com.almasb.fxgl.entity.components.CollidableComponent;\nimport com.almasb.fxgl.physics.BoundingShape;\n\
+  import com.almasb.fxgl.physics.HitBox;\nimport com.almasb.fxgl.physics.PhysicsComponent;\n\
+  import com.almasb.fxgl.physics.box2d.dynamics.BodyType;\nimport com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;\n\
+  import javafx.scene.paint.Color;\nimport javafx.scene.shape.Rectangle;\nimport static\
+  \ com.almasb.fxgl.dsl.FXGL.entityBuilder;\nimport static com.almasb.fxgl.dsl.FXGL.getip;\n\
+  public class PongFactory implements EntityFactory {\n@Spawns(\"ball\")\npublic Entity\
+  \ newBall(SpawnData data) {\nPhysicsComponent physics = new PhysicsComponent();\n\
+  physics.setBodyType(BodyType.DYNAMIC);\nphysics.setFixtureDef(new FixtureDef().density(0.3f).restitution(1.0f));\n\
+  physics.setOnPhysicsInitialized(() -> physics.setLinearVelocity(5 * 60, -5 * 60));\n\
+  return entityBuilder(data)\n.type(EntityType.BALL)\n.view(new Circle(5, 5, 5))\n\
+  .bbox(new HitBox(BoundingShape.circle(5)))\n.with(physics)\n.with(new CollidableComponent(true))\n\
+  .with(new BallComponent())\n.build();\n}\n@Spawns(\"bat\")\npublic Entity newBat(SpawnData\
+  \ data) {\nboolean isPlayer = data.get(\"isPlayer\");\nPhysicsComponent physics\
+  \ = new PhysicsComponent();\nphysics.setBodyType(BodyType.KINEMATIC);\nreturn entityBuilder(data)\n\
+  .type(isPlayer ? EntityType.PLAYER_BAT : EntityType.ENEMY_BAT)\n.viewWithBBox(new\
+  \ Rectangle(20, 60, Color.LIGHTGRAY))\n.with(new CollidableComponent(true))\n.with(physics)\n\
+  .with(isPlayer ? new BatComponent() : new EnemyBatComponent())\n.build();\n}\n}\n\
+  代码清单 3-7\nPongFactory 类\n```\n\n我们可以看到工厂类中的两个方法是 `newBall()` 和 `newBat()`。我们将按顺序查看它们，从\
+  \ `newBall()` 方法开始。在方法内部，我们找到了一个物理组件，因为我们的球是由物理世界驱动的。我们需要初始化物理属性，赋予球某些特性：\n\n* \
+  \  将主体类型设置为动态（其他类型包括静态（无移动）和运动学（玩家控制移动）），这允许物理世界完全控制实体的移动。\n\n*   设置物理实体的密度和恢复系数（弹性程度）。\n\
+  \n*   在物理初始化时，设置实体的线速度，使球开始移动。\n\n配置好物理组件后，我们将注意力转向实体构建器。构建器允许我们快速设置实体的许多属性。更具体地说，我们将类型设置为\
+  \ `EntityType.BALL`，视图设置为半径为 5 的圆形，碰撞盒设置为半径为 5 的圆形形状。实体的所有组件都可以通过调用 `with()` 轻松设置。使用此方法，我们添加了物理、可碰撞和球体组件。至此，我们的球体实体构建完成，现在我们开始构建球拍实体。\n\
+  \n回想一下，我们有两种不同类型的球拍实体：玩家和敌人。在构建球拍实体时，我们可以传递一个额外的参数来告诉工厂我们想要使用的是玩家球拍还是敌人球拍。因此，`newBat()`\
+  \ 方法中的第一行代码将此参数提取为一个布尔值 `isPlayer`。与 `newBall()` 方法一样，我们也需要一个物理组件。然而，该组件的配置更简单——我们只需将主体类型设置为运动学，以便玩家或\
+  \ AI 可以控制球拍，而不是由物理世界控制。剩下的就是使用实体构建器构建球拍实体。我们根据布尔值 `isPlayer` 设置实体类型。视图是一个简单的 JavaFX\
+  \ 矩形，它也用于通过 `viewWithBBox()` 方法自动为实体生成碰撞盒。与球体实体一样，我们设置了可碰撞和物理组件。最后，使用布尔值 `isPlayer`，我们可以确定应该使用\
+  \ `BatComponent` 还是 `EnemyBatComponent`。\n\n\n\n### 构建应用程序类\n\n最后，将 Pong 游戏所有部分整合在一起的类是\
+  \ `PongApp`。这里我们将详细讨论这个类，但随着你阅读本书后续章节，我们通常会省略那些琐碎的细节，因为这些内容在前几章中已经介绍过了。\n\n和之前一样，我们首先处理所有导入语句，如代码清单\
+  \ 3-8 所示。\n\n```\nimport com.almasb.fxgl.animation.Interpolators;\nimport com.almasb.fxgl.app.GameApplication;\n\
+  import com.almasb.fxgl.app.GameSettings;\nimport com.almasb.fxgl.core.math.FXGLMath;\n\
+  import com.almasb.fxgl.entity.Entity;\nimport com.almasb.fxgl.entity.SpawnData;\n\
+  import com.almasb.fxgl.input.UserAction;\nimport com.almasb.fxgl.physics.CollisionHandler;\n\
+  import com.almasb.fxgl.physics.HitBox;\nimport com.almasb.fxgl.ui.UI;\nimport javafx.scene.input.KeyCode;\n\
+  import javafx.scene.paint.Color;\nimport javafx.util.Duration;\nimport java.util.Map;\n\
+  import static com.almasb.fxgl.dsl.FXGL.*;\n代码清单 3-8\nPongApp 类导入语句\n```\n\n接下来，我们将创建继承自\
+  \ `GameApplication` 的 `PongApp` 类。该代码片段如代码清单 3-9 所示。我们将提供基本设置，例如游戏的标题和版本。回想一下，游戏宽度和高度默认自动设置为\
+  \ 800×600；不过，你可以根据需要设置自己的值。我们还会在 `main` 方法中添加游戏的入口点。\n\n```\npublic class PongApp\
+  \ extends GameApplication {\n@Override\nprotected void initSettings(GameSettings\
+  \ settings) {\nsettings.setTitle(\"Pong\");\nsettings.setVersion(\"1.0\");\n}\n\
+  public static void main(String[] args) {\nlaunch(args);\n}\n}\n代码清单 3-9\nPongApp\
+  \ 类继承自 GameApplication\n```\n\n我们需要在整个游戏过程中访问玩家球拍，以便控制它。因此，创建一个实例级变量来存储玩家球拍组件是合理的：\n\
+  \n```\nprivate BatComponent playerBat;\n```\n\n一旦我们有了玩家球拍的引用，我们就希望能够上下移动它。换句话说，我们需要输入处理，这将在\
+  \ `initInput()` 中处理，如代码清单 3-10 所示。你可以看到，我们没有使用前一章介绍的简单输入处理方式，而是通过 `getInput()` 方法采用了一种稍微复杂的方法。使用这个扩展\
+  \ API 的好处是，我们可以使用 `onActionBegin()`、`onAction()` 和 `onActionEnd()` 回调函数，它们分别在按键首次按下（动作开始）、按住（动作中）和释放（动作结束）时触发。\n\
+  \n```\n@Override\nprotected void initInput() {\ngetInput().addAction(new UserAction(\"\
+  Up\") {\n@Override\nprotected void onAction() {\nplayerBat.up();\n}\n@Override\n\
+  protected void onActionEnd() {\nplayerBat.stop();\n}\n}, KeyCode.W);\ngetInput().addAction(new\
+  \ UserAction(\"Down\") {\n@Override\nprotected void onAction() {\nplayerBat.down();\n\
+  }\n@Override\nprotected void onActionEnd() {\nplayerBat.stop();\n}\n}, KeyCode.S);\n\
+  }\n代码清单 3-10\nPongApp 类输入处理\n```\n\n正如我们所见，我们的输入非常简单——我们只需要 W 和 S 键来让玩家球拍上下移动。`onAction()`\
+  \ 回调在按键被按住时调用，而 `onActionEnd()` 在按键释放时调用。这些调用正是我们让球拍移动或停止所需要的。\n\n我们还需要跟踪玩家和敌人（或玩家\
+  \ 2）的得分。我们可以通过创建 FXGL 变量来实现这一点。回想一下，它们几乎就像你在 Java 中创建的普通变量，但具有额外的功能，例如能够监听其变化并绑定到它们。本质上，FXGL\
+  \ 变量就像 JavaFX 属性。在代码清单 3-11 中，我们创建了两个 FXGL 变量：`player1score` 和 `player2score`，两者都初始化为\
+  \ 0。稍后，在 `initGame()` 中（同样在代码清单 3-11 中），我们监听这些变量的变化，并根据值宣布获胜者——需要得 11 分才能赢得游戏。\n\
+  \n```\n@Override\nprotected void initGameVars(Map vars) {\nvars.put(\"player1score\"\
+  , 0);\nvars.put(\"player2score\", 0);\n}\n@Override\nprotected void initGame() {\n\
+  getWorldProperties().addListener(\"player1score\", (old, newScore) -> {\nif (newScore\
+  \ == 11) {\nshowGameOver(\"Player 1\");\n}\n});\ngetWorldProperties().addListener(\"\
+  player2score\", (old, newScore) -> {\nif (newScore == 11) {\nshowGameOver(\"Player\
+  \ 2\");\n}\n});\ngetGameWorld().addEntityFactory(new PongFactory());\ngetGameScene().setBackgroundColor(Color.rgb(0,\
+  \ 0, 5));\ninitScreenBounds();\ninitGameObjects();\n}\n代码清单 3-11\n初始化游戏和变量\n```\n\
+  \n此外，我们还添加了之前实现的 `PongFactory`，并将游戏背景颜色设置为 RGB 0, 0, 5，这非常接近黑色。`initGame()` 中有三个方法我们还没有介绍：`showGameOver()`、`initScreenBounds()`\
+  \ 和 `initGameObjects()`。你应该能够通过它们的名称猜到这些方法的作用。我们将按照代码清单 3-12 中的顺序逐一介绍它们。\n\n```\n\
+  private void showGameOver(String winner) {\ngetDialogService().showMessageBox(winner\
+  \ + \" won! Demo over\\nThanks for playing\", getGameController()::exit);\n}\nprivate\
+  \ void initScreenBounds() {\nEntity walls =\nentityBuilder()\n.type(EntityType.WALL)\n\
+  .collidable()\n.buildScreenBounds(150);\ngetGameWorld().addEntity(walls);\n}\nprivate\
+  \ void initGameObjects() {\nEntity ball = spawn(\"ball\", getAppWidth() / 2 - 5,\
+  \ getAppHeight() / 2 - 5);\nEntity bat1 = spawn(\"bat\", new SpawnData(getAppWidth()\
+  \ / 4, getAppHeight() / 2 - 30).put(\"isPlayer\", true));\nEntity bat2 = spawn(\"\
+  bat\", new SpawnData(3 * getAppWidth() / 4 - 20, getAppHeight() / 2 - 30).put(\"\
+  isPlayer\", false));\nplayerBat = bat1.getComponent(BatComponent.class);\n}\n代码清单\
+  \ 3-12\n游戏玩法方法\n```\n\n`showGameOver()` 方法的实现很简单。我们显示一个消息框，显示谁赢得了游戏，一旦消息框被关闭，我们就退出游戏。接下来，在\
+  \ `initScreenBounds()` 中，我们希望围绕屏幕创建墙壁，以便球可以撞击这些墙壁并弹回游戏的可玩区域。\n\n代码清单 3-12 中的最后一个方法是\
+  \ `initGameObjects()`，我们在这里简单地创建了游戏中可以看到的所有实体：球和两个球拍。我们还要记得在创建球拍时传递 `isPlayer` 布尔变量。这是因为我们的工厂需要知道哪个是玩家球拍，哪个是敌人球拍。该方法的最后一行获取了\
+  \ `BatComponent` 的引用，以初始化我们之前定义的 `playerBat` 变量。\n\n\n\n现在剩下的工作就是设置游戏的物理部分。由于我们所有的实体都附加了\
+  \ `PhysicsComponent`，它们由物理世界管理（更多内容将在下一章介绍）。这意味着我们对物理世界所做的任何设置也会影响这些实体。例如，默认情况下，物理世界会施加一个典型的重力向量，该向量在\
+  \ X 轴上的速度为 0，在 Y 轴上的速度约为 10。在乒乓球游戏中我们不需要这个；否则，球会严重偏向屏幕底部。让我们考虑清单 3-13 中 `initPhysics()`\
+  \ 的实现。\n\n```\n@Override\nprotected void initPhysics() {\ngetPhysicsWorld().setGravity(0,\
+  \ 0);\ngetPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.BALL,\
+  \ EntityType.WALL) {\n@Override\nprotected void onHitBoxTrigger(Entity a, Entity\
+  \ b, HitBox boxA, HitBox boxB) {\nif (boxB.getName().equals(\"LEFT\")) {\ninc(\"\
+  player2score\", +1);\n} else if (boxB.getName().equals(\"RIGHT\")) {\ninc(\"player1score\"\
+  , +1);\n}\n}\n});\n}\n清单 3-13\n初始化物理\n```\n\n在该方法中，我们做的第一件事就是有效禁用任何方向上的重力。然后我们设置碰撞处理器——这些是当两种实体类型之间发生碰撞时被调用的回调方法。例如，在上述情况中，我们希望知道球与墙壁之间何时发生碰撞。基于此，我们可以相应地增加玩家\
+  \ 1 或玩家 2 的分数。要添加碰撞处理器，我们首先通过传递两种实体类型（这里是 `EntityType.BALL` 和 `EntityType.WALL`）来构造它，然后重写\
+  \ `onHitBoxTrigger()` 方法，以便检查球击中了墙壁的哪一侧。至于增加分数变量，这很简单——我们调用 `inc()` 方法并提供要增加变量的数值。\n\
+  \n### 游戏结构回顾\n\n至此，乒乓球克隆游戏的实现就完成了。你现在应该能够运行应用程序，并看到我们在本节中实现的游戏的完整功能。现在我们将简要回顾一下所构建应用程序的高级架构，以作总结：\n\
+  \n*   有三个组件：`PlayerBatComponent`、`EnemyBatComponent` 和 `BallComponent`。每个组件都附加到不同的实体上，分别将它们（及其行为）转变为玩家球拍、敌方球拍和球。\n\
+  \n*   （始终）有一个名为 `PongFactory` 的实体工厂类。它的唯一职责是创建和配置游戏中的实体。\n\n*   （始终）有一个名为 `PongApp`\
+  \ 的应用程序类。它负责将所有其他类整合在一起，并提供程序入口点（`main()` 方法）。\n\n`PongApp` 类还按以下顺序初始化游戏：\n\n* \
+  \  `initSettings()` 用于设置游戏设置，例如游戏尺寸、游戏版本和标题\n*   `initInput()` 用于设置输入绑定，以便用户能够控制玩家实体\n\
+  *   `initGameVars()` 用于设置游戏变量，这些变量在整个引擎和游戏代码中都可访问\n*   `initGame()` 用于设置 `PongFactory`、游戏实体和游戏逻辑\n\
+  *   `initPhysics()` 用于设置碰撞处理器和物理属性\n\n## 总结\n\n在本章中，我们介绍了实体-组件模型背后的理论，并探讨了该模型如何提供对游戏状态的强大抽象。特别是，实体允许我们表示游戏对象，而组件则为实体提供数据和行为。此外，我们还探讨了从游戏世界（游戏中实体的容器）查询实体的各种方法。最后，我们通过实现一个简单但富有洞察力的乒乓球游戏克隆，将这些理论付诸实践。在下一章中，我们将重点讨论游戏物理，更详细地考虑实体之间基于碰撞的交互。\n\
+  \n"
+- '# 4. 物理案例研究：平台游戏
+
+
+  在本章中，我们将考虑游戏物理在游戏开发中的重要性。我们还将了解物理在 FXGL 游戏引擎中是如何实现的，以及如何在 FXGL 游戏中使用它。更具体地说，游戏物理通常有两个目的：碰撞检测和模拟，这两者都将在
+  FXGL 的背景下进行介绍。完成本章后，你将学习以下内容：
+
+
+  *   常用的碰撞检测技术及其实现方法
+
+  *   如何添加碰撞处理代码
+
+  *   物理世界及其属性
+
+  *   如何实现物理模拟
+
+  *   如何构建一个简单的平台游戏
+
+
+  在许多现代游戏中，玩家与游戏世界之间的很多交互都是通过物理实现的。例如，玩家角色接近游戏内对象时，会弹出一个提示，因为物理子系统会检测到这两个实体之间的接近。另一个例子是将一个重物放在压力板上，这样物品的物理属性（在这种情况下是质量）会触发压力板。在本章中，我们将看到如何实现类似的例子，从碰撞检测开始。为简单起见，我们只关注
+  2D 情况。
+
+
+
+
+  ## 碰撞检测
+
+
+  碰撞检测用于判断两个实体是否发生碰撞（重叠）。如前所述，这是实现游戏对象之间交互的有用工具。例如，玩家实体与金币实体碰撞，玩家因此能够拾取金币。图 4-1 展示了这一场景，其中玩家是一个蓝色方块，金币是一个黄色圆圈。
+
+
+  ![](img/522865_1_En_4_Fig1_HTML.jpg)
+
+
+  一张平台游戏截图展示了如下实体：底部有一个长平台，上面右侧有一个彩色圆圈；从下到上不同高度的三个小平台上分别包含：一个彩色圆圈；一个彩色方块和两个彩色圆圈；一个彩色箭头和一个彩色圆圈。
+
+
+  图 4-1
+
+
+  一个展示可能实体交互的平台游戏示例
+
+
+  碰撞检测技术分为两大类：宽阶段和窄阶段。宽阶段技术或算法的目标是避免对距离较远（因此不可能碰撞）的实体执行昂贵的计算。这些技术通常速度快但精度较低；也就是说，它们仅适用于快速过滤掉不可能碰撞的实体对。宽阶段技术通常无法判断两个实体是否正在碰撞；因此，一旦我们得到可能碰撞的实体对，就会采用窄阶段技术。与宽阶段相比，窄阶段技术速度较慢但极其精确，能够识别两个实体之间是否发生了碰撞。
+
+
+  在宽阶段，FXGL 使用基于网格的空间索引算法来提高碰撞检测的性能。大多数宽阶段技术，如四叉树和 k-d 树，都利用某种形式的空间索引，根据实体之间的距离将不可能碰撞的实体分组。然而，为简洁起见，本书不讨论宽阶段算法，而是专注于窄阶段技术。
+
+
+  有多种碰撞检测技术可用于计算两个实体在二维空间中是否重叠，包括：
+
+
+  *   轴对齐包围盒（每个实体用一个包围它的矩形包裹，然后检查矩形是否重叠）
+
+  *   分离轴定理（使用几个预定义的轴，绘制分离线；如果存在至少一条这样的线，则没有重叠）
+
+  *   圆-圆相交（用圆包围每个实体，并检查圆是否重叠）
+
+  *   多边形（用多边形，通常是凸多边形，包围每个实体，并检查这些形状是否重叠）
+
+  *   基于图像像素（如果实体使用图像作为视图，则识别图像的交集区域，如果交集中至少有一个像素，则实体之间发生碰撞）
+
+  *   基于网格（如果游戏基于网格，则检查实体是否占据相同或相邻的单元格）
+
+
+  上述列表应该能让你了解一般方法：用某种已知形状包围实体，以便相对容易地检测碰撞。在本书中，我们只考虑前两种在游戏开发中常用的方法：轴对齐包围盒和分离轴定理。我们不会深入太多细节，因为
+  FXGL 已经实现了这些方法，并提供了简便的访问方式。
+
+
+  轴对齐包围盒（AABB）算法因其性能和易于实现而在任何碰撞检测技术中都至关重要。该算法可描述如下：用包围盒包裹每个实体，包围盒是能完全包围实体的最小矩形。接下来，检查两个矩形（包裹两个待检测实体的盒子）是否重叠。如果重叠，则记录碰撞；如果不重叠，则没有碰撞。
+
+
+  实现 AABB 算法的一种直接方式如下：
+
+
+  ```
+
+  return box2.maxX >= box1.minX &&
+
+  box2.maxY >= box1.minY &&
+
+  box2.minX <= box1.maxX &&
+
+  box2.minY <= box1.maxY
+
+  ```
+
+
+  如果所有这些检查都成功，则 `box1` 和 `box2` 之间存在碰撞；因此，这些盒子所代表的实体之间也存在碰撞。
+
+
+  然而，AABB 方法存在局限性。主要局限性在于，正如该技术名称所示，包围盒必须与轴对齐。这意味着如果至少有一个实体发生了旋转（即旋转角度不为零），则该方法不适用。在这种情况下，我们可以使用另一种称为分离轴定理（简称
+  SAT）的技术。SAT 指出，如果存在一个轴，两个物体沿该轴有分离，则这两个物体没有重叠。与前面给出的包围盒方法不同，即使实体发生旋转（角度不为零度），该方法也能检查碰撞。例如，在图
+  4-2 中，右侧两个旋转实体之间的碰撞将被 SAT 正确报告。
+
+
+  ![](img/522865_1_En_4_Fig2_HTML.jpg)
+
+
+  一张示意图展示了三个实体：左侧是一个彩色方块；右侧是一个矩形和一个方块，颜色不同，且因旋转而发生碰撞。
+
+
+  图 4-2
+
+
+  实体的零度与非零度旋转角
+
+
+  在 FXGL 中，这两种方法都像大多数内置算法一样，通过用户友好的 API 封装。假设我们有两个实体 `e1` 和 `e2`。要检查它们是否碰撞，在代码中可以调用方法
+  `e1.isColliding(e2)`，该方法返回一个直观的布尔值。
+
+
+  现在我们已经讨论了碰撞检测背后的基本理论，是时候将注意力转向如何处理这些碰撞了。
+
+
+
+
+  ## 碰撞处理
+
+
+  在本节中，我们将探讨 FXGL 中用于处理碰撞的 API，即调用游戏逻辑代码来执行碰撞导致的游戏内操作。之前我们已经使用过玩家-金币碰撞的示例，因此我们将在此基础上继续深入。如前所述，当玩家与金币碰撞时，通常会执行三个操作：移除金币、增加玩家分数、播放音效以提示用户事件发生。在上一章中，我们已经使用了一些简单的碰撞处理
+  DSL API，但这里我们将探索完整的 API，因为它提供了更多选项。为了实现这一游戏逻辑，我们创建一个继承自 `CollisionHandler` 的类。在构造函数中，我们指定该处理器所针对的两种实体类型。接下来，我们考虑需要重写的方法。
+
+
+  ```
+
+  public class PlayerCoinHandler extends CollisionHandler {
+
+  public PlayerCoinHandler() {
+
+  super(EntityType.PLAYER, EntityType.COIN);
+
+  }
+
+  @Override
+
+  protected void onHitBoxTrigger(Entity p, Entity c, HitBox boxA, HitBox boxB) { }
+
+  @Override
+
+  protected void onCollisionBegin(Entity p, Entity c) {
+
+  c.removeFromWorld();
+
+  FXGL.inc("score", +2);
+
+  FXGL.play("pickup_coin.wav");
+
+  }
+
+  @Override
+
+  protected void onCollision(Entity p, Entity c) { }
+
+  @Override
+
+  protected void onCollisionEnd(Entity p, Entity c) { }
+
+  }
+
+  清单 4-1
+
+  碰撞处理器示例
+
+  ```
+
+
+  从清单 4-1 中可以看出，共有四个这样的方法（如果你对所有可能的物理相关方法感兴趣，可以访问 [`https://github.com/AlmasB/FXGL/tree/dev/fxgl-entity/src/main/java/com/almasb/fxgl`](https://github.com/AlmasB/FXGL/tree/dev/fxgl-entity/src/main/java/com/almasb/fxgl)
+  查看）：
+
+
+  *   onHitBoxTrigger() – 这是碰撞发生时第一个被调用的方法。它允许我们检查哪些碰撞框发生了碰撞。这在格斗游戏中非常有用：根据角色被击中的部位，我们可以决定扣除多少生命值。
+
+
+  *   onCollisionBegin() – 该方法在碰撞发生的同一帧被调用，且仅调用一次。通常，这是用于收集类物品（如金币）的回调函数。在示例代码中，我们实现了之前描述的游戏逻辑：移除金币、增加分数、播放音效。
+
+
+  *   onCollision() – 该方法在碰撞持续期间每帧都会被调用。可用于对与尖刺碰撞的玩家持续造成伤害。或者，该回调也可用于奖励处于得分区域的玩家分数。
+
+
+  *   onCollisionEnd() – 该方法在碰撞停止发生的同一帧被调用。可用于隐藏用户交互提示，因为玩家已离开可交互区域。
+
+
+  要使碰撞处理器生效，两个实体必须满足以下要求；它们必须同时具备：
+
+
+  *   已附加 `CollidableComponent` 组件
+
+  *   拥有碰撞框
+
+  *   拥有类型
+
+  *   通过调用 `addCollisionHandler()` 将碰撞处理器附加到物理世界
+
+
+  如果满足这些要求，碰撞处理器将正确处理两个实体之间发生的碰撞（调用重写的方法）。最后，当不再需要时，你可以通过调用 `removeCollisionHandler()`
+  将其移除。
+
+
+  ## 物理世界
+
+
+  到目前为止，我们讨论的都是由开发者控制的实体。还有一种方式可以让物理世界参与游戏逻辑，那就是让物理世界控制实体。在这种情况下，我们实际上是在运行一个模拟，例如刚体动力学。为了运行模拟，实体需要附加一个
+  `PhysicsComponent` 组件。通过该组件可以设置几种常用的配置选项：
+
+
+  *   setFixtureDef() – 夹具定义提供了实体的物理属性，如摩擦力、恢复系数（弹性）、密度和形状。常见的形状有矩形、圆形、链形和多边形。
+
+
+  *   setOnPhysicsInitialized() – 允许开发者提供一个回调函数，该函数在实体的物理初始化完成后被调用。
+
+
+  *   setLinearVelocity() – 允许开发者手动设置支持物理的实体的速度。该速度随后将由物理世界应用。
+
+
+  *   setBodyType() – 可选类型为静态、运动学或动态。静态实体质量为零且速度为零。这些通常是不会移动的物体，例如平台和墙壁。运动学实体质量为零，但速度可由开发者设置为非零值。运动学实体由物理世界移动，通常代表玩家控制的对象，例如《Pong》或《Breakout》中的球拍。动态实体具有正质量，且速度由施加在实体上的力计算得出。与运动学实体类似，动态实体也由物理世界移动。它们通常代表不需要玩家控制的对象，例如子弹或《Pong》与《Breakout》中的球。
+
+
+  在刚体动力学中，实体获得一个刚体（固体）。当两个这种形式的实体碰撞时，物理引擎会尝试将它们分离，使实体不占据同一空间。一旦实体被视为物理世界的一部分，你可能希望配置一些常用的世界选项。这些选项可通过物理世界对象访问：
+
+
+  *   setGravity() – 设置应用于世界中动态实体的重力。
+
+
+  *   raycast() – 你可以从世界中的任意位置“发射”一条线到特定点。该方法将返回该线击中的第一个实体。如果你想知道某个实体是否在另一个实体的视线范围内，这将非常有用。
+
+
+  *   toMeters() / toPixels() – 允许在像素和米之间进行便捷转换。请注意，游戏基于像素单位运行，而物理世界使用米作为单位。
+
+
+  *   toPoint() / toVector() – 与之前类似，此方法将点/向量从一个上下文（游戏或物理世界）转换到另一个上下文（物理世界或游戏）。
+
+
+
+
+  ## 平台游戏
+
+
+  在本节中，我们将把本章学到的所有物理知识付诸实践，构建一个如图 4-3 所示的演示程序。为此，我们将开发一个简单的平台游戏。与上一章开发的乒乓球游戏不同，这个平台游戏将使用外部资源——素材，其中也包括一个在
+  Tiled Editor 中预构建的关卡。为了简化开发，我们将使用公开可用的免费图片和精灵表。请确保你已下载并将素材放置在相应的目录中（以下链接提供了素材目录结构的详细信息）。完成这些步骤后，你就能跟随本节给出的实现进行操作。所使用的素材，以及这些素材的原始来源和作者的链接，均可在
+  FXGLGames GitHub 仓库中找到：[`https://github.com/AlmasB/FXGLGames/tree/master/Mario`](https://github.com/AlmasB/FXGLGames/tree/master/Mario)。
+
+
+  ![](img/522865_1_En_4_Fig3_HTML.jpg)
+
+
+  一张图片展示了一个平台游戏演示，背景中有云朵和树木。深色背景上的字母 D 位于中央，玩家图像在平台上。
+
+
+  图 4-3
+
+
+  使用 FXGL 开发的平台游戏演示
+
+
+  按照惯例，第一步是确定游戏中将包含哪些实体类型。在我们开发的平台游戏中，这些类型如下：
+
+
+  ```
+
+  public enum EntityType {
+
+  PLAYER, COIN, PLATFORM, EXIT_TRIGGER, KEY_PROMPT, EXIT_SIGN, BUTTON, DOOR_TOP, DOOR_BOT
+
+  }
+
+  ```
+
+
+  其中一些类型不言自明，而其他类型则会在我们逐步开发的过程中变得更加清晰。
+
+
+  接下来，我们将按以下顺序逐一分析游戏中的每个类：
+
+
+  *   PlayerComponent
+
+
+  *   PlayerButtonHandler
+
+
+  *   PlatformerFactory
+
+
+  *   MainLoadingScene
+
+
+  *   LevelEndScene
+
+
+  *   PlatformerApp
+
+
+  每个类都管理游戏的一个方面。
+
+
+  ### 游戏逻辑
+
+
+  我们首先来检查 `PlayerComponent` 类。回顾上一章的内容，组件允许我们向实体添加数据和行为。此外，我们还可以通过添加方法来通过组件控制实体。和之前一样，我们将按顺序逐一分析清单
+  4-2 中的类及其方法，并提供与其用途相关的必要细节。
+
+
+  ```
+
+  import com.almasb.fxgl.entity.component.Component;
+
+  import com.almasb.fxgl.physics.PhysicsComponent;
+
+  import com.almasb.fxgl.texture.AnimatedTexture;
+
+  import com.almasb.fxgl.texture.AnimationChannel;
+
+  import javafx.geometry.Point2D;
+
+  import javafx.scene.image.Image;
+
+  import javafx.util.Duration;
+
+  import static com.almasb.fxgl.dsl.FXGL.image;
+
+  public class PlayerComponent extends Component {
+
+  private PhysicsComponent physics;
+
+  private AnimatedTexture texture;
+
+  private AnimationChannel animIdle;
+
+  private AnimationChannel animWalk;
+
+  private int jumps = 2;
+
+  public PlayerComponent() {
+
+  Image image = image("player.png");
+
+  animIdle = new AnimationChannel(image, 4, 32, 42, Duration.seconds(1), 1, 1);
+
+  animWalk = new AnimationChannel(image, 4, 32, 42, Duration.seconds(0.66), 0, 3);
+
+  texture = new AnimatedTexture(animIdle);
+
+  texture.loop();
+
+  }
+
+  @Override
+
+  public void onAdded() {
+
+  entity.getTransformComponent().setScaleOrigin(new Point2D(16, 21));
+
+  entity.getViewComponent().addChild(texture);
+
+  physics.onGroundProperty().addListener((obs, old, isOnGround) -> {
+
+  if (isOnGround) {
+
+  jumps = 2;
+
+  }
+
+  });
+
+  }
+
+  @Override
+
+  public void onUpdate(double tpf) {
+
+  if (physics.isMovingX()) {
+
+  if (texture.getAnimationChannel() != animWalk) {
+
+  texture.loopAnimationChannel(animWalk);
+
+  }
+
+  } else {
+
+  if (texture.getAnimationChannel() != animIdle) {
+
+  texture.loopAnimationChannel(animIdle);
+
+  }
+
+  }
+
+  }
+
+  public void left() {
+
+  getEntity().setScaleX(-1);
+
+  physics.setVelocityX(-170);
+
+  }
+
+  public void right() {
+
+  getEntity().setScaleX(1);
+
+  physics.setVelocityX(170);
+
+  }
+
+  public void stop() {
+
+  physics.setVelocityX(0);
+
+  }
+
+  public void jump() {
+
+  if (jumps == 0)
+
+  return;
+
+  physics.setVelocityY(-300);
+
+  jumps--;
+
+  }
+
+  }
+
+  清单 4-2
+
+  PlayerComponent 类
+
+  ```
+
+
+  这个类包含五个字段、一个构造函数和六个方法。这些字段分别是：物理组件（稍后我们将像往常一样在工厂类中将其添加到实体中）、动画纹理（允许我们使用精灵表）、两个动画通道（一个用于待机动画，一个用于行走动画），以及最后我们允许玩家跳跃的次数。构造函数负责设置动画。请注意，`image()`（完整调用是
+  `FXGL.image()`）可用于从 `/assets/textures` 加载任何图像作为 JavaFX 的 `Image`。我们的图像名为 player.png，因此这就是我们传递给
+  `image()` 方法的参数。使用加载的图像，我们构建了两个动画通道，并循环播放待机动画。
+
+
+  在 `onAdded()` 回调中（当此组件 `PlayerComponent` 被添加到实体时调用），我们需要做三件事：设置缩放原点（以便我们能够根据移动方向正确地将玩家向左或向右翻转）、添加动画纹理，以及注册一个监听器，该监听器会在玩家落地时通知我们，以便重置跳跃次数。请注意，我们将玩家实体的缩放原点设置为点
+  (16, 21)，这是玩家动画单帧（32×42）的中心点。
+
+
+  在下一个回调 `onUpdate()` 中，我们确定要循环播放两个动画（行走或待机）中的哪一个。物理组件可以告诉我们实体是否正在沿特定轴移动。在我们的用例中，沿
+  X 轴移动意味着玩家并非处于待机状态。因此，如果 `isMovingX()` 返回 true，我们想要循环播放行走动画，否则播放待机动画。
+
+
+
+
+  不出所料，`left()` 和 `right()` 方法有着相似的实现。将实体在 X 轴上缩放为负值意味着实体将面向另一个（左）方向。使用正值进行相同操作则会将实体缩放为面向右侧。可以基于游戏手感来设置
+  X 轴上的速度。将 X 速度设置为 0 将完全停止实体，因此该方法得名 `stop()`。最后一个方法 `jump()` 会检查我们是否可以跳跃：如果跳跃次数为
+  0，则不能。实际的跳跃实现只是将 Y 速度设置为负值。请注意，在 FXGL（以及 JavaFX）中，Y 轴正方向是向下的。现在我们有了一个功能性的玩家组件。
+
+
+  接下来，我们将在代码清单 4-3 中定义我们的第一个碰撞处理类。请注意，我们之前已经简要地使用过匿名碰撞处理器，现在我们将把处理代码正确地隔离到一个单独的类中。这里的碰撞将在玩家和可交互按钮之间处理。当玩家与按钮碰撞时，会触发一个提示变为可见，以指示该按钮可以被按下。当碰撞结束时，按键提示将再次变为不可见。我们可以通过将实体的不透明度分别设置为
+  1 和 0 来打开和关闭可见性。请注意，也可以调用 `setVisible(true / false)`，这将达到相同的视觉效果。
+
+
+  ```
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import com.almasb.fxgl.physics.CollisionHandler;
+
+  import com.almasb.fxglgames.platformer.EntityType;
+
+  import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
+
+  public class PlayerButtonHandler extends CollisionHandler {
+
+  public PlayerButtonHandler() {
+
+  super(EntityType.PLAYER, EntityType.BUTTON);
+
+  }
+
+  @Override
+
+  protected void onCollisionBegin(Entity player, Entity btn) {
+
+  Entity keyEntity = btn.getObject("keyEntity");
+
+  if (!keyEntity.isActive()) {
+
+  keyEntity.setProperty("activated", false);
+
+  getGameWorld().addEntity(keyEntity);
+
+  }
+
+  keyEntity.setOpacity(1);
+
+  }
+
+  @Override
+
+  protected void onCollisionEnd(Entity player, Entity btn) {
+
+  Entity keyEntity = btn.getObject("keyEntity");
+
+  if (!keyEntity.getBoolean("activated")) {
+
+  keyEntity.setOpacity(0);
+
+  }
+
+  }
+
+  }
+
+  代码清单 4-3
+
+  PlayerButtonHandler 类
+
+  ```
+
+
+  与我们在上一章中实现的乒乓球游戏相比，我们的平台游戏中的实体类型要多得多。因此，工厂类也大得多。考虑代码清单 4-4 中的工厂实现，我们也将逐个方法地检查它。虽然有很多内容需要过一遍，但你一次只需要关注一个方法。
+
+
+  ```
+
+  import com.almasb.fxgl.dsl.components.LiftComponent;
+
+  import com.almasb.fxgl.dsl.views.ScrollingBackgroundView;
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import com.almasb.fxgl.entity.EntityFactory;
+
+  import com.almasb.fxgl.entity.SpawnData;
+
+  import com.almasb.fxgl.entity.Spawns;
+
+  import com.almasb.fxgl.entity.components.CollidableComponent;
+
+  import com.almasb.fxgl.entity.components.IrremovableComponent;
+
+  import com.almasb.fxgl.input.view.KeyView;
+
+  import com.almasb.fxgl.physics.BoundingShape;
+
+  import com.almasb.fxgl.physics.HitBox;
+
+  import com.almasb.fxgl.physics.PhysicsComponent;
+
+  import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
+
+  import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
+
+  import com.almasb.fxgl.ui.FontType;
+
+  import javafx.geometry.Point2D;
+
+  import javafx.scene.CacheHint;
+
+  import javafx.scene.input.KeyCode;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.util.Duration;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  import static com.almasb.fxglgames.platformer.EntityType.*;
+
+  public class PlatformerFactory implements EntityFactory {
+
+  @Spawns("background")
+
+  public Entity newBackground(SpawnData data) {
+
+  return entityBuilder()
+
+  .view(new ScrollingBackgroundView(texture("background/forest.png").getImage(), getAppWidth(),
+  getAppHeight()))
+
+  .zIndex(-1)
+
+  .with(new IrremovableComponent())
+
+  .build();
+
+  }
+
+  @Spawns("platform")
+
+  public Entity newPlatform(SpawnData data) {
+
+  return entityBuilder(data)
+
+  .type(PLATFORM)
+
+  .bbox(new HitBox(BoundingShape.box(data.get("width"), data.get("height"))))
+
+  .with(new PhysicsComponent())
+
+  .build();
+
+  }
+
+  @Spawns("exitTrigger")
+
+  public Entity newExitTrigger(SpawnData data) {
+
+  return entityBuilder(data)
+
+  .type(EXIT_TRIGGER)
+
+  .bbox(new HitBox(BoundingShape.box(data.get("width"), data.get("height"))))
+
+  .with(new CollidableComponent(true))
+
+  .build();
+
+  }
+
+  @Spawns("doorTop")
+
+  public Entity newDoorTop(SpawnData data) {
+
+  return entityBuilder(data)
+
+  .type(DOOR_TOP)
+
+  .opacity(0)
+
+  .build();
+
+  }
+
+  @Spawns("doorBot")
+
+  public Entity newDoorBot(SpawnData data) {
+
+  return entityBuilder(data)
+
+  .type(DOOR_BOT)
+
+  .bbox(new HitBox(BoundingShape.box(data.get("width"), data.get("height"))))
+
+  .opacity(0)
+
+  .with(new CollidableComponent(false))
+
+  .build();
+
+  }
+
+  @Spawns("player")
+
+  public Entity newPlayer(SpawnData data) {
+
+  PhysicsComponent physics = new PhysicsComponent();
+
+  physics.setBodyType(BodyType.DYNAMIC);
+
+  physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16, 38), BoundingShape.box(6,
+  8)));
+
+  // this avoids player sticking to walls
+
+  physics.setFixtureDef(new FixtureDef().friction(0.0f));
+
+  return entityBuilder(data)
+
+  .type(PLAYER)
+
+  .bbox(new HitBox(new Point2D(5,5), BoundingShape.circle(12)))
+
+  .bbox(new HitBox(new Point2D(10,25), BoundingShape.box(10, 17)))
+
+  .with(physics)
+
+  .with(new CollidableComponent(true))
+
+  .with(new IrremovableComponent())
+
+  .with(new PlayerComponent())
+
+  .build();
+
+  }
+
+  @Spawns("exitSign")
+
+  public Entity newExit(SpawnData data) {
+
+  return entityBuilder(data)
+
+  .type(EXIT_SIGN)
+
+  .bbox(new HitBox(BoundingShape.box(data.get("width"), data.get("height"))))
+
+  .with(new CollidableComponent(true))
+
+  .build();
+
+  }
+
+  @Spawns("keyPrompt")
+
+  public Entity newPrompt(SpawnData data) {
+
+  return entityBuilder(data)
+
+  .type(KEY_PROMPT)
+
+  .bbox(new HitBox(BoundingShape.box(data.get("width"), data.get("height"))))
+
+  .with(new CollidableComponent(true))
+
+  .build();
+
+  }
+
+  @Spawns("keyCode")
+
+  public Entity newKeyCode(SpawnData data) {
+
+  String key = data.get("key");
+
+  KeyCode keyCode = KeyCode.getKeyCode(key);
+
+  var lift = new LiftComponent();
+
+  lift.setGoingUp(true);
+
+  lift.yAxisDistanceDuration(6, Duration.seconds(0.76));
+
+  var view = new KeyView(keyCode, Color.YELLOW, 24);
+
+  view.setCache(true);
+
+  view.setCacheHint(CacheHint.SCALE);
+
+  return entityBuilder(data)
+
+  .view(view)
+
+  .with(lift)
+
+  .zIndex(100)
+
+  .build();
+
+  }
+
+  @Spawns("button")
+
+  public Entity newButton(SpawnData data) {
+
+  var keyEntity = getGameWorld().create("keyCode", new SpawnData(data.getX(), data.getY()
+  - 50).put("key", "E"));
+
+  keyEntity.getViewComponent().setOpacity(0);
+
+  return entityBuilder(data)
+
+  .type(BUTTON)
+
+  .viewWithBBox(texture("button.png", 20, 18))
+
+  .with(new CollidableComponent(true))
+
+  .with("keyEntity", keyEntity)
+
+  .build();
+
+  }
+
+  }
+
+  代码清单 4-4
+
+  PlatformerFactory 类
+
+  ```
+
+
+
+
+  在 FXGL 中，实体工厂类允许将每个实体的创建便捷地隔离到各自的方法中。现在我们将按顺序逐一介绍这些方法，从背景实体开始。该实体基于一个循环滚动的图像，形成无限滚动的视图。内置的
+  `ScrollingBackgroundView` 类正好可以实现这一点。我们还添加了一个之前未使用过的新组件 `IrremovableComponent`。由于这个平台游戏包含多个关卡，我们需要不时地销毁现有关卡并设置新关卡。大多数关卡都共享一些实体，例如背景和玩家。因此，每次切换关卡时都无需重新创建这些实体。在这种情况下，`IrremovableComponent`
+  就非常有用，因为它能锁定所附加的实体，使其无法从世界中移除。
+
+
+  下一个实体类型是平台。平台仅包含一个边界框和一个物理组件。默认情况下，物理组件已经具有静态刚体，因此我们无需修改它。请注意，我们不需要为平台创建视图，因为它直接从
+  Tiled 的“.tmx”关卡文件中加载。
+
+
+  出口触发器是一个实体，当它与玩家碰撞时，会启用（使其可见）通往下一关卡的出口门。在游戏中，触发器本身通常不可见，仅作为碰撞对象工作。正如预期，我们为其创建了一个边界框，并添加了可碰撞组件。
+
+
+  关于门实体，它被分为门顶和门底两部分，因为门由两个图块组成。你会从代码中注意到，只有门的底部被设置为可碰撞，以避免与玩家触发两次碰撞。
+
+
+  玩家实体是此游戏中最复杂的实体之一。首先，我们将物理组件配置为动态刚体类型，以便其受到物理力的影响。我们还添加了一个地面传感器，使开发者能够知道玩家何时落地，即玩家实体不在空中。为了避免玩家粘在墙上，我们还将摩擦力设置为
+  0。将其设置为非零正值可能会影响游戏玩法和手感，因此你可以进行实验以达到合适的效果。这里需要注意的另一件事是，玩家有两个边界框：一个用于头部，另一个用于身体，以更精确地表示碰撞形状。最后，我们附加了可碰撞、不可移除和玩家组件，这很直接。
+
+
+  出口标志实体为玩家与游戏世界之间增加了一点动态交互。其思路是，当玩家与标志碰撞时，标志会亮起。在这个用例中，这并不是一个极其重要的功能；然而，它应该能为你提供一些关于如何在你自己游戏中实现类似功能的思路。
+
+
+  按键提示实体用于帮助玩家识别需要按下哪个键来与世界交互。例如，回想一下你最近玩过的任何游戏，无论是 2D 还是 3D，当你靠近一扇门或一个物品时，游戏会视觉提示你按下特定键进行交互。这正是我们在这里通过按键提示实体所做的事情。
+
+
+  按钮实体是游戏玩法的一部分，玩家需要激活按钮才能推进关卡。在我们使用的关卡中，按钮将使门可见，从而让玩家能够进入下一关卡。至此，工厂类概述完毕，接下来我们将介绍游戏示例中的其他类。
+
+
+  ### 游戏视觉效果：子场景
+
+
+  为了让我们的平台游戏示例更像一个游戏，我们将引入几个子场景。场景及其交互超出了本书的范围，因此这里只做非常简短的介绍。游戏中将有两个自定义场景：一个在游戏加载时显示，另一个在关卡结束时显示。
+
+
+  ![](img/522865_1_En_4_Fig4_HTML.jpg)
+
+
+  加载场景的截图从上到下描绘了以下内容：显示“Loading level”的文本、一个玩家图像以及三个点。
+
+
+  图 4-4
+
+
+  主加载场景的截图
+
+
+  如图 4-4 所示，我们创建了一个 JavaFX 文本对象，内容为“Loading level”，显示玩家图像，并添加了三个点。这在代码清单 4-5 中通过一个构造函数调用实现，该调用设置了场景中使用的动画。这些点使用
+  FXGL 内置的淡入动画进行动画处理（更多关于动画的内容请参见第 6 章）。最后，我们将文本居中放置，并添加了一个玩家图像。该图像被设置为从 0 度到 360
+  度旋转并无限循环。
+
+
+  ```
+
+  import com.almasb.fxgl.animation.Interpolators;
+
+  import com.almasb.fxgl.app.scene.LoadingScene;
+
+  import javafx.geometry.Rectangle2D;
+
+  import javafx.scene.layout.HBox;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.scene.shape.Rectangle;
+
+  import javafx.util.Duration;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  public class MainLoadingScene extends LoadingScene {
+
+  public MainLoadingScene() {
+
+  var bg = new Rectangle(getAppWidth(), getAppHeight(), Color.AZURE);
+
+  var text = getUIFactoryService().newText("Loading level", Color.BLACK, 46.0);
+
+  centerText(text,getAppWidth()/2,getAppHeight()/3 +25);
+
+  var hbox = new HBox(5);
+
+  for (int i = 0; i < 3; i++) {
+
+  var textDot = getUIFactoryService().newText(".", Color.BLACK, 46.0);
+
+  hbox.getChildren().add(textDot);
+
+  animationBuilder(this)
+
+  .autoReverse(true)
+
+  .delay(Duration.seconds(i * 0.5))
+
+  .repeatInfinitely()
+
+  .fadeIn(textDot)
+
+  .buildAndPlay();
+
+  }
+
+  hbox.setTranslateX(getAppWidth() / 2 - 20);
+
+  hbox.setTranslateY(getAppHeight() / 2);
+
+  var t = texture("player.png").subTexture(new Rectangle2D(0, 0, 32, 42));
+
+  t.setTranslateX(getAppWidth() / 2 - 32/2);
+
+  t.setTranslateY(getAppHeight() / 2 - 42/2);
+
+  animationBuilder(this)
+
+  .duration(Duration.seconds(1.25))
+
+  .repeatInfinitely()
+
+  .autoReverse(true)
+
+  .interpolator(Interpolators.EXPONENTIAL.EASE_IN_OUT())
+
+  .rotate(t)
+
+  .from(0)
+
+  .to(360)
+
+  .buildAndPlay();
+
+  getContentRoot().getChildren().setAll(bg,text,hbox,t);
+
+  }
+
+  }
+
+  代码清单 4-5
+
+  MainLoadingScene 类
+
+  ```
+
+
+  接下来要介绍的场景是玩家完成任意关卡后显示的。该场景将提供各种信息，告知玩家表现如何以及获得了多少颗星。
+
+
+  ![](img/522865_1_En_4_Fig5_HTML.jpg)
+
+
+  关卡结束场景的截图从上到下描绘了以下内容：显示“Level 1”的文本、一个带有时间和分数的深色背景，以及一个位于出口板和门前的玩家图像。
+
+
+  图 4-5
+
+
+  关卡结束场景的截图
+
+
+  代码清单 4-6 中给出的 `LevelEndScene` 的大部分代码用于设置图 4-5 中所示的视图。由于其中大部分内容源自 JavaFX，我们不会深入讨论细节。这里最重要的一点是，该场景类继承自
+  `SubScene`，这使得该场景可以添加到现有场景之上，例如，像图 4-5 中那样添加到游戏场景之上，其中游戏场景和关卡结束场景都可见。要添加任何视觉效果和
+  UI，你可以使用普通的 JavaFX 节点，并将它们添加到场景内容根节点中，同时还可以添加任何你希望应用的动画。
+
+
+
+
+  ```
+
+  import com.almasb.fxgl.animation.Interpolators;
+
+  import com.almasb.fxgl.input.UserAction;
+
+  import com.almasb.fxgl.scene.SubScene;
+
+  import com.almasb.fxgl.texture.Texture;
+
+  import com.almasb.fxgl.ui.FontFactory;
+
+  import javafx.beans.property.BooleanProperty;
+
+  import javafx.beans.property.SimpleBooleanProperty;
+
+  import javafx.geometry.Insets;
+
+  import javafx.geometry.Point2D;
+
+  import javafx.geometry.Pos;
+
+  import javafx.scene.effect.DropShadow;
+
+  import javafx.scene.input.MouseButton;
+
+  import javafx.scene.layout.HBox;
+
+  import javafx.scene.layout.Priority;
+
+  import javafx.scene.layout.StackPane;
+
+  import javafx.scene.layout.VBox;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.scene.shape.Rectangle;
+
+  import javafx.scene.text.Text;
+
+  import javafx.util.Duration;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  public class LevelEndScene extends SubScene {
+
+  private static final int WIDTH = 400;
+
+  private static final int HEIGHT = 250;
+
+  private Text textUserTime = getUIFactoryService().newText("", Color.WHITE, 24.0);
+
+  private HBox gradeBox = new HBox();
+
+  private FontFactory levelFont = getAssetLoader().loadFont("level_font.ttf");
+
+  private BooleanProperty isAnimationDone = new SimpleBooleanProperty(false);
+
+  public LevelEndScene() {
+
+  var bg = new Rectangle(WIDTH, HEIGHT, Color.color(0, 0, 0, 0.85));
+
+  bg.setStroke(Color.BLUE);
+
+  bg.setStrokeWidth(1.75);
+
+  bg.setEffect(new DropShadow(28, Color.color(0,0,0, 0.9)));
+
+  VBox.setVgrow(gradeBox, Priority.ALWAYS);
+
+  var textContinue = getUIFactoryService().newText("Tap to continue", Color.WHITE,
+  11.0);
+
+  textContinue.visibleProperty().bind(isAnimationDone);
+
+  animationBuilder(this)
+
+  .repeatInfinitely()
+
+  .autoReverse(true)
+
+  .scale(textContinue)
+
+  .from(new Point2D(1, 1))
+
+  .to(new Point2D(1.25, 1.25))
+
+  .buildAndPlay();
+
+  var vbox = new VBox(15, textUserTime, gradeBox, textContinue);
+
+  vbox.setAlignment(Pos.CENTER);
+
+  vbox.setPadding(new Insets(25));
+
+  var root = new StackPane(
+
+  bg, vbox
+
+  );
+
+  root.setTranslateX(1280 / 2 - WIDTH / 2);
+
+  root.setTranslateY(720 / 2 - HEIGHT / 2);
+
+  var textLevel = new Text();
+
+  textLevel.textProperty().bind(getip("level").asString("Level %d"));
+
+  textLevel.setFont(levelFont.newFont(52));
+
+  textLevel.setRotate(-20);
+
+  textLevel.setFill(Color.ORANGE);
+
+  textLevel.setStroke(Color.BLACK);
+
+  textLevel.setStrokeWidth(3.5);
+
+  textLevel.setTranslateX(root.getTranslateX() - textLevel.getLayoutBounds().getWidth()
+  / 3);
+
+  textLevel.setTranslateY(root.getTranslateY() + 25);
+
+  getContentRoot().getChildren().addAll(root, textLevel);
+
+  getInput().addAction(new UserAction("Close Level End Screen") {
+
+  @Override
+
+  protected void onActionBegin() {
+
+  if (!isAnimationDone.getValue())
+
+  return;
+
+  getSceneService().popSubScene();
+
+  }
+
+  }, MouseButton.PRIMARY);
+
+  }
+
+  public void onLevelFinish() {
+
+  isAnimationDone.setValue(false);
+
+  Duration userTime = Duration.seconds(getd("levelTime"));
+
+  LevelTimeData timeData = geto("levelTimeData");
+
+  textUserTime.setText(String.format("Your time: %.2f sec!", userTime.toSeconds()));
+
+  gradeBox.getChildren().setAll(
+
+  new Grade(Duration.seconds(timeData.star1), userTime),
+
+  new Grade(Duration.seconds(timeData.star2), userTime),
+
+  new Grade(Duration.seconds(timeData.star3), userTime)
+
+  );
+
+  for (int i = 0; i  isAnimationDone.setValue(true));
+
+  }
+
+  builder.translate(gradeBox.getChildren().get(i))
+
+  .from(new Point2D(0, -500))
+
+  .to(new Point2D(0, 0))
+
+  .buildAndPlay();
+
+  }
+
+  getSceneService().pushSubScene(this);
+
+  }
+
+  private static class Grade extends VBox {
+
+  private static final Texture STAR_EMPTY = texture("star_empty.png", 65, 72).darker();
+
+  private static final Texture STAR_FULL = texture("star_full.png", 65, 72);
+
+  public Grade(Duration gradeTime, Duration userTime) {
+
+  super(15);
+
+  HBox.setHgrow(this, Priority.ALWAYS);
+
+  setAlignment(Pos.CENTER);
+
+  getChildren().add(userTime.lessThanOrEqualTo(gradeTime) ? STAR_FULL.copy() : STAR_EMPTY.copy());
+
+  getChildren().add(getUIFactoryService().newText(String.format("<%.2f", gradeTime.toSeconds()),
+  Color.WHITE, 16.0));
+
+  }
+
+  }
+
+  public static class LevelTimeData {
+
+  private final double star1;
+
+  private final double star2;
+
+  private final double star3;
+
+  /**
+
+  * @param star1 in seconds
+
+  * @param star2 in seconds
+
+  * @param star3 in seconds
+
+  */
+
+  public LevelTimeData(double star1, double star2, double star3) {
+
+  this.star1 = star1;
+
+  this.star2 = star2;
+
+  this.star3 = star3;
+
+  }
+
+  }
+
+  }
+
+  清单 4-6
+
+  LevelEndScene 类
+
+  ```
+
+
+  你可以将此处给出的关卡结束场景代码仅视为一个示例，而非参考实现。游戏视觉效果和美学并非一门精确科学，需要开发者通过大量试错才能获得恰到好处的游戏体验。这通常需要人类参与者的反馈，他们可以试玩你的游戏，并为游戏设计提供宝贵的见解。
+
+
+  ### 结合逻辑与视觉效果
+
+
+  现在，我们可以将所有类（无论是逻辑相关还是视觉效果相关）与 `PlatformerApp` 类连接起来。根据 FXGL 的标准架构，我们开发的所有功能都将在一个名为
+  "App" 的类中使用。在本例中，它就是 `PlatformerApp`。这是一个相当复杂的类，因此我们将分节处理，逐一介绍各个方法。顺序如下：
+
+
+  *   `initSettings()` – 初始化游戏设置
+
+
+  *   `initInput()` – 初始化控制游戏角色的用户操作
+
+
+  *   `initGameVars()` – 初始化全局可访问的游戏变量
+
+
+  *   `initGame()` – 初始化游戏其余部分及玩法
+
+
+  *   `initPhysics()` – 初始化物理设置和碰撞处理器
+
+
+  *   `makeExitDoor()` – 使出口门在游戏中可见
+
+
+  *   `onUpdate()` – 每帧调用，用于增加游戏时间并检查玩家是否死亡
+
+
+  *   `nextLevel()` – 将游戏推进到下一关卡
+
+
+  *   `setLevel()` – 通过从 Tiled 的 ".tmx" 文件加载来设置指定关卡
+
+
+  所有这些方法都在清单 4-7 中提供。在 `initInput()` 中，我们需要绑定四个按键：A（向左移动）、D（向右移动）、W（跳跃）和 E（使用）。我们之前使用过更简洁的输入
+  API 集；但在这里，我们需要使用完整的 API，以便重写 `onAction()` 和 `onActionEnd()`。对于 A、D 和 W 键，实际的输入实现很简单，因为我们只需调用之前创建的玩家组件的方法。E
+  键的实现稍微复杂一些。我们需要找到游戏中所有按钮实体，然后检查该按钮是否可碰撞且当前正与玩家碰撞。如果是，我们就更新按钮视图，使其显示已被按下，然后调用 `makeExitDoor()`，稍后我们将介绍该方法。
+
+
+  在 `initGameVars()` 中，我们初始化游戏变量，使其在源代码的任何位置都可访问。我们存储两样东西：当前关卡和在该关卡上花费的时间。利用时间值，在关卡结束时，我们可以在关卡结束场景中检查并相应地授予星星，该场景我们之前已经构建。
+
+
+  下一个方法是 `initGame()`，大部分游戏初始化过程在此进行。我们添加平台游戏工厂类，以便 FXGL 知道如何创建我们的实体。我们创建关卡、生成玩家并生成背景（注意，由于背景的
+  z-index，我们不必在其他任何东西之前生成背景；z-index 可以很好地处理任何排序问题）。最后，我们将视口（游戏的可视区域）绑定到玩家实体。这最后一步使视口跟随玩家实体，并提供你在平台游戏中常见的横向卷轴效果。我们将在第
+  6 章讨论视口及其重要性。
+
+
+
+  在 `initPhysics()` 中，我们设置了游戏的物理配置。具体来说，我们首先根据玩家控制的手感，将重力设置为一个任意值 760。如果玩家感觉太轻，你可能希望增加该值。同样，如果玩家跳跃高度太低，你可以减小该值。回想一下，在注册碰撞处理器时，有两种方法可供使用：一种是创建一个碰撞处理器类，就像我们在上面的
+  `PlayerButtonHandler` 中所做的那样；另一种是使用 FXGL 提供的 DSL API。当玩家与出口标志、出口触发器和出口门碰撞时，我们只想触发一次碰撞处理代码。因此，我们使用了
+  `onCollisionOneTimeOnly()`。这三种实体类型的一次性碰撞处理器内部的代码都很直接。在 `initPhysics()` 中注册的最后一个碰撞处理器是玩家与按键提示之间的碰撞。我们不希望这些类型之间的碰撞只发生一次，而是希望在每次发生碰撞时都得到通知；因此，我们使用了之前见过的
+  `onCollisionBegin()`。处理器内部的代码会生成一个按键提示实体，该实体漂浮几秒钟，向玩家指示可以按下特定按键来触发某种游戏机制。
+
+
+  `makeExitDoor()` 方法只是获取世界中构成出口门的两个实体（上半部分和下半部分）的引用。我们启用了门上的碰撞注册，并通过将两者的不透明度设置为 1（因此透明度为
+  0）使它们在游戏中可见。
+
+
+  在 `onUpdate()` 内部，我们将关卡时间增加一个等于每帧时间的值，如果以每秒 60 帧运行，该值通常为 0.016(6)。该方法中唯一的其他代码是检查玩家的
+  Y 值。如果它大于游戏高度，那么玩家一定是（因错过平台跳跃而）掉出了关卡，因此我们重新开始同一关卡。
+
+
+  `nextLevel()` 方法负责设置下一个关卡，或者在没有更多关卡时显示游戏结束消息。首先执行此检查，以查看我们的关卡是否是游戏中拥有的最大关卡。如果检查失败，我们将关卡编号增加
+  1，并将其设置为当前关卡。
+
+
+  `setLevel()` 方法是关卡生成发生的地方。我们将玩家的位置重置到游戏起点，并重置关卡时间。`setLevelFromMap()` 方法由 FXGL 提供，用于自动将“.tmx”文件解析为
+  FXGL 关卡。我们还可以查询与“.tmx”文件关联的各种属性，例如在关卡中获得三颗星所需的 `shortestTime` 自定义属性。最后，我们基于此数据构建一个新的关卡结束场景。
+
+
+  总结一下清单 4-7，应用程序类只是将我们在其他文件中实现的所有独立组件、逻辑和视图相关类整合在一起。在使用 FXGL 进行开发的过程中，你会发现这种模式（先开发功能类，然后在应用程序类中组合它们）贯穿始终。
+
+
+
+
+  ```
+
+  import com.almasb.fxgl.animation.Interpolators;
+
+  import com.almasb.fxgl.app.ApplicationMode;
+
+  import com.almasb.fxgl.app.GameApplication;
+
+  import com.almasb.fxgl.app.GameSettings;
+
+  import com.almasb.fxgl.app.scene.GameView;
+
+  import com.almasb.fxgl.app.scene.LoadingScene;
+
+  import com.almasb.fxgl.app.scene.SceneFactory;
+
+  import com.almasb.fxgl.app.scene.Viewport;
+
+  import com.almasb.fxgl.core.util.LazyValue;
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import com.almasb.fxgl.entity.SpawnData;
+
+  import com.almasb.fxgl.entity.components.CollidableComponent;
+
+  import com.almasb.fxgl.entity.level.Level;
+
+  import com.almasb.fxgl.input.UserAction;
+
+  import com.almasb.fxgl.input.view.KeyView;
+
+  import com.almasb.fxgl.input.virtual.VirtualButton;
+
+  import com.almasb.fxgl.physics.PhysicsComponent;
+
+  import javafx.geometry.Point2D;
+
+  import javafx.scene.input.KeyCode;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.util.Duration;
+
+  import java.util.Map;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  import static com.almasb.fxglgames.platformer.EntityType.*;
+
+  public class PlatformerApp extends GameApplication {
+
+  private static final int MAX_LEVEL = 5;
+
+  private static final int STARTING_LEVEL = 0;
+
+  private LazyValue levelEndScene = new LazyValue(() -> new LevelEndScene());
+
+  private Entity player;
+
+  @Override
+
+  protected void initSettings(GameSettings settings) {
+
+  settings.setWidth(1280);
+
+  settings.setHeight(720);
+
+  settings.setSceneFactory(new SceneFactory() {
+
+  @Override
+
+  public LoadingScene newLoadingScene() {
+
+  return new MainLoadingScene();
+
+  }
+
+  });
+
+  }
+
+  @Override
+
+  protected void initInput() {
+
+  getInput().addAction(new UserAction("Left") {
+
+  @Override
+
+  protected void onAction() {
+
+  player.getComponent(PlayerComponent.class).left();
+
+  }
+
+  @Override
+
+  protected void onActionEnd() {
+
+  player.getComponent(PlayerComponent.class).stop();
+
+  }
+
+  }, KeyCode.A);
+
+  getInput().addAction(new UserAction("Right") {
+
+  @Override
+
+  protected void onAction() {
+
+  player.getComponent(PlayerComponent.class).right();
+
+  }
+
+  @Override
+
+  protected void onActionEnd() {
+
+  player.getComponent(PlayerComponent.class).stop();
+
+  }
+
+  }, KeyCode.D);
+
+  getInput().addAction(new UserAction("Jump") {
+
+  @Override
+
+  protected void onActionBegin() {
+
+  player.getComponent(PlayerComponent.class).jump();
+
+  }
+
+  }, KeyCode.W);
+
+  getInput().addAction(new UserAction("Use") {
+
+  @Override
+
+  protected void onActionBegin() {
+
+  getGameWorld().getEntitiesByType(BUTTON)
+
+  .stream()
+
+  .filter(btn -> btn.hasComponent(CollidableComponent.class) && player.isColliding(btn))
+
+  .forEach(btn -> {
+
+  btn.removeComponent(CollidableComponent.class);
+
+  Entity keyEntity = btn.getObject("keyEntity");
+
+  keyEntity.setProperty("activated", true);
+
+  KeyView view = (KeyView) keyEntity.getViewComponent().getChildren().get(0);
+
+  view.setKeyColor(Color.RED);
+
+  makeExitDoor();
+
+  });
+
+  }
+
+  }, KeyCode.E);
+
+  }
+
+  @Override
+
+  protected void initGameVars(Map vars) {
+
+  vars.put("level", STARTING_LEVEL);
+
+  vars.put("levelTime", 0.0);
+
+  }
+
+  @Override
+
+  protected void initGame() {
+
+  getGameWorld().addEntityFactory(new PlatformerFactory());
+
+  player = null;
+
+  nextLevel();
+
+  // player must be spawned after call to nextLevel, otherwise player gets removed
+
+  // before the update tick _actually_ adds the player to game world
+
+  player = spawn("player", 50, 50);
+
+  set("player", player);
+
+  spawn("background");
+
+  Viewport viewport = getGameScene().getViewport();
+
+  viewport.setBounds(-1500, 0, 250 * 70, getAppHeight());
+
+  viewport.bindToEntity(player, getAppWidth() / 2, getAppHeight() / 2);
+
+  viewport.setLazy(true);
+
+  }
+
+  @Override
+
+  protected void initPhysics() {
+
+  getPhysicsWorld().setGravity(0, 760);
+
+  getPhysicsWorld().addCollisionHandler(new PlayerButtonHandler());
+
+  onCollisionOneTimeOnly(PLAYER, EXIT_SIGN, (player, sign) -> {
+
+  var texture = texture("exit_sign.png").brighter();
+
+  texture.setTranslateX(sign.getX() + 9);
+
+  texture.setTranslateY(sign.getY() + 13);
+
+  var gameView = new GameView(texture, 150);
+
+  getGameScene().addGameView(gameView);
+
+  runOnce(() -> getGameScene().removeGameView(gameView), Duration.seconds(1.6));
+
+  });
+
+  onCollisionOneTimeOnly(PLAYER, EXIT_TRIGGER, (player, trigger) -> {
+
+  makeExitDoor();
+
+  });
+
+  onCollisionOneTimeOnly(PLAYER, DOOR_BOT, (player, door) -> {
+
+  levelEndScene.get().onLevelFinish();
+
+  // the above runs in its own scene, so fade will wait until
+
+  // the user exits that scene
+
+  getGameScene().getViewport().fade(() -> {
+
+  nextLevel();
+
+  });
+
+  });
+
+  onCollisionBegin(PLAYER, KEY_PROMPT, (player, prompt) -> {
+
+  String key = prompt.getString("key");
+
+  var entity = getGameWorld().create("keyCode", new SpawnData(prompt.getX(), prompt.getY()).put("key",
+  key));
+
+  spawnWithScale(entity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+
+  runOnce(() -> {
+
+  despawnWithScale(entity, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
+
+  }, Duration.seconds(2.5));
+
+  });
+
+  }
+
+  private void makeExitDoor() {
+
+  var doorTop = getGameWorld().getSingleton(DOOR_TOP);
+
+  var doorBot = getGameWorld().getSingleton(DOOR_BOT);
+
+  doorBot.getComponent(CollidableComponent.class).setValue(true);
+
+  doorTop.setOpacity(1);
+
+  doorBot.setOpacity(1);
+
+  }
+
+  @Override
+
+  protected void onUpdate(double tpf) {
+
+  inc("levelTime", tpf);
+
+  if (player.getY() > getAppHeight()) {
+
+  setLevel(geti("level"));
+
+  }
+
+  }
+
+  private void nextLevel() {
+
+  if (geti("level") == MAX_LEVEL) {
+
+  showMessage("You finished the demo!");
+
+  return;
+
+  }
+
+  inc("level", +1);
+
+  setLevel(geti("level"));
+
+  }
+
+  private void setLevel(int levelNum) {
+
+  if (player != null) {
+
+  player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
+
+  player.setZIndex(Integer.MAX_VALUE);
+
+  }
+
+  set("levelTime", 0.0);
+
+  Level level = setLevelFromMap("tmx/level" + levelNum  + ".tmx");
+
+  var shortestTime = level.getProperties().getDouble("star1time");
+
+  var levelTimeData = new LevelEndScene.LevelTimeData(shortestTime * 2.4, shortestTime*1.3,
+  shortestTime);
+
+  set("levelTimeData", levelTimeData);
+
+  }
+
+  public static void main(String[] args) {
+
+  launch(args);
+
+  }
+
+  }
+
+  **清单 4-7**
+
+  **PlatformerApp 类**
+
+  ```
+
+
+  至此，我们的平台游戏示例就完成了。需要注意的是，构建任何游戏都有不同的方法。本章介绍的案例研究仅提供了一种可能的实现方式。随着你对 JavaFX 和 FXGL
+  的深入学习，你会发现解决同一问题的不同方法，甚至可能是更优的方法。这在游戏开发和计算机科学领域都很常见。尽管如此，基于这个示例，你现在应该能够构建一个由物理引擎驱动的简单平台游戏了。
+
+
+  ## 总结
+
+
+  在本章中，我们探讨了物理在游戏开发中的一系列应用。我们思考了如何使用几种不同的技术进行碰撞检测，并讨论了它们在 FXGL 中的实现细节。接着，我们研究了一些可用于处理实体间交互（例如发生碰撞时）的游戏逻辑代码。我们看到了碰撞处理的重要性，因为它允许玩家与游戏世界互动，也允许非玩家实体之间相互交互。在考虑
+  3D 游戏时，这种重要性尤为突出，因为交互是沉浸感的基础。最后，我们构建了一个简单的平台游戏，它大量运用了本章所涵盖的内容。在下一章中，我们将继续探讨如何为不受玩家控制的实体定义
+  AI。
+
+
+
+  '
+- '# 5. AI 案例研究：开发迷宫动作游戏
+
+
+  在本章中，我们将探讨 AI 的基础知识：它能帮助我们在游戏中实现什么，以及如何在 FXGL 中实现一系列 AI 行为。AI 是游戏开发的关键领域之一。没有它，大多数单人游戏的吸引力和趣味性将大打折扣。AI
+  赋予 NPC 和敌人准智能的决策能力，其目标是为玩家带来娱乐体验。更具体地说，作为游戏开发者，我们应致力于让 AI 足够复杂以匹配玩家的技能水平，但又足够浅显以给予玩家隐形的优势。如果设计和实现得当，这样的
+  AI 角色将与玩家产生有趣且富有挑战性的互动，但也会在适当的时候“认输”。
+
+
+  我们将 AI 分为两类：寻路和行为。寻路 AI 处理在二维（或三维）平面中两点之间搜索路径的问题。例如，一个“追踪者”敌人能够追捕玩家，同时避开游戏关卡内的所有障碍物。行为
+  AI 主要关注实体在任何给定时刻所执行的动作。在本章中，我们将探索几种实现行为的方法。完成本章后，你将学到：
+
+
+  *   图论基础知识和 A* 寻路算法
+
+  *   如何使用 `AStarMoveComponent` 在游戏世界中寻找两点之间的路径
+
+  *   如何使用自定义组件定义简单的 AI 行为
+
+  *   如何使用有限状态机定义具有多种状态的 AI 行为
+
+  *   如何利用简单的 AI 行为实现一个动作游戏
+
+
+  寻路通常是在一种允许应用常见计算机科学搜索算法的数据结构上进行的。本章首先探讨一种称为“图”的数据结构。
+
+
+  ## 图论与寻路概念
+
+
+  存在一系列基于图搜索的寻路算法。图是节点集合与连接节点的边集合的统称。图 5-1 展示了一个示例，其中有十个节点（圆形）和十条边（线条）。图论是计算机科学中研究图及其应用的基础领域。有许多针对特定任务定制的图搜索算法。在游戏中，一种常用于寻找两点之间路径的算法被称为
+  A*（读作“A star”）算法。
+
+
+  ![](img/522865_1_En_5_Fig1_HTML.jpg)
+
+
+  一个连通图描绘了 10 个节点。节点 a、b、c、d、e、f、g、h、i 和 j 由 10 条边连接。
+
+
+  图 5-1
+
+  一个图
+
+
+  在应用包括 A* 在内的任何搜索算法之前，首要任务是将游戏世界转换为图。假设在你的 2D 游戏世界中，有相互连接的房间或单元格，你可以从一个房间移动到其相邻的房间。但也会存在无法移动的情况，例如某个房间是封闭的。将这样的世界转换为图的一个简单算法是：为每个房间创建一个节点，如果可以从
+  A 移动到 B（且移动单位为一个单元），则在节点 A 和 B 之间创建一条边。由此产生的结构就是你的图。例如，如果图 5-1 中的图是以这种方式生成的，那么我们可以从一个移动单位从房间“a”移动到房间“c”。然而，要从“a”移动到“b”，我们需要先到达“c”。
+
+
+  假设在图 5-1 中，我们希望从节点“a”移动到节点“g”。当然，我们可以使用暴力方法，简单地检查从“a”到“g”的所有可能路径，然后选择一条合适的。在这样的小型图上，这种方法通常没问题。但是，想象一个像《GTA
+  V》那样广阔的世界，其底层图会变得过于庞大而无法使用暴力方法，尤其是在我们只有几分之一秒的时间来计算路径的情况下。显然，我们需要一种更有效的方法来解决这类通用问题。这正是
+  A* 寻路算法能够发挥巨大作用的地方。
+
+
+  ## FXGL 中的 A* 寻路
+
+
+  为了在 FXGL 中使用 A* 算法，我们首先需要根据游戏世界构建一个 `AStarGrid` 对象。`AStarGrid` 是一个由 `AStarCell`
+  对象组成的二维网格，这些对象可以处于两种状态之一：`WALKABLE`（可通行）或 `NOT_WALKABLE`（不可通行）。接下来，我们需要向希望在网格中移动的实体添加几个组件。这些组件是
+  `CellMoveComponent` 和 `AStarMoveComponent`。
+
+
+  `CellMoveComponent` 允许实体在基于单元格的环境（如网格、图或瓦片地图）中移动。`AStarMoveComponent` 利用 `CellMoveComponent`
+  并提供必要的路径信息，使实体不会穿过墙壁或其他障碍物。为了帮助巩固这些理论概念，我们将构建一个小型独立应用程序，其代码见清单 5-1。在继续之前，请务必记下所需的导入语句。
+
+
+  ```
+
+  import com.almasb.fxgl.app.GameApplication;
+
+  import com.almasb.fxgl.app.GameSettings;
+
+  import com.almasb.fxgl.dsl.FXGL;
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import com.almasb.fxgl.pathfinding.CellMoveComponent;
+
+  import com.almasb.fxgl.pathfinding.CellState;
+
+  import com.almasb.fxgl.pathfinding.astar.AStarGrid;
+
+  import com.almasb.fxgl.pathfinding.astar.AStarMoveComponent;
+
+  import javafx.scene.input.MouseButton;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.scene.shape.Rectangle;
+
+  import javafx.scene.shape.StrokeType;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  public class PathfindingSample extends GameApplication {
+
+  @Override
+
+  protected void initSettings(GameSettings settings) {
+
+  settings.setWidth(1280);
+
+  settings.setHeight(720);
+
+  }
+
+  @Override
+
+  protected void initGame() {
+
+  var grid = new AStarGrid(1280 / 40, 720 / 40);
+
+  var agent = entityBuilder()
+
+  .viewWithBBox(new Rectangle(40, 40, Color.BLUE))
+
+  .with(new CellMoveComponent(40, 40, 150))
+
+  .with(new AStarMoveComponent(grid))
+
+  .zIndex(1)
+
+  .anchorFromCenter()
+
+  .buildAndAttach();
+
+  for (int y = 0; y  {
+
+  if (event.getButton() == MouseButton.PRIMARY) {
+
+  agent.getComponent(AStarMoveComponent.class)
+
+  .moveToCell(finalX, finalY);
+
+  } else if (event.getButton() == MouseButton.SECONDARY) {
+
+  grid.get(finalX, finalY).setState(CellState.NOT_WALKABLE);
+
+  view.setFill(Color.RED);
+
+  }
+
+  });
+
+  }
+
+  }
+
+  }
+
+  public static void main(String[] args) {
+
+  launch(args);
+
+  }
+
+  }
+
+  清单 5-1
+
+  PathfindingSample 类
+
+  ```
+
+
+  让我们详细分析清单 5-1 中的代码。首先，我们可以看到 `AStarGrid` 是以适当的尺寸构建的。请注意，提供的值是单元格数量，而非像素，这就是为什么我们将
+  1280 和 720 除以 40（本例中单个单元格的大小）。接下来，使用 `EntityBuilder`，我们构建了代理实体。你已从前面的章节熟悉了构建实体的过程，因此我们可以跳过细节。在本例中，该实体是一个带有
+  `CellMoveComponent` 和 `AStarMoveComponent` 的蓝色方块。请注意，后一个组件需要能够访问我们构建的网格，以便在关卡中智能移动。如你所见，实际的网格遍历实现细节对开发者是隐藏的，从而使
+  API 易于使用。
+
+
+  现在，我们将构建实体，使我们（用户）能够看到游戏世界并识别哪些单元格是可通行的，哪些是不可通行的。每个实体将有一个方形视图，默认颜色为白色。我们将为每个实体的
+  `ViewComponent` 添加一个点击处理程序，这样当我们点击它时，可以执行两个操作：(1) 如果左键点击，我们使用其 `AStarMoveComponent`
+  将代理移动到该单元格；(2) 如果右键点击，我们将该单元格设置为不可通行，并将其颜色更改为红色。左键和右键点击事件是标准的 JavaFX 事件，因此你可以为任何游戏示例使用类似的设置进行快速原型开发。
+
+
+
+
+  我们的小示例现已完成。你应该能够运行它，并看到一个带有蓝色方形智能体的二维网格。左键单击任意单元格，智能体将使用内置的 A* 寻路算法移动到该单元格。你可以尝试操作，看看右键单击如何创建障碍物，以及智能体如何避开它们。图
+  5-2 给出了一个示例截图，其中拼出“FXGL”的红色障碍物阻挡了蓝色智能体的路径。
+
+
+  ![](img/522865_1_En_5_Fig2_HTML.png)
+
+
+  该截图描绘了一个网格，其中一些方块以深色填充，拼出了 F X G L 字样。G 上方的一个方块以不同颜色填充。
+
+
+  图 5-2
+
+
+  一个展示 FXGL 中 A* 寻路功能的示例应用程序
+
+
+  ## 行为
+
+
+  我们已经介绍了 AI 如何利用世界数据在二维世界中移动以到达目标。现在，我们将注意力转向 AI 到达目标后应该做什么。在本节中，我们将探讨为敌方实体添加 AI
+  行为的多种方式。虽然所有这些方式都是添加 AI 的有效方法，但根据你的用例，某些方法更为合适。当你的实体行为主要承担单一任务时，最直接的方法是使用自定义组件。例如，假设你有一个敌方实体，其作用是保持静止，并在玩家靠近时向其他
+  AI 实体发出信号。我们可以通过创建一个 `SignalComponent` 来实现此行为，如代码清单 5-2 所示。
+
+
+  本质上，该组件的 `onUpdate()` 方法执行了此简单行为背后的所有逻辑。首先，我们需要获取玩家实体的引用，以便检查玩家与我们（信号实体）之间的距离。为此，你可以使用我们在第
+  3 章中介绍的众多查询方法之一。回想一下，当从组件内部调用时，`getEntity()` 会返回该组件所附加的实体，即信号实体。通过一个简单的 if 语句，我们可以检查是否应该“因为玩家靠近而向其他
+  AI 发出信号”。你也可以添加 else 分支，虽然这里不需要，但它应该能让你了解如何实现类似的用例。
+
+
+  ```
+
+  public class SignalComponent extends Component {
+
+  @Override
+
+  public void onUpdate(double tpf) {
+
+  Entity player = ...
+
+  if (getEntity().distance(player) < 100) {
+
+  // 持续向其他 AI 发出信号：玩家靠近了
+
+  }
+
+  }
+
+  }
+
+  代码清单 5-2
+
+  SignalComponent 类
+
+  ```
+
+
+  让我们考虑代码清单 5-3 中的另一个示例。此 AI 行为专注于跟随任何实体。给定对任何实体（例如玩家）的引用后，`onUpdate()` 方法将不断将 AI
+  智能体移向该实体的方向。总的来说，你可能已经注意到，在 FXGL 中，update 方法是处理实体逻辑和 AI 代码的合适位置。
+
+
+  ```
+
+  public class FollowComponent extends Component {
+
+  @Override
+
+  public void onUpdate(double tpf) {
+
+  Entity player = ...
+
+  getEntity().translateTowards(player.getPosition(),10);
+
+  }
+
+  }
+
+  代码清单 5-3
+
+  FollowComponent 类
+
+  ```
+
+
+  从代码清单 5-2 和 5-3 可以看出，FXGL 中的行为实现相当直接。然而，在游戏中会出现各种用例，这种简单的实现方式并不那么适用。到目前为止，我们介绍的行为主要承担单一任务：发出信号或跟随。当
+  AI 行为具有两个或更多不同的状态时，我们可以使用现有的 `StateComponent` 来帮助我们以更有效的方式定义 AI 功能。`StateComponent`
+  本质上允许我们使用有限状态机（FSM），其中 AI 智能体一次只能处于预定义状态之一。要在 FXGL 中实现这一点，首先，将 `StateComponent`
+  添加到你的实体中。接下来，实现你的状态，如代码清单 5-4 所示。
+
+
+  ```
+
+  private EntityState GUARD = new EntityState() {
+
+  @Override
+
+  protected void onUpdate(double tpf) {
+
+  // 处于此状态时要运行的代码
+
+  }
+
+  };
+
+  代码清单 5-4
+
+  定义 EntityState
+
+  ```
+
+
+  最后，我们可以使用实体的 `StateComponent` 并设置创建的状态：`entity.getComponent(StateComponent.class).changeState(GUARD)`。从此刻起，实体将调用
+  `GUARD` 状态中的 `onUpdate()`，使开发者能够隔离特定于该状态的行为，再次遵循单一职责原则。任何其他状态都可以用完全相同的方式创建。你可以看到，这种方法可以提升灵活性，因为状态不一定需要依赖其他状态的存在。但是，如果你愿意，就像下一个示例那样，你仍然可以在单个文件中声明所有状态，并从现有的不同状态切换到新状态。
+
+
+  现在，我们将看一个使用 FSM 的小型 FXGL 应用程序。具体来说，让我们设想一个即时战略游戏中的资源采集 AI，例如《魔兽争霸 3》、《要塞：十字军东征》或该类型的许多其他游戏。这种
+  AI 会自动移动到任何指定的资源处进行采集。一旦其“背包”满了，AI 就会移动到最近的“库存点”存放采集到的资源，从而清空其背包。接着，它会重新开始循环并继续采集资源。这种
+  AI 组件在许多即时战略游戏中非常有用，其中“工人”类型的实体可以为玩家采集资源。最终，我们可以识别出三种状态：采集、移动和存放。前两种状态是持续性的，意味着实体将在其中花费一些时间。然而，存放是一个单一动作，不一定需要实现为一个状态。此
+  AI 的实现可以在代码清单 5-5 中看到。我们现在对其进行详细检查。
+
+
+
+
+  ```
+
+  import com.almasb.fxgl.dsl.FXGL;
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import com.almasb.fxgl.entity.component.Component;
+
+  import com.almasb.fxgl.entity.component.Required;
+
+  import com.almasb.fxgl.entity.state.EntityState;
+
+  import com.almasb.fxgl.entity.state.StateComponent;
+
+  import com.almasb.fxgl.time.LocalTimer;
+
+  import javafx.geometry.Point2D;
+
+  import javafx.util.Duration;
+
+  public class GathererComponent extends Component {
+
+  private StateComponent stateComponent;
+
+  private Entity target;
+
+  private Point2D targetPosition;
+
+  private Entity prevTarget;
+
+  private EntityState GATHERING = new EntityState() {
+
+  private LocalTimer gatherTimer = FXGL.newLocalTimer();
+
+  private ResourceComponent resourceComponent;
+
+  @Override
+
+  public void onEnteredFrom(EntityState entityState) {
+
+  resourceComponent = target.getComponent(ResourceComponent.class);
+
+  gatherTimer.capture();
+
+  }
+
+  @Override
+
+  public void onUpdate(double tpf) {
+
+  if (isBackpackFull()) {
+
+  FXGL.getGameWorld()
+
+  .getClosestEntity(entity, e -> e.isType(EntityType.STOCKPILE))
+
+  .ifPresent(s -> sendTo(s));
+
+  return;
+
+  }
+
+  if (resourceComponent.isEmpty()) {
+
+  FXGL.getGameWorld()
+
+  // 并匹配资源类型...
+
+  .getClosestEntity(entity, e -> e.hasComponent(ResourceComponent.class) && !e.getComponent(ResourceComponent.class).isEmpty())
+
+  .ifPresent(resource -> sendTo(resource));
+
+  return;
+
+  }
+
+  if (gatherTimer.elapsed(Duration.seconds(2))) {
+
+  resourceComponent.gather();
+
+  entity.getProperties().increment(resourceComponent.getType().toString(), +1);
+
+  gatherTimer.capture();
+
+  }
+
+  }
+
+  };
+
+  private EntityState MOVING = new EntityState() {
+
+  @Override
+
+  protected void onUpdate(double tpf) {
+
+  // 到达目的地，停止移动
+
+  if (entity.getPosition().distance(targetPosition) < 5) {
+
+  if (target != null) {
+
+  if (target.hasComponent(ResourceComponent.class)) {
+
+  // 目标是资源
+
+  stateComponent.changeState(GATHERING);
+
+  } else if (target.isType(EntityType.STOCKPILE)) {
+
+  // 目标是库存点
+
+  depositResources(target);
+
+  if (prevTarget != null) {
+
+  sendTo(prevTarget);
+
+  } else {
+
+  // 无目标，保持空闲
+
+  stateComponent.changeStateToIdle();
+
+  }
+
+  }
+
+  } else {
+
+  // 无目标，保持空闲
+
+  stateComponent.changeStateToIdle();
+
+  }
+
+  return;
+
+  }
+
+  entity.translateTowards(targetPosition, 5);
+
+  }
+
+  };
+
+  private boolean isBackpackFull() {
+
+  return entity.getInt(ResourceType.WOOD.toString()) + entity.getInt(ResourceType.STONE.toString())
+  == 10;
+
+  }
+
+  private void depositResources(Entity stockpile) {
+
+  for (var resourceType : ResourceType.values()) {
+
+  int qty = entity.getInt(resourceType.toString());
+
+  stockpile.getProperties().increment(resourceType.toString(), qty);
+
+  entity.setProperty(resourceType.toString(), 0);
+
+  }
+
+  }
+
+  public void sendTo(Entity target) {
+
+  this.prevTarget = this.target;
+
+  this.target = target;
+
+  sendTo(target.getPosition());
+
+  }
+
+  public void sendTo(Point2D point) {
+
+  targetPosition = point;
+
+  stateComponent.changeState(MOVING);
+
+  }
+
+  }
+
+  清单 5-5
+
+  `GathererComponent` 类的示例实现
+
+  ```
+
+
+  该组件包含四个变量字段和两个状态字段：
+
+
+  *   `stateComponent` – 对 `StateComponent` 的引用，会自动注入。
+
+  *   `target` – 实体的当前目标，若无目标则为 `null`。
+
+  *   `targetPosition` – 当前目标的位置，若无目标则为实体正在移动的目标点。
+
+  *   `prevTarget` – 实体的上一个目标。
+
+  *   `GATHERING` 状态 – 在此状态下，实体收集资源。
+
+  *   `MOVING` 状态 – 在此状态下，实体移动，前往资源点或库存点。
+
+
+  在 `GATHERING` 状态下，重写的 `onUpdate()` 方法首先检查背包是否已满。我们需要执行此检查，因为如果没有空间存放资源，收集资源就没有意义。如果检查结果为
+  `true`，表示背包已满，则将 AI 送回“基地”。接下来，我们需要检查资源是否确实可供采集，因为资源可能已被耗尽。如果资源不可用，则将 AI 发送到最近的匹配资源实体，以继续其采集工作。完成这些检查后，我们检查采集计时器是否已超时，因为我们不希望每帧都采集资源，而是在示例中每
+  2 秒（约 120 帧）采集一次。
+
+
+  在 `MOVING` 状态下，`onUpdate()` 方法负责更改 AI 实体在游戏世界中的位置。我们首先检查实体是否已到达目的地；如果已到达，则检查我们在此处的原因（采集资源或存放已采集的资源）；否则，让实体继续朝目标方向移动。
+
+
+  清单 5-5 中的其他方法用于简化状态的实现，建议您自行阅读。因此，您可以看到，归根结底，我们的 AI 实际上只是一系列条件语句。然而，如果这些语句实现得当，并与适当的概念（如
+  FSM）相结合，它们就能为玩家营造出强大的对抗幻觉。现在我们已经介绍了不同类型的 AI 及其简单实现，接下来将进入一个更具体的游戏示例。
+
+
+  ## 迷宫动作游戏
+
+
+  在本节中，我们将构建一个包含迷宫元素的简单动作游戏。本质上，这是一个稍作修改的《吃豆人》克隆版，非常适合作为本章的示例。游戏在一个充满硬币的迷宫式关卡中设有四个敌人。玩家必须穿越迷宫并收集硬币，同时避开敌人。我们不会制作一个完整的克隆版，而是为游戏添加一些原创元素，例如时间条和传送能力。所有资源（包括其使用许可）和代码均可通过以下链接下载：[`https://github.com/AlmasB/FXGLGames/tree/master/Pacman`](https://github.com/AlmasB/FXGLGames/tree/master/Pacman)。您可以在图
+  5-3 中看到游戏截图。
+
+
+  ![](img/522865_1_En_5_Fig3_HTML.jpg)
+
+
+  一张截图展示了《吃豆人》游戏的修改版克隆。
+
+
+  图 5-3
+
+
+  《吃豆人》的修改版克隆
+
+
+
+
+  ### 自定义组件
+
+
+  按照惯例，我们首先定义游戏中存在的实体类型。在我们的《吃豆人》克隆版中，只有四种类型：
+
+
+  ```
+
+  public enum PacmanType {
+
+  PLAYER, ENEMY, BLOCK, COIN
+
+  }
+
+  ```
+
+
+  由于这款游戏专注于人工智能，大部分功能都包含在组件中。我们之前提到过有四种类型的敌人。它们是 `GuardCoinComponent`、`DelayedChasePlayerComponent`（一种带延迟，一种不带延迟）以及
+  `RandomAStarMoveComponent`，后者是 FXGL 中提供的预构建组件。我们将考虑前两个文件的实现。至于 `RandomAStarMoveComponent`，它只有一个简单的目标，即使用
+  A* 寻路算法在关卡内随机移动实体。因此，我们在此不讨论其实现细节。不过，欢迎您浏览 GitHub 上 FXGL 仓库中该组件的源代码。
+
+
+  关于自定义组件类，本游戏示例中有四个。它们是：
+
+
+  *   **GuardCoinComponent** – 这是一个 AI 组件，用于让敌人实体守护游戏中选定的硬币。
+
+  *   **DelayedChasePlayerComponent** – 这是一个 AI 组件，用于让敌人追逐玩家实体。该组件有两种模式：即时模式（无延迟）和延迟模式。在即时模式下，它会使用最短路径直接前往玩家位置；而在延迟模式下，它会选择一条稍长的路径，给玩家一些喘息空间。
+
+  *   **PaletteChangingComponent** – 这本身并非 AI 组件，但它通过改变每个敌人的配色方案来帮助 AI 迷惑玩家，使玩家无法轻易判断自己面对的是哪种
+  AI。
+
+  *   **PlayerComponent** – 该组件允许玩家实体执行游戏操作，例如移动和传送。
+
+
+  然后，我们将按照之前提到的顺序逐一介绍这四个组件，第一个是 `GuardCoinComponent`，如代码清单 5-6 所示。
+
+
+  ```
+
+  import com.almasb.fxgl.core.collection.grid.Cell;
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import com.almasb.fxgl.entity.component.Component;
+
+  import com.almasb.fxgl.entity.component.Required;
+
+  import com.almasb.fxgl.pathfinding.astar.AStarMoveComponent;
+
+  import com.almasb.fxgl.texture.Texture;
+
+  import com.almasb.fxglgames.pacman.PacmanType;
+
+  import javafx.scene.paint.Color;
+
+  public class GuardCoinComponent extends Component {
+
+  private AStarMoveComponent astar;
+
+  private Entity targetCoin;
+
+  @Override
+
+  public void onUpdate(double tpf) {
+
+  if (targetCoin == null || !targetCoin.isActive()) {
+
+  entity.getWorld()
+
+  .getRandom(PacmanType.COIN)
+
+  .ifPresent(coin -> {
+
+  highlight(coin);
+
+  targetCoin = coin;
+
+  });
+
+  } else {
+
+  if (astar.isAtDestination()) {
+
+  int x = targetCoin.call("getCellX");
+
+  int y = targetCoin.call("getCellY");
+
+  Cell cell = astar.getGrid().get(x, y);
+
+  astar.getGrid()
+
+  .getRandomCell(c -> c.getState().isWalkable() && c.distance(cell) < 5)
+
+  .ifPresent(astar::moveToCell);
+
+  }
+
+  }
+
+  }
+
+  private void highlight(Entity coin) {
+
+  var texture = (Texture) coin.getViewComponent().getChildren().get(0);
+
+  var newTexture = texture.multiplyColor(Color.RED).brighter();
+
+  coin.getViewComponent().removeChild(texture);
+
+  coin.getViewComponent().addChild(newTexture);
+
+  }
+
+  }
+
+  代码清单 5-6
+
+  游戏示例中守卫 AI 的实现
+
+  ```
+
+
+  该组件中只有两个字段：对 `AStarMoveComponent` 的引用（我们已经熟悉）和硬币实体。这枚硬币就是该 AI 将要守卫的目标。在 `onUpdate()`
+  方法中，我们首先检查目标硬币是否存在且位于游戏世界中，否则就随机选择一枚硬币作为目标。如果硬币存在，我们只需在硬币附近选择一个随机位置，并将我们的 AI 移动到该单元格。你在代码清单
+  5-6 中看到的高亮方法，可以让我们选中的硬币脱颖而出，这样玩家就能知道它的位置，并据此做出游戏决策。高亮效果会将硬币变为红色，如图 5-4 所示。
+
+
+  ![](img/522865_1_En_5_Fig4_HTML.jpg)
+
+
+  一张游戏截图，顶部和底部有一些深色方块，一个 AI 和 6 枚硬币。左侧 2 枚和右侧 3 枚硬币颜色较浅。中间的 AI 和它旁边的硬币颜色较深。
+
+
+  图 5-4
+
+
+  被 AI 守卫的硬币以红色高亮显示
+
+
+  接下来要探索的自定义 AI 组件是 `DelayedChasePlayerComponent`，其代码如代码清单 5-7 所示。
+
+
+  ```
+
+  import com.almasb.fxgl.dsl.FXGL;
+
+  import com.almasb.fxgl.entity.component.Component;
+
+  import com.almasb.fxgl.entity.component.Required;
+
+  import com.almasb.fxgl.pathfinding.astar.AStarMoveComponent;
+
+  import com.almasb.fxglgames.pacman.PacmanType;
+
+  @Required(AStarMoveComponent.class)
+
+  public class DelayedChasePlayerComponent extends Component {
+
+  private AStarMoveComponent astar;
+
+  private boolean isDelayed = false;
+
+  @Override
+
+  public void onUpdate(double tpf) {
+
+  if (!isDelayed) {
+
+  move();
+
+  } else {
+
+  // 如果延迟，仅在到达目的地时移动
+
+  if (astar.isAtDestination()) {
+
+  move();
+
+  }
+
+  }
+
+  }
+
+  private void move() {
+
+  var player = FXGL.getGameWorld().getSingleton(PacmanType.PLAYER);
+
+  int x = player.call("getCellX");
+
+  int y = player.call("getCellY");
+
+  astar.moveToCell(x, y);
+
+  }
+
+  public DelayedChasePlayerComponent withDelay() {
+
+  isDelayed = true;
+
+  return this;
+
+  }
+
+  }
+
+  代码清单 5-7
+
+  游戏示例中玩家追逐 AI 的实现
+
+  ```
+
+
+  这个 AI 组件的实现相对简单，只有两个字段：`AStarMoveComponent` 引用（以便 AI 知道如何移动）和一个标志位，用于指示 AI 是应该延迟移动，还是立即前往玩家位置而没有任何表面上的延迟。在
+  `move()` 方法中，你会注意到我们调用了 `player.call("getCellX");`。这是一个通用快捷方式，允许我们的实体调用其附加组件中的方法。例如，如果没有这个快捷方式，我们就必须调用完整的
+  API：`player.getComponent(CellMoveComponent.class).getCellX();`。因此，在调用明确无误的情况下，可以在实体上使用
+  `call()` 方法。
+
+
+  我们的下一个组件，如代码清单 5-8 所示，展示了如何为敌人实体实现随机调色板交换。虽然原版游戏中的敌人不会这样做（它们会变成幽灵，但不会不断切换颜色），但这对我们的克隆版来说是一个有趣的补充，因为玩家将无法轻易分辨哪个敌人拥有哪种
+  AI。
+
+
+
+
+  ```
+
+  import com.almasb.fxgl.core.math.FXGLMath;
+
+  import com.almasb.fxgl.entity.component.Component;
+
+  import com.almasb.fxgl.texture.Texture;
+
+  import javafx.geometry.Rectangle2D;
+
+  public class PaletteChangingComponent extends Component {
+
+  private Texture texture;
+
+  private double lastX = 0;
+
+  private double lastY = 0;
+
+  private double timeToSwitch = 0;
+
+  private int spriteColor = 0;
+
+  public PaletteChangingComponent(Texture texture) {
+
+  this.texture = texture;
+
+  }
+
+  @Override
+
+  public void onAdded() {
+
+  entity.getViewComponent().addChild(texture);
+
+  }
+
+  @Override
+
+  public void onUpdate(double tpf) {
+
+  timeToSwitch += tpf;
+
+  if (timeToSwitch >= 5.0) {
+
+  spriteColor = (int) (160 * FXGLMath.random(0, 2) * 0.24);
+
+  timeToSwitch = 0;
+
+  }
+
+  double dx = entity.getX() - lastX;
+
+  double dy = entity.getY() - lastY;
+
+  lastX = entity.getX();
+
+  lastY = entity.getY();
+
+  if (dx == 0 && dy == 0) {
+
+  // 未移动
+
+  return;
+
+  }
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+
+  // 移动方向为水平
+
+  if (dx > 0) {
+
+  texture.setViewport(new Rectangle2D(130*3 * 0.24, spriteColor, 130 * 0.24, 160 *
+  0.24));
+
+  } else {
+
+  texture.setViewport(new Rectangle2D(130*2 * 0.24, spriteColor, 130 * 0.24, 160 *
+  0.24));
+
+  }
+
+  } else {
+
+  // 移动方向为垂直
+
+  if (dy > 0) {
+
+  texture.setViewport(new Rectangle2D(0, spriteColor, 130 * 0.24, 160 * 0.24));
+
+  } else {
+
+  texture.setViewport(new Rectangle2D(130 * 0.24, spriteColor, 130 * 0.24, 160 * 0.24));
+
+  }
+
+  }
+
+  }
+
+  }
+
+  }
+
+  代码清单 5-8
+
+  `PaletteChangingComponent` 类的实现
+
+  ```
+
+
+  `PaletteChangingComponent` 的实现重点在于：从敌人精灵表单中随机选择一行，并根据实体的移动方向选取正确的移动图像。代码中的注释指明了移动方向是水平还是垂直。获取该信息后，剩下的问题就是判断移动是向左还是向右（水平方向），或是向上还是向下（垂直方向）。这可以通过当前位置与上一位置的差值来确定。如果差值为正，则移动方向为向右（水平方向）或向下（垂直方向）。如果差值为负，则方向相反。
+
+
+  我们要探讨的最后一个组件是 `PlayerComponent` 类。其完整实现见代码清单 5-9。该组件的全部逻辑就是利用 A* 组件将玩家向正确的方向移动。我们有四个方法（上、下、左、右），可以从输入处理代码中调用，使玩家向特定方向移动。在
+  `onUpdate()` 方法中，我们会检查是否真的能朝该方向移动，并在可能的情况下执行移动。由于 A* 网格 API 的灵活性，`teleport()` 方法的实现非常简单。该代码获取一个随机可通行单元格的引用，并将玩家实体（或者说传送它）直接移动到该单元格。
+
+
+  ```
+
+  import com.almasb.fxgl.entity.component.Component;
+
+  import com.almasb.fxgl.entity.component.Required;
+
+  import com.almasb.fxgl.pathfinding.CellMoveComponent;
+
+  import com.almasb.fxgl.pathfinding.astar.AStarCell;
+
+  import com.almasb.fxgl.pathfinding.astar.AStarMoveComponent;
+
+  import static com.almasb.fxglgames.pacman.components.PlayerComponent.MoveDirection.*;
+
+  @Required(AStarMoveComponent.class)
+
+  public class PlayerComponent extends Component {
+
+  enum MoveDirection {
+
+  UP, RIGHT, DOWN, LEFT
+
+  }
+
+  private CellMoveComponent moveComponent;
+
+  private AStarMoveComponent astar;
+
+  private MoveDirection currentMoveDir = RIGHT;
+
+  private MoveDirection nextMoveDir = RIGHT;
+
+  public void up() {
+
+  nextMoveDir = UP;
+
+  }
+
+  public void down() {
+
+  nextMoveDir = DOWN;
+
+  }
+
+  public void left() {
+
+  nextMoveDir = LEFT;
+
+  }
+
+  public void right() {
+
+  nextMoveDir = RIGHT;
+
+  }
+
+  @Override
+
+  public void onUpdate(double tpf) {
+
+  var x = moveComponent.getCellX();
+
+  var y = moveComponent.getCellY();
+
+  if (x == 0 && currentMoveDir == LEFT) {
+
+  astar.stopMovementAt(astar.getGrid().getWidth() - 1, moveComponent.getCellY());
+
+  return;
+
+  } else if (x == astar.getGrid().getWidth() - 1 && currentMoveDir == RIGHT) {
+
+  astar.stopMovementAt(0, moveComponent.getCellY());
+
+  return;
+
+  }
+
+  if (astar.isMoving())
+
+  return;
+
+  switch (nextMoveDir) {
+
+  case UP:
+
+  if (astar.getGrid().getUp(x, y).filter(c -> c.getState().isWalkable()).isPresent())
+
+  currentMoveDir = nextMoveDir;
+
+  break;
+
+  case RIGHT:
+
+  if (astar.getGrid().getRight(x, y).filter(c -> c.getState().isWalkable()).isPresent())
+
+  currentMoveDir = nextMoveDir;
+
+  break;
+
+  case DOWN:
+
+  if (astar.getGrid().getDown(x, y).filter(c -> c.getState().isWalkable()).isPresent())
+
+  currentMoveDir = nextMoveDir;
+
+  break;
+
+  case LEFT:
+
+  if (astar.getGrid().getLeft(x, y).filter(c -> c.getState().isWalkable()).isPresent())
+
+  currentMoveDir = nextMoveDir;
+
+  break;
+
+  }
+
+  switch (currentMoveDir) {
+
+  case UP:
+
+  astar.moveToUpCell();
+
+  break;
+
+  case RIGHT:
+
+  astar.moveToRightCell();
+
+  break;
+
+  case DOWN:
+
+  astar.moveToDownCell();
+
+  break;
+
+  case LEFT:
+
+  astar.moveToLeftCell();
+
+  break;
+
+  }
+
+  }
+
+  public void teleport() {
+
+  astar.getGrid()
+
+  .getRandomCell(AStarCell::isWalkable)
+
+  .ifPresent(c -> astar.stopMovementAt(c.getX(), c.getY()));
+
+  }
+
+  }
+
+  代码清单 5-9
+
+  `PlayerComponent` 类
+
+  ```
+
+
+  现在我们已经介绍了游戏示例中使用的所有自定义组件类，接下来该将注意力转向工厂类的实现了。
+
+
+
+  ### 构建关卡与实体
+
+
+  工厂实现代码见清单 5-10。如我们所知，实体工厂负责实例化游戏中出现的所有实体。共有四种实体类型，因此有四个使用 `@Spawns` 注解的方法来创建这些实体。在介绍它们之前，我们先说明关卡是如何生成的。关卡以纯文本文件形式存储，其中每个符号字符代表一个实体。例如：
+
+
+  ```
+
+  11E1
+
+
+  P111
+
+  ```
+
+
+  你可以这样理解这个简单示例：“1”代表方块，“0”代表金币，“P”代表玩家，“E”代表敌人。实际关卡会稍大一些，但遵循相同的约定。
+
+
+  现在我们来看清单 5-10 中的每个主要方法。第一个方法是 `newBlock()`，它生成一个新的方块类型实体。你会注意到 `@Spawns` 注解的参数是“1”。这正是我们之前示例中用来标识方块的字符。方块是不可穿越的单元格，起到障碍物的作用。在视图方面，它是一个简单的带有圆角的
+  JavaFX 矩形。金币实体通过 `newCoin()` 方法从“0”生成，并关联了一个纹理。我们偏移了纹理使其在单元格中居中，并添加了一个边界框。本书前面章节已介绍过这些方法中的大部分。
+
+
+  玩家和敌人实体的构建稍微复杂一些。对于玩家实体，我们首先从精灵表中创建一个动画纹理。对于任何纹理，FXGL 都允许我们使用 `toAnimatedTexture()`
+  方法轻松创建动画纹理，该方法接受两个参数：帧数和动画总时长。在设置玩家实体的视图时，我们需要记得调用 `loop()` 方法，以便动画无限循环。玩家构建代码的其余部分只是添加相关组件，但有一个调用特别值得注意：
+
+
+  ```
+
+  new AStarMoveComponent(new LazyValue(() -> geto("grid"))).
+
+  ```
+
+
+  在之前的示例中，你已经看到我们如何使用 A* 网格构建 `AStarMoveComponent`。然而，在本游戏中创建玩家实体时，网格尚未存在，因此我们传递了一个带有回调函数的
+  `LazyValue` 对象，以便在运行时获取网格对象。你会发现构建敌人实体时也采用了相同的方法。敌人实体的主要区别之一在于我们如何获取 AI 组件。为了避免为创建四种敌人类型而编写四个不同的方法，我们将
+  AI 组件的构建提取到一个单独的方法中，该方法会循环遍历这些组件，每次调用时返回一个不同的组件。至此，工厂类及其生成方法的概述就完成了。建议你回顾前面章节中关于我们未在此处详细讨论的代码内容。
+
+
+  ```
+
+  import com.almasb.fxgl.core.util.LazyValue;
+
+  import com.almasb.fxgl.dsl.components.RandomAStarMoveComponent;
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import com.almasb.fxgl.entity.EntityFactory;
+
+  import com.almasb.fxgl.entity.SpawnData;
+
+  import com.almasb.fxgl.entity.Spawns;
+
+  import com.almasb.fxgl.entity.component.Component;
+
+  import com.almasb.fxgl.entity.components.CollidableComponent;
+
+  import com.almasb.fxgl.pathfinding.CellMoveComponent;
+
+  import com.almasb.fxgl.pathfinding.astar.AStarMoveComponent;
+
+  import com.almasb.fxgl.physics.BoundingShape;
+
+  import com.almasb.fxgl.physics.HitBox;
+
+  import com.almasb.fxgl.texture.AnimatedTexture;
+
+  import com.almasb.fxglgames.pacman.components.PaletteChangingComponent;
+
+  import com.almasb.fxglgames.pacman.components.PlayerComponent;
+
+  import com.almasb.fxglgames.pacman.components.ai.DelayedChasePlayerComponent;
+
+  import com.almasb.fxglgames.pacman.components.ai.GuardCoinComponent;
+
+  import javafx.geometry.Point2D;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.scene.shape.Rectangle;
+
+  import javafx.util.Duration;
+
+  import java.util.Map;
+
+  import java.util.function.Supplier;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  import static com.almasb.fxglgames.pacman.PacmanApp.BLOCK_SIZE;
+
+  import static com.almasb.fxglgames.pacman.PacmanType.*;
+
+  public class PacmanFactory implements EntityFactory {
+
+  @Spawns("1")
+
+  public Entity newBlock(SpawnData data) {
+
+  var rect = new Rectangle(38, 38, Color.BLACK);
+
+  rect.setArcWidth(25);
+
+  rect.setArcHeight(25);
+
+  rect.setStrokeWidth(1);
+
+  rect.setStroke(Color.BLUE);
+
+  return entityBuilder(data)
+
+  .type(BLOCK)
+
+  .viewWithBBox(rect)
+
+  .zIndex(-1)
+
+  .build();
+
+  }
+
+  @Spawns("0")
+
+  public Entity newCoin(SpawnData data) {
+
+  var view = texture("coin.png");
+
+  view.setTranslateX(5);
+
+  view.setTranslateY(5);
+
+  return entityBuilder(data)
+
+  .type(COIN)
+
+  .bbox(new HitBox(new Point2D(5, 5), BoundingShape.box(30, 30)))
+
+  .view(view)
+
+  .zIndex(-1)
+
+  .with(new CollidableComponent(true))
+
+  .with(new CellMoveComponent(BLOCK_SIZE, BLOCK_SIZE, 50))
+
+  .scale(0.5, 0.5)
+
+  .build();
+
+  }
+
+  @Spawns("P")
+
+  public Entity newPlayer(SpawnData data) {
+
+  AnimatedTexture view = texture("player.png").toAnimatedTexture(2, Duration.seconds(0.33));
+
+  return entityBuilder(data)
+
+  .type(PLAYER)
+
+  .bbox(new HitBox(new Point2D(4, 4), BoundingShape.box(32, 32)))
+
+  .anchorFromCenter()
+
+  .view(view.loop())
+
+  .with(new CollidableComponent(true))
+
+  .with(new CellMoveComponent(BLOCK_SIZE, BLOCK_SIZE, 200).allowRotation(true))
+
+  // 网格尚未构建，因此延迟传递
+
+  .with(new AStarMoveComponent(new LazyValue(() -> geto("grid"))))
+
+  .with(new PlayerComponent())
+
+  .rotationOrigin(35 / 2.0, 40 / 2.0)
+
+  .build();
+
+  }
+
+  private Supplier aiComponents = new Supplier() {
+
+  private Map> components = Map.of(
+
+  0, () -> new DelayedChasePlayerComponent().withDelay(),
+
+  1, GuardCoinComponent::new,
+
+  2, RandomAStarMoveComponent::new,
+
+  3, DelayedChasePlayerComponent::new
+
+  );
+
+  private int index = 0;
+
+  @Override
+
+  public Component get() {
+
+  if (index == 4) { // 共有 4 个敌人
+
+  index = 0;
+
+  }
+
+  return components.get(index++).get();
+
+  }
+
+  };
+
+  @Spawns("E")
+
+  public Entity newEnemy(SpawnData data) {
+
+  return entityBuilder(data)
+
+  .type(ENEMY)
+
+  .bbox(new HitBox(new Point2D(2, 2), BoundingShape.box(36, 36)))
+
+  .anchorFromCenter()
+
+  .with(new CollidableComponent(true))
+
+  .with(new PaletteChangingComponent(texture("spritesheet.png", 695 * 0.24, 1048 *
+  0.24)))
+
+  .with(new CellMoveComponent(BLOCK_SIZE, BLOCK_SIZE, 125))
+
+  // 网格尚未构建，因此延迟传递
+
+  .with(new AStarMoveComponent(new LazyValue(() -> geto("grid"))))
+
+  .with(aiComponents.get())
+
+  .build();
+
+  }
+
+  }
+
+  清单 5-10
+
+  实体工厂类实现
+
+  ```
+
+
+  在通过应用程序类连接游戏所有部分之前，我们先来看一个通过 FXML 实现的简单用户界面（UI），以便玩家了解时间限制和其他游戏内机制。
+
+
+
+
+  ### 构建用户界面
+
+
+  使用 FXML 标记编写 UI 是 JavaFX 中的常见方法。因此，FXGL 为 FXML 文件提供了一流支持。清单 5-11 展示了一个用 FXML 编写的
+  UI 示例。该示例以 `Pane` 作为根节点，仅包含三个子节点：一个作为 UI 背景的矩形，以及两个标签，一个用于显示分数，另一个用于指示玩家可使用的传送次数。
+
+
+  ```
+
+
+  清单 5-11
+
+  包含我们游戏 UI 定义的 FXML 文件
+
+  ```
+
+
+  为了在 FXGL 中使用此 UI，我们需要一个控制器类，例如清单 5-12 中提供的类。该类的唯一职责是将我们定义的标签文本绑定到其游戏内属性，并附加一个额外的
+  UI 元素——时间进度条。回想一下，玩家需要在指定时间内完成游戏演示，因此我们的进度条将让玩家随时了解演示结束前还剩多少时间。
+
+
+  ```
+
+  import com.almasb.fxgl.ui.ProgressBar;
+
+  import com.almasb.fxgl.ui.UIController;
+
+  import javafx.fxml.FXML;
+
+  import javafx.scene.control.Label;
+
+  import javafx.scene.layout.Pane;
+
+  import javafx.scene.paint.Color;
+
+  import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
+
+  import static com.almasb.fxgl.dsl.FXGL.getip;
+
+  public class PacmanUIController implements UIController {
+
+  @FXML
+
+  private Pane root;
+
+  private ProgressBar timeBar;
+
+  @FXML
+
+  private Label labelScore;
+
+  @FXML
+
+  private Label labelTeleport;
+
+  @Override
+
+  public void init() {
+
+  timeBar = new ProgressBar(false);
+
+  timeBar.setHeight(50);
+
+  timeBar.setTranslateX(-60);
+
+  timeBar.setTranslateY(100);
+
+  timeBar.setRotate(-90);
+
+  timeBar.setFill(Color.GREEN);
+
+  timeBar.setLabelVisible(false);
+
+  timeBar.setMaxValue(PacmanApp.TIME_PER_LEVEL);
+
+  timeBar.setMinValue(0);
+
+  timeBar.setCurrentValue(PacmanApp.TIME_PER_LEVEL);
+
+  timeBar.currentValueProperty().bind(getip("time"));
+
+  root.getChildren().addAll(timeBar);
+
+  labelScore.setFont(getUIFactoryService().newFont(18));
+
+  labelTeleport.setFont(getUIFactoryService().newFont(12));
+
+  labelScore.textProperty().bind(getip("score").asString("Score:\n%d"));
+
+  labelTeleport.textProperty().bind(getip("teleport").asString("Teleports:\n[%d]"));
+
+  }
+
+  }
+
+  清单 5-12
+
+  UI 控制器类
+
+  ```
+
+
+  软件“拼图”的最后一块是 `PacmanApp` 类，它将所有其他类整合在一起。
+
+
+  ### 构建应用程序类
+
+
+  与上一章中的前一个游戏示例不同，这个类非常简单。这是因为游戏侧重于 AI，而我们已经涵盖了其所需的组件。在清单 5-13 中，我们首先定义了与关卡时间、方块大小、地图和
+  UI 相关的常量变量。这些常量随后以直接的方式在 `initSettings()` 中使用。在 `initInput()` 中，我们简单地调用了玩家组件和我们创建的五个动作。游戏中有四个重要的变量，因此我们在
+  `initGameVars()` 中创建它们。这些变量用于跟踪玩家分数、游戏中剩余的金币数量、玩家可以使用的传送次数以及完成关卡剩余的时间。
+
+
+  `initGame()` 代码尤为重要，因为它向我们展示了如何将文本文件解析为游戏世界，并随后从该游戏世界生成 A* 网格。为了生成关卡，我们使用带有 `TextLevelLoader`
+  的 `AssetLoader`，并提供相关细节，例如方块大小。至于生成 A* 网格（以便敌人能够智能移动），本质上，我们调用 `AStarGrid.fromWorld`
+  并提供关于地图和方块大小的详细信息。我们还告诉 FXGL 哪些类型的实体是不可行走的。在这种情况下，`BLOCK` 实体是唯一不可行走的实体类型，因此我们使用一个“if”语句来指明它。在此方法中，我们还将网格对象添加到变量列表中。回想一下，在创建玩家实体时，我们使用惰性值传递了
+  A* 网格，向 FXGL 指示此类对象将在运行时存在。我们现在只是在履行那个承诺。生成游戏世界后，我们可以轻松计算游戏中的金币数量：`getGameWorld().getEntitiesByType(COIN).size());`。最后，在此初始化方法中，我们安排游戏计时器每秒运行一次，以便“时间”变量被适当递减；并且我们为其添加一个监听器，以便当它达到
+  0 时，游戏结束。
+
+
+  与 FXGL 游戏的典型架构一样，在 `initPhysics()` 中，我们设置碰撞处理器，例如玩家与敌人之间以及玩家与金币之间的碰撞处理器。`initUI()`
+  方法展示了一个新的 `loadUI()` 调用，我们在其中将 FXML 文件和 UI 控制器类连接在一起，这两个文件都是我们之前创建的。`PacmanApp`
+  类中实现的其他方法都很简单。
+
+
+
+  ```java
+
+  import com.almasb.fxgl.app.GameApplication;
+
+  import com.almasb.fxgl.app.GameSettings;
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import com.almasb.fxgl.entity.level.Level;
+
+  import com.almasb.fxgl.entity.level.text.TextLevelLoader;
+
+  import com.almasb.fxgl.pathfinding.CellState;
+
+  import com.almasb.fxgl.pathfinding.astar.AStarGrid;
+
+  import com.almasb.fxgl.ui.UI;
+
+  import com.almasb.fxglgames.pacman.components.PlayerComponent;
+
+  import javafx.scene.input.KeyCode;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.util.Duration;
+
+  import java.util.Map;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  import static com.almasb.fxglgames.pacman.PacmanType.*;
+
+  public class PacmanApp extends GameApplication {
+
+  public static final int BLOCK_SIZE = 40;
+
+  public static final int MAP_SIZE = 21;
+
+  private static final int UI_SIZE = 80;
+
+  // 秒
+
+  public static final int TIME_PER_LEVEL = 110;
+
+  public Entity getPlayer() {
+
+  return getGameWorld().getSingleton(PLAYER);
+
+  }
+
+  public PlayerComponent getPlayerComponent() {
+
+  return getPlayer().getComponent(PlayerComponent.class);
+
+  }
+
+  @Override
+
+  protected void initSettings(GameSettings settings) {
+
+  settings.setWidth(MAP_SIZE * BLOCK_SIZE + UI_SIZE);
+
+  settings.setHeight(MAP_SIZE * BLOCK_SIZE);
+
+  settings.setTitle("FXGL 吃豆人");
+
+  settings.setVersion("1.0");
+
+  }
+
+  @Override
+
+  protected void initInput() {
+
+  onKey(KeyCode.W, () -> getPlayerComponent().up());
+
+  onKey(KeyCode.S, () -> getPlayerComponent().down());
+
+  onKey(KeyCode.A, () -> getPlayerComponent().left());
+
+  onKey(KeyCode.D, () -> getPlayerComponent().right());
+
+  onKeyDown(KeyCode.F, () -> {
+
+  if (geti("teleport") > 0) {
+
+  inc("teleport", -1);
+
+  getPlayerComponent().teleport();
+
+  }
+
+  });
+
+  }
+
+  @Override
+
+  protected void initGameVars(Map vars) {
+
+  vars.put("score", 0);
+
+  vars.put("coins", 0);
+
+  vars.put("teleport", 1);
+
+  vars.put("time", TIME_PER_LEVEL);
+
+  }
+
+  @Override
+
+  protected void initGame() {
+
+  getGameScene().setBackgroundColor(Color.DARKSLATEGREY);
+
+  getGameWorld().addEntityFactory(new PacmanFactory());
+
+  Level level = getAssetLoader().loadLevel("pacman_level0.txt", new TextLevelLoader(40,
+  40, '' ''));
+
+  getGameWorld().setLevel(level);
+
+  // 初始化 A* 底层网格，并将有方块阻挡的单元格标记为不可行走
+
+  AStarGrid grid = AStarGrid.fromWorld(getGameWorld(), MAP_SIZE, MAP_SIZE, BLOCK_SIZE,
+  BLOCK_SIZE, (type) -> {
+
+  if (type == BLOCK)
+
+  return CellState.NOT_WALKABLE;
+
+  return CellState.WALKABLE;
+
+  });
+
+  set("grid", grid);
+
+  // 计算金币数量
+
+  set("coins", getGameWorld().getEntitiesByType(COIN).size());
+
+  run(() -> inc("time", -1), Duration.seconds(1));
+
+  getWorldProperties().addListener("time", (old, now) -> {
+
+  if (now == 0) {
+
+  onPlayerKilled();
+
+  }
+
+  });
+
+  }
+
+  @Override
+
+  protected void initPhysics() {
+
+  onCollisionBegin(PLAYER, ENEMY, (p, e) -> onPlayerKilled());
+
+  onCollisionCollectible(PLAYER, COIN, c -> onCoinPickup());
+
+  }
+
+  @Override
+
+  protected void initUI() {
+
+  UI ui = getAssetLoader().loadUI("pacman_ui.fxml", new PacmanUIController());
+
+  ui.getRoot().setTranslateX(MAP_SIZE * BLOCK_SIZE);
+
+  getGameScene().addUI(ui);
+
+  }
+
+  @Override
+
+  protected void onUpdate(double tpf) {
+
+  if (requestNewGame) {
+
+  requestNewGame = false;
+
+  getGameController().startNewGame();
+
+  }
+
+  }
+
+  public void onCoinPickup() {
+
+  inc("coins", -1);
+
+  inc("score", +50);
+
+  inc("teleport", +1);
+
+  if (geti("coins") == 0) {
+
+  gameOver();
+
+  }
+
+  }
+
+  private boolean requestNewGame = false;
+
+  public void onPlayerKilled() {
+
+  requestNewGame = true;
+
+  }
+
+  private void gameOver() {
+
+  getDialogService().showMessageBox("演示结束。按确定退出", getGameController()::exit);
+
+  }
+
+  public static void main(String[] args) {
+
+  launch(args);
+
+  }
+
+  }
+
+  代码清单 5-13
+
+  游戏应用类
+
+  ```
+
+
+  至此，迷宫动作游戏的实现就完成了。一旦你拥有了所有类，就应该能够运行游戏。观察每个 AI 如何以各自独特的方式行动，并试图捕捉或威胁玩家。
+
+
+  不同的游戏对 AI 有不同的要求。有些会像我们的示例一样使用 A*寻路算法，另一些则需要编写条件（if）语句来让玩家误以为 AI 在学习，还有些情况会用到成熟的计算机科学算法。总而言之，游戏
+  AI 的实现没有单一的方法。不过，你现在已经对该领域有了总体了解，并知晓了常见的实现技术。现在，我们来总结本章涵盖的关键要点。
+
+
+  ## 总结
+
+
+  在本章中，我们介绍了游戏 AI 的基础知识。在游戏中加入 AI 非常重要，因为它能显著提升玩家的参与度。具体来说，我们探讨了 AI 代理如何利用 FXGL 中的
+  A*寻路功能在游戏世界中导航。A*算法在二维网格或图（一种包含节点和边的数据结构）上运行，并计算两个节点之间的最短路径（可能存在多条）。随后，我们讨论了为 AI
+  代理添加行为。行为使代理能够参与游戏玩法并与玩家互动，执行各种动作。在 FXGL 中，可以通过使用自定义组件或有限状态机来添加此类行为。最后，我们整合了一个带有原创附加功能的《吃豆人》克隆版。我们讨论了如何在游戏中实现每个
+  AI 代理的行为，并展示了 FXGL 在允许用户编写自定义逻辑方面的灵活性。下一章将重点介绍如何增强 FXGL 游戏的视觉效果。
+
+
+  '
+- '# 6. 图形、视觉效果和用户界面
+
+
+  本章将讨论许多与图形和渲染相关的视觉复杂特性。我们还将详细讲解 FXGL 中的粒子系统和动画系统。具体来说，我们将探讨：
+
+
+  *   FXGL 中的渲染管线以及对底层绘制的抽象
+
+  *   游戏层与 UI 层的分离
+
+  *   粒子系统、其配置以及如何在游戏世界中使用它
+
+  *   如何使用 FXGL API 平移、旋转和缩放游戏及 UI 元素
+
+
+  图形和视觉效果是现代游戏的关键方面，对于 AAA 级游戏尤其如此。虽然 FXGL 无法达到如此高强度的图形计算水平，但它仍然能够产生令人印象深刻的效果。例如，图
+  6-1 展示了一款应用了大量视觉效果的“射击”游戏。
+
+
+  ![](img/522865_1_En_6_Fig1_HTML.jpg)
+
+
+  一张截图展示了这款俯视角射击游戏中的场景，其中包含大量视觉效果。
+
+
+  图 6-1
+
+  一个使用 FXGL 开发的俯视角射击游戏示例
+
+
+  为了对渲染的工作原理以及所使用的概念有一个总体了解，我们通过探讨计算机图形学背后的理论以及它在 FXGL 中的实现来开启本章。在后续内容中，我们将互换使用 JavaFX
+  和 FXGL，因为 FXGL 中的大部分渲染管线都是由 JavaFX 提供的。
+
+
+
+  ## 高级渲染与用户界面
+
+
+  我们从渲染流程的最顶层开始图形学之旅，这一层封装在平台特定的窗口表示中，然后一路深入，探究每个后端如何原生渲染窗口内的元素。在 JavaFX 中，原生操作系统窗口由
+  `Stage` 类抽象表示。在窗口渲染方面，常见的选项包括：
+
+
+  *   **独占全屏**（窗口独占图形适配器，使其成为显示器上唯一渲染的内容；这种方式可能导致窗口间切换困难）。
+
+  *   **窗口模式**（这是任何桌面应用的典型状态，通常可以看到窗口装饰，包括最小化、最大化和关闭按钮）。这是默认提供的选项。
+
+  *   **无边框全屏**（窗口最大化，移除边框以实现全屏效果；但由于没有独占访问权限，窗口间切换更为便捷）。
+
+
+  如你所知，在 `Stage` 对象内部，我们有一个 `Scene`，所有应用内容都在其中渲染。在渲染模式方面，图形学中通常区分“保留模式”和“立即模式”。在保留模式下，你通常创建
+  UI 对象并设置其属性；而在立即模式下，你通常通过图形调用来绘制图元。例如，假设我们希望用两种方法绘制一个矩形。使用保留模式，我们构造一个新的 `Rectangle()`
+  对象，并设置其 x、y、宽度和高度属性。然后，基于这些属性，JavaFX 将知道如何绘制矩形。使用立即模式，我们通常会调用四次 `drawLine()` 并传入适当参数来绘制矩形的四条边。这里使用
+  `drawLine()` 方法是为了提供对比示例，但需要注意的是，某些 API 可能提供直接调用 `drawRect()` 的方法来绘制矩形。我们现在探讨这些理论方法如何与
+  JavaFX 实现相关联，首先从保留模式开始。
+
+
+  ### 保留模式
+
+
+  JavaFX 中的保留模式渲染通过场景图完成，这是一种经过轻微修改的图（回顾一下我们在前一章中介绍的图）数据结构，称为树。树数据结构有一个特殊的节点，称为根节点。场景图的根节点是顶层容器，驱动场景中
+  UI 对象的布局。场景图层次结构的一个示例如图 6-2 所示，该图展示了 JavaFX UI 对象（节点）如何在场景中组织。场景图从上到下、从左到右读取。
+
+
+  ![](img/522865_1_En_6_Fig2_HTML.jpg)
+
+
+  组织结构图描绘了场景图层次结构如下：场景图根节点分为按钮、滑块和垂直布局容器。垂直布局容器包含列表视图和标签。
+
+
+  图 6-2
+
+
+  一个 JavaFX 场景图示例
+
+
+  在图中，你会注意到某些节点包含其他节点。例如，包含 `ListView` 和 `Label` 对象的垂直布局容器被特意重命名，以演示容器内部可以包含多个节点（这些节点称为子节点）。在
+  JavaFX 中，垂直布局节点的实际名称是 `VBox`。不是布局容器且从用户角度旨在交互的节点通常称为控件。这些节点没有子节点。控件的示例包括 `Button`
+  和 `Slider`。
+
+
+  JavaFX 中的场景图管理应用中所有活跃 UI 对象的逻辑表示。基于此信息，场景图可以非常高效地管理这些对象。例如，如果某个 UI 对象不可见，则无需绘制它。另一个例子是“部分重绘”，即如果自上一帧以来没有重大变化，则仅重绘场景图的一部分。通常，场景图保留方法是
+  JavaFX 中显示视觉对象的首选方式，对于 FXGL 也是如此。这里需要注意的是，可见场景中的所有 UI 节点只能从 JavaFX 应用程序线程修改，以避免任何图形问题。在实践中，这意味着在
+  FXGL 中，你只应在 `initUI()` 或 `onUpdate()` 方法内部修改 UI。或者，你可以将 UI 属性绑定到 FXGL 的游戏内变量，正如我们在前几章中所做的那样，以避免手动修改视图的需要。
+
+
+  让我们考虑如何将保留渲染方法应用于我们的游戏世界。回想一下，实体本身不一定携带其视觉表示的信息，因为并非所有实体都需要视觉表示。为了在屏幕上显示实体，我们通常需要通过
+  `ViewComponent` 配置并附加其视图，然后该组件会向场景图提供渲染数据。
+
+
+  ```
+
+  Rectangle view = new Rectangle();
+
+  // 按需配置视图
+
+  entity.getViewComponent().addChild(view);
+
+  ```
+
+
+  将此实体添加到游戏世界将自动将其添加到场景图，因为它包含一个带有相关视图的 `ViewComponent`。在前面的示例中，我们使用了一个软件生成的形状——矩形。然而，大多数情况下，你会使用纹理作为视图。有一个
+  `Texture` 类正是为此设计的：
+
+
+  ```
+
+  Texture t = FXGL.texture("player.png");
+
+  ```
+
+
+  需要注意的是，`Texture` 也是一个 JavaFX 节点，因此你可以在 UI 中的任何位置使用它，而不仅仅用于 FXGL 实体。
+
+
+  在 FXGL 的保留模式下，场景图被分为两部分：游戏层和顶部的 UI 层。游戏层是你的世界显示的地方。游戏层中的坐标可以延伸到可见视口之外（我们将在本节稍后介绍视口概念）。随着你的玩家移动，世界的其他部分将变得可见。尽管游戏层的大部分由实体组成，但也可以添加不与任何实体关联的视图：
+
+
+
+
+  ```
+
+  Node node = ...
+
+  getGameScene().addGameView(new GameView(node, 0));
+
+  ```
+
+
+  传递给 `GameView` 构造函数的 0 值是该视图的 z-index。z-index 是一个整数值，用于定义视图在 FXGL 场景图中游戏层部分的绘制顺序。该值越高，视图就越接近绘制堆栈的顶部。换句话说，z-index
+  为 1 的节点将绘制在任何索引低于 1 的节点之上。类似地，如果我们添加一个 z-index 为 2 的节点，它将被绘制在 z-index 为 0 和 1 的节点之上。
+
+
+  UI 层是您的 HUD（抬头显示）和各种 UI 元素（包括菜单）所在的位置。它通常用于提供关于游戏和玩家状态的信息。该视图固定在可见视口中，其坐标系始终在 (0,
+  0) 到 (width, height) 范围内。这意味着当玩家可以在世界中自由移动时，UI 保持固定在一个位置。固定的坐标也简化了 UI 元素的设计和定位。要将节点添加到
+  UI 层，您可以调用以下代码：
+
+
+  ```
+
+  Node node = ...
+
+  // 使用 setLayout / setTranslate 方法定位
+
+  getGameScene().addUINode(node);
+
+  ```
+
+
+  关于 UI 层中的菜单，FXGL 使用工厂模式来处理这些对象。要提供您自己的菜单实现，我们需要做两件事：首先，创建您的菜单类，该类继承 `FXGLMenu`；其次，创建您的工厂类，该类继承
+  `SceneFactory`。例如：
+
+
+  ```
+
+  public class MyMenu extends FXGLMenu {
+
+  public MyMenu(MenuType type) {
+
+  super(type);
+
+  getContentRoot().getChildren().addAll( ... );
+
+  }
+
+  }
+
+  ```
+
+
+  `MenuType.MAIN_MENU` 是在应用程序启动时显示的菜单。当主菜单显示时，游戏尚未初始化。`MenuType.GAME_MENU` 是玩家在游戏过程中可以打开的菜单。这两种菜单的视图和功能都可以通过继承
+  `FXGLMenu` 来实现。完成后，我们需要告诉 FXGL 如何构造您的自定义菜单，这通过场景工厂来完成：
+
+
+  ```
+
+  public class MySceneFactory extends SceneFactory {
+
+  public FXGLMenu newMainMenu() {
+
+  return new MyMenu(MenuType.MAIN_MENU);
+
+  }
+
+  public FXGLMenu newGameMenu() {
+
+  return new MyMenu(MenuType.GAME_MENU);
+
+  }
+
+  }
+
+  ```
+
+
+  最后，剩下唯一要做的事情就是告诉 FXGL 使用哪个工厂类。这可以通过在 `initSettings()` 方法中设置场景工厂来实现，如下所示：
+
+
+  ```
+
+  settings.setSceneFactory(new MySceneFactory());.
+
+  ```
+
+
+  ### 即时模式
+
+
+  在介绍了 FXGL 中保留模式的基础知识之后，我们现在简要地考虑一下即时模式。如果您尝试运行过一些 FXGL 示例，或者只是浏览过代码，您可能已经注意到，并没有显式的
+  `render()` 方法需要重写来提供您自己的渲染例程。部分原因是 FXGL 旨在提供非常高级的 API，并将大部分底层代码隐藏在引擎幕后。实际原因是 JavaFX
+  只允许访问保留图形模式，这意味着我们不是自己绘制对象，而是指定要绘制什么。尽管如此，如果确实需要，我们可以使用 `GraphicsContext` 对象来模拟直接绘制。可以通过首先构造一个
+  `Canvas` 对象并将其添加到 UI 层来获得它，如下所示：
+
+
+  ```
+
+  @Override
+
+  protected void initGame() {
+
+  Canvas canvas = new Canvas(width, height);
+
+  addUINode(canvas);
+
+  }
+
+  ```
+
+
+  接下来，在应用程序的 `onUpdate()` 方法中，我们可以获取对 `GraphicsContext` 对象的引用，然后手动在其上绘制。
+
+
+  ```
+
+  @Override
+
+  protected void onUpdate(double tpf) {
+
+  GraphicsContext g = canvas.getGraphicsContext();
+
+  }
+
+  ```
+
+
+  我们可以像直接绘制到屏幕上一样在 `g` 上绘制。在这种情况下，图形上下文位于游戏层中所有元素的顶部（因为它被添加到 UI 层）。因此，您用它绘制的任何内容都将绘制在现有游戏和实体视图之上。值得注意的是，只有当您的游戏需要更高性能或需要显示许多实体时，才应该使用
+  `GraphicsContext`；否则，场景图（保留）模式可能更优。
+
+
+  为了使用即时模式获得更高的渲染性能，您可以查看 `PixelBuffer`，它是在 JavaFX 13 中引入的，允许通过 `WritableImage` 直接绘制到屏幕的可见区域。一个有用的额外好处是这种绘制可以并行化。换句话说，您可以将绘制区域分成多个部分，使得每个部分由单独的线程并行绘制，从而可能进一步提高渲染性能。然而，这种方法的主要缺点是
+  `PixelBuffer` 本身不提供任何光栅化手段。这意味着如果您想绘制一个矩形，您需要逐像素地绘制它。可以想象，这是一个相当大的限制，因此，只有在您明确需要性能时才应使用此方法。如果您确实想尝试这种渲染方法，搜索“JavaFX
+  `PixelBuffer` example”会得到一些有用的结果。至此，我们完成了对 FXGL 中两种高级渲染方法的概述，现在我们的注意力转向低级渲染能力和视口。
+
+
+
+
+  ## 底层渲染与视口
+
+
+  视口是通往游戏世界的窗口，也是用户看到的可见区域。实际上，FXGL 中的视口承担了摄像头的职责。当构建的游戏世界大于单个屏幕时，FXGL 允许调整视口，以便“摄像头”可以移动，显示游戏世界的其他部分。你可以通过以下方式获取视口的引用：
+
+
+  ```
+
+  Viewport viewport = getGameScene().getViewport();
+
+  ```
+
+
+  你可以通过调用以下方法手动更改视口的 x 和 y 值：
+
+
+  ```
+
+  viewport.setX(...);
+
+  viewport.setY(...);
+
+  ```
+
+
+  虽然你可以使用 JavaFX 的 X 和 Y 属性来绑定到任何实体的 X 和 Y，但 API 提供了一个内置方法来绑定视口，使其自动跟随实体：
+
+
+  ```
+
+  Entity player = ...;
+
+  // distX, distY 定义了原点与实体之间的距离
+
+  viewport.bindToEntity(player, distX, distY);
+
+  ```
+
+
+  当视口跟随玩家时，它可能会超出关卡边界。你可以设置视口可以“游荡”的边界范围：
+
+
+  ```
+
+  viewport.setBounds(minX, minY, maxX, maxY);
+
+  ```
+
+
+  使用这种方法，你可以确保视口始终渲染游戏边界内的视图。
+
+
+  我们已经了解了如何通过保留模式和立即模式进行高级绘制，包括如何使用视口修改屏幕的可见区域。然而，在底层，大致了解像素如何运作以及绘制单个像素需要哪些信息也很重要。单个像素的颜色可以用
+  RGBA 对象表示，其中字母分别代表红色、绿色、蓝色和 Alpha 通道。根据每个通道值的表示方式，它可以是 0.0 到 1.0 之间的浮点数范围，也可以是 0
+  到 255 之间的整数。通过组合红色、绿色和蓝色的值，可以构建出一系列颜色。最终结果还由 Alpha 通道决定，其中 0.0（或 0）表示颜色完全透明（实际上不可见），1.0（或
+  255）表示颜色完全不透明。此范围内的任何值都提供一定程度的透明度，使得可以看穿这个特定像素。通过使用不同透明度值的组合，可以实现许多视觉上吸引人的效果，例如图
+  6-3 中所示的效果，其中多个椭圆形重叠，每个椭圆形都以自己的不透明度绘制。
+
+
+  ![](img/522865_1_En_6_Fig3_HTML.jpg)
+
+
+  一个视觉效果截图，通过重叠多个具有不同不透明度的椭圆形创建。
+
+
+  图 6-3
+
+
+  叠加多个具有不同不透明度（Alpha 通道值）的像素
+
+
+  当像素重叠时，最终颜色通过混合模式确定。混合可以描述为一个函数，它接收两个像素——底部已经绘制好的像素和顶部即将绘制的像素——并返回组合后的颜色。由于该函数可以自由实现任何混合两种颜色以获得最终颜色的方式，因此可能存在无限多种混合函数，尽管有些（如
+  `SRC_OVER` 和 `ADD`）比其他函数更常见。例如，JavaFX 使用的默认混合函数称为 `SRC_OVER`，它简单地返回顶部颜色。`ADD` 混合函数将两种颜色相加并返回结果。在
+  FXGL 中，`Texture` 类提供了一系列这些混合函数，由于它们作用于底层图像数据，因此没有渲染开销。但是，如果你需要动态混合，仍然可以使用 JavaFX
+  的 `BlendMode`，但如果节点数量很大，它可能会很耗费资源。
+
+
+  现在我们已经了解了像素的最终颜色是如何处理的，渲染堆栈的最后一部分是如何将所有像素信息显示到屏幕上。最终，这些像素将由特定于目标平台（应用程序运行所在的平台）的后端实现来绘制。我们已经看到，JavaFX
+  管道提供了一组可用于实现高性能渲染的高级 API。这些 API 由一系列平台特定的本地代码类实现。渲染背后使用的技术包括 Windows 上的 Direct3D、macOS
+  和 Linux 上的 OpenGL，以及移动和嵌入式设备（如树莓派）上的 OpenGL ES。该堆栈的可视化表示见图 6-4。macOS 上的现代图形实现也利用
+  Metal 进行精细调整的性能优化。
+
+
+  ![](img/522865_1_En_6_Fig4_HTML.jpg)
+
+
+  一个组织结构图。Java F X A P I 被分类为 Direct 3 D、Open G L、Open G L E S。Direct 3 D 用于 Windows。Open
+  G L 用于 Mac O S 和 Linux。Open G L E S 用于 Android、I O S、嵌入式设备。
+
+
+  图 6-4
+
+
+  不同的 JavaFX 渲染后端
+
+
+  至此，我们完成了对 FXGL 渲染管线的概述，接下来将介绍可以使用此管线生成的视觉效果。
+
+
+  ## 视觉效果系统
+
+
+  FXGL 中存在许多系统，允许使用视觉上吸引人的效果。所有这些系统都建立在上述渲染堆栈之上，并提供用户友好的 API 来访问所需功能。常用的系统包括粒子系统、动画系统和插值系统，以下小节将对它们进行详细说明。
+
+
+
+
+  ### 粒子系统
+
+
+  粒子效果是一组视觉效果，其中每个独立的视图被称为一个粒子。这些效果通常色彩丰富且富有动感，因此能轻松让任何游戏元素变得生动。在 FXGL（以及其他引擎）中，控制所有粒子及其行为的系统被称为粒子系统。一个粒子可以由一个微小的几何（可能带有纹理）对象来表示，并具有某些属性，例如速度、加速度、缩放、生命周期、不透明度等等。最后，粒子发射器是一种构造，用于配置粒子如何以及何时被创建。单个粒子在绘制时，可能看起来就像任何其他普通的游戏对象。然而，当大量绘制时，这些粒子可以创造出非凡的视觉效果，例如图
+  6-5 中所示的效果。
+
+
+  ![](img/522865_1_En_6_Fig5_HTML.jpg)
+
+
+  一张由大量粒子创建的视觉效果截图。
+
+
+  图 6-5
+
+
+  FXGL 中粒子效果的一个示例
+
+
+  在 FXGL 中使用粒子系统的常见方法包括：获取一个内置发射器（FXGL 在 `ParticleEmitters` 类中提供了几个内置发射器），然后根据需要进行配置，以产生所需的视觉效果。粒子发射器本身不是一个图形对象；因此，它需要一个“桥梁”才能被添加到
+  FXGL 的场景图中。有两个这样的桥梁：`ParticleComponent` 和 `ParticleSystem`。你可能已经猜到，前者允许将发射器附加到一个实体上，从而将发射器添加到游戏层，而后者则将发射器附加到
+  UI 层。
+
+
+  配置发射器通常很简单。例如，代码清单 6-1 中的发射器使用了一个现有的爆炸发射器配置，并将最大发射次数设置为 2，每次发射的粒子数设置为 50，最后，将发射率设置为
+  0.5（1 表示每帧发射一次；0.5 表示每两帧发射一次）。在实践中，该发射器将发射两次：第一次在第一帧，第二次在跳过一个帧之后。每次发射将产生 50 个粒子。从
+  代码清单 6-1 中可以看出，还可以设置各种其他属性，因此鼓励读者尝试这些设置，以观察它们对视觉效果的影响。
+
+
+  ```
+
+  var emitter = ParticleEmitters.newExplosionEmitter(300);
+
+  emitter.setMaxEmissions(2);
+
+  emitter.setNumParticles(50);
+
+  emitter.setEmissionRate(0.5);
+
+  emitter.setSize(1, 24);
+
+  emitter.setScaleFunction(i -> FXGLMath.randomPoint2D());
+
+  emitter.setExpireFunction(i -> Duration.seconds(2.5));
+
+  emitter.setAccelerationFunction(() -> Point2D.ZERO);
+
+  emitter.setBlendMode(BlendMode.ADD);
+
+  // ... 其他属性
+
+  代码清单 6-1
+
+  配置粒子发射器
+
+  ```
+
+
+  一旦发射器配置完成，我们可以使用 `ParticleComponent` 使发射器成为游戏的一部分：
+
+
+  ```
+
+  var e = new Entity();
+
+  e.addComponent(new ParticleComponent(emitter);
+
+  ```
+
+
+  将 `e` 添加到游戏世界也会自动将粒子效果添加到 FXGL 场景图中，从而使其在游戏中可见。类似地，要从游戏中移除粒子效果，我们只需要从世界中移除该实体（效果所附加到的实体）。
+
+
+  ### 动画系统
+
+
+  除了粒子效果之外，还有其他方法可以让任何静态图像变得生动。我们现在介绍各种为视觉对象添加动画的方法。动画是任何动态游戏元素或视觉上吸引人的用户界面的常见组成部分。从根本上说，动画是某个值随时间的变化。如果我们改变的值直接影响任何可见属性，那么我们在屏幕上看到的内容就会变得动态。常用的动画属于以下类别之一：
+
+
+  *   平移（沿 X、Y 或 Z 轴改变对象的位置）
+
+  *   旋转（沿 X、Y 或 Z 轴改变对象的角度）
+
+  *   缩放（沿 X、Y 或 Z 轴改变对象的大小）
+
+  *   不透明度（在 0% 到 100% 之间改变对象的透明度）
+
+  *   颜色（改变对象的 RGBA 值）
+
+  *   自定义（改变对象的自定义属性）
+
+
+  让我们考虑 代码清单 6-2 中的示例。在这个例子中，我们有一个标准的 JavaFX `Rectangle`（尽管你也可以使用一个实体），我们将沿 X 轴平移它。与你熟悉的实体构建器一样，我们可以使用动画构建器来简化动画的构建。一旦通过
+  `animationBuilder()` 获得了构建器的引用，我们就可以设置单个周期的持续时间、动画重复的次数，以及在交替周期中是否应该自动反转。接下来，我们决定要使用前面提到的哪个类别来制作动画。由于我们选择了平移，在
+  代码清单 6-2 中，我们调用了 `translate()`，它进而允许我们使用特定属性（例如 `from` 和 `to` 点）进一步配置动画。最后，我们调用
+  `buildAndPlay()`，顾名思义，它将构建动画并开始播放。默认情况下，动画在游戏场景内播放。如果你需要更改执行动画的场景，例如菜单场景，那么你可以在调用动画构建器时简单地传递对场景对象的引用。要构建其他动画类型，存在相应的方法，例如
+  `rotate()`、`scale()`、`fade()`，以及其他更通用的方法，例如 `animate()`。
+
+
+  ```
+
+  var node = new Rectangle();
+
+  animationBuilder()
+
+  .duration(Duration.seconds(2.0))
+
+  .repeat(2)
+
+  .autoReverse(true)
+
+  .translate(node)
+
+  .from(new Point2D(0.0, 100.0))
+
+  .to(new Point2D(200.0, 100.0))
+
+  .buildAndPlay();
+
+  代码清单 6-2
+
+  为 JavaFX 节点添加动画
+
+  ```
+
+
+
+
+  ### 插值系统
+
+
+  如果动画是数值的变化，那么插值（也称为缓动或补间）就是这种变化的速率。例如，假设你有一个淡出动画，会在两秒内将玩家实体的不透明度从 `1.0` 变为 `0.0`。默认情况下，FXGL
+  使用线性插值器，这意味着动画每秒的进度是相同的。因此，如果从 `1.0` 到 `0.0` 需要两秒，那么显而易见，一秒后玩家的不透明度将是 `0.5`。如果我们使用任何非线性插值器，那么动画的速率就会不同，因此一秒后，不透明度值可能大于或小于
+  `0.5`。从视觉上看，这意味着玩家淡出的速度会变慢或变快。
+
+
+  我们应该注意，使用不同的插值器不会改变动画的起始值、结束值或持续时间。相反，插值器会影响动画期间计算出的数值。实际上，插值就是时间与进度之间的比率，其中线性插值器仅提供
+  1:1 的比率，即经过 50% 的时间等同于完成 50% 的进度。因此，插值器可以很容易地表示为一个函数：
+
+
+  ```
+
+  double interpolate(double time) {
+
+  double progress = ...
+
+  return progress;
+
+  }
+
+  ```
+
+
+  这个函数可以使用任意数学运算，将介于 0 和 1 之间的时间值转换为（同一范围内的）进度值。你可以在图 6-6 中看到常见插值器（FXGL 已提供）的结果。鸟实体动画在两秒内将其从左侧平移到右侧。当时间值为
+  0 时，所有鸟实体，无论其插值器如何，都将从左侧开始；当时间值为 1 时，它们都将到达右侧的同一位置（沿 X 轴）。该图显示的时间值接近 0.4。
+
+
+  ![](img/522865_1_En_6_Fig6_HTML.jpg)
+
+
+  一张图表描绘了不同插值器在时间值接近 0.4 时的效果。对于弹性（elastic）和回退（back）插值器，鸟实体更接近 X 轴的末端。对于线性（linear）和平滑（smooth）插值器，鸟实体更接近
+  X 轴的起点。对于二次（quadratic）、三次（cubic）、四次（quartic）、五次（quintic）、指数（exponential）、正弦（sine）、圆形（circular）和弹跳（bounce）插值器，鸟实体位于两者之间。
+
+
+  图 6-6
+
+
+  不同插值器对动画进度的影响
+
+
+  最后需要指出的是，从动画的角度来看，JavaFX 节点和 FXGL 实体之间没有区别。因此，两者的 API 是相同的。基于此，我们完成了对 FXGL 视觉系统的概述。
+
+
+  ## 总结
+
+
+  在本章中，我们研究了渲染基础以及它们在 FXGL 中的实现方式。我们了解了如何将标准的 JavaFX 控件添加到 FXGL UI，以及 UI 层如何与游戏层分离。使用
+  JavaFX 控件是一个重要特性，因为它表明 JavaFX 开发者无需学习新的 API，可以直接使用他们已有的知识。我们学习了如何使用粒子系统构建复杂的视觉效果，并对其进行配置以适配我们的游戏。最后，我们介绍了如何为游戏和
+  UI 元素添加动画，以及如何使用插值器配置动画。本章的关键信息是，尽管图形理论可能是一个非常复杂的主题，但 JavaFX 和 FXGL 中的高级抽象允许开发者充分利用目标平台的渲染能力，而无需访问底层实现细节。
+
+
+  '
+- '# 7. 通用应用程序与打包
+
+
+  本章专门介绍可以使用 FXGL 开发的通用（非游戏）应用程序。这些包括商业应用程序、图形编辑器和可视化工具。从高层次来看，游戏应用程序与前端的商业应用程序并没有太大区别。它们都在一个无限循环中运行，直到用户退出应用程序。它们都接收输入，更新应用程序状态，最后将状态渲染到屏幕上。为了证明
+  FXGL 可用于开发游戏和非游戏应用程序，我们将介绍：
+
+
+  *   一个带有登录界面和业务逻辑的应用程序
+
+  *   一个图形数据可视化工具
+
+  *   我们太阳系的简单 3D 表示
+
+
+  我们还将介绍 JavaFX 和 FXGL 应用程序（包括游戏）的打包和跨平台部署，以便交付给最终用户。这简化了运行最终用户应用程序的过程，并且可以通过使用 OpenJFX
+  和 GluonFX Maven 插件来实现。
+
+
+
+
+  ## 业务应用
+
+
+  我们将从一个简单且琐碎的例子开始探索通用型应用。我们构建的应用会获取用户凭证，检查其是否有效，并提供创建新账户的 API。图 7-1 展示了登录界面和主用户界面。
+
+
+  ![](img/522865_1_En_7_Fig1_HTML.jpg)
+
+
+  两张截图。第一张展示了一个用户界面，包含两个分别标记为“用户名”和“密码”的文本框。文本框下方是一个提交按钮。第二张展示了一个用户界面，其标题居中显示为“输入”。标题下方有一段文字“请输入用户名”，接着从上到下依次是一个文本框和一个确定按钮。
+
+
+  图 7-1
+
+
+  一个结合了标准 JavaFX 和内置 FXGL 控件的草图用户界面
+
+
+  整个应用的代码见代码清单 7-1。如你所见，有两个实例级变量 `loginRoot` 和 `mainRoot`，分别代表登录界面和主界面。代码的关键部分在 `initGame()`
+  方法内，应用的大部分初始化工作都在此完成。在图 7-1 的左侧，我们看到界面有两个字段：一个用于输入用户名，一个用于输入密码。我们在 `initGame()`
+  中创建这些字段，并用水平布局框将它们包裹起来，该布局框还包含描述标签，以帮助用户了解应输入什么内容。接下来，我们创建“提交”按钮，其作用是检查输入是否有效，如果有效，则显示主视图（即，将根节点切换为
+  `mainRoot`）。在实际应用中，当提交的凭证无效时，我们可能还需要执行某些操作。例如，我们可以显示一条通用通知，告知用户输入了无效凭证。最后，你会注意到
+  `loginRoot` 对象只是一个包含我们创建对象的垂直布局框，而 `mainRoot` 则是一个仅包含一个项目——`btnAddNew` 按钮的容器，点击该按钮会显示图
+  7-1 中的对话框。
+
+
+  ```
+
+  import com.almasb.fxgl.app.*;
+
+  import javafx.geometry.Pos;
+
+  import javafx.scene.Cursor;
+
+  import javafx.scene.Node;
+
+  import javafx.scene.control.*;
+
+  import javafx.scene.layout.*;
+
+  import javafx.scene.paint.Color;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  public class BusinessApp extends GameApplication {
+
+  private VBox loginRoot;
+
+  private StackPane mainRoot;
+
+  @Override
+
+  protected void initSettings(GameSettings settings) { }
+
+  @Override
+
+  protected void initGame() {
+
+  getGameScene().setBackgroundColor(Color.LIGHTGRAY);
+
+  getGameScene().setCursor(Cursor.DEFAULT);
+
+  var fieldUsername = new TextField();
+
+  var fieldPassword = new PasswordField();
+
+  var box1 = new HBox(10, new Label("Username: "), fieldUsername);
+
+  var box2 = new HBox(10, new Label("Password: "), fieldPassword);
+
+  box1.setAlignment(Pos.CENTER);
+
+  box2.setAlignment(Pos.CENTER);
+
+  var btn = new Button("Submit");
+
+  btn.setOnAction(e -> {
+
+  if (isValid(fieldUsername.getText(), fieldPassword.getText())) {
+
+  showMainView();
+
+  }
+
+  });
+
+  loginRoot = new VBox(10, box1, box2, btn);
+
+  loginRoot.setAlignment(Pos.CENTER);
+
+  loginRoot.setPrefSize(getAppWidth(), getAppHeight());
+
+  var btnAddNew = new Button("Add New");
+
+  btnAddNew.setOnAction(e -> {
+
+  showAddNewDialog();
+
+  });
+
+  mainRoot = new StackPane(btnAddNew);
+
+  mainRoot.setPrefSize(getAppWidth(), getAppHeight());
+
+  addUINode(loginRoot);
+
+  }
+
+  private boolean isValid(String name, String password) {
+
+  return true;   // code to check if account is valid
+
+  }
+
+  private void showMainView() {
+
+  removeUINode(loginRoot);
+
+  addUINode(mainRoot);
+
+  }
+
+  private void showAddNewDialog() {
+
+  getDialogService().showInputBox("Please enter name", name -> {
+
+  getDialogService().showInputBox("Please enter password", password -> {
+
+  // code to add new accounts
+
+  });
+
+  });
+
+  }
+
+  public static void main(String[] args) {
+
+  launch(args);
+
+  }
+
+  }
+
+  代码清单 7-1
+
+  一个带有登录界面的业务应用示例实现
+
+  ```
+
+
+  在这个虽显刻意但富有洞察力的业务应用中，我们主要使用了内置的 JavaFX 控件。然而，需要注意的是，FXGL 用户界面并不局限于普通的 JavaFX 控件，其视图可以像普通
+  JavaFX 应用一样通过 CSS 进行自定义。图 7-2 展示了一个名为 FXHub 的 FXGL 应用示例，其视图比我们构建的应用略为复杂。这应该能让你了解从用户界面美学角度可以实现什么样的效果。现在，我们将进入下一节的示例，该示例将说明并非所有应用都需要传统的用户界面才能发挥作用和具有实用性。
+
+
+  ![](img/522865_1_En_7_Fig2_HTML.jpg)
+
+
+  一张截图展示了一个用户界面，标题为“F x hub”。页面有 5 个标签页，包括“应用”、“游戏”、“项目”、“教程”和“搜索”。“游戏”标签页左侧列出了 5
+  款游戏及其版本和 URL。每款列出的游戏右侧都有一个“下载并运行”按钮。
+
+
+  图 7-2
+
+
+  使用 FXGL 构建的 FXHub 软件的主用户界面
+
+
+
+
+  ## 图数据可视化工具
+
+
+  在本节中，我们将使用来自 [`https://snap.stanford.edu/data/`](https://snap.stanford.edu/data/)
+  的 Twitter 社交网络数据子集，并开发一个 FXGL 应用程序，以图形形式可视化这些数据。回顾第 5 章，图是由节点（项目）集合和连接节点的边集合组成的。图数据来源于多个领域：从文件系统和社交网络到足球比赛和生物医学科学。通常使用图可视化来识别项目之间的连接，或探索项目组之间的关系。我们构建的应用程序截图如图
+  7-3 所示，其中可以看到一个中等复杂程度的图。
+
+
+  ![](img/522865_1_En_7_Fig3_HTML.png)
+
+
+  该截图展示了一个复杂图，其中包含大量节点和大量相互连接节点的边。
+
+
+  图 7-3
+
+
+  一个示例 Twitter 网络的可视化
+
+
+  我们从上述来源获取的数据采用特定的纯文本格式，其中每一行由两个数字（ID）组成，中间用单个空格分隔，如下所示：
+
+
+  ```
+
+  number1 number2
+
+  number3 number4
+
+  ...
+
+  ```
+
+
+  每个数字（ID）标识一个节点（在我们的上下文中指人）：这些节点在图 7-3 中绘制为小圆圈。每行文本表示两个节点（人）之间存在一条边（关系）：这些关系在图 7-3
+  中绘制为线条。本质上，高级算法如下：为每个节点绘制一个圆圈，并为每条边绘制一条线。该算法以及 FXGL 应用程序在清单 7-2 中实现，我们现在将详细探讨。
+
+
+  `GraphVisSample` 类中有三个字段：一个用于存储表示节点的圆圈的半径，一个用于存储从节点 ID 到应用程序中关联实体的映射，最后一个用于存储图数据中的边（如果愿意，也可以将其存储为列表）。此外，还有五个值得注意的方法：`initGame()`、`onUpdate()`、`makeNode()`、`forceBounds()`
+  和 `hash()`。
+
+
+  在 `initGame()` 中，我们：
+
+
+  *   将图数据（采用之前定义的纯文本格式）加载为 `List<String>`，其中列表中的每个项都是一行文本
+
+  *   在列表上调用 `forEach()` 来处理每一行
+
+  *   将每一行拆分为两个标记（两个整数节点 ID），并让 `makeNode()` 从节点 ID 构造一个实体
+
+  *   在两个节点之间添加一条新边，因为每行文本表示一种关系
+
+
+  我们看到每条边的起点和终点都绑定到可视化节点的实体的位置上。使用这种方法，我们在移动节点时无需手动移动边。为了避免为每条边添加一个实体，我们构造了一个名为“background”的单一实体，并将所有边附加到该实体上。最后，我们通过使用
+  `hash()` 对两个节点 ID 进行“哈希处理”来存储边数据。这种方法使我们能够为给定的一对节点生成唯一标识符，无论这对节点的顺序如何。
+
+
+  在 `onUpdate()` 中，我们基于 Fruchterman-Reingold 力模型实现图节点和边的布局算法。关于图布局算法的讨论超出了本书的范围；然而，简单来说，有边相连的节点相互吸引，而没有边的节点相互排斥。因此，我们只需要将有线条连接的节点移近，并将没有连接的节点移远。该算法可以通过遍历应用程序中的每一对节点并应用适当的移动来实现。我们需要注意，这些移动调用可能会将节点移出屏幕边界。通常我们不希望发生这种情况，因此在每次检查结束时，我们调用
+  `forceBounds()` 来将所有节点保持在屏幕的可见部分内。
+
+
+  `forceBounds()` 方法很简单，包含四个“if”语句检查，分别对应屏幕的四个边。如果实体（节点）超出其中某一边，它会被拉回以保持在屏幕边界内。
+
+
+  `makeNode()` 方法构造一个以 `Circle` 作为其视图的实体，并最初将其随机放置在屏幕上。我们还附加了一个之前未使用过的内置组件 `DraggableComponent`。通过将其附加到任何实体，我们可以点击该实体并用鼠标在屏幕上拖动它。由于图布局算法使所有节点持续运动，拖动一个节点会使图自行重新排列，从而为用户带来吸引人的交互体验。事实上，通过添加一个点击处理程序，在点击时显示关于该节点的一些信息，我们可以轻松扩展此应用程序。此功能的实现留给读者自行探索。
+
+
+
+
+  ```
+
+  import com.almasb.fxgl.app.GameApplication;
+
+  import com.almasb.fxgl.app.GameSettings;
+
+  import com.almasb.fxgl.core.math.FXGLMath;
+
+  import com.almasb.fxgl.dsl.components.DraggableComponent;
+
+  import com.almasb.fxgl.entity.Entity;
+
+  import javafx.geometry.Rectangle2D;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.scene.shape.Circle;
+
+  import javafx.scene.shape.Line;
+
+  import java.util.HashMap;
+
+  import java.util.Map;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  public class GraphVisSample extends GameApplication {
+
+  private static final double NODE_RADIUS = 5;
+
+  private Map nodes = new HashMap();
+
+  private Map edges = new HashMap();
+
+  @Override
+
+  protected void initSettings(GameSettings settings) {
+
+  settings.setWidth(1600);
+
+  settings.setHeight(900);
+
+  }
+
+  @Override
+
+  protected void initGame() {
+
+  getGameScene().setBackgroundColor(Color.LIGHTGRAY);
+
+  Entity background = new Entity();
+
+  getGameWorld().addEntity(background);
+
+  getAssetLoader().loadText("twitter_edges.txt")
+
+  .forEach(line -> {
+
+  var tokens = line.split(" +");
+
+  int n1 = Integer.parseInt(tokens[0]);
+
+  int n2 = Integer.parseInt(tokens[1]);
+
+  Entity e1 = nodes.get(n1);
+
+  if (e1 == null)
+
+  e1 = makeNode(n1)
+
+  Entity e2 = nodes.get(n2);
+
+  if (e2 == null)
+
+  e2 = makeNode(n2);
+
+  var edge = new Line();
+
+  edge.startXProperty().bind(e1.xProperty().add(NODE_RADIUS));                      edge.startYProperty().bind(e1.yProperty().add(NODE_RADIUS));
+
+  edge.endXProperty().bind(e2.xProperty().add(NODE_RADIUS)          edge.endYProperty().bind(e2.yProperty().add(NODE_RADIUS));
+
+  background.getViewComponent().addChild(edge);
+
+  edges.put(hash(e1, e2), true);
+
+  });
+
+  }
+
+  @Override
+
+  protected void onUpdate(double tpf) {
+
+  double K = 50;
+
+  var entities = getGameWorld().getEntities();
+
+  // 从索引 1 开始，跳过背景实体
+
+  for (int i = 1; i  e2
+
+  var v = e2.getPosition()
+
+  .subtract(e1.getPosition());
+
+  double d = v.magnitude();
+
+  // 如果 e1 和 e2 之间存在边
+
+  if (edges.containsKey(hash(e1, e2))) {
+
+  double force = d * d / K * tpf;
+
+  e1.translate(v.normalize().multiply(force));
+
+  e2.translate(v.normalize().multiply(-force));
+
+  }
+
+  if (d > 0.0) {
+
+  double force = K * K / d * tpf;
+
+  e1.translate(v.normalize().multiply(-force));
+
+  e2.translate(v.normalize().multiply(force));
+
+  forceBounds(e1);
+
+  forceBounds(e2);
+
+  }
+
+  }
+
+  }
+
+  }
+
+  private Entity makeNode(int id) {
+
+  var e = entityBuilder()
+
+  .at(FXGLMath.randomPoint(new Rectangle2D(0, 0, getAppWidth(), getAppHeight())))
+
+  .view(new Circle(NODE_RADIUS,NODE_RADIUS,NODE_RADIUS))
+
+  .with("id", id)
+
+  .with(new DraggableComponent())
+
+  .buildAndAttach();
+
+  nodes.put(id, e);
+
+  return e;
+
+  }
+
+  private void forceBounds(Entity e) {
+
+  if (e.getX()  getAppWidth())
+
+  e.setX(getAppWidth() - 10);
+
+  if (e.getY() + 10 > getAppHeight())
+
+  e.setY(getAppHeight() - 10);
+
+  }
+
+  private int hash(Entity e1, Entity e2) {
+
+  var hash1 = e1.hashCode();
+
+  var hash2 = e2.hashCode();
+
+  return hash1 > hash2
+
+  ? 31 * (31 + hash1) + hash2
+
+  : 31 * (31 + hash2) + hash1;
+
+  }
+
+  public static void main(String[] args) {
+
+  launch(args);
+
+  }
+
+  }
+
+  代码清单 7-2
+
+  一个图可视化应用的示例实现
+
+  ```
+
+
+  可以看到，借助这个相对简单的图绘制应用，我们已经开发出了一款在实际世界中可用的软件。具体来说，这个演示程序让我们能够探索来自各种来源的图数据——这些数据不一定来自社交网络。至此，我们的可视化演示程序就完成了，接下来我们将进入下一个激动人心的应用，它将空间、3D
+  和动态模拟结合在一起。
+
+
+  ## 3D 太阳系
+
+
+  在本节中，我们将首次使用 FXGL 的 3D 功能。虽然本节并非旨在全面概述 3D 能实现的所有功能，但它演示了在 FXGL 中此类应用的基本原理。当你学习完本节内容后，你会注意到，除了渲染之外，2D
+  和 3D 之间几乎没有区别。
+
+
+  ### 天体数据与逻辑
+
+
+  你可能已经见过太阳系的不同表现形式。图 7-4 就是其中一种，它是我们将要开发的应用的截图。回想一下，在构建游戏时，我们通常会从定义实体类型开始。在这个应用中，由于我们没有不同的实体类型（图
+  7-4 中显示的所有实体都只是天体），因此我们转而从定义天体的属性开始。由于这些天体的对象是预定义的，也就是说我们不会在运行时引入任何新天体，因此使用名为 `CelestialBody`
+  的 `enum` 来定义它们是合理的。完整的定义见代码清单 7-3。简单来说，每个天体都有以公里为单位的直径、以公里/秒为单位的自转速度、以 10⁶ 公里为单位的与太阳的距离、以天为单位的公转周期，以及最后用于该天体的纹理图像。这些天体使用的图像资源来自
+  [`www.solarsystemscope.com/textures/`](http://www.solarsystemscope.com/textures/)，遵循
+  CC-BY 4.0 许可，不过你也可以使用任何合适的图像。最后，天体的数值数据来自 [`https://nssdc.gsfc.nasa.gov/planetary/factsheet/`](https://nssdc.gsfc.nasa.gov/planetary/factsheet/)。
+
+
+  ```
+
+  import javafx.scene.image.Image;
+
+  import static com.almasb.fxgl.dsl.FXGL.image;
+
+  public enum CelestialBody {
+
+  // 按 0.2 比例缩小，以便其他天体可见
+
+  SUN(1392680 * 0.2, 1.997, 0, 0, image("2k_sun.jpg")),
+
+  MERCURY(4879, 0.003026, 57.9, 88, image("2k_mercury.jpg")),
+
+  VENUS(12104, 0.00181, 108.2, 224.7, image("2k_venus_surface.jpg")),
+
+  EARTH(12756, 0.4651, 149.6, 365.2, image("2k_earth_daymap.jpg")),
+
+  MARS(6792, 0.24117, 228.0, 687.0, image("2k_mars.jpg")),
+
+  JUPITER(142984, 12.6, 778.5, 4331, image("2k_jupiter.jpg")),
+
+  SATURN(120536, 9.87, 1432.0, 10747, image("2k_saturn.jpg")),
+
+  URANUS(51118, 2.59, 2867.0, 30589, image("2k_uranus.jpg")),
+
+  NEPTUNE(49528, 2.68, 4515.0, 59800, image("2k_neptune.jpg"));
+
+  // 直径，单位：公里
+
+  private double diameter;
+
+  // 自转速度，单位：公里/秒
+
+  private double rotationSpeed;
+
+  // 与太阳的距离，单位：10⁶ 公里
+
+  private double distanceFromSun;
+
+  // 公转周期，单位：天
+
+  private double orbitalPeriod;
+
+  private Image image;
+
+  CelestialBody(double diameter, double rotationSpeed, double distanceFromSun, double
+  orbitalPeriod, Image image) {
+
+  this.diameter = diameter;
+
+  this.rotationSpeed = rotationSpeed;
+
+  this.distanceFromSun = distanceFromSun;
+
+  this.orbitalPeriod = orbitalPeriod;
+
+  this.image = image;
+
+  }
+
+  public double getDiameter() {
+
+  return diameter;
+
+  }
+
+  public double getRadiusScaled(double scale) {
+
+  return diameter * scale / 2.0;
+
+  }
+
+  public double getRotationSpeed() {
+
+  return rotationSpeed;
+
+  }
+
+  public double getDistanceFromSun() {
+
+  return distanceFromSun * 1_000_000;
+
+  }
+
+  public double getOrbitalPeriod() {
+
+  return orbitalPeriod;
+
+  }
+
+  public Image getImage() {
+
+  return image;
+
+  }
+
+  }
+
+  代码清单 7-3
+
+  模拟中使用的数据定义与属性
+
+  ```
+
+
+  ![](img/522865_1_En_7_Fig4_HTML.png)
+
+
+  一张描绘太阳系草图的截图。太阳在左侧，地球在右侧，另外两颗行星在中间。背景为深色，散布着浅色粒子。
+
+
+  图 7-4
+
+
+  FXGL 中太阳系的草图表示（太阳未按精确比例缩小，以便其他实体清晰可见）
+
+
+
+
+  由于演示中的所有实体均为天体且仅需一种行为，我们将为它们统一使用一个组件，其实现见代码清单 7-4。你会注意到它相对简单。利用天体的`enum`数据，我们构建并应用了两个动画：一个用于绕自身轴旋转，另一个用于绕太阳公转。要绕特定点旋转，需调用`origin()`方法设置该点。但需注意，第一个动画无需调用`origin()`方法，因为默认情况下
+  3D 旋转是围绕实体中心进行的，而这正是我们所需。对于第二个动画，旋转需要围绕另一个点进行，具体来说是太阳实体的中心。由于我们将太阳放置在`(0,0,0)`处，将原点设置为`(-entity.getX(),0,0)`即可，因为每个实体的
+  X 值等于其到世界中心`(0,0,0)`的距离。
+
+
+  ```
+
+  import com.almasb.fxgl.entity.component.Component;
+
+  import javafx.geometry.Point3D;
+
+  import javafx.scene.shape.Sphere;
+
+  import javafx.util.Duration;
+
+  import static com.almasb.fxgl.dsl.FXGL.animationBuilder;
+
+  public class CelestialBodyComponent extends Component {
+
+  private CelestialBody data;
+
+  private Sphere view;
+
+  public CelestialBodyComponent(CelestialBody data) {
+
+  this.data = data;
+
+  }
+
+  @Override
+
+  public void onAdded() {
+
+  view = (Sphere) entity.getViewComponent().getChildren().get(0);
+
+  animationBuilder()
+
+  .duration(Duration.seconds(data.getRotationSpeed() * 3))
+
+  .repeatInfinitely()
+
+  .rotate(view)
+
+  .from(new Point3D(0, 0, 0))
+
+  .to(new Point3D(0, 360, 0))
+
+  .buildAndPlay();
+
+  animationBuilder()
+
+  .duration(Duration.seconds(data.getOrbitalPeriod() * 0.1))
+
+  .repeatInfinitely()
+
+  .rotate(entity)
+
+  .origin(new Point3D(-entity.getX(), 0, 0))
+
+  .from(new Point3D(0, 0, 0))
+
+  .to(new Point3D(0, 360, 0))
+
+  .buildAndPlay();
+
+  }
+
+  }
+
+  代码清单 7-4
+
+  CelestialBodyComponent 类的实现
+
+  ```
+
+
+  至此，整个模拟的逻辑就完成了。我们剩下的工作就是告诉 FXGL 如何通过工厂构建实体，以及如何设置我们的 3D 场景。
+
+
+  ### 天体构建
+
+
+  众所周知，要构建实体，我们需要创建一个工厂。代码清单 7-5 展示了工厂类的实现。由于所有实体类型相同，因此只有一个方法。我们来详细分析这个方法。
+
+
+  ```
+
+  import com.almasb.fxgl.entity.*;
+
+  import com.almasb.fxgl.scene3d.Torus;
+
+  import javafx.geometry.Point3D;
+
+  import javafx.scene.AmbientLight;
+
+  import javafx.scene.paint.*;
+
+  import javafx.scene.shape.Sphere;
+
+  import javafx.util.Duration;
+
+  import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
+
+  import static com.almasb.fxglgames.CelestialBody.SATURN;
+
+  import static com.almasb.fxglgames.CelestialBody.SUN;
+
+  public class SolarSystemFactory implements EntityFactory {
+
+  @Spawns("body")
+
+  public Entity newBody(SpawnData data) {
+
+  // 从公里转换为 3D 单位
+
+  var sizeScale = 0.00005;
+
+  var distanceScale = 0.00000016;
+
+  CelestialBody bodyData = data.get("data");
+
+  // 太阳与天体之间的距离，加上每个天体的半径偏移
+
+  var x = (bodyData.getDistanceFromSun() + SUN.getRadiusScaled(1.0) + bodyData.getRadiusScaled(1.0))
+  * distanceScale;
+
+  var r = bodyData.getRadiusScaled(sizeScale);
+
+  var mat = new PhongMaterial();
+
+  mat.setDiffuseMap(bodyData.getImage());
+
+  var view = new Sphere(r);
+
+  view.setMaterial(mat);
+
+  var e = entityBuilder(data)
+
+  .at(x, 0, 0)
+
+  .view(view)
+
+  .with(new CelestialBodyComponent(bodyData))
+
+  .build();
+
+  if (bodyData == SATURN) {
+
+  var torus = new Torus(r * 1.5, r * 0.3 / 3.0);
+
+  e.getViewComponent().addChild(torus);
+
+  }
+
+  return e;
+
+  }
+
+  }
+
+  代码清单 7-5
+
+  SolarSystemFactory 类
+
+  ```
+
+
+  我们首先定义缩放单位。这样做是因为实际距离和尺寸的公里数值对于我们的应用来说过大，尤其是公里与 3D 单位之间的比例并非一比一。我们对距离和尺寸使用不同的缩放比例，以便在模拟中能看到大多数实体。我们并不追求科学级别的精确度，因此这种差异是可以接受的。接下来，我们通过调用`data.get("data")`获取天体数据，因此在生成实体时，必须确保实际传入这个`enum`数据。这样我们就能计算出天体在
+  3D 单位中的位置和大小。
+
+
+  3D 中的视图可以附加`Material`对象，用于决定视图的外观。我们使用默认的`PhongMaterial`，并将天体的纹理应用到其上。最终，每个天体在演示中都表现为一个球体，因此我们使用预先计算好的半径`r`构建一个`Sphere`对象，并应用材质。实体本身的构建很简单，就是一系列我们已经熟悉的调用。实体构建完成后，有一个针对土星的特殊情况，我们为其添加了一个额外的`Torus`视图，从而产生环绕行星的标志性光环效果。
+
+
+  ### 构建 3D 应用程序类
+
+
+  最后，我们之前创建的类可以在`SolarSystemApp`游戏应用程序类中整合起来，其实现见代码清单 7-6。该类中唯一的实例级字段是对 3D 摄像机的引用。在
+  2D 中，我们在上一章介绍的视口移动（影响 2D 摄像机）很简单，包括沿 X 轴和 Y 轴的平移。然而在 3D 中，对摄像机进行抽象比使用视口要方便得多。在初始化和控制摄像机之前，我们必须先在`initSettings()`中启用
+  3D 模式。这将使 FXGL 正确构建场景，并意识到实体将存在于 3D 世界中，而非 2D。在`initInput()`中，基于“WASD”键的摄像机移动只需调用`Camera3D`类中的相应方法即可。
+
+
+  在游戏初始化过程中，我们从游戏场景中获取摄像机引用。然后设置其属性，例如移动速度、摄像机的可视距离以及初始位置（我们将摄像机沿 Z 轴平移 10 个单位，这样当摄像机生成时，它会看向原点
+  0,0,0）。最后，我们将摄像机设置为 FPS（第一人称射击）模式，这意味着当我们移动鼠标时，摄像机视图会随之匹配并相应旋转。我们还使光标不可见，为用户创造更沉浸的体验。
+
+
+  接下来，我们添加之前创建的实体工厂，这样 FXGL 就知道如何创建天体。其余的方法用于初始化光照、天空盒（可以理解为 3D 背景）以及天体本身。我们的模拟中将有两种光源：一种照亮整个场景的`AmbientLight`，另一种看似从太阳位置辐射出来的`PointLight`。天空盒是一个术语，用于描述绘制在包围整个
+  3D 游戏场景的假想立方体六个内侧面上的图像集合。如果这个立方体足够大且足够远，那么这六张图像就会在摄像机周围营造出广阔空间的错觉。天空盒或其替代品在游戏中常用于隐藏游戏世界的有限边界。为了营造这种错觉，在`initSkybox()`方法中，我们构建了一个
+  1024×1024 的图像，并遍历每个像素将其着色为白色或黑色。白色只有 2%的几率出现，因此整个图像很可能大部分是黑色，偶尔出现白色，从而创造出我们在图 7-3
+  中看到的带有星星的夜空效果。最后，天体的创建很简单，因为所有逻辑都已封装在工厂类中。我们遍历每个天体的`enum`项，并使用数据生成它们各自的实体。
+
+
+
+
+  ```
+
+  import com.almasb.fxgl.app.GameApplication;
+
+  import com.almasb.fxgl.app.GameSettings;
+
+  import com.almasb.fxgl.app.scene.Camera3D;
+
+  import com.almasb.fxgl.core.math.FXGLMath;
+
+  import com.almasb.fxgl.entity.SpawnData;
+
+  import com.almasb.fxgl.scene3d.SkyboxBuilder;
+
+  import com.almasb.fxgl.texture.ColoredTexture;
+
+  import com.almasb.fxgl.texture.ImagesKt;
+
+  import javafx.geometry.Point2D;
+
+  import javafx.scene.*;
+
+  import javafx.scene.image.WritableImage;
+
+  import javafx.scene.input.KeyCode;
+
+  import javafx.scene.paint.Color;
+
+  import javafx.util.Duration;
+
+  import java.util.ArrayList;
+
+  import java.util.stream.Collectors;
+
+  import static com.almasb.fxgl.dsl.FXGL.*;
+
+  public class SolarSystemApp extends GameApplication {
+
+  private Camera3D camera3D;
+
+  @Override
+
+  protected void initSettings(GameSettings settings) {
+
+  settings.setWidth(1280);
+
+  settings.setHeight(720);
+
+  settings.set3D(true);
+
+  }
+
+  @Override
+
+  protected void initInput() {
+
+  onKey(KeyCode.W, () -> camera3D.moveForward());
+
+  onKey(KeyCode.S, () -> camera3D.moveBack());
+
+  onKey(KeyCode.A, () -> camera3D.moveLeft());
+
+  onKey(KeyCode.D, () -> camera3D.moveRight());
+
+  onKey(KeyCode.L, () -> getGameController().exit());
+
+  }
+
+  @Override
+
+  protected void initGame() {
+
+  camera3D = getGameScene().getCamera3D();
+
+  camera3D.setMoveSpeed(40);
+
+  camera3D.getPerspectiveCamera().setFarClip(500000);
+
+  var transform = getGameScene().getCamera3D().getTransform();
+
+  transform.translateZ(-10);
+
+  getGameScene().setFPSCamera(true);
+
+  getGameScene().setCursorInvisible();
+
+  getGameWorld().addEntityFactory(new SolarSystemFactory());
+
+  initLight();
+
+  initSkybox();
+
+  initBodies();
+
+  }
+
+  private void initLight() {
+
+  entityBuilder()
+
+  .at(-5, 0, 0)
+
+  .view(new PointLight())
+
+  .view(new AmbientLight(Color.rgb(233, 233, 233, 0.2)))
+
+  .buildAndAttach();
+
+  }
+
+  private void initSkybox() {
+
+  var pixels = new ColoredTexture(1024, 1024, Color.RED)
+
+  .pixels()
+
+  .stream()
+
+  .map(p -> p.copy(FXGLMath.randomBoolean(0.02) ? Color.color(1, 1, 1, random(0.0,
+  1.0)) : Color.BLACK))
+
+  .collect(Collectors.toList());
+
+  Image image = ImagesKt.fromPixels(1024, 1024, pixels);
+
+  var skybox = new SkyboxBuilder(1024)
+
+  .front(image)
+
+  .back(image)
+
+  .left(image)
+
+  .right(image)
+
+  .top(image)
+
+  .bot(image)
+
+  .buildImageSkybox();
+
+  entityBuilder()
+
+  .view(skybox)
+
+  .buildAndAttach();
+
+  }
+
+  private void initBodies() {
+
+  for (CelestialBody body : CelestialBody.values()) {
+
+  spawn("body",
+
+  new SpawnData().put("data", body)
+
+  );
+
+  }
+
+  }
+
+  public static void main(String[] args) {
+
+  launch(args);
+
+  }
+
+  }
+
+  代码清单 7-6
+
+  SolarSystemApp 类
+
+  ```
+
+
+  至此，模拟程序已完成，我们可以运行太阳系演示了。出于探索目的，你可能希望调整天体的各种属性，观察这些变化如何影响模拟效果。
+
+
+  ## 打包与部署
+
+
+  本节将介绍 OpenJFX 和 GluonFX Maven 插件，利用它们我们可以生成多种最终用户包，包括特定平台的无依赖镜像以及原生镜像。我们将从前者开始，该包允许用户无需安装
+  Java 即可运行打包后的应用程序。
+
+
+  要使用 OpenJFX Maven 插件的 jlink 命令，通常需要创建一个 `module-info.java` 文件，位于源码根目录（通常是 `src/main/java`）。文件内容相当简单：只需为其命名（此处为
+  `mygame`），并声明包含 FXGL。
+
+
+  ```
+
+  open module mygame {
+
+  requires com.almasb.fxgl.all;
+
+  }
+
+  ```
+
+
+  下一步是将 Maven 插件添加到 pom.xml 文件的相应（插件）部分，如代码清单 7-7 所示。
+
+
+  ```
+
+  org.openjfx
+
+  javafx-maven-plugin
+
+  0.0.8
+
+
+  mygame/com.mygame.GameApp
+
+
+  代码清单 7-7
+
+  OpenJFX Maven 插件
+
+  ```
+
+
+  插件配置中显示的 main class 属性指向包含 `main()` 方法的类，本例中类名为 `GameApp`，位于 `com.mygame` 包中。现在我们可以使用命令行构建无依赖包了。打开操作系统（或
+  IDE）命令提示符，导航到 pom.xml 所在目录。假设命令提示符能识别 mvn 命令（如果不能，可能需要修改系统设置，让命令提示符知道 Maven 的安装位置），然后运行：
+
+
+  ```
+
+  mvn compile
+
+  mvn javafx:jlink
+
+  ```
+
+
+  这些命令成功执行后，`target` 目录将包含与当前运行平台对应的二进制文件子目录。例如，在 Windows 上执行命令会生成 Windows 的无依赖包。这意味着你可以将该包分发给
+  Windows 用户，他们无需安装 Java 或其他任何东西即可运行。要运行打包好的 Windows 特定应用程序，可以启动 `bin` 子目录中的 .bat
+  文件，该文件通过一系列调用最终会执行 `main()` 方法。
+
+
+  GluonFX Maven 插件则实现了不同的目标：它执行提前编译，生成完全原生的包，与之前的方法不同，它原生运行（而非通过 Java 虚拟机）。添加和配置该插件的最简单方式如代码清单
+  7-8 所示，其中我们使用了与 OpenJFX 插件相同的主类。
+
+
+  ```
+
+  com.gluonhq
+
+  gluonfx-maven-plugin
+
+  1.0.13
+
+
+  com.mygame.GameApp
+
+
+  代码清单 7-8
+
+  GluonFX Maven 插件
+
+  ```
+
+
+  使用此插件时，有两个值得注意的命令（其他命令超出本书范围）。第一个是：
+
+
+  ```
+
+  mvn gluonfx:run
+
+  ```
+
+
+  该命令允许你快速测试项目能否在 Java 虚拟机上成功编译和运行。当项目运行效果满意后，我们执行第二个命令：
+
+
+  ```
+
+  mvn gluonfx:build
+
+  ```
+
+
+  这是一个非常密集且要求高的任务，它将 Java 代码转换为特定平台的原生代码，生成可执行文件。例如，在 Windows 上，这可以是 .exe 或 .msi 文件。通过更改目标平台，我们还可以为移动设备和嵌入式设备构建原生包。更多信息请访问
+  [`https://github.com/gluonhq/gluonfx-maven-plugin/`](https://github.com/gluonhq/gluonfx-maven-plugin/)。
+
+
+  使用这两种方法，我们最终得到一组文件或包，可以分发给非开发者的系统，这些系统随后即可运行你用 JavaFX 构建的游戏或应用程序。由于 FXGL 应用程序本质上就是一个
+  JavaFX 应用程序，任何项目都可以通过这种方式构建、打包和部署。
+
+
+  ## 本章小结
+
+
+  在本章中，我们探讨了 FXGL 适用的多种非游戏用例。FXGL 能够很好地支持这些用例并不令人意外，因为它本身就是 JavaFX 的直接扩展。因此，我们再次观察到，FXGL
+  应用程序可以完成 JavaFX 应用程序能做的所有事情。具体来说，我们看到了如何构建一个包含登录和业务逻辑的通用应用程序，接着是图形数据可视化，以及我们太阳系的
+  3D 模拟。最后，我们讨论了如何打包和部署 FXGL 应用程序，以便最终用户轻松运行。在下一章（即最后一章）中，我们将回顾本书涵盖的所有内容，并提供丰富的外部参考资料供读者参考。
+
+
+
+
+  '
+- '# 8. 结论
+
+
+  在最后一章中，我们通过简要总结各章节内容，并让读者有机会探索 FXGL 的更多可能性来作结。具体来说，我们回答了常见问题，然后讨论了可以基于本书内容构建的未来项目的细节。最后，将提供一个详尽的资源列表，供读者深入了解
+  FXGL。
+
+
+  在前面的章节中，我们探讨了 FXGL 游戏引擎的能力，以及它如何与 JavaFX 生态系统无缝集成。现在是时候回顾每章的关键要点：
+
+
+  *   第 2 章：我们回顾了关于类、对象和方法的 Java 基础知识。这使我们能够构建现实世界对象和抽象概念的 Java 表示。然后，我们使用带有 Maven
+  构建工具的 IntelliJ IDE，通过 FXGL 将 JavaFX 作为外部库加载。这种方法具有通用性，可用于加载任何外部库。我们还实现了一个 FXGL 演示。
+
+
+  *   第 3 章：我们学习了实体以及它们如何表示游戏对象。我们还学习了组件以及它们如何为实体提供数据和行为，将通用模板转变为独特的游戏对象。实体存在于游戏世界中，可以通过一系列属性（如实体类型、位置及其拥有的组件集）从世界中查询。在本章中，我们还构建了第一个游戏示例——一个乒乓球游戏。通过其开发过程，我们看到了实体-组件模型在游戏中的可扩展性。
+
+
+  *   第 4 章：我们涵盖了物理基础知识，并学习了检测碰撞的各种方法。碰撞检测是任何游戏的关键方面，因为它实现了游戏对象之间的交互。我们看到了 FXGL 如何允许开发者添加碰撞处理代码并修改物理驱动实体的属性。利用这些物理概念，我们开发了一个平台游戏，玩家必须通过与实体交互来到达关卡终点。
+
+
+  *   第 5 章：我们学习了一些图论知识、A* 寻路算法，以及如何通过搜索图来找到游戏关卡中两点之间的路径。在 FXGL 中，此功能由 `AStarMoveComponent`
+  提供，它使用关卡数据在游戏世界中导航。本章还重点介绍了 AI，以及开发者如何通过自定义组件或有限状态机实现为实体添加智能行为。最后，我们开发了一个迷宫动作游戏，其中每个敌人都有不同的
+  AI 行为集。
+
+
+  *   第 6 章：我们涵盖了图形学的基础知识，以及它如何转化为 FXGL（JavaFX）渲染管线。我们配置了一个粒子发射器来生成自定义视觉效果。我们看到了如何在
+  FXGL 环境中使用 JavaFX UI 对象。这是 FXGL 的一个显著优势，因为无需学习任何新的 API 即可生成复杂的用户界面。为了让这些界面生动起来，我们探索了动画系统和内置插值器，它们可以改变动画的整体外观。
+
+
+  *   第 7 章：我们看到了游戏和业务应用在实现方面有很多共同点。我们使用 FXGL 开发了简单的非游戏应用，包括一个带有业务逻辑的登录界面、一个图形数据可视化器，以及一个动画
+  3D 太阳系模型。最后，我们探讨了如何使用 Maven 插件来打包 FXGL 应用。
+
+
+  完成这些章节后，您已具备继续使用 FXGL 17 进行游戏或应用开发之旅的良好条件。以下部分提供了额外的资源，以帮助您更有效地实现目标。
+
+
+  ## 常见问题解答
+
+
+  本节涵盖了与 FXGL 相关的各种问题，包括其 API、软件架构和开发，这些都是社区中常见的问题。
+
+
+  ***如何更改全局设置？*** FXGL 提供了许多内置设置，可以通过 `initSettings()` 方法中的 `GameSettings` 对象轻松配置。以下是一些重要的示例：
+
+
+  *   setApplicationMode(ApplicationMode.DEBUG) – 启用所有调试日志记录调用。
+
+
+  *   setScaleOnResize(boolean) – 如果为 true，则在调整大小时，游戏内容会根据用户设备分辨率自动放大或缩小。
+
+
+  *   setFullscreenAllowedFromStart(boolean) – 如果为 true，则允许游戏在启动时立即进入全屏模式。
+
+
+  ***如何更改音频音量？*** 可以通过访问运行时设置来更改音频音量，包括音效和音乐。请注意，这些设置与 `initSettings()` 方法中的设置对象不完全相同，尽管许多设置是重叠的。要获取运行时设置并更改音量，您可以调用：
+
+
+  ```
+
+  getSettings().setGlobalSoundVolume(0.5);
+
+  getSettings().setGlobalMusicVolume(0.5);
+
+  ```
+
+
+  以下问题侧重于 FXGL 的总体开发以及整个框架，而不是实现特定功能的代码。
+
+
+  ***开发 FXGL 的原因是什么？*** 它最初是一组自定义 Java 类，构建在用于游戏开发基础讲座的现有 JavaFX 功能之上。随着代码库的增长和变得灵活，我继续使用它来帮助我在
+  YouTube 上运行 JavaFX 教程，这样我就可以避免在教程中重复输入相同的代码。随着我对代码及其 API 的迭代，最终这些简单的类形成了包，后来又形成了模块。因此，我决定将其制作成一个库，并与所有有兴趣学习
+  JavaFX 和（或）游戏开发的人分享。
+
+
+  ***我正在做一个学校（学术）项目，可以使用 FXGL 吗？*** 如果您是学生，您应该向您的导师咨询，以确定您的项目中是否允许使用第三方库。如果您是导师，如果您需要帮助调整您的课程以使用
+  FXGL，请随时与我联系。世界上已有许多学术机构在其课程中使用了 FXGL。
+
+
+  ***如果我在项目中使用 FXGL，是否需要担心许可或署名问题？*** 不需要。FXGL 代码库在 MIT 许可下提供，因此您可以随意使用它。像“Powered
+  by FXGL”这样的字样会很好，但这取决于您。FXGL 适用于学术、爱好和商业项目。
+
+
+  ***FXGL 会帮助我提高就业能力吗？*** 如果您认真对待游戏开发，并计划在该领域从事未来职业，为 AAA 级公司工作，我建议您使用 Unity (C#)
+  或 Unreal Engine (C++)，两者均可免费使用。它们是业界广泛认可的引擎。但是，如果您希望成为一名独立游戏开发者，为较小的公司工作，并且希望继续使用
+  Java，那么根据您的用例，FXGL、libGDX 和 JMonkey 都是不错的替代方案。
+
+
+  ***在 FXGL 开发过程中学到了哪些关键点？*** FXGL 引擎自 2015 年以来一直（并且现在仍然）处于开发中。整个开发时间线可以分为两个阶段：早期阶段和后期阶段。在早期阶段，就软件架构和设计而言，一切都是暂定的。自上而下地设计引擎有助于确定重要的关注领域，例如游戏玩法、网络、文件系统访问和其他子系统。
+
+
+
+
+  在实现方面，前几个版本中，你只需对系统和代码进行探索。此阶段的目标是确定 API 和功能方面哪些有效、哪些无效。此时，为了快速测试功能，编写一次性代码进行原型设计是可以的。然而，开发者应意识到这些代码将被丢弃，因此不应做出任何重大决策，以避免代码僵化。
+
+
+  开发的早期阶段也适合确定所选软件（和硬件）栈的技术限制。例如，JavaFX 渲染管线的一个限制是它不支持外部着色器（可以改变绘制方式的 GPU 程序）。这一限制制约了开发者在设计游戏视觉效果时的创意发挥空间。
+
+
+  在开发的后期阶段，一旦你熟悉了 API 并了解用户如何使用系统，就可以开始专注于那些核心部分，并围绕它们构建其余功能。此时也开始为核心部分编写测试，以便明确它们应实现的功能。具体来说，你可以开始为引擎制定正式的规范，并通过测试证明它确实达到了规范要求。精确指定引擎试图实现的目标非常重要，这可以避免分心以及实现不必要的功能。最终，这能节省时间并提高核心项目的质量。
+
+
+  需要注意的是，在这个（后期）阶段，开发应保持稳定但缓慢。代码增长过快可能导致糟糕的设计决策，最终降低代码的可扩展性。应频繁咨询引擎用户，确保正在实现的功能确实被使用。让引擎用户参与开发过程是识别对他们重要的核心子系统的好方法。
+
+
+  开发过程中会学到各种底层和高层的技巧与窍门。然而，其中一个突出的方法是使用事件总线，它有助于解耦各种引擎系统。假设我们有两个所谓的系统：成就系统和音频系统。为了确保代码维护相对容易，我们希望一个系统不依赖于另一个系统（即，成就系统不调用音频系统的任何方法，反之亦然）。如果没有依赖关系，那么我们可以轻松地修改一个系统，而不会影响另一个系统的代码库。现在，假设我们的问题是每次解锁成就（成就系统中的一个功能）时播放音效（音频系统中的一个功能）。
+
+
+  为了解决上述问题，同时确保两个系统之间没有依赖关系，我们可以使用事件总线。在代码库的某处，有一个总揽全局的系统，我们称之为引擎，它维护着其他系统。在引擎系统中，我们可以有以下伪代码：
+
+
+  ```
+
+  onAchievement(eventData) {
+
+  audioSystem.playSound( ... );
+
+  }
+
+  // 为简洁起见，我们将一个函数作为对象传递
+
+  eventBus.addEventHandler(EventType.ACHIEVEMENT, onAchievement)
+
+  ```
+
+
+  当有新的成就解锁时，成就系统会触发一个类型为 `EventType.ACHIEVEMENT` 的事件。该事件被事件总线捕获并传递给引擎系统，引擎系统进而使用音频系统播放声音。使用所描述的方法，成就系统和音频系统的更改不会相互影响，但可能会影响（即导致公共
+  API 更改）引擎系统。以这种方式使用事件总线是在开发过程中学到的重要架构模式之一，它帮助构建了 FXGL 的健壮基础设施。
+
+
+  ## 未来项目与额外资源
+
+
+  我们已经看到了许多可以用 FXGL 开发的不同项目。在本节中，我们将探讨哪些进一步的想法可以转化为可演示的原型。这些想法包括：
+
+
+  *   手部追踪可视化：[`https://github.com/AlmasB/HandTrackingFXGL`](https://github.com/AlmasB/HandTrackingFXGL)，
+
+
+  *   开放世界角色扮演游戏 (RPG)：[`https://github.com/AlmasB/zephyria`](https://github.com/AlmasB/zephyria)，以及
+
+
+  *   高性能渲染：[`https://github.com/AlmasB/FXGL-FastRender`](https://github.com/AlmasB/FXGL-FastRender)。
+
+
+  我们现在将按照上述顺序简要考虑每个项目。
+
+
+  要开发手部追踪可视化工具，我们首先需要获取数据。MediaPipe 库提供了对由机器学习应用程序处理的手部追踪数据的访问。有多种方法可以使用该库，对于这种情况，最简单的方法是使用
+  JavaScript 版本，它只需要几行代码。关键过程是从 JavaScript 捕获数据并将其发送到我们的 FXGL 应用程序，这可以使用 WebSocket
+  完成。幸运的是，有可用的 WebSocket 库，这意味着我们只需要正确设置它们，就可以将手部追踪数据从 MediaPipe 库流式传输到我们的工具中。此类可视化工具可能产生的示例如图
+  8-1 所示。欢迎您探索该仓库，并将此演示转化为可用的软件。
+
+
+  ![](img/522865_1_En_8_Fig1_HTML.jpg)
+
+
+  程序输出描绘了许多从 0 到 20 编号的彩色点。点 0、5、9、13 和 17 由一条深色线连接，形成一个锥形结构，其中包含一个足球图像。左上角的文字显示：当前手势：无手。
+
+
+  图 8-1
+
+
+  FXGL 手部追踪数据可视化工具草图
+
+
+  Zephyria 是一款完全用 Kotlin 编程语言编写的开放世界 RPG 游戏。它使用 Java 以外的语言这一事实意义重大，因为它表明 Kotlin 用户也可以访问
+  FXGL 的所有功能。该游戏拥有覆盖多达 250000 个图块的大型开放世界地图，每个图块是一个 32 像素大小的正方形。地图从 Tiled 关卡文件加载，并使用我们在第
+  5 章中介绍的 A* 算法进行遍历。游戏截图如图 8-2 所示。
+
+
+  ![](img/522865_1_En_8_Fig2_HTML.jpg)
+
+
+  截图描绘了游戏 Zephyria RPG 中的一个场景。
+
+
+  图 8-2
+
+
+  Zephyria RPG 中的示例地图
+
+
+  在第 6 章中，我们讨论了即时模式和保留模式渲染，以及即时模式如何提高性能。如果我们将即时模式与 GPU 并行计算相结合，则有可能获得进一步的性能提升。实际上，其理念是逻辑和渲染的配置方式使得每个计算都可以并行运行。如果该前提成立，并且计算单元足够简单以转换为
+  GPU 指令，那么在 GPU 上运行此类算法很可能会显著提升性能。例如，图 8-3 显示了使用 FXGL 渲染的包含 1000 万个粒子的粒子群。鼓励读者浏览前面提到的仓库链接，了解不同的渲染方法如何提高或降低性能。
+
+
+  ![](img/522865_1_En_8_Fig3_HTML.jpg)
+
+
+  程序输出描绘了一个粒子群，其中有大量浅色粒子。
+
+
+  图 8-3
+
+
+  使用 FXGL 的粒子群示例
+
+
+  我们现在提供用于进一步研究和开发的有用资源：
+
+
+
+
+  *   FXGLGames：[`https://github.com/AlmasB/FXGLGames`](https://github.com/AlmasB/FXGLGames)
+  `–` 这是一个预构建的 FXGL 模板和示例演示的集合，包含完整的游戏。欢迎为仍在开发中的游戏向该仓库贡献代码。
+
+
+  *   在线资源：[`www.youtube.com/c/AlmasB0/videos`](http://www.youtube.com/c/AlmasB0/videos)`、`
+  [`https://github.com/AlmasB/FXGL/wiki`](https://github.com/AlmasB/FXGL/wiki) `–`
+  这些资源会持续更新，以确保它们代表最新的 FXGL 版本。
+
+
+  *   社区文章和游戏：[`https://github.com/AlmasB/FXGL#community`](https://github.com/AlmasB/FXGL%2523community)
+  `–` FXGL 用户社区正在稳步增长，无论是初学者、学生、爱好者还是专业人士。社区已经撰写了多篇文章来展示 FXGL 的各种功能，包括一些复杂的示例。
+
+
+  最后，如果你感到不知所措，可以随时加入位于 [`https://github.com/AlmasB/FXGL/discussions`](https://github.com/AlmasB/FXGL/discussions)
+  的 FXGL 讨论区，在那里你可以提出针对你具体用例的问题。
+
+
+  ## 结语
+
+
+  如果你已经读到这里，那么我想感谢你的坚持，并祝贺你完成了 FXGL 17 的学习之旅。我衷心希望这本书能帮助你了解 JavaFX 和 FXGL 在游戏和应用程序开发方面的能力。虽然本书只涵盖了冰山一角，但你现在应该已经拥有了一个坚实的基础，可以继续在上面构建，而前面提到的资源可以帮助你做到这一点。祝你未来一切顺利，并期待看到你的项目！
+
+
+
+
+  索引 A A*算法 ADD 混合函数 addComponent AI 行为 动画系统 A*寻路 人工智能 (AI) 资源 AStarCell 对象 AStarGrid
+  AStarGrid.fromWorld AStarMoveComponent 自动化组件注入 轴对齐包围盒 (AABB) 算法 B 球体组件 基础 JavaFX
+  应用 行为 AI BLOCK 实体 宽相位技术 业务应用 内置 JavaFX 控件 initGame() 登录和主用户界面 loginRoot 对象（含登录界面）
+  mainRoot 对象 按钮实体 C 汽车类 天体 CelestialBodyComponent 类 CellMoveComponent Chair.java
+  圆-圆相交 类，Java CollidableComponent 碰撞检测 AABB 算法 轴对齐包围盒 宽相位技术/算法 窄相位技术 分离轴定理 技术 轴对齐包围盒
+  圆-圆相交 基于网格 基于图像像素 多边形 分离轴定理 碰撞检测处理器 碰撞处理器 碰撞处理 onCollision() onCollisionBegin()
+  onCollisionEnd() onHitBoxTrigger() 需求 社区文章与游戏 com.mygame 包 组件 行为信息 组件注入 自定义组件作为数据容器
+  实体行为 控件 createContent() 方法 跨平台应用 D DelayedChasePlayerComponent 餐椅 门实体 DraggableComponent
+  drawLine() 方法 E EnemyBatComponent 实体 实体-组件模型 EntityState EventType.ACHIEVEMENT 出口标志实体
+  出口触发器 F 有限状态机 (FSM) FollowComponent 类 FXGL 应用 基础 FXGL 应用 BasicGameApp 内置设置 通用 FXGL
+  导入 开发环境 initInput() 方法 initSettings() 方法 onKey() 方法 玩家对象，添加 player.translate(5)
+  简单游戏需求 600×600 窗口 UI 添加 UI 更新 FXGL 代码库 FXGL 依赖 FXGL 开发 FXGL 游戏引擎 特性 游戏逻辑 游戏玩法 目标
+  图形特性 内部框架服务 导航系统 物理 项目源代码 游戏截图 3D 形状 FXGL 游戏 FXGL 手部追踪数据可视化工具 FXGL 渲染管线 FXGL 17
+  FXHub 软件 FXML 文件 FXML 标记 G GameApp 游戏开发 游戏层 游戏逻辑 游戏与非游戏应用 游戏对象 乒乓球游戏 游戏视觉效果 游戏世界
+  GathererComponent 类 收集状态 getComponents() getEntity() getPosition()/setPosition(Point2D
+  p) getType()/setType(Object type) GluonFX Maven 插件 GPU 并行计算 Gradle 图 图形与视觉效果 GraphicsContext
+  对象 图论 A*算法描述，图 图搜索算法 GraphVisSample 类 图可视化 图绘制应用 实现方法 注意事项 forceBounds() initGame()
+  makeNode() onUpdate() Twitter 网络 基于网格的空间索引算法 基于网格的技术 GuardCoinComponent H 手部追踪可视化
+  硬件支持 高性能渲染 I JavaFX Image 图像像素 initGame() initGameVars() initInput() 方法 initPhysics()
+  方法 initSettings() 方法 initSkybox() 方法 实例级变量 IntelliJ IntelliJ 2021 IntelliJ IDE IntelliJ
+  IDE 2021.2.2 内部框架服务 插值函数 插值系统 IrremovableComponent isVisible()/setVisible(boolean
+  b) J Java 类 方法 主体功能 getMaterial() 参数列表 名称 @Override 注解 返回类型 静态方法 椅子类型 Java 基础 JavaFX
+  基础 JavaFX 应用 createContent() 方法 与 FXGL 应用 FXGL 游戏引擎 高性能 GUI 工具包 IntelliJ 最小 JavaFX
+  应用 属性 项目源代码 start() 方法 JavaFX 17 JavaFX 与 FXGL JavaFXApp JavaFX 应用 JavaFX 功能 JavaFX
+  节点 JavaFX UI 对象 Java 游戏开发 JavaScript Java 17 JDK 17 K 按键提示实体 L LevelEndScene 类 库
+  M MainLoadingScene 类 makeExitDoor() Maven 迷宫动作游戏 应用类 资源与代码 自定义组件 AStarMoveComponent
+  DelayedChasePlayerComponent GuardCoinComponent PaletteChangingComponent PlayerComponent
+  RandomAStarMoveComponent 关卡与实体 修改版 Pac-Man 克隆 用户界面 (UI) 实现 MediaPipe 库 现代开发工具 move()
+  方法 MoveSpeedComponent 移动状态 N 窄相位技术 网络服务 newBlock() 方法 newCoin() 方法 新建 Maven 项目窗口
+  nextLevel() 非游戏应用 非零正值 非零旋转角度 不可行走 O 面向对象编程 办公椅 onAdded() onCollision() onCollisionBegin()
+  onCollisionEnd() onHitBoxTrigger() 在线资源 onRemoved() onUpdate() 方法 onUpdate() 重写方法
+  OpenJFX Maven 插件 开放世界角色扮演游戏 (RPG) origin() 方法 操作系统平台 P 打包的 Windows 特定应用 打包 PacmanApp
+  类 粒子效果 寻路 AI PathfindingSample 类 pause() PhysicsComponent JavaFX PixelBuffer 像素
+  pixelsMoved 平台游戏演示（含 FXGL） 字段 乒乓球游戏 游戏视觉效果 LevelEndScene 类 逻辑与视觉效果 initGame() initGameVars()
+  initInput() initPhysics() initSettings() makeExitDoor() nextLevel() onUpdate() setLevel()
+  MainLoadingScene 类 顺序 PlatformerApp 类 PlatformerFactory 类 PlayerButtonHandler 类
+  PlayerComponent 类 player.png 使用的资源 PlatformerApp 类 平台游戏演示 PlatformerFactory 类 平台游戏
+  平台特定的零依赖镜像 PlayerBatComponent PlayerButtonHandler 类 PlayerComponent 类 玩家实体 多边形 乒乓球游戏
+  球体组件 敌方球拍组件 实体工厂 FXGL 变量 GameApplication 游戏玩法方法 initGameObjects() 输入处理 onAction()
+  回调 顺序 PhysicsComponent 玩家球拍组件 PongApp PongFactory showGameOver() 方法 专业跨平台 项目对象模型文件
+  Q 查询实体 R RandomAStarMoveComponent raycast() 即时战略游戏 渲染性能 渲染过程 resume() 保留模式 RGBA
+  对象 刚体动力学 S 场景图 ScrollingBackgroundView 类 分离轴定理 setApplicationMode setBodyType()
+  setFixtureDef() setFullscreenAllowedFromStart setGravity() setLevel() setLinearVelocity()
+  setOnPhysicsInitialized() setProperty setScaleOnResize SignalComponent 类 简单 JavaFX
+  应用 单人游戏 单一职责原则 天空盒 3D 太阳系 天体构建 天体数据与逻辑 游戏初始化 天空盒 SolarSystemApp 游戏应用与 2D Stage 对象
+  标准 JavaFX 控件 stateComponent 子场景 T 3D 游戏 toAnimatedTexture() 方法 translate(Point2D
+  vector) 透明度值 Twitter 网络 Twitter 社交网络数据 2D 游戏 2D 网格 U UI 层 V ViewComponent 视口 W,
+  X, Y 窗口渲染 木椅 世界查询 Z Zephyria 零依赖包 零旋转角度 Z 轴索引
+
+  '
