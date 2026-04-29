@@ -1,0 +1,3264 @@
+<p><img src="images/978-1-4842-5642-8_CoverFigure.jpg"/></p>
+<p></p>
+
+
+
+
+
+
+<aside aria-label="Article Note 1" class="ArticleNote ArticleNoteESMHint BookFrontmatterArticleNote">
+<p>Any source code or other supplementary material referenced by the
+author in this book is available to readers on GitHub via the book’s
+product page, located at <a href="http://www.apress.com/9781484256411">www.​apress.​com/​9781484256411</a> . For
+more detailed information, please visit <a href="http://www.apress.com/source-code">http://​www.​apress.​com/​source-code</a>
+.</p>
+</aside>
+
+ ISBN 978-1-4842-5641-1e-ISBN 978-1-4842-5642-8
+
+
+<a href="https://doi.org/10.1007/978-1-4842-5642-8">https://doi.org/10.1007/978-1-4842-5642-8</a>
+
+
+© Luqman Saeed 2020
+
+
+This work is subject to copyright. All rights are reserved by the
+Publisher, whether the whole or part of the material is concerned,
+specifically the rights of translation, reprinting, reuse of
+illustrations, recitation, broadcasting, reproduction on microfilms or
+in any other physical way, and transmission or information storage and
+retrieval, electronic adaptation, computer software, or by similar or
+dissimilar methodology now known or hereafter developed.
+
+
+Trademarked names, logos, and images may appear in this book. Rather
+than use a trademark symbol with every occurrence of a trademarked name,
+logo, or image we use the names, logos, and images only in an editorial
+fashion and to the benefit of the trademark owner, with no intention of
+infringement of the trademark. The use in this publication of trade
+names, trademarks, service marks, and similar terms, even if they are
+not identified as such, is not to be taken as an expression of opinion
+as to whether or not they are subject to proprietary rights.
+
+
+While the advice and information in this book are believed to be true
+and accurate at the date of publication, neither the authors nor the
+editors nor the publisher can accept any legal responsibility for any
+errors or omissions that may be made. The publisher makes no warranty,
+express or implied, with respect to the material contained herein.
+
+
+Distributed to the book trade worldwide by Apress Media, LLC, 1 New York
+Plaza, New York, NY 10004, U.S.A. Phone 1-800-SPRINGER, fax (201)
+348-4505, e-mail orders-ny@springer-sbm.com, or visit
+www.springeronline.com. Apress Media, LLC is a California LLC and the
+sole member (owner) is Springer Science + Business Media Finance Inc
+(SSBM Finance Inc). SSBM Finance Inc is a Delaware corporation.
+
+
+
+
+Preface
+
+
+<p>Thank you for picking up<em>Introducing Jakarta EE CDI: Contexts and
+Dependency Injection for Enterprise Java Development.</em> I wrote this
+book as a response to the lack of easy-to-understand books on using the
+compelling and intuitive Contexts and Dependency Injection  API  on
+the Jakarta EE (formerly Java EE) platform.</p>
+<p>This book covers the very essentials of the CDI API and aims at
+explaining the various constructs in a way that is easy to understand
+and relate to. The ultimate goal is to help you, the everyday Java
+developer, write better code. Throughout the book, you will be working
+on a simple restaurant application, seeing when and how the various CDI
+API constructs can be used.</p>
+
+<h2 class="Heading">What Do You Need to Know to Use This Book?</h2>
+<p>Ideally, you should be a Java developer who is comfortable with Java
+SE before starting with this book. Knowing a bit of Java EE or Spring
+should help you pick up the concepts faster, but isn’t required. You
+should also have at least Java 8 installed on your machine.</p>
+
+
+<h2 class="Heading">What Does the Book Cover?</h2>
+<p>The book starts with the theory of Java EE, including its evolution
+to present-day Jakarta EE, and proceeds to cover CDI, starting with how
+to activate it explicitly. The discussion then builds on the concept of
+CDI beans and discusses the various types. You then learn about CDI
+contexts and injection points. The book then introduces CDI qualifiers,
+producers, interceptors, and finally CDI events.</p>
+
+
+<h2 class="Heading">What Will You Learn in the End?</h2>
+<p>This is a very concise book that covers only what matters. Your time
+is important, so I selected topics that I use personally in my
+day-to-day coding. There is no point in loading the book with topics you
+will only use sparingly. So this book should be straightforward to
+consume over a weekend.</p>
+<p>At the end of this book, you will have a firm grasp of the Contexts
+and Dependency Injection API. You’ll know what it is, when to use it,
+and how to write better, more readable and maintainable code with
+it.</p>
+
+
+<h2 class="Heading">Where Is the Source Code?</h2>
+<p>The entire code for the book is available on GitHub, both in an
+Apress branded repo located at <a href="http://www.github.com/apress/introducing-jakarta-ee-cdi"><code>www.github.com/apress/introducing-jakarta-ee-cdi</code>
+</a> and on my own repo, located at <a href="https://github.com/pedanticdev/jee-book"><code>https://github.com/pedanticdev/jee-book</code>
+</a> . The project is built with the Maven dependency
+management tool and should work in any IDE that supports Maven. If you
+do not have Maven installed, you can follow the guide found at <a href="https://www.baeldung.com/install-maven-on-windows-linux-mac"><code>https://www.baeldung.com/install-maven-on-windows-linux-mac</code>
+</a> to install it on your machine. It is available for
+all OSes out there. I highly encourage you to clone the code to your
+local machine to follow along with the book.</p>
+<p>
+The project object model (<code>pom.xml</code> )  file 
+contains the Payara Micro Maven plugin that you can use to run the code
+sample. Change to the project directory and issue the following command:
+
+</p>
+<pre>mvn package payara-micro:start</pre>
+<p>To get the  Async CDI
+ events running, you will need to download the Payara Server Full
+Stream from <a href="http://www.payara.fish/software/downloads/"><code>www.payara.fish/software/downloads/</code>
+</a> and follow the video found at <a href="http://www.youtube.com/watch%253Fv%253Daw-cNxKJU_Y"><code>www.youtube.com/watch?v=aw-cNxKJU_Y</code>
+</a> to run the cloned code.</p>
+
+
+<h2 class="Heading">How Do You Reach Me?</h2>
+<p>Writing a book is a tedious task, and as such, despite best efforts,
+there may be errors that escape through quality checks. I take full
+responsibility for all of them.</p>
+<p>Should you encounter any such errors, need help with anything in this
+book, or just want to hang out for coffee, please do not hesitate to
+reach out to me personally via<code>hello@pedanticacademy.com</code>
+.</p>
+<p>
+Once again, thank you for picking up this book. I hope you write better
+code after reading it. Let’s get started.
+<blockquote>
+<p>—Luqman Saeed</p>
+</blockquote>
+</p>
+
+
+
+
+
+
+
+
+About the Author
+
+
+
+
+
+
+
+About the Technical Reviewer
+
+
+
+
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">1. What Is Java EE?</h1>
+
+
+<!--End Abstract-->
+
+<p>At its core, the Java Enterprise Edition (Java EE), formerly known as
+J2EE, is a collection of <em>abstract, standardized specifications</em>
+that prescribe solutions to commonly faced challenges in software
+development.</p>
+<p>It is important to note the word <em>abstract</em> in this
+definition. This means that Java EE is simply a set of interfaces and
+contracts that provide a public-facing API for developers.</p>
+<p>These abstract specs are also said to be <em>standardized</em>. What
+does that mean? It means that the entire collection of Java EE APIs are
+published according to well-defined criteria set by experts in the
+subject field of the API<sup><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></sup>.</p>
+<p>By standardized, it also means that every Java EE API has gone
+through the rigorous process of the Java Community Process’s Java Spec
+Request program. The result of this process is a set of APIs that are
+industry-tried and -tested and are deemed to be here to stay.</p>
+<p>However, remember that I said Java EE is abstract, right? Well, even
+though you will generally code against the Java EE APIs in the <code>javax.*</code> packages, you
+can’t run your application on Java EE per se.</p>
+
+<h2 class="Heading">How Do You Run a Java EE App?</h2>
+<p>To run a Java EE application, you need a concrete implementation of
+the Java EE spec. Remember that they are abstract. The official name
+given to the concrete implementation of Java EE is an <em>application
+server</em>. I bet you have heard that phrase before, right?</p>
+<p>An application
+server is basically a concrete implementation of the Java EE
+abstract specs. This means that you run your application code using Java
+EE API implementations on an application server.</p>
+<p>There are many application servers out there, including Payara
+Server, Apache TomEE, JBoss Wildfly, and IBM OpenLiberty, among
+others.</p>
+
+
+
+Footnotes
+
+
+<a href="#493447_1_En_1_Chapter.xhtml#Fn1_source">1</a>
+
+ 
+
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">2. What Is a Java Specification
+Request (JSR)?</h1>
+
+
+<!--End Abstract-->
+
+<p>At its core, a Java Specification Request is a formal, open standard
+document proposal that is made by an individual or organization to the
+Java Community Process
+(JCP)<sup><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></sup>. It contains proposed changes,
+additions, or improvements to the Java technology platform.</p>
+<p>Many essential points can be gleaned from this definition. First is
+that a JSR is a formal document. What this means is that a JSR or a
+request for adding to the Java technology group must take a certain
+predefined format. This format is defined by the JCP.</p>
+<p>Also, a JSR is
+an open standard document. What this means, again, is that a JSR is a
+document that conforms to certain established rules and regulations
+regarding its distribution and contributions to it. It also means that
+whatever is contained in the JSR is easily accessible to anyone
+interested in assessing it.</p>
+<p>Flowing from the definition of a Java Specification Request is that a
+JSR can be made by either an individual or organization. Any member of
+the JCP can make a JSR. JCP membership is opened to the public; it’s
+free for individuals as well. So what this means is that you cannot make
+a request to the JCP without being a member of the organization.</p>
+<p>Finally, a JSR is a document that proposes changes, additions, or
+improvements to the Java technology platform. Every JSR contains new
+features, bug fixes, or general improvements, in one way or the other,
+to the Java technology stack.</p>
+<p>Every major API available on Java EE is actually a JSR specification
+that has gone through the process of being approved by the JCP. All JSRs
+have a process they have to go through to be approved by the JCP.</p>
+<p>Once a JSR is approved by the JCP, it becomes part of the Java stack
+and can be safely used in production. The JSR process ensures that only
+well tested technologies become part of the Java stack, preventing
+unnecessary bloat in the form of fad technologies.</p>
+<p>The JSR process also ensures that APIs are carefully crafted in such
+a way as to preserve backward compatibility. If there is one thing Java
+is known for, it’s backward compatibility, and the JSR process ensures
+that this crucial Java feature is maintained.</p>
+<p>As a JSR is just
+an abstract specification, it needs some form of implementation to be
+useful. That is where the concept of reference implementation (covered
+in Chapter <a href="#493447_1_En_3_Chapter.xhtml">3</a>) comes in.</p>
+
+
+Footnotes
+
+
+<a href="#493447_1_En_2_Chapter.xhtml#Fn1_source">1</a>
+
+ 
+
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">3. What Is a Reference
+Implementation?</h1>
+
+
+<!--End Abstract-->
+
+<p>In the previous chapter, you learned what a JSR is. Recall that a JSR
+is an abstract request to the JCP that contains proposed additions to
+the Java technology platform.</p>
+<p>Because it is abstract, you cannot run it. A JSR needs to have some
+form of implementation, or concrete realization, to be useful to end
+developers. That is where the concept of <em>reference
+implementation</em> comes in.</p>
+<p>Every JSR must have a reference implementation,
+which is a concrete implementation of the specification contained in the
+JSR document. This is a requirement of the JCP. Every single JSR has a
+reference implementation that is freely available and bundled with the
+application servers.</p>
+<p>A JSR also has a Technology Compatibility Kit
+(TCK), which is “a suite of tests that at least nominally checks
+a particular alleged implementation of a Java Specification Request
+(JSR) for compliance.”<sup><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></sup></p>
+<p>A TCK is used to test a JSR implementation for compliance with the
+spec. That is part of why Java EE is said to be a <em>standardized</em>
+set of specifications.</p>
+<p>
+This rigorous process also ensures the quality of the APIs that are
+derived from the JSR document. Some popular reference implementations
+(RIs) of JSRs
+include the following:
+
+</p>
+
+<ul>
+<li><p>JSR 380 (Bean Validation 2.0) – Hibernate Validator 6</p></li>
+<li><p>JSR 367 (JSON-B Binding) – Eclipse Yasson 1.0</p></li>
+<li><p>JSR 370 (JAX-RS 2.1) – Jersey</p></li>
+<li><p>JSR 365 (CDI 2.0) – WELD 3.0</p></li>
+</ul>
+
+<p>These are some of the new and more popular JSRs and their respective
+reference implementations. Most of these reference implementations are
+bundled with application servers, which is the subject of the next
+chapter.</p>
+
+
+Footnotes
+
+
+<a href="#493447_1_En_3_Chapter.xhtml#Fn1_source">1</a>
+
+ 
+
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">4. What Is an Application
+Server?</h1>
+
+
+<!--End Abstract-->
+
+<p>The previous chapter talked about what a JSR reference implementation
+is. The definition of Java EE also mentioned that it is a collection of
+abstract specifications. Java EE itself is a Java Specification
+Request.</p>
+<p>Better still, Java EE is what is termed an <em>umbrella JSR</em> in
+that it encapsulates some JSRs. So Java EE 7, for instance, is <a href="https://www.jcp.org/en/jsr/detail%253Fid%253D342">JSR 342</a>. Java EE 8 is <a href="https://www.jcp.org/en/jsr/detail%253Fid%253D366">JSR 366</a>. So Java EE itself is a JSR
+that goes through the JCP JSR process and is subject to the requirements
+of every JSR.</p>
+<p>Flowing from this idea and remembering that the JSR process requires
+every JSR to have a reference implementation, this means Java EE as an
+umbrella JSR must also have a reference implementation.</p>
+<p>The implementation of the umbrella JSR or Java EE is commonly referred
+to as an <em>application server</em>. An app server is a concrete
+implementation of the Java EE spec that you can actually run your code
+on. The reference implementation of Java EE is the Glassfish Application
+Server.</p>
+<p>An application
+server generally abstracts the developer away from a lot of
+mundane stuff that you would have had to manage on your own, like
+data-source pooling, caching, clustering, and other overheads.</p>
+<p>The application server must also pass the TCK to be fully certified
+as being compliant with the given umbrella JSR. An app server is also
+the basis for the portability of Java EE. As a developer, you generally
+are encouraged to code against the <code>javax.*</code> packages,
+which are the standard Java EE packages.</p>
+<p>Because an app server is subject to a standard, using the Java EE
+package means you can swap out application servers and your code will
+generally run with little to no modifications. This is compelling if you
+think about it.</p>
+<p>For starters, no single application vendor can lock you in. Because
+you can swap out application servers, you can theoretically change
+vendors at any time should you be dissatisfied with your current
+vendor.</p>
+<p>There are many application vendors out there, some free, some costly.
+Popular among the open source ones is Payara Server (see <a href="http://payara.fish"><code>http://payara.fish</code></a>), a Glassfish-derived,
+fully patched application server that is freely available for
+download.</p>
+<p>Java EE is an abstract spec and its concrete realization or
+implementation is called an <em>application server.</em> As a JSR, the
+required reference implementation of Java EE is the Glassfish Application Server.</p>
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">5. What Is Jakarta EE?</h1>
+
+
+<!--End Abstract-->
+
+<p>You have learned what Java EE is. You've seen what an application
+server is and how it relates to the term Java EE. Now it’s time to
+consider what Jakarta EE is.</p>
+<p>Jakarta EE is
+the new Java EE. Back in 2017, Oracle, which was the owner of the Java
+EE technology stack, decided to open the platform to the wider
+community. In the process, the entire Java EE platform had to be moved
+to a non-profit, community-oriented foundation.</p>
+<p>The Java EE community voted and chose the Eclipse Foundation. So Java
+EE was moved to the Eclipse Foundation. Due to legal issues, the name of
+the platform had to be changed to something other than its original Java
+EE. Again, the community made suggestions and eventually the name
+<em>Jakarta EE</em> won<sup><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></sup>.</p>
+<p>With a renewed goal of aligning the former Java EE platform to more
+modern software development paradigms, the Eclipse Foundation is seeking
+to position Jakarta EE as a modern, cloud-native, agile software
+development platform.</p>
+<p>
+One of the criticisms leveled against Java EE was that it was too slow
+to evolve. The software development landscape moved faster than the
+platform could keep up. In light of such valid concerns, the Eclipse
+Foundation, through the Jakarta EE working group, developed the
+following guiding principles for Jakarta
+EE:
+
+</p>
+
+<ul>
+<li><p>Deliver more frequent releases</p></li>
+<li><p>Provide lower barriers to participation</p></li>
+<li><p>Develop the community</p></li>
+<li><p>Manage the Jakarta EE brand on behalf of the community</p></li>
+</ul>
+
+<p>Initially, Jakarta EE is the exact equivalent to the Java EE 8
+platform. All of the specifications, reference implementations (RIs),
+and technology
+compatibility kits (TCKs) that comprised Java EE 8 have been
+transferred to the Eclipse Foundation<sup><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></sup>. This means that the former
+Java EE 8 release is the foundation of the new cloud-native Jakarta
+EE.</p>
+<p>Previous chapters discussed how Java EE evolved through the concept
+of Java Specification Requests (JSRs) through the Java Community Process
+(JCP). However, how will Jakarta EE evolve at the Eclipse Foundation?
+Alternatively, how is the Jakarta EE governance model different from
+that of Java EE?</p>
+<p>The main difference is that the Jakarta EE governance model is now
+community-based, multi-vendor, and open to participation and
+contribution by the enterprise consumers of these technologies. The
+Eclipse Foundation will ensure that the new specifications and
+development processes for Jakarta EE will remain open, vendor-neutral,
+and provide a level playing field for all participants.</p>
+<p>The Java Community Process (JCP) will be replaced by the Eclipse Foundation Specification
+Process (EFSP)
+ (see <a href="https://www.eclipse.org/projects/efsp/"><code>https://www.eclipse.org/projects/efsp/</code></a>).
+How is it different from the JCP?</p>
+
+<p>
+<img src="images/493447_1_En_5_Chapter/493447_1_En_5_Figa_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_5_Chapter/493447_1_En_5_Figa_HTML.jpg"/>
+</p>
+
+<p><a href="https://blogs.eclipse.org/post/tanja-obradovic/how-eclipse-foundation-specification-process-efsp-different-java-community">Image Credit</a></p>
+<p>It uses a code-first approach. The most vital difference between the
+JCP and EFSP  is that specifications
+are going to be developed through this code-first approach. In the JCP,
+the specification is developed, followed by the reference
+implementation. In the EFSP, however, there will be hands-on coding and
+experimenting first to ensure that something is worthy of being included
+in a specification document.</p>
+<p>The other differences all bring more openness on the side of the EFSP
+than on the erstwhile JCP process. This is a good thing. It means you as
+a developer can feel safe in using the Jakarta EE platform for your
+applications, knowing that it is a fully open platform run by a
+non-profit organization, with broader participation by the entire Java
+community. Microsoft and Pivotal (the company behind the Spring
+Framework) are members of the Jakarta EE community.</p>
+<p>With regards to releases, the first release of the umbrella
+specification under Eclipse Foundation is Glassfish 5.1, which is a
+Java EE 8 compatible release. Recall that Chapter <a href="#493447_1_En_3_Chapter.xhtml">3</a> stated that the Glassfish
+Application Server is the reference implementation of the Java EE
+umbrella JSR. The Foundation has released Jakarta EE 8 with Glassfish
+5.2 as the reference implementation. Jakarta EE 8 is a fully compatible
+Java EE 8 release. This means every Java EE 8 application is
+automatically compatible with Eclipse Jakarta EE 8.</p>
+<p>The future for you as a Jakarta EE developer is inspiring. There is a
+lot of community interest in moving the entire Jakarta EE platform
+forward, aiming to make it the most reliable, cloud-native, enterprise
+Java development platform of choice for modern software development
+paradigms. Why wouldn’t you want to master this exciting platform?</p>
+
+
+Footnotes
+
+
+<a href="#493447_1_En_5_Chapter.xhtml#Fn1_source">1</a>
+
+ 
+
+
+
+<a href="#493447_1_En_5_Chapter.xhtml#Fn2_source">2</a>
+
+ 
+
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">6. Why Jakarta EE?</h1>
+
+
+<!--End Abstract-->
+
+<p>As a Java developer, you have many choices when it comes to
+frameworks and platforms for software development. A question you might
+be asking yourself is why you should choose Jakarta EE as your primary
+software development platform. What makes it a better choice?</p>
+<p>
+There are number of reasons to at least give Jakarta EE a try, key among
+them being these:
+
+</p>
+
+<ul>
+<li><p>Standardization</p></li>
+<li><p>Openness</p></li>
+<li><p>Stability</p></li>
+<li><p>Ease of development</p></li>
+<li><p>Portability</p></li>
+<li><p>Pick and choose: tank or pistol</p></li>
+<li><p>Amazing documentation</p></li>
+</ul>
+
+
+<h2 class="Heading">Standardization</h2>
+<p>Every single JSR
+has gone through a rigorous process of both public and JSR Expert Group
+scrutiny before being voted on by the JCP EC, for all Java EE APIs.
+Every JSR is weighed in terms of backward compatibility, benefit to the
+Java platform as a whole, etc. This painstaking JSR approval process
+ensures that every feature is accepted based on certain well-defined
+technical criteria. Similarly, every API of the new Jakarta EE platform
+will go through a well-defined specification process to
+ensure whatever API is included in the platform is going to be there for
+the long haul.</p>
+
+
+<h2 class="Heading">Openness</h2>
+<p>As discussed earlier, the new Jakarta EE specifications are going to
+be developed using a code-first approach through the Eclipse Foundation Specification
+Process. The EFSP is an open process
+that anyone can be part of. The entire specification process is
+developed in the open.</p>
+
+
+<h2 class="Heading">Ease of Development</h2>
+<p>
+Jakarta EE development is
+effortless. All that’s needed is an application server or a Jakarta EE
+compliant runtime and one Maven dependency. It requires minimal
+configuration, follows convention over configuration, and leads to no
+XML hell. It also has sensible defaults. For example, EJBs are
+transactional by default, use default data-source, and are CDI-enabled
+by default.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_6_Chapter/493447_1_En_6_Figa_HTML.jpg" style="width:32.07em" alt="../images/493447_1_En_6_Chapter/493447_1_En_6_Figa_HTML.jpg"/>
+</p>
+
+<p>This code snippet is the only dependency you need to have the entire
+Jakarta EE platform available at your fingertips. Moreover, because you
+are abstracted from the implementation of the standard, you only package
+your application with your code and any other third-party libraries used. Your
+chosen application server will provide the implementation and all the
+other heavy lifting required to run an application.</p>
+
+
+<h2 class="Heading">Portability</h2>
+<p>Jakarta EE as a
+standard means that your application should work with minimal to no
+configuration across various implementations of the standard, as long as
+you code against the standard. This is compelling because you don't get
+locked into one Jakarta EE application runtime vendor. Your code is
+portable across various application servers as long as you use the
+standard Jakarta EE APIs.</p>
+
+
+<h2 class="Heading">Pick and Choose: Tank or Pistol</h2>
+<p>
+Jakarta EE is a huge platform that may appear intimidating at first.
+However, you can pick and choose whatever API your application requires.
+You can use the platform as a tank or as a pistol—you decide. All
+the various APIs are integrated as a whole if you choose to use Jakarta
+EE as a tank, or they can stand alone individually if you choose to
+nitpick. Also, as the application server provides the runtime
+implementation, whether you choose to use the entire platform or just
+select APIs, you still ship your application with just your code. Either
+way, your application is always shipped as a lightweight bundle.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_6_Chapter/493447_1_En_6_Figb_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_6_Chapter/493447_1_En_6_Figb_HTML.jpg"/>
+</p>
+
+<p><a href="https://blogs.oracle.com/java/java-ee-8-overview">Image Credit</a></p>
+
+
+<h2 class="Heading">Amazing Documentation</h2>
+<p>Jakarta EE is a
+well organized community project that has an amazing amount of
+documentation. Chief among this is the <em>Java EE Tutorials</em><sup><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></sup>, the official Java EE
+handbook. There are also lots of community and corporate organized
+conferences—like Devoxx and Oracle CodeOne—that
+place a lot of emphasis on server-side Java development. There are also
+books written by individual developers like this one you are reading,
+all focused on helping you become a well-grounded enterprise Java
+software developer.</p>
+<p>These points are just a few of the reasons why you should give
+Jakarta EE a try. I know in the J2EE days, the platform was a unwieldy
+thing for a lot of people. However, today, Jakarta EE is a nimble,
+elegant, deceptively simple but compelling software development
+platform, as you will see in the second part of this book.</p>
+
+
+
+Footnotes
+
+
+<a href="#493447_1_En_6_Chapter.xhtml#Fn1_source">1</a>
+
+ 
+
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">7. Jakarta EE and the Spring
+Framework</h1>
+
+
+<!--End Abstract-->
+
+<p>A book on Jakarta EE would not be complete without a discussion of
+the Spring Framework. So what is the Spring Framework?</p>
+<p>The Spring
+Framework is an alternative server-side software development
+platform for the JVM that runs on a servlet container. It used to be
+Java-based but you can now develop Spring apps with other JVM-based
+languages like Kotlin. The Spring Framework came about because of the
+frustrations developers faced using the earlier versions of Java EE,
+then called J2EE.</p>
+<p>Rod Johnson<sup><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></sup> started the project as an
+alternative platform that was more developer friendly and less arcane
+than J2EE. In the beginning, the Spring Framework was just an inversion
+of control (dependency injection) framework. It soon became very popular
+and has since grown to become a full-stack alternative to Jakarta EE.
+The Spring Framework intellectual property is owned by Pivotal Inc.</p>
+<p>However, as Spring was growing, developers started experiencing pain
+points that caused them lots of frustrations with the platform<sup><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></sup>. At the same time that Spring
+was enjoying all the popularity, Java EE was also evolving with all the
+feedback it was getting.</p>
+<p>The release of Java EE 7 marked a milestone in the history of the
+platform, because it had almost caught up with the Spring Framework in
+terms of developer productivity, but had managed to avoid Spring’s
+pitfalls. Java EE releases have been heavily influenced by the Spring
+Framework.</p>
+<p>Today, Spring as a platform has the Spring Boot framework, a
+framework I like to call “Little Java EE for Spring”. Spring Boot has
+been influenced by Java EE's convention over configuration and sensible
+default philosophies. Both platforms have been very influential of the
+other.</p>
+<p>As a Java developer, you have the choice of using Jakarta EE or the
+Spring Framework. Neither, for me, is superior to the other. Both
+platforms have their strengths and weaknesses. Naturally, as the author
+of a Jakarta EE book, I choose Jakarta EE, but that is because I am
+excited about its future as an Eclipse Foundation community project, I
+feel effective using it, and I find it easy to learn and to teach.</p>
+<p>You should choose a platform based on its technical merits to you,
+how easily you can maintain your apps, how much you value backward
+compatibility, the existing skillset of your development team, and other
+such metrics. My opinion about the whole Spring vs. Java EE flame wars
+is that it's just not worth it. They are both excellent platforms that
+cater to different kinds of developers. Pivotal, the company behind the
+Spring Framework, is now a member of the Jakarta EE community.</p>
+<p>Spring Framework vs. Java EE can be rephrased as Spring Framework
+<em>and</em> Jakarta EE. You as a developer should pick what is right in
+your context. As you are reading this book, I am certain you have
+already decided which you want to go with.</p>
+
+
+Footnotes
+
+
+<a href="#493447_1_En_7_Chapter.xhtml#Fn1_source">1</a>
+
+ 
+
+
+
+<a href="#493447_1_En_7_Chapter.xhtml#Fn2_source">2</a>
+
+ 
+
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">8. The Contexts and Dependency
+Injection (CDI) API</h1>
+
+
+<!--End Abstract-->
+
+<p>Dependency injection
+(DI) is a way of developing software such that various components
+are related in a very loosely coupled way. In most software
+applications, there is always some form of dependency between the
+various bits and pieces.</p>
+<p>Take a restaurant application for instance. You might have a
+component that handles taking orders, another for sending a message to
+the kitchen, yet another for checking available ingredients for a given
+meal, and one or two for calculating the total bill.</p>
+<p>These are all various components that need to depend on each other to
+fulfill the duty of running a restaurant. However, creating and managing
+this inter-dependency can be a difficult task. You need to create
+individual dependencies for each component, and at times, think of the
+contexts within which you want a specific dependency to exist.</p>
+<p>This is where the concept of dependency injection comes in. With DI,
+your various components simply declare a dependency on other components
+and leave the creation, management, and destruction of these
+dependencies to an external mechanism. In short, you invert control in
+your application. Components simply request a dependency and some black
+box makes that dependency available. That black box is generally
+referred to as an inversion of control
+(IoC) container.</p>
+<p>Dependency injection is a specific type of IoC “which concerns itself
+with decoupling dependencies between high-level and low-level layers
+through shared abstractions.”<sup><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></sup> Contexts and
+Dependency Injection (CDI) is an implementation of the DI principle.</p>
+
+<h2 class="Heading">CDI Activation</h2>
+<p>On the Jakarta EE platform, the API that helps you glue together
+the disparate components of your application code is the Contexts and
+Dependency Injection (CDI) API. In its version 2.0, CDI is activated by
+default in Jakarta EE with the discovery mode set to <code>annotated</code>.</p>
+<p>
+What the default
+activation scope means is that only beans (or Java classes)
+annotated with CDI annotations or CDI recognized annotations are
+eligible for injection. The default CDI config file, a small XML file
+called <code>beans.xml</code> in the
+<code>/webapp/WEB-INF</code>
+folder, looks as shown here:
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figa_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figa_HTML.jpg"/>
+</p>
+
+<p>Line 5 is the default bean discovery mode, where bean discovery mode
+is simply the scanning mechanism for identifying beans that are eligible
+to be managed by the CDI container. <code>Annotated</code> means only
+classes with bean defining annotations will be discovered during
+scanning.</p>
+<p>
+This implies that the following bean will be scanned at application boot
+time.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figb_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figb_HTML.jpg"/>
+</p>
+
+<p>
+However, this class will not be scanned for lack of a bean defining
+annotation.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figc_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figc_HTML.jpg"/>
+</p>
+
+<p>Note that this is the kind of <code>beans.xml</code> file that
+kicks in when there isn’t an explicitly created file.</p>
+<p>
+Using the CDI API with the default bean discovery mode set to <code>annotated</code> isn't quite
+fun, however. To utilize the power of Jakarta EE dependency injection
+fully, you want to set the bean discovery mode to <code>All</code>.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figd_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figd_HTML.jpg"/>
+</p>
+
+<p>Setting the bean discovery mode to <code>all</code>, as seen in Line
+5, means that all classes will be discovered during scanning by the CDI
+container at application startup. So, whether a bean has a CDI
+annotation or not, as long as it's in the same archive (a bundle of a
+given Jakarta EE app), it will be discovered. This is what you will find
+in a lot of Jakarta EE code out there. It is also my preferred and
+recommended mode.</p>
+
+
+<h2 class="Heading">The CDI Container</h2>
+<p>The word <em>container</em> is most often associated with dependency
+injections. So what
+is the CDI container? It's the heartbeat of your CDI code. It validates
+your CDI code at application startup and ensures that all your CDI code
+is valid. It's very rare to get a CDI runtime error.</p>
+<p>The CDI container is responsible for creating contextual instances of
+your beans, adding relevant CDI magic to those created instances,
+assigning them to relevant contexts, and finally destroying those
+instances when the contexts they’re bound to get destroyed.</p>
+<p>You can think of the CDI container as a black box that only appears
+to answer your requests and disappears into the shadows when not needed.
+You as a developer will mostly not need to think much about the CDI
+container, however. You just have to know it's there in the background,
+and ready to answer your requests.</p>
+
+
+<h2 class="Heading">CDI Beans vs. Contextual Instances</h2>
+<p>Up to this point, the book has used the term <em>beans</em> and
+<em>contextual instances</em> quite freely, without defining  what they mean. So,
+what exactly is meant by beans?</p>
+<p>The CDI spec defines beans as a source of contextual objects that
+define application state and/or logic. These objects are called
+contextual instances of the bean.<sup><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></sup> All that means is that a bean
+is the Java class that you, as a developer, write.</p>
+<p>You implement your bean logic in Java code and then use relevant CDI
+annotations to provide it with attributes that you want the bean's
+contextual instance to posses. It is the template from which instances
+can be created and injected in the dependency injection process. The CDI
+container discovers your beans at application startup by scanning your
+application archive.</p>
+<p>A bean then is just a collection of metadata associated with your
+Java code, from which the container creates objects to satisfy a given
+dependency injection request. That CDI created object from your bean is
+what is called a contextual instance.</p>
+<p>The set of attributes that you can
+give your beans are Qualifiers, Scopes, Alternatives, and Name. These
+attributes are discussed throughout the rest of the book.</p>
+
+
+<h2 class="Heading">Creating and Using Beans</h2>
+<p>
+As stated earlier, a CDI bean is just a regular
+Java class with CDI metadata applied in the form of annotations. Take a
+look at the most basic CDI bean here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Fige_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Fige_HTML.jpg"/>
+</p>
+
+<p>This code shows a very boring plain old Java object, with no explicit
+CDI annotations, called <code>TableService</code>. This
+class is a valid CDI bean because the CDI discovery mode is set to <code>all</code>. This means you
+can request contextual instances of this bean from the CDI container,
+and it will honor your request. This bean, by default, has a scope
+called <code>@Dependent</code>, meaning
+it takes the scope of whatever bean it is injected into.</p>
+<p>However, in the restaurant application, you need to
+have only one instance of the <code>TableService</code>
+responsible for checking the availability and assignment of tables to
+guests. In this case, you need to modify the bean—or template—from which
+the only-one-instance contextual instance will be created.</p>
+
+<h3 class="Heading">@ApplicationScoped</h3>
+<p>
+To make this modification, you need
+to use the <code>@ApplicationScoped</code><sup><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></sup> annotation to define a
+metadata on the bean.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figf_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figf_HTML.jpg"/>
+</p>
+
+<p>This code shows the <code>TableService</code> class
+now bearing an explicit bean-defining annotation called <code>@ApplicationScoped</code>.
+This annotation tells the CDI container to put the contextual instance
+of this bean in a specific, well defined scope, or context, called <code>application</code>.</p>
+<p>Scopes, or contexts, are a way of telling the CDI container how you want
+it to manage the lifecycle of your contextual instances. Instances you
+request from the CDI container will be placed in relevant contexts that
+are determined by either the explicit metadata you provide along with
+your bean code, or one that the CDI container defaults to.</p>
+<p>So, what does the application scope or context mean? It means that
+for <code>TableService</code>, you
+only want to have one contextual instance for the entire application.
+Every single request for a <code>TableService</code> from the
+CDI container will be serviced with the same contextual instance. Think
+of @<code>ApplicationScoped</code> as
+a shared state contextual instance across the lifetime of the deployed
+application. You can think of an <code>ApplicationScoped</code>
+bean as a singleton if you are familiar with other DI frameworks like
+Spring.</p>
+<p>The good thing about CDI scopes is that they are
+well defined. You can predict when an instance will be in existence and
+when it will be destroyed. You can use this knowledge to craft powerful
+dependency graphs in your application. So what are the other available
+scopes aside from <code>@ApplicationScoped</code>?</p>
+
+
+
+<h2 class="Heading">Other CDI Scopes</h2>
+
+<h3 class="Heading">@RequestScoped<sup><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></sup></h3>
+<p>This scope binds a contextual instance to a context that is created
+and destroyed for every request. In a typical HTTP environment, every
+HTTP request will result in the creation of a new contextual instance
+and its destruction at the end of the request. In a non-HTTP
+environment, a bean annotated with <code>@RequestScoped</code>
+ will have its contextual instances always created and destroyed
+for every given request.</p>
+<p>
+In the restaurant application, you could have a class that searches for
+orders and is bound to a JSF facelet page. This class typically should
+be <code>RequestScoped</code> so that
+you have different instances for each request for a search. You would
+want a clean slate for every search request.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figg_HTML.jpg" style="height:26em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figg_HTML.jpg"/>
+</p>
+
+<p>In this code, you have a class named <code>SearchBean</code> that is
+annotated with <code>@RequestScoped</code> on
+Line 1 and <code>@Named</code> on Line 2.
+This explicitly tells the CDI container to bind every instance of this
+bean to a scope called <code>request</code>. For every
+request for a contextual instance of this bean, a new instance will be
+created and put in a new scope. So multiple requests by a given user
+will result in new instances for each
+request.</p>
+<p>This kind of bean is typically called a <em>backing bean,</em> or
+roughly a <em>controller</em>. The <code>@Named</code> annotation is
+a built-in qualifier<sup><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></sup> that makes this
+bean available to JSF pages through the expression language<sup><a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></sup>.</p>
+
+
+<h3 class="Heading">@SessionScoped<sup><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></sup></h3>
+<p>This scope binds instances of an annotated bean to a context that
+spans a given user session. Think of a session context as a
+guard that follows a user around an application as long as they are
+interacting with the application. The session scope is more or less the
+HTTP session for a given user.</p>
+<p>
+In the restaurant application, you could have a bean that tracks a
+logged-in user, where that logged-in user could be the restaurant
+manager or cashier.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figh_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figh_HTML.jpg"/>
+</p>
+
+<p>In this code, you have a bean named <code>UserSession</code> that is
+annotated with <code>@SessionScoped</code> on
+Line 1. This tells the CDI container to create an instance of this class
+per user per session. So every user will have one contextual instance of
+this class for each session. Multiple requests for an instance of this
+class by a user in
+the same session will result in the same contextual instance being
+supplied.</p>
+<p>Of note in this bean declaration is that it implements the <code>Serializable</code>
+interface, as shown on Line 2. This is good practice because the
+contextual instance might get passivated—or saved—by the container to
+save system resources when not in use. So it's good practice to mark it
+with the <code>Serializable</code>
+interface.</p>
+
+
+<h3 class="Heading">@ConversationScoped<sup><a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></sup></h3>
+<p>Conversation scoped beans are used to perform tasks that transcend
+one request but are shorter than a session. A typical example of <code>@ConversationScoped</code>
+ use case is placing an order. Order items are held in a cart
+from the time a user starts picking items and are finally emptied when
+the user checks out. In between, the user might navigate across multiple
+pages of the application.</p>
+<p>You can use conversation scoped beans to manage such a conversation
+between the user and your application without having to necessarily keep
+the bean alive once the user is done with the shopping.</p>
+<p>
+Conversation scoped beans are by default in a transient state, that is,
+they're eligible to be destroyed at any time. Unlike the other scopes
+you've seen so far, you will have to initiate a bean into a conversation
+state manually. How do you do that? Back to the restaurant application,
+you could have a bean-annotated <code>@ConversationScoped</code>
+that is used to place an order in the system.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figi_HTML.jpg" style="height:34.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figi_HTML.jpg"/>
+</p>
+
+<p>In this code, you have a bean called <code>OrderService</code> that is
+annotated <code>@ConversationScoped</code>
+on Line 1. This bean also bears the <code>Serializable</code> marker
+interface because it might get passivated by the container.</p>
+<p>Line 4 uses the <code>@Inject</code> annotation to
+request a contextual object of a bean type called <code>Conversation</code>, on Line
+5. This is the first time you are using the <code>@Inject</code> annotation.
+It's the magic wand for requesting contextual instances from the CDI
+container. The annotated bean type <code>Conversation</code> is a CDI
+bean that the container provides for
+you. It's not part of the developer code.</p>
+<p>The <code>Conversation</code> bean has
+methods that you use to check if a bean is transient or not, begin and
+end conversations, and get the ID of the current conversation. Line 7
+defines a method called <code>beginOrderProcess()</code>
+that first checks if the current instance is in transient mode. If it
+is, the <code>begin()</code>
+method is invoked on the injected <code>Conversation</code>
+instance.</p>
+<p>Line 13 then defines a method called <code>addItemsToOrder()</code>
+that is responsible for adding items to the cart. This method can be
+implemented in any way depending on the issue at hand.</p>
+<p>Line 17 finally declares a method called <code>endConversation()</code>
+that determines whether or not a bean is transient and proceeds to
+invoke the <code>end()</code> method on the
+injected <code>Conversation</code> object.
+Invoking the <code>end()</code> method makes
+the <code>OrderService</code> instance
+transient, ready to have its context destroyed.</p>
+
+
+<h3 class="Heading">Dependent Pseudo-Scope<sup><a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></sup></h3>
+<p>
+<code>@Dependent</code> is a
+pseudo-scope
+according to the CDI spec. It is the default scope a bean is scoped to
+when no explicit scopes are declared for it. Pseudo-scoped beans have at
+least two important points that distinguish them from other scopes:
+
+</p>
+
+<ul>
+<li><p>No injected instance of the bean is ever shared between multiple
+injection points.</p></li>
+<li><p>Any instance of the bean injected into an object that is being
+created by the container is bound to the lifecycle of the created
+object.</p></li>
+</ul>
+
+<p>This implies that every request for a dependent scoped bean results
+in a new instance and the life of that instance is bound to the life of
+its injection point. Generally, I recommend that you explicitly declare
+scopes for your beans as an application developer.</p>
+<p>So far you have seen the various contexts that are provided to you
+out-of-the-box by the CDI container. You have seen <code>@ApplicationScoped</code>,
+<code>@RequestScoped</code>,
+<code>@SessionScoped</code>,
+and <code>@ConversationScoped</code>.
+However, one question I have not answered at this point is where and how
+to make a request for contextual instances. You have seen
+how to create your own CDI beans, but how do you use them? How do you
+put the CDI container to your service?</p>
+
+
+
+<h2 class="Heading">CDI Injection Points</h2>
+<p>There are three main injection points where you can use the <code>@Inject</code> annotation to
+request contextual instances from the CDI container.</p>
+
+<h3 class="Heading">Field Injection Point</h3>
+<p>
+You saw your first injection point  when you looked at the
+<code>OrderService</code>
+class earlier, reproduced here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figj_HTML.jpg" style="height:34.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figj_HTML.jpg"/>
+</p>
+
+<p>Line 4 uses the <code>@Inject</code> annotation on
+bean type <code>Conversation</code>. This is
+a field injection point where you are requesting that the CDI container
+create a contextual instance  of the <code>Conversation</code> bean and
+inject it into the provided variable of that type. Field injection is by
+far the most popular, and in my view, most intuitive way of requesting
+dependencies.</p>
+
+
+<h3 class="Heading">Method Injection</h3>
+<p>Method
+injection 
+is when a method is annotated with the <code>@Inject</code> annotation
+with one or more parameters. These methods are called initializer
+methods and will be invoked automatically by the container. All
+parameters of a method injection point must be valid CDI beans.</p>
+
+
+<h3 class="Heading">Constructor Injection</h3>
+<p>
+Constructor
+injection 
+is when you annotate a bean constructor with the <code>@Inject</code> annotation
+with one or more parameters. All parameters will be resolved by the
+container. Only one constructor injection is allowed per CDI bean.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figk_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figk_HTML.jpg"/>
+</p>
+
+<p>In the modified <code>SearchService</code> bean
+shown here, Line 6 declares a field of type <code>QueryService</code>, which
+is itself a bean. Line 8 uses <code>@Inject</code> on the
+constructor declaration (Line 9) to inject an instance of <code>QueryService</code> into the
+parameter. You then use this injected parameter to initialize the <code>QueryService</code> field
+declared in Line 6. There are other injection points as well, found in
+producer methods and observer methods, and you will look at them a
+little later in this chapter.</p>
+<p>Which is the best injection point?</p>
+<p>Given the injection points supported by CDI, you might be wondering
+which is best. They are all good in different contexts. But as a rule of
+thumb, I always go with field injection. I find that it is easier to
+read and shows my intention right from the beginning of the code. But
+please feel free to choose what works best for your given project.</p>
+<p>You now have seen CDI beans , the various scopes
+you can assign their contextual instances to, and the points that you
+can request for those contextual instances. CDI, however, has two broad
+kinds of beans. What you have looked at so far are called <em>managed
+beans</em>. The other kind of bean are <em>session beans,</em> not to be
+confused with session contexts.</p>
+
+
+
+<h2 class="Heading">Kinds of CDI Beans</h2>
+
+<h3 class="Heading">Managed Beans</h3>
+<p>
+Managed beans are what you have seen so far in this book. They are Java
+classes that have either explicit CDI annotations for beans that have
+the <code>bean-discovery-mode</code>  of the <code>beans.xml</code> file set to
+<code>annotated</code>, or
+implicit annotations for beans that have the <code>bean-discovery-mode</code>
+set to <code>all</code>. In
+addition, a bean is a managed bean if:
+
+</p>
+
+<ul>
+<li><p>It is not a non-static inner class.</p></li>
+<li><p>It is a concrete class or is annotated with <code>@Decorator</code>.</p></li>
+<li>
+It has an appropriate constructor, as one of the following:
+
+
+<ul>
+<li><p>The class has a constructor with no parameters</p></li>
+<li><p>The class declares a constructor <code>annotated</code> with <code>@Inject</code></p></li>
+</ul>
+
+</li>
+</ul>
+
+<p>
+For a given managed bean like the following:
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figl_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figl_HTML.jpg"/>
+</p>
+
+<p>
+Its set of bean types includes:
+
+</p>
+
+<ul>
+<li><p>All super classes up to <code>java.lang.Object</code></p></li>
+<li><p>All implemented interfaces, directly or indirectly</p></li>
+<li><p>The bean class itself</p></li>
+</ul>
+
+
+
+<h3 class="Heading">Session Beans</h3>
+<p>Session beans
+are Java classes annotated with metadata from the Enterprise
+JavaBeans<sup><a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></sup> spec. Technically, local
+Stateless, Stateful, and Singleton EJBs are automatically CDI beans that
+support the various CDI services like injection, interception, and
+scoping. Using EJBs in a CDI application makes the features of both
+specs available to you.</p>
+<p>
+Creating session bean is quite simple, as seen in the following code.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figm_HTML.jpg" style="width:25em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figm_HTML.jpg"/>
+</p>
+
+<p>In this code, the <code>QueryService</code> class is
+annotated with <code>@Stateless</code>. This
+makes the bean both a CDI managed bean and a Stateless EJB. You can
+inject instances on this bean anywhere you can inject a managed bean.
+The EJB spec aims at making the development of a business component easy
+and almost effortless.</p>
+<p>The <code>@Stateless</code> annotation
+on the <code>QueryService</code>
+transforms it into a class that has transactional methods by default. This
+class is pooled, secured, and has other helpful features that you would
+have had to worry about. Do take a look at the EJB spec for more
+information about the power of that API.</p>
+<p>
+The bean type of a session bean includes:
+
+</p>
+
+<ul>
+<li><p>All super classes up to <code>java.lang.Object</code></p></li>
+<li><p>All implemented interfaces, directly or indirectly (for beans
+with local interfaces)</p></li>
+<li><p>The bean class itself</p></li>
+</ul>
+
+
+
+
+<h2 class="Heading">CDI Qualifiers</h2>
+<p>
+You have so far learned almost all there is to know about CDI beans.
+However, you might be wondering what happens if two or more beans
+implement the same interface and you want to inject using the given
+interface. Using the restaurant application, say you have an interface
+of type <code>GenericOrder</code> that has
+one method, <code>order()</code>, as shown
+here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Fign_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Fign_HTML.jpg"/>
+</p>
+
+<p>This interface has a method that returns the total of a given order.
+Say the restaurant has a website where a user can log on and place a
+self-service order to the kitchen for delivery. Patrons can also walk in
+and place orders that will be entered into the system by the restaurant
+attendants or cashiers.</p>
+<p>
+You want to modify the <code>@ConversationScoped OrderService</code> bean to implement <code>GenericOrder</code> instead
+of having its own order method. This is shown in the following code.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figo_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figo_HTML.jpg"/>
+</p>
+
+<p>Line 15 implements the <code>order()</code> method of the
+<code>GenericOrder</code>
+interface. This <code>OrderService</code> will be
+used to service orders placed by patrons that physically walk into the
+restaurant to dine. You then need another service, called <code>SelfService</code>, that
+will implement <code>GenericOrder</code> to
+service the online clients.</p>
+<p>
+The following code shows the <code>SelfService</code>
+implementation.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figp_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figp_HTML.jpg"/>
+</p>
+
+<p>The <code>SelfService</code>
+implementation is identical to the <code>OrderService</code>
+implementation, for now. You separate the two implementations now
+because in the future, clients who place their orders online will be
+treated completely differently, in terms of pricing, reward schemes,
+raffles, and other incentives that you will later introduce. So it's
+good practice to separate the two implementations now instead of having
+to refactor or introduce a new implementation after the application has
+become very complex.</p>
+<p>
+So now you have two classes that implement the same interface. Trying to
+do an <code>@Inject</code>
+by the <code>GenericOrder</code>
+interface will fail, as shown here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figq_HTML.jpg" style="height:17.22em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figq_HTML.jpg"/>
+</p>
+
+<p>In this code, you have a CDI bean named <code>OrderFacade</code> that is
+request scoped. This bean has a field injection of type <code>GenericOrder</code> on Line
+5. This code will compile fine but will fail deployment. The CDI
+container, remember, validates the archive to ensure you are in line
+with the requirements of the CDI spec.</p>
+<p>This code will fail CDI container validation with a message that the
+injection point <code>GenericOrder</code> is
+ambiguous. This is because you have more than one class implementing the
+<code>GenericOrder</code>
+interface and are requesting a contextual instance through the
+interface. The container will not know which concrete bean type you
+want.</p>
+<p>
+You will encounter these kinds of issues in your own code. To prevent
+these kinds of ambiguous dependency issues, the CDI spec gives you the
+concept of <em>qualifiers</em>. They are annotations that you create,
+place on beans that you want to identify with such annotations, and then
+annotate through injection points if you want injection points resolved
+to the annotated bean type. It sounds more complex than it is. Let’s
+create two qualifiers for the order services—<code>OnlineQualifier</code> and
+<code>InStoreQualifier</code>.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figr_HTML.jpg" style="width:29.97em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figr_HTML.jpg"/>
+</p>
+
+<p>In this code, you have an annotation declaration on Line 4 with the
+name <code>OnlineQualifier</code>. This
+annotation is annotated with <code>@Qualifier</code>, which
+tells the CDI container that you want to have your <code>OnlineQualifier</code>
+annotation regarded as a CDI qualifier.</p>
+<p>
+Lines 2 and 3 of the code set the retention and targets of the <code>OnlineQualifier</code>
+annotation. This is pretty much all you need to declare your annotation.
+You can use the same constructs for the <code>InStoreQualifier</code> as
+shown next.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figs_HTML.jpg" style="width:30em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figs_HTML.jpg"/>
+</p>
+
+<p>
+So, with these annotations declared, you now need to associate them with
+the respective beans you want to use them for. You use the <code>OnlineQualifier</code> to
+qualify the <code>SelfService</code> bean and
+the <code>InStoreQualifier</code> for
+the <code>OrderService</code> beans.
+The respective code samples are reproduced next.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figt_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figt_HTML.jpg"/>
+</p>
+
+<p>
+The <code>OnlineQualifier</code> is
+associated with the <code>SelfService</code> bean on
+Line 2 of the previous code.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figu_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figu_HTML.jpg"/>
+</p>
+
+<p>
+The <code>InStoreQualifier</code> is
+now associated with the <code>OrderService</code> bean on
+Line 2. So now you have two beans of the type <code>GenericOrder</code>, but
+with separate qualifiers. With this in place, you can now go back to the
+<code>OrderFacade</code>
+bean and qualify the <code>GenericOrder</code>
+injection point.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figv_HTML.jpg" style="width:25em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figv_HTML.jpg"/>
+</p>
+
+<p>Line 4 uses the <code>@InStoreQualifier</code> to
+tell the container to resolve the <code>GenericOrder</code> type to
+the <code>OrderService</code> concrete
+type. This way, even though you request instances through a common
+interface implemented by more than one class, there is no ambiguity with
+regards to type resolution.</p>
+<p>
+You can, in the same class, inject another <code>GenericOrder</code> field
+and qualify it with the <code>OnlineQualifier</code>, as
+shown next.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figw_HTML.jpg" style="width:25em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figw_HTML.jpg"/>
+</p>
+
+<p>As you can see, there are two field injection points in the <code>OrderFace</code> bean now,
+both using the <code>GenericOrder</code>
+interface yet both qualified with their respective concrete type
+qualifiers.</p>
+<p>This is how you can use qualifiers to prevent ambiguity in your code,
+while simultaneously improving the readability and extensibility of it.
+Qualifiers can be used for much more powerful tasks, though, as you will
+see in the “Events” section of this chapter.</p>
+
+<h3 class="Heading">Built-in Qualifiers</h3>
+<p>
+Aside from the ability to create your own CDI qualifiers, the CDI API
+also comes with some built-in qualifiers out-of-the-box. These are as
+follows:
+
+</p>
+
+<ul>
+<li><p><code>@Any</code><sup><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></sup>: This is a qualifier added to
+all beans by default, even if the bean does not declare any
+qualifiers.</p></li>
+<li><p><code>@Named</code><sup><a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></sup>: This is a string based
+qualifier used to make instances of the annotated bean available for
+reference in a weakly typed environment, like a JSF page or JavaScript.
+It is also the most used annotation.</p></li>
+<li><p><code>@Default</code><sup><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></sup>: This qualifier is used
+automatically when a bean does not explicitly declare a qualify aside
+from <code>@Named</code>.</p></li>
+<li><p><code>@Initialized</code><sup><a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></sup>: This qualifier is used to
+qualify an automatically fired event when a context is initialized and
+ready to use. You will learn about events later in this
+chapter.</p></li>
+<li><p><code>@Destroyed</code><sup><a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></sup>: This qualifier is used to
+qualify an automatically fired event when a context is
+destroyed.</p></li>
+</ul>
+
+<p>Up to this point, you have learned quite a lot of CDI stuff, enough
+to make you capable of writing better. However, there's even more to
+learn, so let's take a look at the concept of CDI producers, what they
+are, and how you can use them.</p>
+
+
+
+<h2 class="Heading">CDI Producers</h2>
+<p>Producers in CDI are an API construct that you can use to turn beans
+or classes you don't own into CDI managed beans, complete with
+qualifiers and scopes. Back to the restaurant app, say you want to have
+the username of the currently executing user at any time. There are two
+ways you can achieve that.</p>
+<p>The first is to simply <code>@Inject</code> the <code>UserSession</code> bean and
+invoke the <code>getUserName()</code> method
+on the instance. The second, more extensible, way is to create a
+producer method of type <code>String</code> that returns
+the username. This way, you can <code>@Inject</code> into a field
+of type <code>String</code>
+and the container will know where to get what you want. You can sweeten
+things by qualifying your producer methods.</p>
+
+<h3 class="Heading">Method Producers</h3>
+<p>
+It is more simple than words make it, so let's look
+at the first producer method that returns the currently executing
+username.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figx_HTML.jpg" style="width:30em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figx_HTML.jpg"/>
+</p>
+
+<p>In this code, you have a bean named <code>MyProducer</code> (for lack
+of imagination on my part that has an injected field of type <code>UserSession</code> on Line
+4. Line 7 declares a method called <code>produceUserName()</code>
+that returns a <code>String</code> type. This
+method is annotated with <code>@Produces</code><sup><a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></sup> on Line 6. This annotation
+transforms this method into a CDI producer that will be consulted for
+instances to satisfy <code>String</code> injection
+types.</p>
+<p>
+You can then use the producer method to
+inject <code>String</code>
+types into your other components, as shown here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figy_HTML.jpg" style="width:25em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figy_HTML.jpg"/>
+</p>
+
+<p>Line 4 uses <code>@Inject</code> to request an
+instance of type <code>String</code> into the <code>userName</code> field (Line
+5) of the <code>OrderFacade</code> bean.
+This should work fine, assuming you do not use any third-party code in
+your application.</p>
+<p>If you do, however, libraries such as OmniFaces<sup><a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></sup> have producer methods that
+return <code>String</code> . In the restaurant
+app, you have the OmniFaces library as part of the application
+dependencies. So, the <code>String</code> injection
+point will cause the code to fail container validation at application
+startup, even though it will compile just fine.</p>
+<p>
+In this case, you can use a qualifier to qualify the producer method and
+injection point. Take a look at the qualifier declaration here:
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figz_HTML.jpg" style="width:32.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figz_HTML.jpg"/>
+</p>
+
+<p>
+In the previous code, you declare a qualifier called <code>UserNameQualifier</code>,
+which you associate with the producer method, as shown next.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figaa_HTML.jpg" style="width:32.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figaa_HTML.jpg"/>
+</p>
+
+<p>
+Line 7 annotates the <code>produceUserName()</code>
+method with the <code>@UserNameQualifier</code> to
+ensure that you can distinguish this producer method from any other,
+whether in your
+own code or any third-party library. Finally, you qualify the injection
+point with the same qualifier.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figab_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figab_HTML.jpg"/>
+</p>
+
+<p>Line 5 annotates the <code>userName</code> field with
+<code>@UserNameQualifier</code> to
+tell the container to consult the annotated producer field for instance
+to satisfy this injection point. This is how you can use producers
+methods in a nutshell.</p>
+<p>What you have seen so far are producer methods. You could scope the
+producer method return type to a specific scope instead of leaving it to
+the default <code>@Dependent</code> scope . But, there is a
+caveat. According to the CDI API, “if a producer method sometimes
+returns a null value, or if a producer field sometimes contains a null
+value when accessed, then the producer method or field must have scope
+<code>@Dependent</code>.”</p>
+<p>You could have a situation where your
+code requests a <code>userName</code> when no user
+is logged in. In such a case, your producer method might return null,
+and thus you leave it to the default <code>@Dependent</code> scope.
+However, just know that you can annotate your producer methods with a
+specific scope and returned types from the method will be put in that
+context.</p>
+
+
+<h3 class="Heading">Producer Fields</h3>
+<p>
+Producer fields
+are similar to producer methods in that they both act as sources for
+contextual instances. Producer fields, however, are just fields of a
+bean annotated with the <code>@Produces</code> annotation.
+The annotated field can be equally qualified and scoped as can be done
+with a producer method. A typical use of producer fields is producing
+<code>EntityManager</code><sup><a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></sup> objects for JPA, as shown
+next.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figac_HTML.jpg" style="width:29.97em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figac_HTML.jpg"/>
+</p>
+
+<p>Line 5 declares a field of type <code>EntityManager</code>,
+annotated with <code>@PersistenceContext</code>
+on Line 4 and <code>@Produces</code> on Line 3.
+This is a classic case of field producers where you are using two
+annotations from two APIs to produce an object. The <code>@PersistenceContext</code>
+annotation is from the JPA and is used to link this <code>EntityManager</code> object
+to the persistence context. You then use
+the CDI <code>@Produces</code> annotation
+to make this field capable of satisfying the JPA <code>EntityManager</code>
+injection points in your code.</p>
+
+
+
+<h2 class="Heading">CDI Bean Lifecycle Callbacks</h2>
+<p>CDI beans, as
+has been discussed to this point, are managed by the container. All you
+have to do is request instances from the container. However, there are
+times when you’ll need to do some for initialization, or
+de-initialization of your beans before you use them.</p>
+<p>A typical example could be when you need to fetch some form of list
+from the database for display in the UI before the UI accesses the bean.
+Another example is releasing system resources held in a bean before the
+bean is destroyed. You will encounter these a lot in your own
+applications.</p>
+<p>The CDI API gives you annotations you can place on methods to
+transform those methods into automatically invoked lifecycle
+callbacks.</p>
+
+<h3 class="Heading">@PostConstruct<sup><a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a></sup></h3>
+<p>A method annotated <code>@PostConstruct</code>
+ will be automatically invoked when a bean instance is fully
+constructed and all dependencies of the bean have been satisfied, but
+just before the bean is put into service.</p>
+<p>A method annotated <code>@PostConstruct</code> must
+not have a return type nor take any parameters, except for interceptors
+(you’ll learn about them later), for which case they can take an <code>InvocationContext</code><sup><a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a></sup> object. A <code>@PostConstruct</code>
+annotated method can be private, package private, protected, or
+public.</p>
+<p>
+In this code, you want to pre-populate a list with the last 10 orders of
+a self-service user that logs on to use the online portal. In the <code>SelfService</code> bean, as
+shown here, you can use the <code>@PostConstruct</code>
+callback method.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figad_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figad_HTML.jpg"/>
+</p>
+
+<p>Line 6 declares a <code>Order</code> typed <code>List</code> object. Line 8
+declares the <code>init()</code> method on Line
+9 as a callback method with the <code>@PostConstruct</code>
+annotation. The method signature is straightforward—it returns void, is
+named <code>init</code>
+(part of my naming convention), and is declared private. At runtime, the
+container will automatically invoke this method once all injection
+points in the bean have been satisfied but just before the bean is put
+into service.</p>
+
+
+<h3 class="Heading">@PreDestroy<sup><a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a></sup></h3>
+<p>This annotation can be used on a method that should be
+invoked just before a bean instance is destroyed by the container.</p>
+<p>So far you’ve seen how all the of the various CDI API constructs work
+together. Next up, you’ll learn about the concept of CDI interceptors, what they
+are, what problem they solve, and how you can create them.</p>
+
+
+<h3 class="Heading">CDI Interceptors</h3>
+<p>For every application, you will have situations where you need to
+dynamically perform tasks on bean
+invocations that are orthogonal to the core function of those beans. CDI
+interceptors are similar in nature to Aspect Oriented Programming as
+used in the Spring Framework. A typical example is logging and
+security.</p>
+<p>In your code, for example, you would want to log method invocations
+on certain beans. You could manually implement the logging feature in
+all the beans you want to log method invocations on. However, that would
+be implementing features in the beans that aren’t really their core.
+Also, because the logging feature is a cross-cutting concern, you should
+abstract that away from the beans. CDI interceptors can help you achieve
+that goal.</p>
+<p>
+There are two parts to realizing interceptors using the CDI API. The
+first is to create an interceptor-binding annotation. The second is to
+link the interceptor-binding annotation to a bean that will implement
+the interceptor method. Let’s first create an interceptor-binding
+annotation in the restaurant app.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figae_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figae_HTML.jpg"/>
+</p>
+
+<p>
+Line 5 declares an annotation with the name <code>Logging</code>. You could
+name your interceptor-binding annotation anything. Line 4 uses the <code>@InterceptorBinding</code><sup><a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></sup> annotation to declare that
+this annotation is an interceptor-binding annotation. Note the target of
+the annotation is <code>Type</code> and <code>Method</code>, meaning that
+you can use this interceptor for a whole class or just a method of that class.
+The <code>@InterceptorBinding</code>
+annotation is from the <code>javax.interceptor</code>
+package. Now let’s implement the bean that will carry out the logic of
+the interceptor.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figaf_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figaf_HTML.jpg"/>
+</p>
+
+<p>Line 4 declares a class called <code>LoggingBean</code> annotated
+with <code>@Interceptor</code> on Line
+1. This annotation makes this class an interceptor bean. Line 2
+annotates the same class with the <code>@Logging</code> interceptor
+annotation. This links the annotation to this class. This means anytime
+you annotate a method or class with the <code>@Logging</code> annotation,
+the CDI container will instantiate this class to carry the logic of the
+interceptor.</p>
+<p>Line 3 also annotates the class with the <code>@Priority</code> annotation,
+taking a <code>Interceptor.Priority.APPLICATION</code>
+as a parameter. Before Java EE 7, you needed to activate interceptors
+through an XML config file. However, after version 7, you could use the
+<code>@Priority</code>
+annotation to activate and order/prioritize your interceptors. In this
+case, you are passing it the <code>APPLICATION</code> constant,
+which is just an <code>int</code> value.</p>
+<p>Line 10 declares a method called <code>log()</code> that takes a
+single object of type <code>InvocationContext</code><sup><a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a></sup>, returns <code>Object</code>, and throws
+<code>Exception</code>. This
+method is annotated with <code>@AroundInvoke</code> on Line
+9. The <code>log()</code>
+method is the place you implement the logic of the interceptor, using an
+injected logger—Lines 6 and 7—to log the invoked method name. In this
+method, you can implement any logic that cuts across classes.</p>
+<p>The <code>InvocationContext</code>
+object is a bean that gives you information about the—drumroll—context
+of the invocation for which this interceptor has been dispatched. It has
+methods you can use to get information about the <code>method</code> parameter if
+the interceptor was dispatched for a method, information about the
+constructor if this interceptor was dispatched for a class, <code>get</code> and <code>set</code> method
+parameters, and a method to tell the container to proceed with the
+invocation of the next interceptor, or method if none.</p>
+<p>Line 14 invokes the <code>proceed()</code> method on
+the <code>InvocationContext</code>.
+This tells the container to proceed to the next interceptor if more than
+one has been dispatched, or to the method call if this is the only
+interceptor.</p>
+<p>Assuming you were implementing security instead of logging, and after
+doing some security checks, your code
+decides the currently executing user should not be invoking the target
+method for which this interceptor was dispatched, you can return null
+and the container will not proceed to invoke the target method.</p>
+<p>
+With your interceptor implemented, all you have to do to use it is
+annotate a method you want to log in a given bean. Now you can log
+method order invocations on your <code>OrderService</code> bean.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figag_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figag_HTML.jpg"/>
+</p>
+
+<p>Line 16 uses the <code>@Logging</code> annotation
+to log invocations of the <code>order()</code> method on the
+<code>OrderService</code>
+bean. Every invocation of this method will cause the container to
+dispatch the interceptor. And since you ask for the invocation to
+proceed at the end of the interceptor logic implementation, the
+invocation will proceed to the <code>order()</code> method after
+logging.</p>
+<p>This is how simple it is to implement interceptors using the CDI API.
+You create your interceptor-binding annotation, then link
+that annotation to an interceptor bean with a method annotated with
+<code>@AroundInvoke</code>
+that implements your interceptor logic. To use your interceptor, you
+annotate any method or class—depending on your interceptor annotation
+target—with your interceptor annotation. Next up, you’ll learn about CDI
+events, what they are, why you’d want to use them, how to create them,
+and how to use them. Let’s go.</p>
+
+
+
+<h2 class="Heading">CDI Events</h2>
+
+<h3 class="Heading">Synchronous Events</h3>
+<p>A CDI event is
+an API construct that helps your application components communicate with
+each other without any form of compile-time dependencies, or without
+them even knowing about each other. It entails an event object of any
+valid Java type, optionally with qualifiers and one or more event
+listeners, also optionally with qualifiers.</p>
+<p>The <code>Event</code><sup><a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a></sup> object fires an event of its
+payload type, and the CDI container automatically invokes observers that
+are observing that particular event fired based on the event payload
+type and, optionally, qualifiers. In the restaurant application, say you
+want to have feature where you send an SMS to a user who places an order
+online to acknowledge receipt of their order and to give them an
+ETA.</p>
+<p>
+You could implement such a feature using events. First, you need an
+<code>Event</code> object
+with a suitable payload and an observer that observes that same payload
+event type. Here that is in code.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figah_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figah_HTML.jpg"/>
+</p>
+
+<p>You start by using <code>@Inject</code> to request an
+<code>Event</code> bean
+typed to <code>ApplicationUser</code> on
+Line 7. The event interface is the starting point of the CDI event
+mechanism. The injected <code>Event</code> instance  is then used to fire
+an <code>ApplicationUser</code> event
+in the <code>order()</code>
+method  on Line
+15, using the <code>fire(T event)</code> method.</p>
+<p>Because the <code>Event</code> bean is typed
+to an <code>ApplicationUser</code>
+object (Line 7), the fire method used to fire the event must be passed
+an instance of the <code>ApplicationUser</code>
+class. This is the event payload, or data that will be passed to event
+observers, and in this case, it’s also used to choose which observers to
+invoke for the event. You use the injected <code>UserSession</code>—Lines 9
+and 10—in the <code>SelfService</code> class to
+get the currently executing user by invoking the <code>getCurrentUser()</code>
+method  (Line
+15).</p>
+<p>
+The <code>ApplicationUser</code> class
+is a bean that models an application user, as shown here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figai_HTML.jpg" style="width:25em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figai_HTML.jpg"/>
+</p>
+
+<p>
+The updated <code>UserSession</code> bean  is shown next.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figaj_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figaj_HTML.jpg"/>
+</p>
+
+<p>The <code>UserSession</code> bean  now has a field of
+type <code>ApplicationUser</code> on
+Line 7. This is going to be set in one way or another by some kind of
+security layer, after a user successfully authenticates herself to the
+system. For now, you’ll just use it as it is.</p>
+<p>
+With the event fired, you need at least one observer to listen for that
+particular event. Because this event has no explicit qualifiers, the
+event observer will be selected based on the event payload type for
+which it is observing. Here is the observer code.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figak_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figak_HTML.jpg"/>
+</p>
+
+<p>The event observer is declared in a bean class of type <code>MyEventListener</code>. It
+has one method called <code>smsObserver</code> that
+takes one argument of type <code>ApplicationUser</code>. The
+only new CDI API in this method is the <code>@Observes</code> annotation.
+This annotation transforms this method into a CDI observer for event
+type <code>ApplicationUser</code>, as
+fired from the <code>SelfService</code>
+class.</p>
+<p>At runtime, when an event is fired from the <code>SelfService</code> class,
+the container will cycle through all the event observers looking for
+events that observe the specific type fired. Once it comes across this
+method, it will invoke it and pass in the payload passed to the fire
+method of the event object.</p>
+<p>In the observer, you simulate a long-running
+task of sending an SMS, which might take sometime because it has to do
+with network communication. Once the method returns, execution is
+returned to the point of fire and then continues on from there.</p>
+<p>
+There are a few rules to declare an event observer:
+
+</p>
+
+<ul>
+<li><p>The return type must be void.</p></li>
+<li><p>It must have at least one parameter annotated with <code>@Observes</code> for the
+event type to be observed.</p></li>
+<li><p>Other parameters to the observer method must be CDI managed beans
+capable of injection.</p></li>
+<li><p>The observer must be declared in a CDI bean.</p></li>
+</ul>
+
+<p>As shown, firing and observing events with CDI is very easy and
+intuitive. As you might have noticed, the event
+observer has nothing to do with the <code>SelfService</code> class.
+The <code>MyEventListener</code> bean
+is oblivious of any bean that fires an event. You can have multiple
+event firing points for the same event type and each time your event
+observer will be invoked, without all components knowing about each
+other. This is compelling if you think about it.</p>
+
+
+<h3 class="Heading">Async Events</h3>
+<p>
+You can, however, improve this event mechanism in the restaurant
+application code.
+If you notice, the event observer in the <code>MyEventListener</code> class
+performs a blocking task. You might want to improve the responsiveness
+of this application by spawning long-running tasks to new threads. So
+instead of sending an SMS in the same thread that fired the event, you
+could do that in a different thread. Can you do that with the event
+mechanism of CDI? Yes of course. Here’s how, starting from the
+event-firing side.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figal_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figal_HTML.jpg"/>
+</p>
+
+<p>
+In this code, you use the same injected <code>Event</code> object—Lines 7
+and 8—to fire an <code>ApplicationUser</code>
+event  on Line 14.
+The difference, however, is that you invoked the <code>fireAsync</code> method  instead of the plain
+fire. This method fires an asynchronous event for all async observers to
+listen for it. Async events return control immediately. The observer
+method is executed simultaneously, or asynchronously. Here’s the async
+event observer implementation.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figam_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figam_HTML.jpg"/>
+</p>
+
+<p>Line 3 declares a method, <code>smsAsyncObserver</code>,
+that takes an <code>ApplicationUser</code>
+object as a parameter. The only new thing is the annotation you use for
+the parameter. Instead of <code>@Observes</code> as earlier,
+the code uses <code>@ObservesAsync</code>. This
+is how you create an observer to listen to async events.</p>
+<p>Because this code has only one async firing point and one async
+observer of the same payload type, this observer will be invoked. The
+best thing is that this observer will not block. Once it’s invoked,
+execution will return to the <code>order()</code> method in the
+<code>SelfService</code>
+bean. This way, you can conveniently send the SMS without affecting the
+responsiveness of the application. This is how you implement async
+events in CDI. But there’s more.</p>
+<p>You can use qualifiers to fire and observe events
+of the same type, but for different purposes. You can qualify the event
+object at the injection point and the observer at the declaration point.
+The container will then link the observer to the event based on the
+qualifier. It is effortless to implement.</p>
+
+
+<h3 class="Heading">Qualifying Events</h3>
+<p>
+Let’s say in your application, you decide
+to send an SMS to all clients, whether self-service or in-person diners.
+However, you want to have different message content for the two classes
+of clients. To do that, you need to qualify your events and observers
+with requisite qualifiers.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figan_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figan_HTML.jpg"/>
+</p>
+
+<p>
+This code has only one change. On Line 7, you use <code>@OnlineQualifier</code> to
+qualify the
+injected event object. This marks this event as qualified and will only
+be listened to by observers with the same qualifier. Here’s the
+observer.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figao_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figao_HTML.jpg"/>
+</p>
+
+<p>
+The <code>async</code>
+observer is the same as before except for the method parameter on Line
+3, where you annotate the <code>ApplicationUser</code> with
+<code>@OnlineQualifier</code>.
+This single annotation links this observer to the event in <code>SelfService</code>. You can
+now fire an async event in the <code>SelfService</code> class and
+have this observer invoked. However, all of this is quite useless if you
+have just one event-firing point and one observer. The power of
+qualifying events comes in to play when you have more than one event.
+Take a look at that scenario.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figap_HTML.jpg" style="height:27.58em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figap_HTML.jpg"/>
+</p>
+
+<p>
+This code shows the <code>OrderService</code> bean
+with two new fields—<code>Event</code> and <code>UserSession</code>. The
+event object on Line 8 is qualified with the <code>@InStoreQualifier</code>  on Line 7. You then
+fire an async event on Line 18 after an order is placed by a diner. This
+fired event can only be observed by <code>@InStoreQualifier</code>
+qualified observers, as follows.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figaq_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figaq_HTML.jpg"/>
+</p>
+
+<p>In this code, you declare an observer on Line 3 called <code>smsInStore</code> with one
+parameter type—<code>ApplicationUser</code>. This
+parameter is annotated with <code>@ObservesAsynch</code> and
+<code>@InStoreQualifier</code>,
+effectively making this observer responsible for the
+event fired from the <code>OrderService</code> class.
+This is how you can combine the various CDI API constructs to create
+very powerful applications, all the while keeping your code easy to read
+and maintainable.</p>
+
+
+<h3 class="Heading">Transactional Event Observers</h3>
+<p>All the event observers will be called when the event is fired. There
+are times, however, when you need an event observer to be called at a
+specific time during a transaction. As an
+example, say you have an <code>ApplicationUser</code> class
+in your application. You would like to send a welcome email to a
+self-service user who successfully registers with the application.
+However, you want to send the email only if the user is successfully
+persisted in your datastore, or more technically, when the transaction
+completes successfully.</p>
+<p>
+To do that, you create a new qualifier, <code>CreateUserQualifier</code>
+, fire an event, and declare a transactional observer that gets
+called only if the transaction completes successfully. The code starts
+with the qualifier.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figar_HTML.jpg" style="width:30em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figar_HTML.jpg"/>
+</p>
+
+<p>
+Line 4 shows an annotation declaration called <code>CreateUserQualifier</code>,
+with the requisite qualifier metadata declared on
+Lines 1-3.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figas_HTML.jpg" style="width:31.45em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figas_HTML.jpg"/>
+</p>
+
+<p>Line 2 of this code declares the <code>PersistenceService</code>
+bean, which is set as a stateless EJB (Line 1). You inject an event
+object on Line 6, which is qualified on Line 5 with <code>@CreateUserQualifier</code>.
+The class then declares a method called <code>persistUser</code> on Line 8
+that takes an <code>ApplicationUser</code>
+object  as the
+parameter. In this method, you would store the user in the datastore
+using some form of data API. You then fire an event on Line 10 with the
+<code>ApplicationUser</code>
+object as the payload.</p>
+<p>
+Because the <code>persistUser</code> method is
+declared in an EJB, it will be executed in a transactional context. So
+you know that the event is being fired in a transactional context. Now
+you can examine the observer for this event.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_8_Chapter/493447_1_En_8_Figat_HTML.jpg" style="width:31.45em" alt="../images/493447_1_En_8_Chapter/493447_1_En_8_Figat_HTML.jpg"/>
+</p>
+
+<p>
+Line 3 declares an observer called <code>sendEmail</code> that takes
+an <code>ApplicationUser</code> as
+the payload. It is
+qualified with <code>@CreateUserQualifier</code>
+and annotated with <code>@Observes</code>. This time,
+however, the <code>@Observes</code> annotation
+has a value set for the <code>during</code> parameter. The
+value of the <code>during</code> field of the
+<code>@Observes</code>
+annotation  can be
+set to any of the following:
+
+</p>
+
+<ul>
+<li><p><code>TransactionPhase.IN_PROGRESS</code>:
+The event observer is invoked when the event is fired, without regard to
+the transaction phase. This is the default value for all the <code>@Observes</code> you have
+seen so far.</p></li>
+<li><p><code>TransactionPhase.BEFORE_COMPLETION</code>:
+The event observer is called during the before completion phase of the
+transaction.</p></li>
+<li><p><code>TransactionPhase.AFTER_COMPLETION</code>:
+The event observer is called during the after completion phase of the
+transaction.</p></li>
+<li><p><code>TransactionPhase.AFTER_FAILURE</code>:
+The event observer is called during the after completion phase of the
+transaction, but only if the transaction failed.</p></li>
+<li><p><code>TransactionPhase.AFTER_SUCCESS</code>:
+The event observer is called during the after completion phase of the
+transaction, but only if the transaction completed
+successfully.</p></li>
+</ul>
+
+<p>The last value was used in the observer declaration. What you want is
+for this observer to be invoked  only if the
+transaction in which you are persisting the new user completes
+successfully, in which case you know for certain the user has been
+persisted in the datastore. There is no point in sending a welcome email
+to a user who has not successfully registered.</p>
+
+
+
+
+Footnotes
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn1_source">1</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn2_source">2</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn3_source">3</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn4_source">4</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn5_source">5</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn6_source">6</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn7_source">7</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn8_source">8</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn9_source">9</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn10_source">10</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn11_source">11</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn12_source">12</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn13_source">13</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn14_source">14</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn15_source">15</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn16_source">16</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn17_source">17</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn18_source">18</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn19_source">19</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn20_source">20</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn21_source">21</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn22_source">22</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn23_source">23</a>
+
+ 
+
+
+
+<a href="#493447_1_En_8_Chapter.xhtml#Fn24_source">24</a>
+
+ 
+
+
+
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">9. CDI Stereotypes</h1>
+
+
+<!--End Abstract-->
+
+<p>CDI stereotypes
+are an API construct that help you group together similar architectural
+patterns into one annotation. In the restaurant application you learned
+about in Chapter <a href="#493447_1_En_8_Chapter.xhtml">8</a>, there is a class named <code>QueryService</code> that you
+need to transform into a transactional, logged, request scoped bean to
+carry out a query service in the data layer.</p>
+<p>
+Now assume this requirement will apply to other beans as well. What this
+means is that <code>QueryService</code> would
+look like the following.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_9_Chapter/493447_1_En_9_Figa_HTML.jpg" style="width:30.02em" alt="../images/493447_1_En_9_Chapter/493447_1_En_9_Figa_HTML.jpg"/>
+</p>
+
+<p>Lines 1-3 use the <code>@RequestScoped</code>, <code>@Transactional</code>, and
+<code>@Logging</code>
+annotations to declare the <code>QueryService</code> bean.
+The <code>@Transactional</code>
+annotation is an interceptor from the Java Transaction API. <code>@Loggin</code>  is
+the logging interceptor. If the application grows and there is a need
+for more service layer classes, every single one of those classes is
+going to have to repeat these annotations.</p>
+<p>
+Using CDI stereotypes, you can group these commonly required annotations
+into one annotation so that using that single stereotype will result in
+the activation of all the other annotations. You can declare a <code>CDIService</code> stereotype
+to use on the <code>QueryService</code>
+class   as follows.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_9_Chapter/493447_1_En_9_Figb_HTML.jpg" style="width:25em" alt="../images/493447_1_En_9_Chapter/493447_1_En_9_Figb_HTML.jpg"/>
+</p>
+
+<p>This code snippet declares a stereotype called <code>CDIService</code> using the
+<code>@Stereotype</code>
+annotation on Line 1. Line 2 then declares this stereotype as having a
+request scope. Line 3 declares <code>CDIService</code> as being
+<code>@Transactional</code>,
+meaning that every method in a class annotated with <code>@CDIService</code> will be
+run as a transaction. Line 4 declares <code>@Logging</code>, making
+<code>@CDIService</code>
+loggable. Line 5 then uses the CDI qualifier called <code>@Named</code> to make any
+<code>@CDIService</code>
+annotated class available to any JSF page. Line 6 declares the retention
+as <code>RUNTIME</code> and
+Line 7 declares the target as <code>TYPE</code>, meaning that
+<code>@CDIService</code> can
+only be used on classes.</p>
+<p>
+Now you can apply this newly created stereotype to the <code>QueryService</code> bean to
+make it instantly a request-scoped, transactional, loggable, named bean.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_9_Chapter/493447_1_En_9_Figc_HTML.jpg" style="width:25em" alt="../images/493447_1_En_9_Chapter/493447_1_En_9_Figc_HTML.jpg"/>
+</p>
+
+<p>Line 1 in this code snippet shows the use of the <code>@CDIService</code>
+stereotype on the <code>QueryService</code>. So with
+that, you have replaced the need for (and the tedious repetition of)
+four annotations with just one.</p>
+<p>This is how you can use CDI stereotypes to
+simplify and compact your code. If you need to make your data layer
+service classes application instead of request scope, all you have to do
+is change the scope at the stereotype definition level and that will
+instantly be available on all <code>@CDIService</code> annotated
+beans.</p>
+
+
+<p></p>
+
+
+<!--Begin Abstract-->
+
+<h1 class="ChapterTitle" lang="en">10. The CDI Ecosystem</h1>
+
+
+<!--End Abstract-->
+
+<p>The Contexts and
+Dependency Injection (CDI) API is at the heart of the entire
+Jakarta EE platform. CDI provides a powerful Service Provider Interface
+(SPI) that allows third-party libraries to create portable extensions
+for the platform. In effect, CDI makes it easy for other projects to
+integrate into Jakarta EE.</p>
+<p>
+A portable extension may integrate into the platform by
+
+</p>
+
+<ul>
+<li><p>Providing its beans, interceptors, and decorators to the
+container</p></li>
+<li><p>Injecting dependencies into its objects using the dependency
+injection service</p></li>
+<li><p>Providing a context implementation for a custom scope</p></li>
+<li><p>Augmenting or overriding the annotation-based metadata with
+metadata from some other source</p></li>
+</ul>
+
+<p>The two notable CDI extensions are the Apache Delta Spike<sup><a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></sup> and Eclipse
+MicroProfile<sup><a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a></sup> projects.</p>
+
+<h2 class="Heading">Eclipse MicroProfile</h2>
+<p>Eclipse
+MicroProfile is an Eclipse Foundation-led project aimed at making
+the Jakarta EE platform a cloud-native enterprise development choice. It
+features a number of APIs that together form a powerful toolset for
+creating resilient, portable enterprise Java applications.</p>
+<p>The most obvious CDI extension from MicroProfile is the Config API.
+The MP Config API
+aims at simplifying application configuration in different environments
+and from different sources without the need to redeploy or restart the
+application.</p>
+<p>An application might need different port numbers for different
+requests, or certain features need to be switched on or off based on
+certain configurations. The Config API aims at externalizing application
+configuration so that changes can be made without having to
+restart/redeploy your code.</p>
+<p>
+To get started with MicroProfile, you need to add the dependency to your
+project, as shown here. Almost all the Jakarta EE app servers support
+MP.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figa_HTML.jpg" style="width:30em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figa_HTML.jpg"/>
+</p>
+
+<p>This code snippet adds the latest MicroProfile API to your project
+dependencies, giving you access to the entire suite of sub-projects. For
+example, assume that in the restaurant app, in the <code>SelfService.java</code>
+class, you need a configurable string that contains a welcome message
+for self-serve customers.</p>
+<p>
+To achieve this, you first need to create at least one config source—a
+place to get values from—in the app. The following code snippet shows
+the <code>microprofile-config.properties</code>
+file , located in
+the <code>META-INF</code>
+folder.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figb_HTML.jpg" style="width:30em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figb_HTML.jpg"/>
+</p>
+
+<p>
+This code snippet shows a key, called <code>self-service</code>, that
+has a string value. To use this in your code, you simply create a <code>String</code> field and
+inject this value into it using a qualifier from the MicroProfile Config
+API, as shown here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figc_HTML.jpg" style="width:29.97em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figc_HTML.jpg"/>
+</p>
+
+<p>Line 1 of this code snippet uses the <code>@Inject</code> annotation in
+combination with <code>@ConfigProperty</code> on
+Line 2 to inject the value of the field defined in the properties file.
+<code>@ConfigProperty</code>
+ is a MicroProfile Config Qualifier that takes two
+parameters—<code>name</code>
+is the key of the config value you want and a default value in the
+absence of a value in any of the config sources.</p>
+<p>
+In this code, you set the name of the <code>@ConfigProperty</code>
+annotation to the key of the <code>self-service</code> string.
+You could as well have defined a default value, as shown next, to be
+injected into the <code>selfServiceWelcome</code>
+field in the absence of a value in the properties file or any other
+config source.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figd_HTML.jpg" style="width:35.65em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figd_HTML.jpg"/>
+</p>
+
+<p>
+From this code snippet, in the absence of a value, the default value of
+<code>“Hello, and welcome”</code> will be injected into the <code>selfServiceWelcome</code>
+field. <code>@ConfigProperty</code> is
+defined as a CDI
+Qualifier, as shown here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Fige_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Fige_HTML.jpg"/>
+</p>
+
+<p>Line 1 declares the annotation <code>ConfigProperty</code> as a
+qualifier. Lines 8 and 10 both declare the two parameters of the
+annotation—<code>name</code>
+and <code>defaultValue</code>. As you
+can see, the <code>@ConfigProperty</code>
+annotation is a plain CDI qualifier that the MicroProfile Config API
+leverages to help externalize application configuration.</p>
+<p>
+The use of <code>@ConfigProperty</code>
+ is static in the sense that the values do not change even when
+the values change in the source of the configuration. So in this
+example, even if the value of the <code>self-service</code> config
+property entry changes, the injected field might not necessarily change.
+To truly get dynamic config values, you can use another CDI construct
+with the Config API, as shown next.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figf_HTML.jpg" style="width:30.02em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figf_HTML.jpg"/>
+</p>
+
+<p>
+Lines 1 and 2 use <code>@Inject</code> and <code>@ConfigProperties</code> on
+the <code>myDynamicValue</code> field.
+The type of <code>myDyanmicValue</code>,
+however, is a <code>Provider</code> from the CDI
+API, defined as shown next.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figg_HTML.jpg" style="width:25em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figg_HTML.jpg"/>
+</p>
+
+<p>
+<code>Provider</code>  is a
+parameterized interface from the CDI API that has one method, <code>get()</code>. It returns the
+parameterized type. As used in the earlier code, setting the type of
+<code>myDynamicValue</code>
+to <code>Provider</code>
+means any time you call the <code>get()</code> method on it, a
+new instance of type <code>String</code> is returned
+with a possibly updated value from the config source. The following code
+snippet shows the <code>get()</code> method  invocation on <code>myDynamicValue</code> to be
+logged.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figh_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figh_HTML.jpg"/>
+</p>
+
+<p>The entire MicroProfile project is built on the Jakarta EE platform
+and as such, it leverages the power of the platform to help you craft
+cloud-native enterprise Java applications.</p>
+
+
+<h2 class="Heading">Apache Delta Spike</h2>
+<p>Delta Spike is
+an Apache top-level project that has modules in the form of CDI
+extensions that provide additional functionality for your Jakarta EE
+application. Some of the modules include the JSF, Scheduler, Security,
+and Data. This section examines the Data module.</p>
+<p>The Data
+module provides capabilities for implementing repository patterns
+and thereby simplifying the repository layer. Repository patterns are
+ideal for simple queries that require boilerplate code, enabling
+centralization of query logic and consequently reducing code duplication
+and improving testability.<sup><a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a></sup></p>
+<p>
+For the restaurant application, you can convert the <code>ApplicationUser</code>
+bean  to a JPA
+entity, as shown here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figi_HTML.jpg" style="width:30em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figi_HTML.jpg"/>
+</p>
+
+<p>
+The <code>ApplicationUser</code>
+entity  has a
+number of fields that, in a typical database-driven application, you
+would want to query on. For instance, you might want to find a user by
+<code>userName</code>, run
+another query to search by email, and so on. The Delta Spike module
+helps you reduce such tedious boilerplate code by using CDI-based
+repositories. You can declare an <code>ApplicationUserRepo</code>
+that will handle the basic CRUD on the fields of the entity class for
+you.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figj_HTML.jpg" style="width:30em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figj_HTML.jpg"/>
+</p>
+
+<p>
+Line 1 declares the <code>@Repository</code>
+annotation from the Delta Spike data module on the <code>ApplicationUserRepo</code>
+interface, which extends the parameterized <code>EntityRepository</code>,
+which is also from the same Delta Spike data module. The <code>EntityRepository</code>
+interface  is
+defined as follows:
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figk_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figk_HTML.jpg"/>
+</p>
+
+<p>
+This interface has some basic CRUD-based methods that almost every
+database application implements. For instance, Line 12 declares a <code>findBy()</code> method that
+takes the primary key of an entity and queries the database for it. All
+of these methods are implemented by the data module CDI extension. Next,
+you’ll declare some methods in the interface for CRUD purposes.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figl_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figl_HTML.jpg"/>
+</p>
+
+<p>
+Line 5 declares a <code>findByEmail</code> method.
+This method will search for a user by their email. Lines 7, 9, and 11
+declare the <code>findByUserName</code>, <code>findOptionalByHashedPassword</code>,
+and <code>findByUserNameLike</code>
+methods, respectively. To use the repository, you just inject it into
+your <code>QuerySerivce</code>
+class , as shown
+here.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figm_HTML.jpg" style="width:27.5em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figm_HTML.jpg"/>
+</p>
+
+<p>
+Line 5 declares a CDI-injected field of type <code>ApplicationUserRepo</code>
+into the <code>QueryService</code> class.
+With this, you can implement most of the tedious CRUD boilerplate code
+without having to write a fraction of it, as shown next.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Fign_HTML.jpg" style="height:33.22em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Fign_HTML.jpg"/>
+</p>
+
+<p><code>QueryService</code>  has a number of
+method declarations that use the <code>ApplicationUserRepo</code>
+injected on Line 5. As you can see, some of the methods are being used
+directly from the <code>EntityRepository</code>,
+such as the <code>findOptionalBy()</code>
+method, which takes the ID of an entity and returns an <code>Optional</code> object typed
+to the entity. The <code>findAll</code> method  also invokes the
+<code>findAll</code> method,
+which is found directly on the <code>EntityRepository</code>
+interface.</p>
+<p>
+All of these methods are implemented on your behalf using a combination
+of CDI API constructs. For instance, the Delta Spike module requires a
+producer field of type <code>EntityManager</code> 
+in order to be able to intercept and implement repository methods. The
+<code>EntityManager</code> 
+producer method suffices for the requirement.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figo_HTML.jpg" style="width:25em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figo_HTML.jpg"/>
+</p>
+
+<p>
+The repository can also be used for persisting into the database.
+Remember it comes with a <code>save()</code> method that
+takes an entity and persists or merges it into the persistent context,
+depending on the state of the entity. You can use <code>ApplicationUserRepo</code>
+in your persistence service to persist <code>ApplicationUser</code>
+entities.
+
+</p>
+
+<p>
+<img src="images/493447_1_En_10_Chapter/493447_1_En_10_Figp_HTML.jpg" style="width:35.62em" alt="../images/493447_1_En_10_Chapter/493447_1_En_10_Figp_HTML.jpg"/>
+</p>
+
+<p><code>PersistenceService</code>
+ is a stateless EJB that declares a dependency on <code>ApplicationUserRepo</code>
+on Line 9. Then in the <code>persistUser</code> method,
+on Line 14, the injected repository is used to persist an <code>ApplicationUser</code>
+entity. The <code>save()</code> method  on the repository is
+also automatically intercepted and implemented by the Delta Spike module
+on your behalf.</p>
+
+
+
+Footnotes
+
+
+<a href="#493447_1_En_10_Chapter.xhtml#Fn1_source">1</a>
+
+ 
+
+
+
+<a href="#493447_1_En_10_Chapter.xhtml#Fn2_source">2</a>
+
+ 
+
+
+
+<a href="#493447_1_En_10_Chapter.xhtml#Fn3_source">3</a>
+
+ 
+
+
+
+
+
+<p></p>
+
+
+<aside aria-labelledby="App1Heading" class="Appendix" id="App1">
+
+
+<h2 class="Heading" id="493447_1_En_BookBackmatter_OnlinePDF.xhtml#App1Heading">Afterword</h2>
+<p>As you have seen, the Contexts and Dependency Injection API is a
+deceptively simple yet powerful toolkit that helps you craft
+maintainable code and large applications. You can also count on the CDI
+ecosystem for helpful extensions that make your life as a Jakarta EE
+developer very convenient and productive. You have seen two such
+extensions—the Eclipse MicroProfile Config API and Apache Delta
+Spike—that you can immediately start using in your projects.</p>
+<p>Whew! What a ride. This book covered all that you need to know to use
+the CDI API in your own code. It is impossible to cover everything about
+any given library in a book. However, with what you have learned up to
+this point, you should have a solid foundation on which you can explore
+the CDI spec <sup><a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a></sup> on your own.</p>
+<p>If you need further help with any of the topics covered in this book,
+or you would like me to help you out with a project, or simply hangout
+for coffee, please do not hesitate to reach out to me at
+hello@pedanticacademy.com. I would love to hear from you and will
+respond to all your mails.</p>
+<p>Thank you for reading this book. I appreciate your interest.</p>
+
+
+</aside>
+
+
+
+Index
+
+
+
+
+
+A, B
+
+
+
+
+Apache Delta Spike
+
+
+ApplicationUser bean
+
+
+defined
+
+
+EntityManager
+
+
+EntityRepository interface
+
+
+QueryService class
+
+
+save() method
+
+
+
+
+Application server
+
+
+
+
+
+
+C
+
+
+
+
+CDI bean lifecycle callbacks
+
+
+interceptors
+
+
+@PostConstruct
+
+
+@PreDestroy
+
+
+
+
+CDI beans<em>vs</em> . contextual instances
+
+
+
+
+CDI stereotypes
+
+
+
+
+Constructor injection
+
+
+
+
+Contexts and Dependency Injection (CDI)
+
+
+activation
+
+
+annotation
+
+
+@ApplicationScoped
+
+
+async events
+
+
+bean creation
+
+
+bean lifecycle callbacks
+
+
+SeeCDI bean lifecycle callbacks
+
+
+beans<em>vs.</em> contextual instances
+
+
+container
+
+
+@ConversationScoped
+
+
+default activation scope
+
+
+dependent pseudo-scope
+
+
+injection point
+
+
+constructor
+
+
+field
+
+
+method
+
+
+managed beans
+
+
+method producers
+
+
+producer fields
+
+
+qualifying events
+
+
+@RequestScoped
+
+
+session beans
+
+
+@SessionScoped
+
+
+synchronous events
+
+
+transactional event observers
+
+
+
+
+
+
+D
+
+
+
+
+Dependency injection (DI)
+
+
+
+
+Devoxx
+
+
+
+
+
+
+E
+
+
+
+
+Eclipse Foundation Specification Process (EFSP)
+
+
+
+
+Eclipse MicroProfile
+
+
+CDI qualifier
+
+
+@ConfigProperty
+
+
+defined
+
+
+get() method
+
+
+microprofile-config.properties file
+
+
+Provider
+
+
+
+
+
+
+F
+
+
+
+
+Field injection point
+
+
+
+
+findAll method
+
+
+
+
+fireAsync method
+
+
+
+
+
+
+G, H
+
+
+
+
+getCurrentUser() method
+
+
+
+
+Glassfish 5.1
+
+
+
+
+
+
+I
+
+
+
+
+Inversion of control (IoC)
+
+
+
+
+
+
+J, K
+
+
+
+
+Jakarta EE
+
+
+defined
+
+
+development
+
+
+documentation
+
+
+EFSP
+
+
+portability
+
+
+principles
+
+
+standardization
+
+
+tank/pistol
+
+
+
+
+Java Community Process (JCP)
+
+
+
+
+Java EE API
+
+
+
+
+Java Specification Request (JSR)
+
+
+
+
+
+
+L
+
+
+
+
+@Loggin
+
+
+
+
+
+
+M, N
+
+
+
+
+Method injection
+
+
+
+
+
+
+O
+
+
+
+
+Oracle CodeOne
+
+
+
+
+order() method
+
+
+
+
+
+
+P
+
+
+
+
+Payara Server
+
+
+
+
+PersistenceService
+
+
+
+
+
+
+Q
+
+
+
+
+QueryService class
+
+
+
+
+
+
+R
+
+
+
+
+Reference implementation
+
+
+
+
+
+
+S
+
+
+
+
+Spring Framework
+
+
+
+
+
+
+T
+
+
+
+
+Technology Compatibility Kit (TCK)
+
+
+
+
+Transactional event observers
+
+
+ApplicationUser object
+
+
+CreateUserQualifier
+
+
+@Observes annotation
+
+
+
+
+
+
+U, V, W, X, Y, Z
+
+
+
+
+umbrella JSR/Java EE
+
+
+
+
+UserSession bean
+
+
+
+
+
+
+Footnotes
+
+
+<a href="#493447_1_En_BookBackmatter_OnlinePDF.xhtml#Fn1_source">1</a>
+
+ 
+
+
+
+
+
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr/>
+<ol>
+<li id="fn1"><p><a href="https://jcp.org/en/eg/eghome"><code>https://jcp.org/en/eg/eghome</code></a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://jcp.org/en/home/index"><code>https://jcp.org/en/home/index</code></a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://en.wikipedia.org/wiki/Technology_Compatibility_Kit"><code>https://en.wikipedia.org/wiki/Technology_Compatibility_Kit</code></a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://eclipse-foundation.blog/2018/02/26/and-the-name-is/"><code>https://eclipse-foundation.blog/2018/02/26/and-the-name-is/</code></a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://jakarta.ee/about/faq/"><code>https://jakarta.ee/about/faq/</code></a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://javaee.github.io/tutorial/"><code>https://javaee.github.io/tutorial/</code></a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a href="https://en.wikipedia.org/wiki/Rod_Johnson_%2528programmer%2529"><code>https://en.wikipedia.org/wiki/Rod_Johnson_(programmer)</code></a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Why I Hate Spring: <a href="http://samatkinson.com/why-i-hate-spring/"><code>http://samatkinson.com/why-i-hate-spring/</code></a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a href="https://en.wikipedia.org/wiki/Inversion_of_control"><code>https://en.wikipedia.org/wiki/Inversion_of_control</code></a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><a href="http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html%2523concepts"><code>http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#concepts</code></a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/ApplicationScoped.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/ApplicationScoped.html</code></a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/RequestScoped.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/RequestScoped.html</code></a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Qualifiers are covered in Chapter <a href="#493447_1_En_10_Chapter.xhtml">10</a>.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p><a href="https://javaee.github.io/tutorial/jsf-el.html"><code>https://javaee.github.io/tutorial/jsf-el.html</code></a><a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/SessionScoped.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/SessionScoped.html</code></a><a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/ConversationScoped.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/ConversationScoped.html</code></a><a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/Dependent.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/Dependent.html</code></a><a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p><a href="https://download.oracle.com/otndocs/jcp/ejb-3_2-fr-spec/index.html"><code>https://download.oracle.com/otndocs/jcp/ejb-3_2-fr-spec/index.html</code></a><a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/inject/Any.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/inject/Any.html</code></a><a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p><a href="https://docs.oracle.com/javaee/7/api/javax/inject/Named.html"><code>https://docs.oracle.com/javaee/7/api/javax/inject/Named.html</code></a><a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/inject/Default.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/inject/Default.html</code></a><a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/Initialized.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/Initialized.html</code></a><a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/Destroyed.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/context/Destroyed.html</code></a><a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/inject/Produces.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/inject/Produces.html</code></a><a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p><a href="https://www.baeldung.com/install-maven-on-windows-linux-mac"><code>http://omnifaces.org/</code></a><a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p><a href="https://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html"><code>https://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html</code></a><a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p><a href="https://docs.oracle.com/javaee/7/api/javax/annotation/PostConstruct.html"><code>https://docs.oracle.com/javaee/7/api/javax/annotation/PostConstruct.html</code></a><a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p><a href="https://docs.oracle.com/javaee/7/api/javax/interceptor/InvocationContext.html"><code>https://docs.oracle.com/javaee/7/api/javax/interceptor/InvocationContext.html</code></a><a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p><a href="https://docs.oracle.com/javaee/7/api/javax/annotation/PreDestroy.html"><code>https://docs.oracle.com/javaee/7/api/javax/annotation/PreDestroy.html</code></a><a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p><a href="https://docs.oracle.com/javaee/7/api/javax/interceptor/InterceptorBinding.html"><code>https://docs.oracle.com/javaee/7/api/javax/interceptor/InterceptorBinding.html</code></a><a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p><a href="https://docs.oracle.com/javaee/7/api/javax/interceptor/InvocationContext.html"><code>https://docs.oracle.com/javaee/7/api/javax/interceptor/InvocationContext.html</code></a><a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p><a href="https://docs.jboss.org/cdi/api/2.0/javax/enterprise/event/Event.html"><code>https://docs.jboss.org/cdi/api/2.0/javax/enterprise/event/Event.html</code></a><a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p><a href="https://www.deltaspike.apache.org/"><code>https://deltaspike.apache.org/</code></a><a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p><a href="https://microprofile.io/"><code>https://microprofile.io/</code></a><a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p><a href="https://www.deltaspike.apache.org/documentation/data.html"><code>https://deltaspike.apache.org/documentation/data.html</code></a><a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p><a href="http://docs.jboss.org/cdi/spec/2.0/cdi-spec.pdf"><code>http://docs.jboss.org/cdi/spec/2.0/cdi-spec.pdf</code>
+</a><a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>

@@ -1,0 +1,6661 @@
+- '好的，作为一名高级文档工程师和翻译员，我将严格遵循您提供的注意事项和示例，将给定的英文文本翻译成中文。
+
+
+
+  ![](img/cover.jpeg)
+
+
+  ![](img/index-1_1.jpg)
+
+
+  ![](img/index-1_2.png)
+
+
+  **介绍**
+
+
+  **Play Framework**
+
+
+  Java Web 应用
+
+
+  开发
+
+
+  —
+
+
+  *第二版*
+
+
+  —
+
+
+  Prem Kumar Karunakaran
+
+
+  **介绍 Play**
+
+
+  **Framework**
+
+
+  **Java Web 应用**
+
+
+  **开发**
+
+
+  **第二版**
+
+
+  **Prem Kumar Karunakaran**
+
+
+  ***介绍 Play Framework：Java Web 应用开发***
+
+
+  Prem Kumar Karunakaran
+
+
+  印度喀拉拉邦特里凡得琅
+
+
+  ISBN-13 (平装): 978-1-4842-5644-2
+
+
+  ISBN-13 (电子版): 978-1-4842-5645-9
+
+
+  [`doi.org/10.1007/978-1-4842-5645-9`](https://doi.org/10.1007/978-1-4842-5645-9)
+
+
+  版权所有 © 2020 Prem Kumar Karunakaran
+
+
+  本作品受版权保护。出版商保留所有权利，无论是全部还是部分材料，特别是翻译、重印、重用插图、朗诵、广播、以缩微胶卷或任何其他物理方式复制，以及传输或信息存储和检索、电子改编、计算机软件，或通过目前已知或以后开发的类似或不同方法。
+
+
+  本书中可能出现商标名称、徽标和图像。我们不会在每次出现商标名称、徽标或图像时都使用商标符号，而是仅以编辑方式使用这些名称、徽标和图像，以维护商标所有者的利益，无意侵犯商标。
+
+
+  本出版物中使用商品名称、商标、服务标志和类似术语，即使它们未被标识为此类，也不应被视为对其是否受所有权保护的看法。
+
+
+  尽管本书中的建议和信息在出版时被认为是真实和准确的，但作者、编辑和出版商均不对可能出现的任何错误或遗漏承担法律责任。出版商对本书所含材料不作任何明示或暗示的保证。
+
+
+  Apress Media LLC 董事总经理：Welmoed Spahr
+
+  采购编辑：Steve Anglin
+
+  开发编辑：Matthew Moodie
+
+  编辑运营经理：Mark Powers
+
+  封面设计：eStudioCalamar
+
+  封面图片：Mel Elias on Unsplash (www.unsplash.com)
+
+
+  全球图书贸易由 Apress Media, LLC 发行，地址：1 New York Plaza, New York, NY 10004, U.S.A. 电话：1-800-SPRINGER，传真：(201)
+  348-4505，电子邮件：orders-ny@springer-sbm.com，或访问 www.springeronline.com。Apress Media,
+  LLC 是一家加利福尼亚有限责任公司，其唯一成员（所有者）是 Springer Science + Business Media Finance Inc (SSBM
+  Finance Inc)。SSBM Finance Inc 是一家**特拉华州**公司。
+
+
+  有关翻译事宜，请发送电子邮件至 editorial@apress.com；有关重印、平装本或音频版权事宜，请发送电子邮件至 bookpermissions@springernature.com。
+
+
+  Apress 图书可批量购买用于学术、企业或促销用途。大多数图书也提供电子书版本和许可证。有关更多信息，请参阅我们的印刷版和电子版批量销售网页：www.apress.com/bulk-sales。
+
+
+  作者在本书中引用的任何源代码或其他补充材料，读者均可通过本书的产品页面在 GitHub 上获取，网址为 www.apress.com/9781484256442。有关更详细的信息，请访问
+  www.apress.com/source-code。
+
+
+  印刷于无酸纸上
+
+
+  *献给我的妻子 Teena，以及我的女儿 Nayana 和 Nandana。感谢我的父母在这些年来给予我的支持。感谢所有朋友的支持和鼓励。*
+
+
+  **目录**
+
+
+  关于作者 ���������������������������������������������������������������������������������xi
+
+
+  关于技术审校 ���������������������������������������������������������������������������xiii
+
+
+  前言 �����������������������������������������������������������������������������������������������xv
+
+
+  第 1 章: Play 2 入门 ������������������������������������������������� 1
+
+
+  准备工作 ��������������������������������������������������������������������������������������������������������1
+
+
+  安装 ������������������������������������������������������������������������������������������������������������1
+
+
+  前提条件 ���������������������������������������������������������������������������������������������������2
+
+
+  安装 sbt ����������������������������������������������������������������������������������������������������2
+
+
+  安装 conscript ������������������������������������������������������������������������������������������2
+
+
+  安装 Giter8 �����������������������������������������������������������������������������������������������3
+
+
+  设置 Play ������������������������������������������������������������������������������������������������4
+
+
+  使用 Play 示例项目 �����������������������������������������������������������������������������������4
+
+
+  使用 sbt ��������������������������������������������������������������������������������������������������6
+
+
+  创建您的第一个项目 ������������������������������������������������������������������������������������8
+
+
+  app �������������������������������������������������������������������������������������������������������������������9
+
+
+  conf ����������������������������������������������������������������������������������������������������������������10
+
+
+  build.sbt ���������������������������������������������������������������������������������������������������������11
+
+
+  project �����������������������������������������������������������������������������������������������������������11
+
+
+  public �������������������������������������������������������������������������������������������������������������11
+
+
+  lib �������������������������������������������������������������������������������������������������������������������11
+
+
+  test ����������������������������������������������������������������������������������������������������������������12
+
+
+  v
+
+
+  目
+
+
+  目
+
+
+  录
+
+
+  录
+
+
+  配置 Play 以与您首选的 IDE 协同工作 �������������������������������������������������������12
+
+
+  在 Eclipse 中设置 ��������������������������������������������������������������������������������������12
+
+
+  在 IntelliJ 中设置 ��������������������������������������������������������������������������������������15
+
+
+  Hello World 应用程序 ���������������������������������������������������������������������������������������17
+
+
+  配置 �������������������������������������������������������������������������������������������������19
+
+
+  控制器和视图 ���������������������������������������������������������������������������������������22
+
+
+  测试 Play 应用程序 ������������������������������������������������������������������������������������27
+
+
+  测试视图 �������������������������������������������������������������������������������������������������28
+
+
+  测试控制器 �����������������������������������������������������������������������������������������29
+
+
+  第 2 章: 构建系统 ���������������������������������������������������������������������33
+
+
+  Scala 构建工具/简单构建工具 ����������������������������������������������������������������������33
+
+
+  核心原则 ����������������������������������������������������������������������������������������������������33
+
+
+  sbt 的优势 �����������������������������������������������������������������������������������������������������34
+
+
+  项目结构 �������������������������������������������������������������������������������������������������35
+
+
+  使用 sbt �������������������������������������������������������������������������������������������������������������36
+
+
+  设置定义 �������������������������������������������������������������������������������������������39
+
+
+  解析器 �������������������������������������������������������������������������������������������������������42
+
+
+  完整的 build.sbt �����������������������������������������������������������������������������������������42
+
+
+  完整的 plugins.sbt �������������������������������������������������������������������������������������43
+
+
+  SBT 命令快速回顾 ������������������������������������������������������������������������������������������43
+
+
+  第 3 章: Play 控制器和 HTTP 路由 �����������������������������������45
+
+
+  MVC 编程模型 ���������������������������������������������������������������������������������������������������45
+
+
+  模型 �������������������������������������������������������������������������������������������������������������46
+
+
+  视图 ���������������������������������������������������������������������������������������������������������������48
+
+
+  控制器 �������������������������������������������������������������������������������������������������������48
+
+
+  vi
+
+
+  目
+
+
+  目
+
+
+  录
+
+
+  录
+
+
+  HTTP 路由 ������������������������������������������������������������������������������������������������������48
+
+
+  静态定义 ���������������������������������������������������������������������������������������������50
+
+
+  URL 中的动态部分 ���������������������������������������������������������������������������������50
+
+
+  传递固定值 �������������������������������������������������������������������������������������52
+
+
+  可选参数 ��������������������������������������������������������������������������������������53
+
+
+  使用 application.conf 进行应用程序配置 �������������������������������������������������������53
+
+
+  控制器 �����������������������������������������������������������������������������������������������������������54
+
+
+  完成 Bookshop 控制器 ��������������������������������������������������������������������������������������56
+
+
+  saveComment 方法 �����������������������������������������������������������������������������������58
+
+
+  测试 saveComment 动作 ����������������������������������������������������������������������������������59
+
+
+  模型 ����������������������������������������������������������������������������������������������������������������60
+
+
+  作用域对象 ���������������������������������������������������������������������������������������������������61
+
+
+  会话作用域 �����������������������������������������������������������������������������������������������62
+
+
+  Flash 作用域 ���������������������������������������������������������������������������������������������������64
+
+
+  第 4 章: Play 视图和 Scala 模板 �����������������������������65
+
+
+  复合视图 �������������������������������������������������������������������������������������������������66
+
+
+  设计通用模板 ��������������������������������������������������������������������������������������������68
+
+
+  代码片段模板基础 ���������������������������������������������������������������������������������������69
+
+
+  注释 �����������������������������������������������������������������������������������������������������70
+
+
+  模板参数 ����������������������������������������������������������������������������������������������������70
+
+
+  导入语句 ���������������������������������������������������������������������������������������������������71
+
+
+  迭代列表 �����������������������������������������������������������������������������������������������72
+
+
+  迭代映射 ����������������������������������������������������������������������������������������������72
+
+
+  If 块 ���������������������������������������������������������������������������������������������������������73
+
+
+  转义动态内容 ������������������������������������������������������������������������������������������74
+
+
+  vii
+
+
+  目
+
+
+  目
+
+
+  录
+
+
+  录
+
+
+  第 5 章: 并发和异步编程 ��������������������������������75
+
+
+  什么是并发？ �����������������������������������������������������������������������������������������76
+
+
+  执行器 ��������������������������������������������������������������������������������������������������������76
+
+
+  示例 1：使用 Runnable ���������������������������������������������������������������������������78
+
+
+  示例 2：使用 Callable �����������������������������������������������������������������������������80
+
+
+  使用 Play 进行异步编程 �������������������������������������������������������������������������������82
+
+
+  编写异步应用程序 ���������������������������������������������������������������������������������������������83
+
+
+  配置异步定时任务 ����������������������������������������������������������������������������������������84
+
+
+  Akka 基础 ���������������������������������������������������������������������������������������������������84
+
+
+  第 6 章: Web 服务、JSON 和 XML �������������������������������������������87
+
+
+  消费 Web 服务 ����������������������������������������������������������������������������������������������������88
+
+
+  处理大型响应 ����������������������������������������������������������������������������������������������91
+
+
+  处理 JSON ����������������������������������������������������������������������������������������������������94
+
+
+  消费 JSON 请求 ���������������������������������������������������������������������������������������������94
+
+
+  生成 JSON 响应 �����������������������������������������������������������������������������������������97
+
+
+  处理 XML ������������������������������������������������������������������������������������������������������98
+
+
+  示例 1：简单的 XML 解析 ��������������������������������������������������������������������99
+
+
+  示例 2：使用 JAXB 进行 XML 解析 �����������������������������������������������������������100
+
+
+  第 7 章: 访问数据库 ������������������������������������������������������105
+
+
+  配置数据库支持 ������������������������������������������������������������������������������������������105
+
+
+  使用 ORM �������������������������������������������������������������������������������������������������������109
+
+
+  ORM 概念 ���������������������������������������������������������������������������������������������109
+
+
+  关键术语 ����������������������������������������������������������������������������������������������������111
+
+
+  关系方向 �������������������������������������������������������������������������������������������������111
+
+
+  配置 JPA �������������������������������������������������������������������������������������������������113
+
+
+  viii
+
+
+  目
+
+
+  目
+
+
+  录
+
+
+  录
+
+
+  在 Play 中使用 Ebean ������������������������������������������������������������������������������������������118
+
+
+  Ebean 查询 ������������������������������������������������������������������������������������������������120
+
+
+  Ebean 中常用的 Select 查询结构 ����������������������������������������������������������������125
+
+
+  使用 RawSql ����������������������������������������������������������������������������������������������128
+
+
+  Ebean 中的关系 ��������������������������������������������������������������������������������130
+
+
+  第 8 章: 完整示例 �����������������������������������������������������������133
+
+
+  第 9 章: 使用 Play 模块 ���������������������������������������������������������157
+
+
+  创建模块 ���������������������������������������������������������������������������������������������158
+
+
+  第三方模块 �����������������������������������������������������������������������������������������161
+
+
+  第 10 章：应用程序设置和错误处理 ���������������������������������������163
+
+
+  过滤器 ������������������������������������������������������������������������������������������������164
+
+
+  动作组合 �����������������������������������������������������������������������������������������������������������168
+
+
+  错误处理器 ���������������������������������������������������������������������������������������������������170
+
+
+  客户端错误 �������������������������������������������������������������������������������������������������170
+
+
+  服务器错误 �����������������������������������������������������������������������������������������������170
+
+
+  Play 2.6.x 之前的全局设置方式 ��������������������������������������������������������������������172
+
+
+  第 11 章：使用缓存 ����������������������������������������������������������������������175
+
+
+  配置 Caffeine �����������������������������������������������������������������������������������������175
+
+
+  将 Caffeine 添加到项目 ������������������������������������������������������������������������176
+
+
+  配置 EhCache �����������������������������������������������������������������������������������������177
+
+
+  使用缓存 API ������������������������������������������������������������������������������������������177
+
+
+  第 12 章：生产部署 �����������������������������������������������������������������183
+
+
+  为 Play 配置 Apache httpd ��������������������������������������������������������������������184
+
+
+  使用 mod_proxy_balancer 进行负载均衡 �����������������������������������������������������184
+
+
+  配置 Play 与 Nginx ��������������������������������������������������������������������������������������185
+
+
+  索引 ���������������������������������������������������������������������������������187
+
+
+  ix
+
+
+  **关于作者**
+
+
+  **Prem Kumar Karunakaran** 是一位拥有约 20 年行业经验的企业架构师。他拥有 BITS Pilani 的软件系统硕士学位和科钦科技大学电子工程学士学位。他还是一名
+  Oracle 认证的 Java 企业版大师。他参与了许多面向全球客户的尖端产品的架构和设计。
+
+
+  他曾与 Infosys 和 IBS 等组织合作担任架构师，并参与了许多涵盖航空、物流、旅游和零售领域的项目。他对 Java、机器学习、大数据处理和云计算充满热情，喜欢学习新技术；他也为开源项目贡献自己的时间。
+
+
+  xi
+
+
+  **关于技术审校**
+
+
+  **Satheesh Madhavan** 在软件行业拥有近 20 年的经验，目前在印度最大的 IT 公司之一担任数字顾问。他在使用 Java 和 JEE 技术以各种身份提供企业解决方案方面拥有丰富的经验。他拥有
+  BITS Pilani 的软件系统硕士学位和喀拉拉大学的化学工程学士学位。他的爱好包括阅读小说和非小说、集邮、技术博客和播客，以及天体物理学和纯科学。
+
+
+  xiii
+
+
+  **前言**
+
+
+  软件开发人员需要具备许多特质才能做好他们的工作。开发人员的主要工作是创建解决业务问题的软件。客户在动态的商业环境中运营，他们需要足够快地改变他们的业务解决方案，以留住和吸引新客户。因此，快速应用程序开发是当今软件开发方法中的一个关键方面。您需要更好的框架和工具来帮助更快地开发高质量的软件。
+
+
+  Play Framework 是 Web 应用程序开发中崭新且令人印象深刻的框架。通过打破现有标准，它不像大多数 Web 框架那样试图抽象 HTTP，而是与其紧密集成。
+
+
+  Play Framework 是 Java Web 开发中快速应用程序编程的一场革命。它改变了 Java Web 开发的游戏规则。Java Web 开发曾经是一项繁琐、耗时的活动，有许多框架提供
+  MVC 架构的优势。但几乎没有框架能够提供真正的快速应用程序开发能力。Play 改变了这一切。
+
+
+  Play 是现有 Java 企业栈用于 Web 开发的一个简洁替代方案。Play 专注于开发人员生产力、可扩展性、对现代 Web 标准（仅举几例，如 REST、JSON、Web
+  Sockets 和 Comet）的遵循以及效率。
+
+
+  使用 Play Framework，您只需编写代码更改，然后点击浏览器刷新按钮即可测试您的更改。Play 将自动编译和部署您的更改。如果您的代码中有任何错误，Play
+  会在浏览器中很好地显示它们。您不再需要扫描冗长的 xv
+
+
+  前
+
+
+  前
+
+
+  言
+
+
+  言
+
+
+  异常跟踪来找出错误原因。最重要的是，Play 自带其应用程序服务器，该服务器轻量、快速且易于使用。用一句话来说，Play 是您开始 Java Web 开发所需的唯一框架。得益于
+  Play Framework，Java Web 开发变得更加容易、更有趣且更强大。
+
+
+  本书是您学习和使用新版本 Play Framework（Play 2）所需的一切。您将深入了解 Play Framework 的所有层，并通过尽可能多的示例和应用程序获得深入的知识。
+
+
+  **进一步参考**
+
+
+  Play Framework 官方文档[: www.playframework.com/](http://www.playframework.com/)
+
+
+  Play 的 Google 群组[: https://groups.google.com/forum/#!forum/](https://groups.google.com/forum/#!forum/play-framework)
+
+
+  [play-framework](https://groups.google.com/forum/#!forum/play-framework)
+
+
+  与 Play 相关的问题: [`stackoverflow.com/tags/`](http://stackoverflow.com/tags/playframework)
+
+
+  [playframework](http://stackoverflow.com/tags/playframework)
+
+
+  Ebeans[: www.avaje.org/](http://www.avaje.org/)
+
+
+  Twirl: [`github.com/playframework/twirl`](https://github.com/playframework/twirl)
+
+
+  xvi
+
+
+  **第 1 章**
+
+
+  **Play 2 入门**
+
+
+  在阅读了关于 Play 2 的介绍性部分之后，您现在应该对 Play Framework 的功能以及它如何加速 Java Web 开发有了一个概念。本章将介绍
+
+
+  • 安装 Play Framework
+
+
+  • 在您的机器上设置 Play Framework
+
+
+  • 配置 Play Framework
+
+
+  • 创建第一个示例项目
+
+
+  • 设置 IDE
+
+
+  **准备工作**
+
+
+  您只需要一个浏览器和互联网连接。您可以在多种操作系统上安装 Play，包括 Microsoft Windows、Linux 和 Mac。操作系统应已安装 Java。
+
+
+  **安装**
+
+
+  Play 只需要在运行时提供 Play jar 即可工作，因此您可以使用 Maven 或任何此类构建工具将 Play jar 包含在任何应用程序中。
+
+
+  © Prem Kumar Karunakaran 2020
+
+
+  P. K. Karunakaran, *介绍 Play Framework*,
+
+
+  `doi.org/10.1007/978-1-4842-5645-9_1`
+
+
+  第 1 章 Play 2 入门
+
+
+  但是，推荐的使用 Play 的方法是使用 sbt 或 Gradle 安装它，因为 Play 在使用 sbt 或 Gradle 时提供了更好的开发体验。
+
+
+  **前提条件**
+
+
+  Play 2.x 需要在机器上安装 JDK 1.8 或更高版本。请注意，仅 JRE 是不够的；您需要 JDK 版本 8 或更高版本。您应确保 PATH 变量指向
+  JDK bin 目录，并且 javac 和 Java 可以从任何地方访问。
+
+
+  您可以通过在命令提示符或 shell 中键入 `javac -version` 来检查，并验证版本是否为 1.8 或更高。
+
+
+  您可以从 Oracle 网站获取 Java SE，网址为 [www.oracle.com/](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
+  [technetwork/java/javase/downloads/index.html](http://www.oracle.com/technetwork/java/javase/downloads/index.html)。
+
+
+  Play 也适用于 Open JDK 1.8 及更高版本。但您应确保项目中使用的任何依赖项都与 Open JDK 兼容。
+
+
+  **安装 sbt**
+
+
+  sbt（Scala 构建工具）适用于所有操作系统版本，可在 scala-sbt 网站 [www.scala-sbt.org/download.html](http://www.scala-sbt.org/download.html)
+  上找到。请按照
+
+  [安装指南](https://www.scala-sbt.org/1.x/docs/Setup.html) 中的说明，网址为 [www.scala-sbt.org/1.x/docs/Setup.html](http://www.scala-sbt.org/1.x/docs/Setup.html)
+  来安装 sbt。
+
+
+  **安装 conscript**
+
+
+  要使用 sbt 安装 Play，您需要安装 conscript。请按照 [www.foundweekends.org/conscript/setup.html](http://www.foundweekends.org/conscript/setup.html)
+  上的说明安装 conscript。这些说明适用于 Mac、Linux 和 Windows。
+
+
+  第 1 章 Play 2 入门
+
+
+  使用 jar 进行跨平台安装很简单。从 foundweekends Maven 发布仓库下载 conscript jar，网址为 [https://](https://dl.bintray.com/foundweekends/maven-releases/org/foundweekends/conscript/conscript_2.11/0.5.2/conscript_2.11-0.5.2-proguard.jar)
+
+  [dl.bintray.com/foundweekends/maven-releases/org/foundweekends/](https://dl.bintray.com/foundweekends/maven-releases/org/foundweekends/conscript/conscript_2.11/0.5.2/conscript_2.11-0.5.2-proguard.jar)
+
+  [conscript/conscript_2.11/0.5.2/conscript_2.11-0.5.2-proguard.](https://dl.bintray.com/foundweekends/maven-releases/org/foundweekends/conscript/conscript_2.11/0.5.2/conscript_2.11-0.5.2-proguard.jar)
+
+  [jar](https://dl.bintray.com/foundweekends/maven-releases/org/foundweekends/conscript/conscript_2.11/0.5.2/conscript_2.11-0.5.2-proguard.jar)，然后在命令提示符下运行以下命令：`java
+  -jar /conscript_2.11-0.5.2-proguard.jar`
+
+
+  这将启动一个启动画面并安装 conscript。忽略任何与找不到“cs”相关的错误。通常，conscript 将安装在 Windows 的 `C:\Users\username\.conscript`
+  文件夹中，其中 *username* 是 Windows 中登录用户的主文件夹。此位置将显示在启动画面中。
+
+
+  现在让我们为 conscript 设置环境变量：
+
+
+  export **CONSCRIPT_HOME**=" C:\Users\username\.conscript"
+
+
+  export **CONSCRIPT_OPTS**="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
+
+
+  export **PATH**=%PATH%;%CONSCRIPT_HOME%\bin
+
+
+  CONSCRIPT_HOME 是 conscript 下载各种文件的位置。例如，在 Windows 中，它将是 `C:\Users\username\`。
+
+
+  PATH 是您操作系统的路径变量。这将使 `cs` 命令可以从任何地方访问。
+
+
+  **安装 Giter8**
+
+
+  安装 conscript 后，可以使用 conscript 本身安装 Giter8。
+
+  Giter8 是一个命令行工具，用于从发布在 GitHub 或任何其他 git 仓库上的模板生成文件和目录。
+
+
+  转到命令提示符并键入
+
+
+  `cs foundweekends/giter8`
+
+
+  这将下载并安装 Giter8。更多安装细节可从 Giter8 的 foundweekends 网站获得
+
+  ([www.foundweekends.org/giter8/setup.html](http://www.foundweekends.org/giter8/setup.html))。
+
+
+  第 1 章 Play 2 入门
+
+
+  **设置 Play**
+
+
+  有多种安装 Play 的方法。让我们看看两种最常见的方法：
+
+
+  • **使用 Play 示例项目**：使用 Lightbend Tech Hub 提供的任何示例项目 ([https://](https://developer.lightbend.com/start/?group=play)
+
+  [developer.lightbend.com/start/?group=play](https://developer.lightbend.com/start/?group=play))。
+
+
+  • **使用 sbt**：此方法依赖于 sbt 的 Giter8 模板。此方法创建一个没有任何示例代码的全新 Play 项目。这是创建干净、精简项目结构的首选模式。
+
+
+  **使用 Play 示例项目**
+
+
+  Play 提供了许多示例项目以简化安装。
+
+  如果遵循此路径，则不需要安装 sbt，因为模板为 Unix 和 Windows 环境提供了 sbt 启动器。
+
+
+  让我们尝试第一种方法：安装 Scala 的 Play 示例项目。
+
+
+  1. 转到 [`developer.lightbend.com/`](https://developer.lightbend.com/start/?group=play)
+
+  [start/?group=play](https://developer.lightbend.com/start/?group=play)。
+
+
+  2. 选择项目 PLAY SCALA HELLO WORLD
+
+  TUTORIAL。
+
+
+  3. 单击“Create a project for me”按钮（这会将示例项目下载到您的系统）。
+
+
+  4. 解压存档 (play-samples-play-scala-
+
+  hello-world-tutorial.zip)。
+
+
+  5. 转到名为 play-samples-play-scala-
+
+  hello-world-tutorial 的文件夹，如果在 Windows 上，请双击
+
+  sbt.bat 文件。如果您使用的是 Mac 或
+
+  基于 Unix 的系统，请运行 sbt 文件。
+
+
+  第 1 章 Play 2 入门
+
+
+  这将需要一些时间来下载 sbt 和所有
+
+  依赖项。
+
+
+  一旦 sbt 构建成功，您将看到
+
+  消息
+
+
+  sbt server started at local:sbt-server-
+
+  f50b441db70fa47676ba
+
+
+  请注意，消息的最后部分
+
+  (f50b441db70fa47676ba) 可能对您来说不同，
+
+  但这没关系。您现在可以开始了，您将
+
+  看到提示符
+
+
+  [play-scala-seed] $
+
+
+  6. 键入 `run` 命令以启动应用程序：
+
+
+  [play-scala-seed] $ run
+
+
+  此步骤完成后，提示符将显示
+
+
+  (Server started, use Enter to stop and go back to the
+
+  console...)
+
+
+  7. 转到 http://localhost:9000。如果一切正常，您
+
+  应该会在浏览器中看到 Play 文档。
+
+
+  现在让我们看看如何使用 Java 安装 Play 示例项目。
+
+
+  1. 转到 [`developer.lightbend.com/`](https://developer.lightbend.com/start/?group=play)
+
+  [start/?group=play](https://developer.lightbend.com/start/?group=play)。
+
+
+  2. 选择项目 PLAY JAVA HELLO WORLD
+
+  TUTORIAL。
+
+
+  3. 单击“Create a project for me”按钮（这会将示例项目下载到您的系统）。
+
+
+  第 1 章 Play 2 入门
+
+
+  4. 解压存档 (play-samples-play-java-
+
+  hello-world-tutorial.zip)。
+
+
+  5. 转到名为 play-samples-play-java-
+
+  hello-world-tutorial 的文件夹，如果在 Windows 上，请双击
+
+  sbt.bat 文件。如果您使用的是 Mac 或 Unix-
+
+  based 系统，请运行 sbt 文件。
+
+
+  6. 这将下载所有依赖项并
+
+  执行构建。请注意，下载所有依赖项可能需要一些时间。
+
+
+  7. 构建完成后，命令提示符将
+
+  显示
+
+
+  [play-java-hello-world-tutorial] $
+
+
+  8. 键入 `run` 命令以启动 play
+
+  应用程序：
+
+
+  [play-java-hello-world-tutorial] $ run
+
+
+  **使用 sbt**
+
+
+  现在您将学习如何使用 sbt 安装 Play，以获取基本的 Play 应用程序结构和依赖 jar，但不包括示例项目。
+
+
+  要使用 sbt 创建 Play 项目，需要完成以下步骤：
+
+  1. 安装 SBT。
+
+  2. 安装 conscript。
+
+  3. 安装 Giter8。
+
+
+  您可以在本章的“安装”部分找到安装上述软件的说明。
+
+
+  第 1 章 Play 2 入门
+
+
+  安装完上述软件后，您可以继续使用 sbt 创建 Play 项目。Play 支持 Java 和 Scala 作为编程语言，因此我将展示使用 sbt 的两种示例。
+
+
+  **使用 sbt 安装 Java 项目**
+
+
+  打开命令提示符，切换到您希望创建项目的目录，然后键入
+
+
+  `sbt new playframework/play-java-seed.g8`
+
+
+  这将安装一个 Java 入门项目结构。
+
+
+  向导将询问项目名称和组织。（按照惯例，这是您拥有的反向域名，通常是特定于您的项目的。它用作项目的命名空间。）提供这些名称后，项目将被创建。
+
+
+  **使用 sbt 安装 Scala 项目**
+
+
+  以下是命令：
+
+
+  `sbt new playframework/play-scala-seed.g8`
+
+
+  提供项目名称和组织，项目将被创建。
+
+
+  您现在已经学习了多种为 Scala 和 Java 安装 Play 项目的方法：
+
+
+  • 使用 Play 示例
+
+  • 使用 sbt
+
+
+  在本书中，我使用 Java 作为 Play 的编程语言，因此当您在下一节中创建第一个项目（书店）时，您将使用 sbt 和 Java 种子。
+
+
+  ![](img/index-21_1.png)
+
+
+  第 1 章 Play 2 入门
+
+
+  **创建您的第一个项目**
+
+
+  让我们创建一个名为 bookshop 的新项目来详细探索 Play。将您的项目命名为 **bookshop**，并且为了便于解释，让我们将其设为一个销售图书的在线零售应用程序，这是每个人都熟悉的领域。
+
+
+  在命令提示符或 shell 中，键入
+
+
+  `sbt new playframework/play-java-seed.g8`
+
+
+  参见图 1-1。
+
+
+  ***图 1-1.** 创建项目*
+
+
+  为项目名称和组织提供以下信息：
+
+  name [play-java-seed]: bookshop
+
+
+  organization [com.example]: com.stackrules.example
+
+
+  对于组织名称，如果您愿意，也可以提供其他域名。
+
+
+  ![](img/index-22_1.png)
+
+
+  第 1 章 Play 2 入门
+
+
+  转到您创建项目的目录。例如，在我的机器上，项目目录是 `E:\workarea\bookshop`。
+
+
+  让我们看看文件夹结构及其在整个项目组织中的相关性。参见图 1-2。
+
+
+  ***图 1-2.** 项目结构*
+
+
+  **app**
+
+
+  app 文件夹包含您所有的服务器端源文件。这包括您所有的 Java 代码、Scala 代码、动态 Scala HTML 模板、数据库访问相关代码等。默认情况下，Play
+  在 app 文件夹内创建两个文件夹：controllers 和 views。这些名称不言自明。controllers 文件夹保存您的控制器类，views 保存动态屏幕（HTML
+  和 Scala 代码片段）。
+
+
+  您可以自由地在 app 文件夹内创建子目录，以便更好地组织您的文件。例如，您可以创建一个 models 文件夹来保存所有 ORM 映射的 POJO，一个名为 helper
+  的文件夹来保存您的辅助类等。
+
+
+  第 1 章 Play 2 入门
+
+
+  大多数项目在 app 文件夹下将具有以下结构：
+
+  app
+
+  └ assets: 编译后的资源源文件
+
+  └ stylesheets: 用于 CSS 源代码（less CSS 源文件）
+
+  └ javascripts: 这通常是放置 coffeescript 源文件的文件夹。
+
+  └ controllers: 应用程序控制器
+
+  └ models: 应用程序业务层
+
+  └ views: 模板
+
+
+  **conf**
+
+
+  conf 文件夹保存 Play 应用程序使用的配置。它包含所有 HTTP 映射、orm 配置、环境变量、日志记录等。
+
+
+  基本上，conf 目录包含配置和国际化文件，而 app 文件夹则有一个用于其模型定义的子目录。
+
+
+  此目录中最重要的文件是
+
+
+  • application.conf: 应用程序的主配置文件，它包含标准配置参数。
+
+
+  • routes: 将 HTTP URL 路径映射到控制器中的方法。处理所有 HTTP 路由配置。
+
+
+  • logback: Play 使用 logback 进行所有日志记录配置，这是您需要更改以配置 logback 的文件。
+
+
+  第 1 章 Play 2 入门
+
+
+  **build.sbt**
+
+
+  Play 的构建配置在两个地方定义：项目根目录中的 build.sbt 文件和在 /project 文件夹中找到的两个文件。build.sbt 文件包含构建配置。
+
+
+  **project**
+
+
+  project 文件夹包含项目构建配置：
+
+
+  • plugins.sbt: 定义此项目使用的 sbt 插件
+
+
+  • build.properties: 包含用于构建您的应用程序的 sbt 版本以及相关的 sbt 构建信息。
+
+
+  我将在后面进一步讨论 sbt。当您使用 Play 时，对 sbt 有基本的了解是很好的。
+
+
+  **public**
+
+
+  public 文件夹托管所有静态文件，如 Javascript、图像和 CSS 样式表，这些文件由 Web 服务器直接提供。public 文件夹有三个子文件夹：images、javascripts
+  和 stylesheets，用于存储这些资源：
+
+  public
+
+  └ stylesheets: CSS 文件 (.css 扩展名)
+
+  └ javascripts: JavaScript 文件 (.js 文件)
+
+  └ images: 图像
+
+
+  **lib**
+
+
+  lib 文件夹默认不创建。但您可以创建此文件夹并将任何 jar 放入其中。此文件夹中的所有 jar 都将添加到应用程序类路径中。这对于包含需要在 Play 构建系统之外管理的第三方依赖项非常理想。
+
+
+  第 1 章 Play 2 入门
+
+
+  **test**
+
+
+  test 文件夹是存储所有单元测试和功能测试用例的地方。
+
+
+  **配置 Play 以与您**
+
+
+  **首选的 IDE 协同工作**
+
+
+  由于您已经完成了项目结构的设置并生成了项目模板，现在让我们将项目与 IDE 集成，以使开发过程更轻松、更快速。
+
+
+  您不需要复杂的 IDE 来使用 Play，因为 Play 会自动编译和刷新您对源文件所做的修改。这使您可以灵活地使用简单的编辑器（如记事本或 vi 编辑器）来使用
+  Play。但对于实际项目来说，这不是一个实用的案例。您需要一个提供更好导航、自动完成、调试、重构等功能的 IDE。默认情况下，Play 支持大多数流行的 IDE，如
+  Eclipse、IntelliJ、NetBeans 和 ENSIME。
+
+
+  在本书中，我将使用 Eclipse 作为 IDE。您可以使用您选择的任何 IDE 来尝试示例。
+
+
+  **在 Eclipse 中设置**
+
+
+  作为示例，让我们为 Eclipse 配置 Play。要使用 Play 与 Eclipse，您需要首先将 sbteclipse 集成到您的项目中。为此，打开 plugins.sbt
+  (project/plugins.sbt) 并添加以下内容：
+
+
+  `addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "5.2.2")`
+
+
+  您希望在运行 eclipse 命令以生成 bookshop 项目的 eclipse 导入设置之前编译项目。手动方法是先运行 `sbt compile`，然后执行生成
+  eclipse 12
+
+
+  第 1 章 Play 2 入门
+
+
+  项目部分。但您可以通过更好的自动化方式完成；您可以指示它在生成 eclipse 项目设置时首先运行编译。为此，打开 build.sbt 文件并添加以下内容：
+
+  `EclipseKeys.preTasks := Seq(compile in Compile, compile in Test)`
+
+  `EclipseKeys.projectFlavor := EclipseProjectFlavor.Java`
+
+  `EclipseKeys.createSrc := EclipseCreateSrc.ValueSet(EclipseCreateSrc.`
+
+  `ManagedClasses, EclipseCreateSrc.`
+
+  `ManagedResources)`
+
+
+  请注意，以上仅适用于 Java 项目。如果您有 Scala 源文件，则应使用 Scala IDE 而不是常规的 Eclipse IDE。
+
+
+  保存 build.sbt 文件，然后通过打开命令提示符，移动到项目根目录 (E:\workarea\bookshop) 并键入 `sbt` 来进入 sbt 提示符。
+
+
+  这将初始化 sbt 提示符。这可能需要几分钟才能完成，因为 sbt 将下载插件和所有相关依赖项。一旦 sbt 提示符初始化，您应该会看到提示符为
+
+
+  [bookshop] $
+
+
+  键入 `eclipse with-source=false` 并按 Enter。如果您需要所有依赖项的源 jar，可以改为发出 `eclipse with-source=true`。
+
+
+  成功执行上述命令后，启动 eclipse 并导入项目。参见图 1-3。
+
+
+  ![](img/index-27_1.jpg)
+
+
+  第 1 章 Play 2 入门
+
+
+  ***图 1-3.** 导入向导*
+
+
+  1. 打开 Eclipse。
+
+  2. 单击 File ➤ Import ➤ General ➤ Existing Projects
+
+  into Workspace。
+
+  3. 浏览并选择根项目文件夹
+
+  (bookshop)。
+
+  4. 单击 Finish。
+
+
+  ![](img/index-28_1.jpg)
+
+
+  第 1 章 Play 2 入门
+
+
+  **在 IntelliJ 中设置**
+
+
+  将 Play 项目导入 Intellij 非常简单。唯一的先决条件是，即使使用 Java 作为语言，也应安装 Intellij 的 Scala 插件。这是因为需要
+  Intellij 的 Scala 插件来解析 sbt 依赖项。因此，如果您还没有安装，请继续安装 Intellij 的 Scala 插件。打开 Intellij，转到
+  File ➤ Settings ➤ Plugins，然后在 Marketplace 选项卡中搜索 Scala。
+
+
+  从列出的插件中，选择 JetBrains 的 Scala 插件并单击 Install。参见图 1-4。
+
+
+  ***图 1-4.** 导入 Scala 插件*
+
+
+  安装 Scala 插件后，将 bookshop Play 项目导入 IntelliJ。参见图 1-5。
+
+
+  ![](img/index-29_1.jpg)
+
+
+  第 1 章 Play 2 入门
+
+
+  ***图 1-5.** 导入项目*
+
+
+  1. 打开 File ➤ New ➤ Project from Existing Sources。
+
+  2. 浏览到 bookshop 项目根文件夹
+
+  (E:\workarea\bookshop)。
+
+  3. 选择 Import project from the external model。
+
+  4. 选择 sbt。
+
+  5. 单击 Finish。
+
+
+  等待构建同步，您将看到项目已导入 Intellij。
+
+
+  第 1 章 Play 2 入门
+
+
+  **Hello World 应用程序**
+
+
+  您的项目已准备就绪，并且已导入您选择的 IDE。
+
+  让我们向其中添加一些文件并创建 Hello World 程序。然后，您将向其添加更多功能并进行扩展。
+
+
+  让我们启动 Play 服务器并尝试默认应用程序。
+
+
+  1. 打开命令提示符。
+
+  2. 转到项目根文件夹 (E:\workarea\
+
+  bookshop)。
+
+  3. 通过在根文件夹中键入 `sbt` 进入 Play 控制台。
+
+  4. 这将打开 Play 控制台提示符
+
+  ([bookshop] $)。
+
+  5. 键入
+
+  `run` 以启动 Play 服务器。参见图 1-6。
+
+  (如果服务器已启动，请按 Enter 停止，然后返回控制台。)
+
+
+  您甚至可以将命令组合在一起以启动 Play，方法是使用
+
+  **sbt run**
+
+
+  ![](img/index-31_1.png)
+
+
+  ![](img/index-31_2.png)
+
+
+  第 1 章 Play 2 入门
+
+
+  ***图 1-6.** 应用程序控制台*
+
+
+  打开浏览器并访问 http://localhost:9000/ 以访问主页。参见图 1-7。
+
+
+  ***图 1-7.** 欢迎页面*
+
+
+  第 1 章 Play 2 入门
+
+
+  **配置**
+
+
+  转到 conf 文件夹并打开 routes 文件。这是需要定义项目所有 URL 映射的地方。您将在下一章中详细研究 URL 映射和路由配置。当您打开 routes
+  文件时，您应该会看到如下条目：
+
+  `GET / controllers.HomeController.index`
+
+  这意味着应用程序的根目录指向 HomeController 类中定义的 index 方法。
+
+
+  如果您在浏览器中键入 `localhost:portnumber`，请求将被路由到 `app/controllers/HomeController.java`
+  文件中定义的 index 方法。
+
+
+  这就是 Play 将 URL 路径或 URL 模式路由到控制器类的特定方法的方式。
+
+
+  打开 HomeController.java 文件，您可以看到方法
+
+  `public Result index() {`
+
+  `return ok(views.html.index.render());`
+
+  `}`
+
+
+  此方法返回一个 Twirl 模板文件，该模板文件生成 HTML 输出。打开 views 文件夹中找到的 index.scala.html 文件。让我们检查此文件的内容以了解其中发生了什么。
+
+
+  `@()`
+
+
+  `@main("Welcome to Play") {`
+
+  `<h1>Welcome to Play!</h1>`
+
+  `}`
+
+
+  在我们查看每个元素之前，了解什么是 Twirl 以及如何使用它非常重要。
+
+
+  第 1 章 Play 2 入门
+
+
+  **什么是 Twirl？**
+
+
+  twirl 是为 play Framework 开发的模板引擎。但它也可以在 play 环境之外使用。默认情况下，twirl 作为 play 的一部分包含在内，但如果需要在
+  play 之外使用 twirl，则可以安装 Scala 的 sbt 插件。例如，在 plugins.sbt 文件中添加以下条目将使 twirl 可用于任何基于
+  sbt 的项目：
+
+
+  `addSbtPlugin("com.typesafe.sbt" % "sbt-twirl" % "LATEST_VERSION")`
+
+
+  模板文件必须命名为 `{name}.scala.{ext}`，其中 ext 可以是 html、js、xml 或 txt。模板可用于生成各种类型的标记，如 htMl、XMl
+  或 tXt，并且完全与控制器解耦。可以根据需要插入各种类型的标记。
+
+
+  twirl 模板只是一个普通的文本文件，其中包含小的 Scala 代码块。模板有助于创建复合视图并有助于基于组件的视图生成。
+
+
+  `@` 字符标记模板中动态代码的开始。
+
+
+  本书的第 4 章提供了视图和 twirl 模板的详细解释。
+
+
+  目前，让我们了解 index.scala.html 文件中定义的内容：
+
+
+  `@main("Welcome to Play") {`
+
+  `<h1>Welcome to Play!</h1>`
+
+  `}`
+
+
+  `@main("Welcome to Play")` 调用另一个模板 main.scala.html，并将页面标题“Welcome to Play”和第二个参数中的
+  HTML 内容（包含在 `{}` 中）传递给它。
+
+
+  因此，您可以推断 main 模板文件应接受两个参数：一个用于标题的字符串和作为第二个参数的 HTML 内容。
+
+
+  第 1 章 Play 2 入门
+
+
+  打开 main.scala.html 以验证这一点。文件以
+
+  `@(title: String)(content: Html)` 开头；这就像任何接受两个参数的普通方法一样。
+
+
+  `@*`
+
+  `* This template is called from the ìndex` template. This template
+
+  `* handles the rendering of the page header and body tags. It takes`
+
+  `* two arguments, àString` for the title of the page and an `Html`
+
+  `* object to insert into the body of the page.`
+
+  `*@`
+
+
+  `@(title: String)(content: Html)`
+
+
+  `<!DOCTYPE html>`
+
+  `<html lang="en">`
+
+  `<head>`
+
+  `@* Here''s where we render the page titlèString`. *@
+
+  `<title>@title</title>`
+
+  `<link rel="stylesheet" media="screen" href="@routes.`
+
+  `Assets.versioned("stylesheets/main.css")">`
+
+  `<link rel="shortcut icon" type="image/png" href="@`
+
+  `routes.Assets.versioned("images/favicon.png")">`
+
+  `</head>`
+
+  `<body>`
+
+  `@* And here''s where we render thèHtmlòbject containing`
+
+  `* the page content. *@`
+
+  `@content`
+
+  `<script src="@routes.Assets.versioned("javascripts/`
+
+  `main.js")" type="text/javascript"></script>`
+
+  `</body>`
+
+  `</html>`
+
+
+  第 1 章 Play 2 入门
+
+
+  标题字符串通过 `@title` 插入到 HTML `<title>` 中，HTML 内容通过 `@content` 标记插入。
+
+
+  现在您了解了不同的元素以及它们是如何连接在一起的。
+
+  让我们通过编写一个新的动作和一个视图来进一步深入。
+
+
+  让我们为 Hello World 方法创建一个条目：
+
+  `GET /hello controllers.`
+
+  `HomeController.hello()`
+
+
+  保存 routes 文件。下一步是编写您的控制器来处理请求。
+
+
+  **控制器和视图**
+
+
+  在 app/controllers 文件夹内，您应该找到 HomeController.java 文件。这是您的默认控制器。
+
+
+  `package controllers;`
+
+
+  `import play.mvc.*;`
+
+  `import views.html.*;`
+
+  `import java.time.LocalDate;`
+
+
+  `/**`
+
+  `* This controller contains an action to handle HTTP requests`
+
+  `* to the application''s home page.`
+
+  `*/`
+
+  `public class HomeController extends Controller {`
+
+
+  `/**`
+
+  `* An action that renders an HTML page with a welcome message.`
+
+  `* The configuration in the <code>routes</code> file means that`
+
+  `* this method will be called when the application receives a 22`
+
+
+  第 1 章 Play 2 入门
+
+
+  `* <code>GET</code> request with a path of <code>/</code>.`
+
+  `*/`
+
+  `public Result index() {`
+
+  `return ok(views.html.index.render());`
+
+  `}`
+
+  `}`
+
+
+  让我们详细检查 HomeController 类以了解其中发生了什么。首先，它继承自 `play.mvc.Controller`。
+
+  当您编写一个新的控制器时，请确保继承自 `play.mvc.Controller`。
+
+
+  您之前已经见过 index 方法：它非常简单，只有一行。但它做了很多聪明的事情。`ok()` 方法与 HTTP 状态 200（即成功响应）密切相关。如果您想返回
+  HTTP 未找到，可以使用 `notFound` 方法。这就是 Play 的美妙之处；它紧密地模拟了 HTTP 协议，并且不需要任何花哨的代码来将您的异常转换为相应的
+  HTTP 状态码。您可以用 HTTP 的语言进行编码和交流。
+
+
+  `ok()` 方法返回由名为 index 的视图中定义的 `render` 方法生成的 HTML 输出。您已经在 index.scala.html 中看到了这个视图。Play
+  中的视图使用 Scala 并遵循“viewname.scala.html”的命名约定。此文件由 Play 编译器编译成相应的 Java 类，可以直接在控制器中使用。这确保了类型安全并减少了错误。请记住，在其他框架（如
+  struts 或 Spring MVC）中，您通常返回一个字符串作为视图名称，然后框架将其解析为一个文件。在 Play 中，不需要这样做。视图直接作为 Java
+  类文件可用，您可以确保编译时类型安全。
+
+
+  由于您已经为 hello 方法添加了路由条目，让我们继续添加控制器方法并创建视图。
+
+
+  第 1 章 Play 2 入门
+
+
+  **视图**
+
+
+  在 app/views 文件夹内创建一个新文件，将其命名为 hello.scala.html，并添加以下内容：
+
+
+  `@(message: String)`
+
+
+  `<!DOCTYPE html>`
+
+  `<html lang="en">`
+
+  `<head>`
+
+  `<title>Hello World </title>`
+
+  `</head>`
+
+  `<body>`
+
+  `<h1> @message </h1>`
+
+  `</body>`
+
+  `</html>`
+
+
+  此模板接受一个参数并将其放置在 HTML `<h1>` 标签内。
+
+
+  **控制器**
+
+
+  现在编辑 HomeController：
+
+
+  `package controllers;`
+
+
+  `import play.mvc.*;`
+
+  `import views.html.*;`
+
+  `import java.time.LocalDate;`
+
+
+  `/**`
+
+  `* This controller contains an action to handle HTTP requests`
+
+  `* to the application''s home page.`
+
+  `*/`
+
+  `public class HomeController extends Controller {`
+
+
+  ![](img/index-38_1.png)
+
+
+  第 1 章 Play 2 入门
+
+
+  `/**`
+
+  `* An action that renders an HTML page with a welcome message.`
+
+  `* The configuration in the <code>routes</code> file means that`
+
+  `* this method will be called when the application receives a`
+
+  `* <code>GET</code> request with a path of <code>/</code>.`
+
+  `*/`
+
+  `public Result index() {`
+
+  `return ok(views.html.index.render());`
+
+  `}`
+
+
+  `**public Result hello() {**`
+
+  `**return ok(views.html.hello.render("Today is"**`
+
+  `**+LocalDate.now()));**`
+
+  `**}**`
+
+  `}`
+
+
+  打开您的浏览器并转到
+
+
+  **http://localhost:9000/hello**
+
+
+  您将看到消息“Today is”和当前日期。参见图 1-8。
+
+
+  ***图 1-8.** Hello 页面*
+
+
+  第 1 章 Play 2 入门
+
+
+  只需更改视图中的任何 HTML 代码并刷新浏览器。Play 将执行即时编译并渲染视图。
+
+
+  **增强视图**
+
+
+  现在让我们增强 hello.scala.html 文件，以重用视图文件夹中已有的 main 模板。通过使用此模板，您将能够在页面之间获得通用主题，因为 main.scala.html
+  定义了通用布局和样式表。
+
+
+  转到 public/stylesheets 文件夹并打开 main.css。这是应用程序的主样式表。您将使背景变为黑色，文本变为白色：
+
+
+  `body {`
+
+  `background: black;`
+
+  `}`
+
+
+  `h1,h2 {`
+
+  `color: white;`
+
+  `}`
+
+
+  转到 http://localhost:9000/ 查看更改。但是等等，如果您转到 http://localhost:9000/hello，显示的是白色背景！为什么？
+
+
+  原因是您的样式表定义和所有站点范围的设置都在 main.scala.html 模板中定义，但您从未在 hello.scala.html 文件中使用它。让我们修复这个问题。
+
+
+  编辑 hello.scala.html 并将其内容替换为以下内容：
+
+
+  `@(message: String)`
+
+
+  `@main("Hello World") {`
+
+  `<h2>@message</h2>`
+
+  `}`
+
+
+  第 1 章 Play 2 入门
+
+
+  您希望在整个 Web 应用程序中拥有一个通用主题，并且所有页面都应原样继承站点范围的设置。您不希望将站点范围的定义分散到所有页面，因此将所有通用设置（如页眉、页脚、样式表定义、JavaScript
+  包含等）放在一个文件中；这就是 main.scala.html 的用途。它定义了适用于所有页面的通用元素。
+
+
+  main.scala.html 文件由 Play 转换为等效的方法，并且可以从其他页面使用其名称调用。名称不包括 `.scala.html` 部分。例如，main.scala.html
+  使用其名称 main 调用。hello.scala.html 文件将 main.scala.html 作为方法调用，并重用通用定义。让我们详细检查 hello.scala.html
+  文件的内容，以了解发生了什么。
+
+
+  hello.scala.html 文件非常简单。它只是调用 main.scala.html 并向其传递两个参数：作为字符串的页面标题和要包含的 HTML 内容。传递给
+  main 的第一个参数是字符串“Hello World”，第二个参数是 `{}` 内的内容。简而言之，您将标题和在 hello.scala.html 中定义的
+  HTML 内容（`{}` 内的内容）传递给 main.scala.html。
+
+
+  现在，您的所有页面都有了通用主题。您可能定义的任何其他页面都应遵循相同的方法。如果您想将像 JQuery 或 bootstrap 这样的 JavaScript
+  库包含到所有页面，只需在 main.scala.html 中定义它，如果它遵循上述方法，它将可用于所有页面。
+
+
+  **测试 Play 应用程序**
+
+
+  现在让我们了解如何对 Play 应用程序的重要部分（视图和控制器类）进行单元测试。
+
+
+  Play 使用 Junit 支持测试用例，并提供辅助类和实用程序，使测试应用程序尽可能简单。
+
+
+  第 1 章 Play 2 入门
+
+
+  测试应在项目根目录下的 tests 文件夹内创建。
+
+  让我们为视图和控制器编写测试用例。
+
+
+  **测试视图**
+
+
+  让我们为 hello.scala.html 视图编写测试用例。在 test 文件夹内创建一个新文件，并将其命名为 HelloViewTest.java：
+
+
+  **HelloViewTest.java**
+
+
+  `import org.junit.Test;`
+
+  `import play.twirl.api.Content;`
+
+  `import static junit.framework.TestCase. *assertEquals*;`
+
+
+  `public class HelloViewTest {`
+
+
+  `@Test`
+
+  `public void renderTemplate() {`
+
+  `Content html = views.html.hello. *render*("Welcome to Play!");`
+
+  `*assertEquals*("text/html", html.contentType());`
+
+  `assert(html.body().toString().contains("Hello World"));`
+
+  `}`
+
+  `}`
+
+
+  上述测试渲染了 hello.scala.html 视图，并检查内容类型确实是 html，还检查了内容以确认它包含字符串“Hello World”。
+
+
+  您可以直接在 IDE 中运行测试。图 1-9 显示了如何从 Intellij 运行测试。
+
+
+  ![](img/index-42_1.jpg)
+
+
+  第 1 章 Play 2 入门
+
+
+  ***图 1-9.** 运行测试*
+
+
+  您也可以使用 sbt 从命令提示符运行测试。打开命令提示符，转到项目根目录，然后运行
+
+
+  `sbt test`
+
+
+  请注意，`sbt test` 将运行 test 文件夹中的所有测试。如果您只想运行特定的测试，请使用 `testOnly` 命令。
+
+
+  **测试控制器**
+
+
+  在 test 文件夹内创建一个名为 HomeControllerTest.java 的新文件，并添加如下内容。此测试验证映射到 `/` URL 路径的控制器的
+  index 方法。
+
+
+  **HomeControllerTest.java**
+
+
+  `import org.junit.Test;`
+
+  `import play.Application;`
+
+
+  第 1 章 Play 2 入门
+
+
+  `import play.inject.guice.GuiceApplicationBuilder;`
+
+  `import play.mvc.Http;`
+
+  `import play.mvc.Result;`
+
+  `import play.test.WithApplication;`
+
+  `import static org.junit.Assert. *assertEquals*;`
+
+  `import static play.mvc.Http.Status. *OK*;`
+
+  `import static play.test.Helpers. *GET*;`
+
+  `import static play.test.Helpers. *route*;`
+
+
+  `public class HomeControllerTest extends WithApplication {`
+
+
+  `@Override`
+
+  `protected Application provideApplication() {`
+
+  `return new GuiceApplicationBuilder().build();`
+
+  `}`
+
+
+  `@Test`
+
+  `public void testIndex() {`
+
+  `Http.RequestBuilder request = new Http.RequestBuilder()`
+
+  `.method( *GET*)`
+
+  `.uri("/");`
+
+  `Result result = *route*(app, request);`
+
+  `*assertEquals*( *OK*, result.status());`
+
+  `}`
+
+  `}`
+
+
+  使用以下 sbt 命令运行测试：
+
+
+  `sbt test`
+
+
+  ![](img/index-44_1.jpg)
+
+
+  第 1 章 Play 2 入门
+
+
+  要单独运行 HomeControllerTest，请执行以下步骤（图 1-10）：
+
+  • 打开命令提示符。
+
+  • 转到项目根目录。
+
+  • 键入 **sbt** 进入 sbt shell。
+
+  • **testOnly** HomeControllerTest
+
+
+  ***图 1-10.** testOnly*
+
+
+  至此，第 1 章结束。在我们讨论控制器和其他 Play Framework 组件之前，让我们更深入地了解一下您将要使用的构建系统 (sbt)。
+
+
+  **第 2 章**
+
+
+  **构建系统**
+
+
+  正如您在第 1 章中所见，Play 使用 sbt 作为其构建系统。当您使用基于 Play 的项目时，对 sbt 的基本了解是必需的。
+
+
+  本章的目标是快速介绍 sbt。
+
+
+  **Scala 构建工具/简单构建工具**
+
+
+  sbt 是 Scala 和 Java 项目的构建工具。它类似于 Java 项目中通常使用的 Maven 构建工具。sbt 深受 Maven 的启发。
+
+
+  作为一种构建工具，它提供了编译、运行、测试和打包项目的能力。Play 与 sbt 打包在一起，因此无需单独安装 sbt。Sbt 由 Mark Harrah 创建。关于
+  sbt 是代表“Scala 构建工具”还是“简单构建工具”存在混淆。事实上，当 sbt 项目开始时，它被宣布为“简单构建工具”，但多年来它被广泛称为“Scala
+  构建工具”。所以两种用法都是正确的。我个人偏好“简单构建工具”，因为它可以用作 Scala 和 Java 项目的构建工具。
+
+
+  **核心原则**
+
+
+  sbt 始终遵循四个核心原则：
+
+
+  1. 所有内容都应具有类型，并在实际可行的范围内强制执行。
+
+
+  2. 依赖关系应明确。
+
+
+  © Prem Kumar Karunakaran 2020
+
+  P. K. Karunakaran, *介绍 Play Framework*,
+
+  `doi.org/10.1007/978-1-4842-5645-9_2`
+
+
+  第 2 章 构建系统
+
+
+  3. 一旦学会，一个概念应贯穿 sbt 的所有部分。
+
+
+  4. 并行是默认设置。
+
+
+  **sbt 的优势**
+
+
+  sbt 具有以下优势：
+
+
+  1. 它使用 Scala 语言来描述构建。
+
+
+  2. 无需编写庞大冗长的 pom.xml 文件。构建配置是代码，而不是 XML。
+
+
+  3. 它适用于 Scala 和 Java。
+
+
+  4. 它需要最少的配置。
+
+
+  5. 它提供声明式依赖管理（通过 Ivy）。
+
+
+  6. 它具有合理的默认值。
+
+
+  sbt 构建使用称为任务（是的，它只是一个任务）的东西，并且一个任务可以有依赖项。因此，sbt 构建是一个要执行的任务依赖树。
+
+
+  当您想要做某事时，您必须执行一个任务。默认情况下，任务在 sbt 中并行运行。如果您想对任务的执行进行排序，可以通过指定任务之间的依赖关系来完成。例如，`compile`
+  和 `test` 是两个任务，但 `test` 依赖于 `compile`，因此当您执行 `test` 任务时，`compile` 任务将在其之前执行。
+
+
+  任务的链式调用在 sbt 中容易得多。您可以将一个任务的输出传递给另一个依赖任务。在内部，sbt 维护一个描述构建的不可变映射（键值对）。因此，您可以看到构建文件中的大多数条目都是键值对。例如，项目名称作为一个键值对提供，它映射到一个字符串值，即您的项目名称。
+
+
+  第 2 章 构建系统
+
+
+  sbt 中的构建配置文件是 build.sbt 文件，其意图类似于 Maven 中的 pom.xml。build.sbt 包含项目的构建定义。
+
+
+  让我们看一些代码和实际示例以获得更好的理解。
+
+
+  **项目结构**
+
+
+  一个典型的项目结构在根目录中有 build.sbt 文件，在 /project 目录内有 build.properties 和 plugins.sbt 文件：
+
+  HelloProject
+
+  /project
+
+  build.properties: 指定项目中使用的 sbt 版本。如果本地没有特定的 sbt 版本，sbt 启动器将下载它。
+
+  plugins.sbt : sbt 插件的定义
+
+  build.sbt: 包含构建和项目设置的文件
+
+
+  **build.properties**
+
+
+  `sbt.version=0.13.0`
+
+
+  在您检查 Play 为您的项目创建的 sbt 文件结构之前，让我们先了解 build.sbt 的一般结构，并尝试几个示例。
+
+
+  转到任何目录，创建一个名为 helloworldsbt 的文件夹，创建一个名为 build.sbt 的文件，并添加以下内容：
+
+
+  `name := "helloworldsbt"`
+
+  `organization := "com.domainame.example"`
+
+
+  第 2 章 构建系统
+
+
+  `version := "1.0-SNAPSHOT"`
+
+
+  `lazy val hello = (project in file("."))`
+
+  `.settings(`
+
+  `name := "HelloWorld Proj"`
+
+  `)`
+
+
+  `scalaVersion := "2.13.0"`
+
+
+  build.sbt 文件保存一系列称为设置表达式的键值对，其一般结构为
+
+
+  `key operator setting/task body`
+
+
+  例如：
+
+
+  `organization := "com.domainname"`
+
+
+  再分解一下：
+
+
+  1) 左侧是键。
+
+  2) 操作符 (:=)
+
+  3) 右侧是主体。
+
+
+  organization、version、name 等是预定义的、现成的键。
+
+
+  **使用 sbt**
+
+
+  转到 helloworldsbt 项目的根文件夹，并从命令提示符键入 `sbt`。您可以看到 sbt 下载所需的 jar，您将进入 sbt 提示符，如下所示：
+
+
+  `sbt:helloworldsbt>`
+
+
+  您在 helloworldsbt 项目中没有任何源文件，这没问题。您可以在没有源代码的情况下尝试许多 sbt 命令及其用法。
+
+
+  第 2 章 构建系统
+
+
+  以下是典型项目中最常用的命令：
+
+
+  • help: 显示 sbt 帮助
+
+  • compile: 编译源代码
+
+  • test: 执行测试用例
+
+  • run: 运行主类
+
+  • package: 创建一个 jar 文件
+
+  • exit: 退出 sbt 提示符
+
+
+  当您执行 `run` 时，您将收到以下错误：
+
+
+  `No main class definition found`
+
+
+  暂时忽略它，因为您没有任何源代码，并且 `run` 期望找到一个 main 方法来运行。
+
+
+  如前所述，`compile`、`run`、`test` 等是 sbt 中现成的任务，用于执行特定操作。就像这些任务一样，sbt 允许您创建自定义任务并在构建中使用它们。让我们尝试一个自定义任务。
+
+
+  修改 build.sbt 如下：
+
+
+  `name := "helloworldsbt"`
+
+  `organization := "com.domainame.example"`
+
+  `version := "1.0-SNAPSHOT"`
+
+
+  `lazy val hello = taskKeyUnit`
+
+
+  `lazy val root = (project in file(".")).settings(`
+
+  `hello := { println("This is a custom task !!") }`
+
+  `)`
+
+
+  `scalaVersion := "2.13.0"`
+
+
+  以下行定义了任务并将其分配给变量 hello：
+
+  `lazy val hello = taskKeyUnit`
+
+
+  第 2 章 构建系统
+
+
+  下一行添加此任务并提供一个实现，在本例中非常简单，就像向控制台打印一个字符串一样。就这样；您已经定义了一个自定义任务。
+
+
+  `lazy val root = (project in file(".")).settings(`
+
+  `hello := { println("This is a custom task !!") }`
+
+  `)`
+
+
+  要测试这一点，请转到 sbt 提示符并键入 **hello**。
+
+
+  `sbt:helloworldsbt> hello`
+
+  `This is a custom task !!`
+
+  `[success] Total time: 1 s`
+
+
+  从您的项目根文件夹，您甚至可以尝试 **sbt hello**：
+
+  `C:\Test\helloworldsbt>sbt hello`
+
+  `Java HotSpot(TM) 64-Bit Server VM warning: ignoring option`
+
+  `MaxPermSize=256m; support was removed in 8.0`
+
+  `[info] Loading project definition from C:\Test\helloworldsbt\project`
+
+  `[info] Loading settings from build.sbt ...`
+
+  `[info] Set current project to helloworldsbt (in build file:/C:/`
+
+  `Test/helloworldsbt/)`
+
+  `This is a custom task !!`
+
+  `[success] Total time: 0 s, completed Nov 8, 2019 1:03:59 PM`
+
+
+  现在让我们看看 Play 为 bookshop 项目创建的 build.sbt 定义。
+
+
+  当您创建一个 Play 项目时，构建会自动创建所需的 sbt 文件夹结构和文件：
+
+
+  **build.sbt**
+
+  `name := "bookshop"`
+
+  `organization := "com.stackrules.example"`
+
+  `version := "1.0-SNAPSHOT"`
+
+
+  `lazy val root = (project in file(".")).enablePlugins(PlayJava) 38`
+
+
+  第 2 章 构建系统
+
+
+  `scalaVersion := "2.13.0"`
+
+  `libraryDependencies += guice`
+
+
+  `EclipseKeys.preTasks := Seq(compile in Compile, compile in Test)`
+
+  `EclipseKeys.projectFlavor := EclipseProjectFlavor.`
+
+  `Java // Java project. Don''t expect Scala IDE`
+
+  `EclipseKeys.createSrc := EclipseCreateSrc.`
+
+  `ValueSet(EclipseCreateSrc.ManagedClasses, EclipseCreateSrc.`
+
+  `ManagedResources)`
+
+
+  让我们分析每一行。上述文件中的条目是设置。每个设置必须用一个空行分隔。这非常重要。
+
+
+  **设置定义**
+
+
+  正如您在上面看到的，一个设置包含一个键、一个操作符和一个初始化。例如，`name := "bookshop"` 将项目名称设置为 bookshop。
+
+
+  `name` – 键
+
+  `:=` 赋值操作符
+
+  `"bookshop"` - 初始化值
+
+
+  这就是您为设置设置静态值的方式。设置的值只计算一次并保留。任务也类似于具有键和值的设置。重要的区别在于，任务在每次调用时都会重新计算。我们稍后会回到任务。
+
+
+  在 build.sbt 文件的 `libraryDependencies` 部分，您可以看到这个条目：
+
+
+  `libraryDependencies += guice`
+
+
+  这表明构建正在将 guice Play 模块作为依赖项包含在内。为了继续学习后面章节中的其他部分，您需要更多模块可供 Play 使用。现在让我们修改 `libraryDependencies`
+  部分来添加它们。
+
+
+  第 2 章 构建系统
+
+
+  将这一行
+
+
+  `libraryDependencies += guice`
+
+
+  替换为
+
+
+  `libraryDependencies ++= Seq(`
+
+  `javaJdbc,`
+
+  `cacheApi,`
+
+  `guice`
+
+  `)`
+
+
+  Ebeam ORM 作为 Play 的外部插件可用，因此将以下内容添加到 plugins.sbt 文件中：
+
+
+  `addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "5.0.2")`
+
+
+  您已完成对构建设置的更改！
+
+
+  典型的库依赖格式是
+
+
+  `libraryDependencies += groupID % artifactID % revision`
+
+
+  例如，
+
+
+  `libraryDependencies += "org.apache.derby" % "derby" %`
+
+  `"10.4.1.3"`
+
+
+  您可以通过访问 Maven 中央仓库 [`mvnrepository.com/repos/central`](https://mvnrepository.com/repos/central)
+  并使用名称搜索来找到任何 jar 的 groupId 和 artifactId。例如，键入 **derby** 并选择版本以查看其依赖信息。derby 10.4.1.3
+  的定义如图 2-1 所示。
+
+
+  ![](img/index-53_1.jpg)
+
+
+  第 2 章 构建系统
+
+
+  ***图 2-1.** Maven 中央仓库*
+
+
+  上述行将 Derby 版本 10.4.1.3 添加为依赖项。如果您需要添加更多依赖项，则必须添加另一行，依此类推。
+
+
+  但也有一种简写技术可以一次性添加所有依赖项，而不是逐行指定每个依赖项：
+
+
+  **libraryDependencies ++= Seq(**
+
+  groupID % artifactID % revision,
+
+  groupID % otherID % otherRevision
+
+  **)**
+
+
+  sbt 依赖于插件来扩展 build.sbt 文件中定义的构建设置。插件为构建添加了更多功能，并在 sbt 项目之间重用。例如，有人可以开发一个在构建期间执行代码覆盖的插件。要集成
+  sbt 和 Play，您需要使用 Typesafe 的 sbt-plugin。plugins.sbt 文件是所有插件定义的地方：
+
+
+  `// Comment to get more information during initialization`
+
+  `logLevel := Level.Warn`
+
+
+  第 2 章 构建系统
+
+
+  `// The Typesafe repository`
+
+  `resolvers += "Typesafe repository" at "http://repo.typesafe.`
+
+  `com/typesafe/releases/"`
+
+
+  `// Use the Play sbt plugin for Play projects`
+
+  `addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.8.0")`
+
+
+  **解析器**
+
+
+  默认情况下，sbt 使用标准的 Maven 2 仓库。但并非所有 jar 都存在于默认仓库中。如果您的 jar 位于另一个仓库中，您可以添加该仓库作为解析器。
+
+
+  添加解析器的格式：
+
+
+  `resolvers += name at location`
+
+
+  这有三部分：名称和位置，由 `at` 关键字分隔。
+
+
+  添加 Jboss 仓库：
+
+
+  `resolvers += "JBoss repository" at "https://repository.jboss.`
+
+  `org/nexus/content/repositories/"`
+
+
+  **完整的 build.sbt**
+
+
+  `name := """bookshop"""`
+
+  `organization := "com.stackrules.example"`
+
+  `version := "1.0-SNAPSHOT"`
+
+
+  `lazy val root = (project in file(".")).enablePlugins(PlayJava)`
+
+  `scalaVersion := "2.13.0"`
+
+  `libraryDependencies ++= Seq(guice,javaJdbc,cache)`
+
+
+  `EclipseKeys.preTasks := Seq(compile in Compile, compile in Test) 42`
+
+
+  第 2 章 构建系统
+
+
+  `EclipseKeys.projectFlavor := EclipseProjectFlavor.`
+
+  `Java // Java project. Don''t expect Scala IDE`
+
+  `EclipseKeys.createSrc := EclipseCreateSrc.`
+
+  `ValueSet(EclipseCreateSrc.ManagedClasses, EclipseCreateSrc.`
+
+  `ManagedResources)`
+
+
+  您可以轻松地转义字符串中的字符和符号；您只需要将文本包裹在三引号内。这就是为什么您会看到名称使用三引号。如果您需要在名称中包含空格、冒号或撇号，此语法会有所帮助。
+
+
+  **完整的 plugins.sbt**
+
+
+  `// The Play plugin`
+
+  `addSbtPlugin("com.typesafe.play" % "sbt-plugin" % " **2.8.0**")`
+
+
+  `// Defines scaffolding (found under .g8 folder)`
+
+  `// http://www.foundweekends.org/giter8/scaffolding.html`
+
+  `// sbt "g8Scaffold form"`
+
+  `addSbtPlugin("org.foundweekends.giter8" % "sbt-giter8-scaffold"`
+
+  `% "0.11.0")`
+
+
+  `addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" %`
+
+  `"5.2.2")`
+
+
+  `addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "5.0.2")`
+
+
+  **SBT 命令快速回顾**
+
+
+  • sbt: 启动 sbt 控制台
+
+  • run: 运行应用程序的 main 方法
+
+  • compile: 编译 src/main/scala 目录中的源代码
+
+
+  第 2 章 构建系统
+
+
+  • test: 执行所有测试用例
+
+  • testOnly: 提供测试用例的完整名称以仅运行特定的测试用例
+
+  • test:compile: 仅编译测试源文件 (src/test/scala)
+
+  • package: 创建一个包含源文件夹中的类和资源文件夹中的工件的 jar
+
+  • doc: 生成 Scala 文档
+
+  • exit: 退出 sbt 提示符
+
+
+  **第 3 章**
+
+
+  **Play 控制器和**
+
+
+  **HTTP 路由**
+
+
+  本章重点介绍 Play 应用程序的 MVC 部分：MVC 如何在 Play 应用程序框架中发挥关键作用。在我们深入探讨 Play 中的 HTTP 路由和控制器细节之前，最好先快速介绍一下
+  MVC。如果您熟悉 MVC，可以跳过此部分，直接进入“HTTP 路由”部分。
+
+
+  **MVC 编程模型**
+
+
+  MVC（模型-视图-控制器）是使用著名的 MVC 设计模式构建 Web 应用程序的框架。MVC 将应用程序定义为三个逻辑层：业务层（模型）、显示层（视图）以及路由和输入控制（控制器）。参见图
+  3-1。
+
+
+  © Prem Kumar Karunakaran 2020
+
+  P. K. Karunakaran, *介绍 Play Framework*,
+
+  `doi.org/10.1007/978-1-4842-5645-9_3`
+
+
+  第 3 章 Play 控制器和 HTTP 路由
+
+  1) 用户的请求被发送到控制器。
+
+  2) 控制器操作模型。
+
+  .
+
+  控制器
+
+  3) 控制器选择要显示的视图，并将其提供给模型
+
+  4) 视图根据用户交互更新模型。
+
+  视图
+
+  模型
+
+
+  ***图 3-1.** MVC*
+
+
+  MVC 架构的工作方式如下。用户与视图交互，更改由视图发送到控制器。控制器接收更改，调用模型，并在模型中应用验证和逻辑。控制器选择视图并将更新后的模型发送到视图。视图被渲染并发送回浏览器客户端。
+
+
+  视图和控制器都依赖于模型。模型与视图或控制器没有任何依赖关系。这是分离的关键优势之一。这种分离允许模型独立于视图进行构建和测试。
+
+
+  **模型**
+
+
+  模型是应用程序的数据以及对该数据的业务逻辑。模型是一个独立的组件，不依赖于控制器或视图。这意味着模型可以在没有关联视图或控制器的情况下重用。
+
+
+  模型处理应用程序的业务逻辑，并负责从数据库检索数据、执行更新、实施验证，并且是应用程序的核心逻辑和分析部分。
+
+
+  第 3 章 Play 控制器和 HTTP 路由
+
+
+  考虑代表应用程序客户的模型；它负责处理与客户实体相关的所有验证和逻辑。以下代码中的 `deactivate` 方法是模型内业务逻辑的一个示例。此方法处理客户的停用逻辑，从而将领域逻辑封装在模型本身内。领域逻辑封装在领域对象内，因此模型可以在应用程序/子系统之间重用。
+
+
+  `package models;`
+
+
+  `import java.util.List;`
+
+
+  `**import** controllers.Order;`
+
+
+  `public class Customer {`
+
+
+  `private long id;`
+
+  `private String name;`
+
+  `private boolean loyaltyMember;`
+
+  `private boolean isActive;`
+
+  `private List<Order> orders;`
+
+
+  `public List<Order> getOrders() {`
+
+  `//Logic`
+
+  `}`
+
+
+  `public boolean deactivate() {`
+
+  `//Logic and validation to deactivate a customer`
+
+  `}`
+
+  `}`
+
+
+  客户是一个领域模型，包含数据以及适用于客户的相关业务逻辑和验证。
+
+
+  当然，如果您遵循领域驱动设计，您可以将模型拆分为许多业务对象，它们可以处理特定领域的逻辑和验证。Spring beans、JPA beans、简单 POJO 等通常用于实现领域模型。
+
+
+  第 3 章 Play 控制器和 HTTP 路由
+
+
+  **视图**
+
+
+  视图处理数据的显示，并从模型获取所需的数据属性。视图的唯一目的是显示数据。
+
+
+  考虑一个显示应用程序客户数据的屏幕。此屏幕可能显示客户详细信息、特定客户下的订单等。如果有一个新需求需要在另一个屏幕中以钻取模式而不是表格方式显示相同的客户数据，则只需创建一个新视图。模型中无需进行任何更改。因此，视图可以独立于模型创建和修改。
+
+
+  **控制器**
+
+
+  控制器处理与用户的交互。控制器通常执行以下操作：
+
+
+  • 从视图获取输入数据并将其发送到模型以进行持久化。
+
+  • 当模型更改时，控制器将更新后的模型发送到视图并渲染视图。
+
+
+  MVC 有助于在大型项目中使团队开发变得轻松和可管理。它提供了清晰的关注点分离。
+
+
+  **HTTP 路由**
+
+
+  HTTP 路由器的工作是将传入的 HTTP 请求转换为动作调用。也就是说，它将 HTTP 请求映射到控制器类中定义的方法。此配置维护在 conf 文件夹内的 routes
+  文件中。routes 文件也会被 Play 编译，因此，如果 routes 文件中有任何错误，它将在浏览器中显示。这在开发期间非常有帮助。
+
+
+  第 3 章 Play 控制器和 HTTP 路由
+
+
+  让我们看看 HTTP 路由基础知识。一个 HTTP 请求有两部分：协议部分（GET、POST、PUT 等）和包含查询字符串的请求路径。
+
+
+  要定义路由，请在 conf/routes 文件中定义协议和 URL 路径。在此之前，在 app/controllers 文件夹内创建一个新的控制器类，并将其命名为
+  Application。确保该类继承自 `play.mvc.Controller`。
+
+
+  `package controllers:`
+
+
+  `import play.mvc.*;`
+
+  `import views.html.*;`
+
+
+  `public class Application extends Controller {`
+
+
+  `}`
+
+
+  在完成路由部分后，您将向此控制器添加方法。
+
+
+  编辑 conf/routes 文件并添加以下条目：
+
+
+
+
+  '
+- '# 首页
+
+
+  GET /bookshop 控制器。
+
+
+  Application.index
+
+
+  '
+- '# 显示图书详情
+
+
+  GET /bookshop/book/:id/ 控制器。
+
+
+  Application.getBook(id:String)
+
+
+  '
+- '# 为图书添加评论
+
+
+  POST /bookshop/book/save/comment/ 控制器.Application.
+
+
+  saveComment(request:Request)
+
+
+  第 3 章 Play 控制器与 HTTP 路由
+
+
+  '
+- '# 按标题搜索图书
+
+
+  GET /bookshop/book/search/ 控制器。
+
+
+  Application.searchByTitle(keyword:String)
+
+
+  本示例展示了一个用于在线管理图书的基础应用程序。它恰当地使用了 HTTP 方法和 URI。
+
+
+  路由文件中定义的条目展示了路由的重要特性。第一个条目表明首页 URL（例如 http://yourdomainname/bookshop）指向 Application
+  类（一个控制器）中定义的 index 方法。其余的定义展示了如何在路径中以及作为查询字符串参数动态包含参数。
+
+
+  让我们更详细地探讨这一点。
+
+
+  **静态定义**
+
+
+  定义 `GET / controllers.Application.index` 表明根路径不接收任何参数，并被路由到 Application 类中定义的 index
+  方法。在此示例中，你使用的是 GET 协议。如果你的 Web 服务器支持，你也可以使用 PUT 和 DELETE HTTP 协议。
+
+
+  路由条目的整体结构是：
+
+
+  协议 URL 路径 **控制器映射**
+
+
+  **URL 中的动态部分**
+
+
+  假设你想检索某本特定图书的详细信息，但事先不知道用户会选择哪本书，因此图书 ID 必须是动态的：
+
+
+  第 3 章 Play 控制器与 HTTP 路由 `GET /bookshop/book/:id/ controllers.Application.getBook(id:String)`
+
+
+  动态部分由冒号（:）后跟参数名（本例中为 :id）表示。Play 将从 URI 中提取动态部分，并将其作为参数提供给 getBook 方法。这意味着 URL 路径
+  `/bookshop/book/123/`、`/bookshop/book/12453/` 等都将被映射到 Application 类中定义的 getBook
+  方法。
+
+
+  **关键点**：`:variablename` 用于定义 URI 的动态部分。例如 `:id`。
+
+
+  你还可以配置跨越多个正斜杠（/）的动态部分。
+
+
+  例如，
+
+
+  `GET /bookshop/book/images/* controllers.Application.fetchImage(name:String)`
+
+
+  匹配以下 URL：
+
+
+  `/bookshop/book/images/book1.jpg`
+
+
+  `/bookshop/book/images/books/book2.jpg`
+
+
+  `/bookshop/book/images/books/thumbnails/small/image1.jpg`
+
+
+  传递给 fetchImage 方法的 name 参数将分别是 `book1.jpg`、`books/book2.jpg` 和 `books/thumbnails/small/image1.jpg`。
+
+
+  你使用了控制器类的完全限定名（`controllers.Application`）。如果需要，你也可以定义并使用其他控制器。
+
+
+  Play 还支持路径定义中的正则表达式。要在动态部分定义正则表达式，可以使用 `$id<regex>` 语法。
+
+
+  第 3 章 Play 控制器与 HTTP 路由 例如：
+
+
+  `GET /bookshop/book/:id/page/$page<[0-9]+>/ controllers.Application.fetchBookpage(bookid:String,
+  page:Integer)`
+
+
+  在这个定义中，有两个动态部分：一个用于 id（图书的唯一 ID），另一个用于页码。页码部分被定义为一个只接受数字的正则表达式。如果 URI 中包含非数字字符，Play
+  将进行验证并抛出错误。例如，当请求为 `http://localhost:9000/bookshop/book/10/page/12/` 时，页面将正常渲染，因为请求中的页码是有效数字。如果请求为
+  `http://localhost:9000/bookshop/book/10/page/a/`，Play 将抛出“未找到操作”错误，因为请求中的页码不是有效数字。
+
+
+  **关键点** `$variablename<regular expression>` 用于定义匹配正则表达式的动态部分。
+
+
+  **传递固定值**
+
+
+  对于某些方法，你需要始终传递一个固定值。你可以这样配置此类情况：
+
+
+  `GET /bookshop//authors/ controllers.Application.authors(limit: Integer = 10)`
+
+
+  这里你向 show 方法传递了一个默认值 10。这意味着当用户调用 show 方法时，它只显示 10 本书。
+
+
+  第 3 章 Play 控制器与 HTTP 路由 **可选参数**
+
+
+  一个典型的用例是某些参数有时会被传递，但在某些情况下会缺失。为了处理这种情况，你可以使用可选定义：
+
+
+  '
+- '# 显示所有评论或特定用户的评论
+
+
+  `GET /bookshop//showcomment/ controllers.Application.showComment(userid ?= null)`
+
+
+  在这个例子中，如果传递了 userid，它将检索该用户的评论；如果没有传递，则获取所有评论。
+
+
+  **关键点** `variable? = default-value` 用于定义可选参数。
+
+
+  我希望你现在已经理解了静态和动态 URL 配置。在进入控制器部分和其他章节之前，让我们先看看如何为应用程序声明配置，因为在接下来的章节中，你将需要在 `application.conf`
+  文件中添加条目。
+
+
+  **使用 application.conf 进行应用程序配置**
+
+
+  Play 提供了一个名为 `application.conf` 的单一文件，位于 `conf` 目录内，用于配置应用程序级别的设置。这个 `conf/application.conf`
+  文件可用于配置数据库连接字符串、日志级别、启用额外功能的模块等。`application.conf` 文件是一个 UTF-8 编码的文件。
+
+
+  第 3 章 Play 控制器与 HTTP 路由 该文件中的条目遵循以下模式：
+
+
+  '
+- '# 注释
+
+
+  key = value
+
+
+  默认情况下，Play 应用程序开始监听端口 9000 上的 HTTP 请求。通过在 `application.conf` 文件中添加 `http.port` 条目，可以更改此默认端口：
+
+
+  #http.port =8085
+
+
+  `application.conf` 文件中定义的默认日志级别如下。在生产环境中，请记得将其更改为适当的值。通常的做法是将其设置为 ERROR。
+
+
+  '
+- '# 框架使用的日志记录器：
+
+
+  logger.play=INFO
+
+
+
+
+  '
+- "# 提供给应用程序的日志记录器：\n\nlogger.application=DEBUG\n\n**控制器**\n\nPlay 中的控制器实现了 MVC 设计模式中的控制器元素。您已经了解到，每个\
+  \ Play 请求都会通过 `conf/routes` 文件中定义的 HTTP 路由配置映射到一个操作。在所有这些配置中，您都可以看到名为 `Application`\
+  \ 的控制器的使用。\n\n这样做只是为了方便，因为 Play 会自动在控制器文件夹中创建一个名为 `Application` 的类。您完全可以创建另一个类并使用它。\n\
+  \n一个控制器将相关的操作组合在一起。您可以根据应用程序的功能，创建任意数量的控制器。以书店应用程序为例，您可以定义一个 `BookController` 来处理所有面向用户的交互，并定义一个\
+  \ `BackOfficeController` 来定义所有被称为后台功能的操作，例如维护库存、向系统添加书籍、为书籍添加图片等。将功能分组到不同的控制器中有助于提高应用程序的可维护性和模块化程度。\n\
+  \n在 Play 中，控制器类继承自 `play.mvc.Controller`。您可以定义一个返回 `Result` 的操作方法：\n\n```java\n\
+  public Result index() {\n    return ok(\"Hello World.\");\n}\n```\n\n`Result` 本质上就是返回给客户端的\
+  \ HTTP 响应。\n\n操作方法也可以接受参数，这些参数会根据 `conf/routes` 文件中定义的路由逻辑进行解析：\n\n```java\npublic\
+  \ Result saveRating(String bookid, int rating) {\n    // 保存评分的逻辑\n    return ok(\"\
+  success\");\n}\n```\n\n一个典型的 HTTP 响应包含状态码、标头和正文。Play 提供了大量的辅助方法来生成各种 HTTP 响应。例如，上面代码片段中展示的\
+  \ `ok()` 方法会向客户端发送一个 HTTP 200 响应。类似地，Play 还提供了 `notFound()`、`badRequest()`、`internalServerError()`\
+  \ 等方法来返回各种类型的 HTTP 响应。这些辅助方法定义在 `play.mvc.Results` 类中。由于您编写的控制器继承自 `Controller`\
+  \ 类，而 `Controller` 类又继承自 `Results` 类，因此您的控制器默认可以使用所有这些方法。\n\n以下是一个向客户端返回内部服务器错误的示例：\n\
+  \n```java\nResult response = internalServerError(\"Server Error\");\n```\n\n另一个需要理解的重要事项是如何将请求重定向到另一个\
+  \ URL 或另一个操作。这在 Play 中也非常简单。它提供了一个 `redirect` 方法来实现：\n\n```java\npublic Result hello()\
+  \ {\n    return redirect(\"/book/login/\");\n}\n```\n\n这会将用户重定向到登录页面。此方法会向浏览器发送\
+  \ HTTP 状态码 303。\n\n**完成 Bookshop 控制器**\n\n现在，让我们为书店应用程序的 `Application` 控制器添加所有必需的方法并进行测试。路由配置如下所示：\n\
+  \n```\n# 首页\nGET     /bookshop                          controllers.Application.index\n\
+  \n# 显示书籍详情\nGET     /bookshop/book/:id/                controllers.Application.getBook(id:String)\n\
+  ```\n\n\n\n"
+- '# 为图书添加评论
+
+
+  POST /bookshop/book/save/comment/ controllers.Application.
+
+
+  saveComment(request:Request)
+
+
+  '
+- '# 按书名搜索图书
+
+
+  GET /bookshop/book/search/ controllers.
+
+
+  Application.searchByTitle(keyword:String)
+
+
+  现在来看应用程序控制器（Application.java）：
+
+
+  package controllers;
+
+
+  import javax.inject.Inject;
+
+
+  第 3 章 Play 控制器与 HTTP 路由 import play.mvc.*;
+
+
+  import play.data.DynamicForm;
+
+
+  import play.data.FormFactory;
+
+
+  public class Application extends Controller{
+
+
+  /**
+
+
+  * 处理首页
+
+
+  * @return
+
+
+  */
+
+
+  public Result index() {
+
+
+  return ok(views.html.bookshop.render());
+
+
+  }
+
+
+  /**
+
+
+  * 根据 ID 获取图书详情
+
+
+  * @param id
+
+
+  * @return
+
+
+  */
+
+
+  public Result getBook(String id) {
+
+
+  return ok(views.html.bookshop.render());
+
+
+  }
+
+
+  @Inject
+
+
+  FormFactory formFactory;
+
+
+  /**
+
+
+  * 接收表单提交并保存评论
+
+
+  * 演示如何使用动态表单从 HTML 表单提交中检索数据
+
+
+  * @return
+
+
+  */
+
+
+  public Result saveComment(Http.Request request) {
+
+
+  DynamicForm requestData = formFactory.form().
+
+
+  bindFromRequest(request);
+
+
+  String comment = requestData.get("comment");
+
+
+  第 3 章 Play 控制器与 HTTP 路由 return ok(views.html.savecomment.render());
+
+
+  }
+
+
+  public Result searchByTitle(String title) {
+
+
+  // 查询数据库或从缓存中获取图书详情
+
+
+  return ok(views.html.searchresults.render());
+
+
+  }
+
+
+  }
+
+
+  **saveComment 方法**
+
+
+  saveComment 方法处理用于保存评论的表单提交操作。在 Play 中，有多种方式可以将表单提交数据绑定到模型类。上述方法演示了如何使用 DynamicForm
+  类动态地从表单中获取数据。
+
+
+  最常见的方法是为表单数据定义一个类（模型），并在控制器中用 play.data.Form 对其进行包装。Play 会自动将表单字段绑定到模型属性。例如：
+
+
+  **package** models;
+
+
+  **import** javax.persistence.Entity;
+
+
+  **import** javax.persistence.Id;
+
+
+  **import** javax.persistence.Table;
+
+
+  @Entity
+
+
+  @Table(name=**"comment"** )
+
+
+  **public class** Comment {
+
+
+  @Id
+
+
+  **private** Long **id**;
+
+
+  **private** String **comment**;
+
+
+  第 3 章 Play 控制器与 HTTP 路由 **public** String getComment() {
+
+
+  **return comment**;
+
+
+  }
+
+
+  **public void** setComment(String comment) {
+
+
+  **this**. **comment** = comment;
+
+
+  }
+
+
+  }
+
+
+  将此文件保存为 Comment.java，放在 models 包内。
+
+
+  再看一下上面展示的 Application.java 类。在该类中，你注入了 FormFactory 并为其提供了评论模型。因此，表单数据到模型类的数据绑定将由
+  Play 框架自动处理。
+
+
+  Application.java 文件中执行表单数据自动绑定到模型类的相关代码如下：
+
+
+  @Inject
+
+
+  FormFactory formFactory;
+
+
+  DynamicForm requestData = **formFactory**.form().
+
+
+  bindFromRequest(request);
+
+
+  String comment = requestData.get(**"comment"** ); **测试 saveComment 操作**
+
+
+  任何 HTTP 测试客户端都可以用来测试此操作。本书使用 Postman 来测试服务。Postman 是一个帮助测试符合 REST、SOAP 等协议的 HTTP
+  端点的平台。若要通过命令行测试，可以使用 curl。你可以从 [www.](http://www.getpostman.com/)
+
+
+  [getpostman.com/.](http://www.getpostman.com/) 下载 Postman。参见图 3-2。
+
+
+  ![](img/index-72_1.jpg)
+
+
+  第 3 章 Play 控制器与 HTTP 路由
+
+
+  ***图 3-2.** 测试 saveComment*
+
+
+  要从命令提示符进行测试，请使用 curl 命令：
+
+
+  **curl --location --request POST ''http://localhost:9000/bookshop/**
+
+
+  **book/save/comment/'' --form ''comment=Good Book''**
+
+
+  **模型**
+
+
+  由于 Play 框架遵循 MVC 原则，你应该确保控制器层尽可能薄。不要在控制器中放置任何业务逻辑。所有业务逻辑都应在模型或其他辅助类中完成。Play 的惯例是将模型定义在
+  app/models 文件夹内。
+
+
+  第 3 章 Play 控制器与 HTTP 路由 默认情况下，Play 会在 app 内创建 views 和 controllers 文件夹。通常的做法是将模型实现为
+  JPA 实体。在本章中，我们仅用 JPA 注解来标注模型；不会进行任何 JPA 配置或持久化实现。在本书后续章节中，我们将详细探讨 JPA。
+
+
+  **package** models;
+
+
+  **import** javax.persistence.*;
+
+
+  @Entity
+
+
+  @Table(name=**"book"** )
+
+
+  **public class** Book **extends** Model {
+
+
+  @Id
+
+
+  **private** String **id**;
+
+
+  **private** String **name**;
+
+
+  **private** String **author**;
+
+
+  **public** String getId() {
+
+
+  **return id**;
+
+
+  }
+
+
+  **public void** setId(String id) {
+
+
+  **this**. **id** = id;
+
+
+  }
+
+
+  }
+
+
+  **作用域对象**
+
+
+  在任何 Web 应用程序中，可能需要在应用的不同页面之间维护数据，以便与应用程序的用户保持对话会话。在某些情况下，你可能只需要将数据的作用域限定为下一个请求，而不是整个会话。Play
+  对这两种情况都提供了支持。控制器类负责存储和访问作用域对象。
+
+
+  第 3 章 Play 控制器与 HTTP 路由 Play 框架提供了两种作用域对象：
+
+
+  • 会话作用域
+
+
+  • 闪存作用域
+
+
+  存储在会话作用域中的数据跨越多个 HTTP 请求，在整个用户会话期间都可用。存储在闪存作用域中的数据仅对下一个请求可用。
+
+
+  Play 通过 Cookie 实现上述两种作用域，因此强制限制大小为 4 KB。你只能在这些作用域中存储字符串值。
+
+
+  **会话作用域**
+
+
+  在 Play 中，会话没有超时时间。当用户关闭浏览器时，会话过期。但如果你的应用程序需要配置超时时间，可以通过在 application.conf 文件中添加会话配置来实现，如下所示：
+
+
+  **application.conf**
+
+
+  play.http {
+
+
+  session {
+
+
+  '
+- '# 将 Cookie 的 max-age 字段设置为 5 分钟。
+
+
+
+  好的，作为一名高级文档工程师和翻译员，我将严格遵循您提供的注意事项和示例，将给定的英文文本翻译成中文。
+
+
+
+  '
+- '# maxAge = 300
+
+
+  }
+
+
+  }
+
+
+  第 3 章 Play 控制器与 HTTP 路由 Play 提供了以下方法来处理会话作用域：**addingToSession**
+
+
+  public Result dard(Http.Request request) {
+
+
+  return ok("欢迎!").addingToSession(request,
+
+
+  "dashboard login", "useremailaddress");
+
+
+  }
+
+
+  **removingFromSession**
+
+
+  public Result disconnect(Http.Request request) {
+
+
+  return ok("断开连接成功").
+
+
+  removingFromSession(request, "disconnect");
+
+
+  }
+
+
+  要访问会话数据，请使用以下代码：
+
+
+  public Result index(Http.Request request) {
+
+
+  return request
+
+
+  .session()
+
+
+  .get("dashboardlogin")
+
+
+  .map(id -> ok("欢迎: " + user))
+
+
+  .orElseGet(() -> unauthorized("请重新登录"));
+
+
+  }
+
+
+  在这个例子中，你使用了 Play 的 Session API 来检索值；如果为空，则直接返回一个未授权的响应。
+
+
+  要丢弃整个会话，Play 提供了 withNewSession 方法：
+
+
+  public Result quit() {
+
+
+  return ok("已登出").withNewSession();
+
+
+  }
+
+
+  第 3 章 Play 控制器与 HTTP 路由 **Flash 作用域**
+
+
+  Flash 作用域与会话类似，但存在以下区别。
+
+
+  首先，**数据仅保留一个请求**。在第一个请求中，你设置 flash 作用域，当用户通过发出另一个请求移动到下一个页面或部分时，该数据可用，并且可以通过控制器中的方法在该请求的处理过程中检索到。其次，它使用未签名的
+  cookie。
+
+
+  会话和 flash 作用域都使用浏览器 cookie 来实现其行为，而 flash 作用域的 cookie 是未签名的。因此，不要使用 flash 作用域来存储任何敏感数据。仅将其用于存储成功消息或错误消息。使用以下代码将数据添加到
+  flash 作用域： public Result about() {
+
+
+  return redirect("/company").flashing("aboutinfo",
+
+
+  "about info requested");
+
+
+  }
+
+
+  当请求到达时，键为“aboutinfo”的数据被添加到 flash 作用域，并被重定向到公司页面。在公司页面中，映射到 /company URL 的控制器方法可以访问此数据，如下所示：
+  public Result companyinfo(Http.Request request) {
+
+
+  return ok(request.flash().get("aboutinfo").orElse ("公司名称"));
+
+
+  }
+
+
+  **第 4 章**
+
+
+  **Play 视图与**
+
+
+  **使用 Scala 的模板化**
+
+
+  默认情况下，Play 中的视图是 HTML，并且可以使用 Scala 表达式语言使其动态化。实际上，如果需要，你也可以返回 JSON 或 XML 响应。让我们首先关注
+  HTML Scala 视图以及 Play 模板引擎如何帮助你创建模块化、富有表现力和流畅的视图。尽管模板引擎使用 Scala 作为表达式语言，但这对于 Java
+  开发人员来说不是问题。模板中使用的 Scala 语言非常简单。正如你在第 1 章中所看到的，Play 使用的模板引擎是 Twirl。回想一下，模板文件必须命名为
+  {name}.scala.{ext}。ext 可以是 html、js、xml 等。Play 偏好约定优于配置。当你编译时，编译器将生成 Scala 源文件，它们将与其余源代码一起编译。
+
+
+  与 Play 中的所有其他类一样，模板也是即时编译的，你可以直接在浏览器中看到错误。你应该记住，模板/视图不是编写复杂逻辑的地方。将所有与表示相关的逻辑写在控制器或辅助类中。你所有的业务逻辑都应该在你的业务实体类中。
+
+
+  © Prem Kumar Karunakaran 2020
+
+
+  P. K. Karunakaran, *Introducing Play Framework*,
+
+
+  `doi.org/10.1007/978-1-4842-5645-9_4`
+
+
+  第 4 章 Play 视图与使用 Scala 的模板化 大多数情况下，你只会从模型对象中访问数据。
+
+
+  换句话说，Scala 模板语言只提供有限的选项来编写复杂逻辑；其目的是提供一种更简单的方法来访问模型中的数据。这是有意为之，以限制开发人员在视图中嵌入复杂代码。
+
+
+  **关键点** 请记住，视图仅用于访问存储在模型中的数据。所有逻辑，即使是像维护计数器这样的事情，也是控制器或表示辅助类的工作。
+
+
+  **组合视图**
+
+
+  请记住，Play 视图的命名遵循约定 viewname.scala.html。例如，你可以为页脚创建一个视图，并将其命名为 footer.scala.html。让我们检查以下页面以更好地理解这一点：
+
+
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+
+
+  "http://www.w3.org/TR/html4/loose.dtd">
+
+
+  <html>
+
+
+  <head>
+
+
+  @header("首页")
+
+
+  </head>
+
+
+  <body>
+
+
+  <div class= *"container"* >
+
+
+  <!-- 首页内容放在这里 -->
+
+
+  </div>
+
+
+  <div>
+
+
+  @footer()
+
+
+  </div>
+
+
+  </body>
+
+
+  </html>
+
+
+  第 4 章 Play 视图与使用 Scala 的模板化 在这个例子中，首页使用两个视图来创建一个组合视图。请注意以下几点：header 和 footer 是从另一个视图引入的；引入
+  header 和 footer 视图的简洁性；没有复杂的配置；只需使用 @ 符号后跟视图名称。你会在整个 Play 框架中发现这种简洁性；这是 Play 框架的重要目标之一。
+
+
+  header 视图声明它接受一个 String（标题）作为参数：
+
+
+  @(title:String)
+
+
+  *<meta http-equiv=*"Content-Type" *content=*"text/html; charset=ISO-8859-1" *>*
+
+
+  <title>@title</title>
+
+
+  此参数由调用者提供以渲染页面标题。如果需要，可以为参数提供默认值：
+
+
+  @(title : String ="图书首页")
+
+
+  **@ 特殊字符**
+
+
+  Scala 模板使用 @ 作为特殊字符。每次遇到此字符时，它都表示动态语句的开始。动态语句的结束由 Scala 引擎自动推断。有时你可能需要编写多行语句，为此你可以将动态代码括在花括号或大括号中：
+
+
+  @(动态代码 )
+
+
+  @{ 动态代码 }
+
+
+  第 4 章 Play 视图与使用 Scala 的模板化 **设计通用模板**
+
+
+  让我们为所有页面设计通用模板。为了便于说明，我们保持非常简单。你所有的页面都将包含以下内容：
+
+
+  页眉
+
+
+  主要内容
+
+
+  页脚
+
+
+  让我们将此模板定义为 main.scala.html：
+
+
+  @(title:String)(content:Html)
+
+
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+
+
+  "http://www.w3.org/TR/html4/loose.dtd">
+
+
+  <html>
+
+
+  <head>
+
+
+  @header(title)
+
+
+  </head>
+
+
+  <body>
+
+
+  @content
+
+
+  @footer()
+
+
+  </body>
+
+
+  </html>
+
+
+  请注意，除了标题之外，模板还接受另一个参数：content（类型为 Html）。这是为了将 HTML 代码合并到模板中。上面的模板就像一个接受两个参数的方法：一个标题参数和
+  HTML 内容。
+
+
+  让我们创建一个使用此模板的视图。‘welcome 视图将两个参数从 main.scala.html 传递给模板以渲染视图。请注意，HTML（模板的第二个参数）是在
+  {} 内传递的：
+
+
+  第 4 章 Play 视图与使用 Scala 的模板化
+
+
+  @maintemplate("欢迎页面") {
+
+
+  <div>
+
+
+  <h3>这是欢迎页面</h3>
+
+
+  </div>
+
+
+  }
+
+
+  视图（welcome.scala.html）使用主模板来引入包含页眉、正文和页脚的页面结构。如果你的视图很复杂，请将它们拆分为多个模板，并借助这些模板组合视图。
+
+
+  规则是将重复出现的代码部分放在单独的模板文件中。Play 中使用的 Scala 模板结构比许多现有的模板引擎（例如 Tiles）更强大、更简单。
+
+
+  **代码片段 模板化基础**
+
+
+  Play 视图使用一个名为 Twirl 的模板引擎。通过使用模板引擎，视图可以轻松渲染任何标记，如 HTML、XML 和 CSV，尽管对于大多数 Web 应用程序，我们只使用
+  HTML。
+
+
+  例如，在所有示例中，你只使用了 HTML 标记，因此你将视图命名为 {name}.scala.html。命名视图的一般语法是 {name}.scala.{ext}，其中
+  ext 可以是 html、js、xml 或 txt。因此，你可以为同一页面保留不同的标记版本，并且根据上下文，控制器可以渲染适当的视图。这使你可以向特定客户端显示
+  HTML，而向另一个客户端显示 XML 标记。
+
+
+  Play 的模板引擎 Twirl 的设计方式使得前端开发人员在处理代码的动态部分时感到舒适。HTML 专家只关心模板中的 HTML 标记，而另一个成员可能只处理迭代动态元素等。简单的
+  Twirl 语法使代码更易于阅读和处理。让我们探索最常见的 Play 模板元素。
+
+
+  第 4 章 Play 视图与使用 Scala 的模板化 **注释**
+
+
+  @***************
+
+
+  * 注释块
+
+
+  ****************@
+
+
+  **模板参数**
+
+
+  一个模板可以接受任意数量的参数。它可以接受常见的 Java 类型或自定义的用户定义类型。例如，考虑 @(booklist <-
+
+
+  List[models.Book])。这里模板接受一个图书对象列表：
+
+
+  @(booklist <- List[models.Book])
+
+
+  @main("图书列表") {
+
+
+  @for(book <- booklist){
+
+
+  < **div**>@book.getTitle()</**div**>
+
+
+  < **div**>@book.getAuthor()</**div**>
+
+
+  }
+
+
+  }
+
+
+  在这个例子中，模板接受一个 Book 列表作为参数，并迭代图书，将 HTML 内容传递给 main.scala.html 文件进行渲染。请注意，你在前面的章节中已经探索过
+  main.scala.html 文件。它看起来像这样：
+
+
+  @*
+
+
+  * 此模板从 `index` 模板调用。此模板
+
+
+  * 处理页面标题和 body 标签的渲染。它接受
+
+
+  * 两个参数，一个 `String` 用于页面标题，一个 `Html`
+
+
+  * 对象用于插入到页面主体中。
+
+
+  *@
+
+
+  @(title: String)(content: Html)
+
+
+  第 4 章 Play 视图与使用 Scala 的模板化
+
+
+  <!DOCTYPE **html**>
+
+
+  < **html lang="en"** >
+
+
+  < **head**>
+
+
+  @* 这里我们渲染页面标题 `String`。 *@
+
+
+  < **title**>@title</**title**>
+
+
+  < **link rel="stylesheet" media="screen" href="@routes.**
+
+
+  **Assets.versioned("stylesheets**/main.css")">
+
+
+  < **link rel="shortcut icon" type="image/png" href="@**
+
+
+  **routes.Assets.versioned("images**/favicon.png")">
+
+
+  </**head**>
+
+
+  < **body**>
+
+
+  @* 这里我们渲染包含页面内容的 `Html` 对象。 *@
+
+
+  @content
+
+
+  < **script src="@routes.Assets.versioned("javascripts**/
+
+
+  main.js")" type="text/javascript"></**script**>
+
+
+  </**body**>
+
+
+  </**html**>
+
+
+  你可以使用以下语法为模板参数提供默认值：
+
+
+  @(title: String ="图书首页")
+
+
+  **导入语句**
+
+
+  考虑代码 @(booklist <- List[models.Book])。你可能已经注意到，类型是使用其完全限定包名显式定义的。当参数数量增加时，这会变得繁琐且难以维护。Scala
+  模板允许你将包导入到视图中，以便你可以仅通过名称引用类。
+
+
+  第 4 章 Play 视图与使用 Scala 的模板化 语法：
+
+
+  @import packagename._
+
+
+  示例：
+
+
+  @import models._
+
+
+  你应该将 import 语句放在模板的开头。如果你将其声明在任何其他位置，编译器将抛出异常。最佳位置是在参数声明之后立即定义导入。
+
+
+  **迭代列表**
+
+
+  语法：
+
+
+  @for(localvariable <- variable refering the List) {
+
+
+  @localvariable.method()
+
+
+  }
+
+
+  让我们以在首页上显示前 N 本书为例。你可以将模型命名为 Book；它包含方法 getTitle 和 getPicture：
+
+
+  @(booklist <- List[models.Book])
+
+
+  @for(book <- booklist){
+
+
+  <div>@book.getPicture()</div>
+
+
+  <div>@book.getTitle()</div>
+
+
+  }
+
+
+  **迭代 Map**
+
+
+  语法：
+
+
+  @for((key, value) <- mapreference) {
+
+
+  Key is @key
+
+
+  Value is @value
+
+
+  }
+
+
+  第 4 章 Play 视图与使用 Scala 的模板化 让我们以迭代一个以 String 为键、List 为值的 Map 为例。你的 Map 将作者姓名作为键，该作者的图书列表作为值：
+
+
+  @(title: String,authorbookMap:Map[String,List[Book]])
+
+
+  @import models._
+
+
+  <!DOCTYPE html>
+
+
+  <html>
+
+
+  <head>
+
+
+  @header("主首页")
+
+
+  </head>
+
+
+  <body>
+
+
+  @for((key,value) <- authorbookMap){
+
+
+  作者 - @key
+
+
+  @for(book <- value){
+
+
+  <div>
+
+
+  @book.getTitle()
+
+
+  </div>
+
+
+  }
+
+
+  }
+
+
+  </body>
+
+
+  </html>
+
+
+  **If 块**
+
+
+  语法：
+
+
+  @if(condition){
+
+
+  }else{
+
+
+  }
+
+
+  if 块没有什么特别之处。它是标准的 Scala if 块。
+
+
+  第 4 章 Play 视图与使用 Scala 的模板化 **转义动态内容**
+
+
+  默认情况下，Scala 代码片段生成的动态内容会被转义。这意味着当视图被渲染时，它将表现为纯文本。但是，如果你需要输出原始的动态内容，可以使用 @Html 标签。
+
+
+  语法：
+
+
+  @Html(代码 / 变量)
+
+
+  **第 5 章**
+
+
+  **并发与异步**
+
+
+  **编程**
+
+
+  在深入 Play 之前，掌握 Java 中的并发和异步编程知识非常重要。这是必不可少的，因为后续章节中的示例将大量使用异步编程实践。
+
+
+  让我们首先了解 java.util.concurrent 包，这是 Java 中用于处理并发编程的核心模块。了解这一点将有助于理解 Play 如何使用 WS 和
+  Promise 类处理异步 Web 服务。如果你已经熟悉并发、其挑战以及 Java 如何使用自 JDK 1.5 以来在 java.util.concurrent
+  包中提供的新类来处理它，则可以跳过本章。
+
+
+  随着 java.util.concurrent 包中引入新类，Java 中的并发编程现在容易得多。需要关注的最重要的类是：
+
+
+  1) Executor
+
+
+  2) Callable<V>
+
+
+  3) Future<V>
+
+
+  4) CompletionStage<T>
+
+
+  © Prem Kumar Karunakaran 2020
+
+
+  P. K. Karunakaran, *Introducing Play Framework*,
+
+
+  `doi.org/10.1007/978-1-4842-5645-9_5`
+
+
+  第 5 章 并发与异步编程 在详细研究上述每个类之前，让我们快速了解一下什么是并发。
+
+
+  **什么是并发？**
+
+
+  并发是一种能够并行执行多个任务的技术。这些任务可以是同一程序或不同程序的一部分。
+
+
+  如果一个大型任务可以拆分成小块，并且每个小块可以并行执行，则可以带来更好的响应时间和吞吐量。
+
+
+  当程序的不同部分并行运行时，通常会使用称为线程的轻量级进程。一旦你使用线程，就需要有适当的机制来允许访问共享资源、正确管理线程生命周期、调度等。java.util.concurrent
+  包中的类有助于解决许多此类挑战。
+
+
+  **Executor**
+
+
+  在 JDK 1.5 中引入 Executor 框架之前，线程管理是开发人员的责任，并且 JDK 中没有用于此的框架。开发人员处理线程的创建及其管理以及实际的业务逻辑。从设计和编码的角度来看，考虑到遵循“关注点分离”设计理念所带来的好处，这并不是一个理想的情况。
+
+
+  将线程管理和创建与程序的其余部分分开是有意义的，而这正是 Executor 框架所做的。Executor 抽象了线程管理活动，如创建、调度等。不是直接创建线程，而是将
+  Runnable 类提交给 Executor，由它处理其执行。ExecutorService 是一个比 Executor 更完善的接口，在实际场景中使用，因为它提供了对
+  Callable 和 Future 的支持。你将在接下来的部分中了解 Callable 和 Future。注意：ExecutorService 继承自 Executor。
+
+
+  第 5 章 并发与异步编程 java.util.concurrent 包提供了三个 Executor 接口：
+
+
+  • Executor：一个简单的接口，支持启动新任务
+
+
+  • ExecutorService：Executor 的子接口，添加了有助于管理生命周期（包括单个任务和 executor 本身）的功能
+
+
+  • ScheduledExecutorService：ExecutorService 的子接口，支持任务的未来和/或周期性执行
+
+
+  ThreadPoolExecutor、ScheduledThreadPoolExecutor 和 ForkJoinPool 是 JDK 中可用的一些重要的 Executor
+  实现
+
+
+  在高层面上，使用 Executor 框架编写并发程序涉及以下步骤：
+
+
+  1) 定义一个实现 Runnable 或 Callable 接口的类/任务。
+
+
+  2) 配置并实现 ExecutorService，然后提交任务。
+
+
+  3) 如果任务是 Callable 任务，则使用 Future 类检索结果。
+
+
+  让我们看看 Runnable 和 Callable 之间的区别。Runnable 接口不返回结果，而 Callable 允许在完成后返回值。当 Callable
+  提交给 Executor 框架时，它会返回一个类型为 java.util.concurrent.Future 的对象。Future 可用于检索结果。
+
+
+  第 5 章 并发与异步编程 **示例 1：使用 Runnable**
+
+
+  **package** com.domain.concurrency;
+
+
+  **public class** SimpleTask **implements** Runnable {
+
+
+  @Override
+
+
+  **public void** run() {
+
+
+  System. ***out***.println(**"SimpleTask, Runnable: 执行逻辑 "** +System. *currentTimeMillis*());
+
+
+  }
+
+
+  }
+
+
+  SimpleTask 类是你希望由许多客户端并行执行的逻辑部分。此逻辑在 run 方法中实现，它打印以毫秒为单位的 currentTime。在传统的 Java
+  实践中，为了由许多客户端并行执行此操作，你需要为每个客户端创建线程并运行这些线程，同时进行线程协调、停止等。你还需要确保不会创建不必要数量的线程，并且线程应该被重用。所有这些都增加了并发编程的复杂性，而这正是
+  ExecutorService 的用武之地，因为它负责处理所有这些方面。现在让我们创建一个客户端，并要求它在多个线程中运行 SimpleTask： **package**
+  com.domain.concurrency;
+
+
+  **import** java.util.concurrent.ExecutorService;
+
+
+  **import** java.util.concurrent.Executors;
+
+
+  **public class** Client {
+
+
+  **public static void** main(String[] args) {
+
+
+  *// 步骤 1：创建一个 Runnable*
+
+
+  Runnable simpleTask = **new** SimpleTask();
+
+
+  *// 步骤 2：配置 Executor*
+
+
+  第 5 章 并发与异步编程
+
+
+  *// 使用 FixedThreadPool executor*
+
+
+  ExecutorService executor = Executors. *newFixedThreadPool*(2); **for** (**int**
+  i = 0; i < 10; i++) {
+
+
+  executor.submit(simpleTask);
+
+
+  }
+
+
+  executor.shutdown();
+
+
+  }
+
+
+  }
+
+
+  代码非常简单，但它做了很多事情。你创建了一个 SimpleTask 实例，创建了 ExecutorService，并用一个包含两个线程的线程池初始化它。然后你将任务提交给
+  ExecutorService。ExecutorService 负责以高效的方式使用其拥有的两个线程来执行这十个请求。
+
+
+  运行 Client.java 为：
+
+
+  **java com.domain.concurrenc.Client**
+
+
+  **输出**
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676485
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676485
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676486
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676486
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676486
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676486
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676486
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676486
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676486
+
+
+  SimpleTask, Runnable: 执行逻辑 1578145676486
+
+
+  通过检查输出，你可以看到时间以两个为一组重复出现，这意味着 ExecutorService 使用其拥有的两个线程来调度执行，一旦线程空闲，接下来的两个请求就会得到服务，依此类推。
+
+
+  第 5 章 并发与异步编程 **示例 2：使用 Callable**
+
+
+  Callable 类似于 Runnable。两者都设计为由线程执行。区别在于 Runnable 不返回任何内容，并且不能抛出受检异常。Callable 返回一个结果，并且可能抛出异常。Callable
+  接口定义了方法：
+
+
+  V call() **throws** Exception;
+
+
+  让我们通过一个示例来尝试 Callable：
+
+
+  package com.domain.concurrency;
+
+
+  import java.util.concurrent.Callable;
+
+
+  public class CallableTask implements Callable<String> {
+
+
+  @Override
+
+
+  public String call() throws Exception {
+
+
+  String s="Callable 任务在 " + System.currentTimeMillis() + " 运行";
+
+
+  return s;
+
+
+  }
+
+
+  }
+
+
+  CallableTask 返回一个 String，如果出现问题，也可以抛出异常。下面定义的 CallableClient 使用 ExecutorService
+  执行此任务。需要理解的最重要的事情是，由于这些是返回结果的异步执行，ExecutorService 返回一个 Future 对象，它是实际响应的代理。调用者必须通过调用
+  Future 上的 isDone 方法来检查执行是否已完成，并提取响应。
+
+
+  这就是以下代码所做的：
+
+
+  第 5 章 并发与异步编程 **package** com.domain.concurrency;
+
+
+  **import** java.util.concurrent.Callable;
+
+
+  **import** java.util.concurrent.ExecutionException;
+
+
+  **import** java.util.concurrent.ExecutorService;
+
+
+  **import** java.util.concurrent.Executors;
+
+
+  **import** java.util.concurrent.Future;
+
+
+  **public class** CallableClient {
+
+
+  */***
+
+
+  * ***@param args***
+
+
+  * */*
+
+
+  **public static void** main(String[] args) {
+
+
+  *// 步骤 1：创建一个 Runnable*
+
+
+  Callable callableTask = **new** CallableTask();
+
+
+  *// 步骤 2：配置 Executor*
+
+
+  *// 使用 FixedThreadPool executor*
+
+
+  ExecutorService executor = Executors. *newFixedThreadPool*(2); Future<String> future
+  = executor.submit(callableTask); **boolean** listen = **true**;
+
+
+  **while** (listen) {
+
+
+  **if** (future.isDone()) {
+
+
+  String result;
+
+
+  **try** {
+
+
+  result = future.get();
+
+
+  listen = **false**;
+
+
+  System. ***out***.println(result);
+
+
+  } **catch** ( InterruptedException |
+
+
+  ExecutionException e) {
+
+
+  e.printStackTrace();
+
+
+  }
+
+
+  }
+
+
+  第 5 章 并发与异步编程
+
+
+  }
+
+
+  executor.shutdown();
+
+
+  }
+
+
+  }
+
+
+  这里你使用一个 while 循环来持续检查完成状态，一旦准备就绪，数据被消费并退出循环。请注意，isDone 是一个非阻塞方法，因此你在使用它时不会阻塞线程。Future
+  API 中还有一个名为 get 的方法；它是一个阻塞方法，它会阻塞主线程直到响应到达。
+
+
+  你可以尝试 get 的另一种变体，它接受一个超时时间： String result =future.get();
+
+
+  String result =future.get(10, TimeUnit. *SECONDS*);
+
+
+  **使用 Play 进行异步编程**
+
+
+  对于任何需要良好扩展的项目来说，异步处理请求的能力是选择框架的一个非常重要的因素。同步处理大量并发请求会消耗服务器资源，并且在某些极端情况下，如果容量规划不当，可能导致服务器停止运行。
+
+
+  来自 Web 服务器的正常页面请求通常是同步的，并且很多时候它们是先前渲染页面的缓存副本。但情况并非总是如此；有许多应用程序需要执行大量昂贵的处理才能将结果返回给客户端。在这种情况下，显然客户端必须等待结果到达，但服务器可以——实际上确实——在另一个执行线程中异步处理，从而释放稀缺的服务器资源。
+
+
+  第 5 章 并发与异步编程 Play 优雅地做到了这一点。服务器端非阻塞的 Play 操作应返回 CompletionStage<Result> 而不是普通的
+  Result 对象。CompletionStage 是一个承诺，即结果将在稍后某个时间可用。CompletionStage 接口的妙处在于它提供了大量的方法来附加回调，以便在结果可用时对其进行处理。
+
+
+  Web 客户端在等待响应时会被阻塞，但服务器上不会有任何阻塞，并且服务器资源可用于服务其他客户端。
+
+
+  **编写异步应用程序**
+
+
+  让我们找一个场景来更好地理解这一点。考虑一个基于个人 Facebook 资料推荐礼物的应用程序。此应用程序使用个人资料中公开可用的数据，然后在线搜索以收集与其兴趣匹配的礼物。在线搜索和组合礼物列表是昂贵的操作，可能会给服务器带来很大负担。因此，这段代码是异步编程的理想候选：
+
+
+  **public** CompletionStage<Result> recomendGifts(**final** String uid, **final**
+  String age, **final** String relation) {
+
+
+  **return** CompletableFuture. *supplyAsync*(**this**::getGifts)
+
+
+  .thenApply(( List<GiftVO> gift) -> *ok*(**"已获取 "** +
+
+
+  gift));
+
+
+  }
+
+
+  **private** List<GiftVO> getGifts() {
+
+
+  List<GiftVO> gifts =**new** ArrayList<GiftVO>(); gifts.add(**new** GiftVO());
+
+
+  **return** gifts;
+
+
+  }
+
+
+  第 5 章 并发与异步编程 在这段代码中，私有方法 getGifts 负责查找礼物并返回礼物列表。当然，对于这个例子，我模拟了响应。在现实场景中，礼物可能基于个人的社交资料或愿望清单或类似的逻辑。该逻辑不在我们的讨论范围内；我们只关注异步编程语义。
+
+
+  公共方法 recomendGifts 使用 java.util.concurrent 包中的 Completable<Future> 接口异步调用 getGifts
+  方法。这是通过代码段 CompletableFuture.supplyAsync(this::getGifts) 完成的。
+
+
+  下一步是检查是否有响应，并在可用时对响应进行进一步处理，然后将其发送回客户端。这就是 thenApply 方法所做的。
+
+
+  **配置异步定时任务**
+
+
+  Play 使用 Akka 来处理异步任务。为了理解 Play 中的任务，需要具备 Akka 的基础知识。
+
+
+  **Akka 基础**
+
+
+  Akka 的官方定义是“一个用于在 JVM 上构建**高并发、分布式和容错**事件驱动应用程序的工具包和运行时。”
+
+
+  Akka 引入了 actor 模型抽象，并提供了一个更好的平台来构建正确、并发和可扩展的应用程序。这意味着它解决了编写多线程、高并发代码的困难。Akka 使用消息流模型来实现这一点。
+
+
+  Actor 模型并不是一个新概念。这个想法是由 Carl Hewitt、Peter Bishop 和 Richard Steiger 在 1973 年提出的。
+
+
+  Java 中传统的并发编程涉及许多线程协同工作。当它们需要对共享资源进行操作时，通过获取共享对象上的锁来完成。程序直接处理获取锁、使用后释放锁等底层任务。这种代码难以维护且容易出错；很多时候可能导致死锁。另一个痛点是跨
+  JVM 水平扩展。Akka 试图使用 actors、ActorRef 和 ActorSystem 来抽象这些低级编程方法。Actors 为透明分布提供了抽象，并为真正可扩展和容错的应用程序奠定了基础。
+
+
+  第 5 章 并发与异步编程 这是否意味着 Akka 中没有线程和锁？嗯，它们确实存在，但你不直接处理它们。在内部，一切都在轻量级线程和低级并发原语上运行。Akka
+  使用 java.util.concurrency 库来处理协调。
+
+
+  Akka 是用 Scala 编写的，并为 Scala 和 Java 提供了语言绑定。让我们首先了解什么是 actor。Actor 只是一个可以接收消息并采取行动处理消息的对象。它与生成消息的源严格解耦。
+
+
+  要使用 Akka actors，你需要做的第一件事是启动 ActorSystem。ActorSystem 是与 actors 交互的基本实体，负责 actor
+  生命周期管理，并且是 Akka 应用程序的入口点。当 Play 应用程序启动时，ActorSystem 变得可用，并且可以通过依赖注入在需要与 ActorSystem
+  交互的类中访问。
+
+
+  我们只会了解如何通过 Akka 在 Play 中调度异步任务。我们不会详细介绍 Play 中 Akka actor 系统的内部结构或配置。这些信息可以从 Play
+  框架的官方文档中轻松获得。
+
+
+  **import** akka.actor.ActorSystem;
+
+
+  **import** scala.concurrent.ExecutionContext;
+
+
+  **import** scala.concurrent.duration.Duration;
+
+
+  **import** javax.inject.Inject;
+
+
+  **import** java.util.concurrent.TimeUnit;
+
+
+  第 5 章 并发与异步编程 **public class** ScheduledTask {
+
+
+  **private final** ActorSystem **actorSystem**;
+
+
+  **private final** ExecutionContext **executionContext**;
+
+
+  @Inject
+
+
+  **public** ScheduledTask(ActorSystem actorSystem,
+
+
+  ExecutionContext executionContext) {
+
+
+  **this**. **actorSystem** = actorSystem;
+
+
+  **this**. **executionContext** = executionContext;
+
+
+  **this**.initialize();
+
+
+  }
+
+
+  **private void** initialize() {
+
+
+  **this**. **actorSystem**
+
+
+  .scheduler()
+
+
+  .scheduleAtFixedRate(
+
+
+  Duration. *create*(30 TimeUnit. ***SECONDS***),
+
+
+  *// initialDelay*
+
+
+  Duration. *create*(1, TimeUnit. ***MINUTES***),
+
+
+  *// interval*
+
+
+  () -> **actorSystem**.log().info(**"当前时间毫秒数 "** +System. *currentTimeMillis*()),
+  **this**. **executionContext**);
+
+
+  }
+
+
+  }
+
+
+  此示例演示了如何调度一个任务，该任务将在 30 秒后运行，然后每隔一分钟运行一次。代码使用依赖注入来获取默认 ActorSystem 和 ExecutionContext
+  的引用，然后使用 ActorSystem 的 scheduler 方法在定义的间隔内执行代码。
+
+
+  **第 6 章**
+
+
+  **Web 服务、JSON**
+
+
+  **和 XML**
+
+
+  现代应用程序不仅暴露 Web 服务，它们还消费其他第三方 Web 服务。例如，你的应用程序可能消费 Facebook 或 Twitter 的 feed。大多数现代
+  Web 服务都使用处理 JSON 负载的 REST API 暴露。调用 Web 服务的一个典型问题是它们可能会阻塞调用者，并可能导致服务器阻塞，直到获得响应或发生超时。这不是一个特别好的设计，因为它会影响服务器的吞吐量，并可能导致违反
+  SLA。Play 2 通过提供异步、非阻塞的 API 来调用长时间运行的任务（如外部 Web 服务）解决了这个问题。Play 提供了 play.libs.ws
+  库来处理异步 Web 服务调用。由 play.libs.ws 发出的调用返回 CompletionStage<WSResponse>。之后，你可以使用 CompletionStage
+  接口中可用的回调函数来提取响应。
+
+
+  本质上，它们是异步回调方法。调用者发出 Web 服务调用，一旦响应可用，其余代码就会运行。你将在本章后面更详细地探讨这一点。
+
+
+  **注意** 在接下来的内容中，我将经常使用术语 *promise*。因此，理解什么是 promise 及其意图非常重要。
+
+
+  © Prem Kumar Karunakaran 2020
+
+
+  P. K. Karunakaran, *Introducing Play Framework*,
+
+
+  `doi.org/10.1007/978-1-4842-5645-9_6`
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  “Promise，也称为 **CompletableFuture**，是一种在并发、异步编程场景中广泛使用的设计模式。Promise 代表某些在创建 promise
+  时未知的响应的代理。Promise 是一种编写异步代码的方式，使其看起来像是同步执行。”使用 promise 是一种避免在处理异步函数调用时遇到回调地狱的方法。每当我提到
+  promise 时，除非另有明确说明，否则它指的是 promise 设计模式。
+
+
+  **消费 Web 服务**
+
+
+  让我们通过示例来学习。你将在控制器中构建一个新方法，该方法调用 Web 服务并将响应返回给客户端。
+
+
+  这个新服务只是回显来自后端服务的响应。
+
+
+  路由配置：
+
+
+  GET /bookshop/book/echo controllers.Application.echoService 以下是 Application.java：
+
+
+  package controllers;
+
+
+  import javax.inject.Inject;
+
+
+  import play.mvc.*;
+
+
+  import play.data.DynamicForm;
+
+
+  import play.data.FormFactory;
+
+
+  import play.libs.ws.*;
+
+
+  import play.mvc.Result;
+
+
+  import java.util.concurrent.CompletionStage;
+
+
+  public class Application extends Controller {
+
+
+  @Inject WSClient ws;
+
+
+  public CompletionStage<Result> echoService() {
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  return
+
+
+  ws.url("http://www.mocky.io/v2/53c7ec8426e0e3fd14326b0d")
+
+
+  .get()
+
+
+  . thenApply(response -> ok("Feed 响应: " + response.
+
+
+  getBody()));
+
+
+  }
+
+
+  }
+
+
+  echoService 使用 WS 库调用外部 Web 服务并返回响应。为了演示，我使用 mocky.io 网站创建了一个简单的 JSON 服务。
+
+
+  让我们检查 echoService 方法中的每个步骤。
+
+
+  首先，使用 @Inject 注解将 WSClient 注入到控制器中。
+
+
+  ws.url().get 返回 CompletionStage<WSResponse>。此对象包含完整的响应，并提供了以广泛使用的格式（如 JSON、XML 等）获取响应的方法。由于所有调用和内容交付都使用异步、非阻塞语义，调用者需要使用
+  futures 块在响应准备就绪时检索它。
+
+
+  thenApply 用于此目的；每当响应可用时，thenApply 内部的代码将执行。
+
+
+  • 将响应正文读取为字符串：
+
+
+  response.getBody()
+
+
+  • 读取为 JSON：
+
+
+  response.asJson()
+
+
+  • 读取为 XML：
+
+
+  thenApply(r -> r.getBody(xml()));
+
+
+  xml 方法在 play.libs.ws.WSBodyReadables 中可用。
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  以下是 WSResponse API 常用的方法：
+
+
+  • 将正文作为字节数组获取：
+
+
+  byte[] asByteArray()
+
+
+  • 将正文作为 JSON 节点获取：
+
+
+  com.fasterxml.jackson.databind.JsonNode asJson()
+
+
+  • 将正文作为 XML 返回：
+
+
+  org.w3c.dom.Document asXml()
+
+
+  • 将内容作为原始字节返回：
+
+
+  akka.util.ByteString getBodyAsBytes()
+
+
+  • 获取响应的 HTTP 内容类型：
+
+
+  java.lang.String getContentType()
+
+
+  • 返回响应的 HTTP 状态码（200、404、201、500……）：
+
+
+  int getStatus()
+
+
+  • 返回 HTTP 状态码的文本表示（Ok、Not Found、Internal Server error……）：
+
+
+  java.lang.String getStatusText()
+
+
+  echoServices 方法使用 get 方法，该方法返回一个 CompletionStage<WSResponse> 对象。当你调用 get 时，你得到的只是一个代理对象。没有发生实际的调用。代理（CompletionStage）仅仅表示框架已经创建了一个将以非阻塞方式异步处理的任务。
+
+
+  当调用发出并获得响应时，需要某种方式让应用程序代码得到通知并进行进一步处理。这是通过提供回调方法来实现的。这就是 echoService 中其余代码的用途。thenApply
+  函数是一个回调函数。当后端服务返回响应时，Play 将使用 WSResponse 的实例调用此函数。
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  **处理大型响应**
+
+
+  当接收大型 HTTP 响应时，使用 get 将响应加载到内存中并不是一个好主意。如果响应很大，达到千兆字节级别，可能会导致内存错误，并可能使应用程序崩溃。在这种情况下，更好的选择是使用
+  Akka 流式处理来增量消费响应。对于这种用例，WSResponse 提供了一个名为 getBodyAsSource 的方法：
+
+
+  Source<ByteString, ?> responseBody = res.getBodyAsSource(); 此响应正文可以通过将其与 sink 链接来处理。让我们看看这是如何完成的。
+
+
+  对于此示例，我使用 mocky.io 在线服务创建了一个模拟响应。此服务允许你创建用于测试的模拟响应。转到 [www.mocky.io/v2/5e08df833000005b0081a159](http://www.mocky.io/v2/5e08df833000005b0081a159)。此
+  URL 返回一个简单的 HTML 响应。让我们使用 Play 和 Akka 流式处理以异步、非阻塞和高效的方式处理此响应。预期的输出是以增量方式计算内容的长度，一旦所有处理完成，将响应发送给客户端。要使用
+  Akka 流式处理，你需要在控制器类中获取 Akka ActorSystem 和 Akka 流式处理 materializer 类的引用。目前，只需理解 materializer
+  是 Akka 流工作的辅助类。它是负责物化 Akka 流处理管道的类。如果你对 Akka 和异步编程完全陌生，可以快速阅读本书的第 8 章，了解 Akka 的基础知识，然后再回到本节。在进入代码之前，你需要理解两个术语：
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  • **Source**：产生数据的元素。例如，可以创建一个 source 来流式传输来自 Twitter feed 的数据，或者一个用于读取目录中文件或 Web
+  服务的 source。
+
+
+  • **Sink**：数据的最终接收者。例如，你可以从 source 读取数据，进行一些转换，然后写回文件。在这种情况下，保存到文件就是 sink。在 Akka
+  流中，你连接 source 和 sink，并在其间执行转换和数据过滤。有了这些信息，让我们开始编写代码。
+
+
+  你将在 Application.java（控制器类）中添加一个新方法，即 processLargeResponse。此方法使用 Akka 流式处理语义从 REST
+  端点读取数据，并计算数据的大小。你不会读取整个响应然后计数；相反，数据是以块的形式读取的，并且计数会更新。
+
+
+  **package** controllers;
+
+
+  **import** actors.ActorModel;
+
+
+  **import** actors.PingActor;
+
+
+  **import** akka.actor.ActorRef;
+
+
+  **import** akka.actor.ActorSystem;
+
+
+  **import** akka.stream.Materializer;
+
+
+  **import** akka.stream.javadsl.Sink;
+
+
+  **import** akka.stream.javadsl.Source;
+
+
+  **import** akka.util.ByteString;
+
+
+  **import** play.libs.ws.WSClient;
+
+
+  **import** play.libs.ws.WSResponse;
+
+
+  **import** play.mvc.Controller;
+
+
+  **import** play.mvc.Http;
+
+
+  **import** play.mvc.Result;
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  **import** scala.compat.java8.FutureConverters;
+
+
+  **import** javax.inject.Inject;
+
+
+  **import** java.util.ArrayList;
+
+
+  **import** java.util.List;
+
+
+  **import** java.util.concurrent.CompletableFuture;
+
+
+  **import** java.util.concurrent.CompletionStage;
+
+
+  **import static** akka.pattern.Patterns. *ask*;
+
+
+  **public class** Application **extends** Controller {
+
+
+  **final** ActorRef **pingActor**;
+
+
+  @Inject
+
+
+  **public** Application(ActorSystem system) {
+
+
+  **pingActor** = system.actorOf(PingActor. *getProps*());
+
+
+  }
+
+
+  @Inject
+
+
+  Materializer **materializer**;
+
+
+  **public** CompletionStage<Result> processLargeResponse() {
+
+
+  CompletionStage<WSResponse> futureResponse =
+
+
+  **ws**.url(**"http://www.mocky.io/v2/5e08df833000005b** **0081a159"** )
+
+
+  .setMethod(**"GET"** ).stream();
+
+
+  CompletionStage<Long> bytesReturned =
+
+
+  futureResponse.thenCompose(
+
+
+  res -> {
+
+
+  Source<ByteString, ?> responseBody = res.
+
+
+  getBodyAsSource();
+
+
+  *// 计算返回的字节数*
+
+
+  Sink<ByteString, CompletionStage<Long>> bytesSum =
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  Sink. *fold*(0L, (total, bytes) -> total +
+
+
+  bytes.length());
+
+
+  **return** responseBody.runWith(bytesSum, **materializer**);
+
+
+  });
+
+
+  **return** bytesReturned.thenApply(
+
+
+  res -> *ok*((String)res.toString()));
+
+
+  }
+
+
+  }
+
+
+  此代码调用在 mocky.io 定义的 Web 服务，并将响应作为 Akka 流处理。这样，它只将响应的块加载到内存中并处理这些块。这种机制确保你可以处理任何大型响应而不会遇到内存和
+  CPU 瓶颈。
+
+
+  要测试这一点，请将以下条目添加到 routes.conf 文件中： GET /bookshop/example/largeresponse controllers.Application.
+
+
+  processLargeResponse()
+
+
+  **处理 JSON**
+
+
+  Play 内置了对 JSON 的支持。它可以自动解析 JSON 请求或生成 JSON 响应。让我们探讨两种场景： 1) 消费 JSON 请求
+
+
+  2) 生成 JSON 响应
+
+
+  **消费 JSON 请求**
+
+
+  Play 默认使用一个可以解析任何有效内容类型的正文解析器。默认的正文解析器可以从请求对象访问，并具有 asJson 方法来将传入请求作为 JSON 内容处理。
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  JSON 内容会将 Content-Type 头设置为 text/json 或 application/json。
+
+
+  JsonNode json = request().body().asJson();
+
+
+  这实际上是一个 Jackson 节点。一旦你得到这个，就可以使用 Jackson API 中可用的方法来提取 JSON 请求中的数据。
+
+
+  你可以要求 Play 仅将 JSON 正文作为请求处理，并拒绝任何无效的内容，并返回 HTTP 400 响应码。为此，只需使用 @BodyParser.Of (BodyParser.Json.class)
+  注解该方法。
+
+
+  这是处理传入 JSON 请求正文的更好方法。
+
+
+  让我们创建一个确认其收到的消息的方法。控制器中的 acknowledgeGreeting 方法接受一个 JSON 正文并返回一个 HTML 输出：
+
+
+  **package** controllers;
+
+
+  **import** com.fasterxml.jackson.databind.JsonNode;
+
+
+  **import** play.mvc.Controller;
+
+
+  **import** play.mvc.Result;
+
+
+  **import** play.mvc.BodyParser;
+
+
+  **public class** Application **extends** Controller {
+
+
+  **@BodyParser.Of(BodyParser.Json.** class**)**
+
+
+  **public** Result acknowledgeGreeting(){
+
+
+  JsonNode json = *request*().body().asJson();
+
+
+  String greeting = json.findPath("greeting").textValue(); **if**(greeting == **null**)
+  {
+
+
+  **return** *badRequest*("缺少参数 [greeting]");
+
+
+  } **else** {
+
+
+  **return** *ok*("您的问候语 "+greeting+" 已被接受" );
+
+
+  }
+
+
+  }
+
+
+  }
+
+
+  ![](img/index-108_1.jpg)
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  修改 routes 文件并添加映射条目：
+
+
+  POST /greeting controllers.Application.acknowledgeGreeting() 要测试该服务，你需要一个可以发布 JSON
+  正文的客户端。有许多基于浏览器的客户端可用，你可以使用你选择的任何一个。我使用了名为 RestClient（RESTful Web 服务的调试器）的 Mozilla
+  Firefox 插件；你也可以使用 Postman。如果你想通过命令行执行此操作，请使用 curl。参见图 6-1。
+
+
+  ***图 6-1.** 使用 RestClient 进行测试*
+
+
+  使用 curl 测试服务：
+
+
+  $ curl -H "Content-Type: application/json" -X POST -d
+
+
+  {\"greeting\":\"hello\"} http://localhost:9000/greeting http://
+
+
+  localhost:9000/greeting
+
+
+  响应：
+
+
+  您的问候语 hello 已被接受
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  **生成 JSON 响应**
+
+
+  使用 Play 生成 JSON 响应非常简单。只需创建一个 JSON 对象并将键值对放入其中：
+
+
+  ObjectNode result = Json.newObject();
+
+
+  result.put("status", "OK");
+
+
+  result.put("message", "问候" );
+
+
+  **return** ok(result);
+
+
+  你上面使用的 acknowledgeGreeting 方法接受一个 JSON 请求并返回一个 text/plain 响应。让我们创建另一个版本的 acknowledgeGreeting，它返回一个
+  application/json 响应（参见图 6-2）：
+
+
+  **@BodyParser.Of(BodyParser.Json.** class**)**
+
+
+  **public** Result acknowledgeGreetingJSON(){
+
+
+  JsonNode json = *request*().body().asJson();
+
+
+  String greeting = json.findPath("greeting").textValue(); ObjectNode result = Json.
+  *newObject*();
+
+
+  **if**(greeting == **null**) {
+
+
+  result.put("status", "BAD_REQ");
+
+
+  result.put("msg", "缺少参数 [greeting]");
+
+
+  } **else** {
+
+
+  result.put("status", "SUCCESS");
+
+
+  result.put("msg", "您的问候语 "+greeting+" 已被接受");
+
+
+  }
+
+
+  **return** *ok*(result);
+
+
+  }
+
+
+  路由条目：
+
+
+  POST /greeting/better controllers.Application.
+
+
+  acknowledgeGreetingJSON()
+
+
+  ![](img/index-110_1.jpg)
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  ***图 6-2.** 测试 JSON 响应*
+
+
+  如果你检查响应中的 HTTP 头，可以看到 Content-Type 头被设置为 application/json。
+
+
+  **处理 XML**
+
+
+  处理 XML 与上述处理 JSON 的情况非常相似。使用默认的正文解析器将传入的 XML 请求正文转换为 Object 以便于处理就足够了。需要考虑的重要因素是传入的
+  Content-Type 头应该是 application/xml 或 text/xml。默认情况下，原始 XML 被转换为有效的 W3C Document 对象：
+  Document dom = request().body().asXml();
+
+
+  这里使用默认的正文解析器将 XML 字符串转换为可解析的 Object。
+
+
+  要创建 XML 响应，你应该使用有效的 JAXB 实现，或者对于非常简单的 XML，你甚至可以只返回一个 XML 结构中的字符串。使用字符串操作手动构建 XML
+  是不可扩展或不可维护的，因此请使用适当的 JAXB 实现。在 Play 框架中，你不需要添加额外的库，因为 Play 已经通过 JDK 支持 JAXB。让我们看看这两种方式。示例
+  1 展示了简单的 XML 解析，示例 2 使用了 JAXB。
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  **示例 1：简单的 XML 解析**
+
+
+  使用以下 XML：
+
+
+  <message>
+
+
+  <greeting>Value</greeting>
+
+
+  </message>
+
+
+  你将解析此 XML 并发送回一个 text/plain 响应。
+
+
+  控制器中的方法（Application.java）：
+
+
+  **import** play.libs.XPath;
+
+
+  **import** play.mvc.BodyParser;
+
+
+  **import** org.w3c.dom.Document;
+
+
+  **@BodyParser.Of(BodyParser.Xml.** class**)**
+
+
+  **public** Result acknowledgeGreetingXML() {
+
+
+  Document dom = *request*().body().asXml();
+
+
+  **if**(dom == **null**) {
+
+
+  **return** *badRequest*("需要 XML 输入");
+
+
+  } **else** {
+
+
+  String greeting = XPath. *selectText*("//greeting", dom); **if**(greeting == **null**)
+  {
+
+
+  **return** *badRequest*("缺少参数 [greeting]");
+
+
+  } **else** {
+
+
+  **return** *ok*("您的问候语 "+greeting+" 已被接受");
+
+
+  }
+
+
+  }
+
+
+  }
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  现在路由：
+
+
+  POST /greeting/xml controllers.Application.
+
+
+  acknowledgeGreetingXML()
+
+
+  你可以使用 Postman、RestClient 或 curl 进行测试。
+
+
+  使用 Curl 测试：
+
+
+  curl -H "Content-Type: application/xml" -X POST -d "<message>
+
+
+  <greeting>Value</greeting>
+
+
+  </message>" http://localhost:9000/greeting/xml
+
+
+  响应：您的问候语 Value 已被接受
+
+
+  如果需要，你可以直接使用 JAXB 并将传入的 XML 映射到 Java 对象，而不是使用 XPath。这就是你将在示例 2 中探索的内容。
+
+
+  **示例 2：使用 JAXB 进行 XML 解析**
+
+
+  让我们在 Application.java 中添加一个名为 acknowledgeGreetingXMLJaxbVersion 的新方法。此方法使用 JAXB
+  将传入的 XML 绑定到 Java 对象或模型。为此，首先你需要创建代表 XML 内容的模型。在 models 包内创建一个名为 Message.java 的新文件。将以下内容添加到其中并保存文件：
+
+
+  **Message.java**
+
+
+  package models;
+
+
+  import javax.xml.bind.annotation.XmlAccessType;
+
+
+  import javax.xml.bind.annotation.XmlAccessorType;
+
+
+  import javax.xml.bind.annotation.XmlElement;
+
+
+  import javax.xml.bind.annotation.XmlRootElement;
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  @XmlRootElement(name = "message")
+
+
+  @XmlAccessorType(XmlAccessType. *PROPERTY*)
+
+
+  public class Message {
+
+
+  private String greeting;
+
+
+  public String getGreeting() {
+
+
+  return greeting;
+
+
+  }
+
+
+  @XmlElement
+
+
+  public void setGreeting(String greeting) {
+
+
+  this.greeting = greeting;
+
+
+  }
+
+
+  }
+
+
+  此文件代表 XML 内容。我对其进行了注解，以指示 JABX <message> 元素是根元素，并使用 @XmlElement 注解标记了 setter 方法，以便
+  JABX 使用 setter 而不是直接使用属性。
+
+
+  现在让我们将方法添加到 Application.java：
+
+
+  **import** actors.ActorModel;
+
+
+  **import** actors.PingActor;
+
+
+  **import** akka.actor.ActorRef;
+
+
+  **import** akka.actor.ActorSystem;
+
+
+  **import** akka.stream.Materializer;
+
+
+  **import** akka.stream.javadsl.Sink;
+
+
+  **import** akka.stream.javadsl.Source;
+
+
+  **import** akka.util.ByteString;
+
+
+  **import** models.GiftVO;
+
+
+  **import** models.Message;
+
+
+  **import** modules.Factorial;
+
+
+  **import** org.w3c.dom.Document;
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  **import** play.data.DynamicForm;
+
+
+  **import** play.data.FormFactory;
+
+
+  **import** play.libs.XPath;
+
+
+  **import** play.libs.ws.WSClient;
+
+
+  **import** play.libs.ws.WSResponse;
+
+
+  **import** play.mvc.Controller;
+
+
+  **import** play.mvc.Http;
+
+
+  **import** play.mvc.Result;
+
+
+  **import** scala.compat.java8.FutureConverters;
+
+
+  **import** javax.inject.Inject;
+
+
+  **import** javax.xml.bind.JAXBContext;
+
+
+  **import** javax.xml.bind.Marshaller;
+
+
+  **import** javax.xml.bind.Unmarshaller;
+
+
+  **import** javax.xml.transform.OutputKeys;
+
+
+  **import** javax.xml.transform.Transformer;
+
+
+  **import** javax.xml.transform.TransformerFactory;
+
+
+  **import** javax.xml.transform.dom.DOMSource;
+
+
+  **import** javax.xml.transform.stream.StreamResult;
+
+
+  **import** java.io.StringReader;
+
+
+  **import** java.io.StringWriter;
+
+
+  **import** java.util.ArrayList;
+
+
+  **import** java.util.List;
+
+
+  **import** java.util.concurrent.CompletableFuture;
+
+
+  **import** java.util.concurrent.CompletionStage;
+
+
+  **import** com.fasterxml.jackson.databind.JsonNode;
+
+
+  **import** play.mvc.BodyParser;
+
+
+  **import static** akka.pattern.Patterns. *ask*;
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  **public class** Application **extends** Controller {
+
+
+  @BodyParser.Of(BodyParser.Xml. **class**)
+
+
+  **public** Result acknowledgeGreetingXMLJaxbVersion() **throws** Exception {
+
+
+  Document doc = *request*().body().asXml();
+
+
+  **if**(doc == **null**) {
+
+
+  **return** *badRequest*(**"需要 XML 输入"** );
+
+
+  }**else** {
+
+
+  TransformerFactory tf = TransformerFactory. *newInstance*(); Transformer transformer
+  = tf.newTransformer();
+
+
+  transformer.setOutputProperty(OutputKeys. ***OMIT_XML_***
+
+
+  ***DECLARATION***, **"yes"** );
+
+
+  StringWriter writer = **new** StringWriter();
+
+
+  transformer.transform(**new** DOMSource(doc), **new**
+
+
+  StreamResult(writer));
+
+
+  String output = writer.getBuffer().toString();
+
+
+  JAXBContext context = JAXBContext. *newInstance*
+
+
+  (Message. **class**);
+
+
+  Unmarshaller unMarshaller = context.createUnmarshaller();
+
+
+  *//JAXB 自动转换 - XML 到 Model*
+
+
+  Message msg = (Message)unMarshaller.unmarshal(**new**
+
+
+  StringReader(output));
+
+
+  **if**(msg == **null**) {
+
+
+  **return** *badRequest*(**"需要 XML 输入"** );
+
+
+  } **else** {
+
+
+  String greeting = msg.getGreeting();
+
+
+  **if**(greeting == **null**) {
+
+
+  **return** *badRequest*(**"缺少参数 [greeting]"** );
+
+
+  } **else** {
+
+
+  **return** *ok*(**"您的问候语 "** +greeting+**" 已被接受"** );
+
+
+  第 6 章 Web 服务、JSON 和 XML
+
+
+  }
+
+
+  }
+
+
+  }
+
+
+  }
+
+
+  }
+
+
+  在 acknowledgeGreetingXMLJaxbVersion 函数中，你获取 XML 文档对象，将其转换为字符串表示形式，并使用 JAXB 的 Unmarshaller
+  类将 XML 字符串自动转换为模型对象 Message。这是将 XML 转换为 Model 的高效且简单的方法。
+
+
+  **第 7 章**
+
+
+  **访问数据库**
+
+
+  Play 2 对 SQL 数据库有出色的支持。所有与数据库相关的配置都维护在 conf/application.conf 文件中。默认情况下，Play 2 提供对
+  JDBC 连接池的支持（连接池提供对数据库资源的高效和更快的访问）。
+
+
+  **配置数据库支持**
+
+
+  编辑 build.sbt 文件并添加
+
+
+  libraryDependencies += javaJdbc
+
+
+  这将为 Play 项目启用 JDBC API。
+
+
+  现在打开 application.conf 文件并添加以下内容：
+
+
+
+
+  '
+- '# 数据库配置
+
+
+  '
+- '# ~~~~~
+
+
+  '
+- '# 你可以声明任意数量的数据源。
+
+
+  '
+- '# 按照惯例，默认数据源的名称为 `default`
+
+
+  #
+
+
+  '
+- '# db.default.driver=org.h2.Driver
+
+
+  '
+- '# db.default.url="jdbc:h2:mem:play"
+
+
+  '
+- '# db.default.user=sa
+
+
+
+
+  '
+- '# db.default.password=""
+
+
+  © Prem Kumar Karunakaran 2020
+
+
+  P. K. Karunakaran, *深入理解 Play 框架*,
+
+
+  `doi.org/10.1007/978-1-4842-5645-9_7`
+
+
+  第 7 章 访问数据库
+
+
+  你可以通过配置数据库属性并取消配置设置的注释来开始使用默认数据源（default）。
+
+
+  以下是配置 MySQL 数据库作为默认数据源的设置：
+
+
+  db.default.driver=com.mysql.jdbc.Driver
+
+
+  db.default.url="jdbc:mysql://IP 地址:端口/books"
+
+
+  db.default.user=用户名
+
+
+  db.default.password="密码"
+
+
+  db.default.logStatements=true
+
+
+  请确保应用程序类路径中包含相应的 MySQL 连接器 jar 包（mysql-connector-java-5.1.24-bin.jar）。一个简单的方法是在项目中创建一个名为`lib`的文件夹，并将连接器
+  jar 包复制到其中。Play 会将`lib`文件夹内的任何 jar 文件添加到类路径中。
+
+
+  你可以使用默认数据源，也可以创建任意数量的自定义数据源。要创建另一个数据源，请复制为默认数据源定义的属性，并将名称`default`更改为你选择的名称。例如：
+
+
+  db.book.driver=com.mysql.jdbc.Driver
+
+
+  db.book.url="jdbc:mysql://localhost:3306/book"
+
+
+  db.book.user=用户名
+
+
+  db.book.password="密码"
+
+
+  db.book.logStatements=true
+
+
+  该数据源通过名称`book`引用，因此通过提供此名称可以从连接池中获取连接。
+
+
+  直接调用 JDBC 调用成本高昂，因为它们是阻塞操作并会导致线程等待。因此，最佳实践是通过提供`CustomExecutionContext`在单独的执行上下文中运行
+  JDBC 调用。以下是在 Play 应用程序中执行 JDBC 调用的示例：
+
+
+  第 7 章 访问数据库
+
+
+  package dao;
+
+
+  import akka.actor.ActorSystem;
+
+
+  import play.db.Database;
+
+
+  import play.libs.concurrent.CustomExecutionContext;
+
+
+  import javax.inject.Inject;
+
+
+  import javax.inject.Singleton;
+
+
+  import java.util.concurrent.CompletableFuture;
+
+
+  import java.util.concurrent.CompletionStage;
+
+
+  public class DatabaseExecutionContext extends
+
+
+  CustomExecutionContext {
+
+
+  @javax.inject.Inject
+
+
+  public DatabaseExecutionContext(ActorSystem actorSystem) {
+
+
+  // 使用在 application.conf 中定义的自定义线程池
+
+
+  super(actorSystem, "database.dispatcher");
+
+
+  }
+
+
+  @Singleton
+
+
+  public static class JdbcExample {
+
+
+  private Database db;
+
+
+  private DatabaseExecutionContext executionContext;
+
+
+  @Inject
+
+
+  public JdbcExample(Database db,
+
+
+  DatabaseExecutionContext context) {
+
+
+  this.db = db;
+
+
+  this.executionContext = executionContext;
+
+
+  }
+
+
+  public CompletionStage<Integer> updateSomething() {
+
+
+  return CompletableFuture.supplyAsync(
+
+
+  () -> {
+
+
+  第 7 章 访问数据库
+
+
+  return db.withConnection(
+
+
+  connection -> {
+
+
+  // 使用连接执行操作
+
+
+  return 1;
+
+
+  });
+
+
+  },executionContext);
+
+
+  }
+
+
+  }
+
+
+  }
+
+
+  你可以看到这段代码将`ActorSystem`作为构造函数参数。`ActorSystem`是 Akka 框架的一部分，Play 依赖 Akka 来实现执行上下文（上面使用的`play.libs.concurrent.CustomExecutionContext`类的一部分）。本书提供了关于
+  Akka 的章节，如果你是 Akka 新手，我建议你阅读一下。
+
+
+  通常，你不直接处理与连接相关的活动。
+
+
+  最佳实践是将数据库活动委托给 ORM（对象关系映射）层。建议使用 ORM 进行数据库访问，因为它使程序免受将对象持久化到底层数据存储以及从中获取对象的复杂性的影响。
+
+
+  ORM 通过使程序员能够专注于业务逻辑，而不是编写数据库访问和相关连接管理的代码，为代码带来了丰富的面向对象风格。ORM 层应能在给定情况下生成高效的 SQL
+  语句，并应使代码免受数据存储或其结构变化的影响。
+
+
+  ORM 层还可以提供某种缓存，以便仅在绝对必要时才进行实际的数据库交互。考虑到上述要求，Play 自带的 ORM——Ebean 是一个极好的选择。你将在以下各节中探索
+  Ebean ORM。
+
+
+  第 7 章 访问数据库
+
+
+  **使用 ORM 工作**
+
+
+  Ebean 是一个轻量级的开源 ORM，拥有对开发者友好的 API。Play 支持与 JPA 集成，并且可以轻松配置为使用 Hibernate、iBatis 或任何其他流行的
+  ORM。让我们看看如何将 Hibernate 配置为 Play 2 的 JPA 提供程序，然后详细探索 Ebean。
+
+
+  为了理解 Ebean 和任何其他 ORM，你必须充分了解基本的 ORM 概念。下一节将快速介绍 ORM。如果你已经熟悉 ORM 概念，可以跳过本节。
+
+
+  **ORM 概念**
+
+
+  在 ORM 出现之前，唯一可用的选项是 JDBC。JDBC API 允许从 Java 执行各种数据库操作。它支持更新、选择、数据库和表级别的元数据查询等等。渐渐地，Java
+  社区意识到了这种方法的困难。这些困难包括：
+
+
+  *   对象模型与关系数据库模型表示不匹配。RDMS 以表格格式表示数据，而 Java 等面向对象语言将其表示为相互连接的对象图。
+
+  *   状态管理：同步内存中对象模型与关系数据库的状态。
+
+  *   使用纯面向对象领域模型进行建模的困难，因为没有优雅的方式将模型与关系数据库同步。
+
+  *   重复且冗余的 SQL 代码。
+
+  *   低效的数据遍历。
+
+  *   将代码与特定的数据库和 SQL 语法绑定。
+
+  *   低层 SQL 代码嵌入到业务逻辑中。
+
+  *   难以缓存数据。
+
+
+  ORM 框架试图解决这些不匹配问题，并充当弥合这些差距的中间人。ORM 所需的最重要特性是前三点；其余的是附加优势。
+
+
+  *   数据库模型与对象模型之间没有不匹配。ORM 解决了这种不匹配。
+
+  *   ORM 通过同步内存中对象模型与关系数据库的状态来帮助进行状态管理。
+
+  *   ORM 通过使用纯面向对象领域模型并将模型与数据库同步来帮助进行建模。
+
+
+  根据我多年来构建许多系统的经验，如果你正在设计一个使用面向对象领域模型且数据存储是关系型的项目，那么 ORM 是唯一更好的选择。
+
+
+  如果你不特别关注面向对象设计和领域模型，则无需使用 ORM。你可以选择任何其他有助于从 Java 将数据持久化到数据库的技术。
+
+
+  如果你总是考虑表和行，而不考虑领域对象，那么不要浪费时间在 ORM 上。最好使用其他可以帮助从 Java 将数据持久化到 RDMS 的技术。
+
+
+  但是，如果你不使用 ORM，你将错过很多，并且最终会编写大量样板代码。因此，即使是较小的项目，也请继续使用 ORM 并适当地建模你的业务对象。没有理由不使用 ORM，因为几乎所有
+  ORM 实现都已成熟，并且可以在数据访问和更新方面提供更广泛的选择。
+
+
+  第 7 章 访问数据库
+
+
+  **关键术语**
+
+
+  面向对象领域模型中实体之间可能的关系包括：
+
+
+  *   一对一
+
+  *   一对多
+
+  *   多对一
+
+  *   多对多
+
+
+  **一对多**
+
+
+  订单（Order）与订单项（LineItems）之间的关系。一个订单可能包含多个订单项。所以这是一对多的一个例子。如果`LineItem`没有引用`Order`的属性，则它是单向关联。
+
+
+  **多对一**
+
+
+  从`LineItem`到`Order`的关系是多对一的一个例子。
+
+
+  **多对多**
+
+
+  这可以通过学生和课程之间的关联轻松解释。一个学生可以注册多门课程，一门课程可以由多个学生参加。因此，这是多对多的一个例子。
+
+
+  **关系方向**
+
+
+  这些关系可以是单向的或双向的。单向意味着你只能从父级访问子级。双向意味着可以从两端遍历父级和子级。也就是说，每个实体都有一个引用另一个实体的关系字段。
+
+
+  第 7 章 访问数据库
+
+
+  双向关系有一个拥有方（owning side）和一个反向方（inverse side），而单向关系只有拥有方。
+
+
+  **关系的拥有方决定了对数据库中关系的更新。** 更容易理解的方法是，在双向关系的情况下，包含表外键的实体是拥有者，并负责维护关系。
+
+
+  例如，`Order`包含指向订单项的外键，因此它是关系的拥有者。
+
+
+  双向关系应遵循以下规则：
+
+
+  *   双向关系的反向方必须通过使用`@OneToOne`、`@OneToMany`或`@ManyToMany`注解的`mappedBy`元素来引用其拥有方。`mappedBy`元素指定了关系中作为拥有者的实体中的属性或字段。
+
+  *   多对一双向关系的多方不得定义`mappedBy`元素。多方始终是关系的拥有方。
+
+  *   对于一对一的双向关系，拥有方对应于包含相应外键的一方。
+
+  *   对于多对多的双向关系，任何一方都可以是拥有方。
+
+
+  包含外键的实体是拥有者，子实体是反向方。子实体应包含`mappedBy`注解。当实体通过关系链接时，指定适当的级联设置也很重要。例如，订单项是订单的一部分；如果订单被删除，订单项也应该被删除。
+
+
+  这称为级联删除关系。我希望你现在已经快速掌握了使用 ORM 的知识。
+
+
+  第 7 章 访问数据库
+
+
+  **配置 JPA**
+
+
+  Java 持久化 API（JPA）要求数据源应可通过 JNDI 访问。你需要做的第一件事是通过更改`conf/application.conf`文件中的数据源配置，使数据源可通过
+  JNDI 访问。通过在配置中指定 JNDI 名称，可以使数据源通过 JNDI 可用。
+
+
+  你将使用 h2 内存数据库作为示例。目标是保存用户对一本书的评论，并使用 JPA 将其持久化。
+
+
+  打开`application.conf`文件并添加以下条目：
+
+
+
+
+  '
+- '# 这是应用程序的主配置文件。
+
+
+  '
+- '# https://www.playframework.com/documentation/latest/ConfigFile
+
+
+
+
+  '
+- "# 默认数据库配置\n\ndb.default.driver=org.h2.Driver\n\ndb.default.url=\"jdbc:h2:mem:play\"\
+  \n\ndb.default.jndiName=DefaultDS\n\njpa.default=defaultPersistenceUnit\n\n下一步是选择一个\
+  \ JPA 实现，并将其作为项目的依赖项添加。本示例使用 Hibernate 作为 JPA 提供程序，并使用内存中的 h2 数据库。打开 build.sbt 文件并添加\n\
+  \nval appDependencies = Seq(\n\njavaJdbc,\n\njavaJpa,\n\n\"org.hibernate\" % \"\
+  hibernate-entitymanager\" % \"5.3.7.Final\",\n\n\"com.h2database\" % \"h2\" % \"\
+  1.4.200\"\n\n)\n\nbuild.sbt 位于项目目录内。\n\n第 7 章 访问数据库\n\n下一步是创建 persistence.xml 文件并将其配置为使用\
+  \ Hibernate 作为 JPA 提供程序。persistence.xml 应放置在 conf/META-INF 目录中。\n\n<persistence\n\
+  \nxsi:schemaLocation=\"http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd\"\
+  \n\nversion=\"2.1\">\n\n<persistence-unit name=\"defaultPersistenceUnit\" transaction-type=\"\
+  RESOURCE_LOCAL\">\n\n<provider>org.hibernate.jpa.HibernatePersistenceProvider</\n\
+  \nprovider>\n\n<non-jta-data-source>DefaultDS</non-jta-data-source>\n\n<properties>\n\
+  \n<property name=\"hibernate.dialect\" value=\"org.hibernate.\n\ndialect.H2Dialect\"\
+  />\n\n</properties>\n\n</persistence-unit>\n\n</persistence>\n\n**提示** 最佳实践是将所有\
+  \ JPA 操作隔离在默认 Play 执行上下文之外的单独执行上下文中。所有数据库操作都是阻塞的，因此将它们隔离在单独的执行上下文中非常重要。\n\nPlay\
+  \ 提供了 play.db.jpa.JPAApi 来与 Entity Manager 一起使用。如果您不熟悉 Entity Manager，请阅读下一段。\n\n\
+  第 7 章 访问数据库\n\nEntity Manager 是 JPA 的一部分，用于与持久化上下文交互以维护会话状态。简而言之，它是我们在使用 JPA 时用于创建、删除、更新或查找实体的接口。它与\
+  \ Hibernate 中的 session 概念密切相关。\n\n如果您想了解有关 JPA 最新内容的更多信息，可以下载规范，地址为 [`download.oracle.com/otn-pub/`](https://download.oracle.com/otn-pub/jcp/persistence-2_1-fr-eval-spec/JavaPersistence.pdf)\n\
+  \n[jcp/persistence-2_1-fr-eval-spec/JavaPersistence.pdf](https://download.oracle.com/otn-pub/jcp/persistence-2_1-fr-eval-spec/JavaPersistence.pdf)。\n\
+  \n您的模型类不应直接执行 JPA 或 JDBC 操作。\n\n让我们继续创建存储库类。在此之前，您需要创建一个名为 Review 的实体，该实体模拟用户对书籍的真实世界评论。\n\
+  \n**package model;**\n\nimport javax.persistence.*;\n\npublic class Review {\n\n\
+  @Id\n\n@GeneratedValue(strategy = GenerationType.AUTO)\n\npublic Long id;\n\npublic\
+  \ String comment;\n\npublic Long getId() {\n\nreturn id;\n\n}\n\npublic void setId(Long\
+  \ id) {\n\nthis.id = id;\n\n}\n\npublic String getComment() {\n\nreturn comment;\n\
+  \n}\n\npublic void setComment(String comment) {\n\nthis.comment = comment;\n\n}\n\
+  \n第 7 章 访问数据库\n\npublic String getUserId() {\n\nreturn userId;\n\n}\n\npublic void\
+  \ setUserId(String userId) {\n\nthis.userId = userId;\n\n}\n\npublic String getBookId()\
+  \ {\n\nreturn bookId;\n\n}\n\npublic void setBookId(String bookId) {\n\nthis.bookId\
+  \ = bookId;\n\n}\n\npublic String userId;\n\npublic String bookId;\n\n}\n\n接下来，创建一个用于抽象评论操作的接口\
+  \ (ReviewRepository.java)：\n\n:package dao;\n\nimport com.google.inject.ImplementedBy;\n\
+  \nimport model.Review;\n\nimport java.util.concurrent.CompletionStage;\n\nimport\
+  \ java.util.stream.Stream;\n\n@ImplementedBy(JPAReviewRepository.class)\n\npublic\
+  \ interface ReviewRepository {\n\nCompletionStage<String> saveReview(Review review);\n\
+  \n}\n\nReviewRepository 接口向模型类隐藏了 JPA 实现细节。\n\n第 7 章 访问数据库\n\n继续创建此接口的实现 (JPAReviewRepository.java)：\n\
+  \n**package** dao;\n\n**import** models.Review;\n\n**import** play.db.jpa.JPAApi;\n\
+  \n**import** javax.inject.Inject;\n\n**import** javax.inject.Singleton;\n\n**import**\
+  \ java.util.concurrent.CompletableFuture;\n\n**import** java.util.concurrent.CompletionStage;\n\
+  \n**import static** java.util.concurrent.CompletableFuture. *supplyAsync*;\n\n@Singleton\n\
+  \n**public class** JPAReviewRepository **implements** ReviewRepository{\n\n**private**\
+  \ JPAApi **jpaApi**;\n\n**private** DatabaseExecutionContext **executionContext**;\n\
+  \n@Inject\n\n**public** JPAReviewRepository(JPAApi api,\n\nDatabaseExecutionContext\
+  \ executionContext) {\n\n**this**. **jpaApi** = api;\n\n**this**. **executionContext**\
+  \ = executionContext;\n\n}\n\n@Override\n\n**public** CompletionStage<String> saveReview(Review\
+  \ review) {\n\n**return** CompletableFuture. *supplyAsync*(\n\n() -> {\n\n*// lambda\
+  \ 是*\n\n*//Function<EntityManager, Long> 的一个实例*\n\n**return jpaApi**.withTransaction(\n\
+  \nentityManager -> {\n\n第 7 章 访问数据库\n\nentityManager.persist(review);\n\n**return\
+  \ \"saved\"** ;\n\n});\n\n},\n\n**executionContext**);\n\n}\n\n}\n\nJPA 调用应在事务内进行，因此您使用\
+  \ jpaApi.\n\nwithTransaction 方法来执行保存 Review 实体的持久化操作。\n\n**在 Play 中使用 Ebean**\n\n\
+  我在 Play 中使用 Ebean 的体验相当满意。它提供了易于使用的 API，并且在架构方面简单得多。\n\n使用 EntityManager 的架构带来了附加和分离实体的概念。仅当实体与\
+  \ EntityManager 关联时，其实体状态才会被持久化。这也意味着，如果需要在多个事务之间维护会话，则 EntityManager 需要由另一个对象（如\
+  \ EJB Session bean）管理。同一个 Entity Manager 实例跨事务使用以维护单个会话。Ebean 通过遵循 EntityManager\
+  \ 架构极大地简化了这一点。这意味着 Ebean 不提供 Entity Manager，也不提供 JPA 中常见的 *merge*、*flush* 或 *persist*\
+  \ 操作。\n\n这里要理解的一点是，Ebean 使用了与 JPA 完全不同的架构。请注意，即使 Ebean 没有 Entity Manager，它确实有一个“持久化上下文”，该上下文是事务范围的，并且会自动管理。\n\
+  \n第 7 章 访问数据库\n\n我同时使用过 JPA 和 Ebean，根据我的经验，两者各有优点。毫无疑问，Ebean 使用的查询语言更易于理解和使用。这种简单性是\
+  \ Ebean 的卖点。\n\nEbean 采用的另一个重要优化是它对部分对象的支持。在 JPA 中，您通常会注释一个关系，以指示是否需要使用急切或延迟获取策略来加载该关系。在急切获取中，当获取父对象时，子对象也会被检索和加载。在延迟加载策略中，仅加载父对象，子对象仅在使用时才被获取。配置这些获取策略的能力非常重要，并且是优化代码的一个重要因素。JPA\
+  \ 提供了一个注解来在实体级别配置它们。但有一个问题。\n\n考虑一个场景，对于用例 1，您希望实体采用急切获取策略，而对于用例 2，您希望同一个实体使用延迟加载策略。这是一个问题，因为这些注解是在实体级别声明的。这非常不灵活。大多数\
+  \ ORM 通过“获取组”提供类似于部分对象的功能。\n\n在查询语言中支持“部分对象”意味着您可以编写针对不同用例优化的查询。也就是说，依赖对象的延迟或急切加载不是固定的，而是可以根据用例进行更改。这是\
+  \ Ebean 采用的一个很好的特性，并且极大地有助于优化查询的性能和效率。此功能在早期的 JPA 规范中存在。\n\n在某些用例中，您可能会发现从性能角度来看，编写自定义\
+  \ SQL 会更好、更容易。Ebean 对自定义 SQL 查询有出色的支持，并提供了更简单的 API 来使用。\n\n第 7 章 访问数据库\n\n要启用 Ebean，请将插件依赖项添加到\
+  \ project/plugins.\n\nsbt 文件：\n\naddSbtPlugin(\"com.typesafe.sbt\" % \"sbt-play-ebean\"\
+  \ % \"5.0.2\") 然后修改 build.sbt 文件以添加 Ebean 依赖项： lazy val root = (project in file(\"\
+  .\"))\n\n.enablePlugins(PlayJava, PlayEbean)\n\n**Ebean 查询**\n\nEbean 使用与 JPA 规范相同的映射。因此，您可以根据\
+  \ JPA 规范使用 @Entity、@Table、@Column、@OneToMany 等来注释您的 bean。事实上，大多数 JPA 注解都可以与 Ebean\
+  \ 一起使用。\n\n让我们考虑一个将书籍建模为实体的简单案例。一本书通过其 ISBN 唯一标识（在本例中，您将 ISBN 表示为 asin，一种亚马逊表示法）。ASIN\
+  \ 表示一本书的唯一标识符，没有两本书可以具有相同的 ASIN。\n\n一个 Ebean 模型应该继承自 io.ebean.Model：\n\npackage\
+  \ models;\n\nimport java.util.*;\n\nimport javax.persistence.*;\n\nimport io.ebean.*;\n\
+  \nimport play.data.format.*;\n\nimport play.data.validation.*;\n\n@Entity\n\n@Table(name=\"\
+  book\")\n\npublic class Book extends Model {\n\n@Id\n\n@Column(name=\"asin\")\n\n\
+  第 7 章 访问数据库\n\nprivate String asin;\n\n@Column(name=\"title\")\n\nprivate String\
+  \ title;\n\n@Column(name=\"author\")\n\nprivate String author;\n\n@Column(name=\"\
+  description\")\n\nprivate String description;\n\n@Column(name=\"language\")\n\n\
+  private String language;\n\npublic String getLanguage() {\n\nreturn language;\n\n\
+  }\n\npublic void setLanguage(String language) {\n\nthis.language = language;\n\n\
+  }\n\npublic String getDescription() {\n\nreturn description;\n\n}\n\npublic void\
+  \ setDescription(String description) {\n\nthis.description = description;\n\n}\n\
+  \npublic String getAsin() {\n\nreturn asin;\n\n}\n\npublic void setAsin(String asin)\
+  \ {\n\nthis.asin = asin;\n\n}\n\npublic String getTitle() {\n\nreturn title;\n\n\
+  }\n\npublic void setTitle(String title) {\n\nthis.title = title;\n\n}\n\n第 7 章 访问数据库\n\
+  \npublic String getAuthor() {\n\nreturn author;\n\n}\n\npublic void setAuthor(String\
+  \ author) {\n\nthis.author = author;\n\n}\n\n@Override\n\npublic int hashCode()\
+  \ {\n\nfinal int prime = 31;\n\nint result = super.hashCode();\n\nresult = prime\
+  \ * result + ((asin == null) ? 0 : asin.\n\nhashCode());\n\nreturn result;\n\n}\n\
+  \n@Override\n\npublic boolean equals(Object obj) {\n\nif (this == obj)\n\nreturn\
+  \ true;\n\nif (!super.equals(obj))\n\nreturn false;\n\nif (getClass() != obj.getClass())\n\
+  \nreturn false;\n\nBook other = (Book) obj;\n\nif (asin == null) {\n\nif (other.asin\
+  \ != null)\n\nreturn false;\n\n} else if (!asin.equals(other.asin))\n\nreturn false;\n\
+  \nreturn true;\n\n}\n\n}\n\n第 7 章 访问数据库\n\n**注意** play 会在运行时自动生成 getter 和 setter\
+  \ 方法，因此除非您希望在编译时使用它们，否则无需生成它们。\n\n上述代码中的注解包含大量信息。最重要的部分是\n\n• @Entity 通知 ORM (Ebean)\
+  \ 此类与底层数据存储中存储的数据相关联，并要求 ORM 处理它。\n\n• @Table 通知 ORM 提供程序此实体将持久化到注解中提到的表中，在您的例子中，该表是\
+  \ book。\n\n• @Id 是非常重要的信息，它声明此字段是引用此实体的唯一标识符。这通常意味着此字段是底层数据库中的主键。\n\n• @Column 将属性映射到底层表的特定列。\n\
+  \n如何创建新书并持久化到数据库：\n\nBook book= new Book();\n\n//设置属性\n\nbook.setId(\"A0091234\"\
+  );\n\nbook.setTitle(\"Play 2\");\n\nbook.setAuthor(\"Prem\");\n\nbook.setDescription(\"\
+  Play 2\");\n\nbook.setLanguage(\"English\");\n\nbook.save();\n\n第 7 章 访问数据库\n\n\
+  这里您使用 Ebean 类的 save 方法来持久化 book 对象。\n\n如何通过 ID 获取一本书：\n\n// 通过 id 查找一本书\n\nBook\
+  \ book = Ebean.find(Book.class).where().idEq(\"id\").\n\nfindOne();\n\n如何获取所有标题以\
+  \ Java 开头的书籍：\n\n// 查找标题以 \"java\" 开头的书籍列表\n\nList<Book> books =Ebean.find(Book.class).where().\n\
+  \nlike(\"title\",\"java%\").orderBy(\"tile desc\").findList(); 让我们详细探讨带有 where 和\
+  \ like 子句的 find 查询。上面的示例使用了流畅的 API 风格，其中方法被链式调用。这种方法链式调用是良好函数式编程风格和 DSL 的特征之一。\n\
+  \n您可以选择使用 select() 和 fetch() 来仅指定您想要获取的属性。这将返回“部分”填充的 bean。\n\n这是一个有助于提高查询性能的重要特性。例如，如果您只对两列感兴趣，比如\
+  \ id 和 name，并且它们已经被数据库索引，那么数据库不需要触及数据块；它可以直接从索引本身提供值。如果表有大量记录，这将是一个巨大的性能改进。\n\n\
+  List<Book> books = Ebean. *find*(Book. **class**).where(\"asin,author\").\n\nfindList();\n\
+  \n在此示例中，您仅检索 asin 和 author 属性。\n\n第 7 章 访问数据库\n\n**Ebean 中常用的 Select 查询结构**\n\n\
+  现在让我们探索 Ebean 中最常用的方法，这些方法有助于构建 Select 查询。\n\n**where( )**\n\nwhere 子句用于指定 where\
+  \ 过滤条件。您可以将完整的 where 子句作为字符串传递（where(\" filter condition \")）或与 Expression 对象一起使用。从编程标准的角度来看，将\
+  \ where() 与表达式列表一起使用更好。上面关于“获取标题以 Java 开头的书籍”的示例展示了与 Expression 对象一起使用的 where 子句。\n\
+  \n**eq( )**\n\n检查给定属性是否等于提供的值： eq(String propertyName, Object value)\n\n获取所有由 Robin\
+  \ Cook 撰写的书籍：\n\nList<Book> booksList = Ebean. *find*(Book. **class**).where().\n\
+  \neq(\"author\", \"Robin Cook\").findList();\n\n**like( )**\n\n指定一个属性类似的值，其中值包含\
+  \ SQL 通配符 %（百分号）和 _（下划线）：\n\nlike(String propertyName,String value)\n\nList<Book>\
+  \ booksList = Ebean. *find*(Book. **class**).where().\n\nlike(\"author\", \"%Cook\"\
+  ).findList();\n\n**orderBy( )**\n\n设置 order by 子句，如果存在则替换现有的 order by 子句： orderBy(String\
+  \ orderByClause)\n\n第 7 章 访问数据库\n\n这遵循 SQL 语法，在每个属性之间使用逗号，并可选的 asc 和 desc 关键字分别表示升序和降序：\n\
+  \nList<Book> booksList = Ebean. *find*(Book. **class**).where().\n\neq(\"author\"\
+  , \"Robin Cook\")\n\n.orderBy(\"title desc\").findList();\n\n**findUnique( )**\n\
+  \n用于仅返回一条记录。执行查询，返回单个 bean 或 null（如果未找到匹配的 bean）。\n\n**findList( )**\n\n执行查询，返回对象列表。\n\
+  \n**LIMIT {max rows} [ OFFSET {first row} ]**\n\n用于限制返回的记录数。通过将其与 offset 参数一起使用，可以轻松实现分页。\n\
+  \n**查询接口**\n\nEbean Query 接口中有很多方法。请查看 com.avaje.ebean.Query 接口以探索可用的选项。以下是其中一些方法的列表：\n\
+  \n• Query<T> fetch(String path)\n\n指定要加载的路径，包括其所有属性\n\n• Query<T> fetch(String path,\
+  \ FetchConfig joinConfig) 另外指定一个 JoinConfig 来指定“查询连接”和/或定义延迟加载查询\n\n第 7 章 访问数据库\n\
+  \n• Query<T> fetch(String path, String fetchProperties) 指定要获取的路径及其要包含的特定属性（即部分对象）\n\
+  \n• Query<T> fetch(String assocProperty, String\n\nfetchProperties, FetchConfig\
+  \ fetchConfig)\n\n另外指定一个 FetchConfig 以使用单独的查询或延迟加载来加载此路径\n\n• **List<Object>**\n\
+  \n**findIds()**\n\n执行查询，返回 ID 列表\n\n• **List<T>**\n\n**findList()**\n\n执行查询，返回对象列表\n\
+  \n• **Map<?,T>** **findMap()**\n\n执行查询，返回对象的映射\n\n• **int** **findRowCount()**\n\
+  \n返回此查询应返回的实体计数\n\n• **Set<T>**\n\n**findSet()**\n\n执行查询，返回对象集合\n\n• **intger FirstRow()**\n\
+  \n返回第一行的值\n\n• **String**\n\n**getGeneratedSql()**\n\n返回为执行此查询而生成的 SQL\n\n• **intger\
+  \ MaxRows()**\n\n返回此查询的最大行数\n\n• RawSql\n\ngetRawSql()\n\n返回为此查询设置的 RawSql\n\n第\
+  \ 7 章 访问数据库\n\n• Query<T> **select(String fetchProperties)**\n\n **显式设置要在“主”实体 bean\
+  \ 上获取的属性的逗号分隔列表（即部分对象）\n\n• Query<T> setReadOnly(boolean readOnly)\n\n当您希望返回的 bean\
+  \ 为只读时，设置为 true。\n\n• Query<T> setTimeout(int secs)\n\n为此查询设置超时\n\n**使用 RawSql**\n\
+  \n您已经看到，需要有一个实体才能使典型的 Ebean 查询工作。查询针对实体，然后该查询被转换为数据库查询。在许多情况下，您可能希望从多个实体获取结果，并且返回的数据无法转换为实体。这对于报告类型的需求非常有用，您希望使用聚合函数，例如\
+  \ sum()、count()、max() 等。无论出于何种原因，当您想要编写特定于数据库的查询时，可以使用 RawSql。得益于 Ebean 的 @Sql 注解，查询返回的数据可以轻松映射到对象。您可以创建一个实体并使用\
+  \ @Sql 注解标记它，以告诉 Ebean 这只是一个 SQL 表示，而不是与表相关的实体。\n\n让我们看一个例子。假设您想查找所有作者撰写的书籍总数。您使用\
+  \ RawSqlBuilder 类来指定查询，并将 select 子句中的列映射到 PopularBook 类中定义的相应属性字段。此类是您为映射结果而定义的实体：\n\
+  \nString sql=\"select author,count(author) as noofbooks from books group by author\"\
+  \n\nRawSqlBuilder rawSqlBldr = RawSqlBuilder. *parse*(sql); RawSql rawSql = rawSqlBldr.columnMapping(\"\
+  author\", \"bookauthor\")\n\n.columnMapping(\"noofbooks\", \"totalbooksbyauthor\"\
+  ).create(); 128\n\n第 7 章 访问数据库\n\nQuery<PopularBook> query = Ebean. *find*(PopularBook.\
+  \ **class**); query.setRawSql(rawSql);\n\nList<PopularBook> list = query.findList();\n\
+  \n以下是 PopularBook 实体：\n\npackage models;\n\nimport javax.persistence.Entity;\n\n\
+  import com.avaje.ebean.annotation.Sql;\n\n@Entity\n\n@Sql\n\npublic class PopularBook\
+  \ extends TrendingBook {\n\nprivate String author;\n\nprivate int totalbooksbyauthor;\n\
+  \n//定义 getter 和 setter\n\n}\n\n有时，您可能希望仅使用关系功能，而不希望使用任何 ORM 功能。对于这种情况，Ebean 提供了\
+  \ SqlQuery 类。在这里，您可以编写普通的旧 SQL 并像通过 JDBC 结果集一样获取结果。SqlQuery 是您指定确切 SQL SELECT 语句并返回\
+  \ SqlRow 对象的列表、集合或映射的地方。SqlRow 是一个 Map，其中键是列名。\n\n这是一个相当轻量级的 API，您可以使用它来代替使用原始 JDBC。同样，让我们看一个例子来理解这一点：\n\
+  \nString sql = \"select count(1) as count from book where author = ?\"; SqlQuery\
+  \ query = Ebean. *createSqlQuery*(sql);\n\nquery.setParameter(1, author);\n\nSqlRow\
+  \ row = query.findUnique();\n\n**int** count = row.getInteger(\"count\");\n\n这比使用\
+  \ JDBC API 编写普通的旧 JDBC 查询要容易得多。\n\n第 7 章 访问数据库\n\n如果情况需要**为插入或更新编写原始 SQL**，您可以使用\
+  \ SqlUpdate 类：\n\nSqlUpdate query = Ebean. *createSqlUpdate*(sql);\n\nEbean 还提供了\
+  \ CallableSql 类来调用数据库过程和函数。\n\n**Ebean 中的关系**\n\n一个一对多的例子：\n\n@Entity\n\n@Table(name=\"\
+  book\")\n\npublic class Book implements Serializable {\n\n// 单向 ...\n\n// ... 如果需要，可以显式指定连接列\n\
+  \n@OneToMany\n\n@JoinColumn(name=\"auth_id\")\n\nList<Author> authors;\n\n考虑上述情况，您可以从\
+  \ Book 实体找到作者，但无法从 Author 实体遍历回 Book。\n\n这里外键在 book 表中，您可以使用 @JoinColumn 来指定需要用于键的表列。如果将其建模为双向关系，则代码如下：\n\
+  \n@Entity\n\n@Table(name=\"author\")\n\npublic class Author implements Serializable\
+  \ {\n\n@OneToMany(mappedBy=\"authorId\")\n\nList<Book> writtenBooks;\n\n请注意，在此双向模型中，Book\
+  \ 实体拥有外键，并且是关系的所有者。因此，您标记了反向侧：带有 mappedBy 属性的 Author。\n\n第 7 章 访问数据库\n\n如果您检查 RDBMS，您可以很容易地理解\
+  \ RDBMS 表中不存在多对多关系。多对多关系在数据库表中通过交集表强制实现为两个一对多关系。如果您预计交集表可能需要支持更多属性，最好将其建模为单独的实体，并在您的模型中包含两个一对多关系。如果交集表中没有机会出现任何额外属性，您可以直接使用默认的\
+  \ @ManyToMany 注解。这是一个例子。\n\n考虑用户和角色的情况。一个用户可以拥有多个角色，一个角色可能属于多个用户。在 RDBMS 中，这是使用交集表实现的。让我们将交集表命名为\
+  \ user_role。让我们假设简单的情况，交集表不包含任何其他属性，在这种情况下，实体将具有 ManyToMany 关系，如代码所示：\n\n@Entity\n\
+  \n@Table(name=\"user\")\n\npublic class User implements Serializable {\n\n...\n\n\
+  @ManyToMany(cascade=CascadeType.ALL)\n\nList<Role> roles;\n\n@Entity\n\n@Table(name=\"\
+  role\")\n\npublic class Role {\n\n...\n\n@ManyToMany(cascade=CascadeType.ALL)\n\n\
+  List<User> users;\n\n关于 Ebean 还有很多东西需要解释，因为它非常庞大，可能需要一本全新的书来完整解释。我建议您阅读官方的 Ebean\
+  \ 在线文档以了解更多信息。文档可在 [`ebean.io/docs/`](https://ebean.io/docs/) 获取。\n\n**第 8 章**\n\
+  \n**完整示例**\n\n本章将您到目前为止学到的内容整合到一个完整的示例中。本章的主要重点是展示代码；我们已经在之前的章节中讨论了所有概念和部分代码。\n\n\
+  **conf/application.conf**\n\n*# 这是应用程序的主配置文件。*\n\n*# https://www.playframework.com/documentation/latest/ConfigFile*\n\
+  \n*# 默认数据库配置*\n\nplay.modules.enabled += \"modules.FirstModule\"\n\nplay.http.filters=config.FilterConfig\n\
+  \nplay.http.errorHandler = \"config.CustomErrorHandler\"\n\ndb {\n\ndefault.driver\
+  \ = org.h2.Driver\n\ndefault.url = \"jdbc:h2:mem:play\"\n\n*# 为 JPA 访问提供*\n\ndefault.jndiName=DefaultDS\n\
+  \n}\n\n*# 将 JPA 指向我们的数据库配置*\n\njpa.default=defaultPersistenceUnit\n\n© Prem Kumar\
+  \ Karunakaran 2020\n\nP. K. Karunakaran, *Introducing Play Framework*,\n\n`doi.org/10.1007/978-1-4842-5645-9_8`\n\
+  \n第 8 章 完整示例\n\n*# 数据库连接数*\n\n*# 参见 https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-\
+  \ Sizing*\n\n*# 数据库连接数 = ((物理核心数 * 2) + 有效主轴数)*\n\nfixedConnectionPool = 9\n\n*#\
+  \ 将 Hikari 设置为固定大小*\n\nplay.db {\n\nprototype {\n\nhikaricp.minimumIdle = ${fixedConnectionPool}\n\
+  \nhikaricp.maximumPoolSize = ${fixedConnectionPool}\n\n}\n\n}\n\n*# 作业队列大小设置为 HikariCP\
+  \ 连接池大小*\n\ndatabase.dispatcher {\n\nexecutor = \"thread-pool-executor\"\n\nthroughput\
+  \ = 1\n\nthread-pool-executor {\n\nfixed-pool-size = ${fixedConnectionPool}\n\n\
+  }\n\n}\n\n这里您配置了一个连接池和一个用于数据库连接的固定线程池。这非常重要，因为您正在一个单独的上下文中运行数据库调用，该上下文拥有自己的线程池。这将确保您不会阻塞默认执行上下文的线程。\n\
+  \n然后，您将 h2 内存数据库配置为您的存储，并使用 JNDI 名称 DefaultDS 注册它。\n\n**conf/routes**\n\n\n\n"
+- '# 路由
+
+
+  第 8 章 完整示例
+
+
+  '
+- '# 本文件定义了所有应用路由（优先级较高的路由在前）
+
+
+  '
+- '# ~~~~
+
+
+  '
+- '# 一个展示示例主页的控制器示例
+
+
+  GET /bookshop controllers.Application.index
+
+
+  GET /bookshop/book/:id/ controllers.Application.getBook(id:String) GET /bookshop/book/search/
+  controllers.Application.search ByTitle(keyword:String)
+
+
+  GET /bookshop/book/echo controllers.Application.
+
+
+  echoService
+
+
+  GET /bookshop/book/:id/page/$page<[0-9]+>/ controllers.
+
+
+  Application.fetchBookpage(id:String, page:Integer)
+
+
+  GET /bookshop/example/largeresponse controllers.Application.
+
+
+  processLargeResponse()
+
+
+  GET /bookshop/authors/ controllers.Application.authors
+
+
+  (limit: Integer = 10)
+
+
+  GET /bookshop/showcomment/ controllers.Application.showComment (userid ?= null)
+
+
+  GET /bookshop/contact controllers.Application.contact()
+
+
+  GET /bookshop/book/top controllers.Application.topThreeBooks() POST /bookshop/book/save/comment/
+  controllers.Application.
+
+
+  saveComment(request:Request)
+
+
+  POST /greeting controllers.Application.acknowledgeGreeting
+
+
+  (request:Request)
+
+
+  POST /greeting/xml controllers.Application.acknowledgeGreeting XML(request:Request)
+
+
+  POST /greeting/xml/jaxb controllers.Application.acknowledgeGr eetingXMLJaxbVersion(request:Request)
+
+
+  '
+- "# 将 /public 文件夹中的静态资源映射到 /assets URL 路径 GET /assets/*file controllers.Assets.versioned\
+  \ (path=\"/public\", file: Asset)\n\n第 8 章 完整示例\n\n**Application.java**\n\npackage\
+  \ controllers;\n\nimport actors.ActorModel;\n\nimport actors.PingActor;\n\nimport\
+  \ akka.actor.ActorRef;\n\nimport akka.actor.ActorSystem;\n\nimport akka.stream.Materializer;\n\
+  \nimport akka.stream.javadsl.Sink;\n\nimport akka.stream.javadsl.Source;\n\nimport\
+  \ akka.util.ByteString;\n\nimport config.EchoAction;\n\nimport dao.ReviewRepository;\n\
+  \nimport models.GiftVO;\n\nimport models.Message;\n\nimport models.Review;\n\nimport\
+  \ modules.Factorial;\n\nimport org.slf4j.Logger;\n\nimport org.slf4j.LoggerFactory;\n\
+  \nimport org.w3c.dom.Document;\n\nimport play.cache.AsyncCacheApi;\n\nimport play.cache.Cached;\n\
+  \nimport play.data.DynamicForm;\n\nimport play.data.FormFactory;\n\nimport play.libs.Akka;\n\
+  \nimport play.libs.XPath;\n\nimport play.libs.ws.WSClient;\n\nimport play.libs.ws.WSResponse;\n\
+  \nimport play.mvc.*;\n\nimport scala.compat.java8.FutureConverters;\n\n第 8 章 完整示例\n\
+  \nimport javax.inject.Inject;\n\nimport javax.xml.bind.JAXBContext;\n\nimport javax.xml.bind.Marshaller;\n\
+  \nimport javax.xml.bind.Unmarshaller;\n\nimport javax.xml.transform.OutputKeys;\n\
+  \nimport javax.xml.transform.Transformer;\n\nimport javax.xml.transform.TransformerFactory;\n\
+  \nimport javax.xml.transform.dom.DOMSource;\n\nimport javax.xml.transform.stream.StreamResult;\n\
+  \nimport java.io.StringReader;\n\nimport java.io.StringWriter;\n\nimport java.util.ArrayList;\n\
+  \nimport java.util.List;\n\nimport java.util.concurrent.CompletableFuture;\n\nimport\
+  \ java.util.concurrent.CompletionStage;\n\nimport com.fasterxml.jackson.databind.JsonNode;\n\
+  \nimport static akka.pattern.Patterns. *ask*;\n\n*/***\n\n* *主控制器*\n\n* */*\n\n\
+  public class Application extends Controller {\n\nfinal ActorRef pingActor;\n\nprivate\
+  \ static final Logger *log* = LoggerFactory. *getLogger* (Application.class);\n\n\
+  private AsyncCacheApi cache;\n\nprivate ReviewRepository reviewRepo;\n\n@Inject\n\
+  \npublic Application(ActorSystem system, AsyncCacheApi cache, ReviewRepository reviewRepo)\
+  \ {\n\n第 8 章 完整示例\n\npingActor = system.actorOf(PingActor. *getProps*());\n\nthis.cache\
+  \ = cache;\n\nthis.reviewRepo = reviewRepo;\n\n}\n\n@Inject\n\nMaterializer materializer;\n\
+  \n*/***\n\n* *简单的 ping 方法，演示了 Futures 和* *异步处理的使用*\n\n*\n\n* *@param msg*\n\n* *@return*\n\
+  \n* */*\n\npublic CompletionStage<Result> ping(String msg) {\n\nreturn FutureConverters.\
+  \ *toJava*(\n\n*ask*(pingActor, new ActorModel.Ping(msg), 1000)\n\n).thenApply(response\
+  \ -> *ok*((String) response));\n\n}\n\n*/***\n\n* *演示分块处理大型* *http 响应* *的方法*\n\n\
+  *\n\n* *@return*\n\n* */*\n\npublic CompletionStage<Result> processLargeResponse()\
+  \ {\n\nCompletionStage<WSResponse> futureResponse =\n\nws.url(\"http://www.mocky.io/\n\
+  \nv2/5e08df833000005b0081a159\")\n\n第 8 章 完整示例\n\n.setMethod(\"GET\").stream();\n\
+  \nCompletionStage<Long> bytesReturned =\n\nfutureResponse.thenCompose(\n\nres ->\
+  \ {\n\nSource<ByteString, ?> responseBody\n\n= res.getBodyAsSource();\n\n*// 计算返回的字节数*\n\
+  \nSink<ByteString,\n\nCompletionStage<Long>> bytesSum =\n\nSink. *fold*(0L, (total,\
+  \ bytes)\n\n-> total + bytes.length());\n\nreturn responseBody.runWith\n\n(bytesSum,\
+  \ materializer);\n\n});\n\nreturn bytesReturned.thenApply(response -> *ok*((String)\
+  \ response.toString()));\n\n}\n\n*/***\n\n* *处理主页*\n\n*\n\n* *@return*\n\n* */*\n\
+  \npublic Result index() {\n\nSystem. *out*.println(fact.fact(10));\n\nreturn *ok*(views.html.bookshop.\
+  \ *render*());\n\n}\n\n*/***\n\n* *根据 id 获取图书详情*\n\n第 8 章 完整示例\n\n*\n\n* *@param\
+  \ id*\n\n* *@return*\n\n* */*\n\npublic Result getBook(String id) {\n\nreturn *ok*(views.html.bookshop.\
+  \ *render*());\n\n}\n\n@Inject\n\nFormFactory formFactory;\n\n@Inject\n\nFactorial\
+  \ fact;\n\n*/***\n\n* *接收表单提交并保存评论*\n\n* *演示了如何使用动态表单从* *html 表单提交中检索数据*\n\n*\n\n\
+  * *@return*\n\n* */*\n\npublic Result saveComment(Http.Request request) {\n\nDynamicForm\
+  \ requestData = formFactory.form().\n\nbindFromRequest(request);\n\nString comment\
+  \ = requestData.get(\"comment\");\n\nReview review = new Review();\n\n*// 我们硬编码了\
+  \ id，但你可以将其作为练习，*\n\n*// 将图书 id 和用户 id 作为请求参数。*\n\n\n\n*// 同时修改仓库以保存这两条评论* review.setBookId(\"\
+  123456789\");\n\nreview.setUserId(\"U1\");\n\n第 8 章 完整示例\n\nreview.setComment(comment);\n\
+  \nreview.save(reviewRepo);\n\nreturn *ok*(views.html.savecomment. *render*());\n\
+  \n}\n\n*/***\n\n* *按书名搜索图书。*\n\n* *演示各种路由配置语义。*\n\n*\n\n* *@param title*\n\n* *@return*\n\
+  \n* */*\n\npublic Result searchByTitle(String title) {\n\n*//查询数据库或从缓存中获取图书详情*\n\
+  \nreturn *ok*(views.html.searchresults. *render*());\n\n}\n\n*/***\n\n* *演示 ActionComposition*\n\
+  \n* */*\n\n@Inject\n\nWSClient ws;\n\n@With(EchoAction.class)\n\npublic CompletionStage<Result>\
+  \ echoService() {\n\nreturn\n\nws.url(\"http://www.mocky.io/\n\nv2/5e0edec33400003c0f2d7d27\"\
+  )\n\n.get()\n\n. thenApply(response -> *ok*(\"Feed\n\nResponse: \" + response.getBody()));\n\
+  \n}\n\n第 8 章 完整示例\n\n*/***\n\n* *异步编程示例*\n\n*\n\n* *@param uid*\n\n* *@param age*\n\
+  \n* *@param relation*\n\n* *@return*\n\n* */*\n\npublic CompletionStage<Result>\
+  \ recomendGifts(final\n\nString uid, final String age, final String relation) {\n\
+  \nreturn CompletableFuture. *supplyAsync*(this::getGifts)\n\n. thenApply((List<GiftVO>\
+  \ gift) -> *ok*(\"Got \" +\n\ngift));\n\n}\n\nprivate List<GiftVO> getGifts() {\n\
+  \nList<GiftVO> gifts = new ArrayList<GiftVO>();\n\ngifts.add(new GiftVO());\n\n\
+  return gifts;\n\n}\n\n*/***\n\n* *各种路由配置语义示例*\n\n*\n\n* *@param bookid*\n\n* *@param\
+  \ pageNumber*\n\n* *@return*\n\n* */*\n\npublic Result fetchBookpage(String bookid,\
+  \ int pageNumber)\n\n{\n\n*//查询数据库或从缓存中获取图书详情*\n\n第 8 章 完整示例\n\nreturn *ok*(views.html.searchresults.\
+  \ *render*());\n\n}\n\n*/***\n\n* *处理 Json 的示例*\n\n*\n\n* *@param request*\n\n*\
+  \ *@return*\n\n* */*\n\n@BodyParser.Of(BodyParser.Json.class)\n\npublic Result acknowledgeGreeting(Http.Request\
+  \ request) {\n\nJsonNode json = request.body().asJson();\n\nString greeting = json.findPath(\"\
+  greeting\").textValue(); if (greeting == null) {\n\nreturn *badRequest*(\"Missing\
+  \ parameter [greeting]\");\n\n} else {\n\nreturn *ok*(\"Your greeting \" + greeting\
+  \ + \" is accepted\");\n\n}\n\n}\n\n@BodyParser.Of(BodyParser.Xml.class)\n\npublic\
+  \ Result acknowledgeGreetingXML(Http.Request request) {\n\nDocument dom = request.body().asXml();\n\
+  \nif (dom == null) {\n\nreturn *badRequest*(\"Requires XML Input\");\n\n} else {\n\
+  \nString greeting = XPath. *selectText*(\"//greeting\", dom); if (greeting == null)\
+  \ {\n\nreturn *badRequest*(\"Missing parameter [greeting]\");\n\n} else {\n\n第 8\
+  \ 章 完整示例\n\nreturn *ok*(\"Your greeting \" + greeting + \" is accepted\");\n\n}\n\
+  \n}\n\n}\n\n*/***\n\n* *处理 XML 的示例*\n\n*\n\n* *@param request*\n\n* *@return*\n\n\
+  * *@throws Exception*\n\n* */*\n\n@BodyParser.Of(BodyParser.Xml.class)\n\npublic\
+  \ Result acknowledgeGreetingXMLJaxbVersion(Http.Request request) throws Exception\
+  \ {\n\nDocument doc = request.body().asXml();\n\nif (doc == null) {\n\nreturn *badRequest*(\"\
+  Requires XML Input\");\n\n} else {\n\nTransformerFactory tf = TransformerFactory.\
+  \ *newInstance*(); Transformer transformer = tf.newTransformer();\n\ntransformer.setOutputProperty(OutputKeys.\
+  \ *OMIT_XML_*\n\n*DECLARATION*, \"yes\");\n\nStringWriter writer = new StringWriter();\n\
+  \ntransformer.transform(new DOMSource(doc), new\n\nStreamResult(writer));\n\nString\
+  \ output = writer.getBuffer().toString();\n\nSystem. *out*.println(\"XML \" + output);\n\
+  \nJAXBContext context = JAXBContext. *newInstance*\n\n(Message.class);\n\n第 8 章\
+  \ 完整示例\n\nUnmarshaller unMarshaller = context.\n\ncreateUnmarshaller();\n\n*//JAXB\
+  \ 自动转换 - XML 到模型*\n\nMessage msg = (Message) unMarshaller.unmarshal(new\n\nStringReader(output));\n\
+  \nif (msg == null) {\n\nreturn *badRequest*(\"Requires XML Input\");\n\n} else {\n\
+  \nString greeting = msg.getGreeting();\n\nif (greeting == null) {\n\nreturn *badRequest*(\"\
+  Missing parameter\n\n[greeting]\");\n\n} else {\n\nreturn *ok*(\"Your greeting \"\
+  \ + greeting + \"\n\nis accepted\");\n\n}\n\n}\n\n}\n\n}\n\npublic Result authors(Integer\
+  \ count) {\n\nreturn *ok*(\"Top selling authors\");\n\n}\n\n*/***\n\n* *缓存 HTTP\
+  \ 响应的示例*\n\n*\n\n* *@return*\n\n* */*\n\n@Cached(key = \"contactus\")\n\npublic\
+  \ Result contact() {\n\n*log*.info(\"contact us method: processing\"); 145\n\n第\
+  \ 8 章 完整示例\n\nreturn *ok*(\"Apress Media, LLC\\n\" +\n\n\"\\n\" +\n\n\"One New York\
+  \ Plaza, Suite 4600\\n\" +\n\n\"\\n\" +\n\n\"New York, NY 10004-1562\");\n\n}\n\n\
+  \n\npublic CompletionStage<Result> topThreeBooks() {\n\nreturn cache.getOrElseUpdate(\"\
+  topthree\",\n\nthis::getTopBooks)\n\n. thenApply((List<String> books) -> *ok*(books.\n\
+  \ntoString()));\n\n}\n\nprivate CompletionStage<List<String>> getTopBooks() {\n\n\
+  List<String> topThreeBooks = new ArrayList<String>(); topThreeBooks.add(\"Book 1\"\
+  );\n\ntopThreeBooks.add(\"Book 2\");\n\ntopThreeBooks.add(\"Book 3\");\n\nreturn\
+  \ CompletableFuture. *completedFuture*(topThreeBooks);\n\n}\n\npublic Result showComment(String\
+  \ userId) {\n\nreturn *ok*(\"Recent Comments by user\");\n\n}\n\n}\n\n**models/Book.java**\n\
+  \npackage models;\n\nimport io.ebean.Model;\n\nimport javax.persistence.*;\n\n第\
+  \ 8 章 完整示例\n\nimport io.ebean.*;\n\n@Entity\n\n@Table(name=\"book\")\n\npublic class\
+  \ Book extends Model {\n\n@Id\n\nprivate String id;\n\nprivate String author;\n\n\
+  private String title;\n\nprivate String picture;\n\npublic String getTitle() {\n\
+  \nreturn title;\n\n}\n\npublic void setTitle(String title) {\n\nthis.title = title;\n\
+  \n}\n\npublic String getPicture() {\n\nreturn picture;\n\n}\n\npublic void setPicture(String\
+  \ picture) {\n\nthis.picture = picture;\n\n}\n\npublic String getId() {\n\nreturn\
+  \ id;\n\n}\n\npublic void setId(String id) {\n\nthis.id = id;\n\n}\n\n第 8 章 完整示例\n\
+  \npublic String getAuthor() {\n\nreturn author;\n\n}\n\npublic void setAuthor(String\
+  \ author) {\n\nthis.author = author;\n\n}\n\n}\n\nclass Test {\n\nvoid test() {\n\
+  \nBook book = new Book();\n\nbook.save();\n\nBook b = Ebean. *find*(Book.class).where().idEq(\"\
+  \").findOne(); Ebean. *find*(Book.class).where().like(\"title\",\"java%\").\n\n\
+  orderBy(\"tile desc\").findList();\n\n}\n\n}\n\n**models/Comment.java**\n\npackage\
+  \ models;\n\nimport javax.persistence.Entity;\n\nimport javax.persistence.Id;\n\n\
+  import javax.persistence.Table;\n\n@Entity\n\n@Table(name=\"comment\")\n\npublic\
+  \ class Comment {\n\n@Id\n\nprivate Long id;\n\nprivate String comment;\n\npublic\
+  \ String getComment() {\n\n第 8 章 完整示例\n\nreturn comment;\n\n}\n\npublic void setComment(String\
+  \ comment) {\n\nthis.comment = comment;\n\n}\n\n}\n\n**models/Customer.java**\n\n\
+  package models;\n\nimport controllers.Order;\n\nimport java.util.List;\n\npublic\
+  \ class Customer {\n\nprivate long id;\n\nprivate String name;\n\nprivate boolean\
+  \ loyaltyMember;\n\nprivate boolean isActive;\n\nprivate List<Order> orders;\n\n\
+  public List<Order> getOrders() {\n\nreturn null;\n\n}\n\npublic boolean deactivate()\
+  \ {\n\n*//停用客户的逻辑和验证*\n\nreturn false;\n\n}\n\n}\n\n**models/GiftVO.java**\n\npackage\
+  \ models;\n\n第 8 章 完整示例\n\npublic class GiftVO {\n\nprivate String giftName;\n\n\
+  private String giftImageUrl;\n\nprivate float price;\n\nprivate String category;\n\
+  \npublic String getGiftName() {\n\nreturn giftName;\n\n}\n\npublic void setGiftName(String\
+  \ giftName) {\n\nthis.giftName = giftName;\n\n}\n\npublic String getGiftImageUrl()\
+  \ {\n\nreturn giftImageUrl;\n\n}\n\npublic void setGiftImageUrl(String giftImageUrl)\
+  \ {\n\nthis.giftImageUrl = giftImageUrl;\n\n}\n\npublic float getPrice() {\n\nreturn\
+  \ price;\n\n}\n\npublic void setPrice(float price) {\n\nthis.price = price;\n\n\
+  }\n\npublic String getCategory() {\n\nreturn category;\n\n}\n\n第 8 章 完整示例\n\npublic\
+  \ void setCategory(String category) {\n\nthis.category = category;\n\n}\n\n}\n\n\
+  **models/Message.java**\n\npackage models;\n\nimport javax.xml.bind.annotation.XmlAccessType;\n\
+  \nimport javax.xml.bind.annotation.XmlAccessorType;\n\nimport javax.xml.bind.annotation.XmlElement;\n\
+  \nimport javax.xml.bind.annotation.XmlRootElement;\n\n@XmlRootElement(name = \"\
+  message\")\n\n@XmlAccessorType(XmlAccessType. *PROPERTY*)\n\npublic class Message\
+  \ {\n\nprivate String greeting;\n\npublic String getGreeting() {\n\nreturn greeting;\n\
+  \n}\n\n@XmlElement\n\npublic void setGreeting(String greeting) {\n\nthis.greeting\
+  \ = greeting;\n\n}\n\n}\n\n**models/Review.java**\n\npackage models;\n\nimport dao.ReviewRepository;\n\
+  \nimport javax.persistence.*;\n\n第 8 章 完整示例\n\npublic class Review {\n\n@Id\n\n\
+  @GeneratedValue(strategy = GenerationType. *AUTO*)\n\npublic Long id;\n\npublic\
+  \ String comment;\n\npublic Long getId() {\n\nreturn id;\n\n}\n\npublic void setId(Long\
+  \ id) {\n\nthis.id = id;\n\n}\n\npublic String getComment() {\n\nreturn comment;\n\
+  \n}\n\npublic void setComment(String comment) {\n\nthis.comment = comment;\n\n}\n\
+  \npublic String getUserId() {\n\nreturn userId;\n\n}\n\npublic void setUserId(String\
+  \ userId) {\n\nthis.userId = userId;\n\n}\n\npublic String getBookId() {\n\nreturn\
+  \ bookId;\n\n}\n\n第 8 章 完整示例\n\npublic void setBookId(String bookId) {\n\nthis.bookId\
+  \ = bookId;\n\n}\n\npublic String userId;\n\npublic String bookId;\n\npublic void\
+  \ save(ReviewRepository reviewRepo) {\n\n\n\nSystem.*out*.println(\"review repo\
+  \ \"+reviewRepo); reviewRepo.saveReview(this);\n\n}\n\n}\n\n**dao/DatabaseExecutionContext.java**\n\
+  \npackage dao;\n\nimport akka.actor.ActorSystem;\n\nimport play.db.Database;\n\n\
+  import play.libs.concurrent.CustomExecutionContext;\n\nimport javax.inject.Inject;\n\
+  \nimport javax.inject.Singleton;\n\nimport java.util.concurrent.CompletableFuture;\n\
+  \nimport java.util.concurrent.CompletionStage;\n\npublic class DatabaseExecutionContext\
+  \ extends\n\nCustomExecutionContext {\n\n@javax.inject.Inject\n\npublic DatabaseExecutionContext(ActorSystem\
+  \ actorSystem) {\n\n*// 使用 application.conf 中定义的自定义线程池* super(actorSystem, \"database.dispatcher\"\
+  );\n\n}\n\n第 8 章 完整示例\n\n@Singleton\n\npublic static class JdbcExample {\n\nprivate\
+  \ Database db;\n\nprivate DatabaseExecutionContext executionContext;\n\n@Inject\n\
+  \npublic JdbcExample(Database db,\n\nDatabaseExecutionContext context) {\n\nthis.db\
+  \ = db;\n\nthis.executionContext = executionContext;\n\n}\n\npublic CompletionStage<Integer>\
+  \ updateSomething() {\n\nreturn CompletableFuture.*supplyAsync*(\n\n() -> {\n\n\
+  return db.withConnection(\n\nconnection -> {\n\n*// 使用连接执行操作*\n\nreturn 1;\n\n});\n\
+  \n},\n\nexecutionContext);\n\n}\n\n}\n\n}\n\n**dao/JPARepository.java**\n\npackage\
+  \ dao;\n\nimport models.Review;\n\nimport play.db.jpa.JPAApi;\n\n第 8 章 完整示例\n\n\
+  import javax.inject.Inject;\n\nimport javax.inject.Singleton;\n\nimport java.util.concurrent.CompletableFuture;\n\
+  \nimport java.util.concurrent.CompletionStage;\n\nimport static java.util.concurrent.CompletableFuture.*supplyAsync*;\n\
+  \n@Singleton\n\npublic class JPAReviewRepository implements ReviewRepository{\n\n\
+  private JPAApi jpaApi;\n\nprivate DatabaseExecutionContext executionContext;\n\n\
+  @Inject\n\npublic JPAReviewRepository(JPAApi api,\n\nDatabaseExecutionContext executionContext)\
+  \ {\n\nthis.jpaApi = api;\n\nthis.executionContext = executionContext;\n\n}\n\n\
+  @Override\n\npublic CompletionStage<String> saveReview(Review review) {\n\nreturn\
+  \ CompletableFuture.*supplyAsync*(\n\n() -> {\n\n*// lambda 是 Function<EntityManager,\
+  \ Long> 的一个实例*\n\nreturn jpaApi.withTransaction(\n\nentityManager -> {\n\nentityManager.persist(review);\n\
+  \nreturn \"saved\";\n\n});\n\n},\n\nexecutionContext);\n\n}\n\n}\n\n第 8 章 完整示例\n\
+  \n**models/ReviewRepository.java**\n\npackage dao;\n\nimport com.google.inject.ImplementedBy;\n\
+  \nimport models.Review;\n\nimport java.util.concurrent.CompletionStage;\n\n@ImplementedBy(JPAReviewRepository.class)\n\
+  \npublic interface ReviewRepository {\n\nCompletionStage<String> saveReview(Review\
+  \ review);\n\n}\n\n视图与前面章节列出的相同；为避免重复，本章不再列出。\n\n**第 9 章**\n\n**使用 Play 模块**\n\n\
+  一个 Play 应用程序可以由多个应用模块组装而成。\n\n这有助于在多个应用程序中重用应用组件。模块还有助于将大型应用程序拆分为多个较小的应用程序。\n\n\
+  模块只是另一个 Play 应用程序。模块可以引入特定于功能的能力，例如添加不同的持久化机制、集成其他视图技术或集成新的缓存框架。\n\n自 Play 2.5.x\
+  \ 以来，模块框架进行了改造。在 Play 中，模块和库之间没有太大区别。唯一真正的区别在于模块直接使用 Play API。Play 模块使用依赖注入框架来工作。如果你想编写一个自定义的\
+  \ Play 模块，可以使用任何依赖注入框架来实现。\n\n请注意，Play 使用 guice 作为其默认的依赖注入框架。\n\n但模块不应与任何特定的依赖注入框架绑定，而应以与依赖框架无关的方式工作。为此，Play\
+  \ 提供了一个轻量级的 Bindings API，用于将模块与底层依赖注入框架解耦。\n\n依赖关系在组件中使用 @Inject 注解声明。例如，如果一个控制器类依赖于\
+  \ WSClient 模块，它应该使用 @Inject WSClient 语法进行声明。Play 会使用底层的依赖注入框架自动完成依赖类的装配。\n\n© Prem\
+  \ Kumar Karunakaran 2020\n\n\n\nP. K. Karunakaran 著，《Play 框架入门》，\n\n`doi.org/10.1007/978-1-4842-5645-9_9`\n\
+  \n第 9 章 使用 Play 模块\n\n**创建模块**\n\n我们直接开始创建一个简单模块，以理解其流程。如前所述，模块与任何其他 Play 应用程序并无二致。\n\
+  \n需要记住的一个重要因素是：模块没有自己的配置；它使用主应用程序的配置。这意味着模块特定的配置信息应设置在应用程序的 `conf/application.conf`\
+  \ 文件中。\n\n你要开发的模块很简单。它计算小于 25 的数的阶乘。请按以下步骤操作：\n\n1) 在 `app` 目录下创建一个包，并将其命名为 `modules`。\n\
+  \n2) 将模块的契约定义为一个接口：\n\n```java\npackage modules;\n\npublic interface Factorial {\n\
+  \n    int fact(int num);\n\n}\n```\n\n3) 为 `Factorial` 接口提供实现：\n\n```java\npackage\
+  \ modules;\n\nimport play.inject.ApplicationLifecycle;\n\nimport javax.inject.Inject;\n\
+  \npublic class FactorialImpl implements Factorial{\n\n    @Inject\n    public FactorialImpl(ApplicationLifecycle\
+  \ lifecycle) {\n        //实现插件生命周期方法\n    }\n\n    public int fact(int number) {\n\
+  \        return calculateFactorial(number);\n    }\n\n    private int calculateFactorial(int\
+  \ num) {\n        if(num > 25) {\n            throw new RuntimeException(\"超出范围\"\
+  );\n        }\n        if(num == 1)\n            return num;\n        return num\
+  \ * calculateFactorial(num-1);\n    }\n\n}\n```\n\n4) 创建一个模块，并将其命名为 `FirstModule`：\n\
+  \n```java\npackage modules;\n\nimport play.api.Configuration;\nimport play.api.Environment;\n\
+  import play.api.inject.Binding;\nimport play.api.inject.Module;\nimport javax.inject.Inject;\n\
+  import play.inject.ApplicationLifecycle;\nimport scala.collection.Seq;\n\npublic\
+  \ class FirstModule extends Module {\n\n    public Seq<Binding<?>> bindings(Environment\
+  \ environment, Configuration configuration) {\n        return seq(\n           \
+  \ bind(Factorial.class).to(FactorialImpl.class)\n        );\n    }\n\n}\n```\n\n\
+  第 9 章 使用 Play 模块\n\n这里你声明了一个模块，并将你的 `Factorial` 实现添加到了该模块中。现在，为了让 Play 将其识别为一个模块，需要在\
+  \ `application.conf` 文件中进行一些修改：\n\n```\nplay.modules.enabled += \"modules.FirstModule\"\
+  \n```\n\n保存文件。就这样！你已经创建了一个自定义的 Play 模块。此模块中定义的 `Factorial` 实现可以注入到任何类中并使用。例如，如果需要在控制器类中使用它，只需声明为：\n\
+  \n```java\n@Inject Factorial fact;\n```\n\nPlay 会处理其余部分，并在运行时使其可用。如果你想将此模块提供给其他\
+  \ Play 应用程序使用，则需要将其发布到仓库。在这种情况下，只需在 Play 应用程序中包含模块类及相关依赖类即可。所有未使用的组件，如视图、公共资源等，都可以移除。\n\
+  \n打开命令提示符，进入你创建阶乘 Play 项目的目录。例如，如果项目位于 `C:\\Users\\用户名\\playexamples\\bookshop\\\
+  `，则在命令提示符下输入 `sbt`。\n\n这将加载 Play 控制台。你需要发布该模块，以便其他应用程序可以访问它。为简单起见，你将此模块发布到计算机上的本地仓库：\n\
+  \n```\nbookshop] $ publishLocal\n```\n\nPlay 将编译文件并发布到本地 Play 仓库。\n\n在 Play 控制台中，请记下\
+  \ Play 发布模块的位置。在我的机器上，它发布在 `C:\\Users\\premk\\.ivy2\\local\\com.stackrules.example\\\
+  bookshop_2.13\\1.0-SNAPSHOT\\docs\\bookshop_2.13-javadoc.jar` 下。见图 9-1。\n\n![](img/index-172_1.jpg)\n\
+  \n第 9 章 使用 Play 模块\n\n***图 9-1.** 已发布的模块*\n\n该模块现在已准备好供其他应用程序使用。\n\n**第三方模块**\n\n\
+  通常，你会因各种原因需要使用其他软件工具，而在 Play 中，这些工具通过模块集成到应用程序中。有许多第三方模块可用于满足大多数企业需求。Play 模块使得通过即插即用架构扩展\
+  \ Play 功能成为可能。以下是一些流行的模块：\n\n\n\n• Redis：集成 Redis 以提供缓存实现\n\n• Deadbolt：基于角色的授权\n\
+  \n• PDF：增加基于 HTML 模板的 PDF 输出支持\n\n还有更多此类模块可用，你可以访问[www.playframework.org](http://www.playframework.org)获取更多相关信息。\n\
+  \n**第 10 章**\n\n**应用程序设置**\n\n**与错误处理**\n\n在 Play 2.6 之前，通常使用全局对象来定义应用程序级别的配置和处理逻辑，例如过滤、错误处理等。这种方法在\
+  \ Play 2.5.x 中已被弃用，并从 Play 2.6.x 起彻底移除。自 Play 2.6.x 起，推荐使用依赖注入的方式。因此，我不会详细讨论 2.6.x\
+  \ 之前采用的方法，而是将你的注意力引向依赖注入方式。在本节末尾，我会给出一个示例，让你了解之前是如何实现的，这对于将旧版 Play 框架项目迁移到新版本会有所帮助。\n\
+  \nPlay 应用程序的主类是`play.Application`。该类由 Play 框架在应用程序启动时创建。你无需做任何特殊操作来触发这一过程，框架会自动处理。\n\
+  \n你可以通过依赖注入将处理程序绑定到特定类的实例，从而挂钩各种应用程序级别的行为。这是在 Play 中配置应用程序级别绑定的推荐方式。\n\n让我们通过示例来更深入地理解这一点。\n\
+  \n© Prem Kumar Karunakaran 2020\n\nP. K. Karunakaran，《Introducing Play Framework》，\n\
+  \n`doi.org/10.1007/978-1-4842-5645-9_10`\n\n第 10 章 应用程序设置与错误处理 **过滤器**\n\n过滤器旨在将应用程序的横切关注点应用于所有类，例如日志记录、检查安全标头、压缩响应、分析等。这些都是过滤器发挥作用的地方。Play\
+  \ 还有一种称为动作组合（action composition）的机制，它适用于关注点与特定路由相关的情况。\n\n例如，你可能决定保护某些路由，同时允许所有其他路由公开访问。在这种情况下，对于特定路由，你可能需要检查认证/授权语义。对于此类情况，请使用动作组合。你将在本章后续部分进一步了解动作组合。我们先聚焦于过滤器。\n\
+  \n日志过滤器：\n\n```java\npackage config;\n\nimport akka.event.LoggingFilter;\n\nimport\
+  \ akka.stream.Materializer;\n\nimport java.util.concurrent.CompletionStage;\n\n\
+  import java.util.function.Function;\n\nimport org.slf4j.Logger;\n\nimport org.slf4j.LoggerFactory;\n\
+  \nimport play.mvc.Filter;\n\nimport play.mvc.Http;\n\nimport play.mvc.Result;\n\n\
+  import javax.inject.Inject;\n\n/**\n * A simple filter implementation that logs\
+  \ how long it took to process a request\n */\npublic class ApplicationFilter extends\
+  \ Filter {\n\n    @Inject\n    public ApplicationFilter(Materializer mat) {\n  \
+  \      super(mat);\n    }\n\n    private static final Logger log = LoggerFactory.getLogger(LoggingFilter.class);\n\
+  \n    @Override\n    public CompletionStage<Result> apply(Function<Http.RequestHeader,\n\
+  \            CompletionStage<Result>> next,\n                                  \
+  \      Http.RequestHeader requestHeader) {\n        long startTime = System.currentTimeMillis();\n\
+  \        return next\n                .apply(requestHeader)\n                .thenApply(\n\
+  \                        result -> {\n                            long endTime =\
+  \ System.currentTimeMillis();\n                            long requestTime = endTime\
+  \ - startTime;\n                            log.info(\n                        \
+  \            \"{} {} took {}ms to complete and produced the status {}\",\n     \
+  \                               requestHeader.method(),\n                      \
+  \              requestHeader.uri(),\n                                    requestTime,\n\
+  \                                    result.status());\n                       \
+  \     return result;\n                        });\n    }\n}\n```\n\n`ApplicationFilter`类继承自`play.mvc.Filter`并重写了`apply`方法。`apply`方法接受两个参数：1)\
+  \ 一个函数，该函数以`Http.RequestHeader`为参数，并返回`CompletionStage<Result>`作为输出；2) `Http.RequestHeader`：传入请求的请求头。\n\
+  \n\n好的，作为一名高级文档工程师和翻译员，我将严格遵循您提供的注意事项和示例格式，将给定的英文文本翻译成中文。\n\n\n让我们先理解第一个参数，并看看它在代码中是如何使用的。你在代码中使用的下一个参数代表了过滤器链中的下一个动作。调用它将会允许请求继续向前流动，并最终到达目标类，在大多数情况下是控制器。在你的日志记录场景中，在传递控制权之前，你记录了请求时间，然后允许请求继续向前流动。一旦请求完成，你使用\
+  \ `thenApply` 函数来记录响应时间，并将结果返回给调用者。请注意，`CompletionStage<Result>` 是 Java 8 提供的用于处理异步响应的通用\
+  \ Promise API。由于 Play 使用异步编程，Play API 的响应都使用它。这就是为什么你需要使用 `thenApply` 方法进行处理的原因。关于\
+  \ Promise 类和异步编程的更多细节，将在异步编程章节中提供。\n\n**第 10 章 应用设置与错误处理** 现在你已经创建了一个过滤器，让我们看看如何告诉\
+  \ Play 使用它。创建一个名为 `FilterConfig` 的类，如下所示，并将其保存在 `config` 包内：\n\n**FilterConfig.java**\n\
+  \n**package** config;\n\n**import** play.http.DefaultHttpFilters;\n\n**import**\
+  \ javax.inject.Inject;\n\n**public class** FilterConfig **extends** DefaultHttpFilters\
+  \ {\n\n@Inject\n\n**public** FilterConfig(ApplicationFilter logging) {\n\n**super**(logging);\n\
+  \n}\n\n}\n\n你已经在 `config` 包中定义了这个类。因此，需要告诉 Play 应该使用哪个类来配置过滤器。这可以通过在 `application.conf`\
+  \ 文件中添加以下条目来完成：**play.http.filters**=config.FilterConfig\n\n如果你将 `FilterConfig`\
+  \ 文件保存在根文件夹中，那么 Play 会自动使用它，并且无需像上面那样在 `application.conf` 中添加条目。但是，为了便于组织和模块化，最好将类放入相应的包中，这就是将其保存在\
+  \ `config` 包而不是根文件夹的原因。请注意，自定义过滤器是通过构造函数级别的依赖注入作为参数传递给 `FilterConfig` 类的。如果你编写了更多的过滤器，你可以像传递构造函数参数一样将它们传递给\
+  \ `FilterConfig` 类。这是可行的，因为 `FilterConfig` 类继承自 `DefaultHttpFilters`，并且它有一个构造函数，该构造函数通过可变参数接收\
+  \ N 个 `Filter` 实例。\n\n就是这样。你已经创建了一个响应日志记录过滤器。让我们测试一下。打开 `http://localhost:9000/bookshop`\
+  \ 并观察控制台输出和日志（`projectroot\\logs\\application.log`）。在这两个地方，你都会看到如下条目：\n\n**[info]\
+  \ a.e.LoggingFilter - GET /bookshop took 7ms to complete** **and produced the status\
+  \ 200**\n\n如果你没有看到任何输出，请检查日志记录器设置，确保它设置为 INFO 日志级别。为此，打开 `conf/logback.xml` 文件，并确保你有以下设置：\n\
+  \n< **logger name=\"play\" level=\"INFO\"** />\n\n< **logger name=\"application\"\
+  \ level=\"DEBUG\"** />\n\n< **root level=\"INFO\"** >\n\n< **appender-ref ref=\"\
+  ASYNCFILE\"** />\n\n< **appender-ref ref=\"ASYNCSTDOUT\"** />\n\n</**root**>\n\n\
+  **动作组合**\n\n当你想要用额外的逻辑来装饰一个特定的类或某一组类时，动作组合非常有用。让我们通过一个例子来学习：**EchoAction.java**\n\
+  \n**package** config;\n\n**import** org.slf4j.Logger;\n\n**import** org.slf4j.LoggerFactory;\n\
+  \n**import** play.mvc.Http;\n\n**import** play.mvc.Result;\n\n**import** java.util.concurrent.CompletionStage;\n\
+  \n*/***\n\n* *一个动作组合的示例*\n\n* */*\n\n**public class** EchoAction **extends** play.mvc.Action.Simple\
+  \ {\n\n**private static final** Logger ***log*** = LoggerFactory. *getLogger*(EchoAction.\
+  \ **class**);\n\n**public** CompletionStage<Result> call(Http.Request req) {\n\n\
+  ***log***.info(**\"Request Method {} \"** , req.method()); **return delegate**.call(req);\n\
+  \n}\n\n}\n\n这是一个非常简单的动作，它仅仅将 HTTP 请求方法记录到日志中。这不是一个过滤器，所以默认情况下它不会被应用到方法上。需要使用此动作的方法必须通过注解显式地请求它。让我们在其中一个控制器方法中使用\
+  \ `EchoAction`。\n\n打开 `Application.java` 文件，找到 `echoService` 方法，并添加注解 `@With(EchoAction.class)`：\n\
+  \n@Inject WSClient **ws**;\n\n@With(EchoAction. **class**)\n\n**public** CompletionStage<Result>\
+  \ echoService() {\n\n**return**\n\n**ws**.url(**\"http://www.mocky.io/**\n\n**v2/5e0edec33400003c0f2d7d27\"\
+  ** )\n\n.get()\n\n.thenApply(response -> *ok*(**\"Feed Response: \"** +\n\nresponse.getBody()));\n\
+  \n}\n\n打开 `http://localhost:9000/bookshop/book/echo` 并观察控制台和日志。你将看到以下日志条目：\n\n[info]\
+  \ c.EchoAction - Request Method GET\n\n**错误处理器**\n\n如你所知，Play 是一个 HTTP 应用框架，这样的应用可能会遇到两种类型的错误：\n\
+  \n1.  客户端错误\n2.  服务器错误\n\n**客户端错误**\n\n客户端错误是由于调用者或连接的客户端犯错导致的，例如客户端没有发送 `Content-Type`\
+  \ 头、没有使用正确的 HTTP 方法、使用了无效的 URL 等。在所有这些情况下，Play 会自动检测到错误并重定向到错误页面。\n\n**服务器错误**\n\
+  \n服务器错误是由于服务器端出现问题导致的，例如资源不足、崩溃、应用程序类生成的错误（如空指针）、代码抛出其他形式的异常等。Play 通过捕获这些服务器错误并生成错误页面来智能地处理它们。\n\
+  \n在某些情况下，应用程序可能决定不按原样使用默认的错误处理机制，而是希望扩展它并提供自定义的错误处理逻辑。让我们看看如何做到这一点。\n\n**CustomErrorHandler.java**\n\
+  \n**package** config;\n\n**import** play.http.HttpErrorHandler;\n\n**import** play.mvc.*;\n\
+  \n**import** play.mvc.Http.*;\n\n**import** java.util.concurrent.CompletableFuture;\n\
+  \n**import** java.util.concurrent.CompletionStage;\n\n**import** javax.inject.Singleton;\n\
+  \n*/***\n\n* *一个简单的错误处理器*\n\n* */*\n\n@Singleton\n\n**public class** CustomErrorHandler\
+  \ **implements** HttpErrorHandler {\n\n**public** CompletionStage<Result> onClientError(\n\
+  \nRequestHeader request, **int** statusCode, String\n\nmessage) {\n\n**return**\
+  \ CompletableFuture. *completedFuture*(\n\nResults. *status*(statusCode, **\"Invalid\
+  \ Request \"** +\n\nmessage));\n\n}\n\n**public** CompletionStage<Result> onServerError(RequestHeader\
+  \ request, Throwable exception) {\n\n**return** CompletableFuture. *completedFuture*(\n\
+  \nResults. *internalServerError*(**\"Cannot process the** **request due to \"**\
+  \ + exception.getMessage()));\n\n}\n\n}\n\n现在你已经配置了一个自定义错误处理器，用于处理客户端和服务器错误的情况。让我们测试一下。\n\
+  \n打开 `http://localhost:9000/bookshop/book/echos`。这个 URL 是一个无效的 URL，属于客户端错误。这个请求将被你在\
+  \ `CustomErrorHandler` 中定义的 `onClientError` 方法拦截，你将在浏览器中看到如下响应：\n\nInvalid Request\n\
+  \n**全局设置是如何完成的**\n\n**在 Play 2.6.x 之前**\n\n全局对象允许处理应用程序的全局设置。\n\n全局对象是编写拦截逻辑的地方。诸如过滤某些请求参数、记录请求等任务可以在这里轻松完成。你也可以为未找到错误、错误页面等配置全局设置。\n\
+  \n\n\n我不会深入探讨 GlobalSettings 和 Global，因为 Play 从 2.5.0 版本起已弃用它们，现在推荐使用依赖注入。下面的示例仅用于展示在早期\
+  \ Play 版本中是如何实现的。请注意，以下代码仅适用于 Play 2.5.x 及更低版本；它不适用于 Play 2.8.x，而本书正是基于该版本编写的。这段代码仅供参考，以防您想从早期\
+  \ Play 版本迁移到最新版本，并希望了解之前的实现方式。\n\n要创建 Global 对象，只需编写一个继承自 `play.GlobalSettings`\
+  \ 的类。Global 对象通常保存在应用程序的根包中，但您也可以将其保存在任何包中，然后通过 `application.conf` 文件中的 `application.global`\
+  \ 属性进行配置：\n\n**import** play.Application;\n\n**import** play.GlobalSettings;\n\n\
+  **import** play.libs.Akka;\n\n**import** play.mvc.Http.RequestHeader;\n\n第 10 章\
+  \ 应用程序设置与错误处理 **import** play.mvc.Result;\n\n**import** play.mvc.Results;\n\n**import**\
+  \ scala.concurrent.duration.Duration;\n\n**import** akka.actor.ActorRef;\n\n**import**\
+  \ akka.actor.Props;\n\n**import** controllers.Preloader;\n\n**public class** Global\
+  \ **extends** GlobalSettings {\n\n**public** Result onError(RequestHeader request,\
+  \ Throwable t) {\n\n**return** Results. *notFound*(views.html.errorpagetemplate.\
+  \ *render*());\n\n}\n\n**public** Result onHandlerNotFound(RequestHeader request)\
+  \ {\n\n**return** Results. *notFound*(views.html.errorpagetemplate. *render*());\n\
+  \n}\n\n**public** Result onBadRequest(RequestHeader request, String error) {\n\n\
+  **return** Results. *notFound*(views.html.errorpagetemplate. *render*());\n\n}\n\
+  \n**public void** onStart(Application app) {\n\n// 初始化所有内容\n\nActorRef preloader\
+  \ = Akka. *system*().actorOf(**new**\n\nProps(Preloader. **class**));\n\n*Akka.*\
+  \ system *().scheduler().schedule(*\n\nDuration. *create*(0, TimeUnit. *MILLISECONDS*),\
+  \ // 初始延迟 0 毫秒\n\nDuration. *create*(5, TimeUnit. *MINUTES*), // 频率 30 分钟\n\npreloader,\n\
+  \n\"preload\",\n\nAkka. *system*().dispatcher()\n\n);\n\n}\n\n第 10 章 应用程序设置与错误处理\
+  \ **public void** onStop(Application app) {\n\nLogger.info(\"应用程序关闭\");\n\n}\n\n\
+  }\n\n要迁移到最新的 Play 版本，您应该编写自定义过滤器，并将逻辑包含在这些过滤器或错误处理器中。您在本章开头已经学习了这两方面的内容。\n\n**第\
+  \ 11 章**\n\n**使用缓存**\n\n缓存是确保应用程序可扩展性和响应性的最重要方面之一。一个好的缓存可以减轻数据库的负载，并能非常快速地响应用户。一个不能提供良好缓存抽象层的框架已不再适合企业级开发。Play\
+  \ 凭借其内置的缓存支持，是构建高度可扩展、响应迅速的企业级应用程序的理想框架。\n\nPlay 提供了一个全局缓存对象，它与底层的缓存实现协同工作。这种抽象使您能够更改缓存提供程序，而无需修改任何应用程序代码。默认情况下，Play\
+  \ 附带了一个使用 Caffeine 的缓存 API 实现，同时也提供了对 EhCache 2.x 的支持。对于进程内处理，Play 推荐使用 Caffeine。\n\
+  \n**配置 Caffeine**\n\nCaffeine 是一个高性能、近乎最优的缓存库，基于 Java 8。\n\n以下是 Caffeine 的重要特性概览：\n\
+  \n• 自动将条目加载到缓存中，可选择异步加载\n\n• 当超过最大容量时，基于频率和最近使用情况进行大小驱逐\n\n© Prem Kumar Karunakaran\
+  \ 2020\n\nP. K. Karunakaran, *Introducing Play Framework*,\n\n`doi.org/10.1007/978-1-4842-5645-9_11`\n\
+  \n第 11 章 使用缓存\n\n• 基于时间的条目过期，自上次访问或上次写入起计算\n\n• 当对某个条目的第一个过期请求发生时，异步刷新\n\n• 键自动包装为弱引用\n\
+  \n• 值自动包装为弱引用或软引用\n\n\n\n• 被驱逐（或以其他方式移除）的条目通知\n\n• 写入操作传播到外部资源\n\n• 缓存访问统计数据的累积\n\
+  \n你可以在以下网址了解更多关于 Caffeine 的信息：[`github.com/ben-manes/caffeine/`](https://github.com/ben-manes/caffeine/)\n\
+  \n**将 Caffeine 添加到项目中**\n\n打开 `build.sbt` 文件，并添加 Caffeine 的依赖项：*libraryDependencies*\
+  \ ++= *Seq*( *guice*, *javaJdbc*, ***cacheApi***, *javaWs*, *javaJpa*, ***caffeine***,org.hibernate\"\
+  \ % \"hibernate-entitymanager\" % \"5.3.7.Final\",com.h2database\" % \"h2\" %\n\n\
+  \"1.4.200\" )\n\n这就是将 Caffeine 用作 Play 缓存实现所需的全部操作。\n\n第 11 章 使用缓存\n\n**配置 EhCache**\n\
+  \nEhCache 已经存在很长时间，是 Java 项目中最广泛使用的缓存实现之一。它需要 Java 8 或更高版本。你可以在 [www.ehcache.org/](http://www.ehcache.org/)\
+  \ 了解 EhCache 的内部工作原理。\n\n配置 EhCache 就像在 `build.sbt` 文件中添加一个条目一样简单，就像你为 Caffeine\
+  \ 所做的那样：\n\n*libraryDependencies* ++= *Seq*( *guice*, *javaJdbc*, ***cacheApi***,\
+  \ *javaWs*, *javaJpa*, ***ehcache***,org.hibernate\" % \"hibernate-entitymanager\"\
+  \ % \"5.3.7.Final\",com.h2database\" % \"h2\" %\n\n\"1.4.200\" )\n\n**使用缓存 API**\n\
+  \n缓存 API 非常简单易用：\n\n• 存储数据：\n\n• `Cache.set(\"key\", object)`\n\n• 检索数据：\n\n• `Cache.get(\"\
+  key\")`\n\n• 移除数据：\n\n• `Cache.remove(\"key\")`\n\n你还可以通过使用带有三个参数的 `set` 方法来控制数据在缓存中保留的时间（缓存过期时间）：`Cache.set(\"\
+  key\", object, int timeinminutes)`\n\n第 11 章 使用缓存\n\n要在控制器中使用缓存 API，需要对其进行注入。按如下方式修改\
+  \ `Application.java` 文件以获取对缓存 API 的引用：**private** AsyncCacheApi **cache**;\n\n@Inject\n\
+  \n**public** Application(ActorSystem system, AsyncCacheApi cache) {\n\n**pingActor**\
+  \ = system.actorOf(PingActor. *getProps*()); **this**. **cache** = cache;\n\n}\n\
+  \n现在，你可以在控制器的任何方法中使用缓存 API 来缓存数据。例如：\n\n`CompletionStage<Done> result = cache.set(\"\
+  framework\", \"Playframework\");`\n\n// 缓存 10 分钟\n\n`CompletionStage<Done> result\
+  \ = cache.set(\"framework\", \"Playframework\", 60 ∗ 10);`\n\n无论何时使用缓存，请记住缓存随时可能过期或丢失。它不是持久化数据，因此你应该始终检查数据是否在缓存中，如果不在，则将其填充到缓存中，然后再检索。这样，即使缓存无法工作或比预期更早过期，你的程序也是安全的。在\
+  \ Play 中，如果 JVM 内存不足，底层缓存实现可以自动从缓存中移除对象。因此，请明智地编写代码并有效地使用缓存。\n\nPlay 使用一个可调用方法在数据不存在于缓存时将其加载到缓存中。\n\
+  \n这是通过向缓存 API 提供一个可调用方法来实现的，当缓存中缺少数据时，该方法会被调用来生成缓存数据。\n\n让我们修改 `Application.java`\
+  \ 文件来添加这样一个方法：**public** CompletionStage<Result> topThreeBooks() {\n\n**return**\
+  \ cache.getOrElseUpdate(\"topthree\", this::getTopBooks)\n\n第 11 章 使用缓存\n\n.thenApply((\
+  \ List<String> books) -> *ok*(books.toString()));\n\n}\n\n**private** CompletionStage<List<String>>\
+  \ getTopBooks() {\n\nList<String> topThreeBooks = new ArrayList<String>(); topThreeBooks.add(\"\
+  Book 1\");\n\ntopThreeBooks.add(\"Book 2\");\n\ntopThreeBooks.add(\"Book 3\");\n\
+  \n**return** CompletableFuture. *completedFuture*(topThreeBooks);\n\n}\n\n私有方法 `getTopBooks`\
+  \ 就是可调用方法，如果数据不在缓存中，缓存 API 会调用它。此方法计算前三本书并返回响应。公共方法 `topThreeBooks` 使用缓存 API 的 `getOrElseUpdate`\
+  \ 方法从缓存中获取数据并将其转换为 HTTP 响应。\n\n**编辑 routes.conf**\n\n`GET /bookshop/book/top controllers.Application.topThreeBooks()`\
+  \ 使用 `http://localhost:9000/bookshop/book/top` 测试该方法，你将看到响应为：\n\n`[Book 1, Book\
+  \ 2, Book 3]`\n\nPlay 还提供了缓存整个 HTTP 响应的能力。这对于缓存不随请求变化的内容非常有用。让我们创建一个新路由并缓存其响应。你将使用静态的联系我们数据（你向所有用户显示相同的内容）。打开\
+  \ `Application.java` 文件并添加 `contactus` 方法：\n\n@Cached(key=**\"contactus\"** )\n\n\
+  **public** Result contact() {\n\nl ***og***.info(**\"contact us method: processing\"\
+  ** ); **return** *ok*(**\"Apress Media, LLC\\n\"** +\n\n**\"\\n\"** +\n\n**\"One\
+  \ New York Plaza, Suite 4600\\n\"** +\n\n**\"\\n\"** +\n\n**\"New York, NY 10004-1562\"\
+  ** );\n\n}\n\n在 `routes.conf` 文件中添加路由配置：\n\n`GET /bookshop/contact controllers.Application.contact()`\
+  \ 要测试，请打开 URL `http://localhost:9000/bookshop/contact` 以观察响应。此响应已被缓存，并来自内存缓存。要测试这一点，请检查\
+  \ `application.log` 文件或控制台中的日志，你将看到条目：\n\n`[info] c.Application - contact us method:\
+  \ processing`\n\n再次访问该 URL，你将看不到日志条目，因为从第二次开始，响应是从缓存提供的，绕过了已经计算并缓存的处理逻辑。\n\n这个例子非常简单，仅用于解释要点。如果数据（如上例中的联系信息）是从数据库、Web\
+  \ 服务或其他需要一定处理量的方式检索的，那么响应缓存非常有用。在这种情况下，第一次会进行处理，但从下一次开始，你可以避免所有处理，因为响应将从缓存中提供。这能为用户生成更快的响应，并且不会浪费服务器的处理时间。\n\
+  \n第 11 章 使用缓存\n\n在许多场景下，缓存整个 HTTP 响应并不实际。例如，页面中可能有一些元素会根据用户的登录状态而变化。这种情况也可以通过仅缓存部分数据来轻松处理。你应该为此设计你的内容。考虑一个包含\
+  \ 75% 静态内容和 25% 动态内容的主页。在这种情况下，将静态和动态部分拆分为独立的对象，并缓存静态对象。但在这种场景下，你只能缓存对象，而不能缓存生成的静态\
+  \ HTML。也就是说，你不能从缓存中获取部分 HTML 响应并将其与动态 HTML 响应混合。在这种情况下，你必须在对象或数据级别进行缓存，而不是在 HTTP\
+  \ 响应级别。对于不随每个请求或用户变化的纯静态内容，请使用 HTTP 响应缓存，如上文 `contact` 方法所述。你还学习了对象缓存，如上文 **topThreeBooks**\
+  \ 示例所述。\n\n默认的 Caffeine 实现在大多数情况下已经足够好，并且具有高度可扩展性。但如果你需要使用像 memcached 这样的分布式缓存框架，Play\
+  \ 提供了通过其缓存 API 接入 memcached 的钩子。对于 memcached，Play 默认提供了一个实现，但依赖于第三方插件。要将 memcached\
+  \ 与 Play 一起使用，请使用 [`github.com/mumoshu/play2-memcached`](https://github.com/mumoshu/play2-memcached)\
+  \ 上提供的插件。我不会在本书中详细介绍 memcached 的实现，因为第三方插件的文档尚未针对 Play 2.7 及以上版本进行更新。\n\n**第 12\
+  \ 章**\n\n**生产部署**\n\n部署 Play 的一种更简单的方法是使用命令 `play run`。为此，你需要将整个 Play 项目复制到生产机器上，然后在项目内执行\
+  \ `play run`。这不是生产部署的好方法，因为你不想移动源文件，而只需要将可执行文件（以 jar 文件的形式）推送到生产环境。\n\n\n\n要实现这一点，你可以在构建环境中使用\
+  \ `play dist` 命令来生成 Play 可执行 JAR 文件。一旦 `dist` 命令成功执行，它会创建一个 `dist` 目录，JAR 文件将放置在该目录中。\n\
+  \n只需将 JAR 文件复制并解压到生产环境中，你就会看到一个 `start` 文件。通过为其分配所需的执行权限（Unix/Linux 环境）使该文件可执行，然后运行它。\n\
+  \n你可以编辑 `start` 文件，并向其传递额外的参数，例如 `-Xms`、`-Xmx` 等，以配置 JVM 内存参数。如果需要更改 Play 应用程序的默认监听端口，你可以向启动脚本传递\
+  \ `-Dhttp.port=port`。\n\n你可以直接运行 Play，无需任何其他 Web 服务器。\n\n但这并非理想的生产部署方案。你可能需要在 Play\
+  \ 服务器前放置一个 Web 服务器（如 Apache HTTP 服务器或 Nginx），以处理各种生产配置和访问需求。你可能希望配置 Apache 来处理 SSL\
+  \ 请求，并将 SSL 负载从 Play 上卸载，或者你只是不想将 Play 服务器暴露在互联网上。原因有很多。接下来，我们看看如何将 Apache httpd\
+  \ 用作 Play 应用程序的代理。\n\n© Prem Kumar Karunakaran 2020\n\nP. K. Karunakaran, *Introducing\
+  \ Play Framework*,\n\n`doi.org/10.1007/978-1-4842-5645-9_12`\n\n第 12 章 生产部署\n\n\
+  **为 Play 配置 Apache httpd**\n\n假设你已经安装了 Apache 并且它正在运行。请确保已启用以下模块：`mod_ssl`、`mod_headers`、`mod_proxy`、`mod_proxy_http`\
+  \ 和 `mod_proxy_balancer`。\n\n以下是一个简单的 Apache 配置，用于将外部端口 80 重定向到 Play 应用程序的内部 IP\
+  \ 和端口 9000：\n\n<VirtualHost ∗:80>\n\nProxyPreserveHost on\n\nProxyPass / http://192.168.1.4:9000/\n\
+  \nProxyPassReverse / http://192.168.1.4:9000/\n\n</VirtualHost>\n\n上述配置会将发往端口 80\
+  \ 的请求路由到运行在端口 9000 上的 Play 应用程序。\n\n**使用 mod_proxy_balancer 进行负载均衡**\n\n生产部署通常会有多个服务器实例，以满足负载均衡和高可用性需求。你可以启动多个\
+  \ Play 实例，并使用 Apache 来执行负载均衡。你需要 `mod_proxy_balancer` 模块来实现这一点：\n\n<Proxy balancer://prodcluster>\n\
+  \nBalancerMember http://192.168.1.4:9000\n\nBalancerMember http://192.168.1.5:9000\n\
+  \n</Proxy>\n\n<VirtualHost ∗:80>\n\nProxyPreserveHost on\n\nProxyPass / balancer://prodcluster/\n\
+  \nProxyPassReverse / balancer://prodcluster/\n\n</VirtualHost>\n\n第 12 章 生产部署\n\n\
+  **使用 Nginx 配置 Play**\n\nNginx（发音为 engine-x）是一款免费、开源、高性能的 HTTP 服务器和反向代理服务器，同时也是 IMAP/POP3\
+  \ 代理服务器。\n\n与传统服务器不同，Nginx 不依赖线程来处理请求。相反，它采用更具可扩展性的事件驱动（异步）架构。这种架构在负载下使用少量但更重要的是可预测的内存。\n\
+  \nNginx 应该已经安装并正在运行。在任何基于 Debian 的发行版上执行以下命令，即可在服务器上安装 Nginx：\n\napt-get install\
+  \ nginx\n\n你需要编辑的文件是 `nginx.conf`。编辑 `/etc/nginx/nginx.conf` 文件，并配置其与 Play 一起使用。以下是一个供你参考的示例配置：\n\
+  \nhttp {\n\nproxy_buffering off;\n\nproxy_set_header X-Real-IP $remote_addr;\n\n\
+  proxy_set_header X-Scheme $scheme;\n\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\
+  \ proxy_set_header Host $http_host;\n\nupstream my-backend {\n\nserver 127.0.0.1:9000;\n\
+  \n}\n\nserver {\n\nserver_name www.yourserverdomainname.com;\n\n}\n\nserver {\n\n\
+  keepalive_timeout 70;\n\n第 12 章 生产部署\n\nserver_name www.yourserverdomainname.com;\n\
+  \nlocation / {\n\nproxy_pass http://my-backend;\n\n}\n\n}\n\n}\n\n**注意** 将 `yourserverdomainname`\
+  \ 替换为你网站的域名。\n\n保存文件后，你需要重启 Nginx：\n\nsudo /etc/init.d/nginx restart\n\n**索引**\n\
+  \n**A**\n\n**C**\n\nAction composition, 164, 168–169\n\n\n\n缓存对象, 175\n\n应用级配置,\n\
+  \nAPI\n\n53, 54\n\nApplication.java 文件, 178\n\n异步编程\n\n可调用方法, 178\n\nAkka, 84–86\n\
+  \ncontactus 方法, 180\n\n应用程序, 83, 84\n\ngetTopBooks, 179\n\nCompletionStage, 83\n\
+  \nHTTP 和 HTML\n\n配置, 84\n\n响应, 181\n\ngetGifts 方法, 84\n\n使用, 177\n\nPlay Framework\n\
+  \nCaffeine\n\n文档, 85\n\nbuild.sbt 文件, 176\n\n同步处理, 82\n\n特性, 175, 176\n\nEhCache,\
+  \ 177\n\n**B**\n\n级联删除关系, 112\n\n复合视图, 66\n\n双向\n\n并发编程,\n\n关系, 112, 113, 130\n\n\
+  *参见* 异步\n\nBookshop 项目\n\n编程\n\napp 文件夹, 9, 10\n\n可调用接口, 80–82\n\nbuild.sbt 文件,\
+  \ 11\n\n类, 75\n\n配置 (conf) 文件, 10\n\njava.util.concurrent\n\n文件夹结构, 9\n\n包, 77\n\
+  \nlib 文件夹, 11\n\n可运行, 78, 79\n\nproject 文件夹, 11\n\n区别 (Runnable 和\n\n项目创建, 8\n\n\
+  Callable), 77\n\npublic 文件夹, 11\n\n线程, 76\n\n单元测试和功能测试, 12\n\n执行器框架, 76, 77\n\n\
+  © Prem Kumar Karunakaran 2020\n\nP. K. Karunakaran, *Introducing Play Framework*,\n\
+  \n[`doi.org/10.1007/978-1-4842-5645-9`](https://doi.org/10.1007/978-1-4842-5645-9)\n\
+  \n索引\n\n控制器\n\nReview.java, 151\n\nbookshop 应用\n\nReviewRepository.java, 156\n\n\
+  Application.java, 56\n\nping 方法, 138\n\n路由器, 56\n\n路由, 134, 135\n\nsaveComment\n\
+  \n线程池, 134\n\n方法, 58, 59\n\n数据库资源\n\n测试, 59, 60\n\nActorSystem 代码, 108\n\nJPA 配置,\
+  \ 61\n\napplication.conf 文件, 105\n\n模型/辅助类, 60\n\nbuild.sbt 文件, 105\n\n作用域对象\n\n\
+  CustomExectutionContext\n\napplication.conf 文件, 62\n\n方法, 106, 107\n\nflash 作用域,\
+  \ 64\n\nEbean ( *参见* Ebean 模型)\n\n消息/错误\n\nJava 持久化 API (JPA),\n\n消息, 64\n\n113–118\n\
+  \nsession 作用域, 62, 63\n\nMySQL 数据库, 106\n\n存储和访问\n\nORM ( *参见* 对象关系\n\n类, 61\n\n\
+  映射 (ORM))\n\n依赖注入, 85, 86, 157,\n\n**D**\n\n\n\n163, 167, 173\n\n数据库连接\n\nApplication.java,\
+  \ 136–146\n\n**E**\n\nconf/application.conf, 133, 134\n\nEbean 模型\n\ndao\n\n注解,\
+  \ 123\n\nDatabaseExecutionContext.\n\nEntityManager, 118\n\njava, 153\n\neq(), 125\n\
+  \nJPARepository.java, 154\n\nfindList(), 126\n\nHTTP 响应, 138\n\nfindUnique(), 126\n\
+  \n模型\n\n接口, 126–128\n\nBook.java, 146–148\n\nio.ebean.Model, 120\n\nComment.java,\
+  \ 148, 149\n\nlike(), 125\n\nCustomer.java, 149\n\nLIMIT {max rows}  OFFSET\n\n\
+  GiftVO.java, [149\n\n{first row} ], 126\n\nMessage.java, 151\n\noptimization, 119\n\
+  \n索引\n\norderBy(), 125\n\nconf/logback.xml 文件, 168\n\n持久化上下文, 118\n\nechoService\
+  \ 方法, 169\n\n插件依赖 y, 120\n\n实现, 164, 165\n\n查询, 120–124\n\n包配置, 167\n\nRawSql, 128–130\n\
+  \n参数, 166\n\n关系, 130, 131\n\nsave 方法 d, 124\n\n**H**\n\nwhere() 子句, 125\n\nEclipse,\
+  \ 12–14\n\nHello World 应用\n\nEhCache, 175, 177\n\n配置, 19–22\n\n错误处理器\n\n控制台, 18\n\
+  \napplication.global 属性, 172\n\n控制器\n\n客户端错误, 170\n\napp/controllers 文件夹, 22\n\n\
+  全局对象, 172–174\n\n编辑过程, 24–26\n\n服务器, 170–172\n\nHello 页面, 25\n\n类型, 170\n\nhello.scala.html\
+  \ 文件, 26, 27\n\nExecutorService, 76–79\n\nHomeController.java 文件, 22,\n\n可扩展标记语言\n\
+  \n23\n\n(XML)\n\n默认应用程序, 17\n\n处理 JSON, 98\n\nmain.scala.html, 21\n\nJAXB, 100–104\n\
+  \nroutes 文件, 19\n\nMessage.java 文件, 100\n\nTwirl 模板, 19\n\n解析, 99, 100\n\n视图文件夹,\
+  \ 24\n\ntext/plain 响应, 99\n\n欢迎页面, 18\n\nHTTP 路由基础\n\n配置, 48–50\n\n**F, G**\n\n\
+  conf/routes 文件, 49\n\n过滤器\n\n动态部分 (URL), 51–53](#index_split_000.html#p63)\n\n动作组合,\
+  \ 164,\n\n168–170\n\n参数, 53\n\n传递固定值, 52\n\napplication.conf 文件, 167\n\n协议, 49\n\
+  \nApplicationFilter 类, 166\n\n静态定义, 50](#index_split_000.html#p62)\n\n索引\n\n**I**\n\
+  \n\n\n模型，46， 47\n\n视图，48\n\n集成开发\n\n模块\n\n环境（IDE），12–17，\n\napplication.conf 文件，160\n\
+  \n28， 39， 43\n\n创建，158\n\nIntellij\n\n依赖项，157\n\n导入项目，15\n\n阶乘接口，158\n\nScala 插件，15\n\
+  \nFirstModule 方法，159\n\n步骤，16\n\n接口，158\n\n发布，160， 161\n\n**J, K, L**\n\n第三方，161\n\
+  \nJava 持久化 API (JPA)\n\napplication.conf 文件，113\n\n**O**\n\nbuild.sbt，113\n\n实体管理器，114\n\
+  \n对象关系映射 (ORM)\n\n实现，113\n\n优势，110\n\nJDBC 操作，115\n\n方法，109\n\nJPAReviewRepository.java，117，\n\
+  \n双向\n\n118\n\n关系，112， 113\n\n审查操作，116\n\n概念，109， 110\n\nJavaScript 对象表示法 (JSON)\n\
+  \n实体，111\n\nacknowledgeGreeting 方法，97\n\n多对多，111\n\n请求对象，94–96\n\n多对一，111\n\n响应，97，\
+  \ 98\n\n一对多，111\n\n场景，94\n\n单向关系，\n\n测试，96， 98\n\n111， 112\n\n**M, N**\n\n**P, Q,\
+  \ R**\n\n模型-视图-控制器 (MVC)\n\nPlay 框架\n\n架构，46\n\n书店（*参见* 书店\n\n控制器，48\n\n项目）\n\n\
+  停用方法，47\n\nconscript 安装，2\n\n设计模式，45， 46\n\nGiter8，3\n\n索引\n\nHello World（*参见* Hello\
+  \ World\n\n**S**\n\n应用程序）\n\nsaveComment 方法\n\nIDE（*参见* 集成开发\n\ncurl 命令，60\n\n环境\
+  \ (IDE)）\n\nDynamicForm 类，58， 59\n\n安装，1\n\n测试，59， 60\n\nJava 项目，5， 6\n\nScala 构建工具/简单构建工具\n\
+  \nJDK 版本 1.8，2\n\n(sbt)，2\n\nplay 设置，4\n\n优势，34\n\nsbt (Scala 构建工具)\n\nbuild.sbt\
+  \ 文件，36， 42， 43\n\nJava 项目结构，7\n\n内置工具，33\n\n项目创建，6， 7\n\n命令，37， 43\n\nScala 和 Java\n\
+  \n核心原则，33\n\n安装，7\n\n定义，39–42\n\n网站详情，2\n\n文件夹结构和文件，38\n\nScala 方法，4， 5\n\nhelloworldsbt\
+  \ 项目，36–39\n\n测试\n\nMaven 中央仓库，41\n\nhello.scala.html 视图，28， 29\n\nplugin.sbt，43\n\
+  \nHomeControllerTest.java，\n\n项目结构，35， 36\n\n29–31\n\n解析器，42\n\ntestOnly，31\n\n\
+  根文件夹，38\n\n视图和控制器\n\n类，27\n\nWeb 开发 (Java)，1\n\n**T**\n\n生产部署\n\n模板引擎，65\n\nApache\
+  \ 安装，184\n\n注释，69\n\njar 文件，183\n\n内容设计，68\n\n负载均衡，184\n\n动态内容，74\n\nmod_proxy_balancer\n\
+  \ngetTitle 和 getPicture\n\n模块，184\n\n方法，72\n\nNginx，185， 186\n\nHTML 代码，68\n\n索引\n\
+  \n模板引擎（*续*）\n\n**V**\n\nif 块，73\n\n视图，*参见* 复合视图\n\nimport 语句，71\n\n列表迭代，72\n\n映射迭代，73，\
+  \ 74\n\n**W, X, Y, Z**\n\n参数，70\n\nScala 模板语言，66\n\nWeb 服务，87\n\nTwirl，69\n\nApplication.java，88–92\n\
+  \n第三方模块，161\n\n后端服务，88\n\nTwirl，19， 20， 65， 69\n\nCompletableFuture，88\n\ngetBodyAsSource，91\n\
+  \n**U**\n\nprocessLargeResponse，92–95\n\n响应，91\n\n单向关系，111， 112\n\nxml 方法，89\n\n"
+- "# 文档大纲\n\n\n\n*   目录\n*   关于作者\n*   关于技术审校\n*   前言\n*   第 1 章：Play 2 入门\n    *\
+  \   准备工作\n    *   安装\n        *   前提条件\n        *   安装 sbt\n        *   安装 conscript\n\
+  \        *   安装 Giter8\n        *   设置 Play\n        *   使用 Play 示例项目\n        *\
+  \   使用 sbt\n            *   使用 sbt 安装 Java 项目\n            *   使用 sbt 安装 Scala 项目\n\
+  \    *   创建你的第一个项目\n        *   app\n        *   conf\n        *   build.sbt\n \
+  \       *   project\n        *   public\n        *   lib\n        *   test\n   \
+  \ *   配置 Play 以适配你偏好的 IDE\n        *   在 Eclipse 中设置\n        *   在 IntelliJ 中设置\n\
+  \    *   Hello World 应用\n        *   配置\n        *   控制器与视图\n            *   视图\n\
+  \            *   控制器\n            *   增强视图\n    *   测试 Play 应用\n        *   测试视图\n\
+  \        *   测试控制器\n*   第 2 章：构建系统\n    *   Scala 构建工具/简单构建工具\n    *   核心原则\n  \
+  \  *   sbt 的优势\n    *   项目结构\n    *   使用 sbt\n        *   设置定义\n        *   解析器\n\
+  \        *   完整的 build.sbt\n        *   完整的 plugins.sbt\n    *   SBT 命令快速回顾\n* \
+  \  第 3 章：Play 控制器与 HTTP 路由\n    *   MVC 编程模型\n        *   模型\n        *   视图\n \
+  \       *   控制器\n    *   HTTP 路由\n        *   静态定义\n        *   URL 中的动态部分\n   \
+  \     *   传递固定值\n        *   可选参数\n    *   使用 application.conf 进行应用配置\n    *   控制器\n\
+  \    *   完成 Bookshop 控制器\n        *   saveComment 方法\n        *   测试 saveComment\
+  \ 动作\n    *   模型\n    *   作用域对象\n        *   会话作用域\n        *   Flash 作用域\n*   第\
+  \ 4 章：Play 视图与 Scala 模板\n    *   复合视图\n    *   设计通用模板\n    *   代码片段模板基础\n      \
+  \  *   注释\n        *   模板参数\n        *   导入语句\n        *   遍历列表\n        *   遍历映射\n\
+  \        *   If 块\n        *   转义动态内容\n*   第 5 章：并发与异步编程\n    *   什么是并发？\n     \
+  \   *   执行器\n        *   示例 1：使用 Runnable\n        *   示例 2：使用 Callable\n    * \
+  \  使用 Play 进行异步编程\n    *   编写异步应用\n    *   配置异步定时任务\n        *   Akka 基础\n*   第\
+  \ 6 章：Web 服务、JSON 与 XML\n    *   消费 Web 服务\n    *   处理大型响应\n    *   处理 JSON\n  \
+  \      *   消费 JSON 请求\n        *   生成 JSON 响应\n    *   处理 XML\n        *   示例 1：简单\
+  \ XML 解析\n        *   示例 2：使用 JAXB 进行 XML 解析\n*   第 7 章：访问数据库\n    *   配置数据库支持\n\
+  \    *   使用 ORM\n        *   ORM 概念\n        *   关键术语\n            *   一对多\n   \
+  \         *   多对一\n            *   多对多\n        *   关系方向\n    *   配置 JPA\n    *\
+  \   在 Play 中使用 Ebean\n        *   Ebean 查询\n        *   Ebean 中常用的 Select 查询结构\n\
+  \            *   where()\n            *   eq()\n            *   like()\n       \
+  \     *   orderBy()\n            *   findUnique()\n            *   findList()\n\
+  \            *   [LIMIT {最大行数} [ OFFSET {起始行} ]](#index_split_001.html#p138)\n \
+  \           *   查询接口\n        *   使用 RawSql\n        *   Ebean 中的关系\n*   第 8 章：完整示例\n\
+  *   第 9 章：使用 Play 模块\n    *   创建模块\n    *   第三方模块\n*   第 10 章：应用设置与错误处理\n    * \
+  \  过滤器\n    *   动作组合\n    *   错误处理器\n        *   客户端错误\n        *   服务器错误\n    *\
+  \   Play 2.6.x 之前的全局设置方式\n*   第 11 章：使用缓存\n    *   配置 Caffeine\n        *   将 Caffeine\
+  \ 添加到项目\n    *   配置 EhCache\n    *   使用缓存 API\n*   第 12 章：生产环境部署\n    *   为 Play\
+  \ 配置 Apache httpd\n    *   使用 mod_proxy_balancer 进行负载均衡\n    *   使用 Nginx 配置 Play\n\
+  *   索引\n"

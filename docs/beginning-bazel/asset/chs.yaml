@@ -1,0 +1,5823 @@
+- '
+
+
+
+  ![](img/978-1-4842-5194-2_CoverFigure.jpg)
+
+
+  ISBN 978-1-4842-5193-5e-ISBN 978-1-4842-5194-2 [`doi.org/10.1007/978-1-4842-5194-2`](https://doi.org/10.1007/978-1-4842-5194-2)
+  © P.J. McNerney 2020 本作品受版权保护。无论涉及全部还是部分内容，所有权利均由出版商保留，具体包括翻译、重印、插图再利用、朗诵、广播、以缩微胶片或任何其他实体方式复制、传输或信息存储与检索、电子改编、计算机软件，以及目前已知或未来开发的类似或非类似方法等权利。本书中可能出现注册商标名称、标识和图像。我们并未在每次出现注册商标名称、标识或图像时都使用商标符号，而仅以编辑性方式使用这些名称、标识和图像，并以有利于商标所有人的方式呈现，无意侵犯商标权。即使本出版物中使用的商品名、商标、服务标志及类似术语未被明确标识，也不应被视为对其是否受专有权保护的意见表达。尽管本书中的建议和信息在出版时被认为真实且准确，但作者、编辑及出版商均不对可能存在的错误或遗漏承担任何法律责任。出版商对本文所载材料不作任何明示或暗示的保证。由
+  Springer Science+Business Media New York 向全球图书贸易发行，地址：233 Spring Street, 6th Floor,
+  New York, NY 10013。电话 1-800-SPRINGER，传真 (201) 348-4505，电子邮件 orders-ny@springer-sbm.com，或访问
+  www.springeronline.com。Apress Media, LLC 是一家加利福尼亚州有限责任公司，其唯一成员（所有者）为 Springer Science
+  + Business Media Finance Inc（SSBM Finance Inc）。SSBM Finance Inc 是一家特拉华州公司。
+
+
+  ### 关于作者与技术审阅者
+
+
+  ### 关于作者
+
+
+  ### 关于技术审阅者
+
+
+  '
+- '# 1. 引言
+
+
+  欢迎来到 Bazel 的世界！
+
+
+  如果你还没听说过，Bazel 是 Google（Alphabet）所使用构建系统的开源版本。为了让你感受其规模，Bazel 被设计用于解决 Google 构建中的一些核心问题：需要在多种语言之间高效且正确地构建真正意义上的*数百万*行代码，并面向多个平台（例如服务器、移动端、桌面端）以及不同的硬件架构。
+
+
+  尽管该构建系统最初仅在 Google 内部使用，但它在几年前已开源。自那以后，它持续演进，成为一个面向生产级需求的高性能、强大且简洁的构建系统。
+
+
+  ## 本书是什么
+
+
+  *Beginning Bazel* 旨在作为一本温和且实用的 Bazel 构建系统入门书。随着阅读推进，你将通过一系列有针对性的示例学习 Bazel 的基础知识。
+
+
+  这些示例旨在教授 Bazel 的核心概念与构造，包括如何设置一些基础构建目标、构建并完善工作区以引入新的语言规则，以及如何在同一项目中跨多种语言轻松构建命令行应用和移动应用。
+
+
+  在本书过程中，你将用多种语言构建示例，将它们以连贯方式整合，并生成可在服务器和移动端运行的二进制文件（示例同时涵盖 Android 与 iOS）。
+
+
+  ## 本书不是什么
+
+
+  *Beginning Bazel* 并不是一本全面的参考手册。虽然你会学习 Bazel 的一些核心命令，但 Bazel 还有*很多*选项和路径并未在本书中覆盖（也许未来的续作会探索其中一些领域）。幸运的是，Bazel
+  的文档非常出色：[`https://docs.bazel.build`](https://docs.bazel.build)。这里包含了 Bazel 最新、最前沿发展的信息。
+
+
+  另外，虽然 Bazel 能够构建大多数语言，本书只涵盖了其中很小的一部分。好在你将在本书中学习到的模式适用于你很可能在 Bazel 中遇到并使用的大多数语言。
+
+
+  新的语言规则不断涌现，因此值得查看其主要 GitHub 组织：[`https://github.com/bazelbuild`](https://github.com/bazelbuild)。此外，Awesome
+  Bazel（[`www.awesomebazel.com`](http://www.awesomebazel.com)）是一个很棒的网站，精选整理了 Bazel
+  规则，非常值得一看，以发现该语言的一些有趣新可能性。
+
+
+  ## Bazel 的特性
+
+
+  Bazel 的一个主要目标是确保你的构建具有 hermetic（封闭可复现）特性，也就是说，构建依赖（包括依赖库和构建工具）是明确已知的，并且独立于任何特定机器上“可能安装也可能未安装”的环境。理想情况下，任何构建都可以仅使用给定项目工作区内的工具来复现。
+
+
+  为此，Bazel 特别注重确保你显式指定所有依赖，并避免在构建过程中依赖任何“魔法”。有些人可能会反对，认为这减少了一定的便利性。然而实际上，这种显式规范让 Bazel
+  和用户都能更智能地推理构建过程，并提供工具在问题出现时帮助诊断和修复。
+
+
+  Bazel 具备许多使其成为有吸引力构建系统的特性：
+
+
+  *   高层级、可扩展的构建语言
+
+
+  *   显式依赖管理
+
+
+  *   高级可见性规则
+
+
+  *   显式工作区管理
+
+
+  *   远程构建执行与缓存
+
+
+  *   构建依赖分析
+
+
+  *   快速、正确的构建
+
+
+  ### 高层级构建语言
+
+
+  Bazel 提供了一组非常简单但强大的构造。包括（但不限于）：
+
+
+  *   命令（例如 *build* 和 *test*）
+
+
+  *   规则（例如用于处理不同语言）
+
+
+  *   包（用于将一组规则和依赖归集在一起）
+
+
+  *   工作区（用于定义项目的工作文件、输出和依赖）
+
+
+  此外，Starlark（原名 Skylark）是 Bazel 的构建语言（受 Python 启发）。Starlark 还可以进一步扩展 Bazel，以创建新的语言规则、辅助开发的宏等。
+
+
+  ### 显式依赖管理
+
+
+  如前所述，Bazel 要求显式声明依赖。在 Bazel 中不存在所谓的“免费午餐”，因为它偏好显式而非任何隐式“魔法”（例如 C++ 中头文件的位置）。创建构建目标（例如一个库）时，你必须指定每个文件（或某种汇总所有文件的指令）；如果你没有指定它，Bazel
+  就看不到它。
+
+
+  此外，当你依赖其他目标（例如另一个库）时，该依赖也必须显式定义；否则构建很可能失败。极限情况下，从一个目标到另一个目标的这种显式依赖声明会形成一张有向依赖图。
+
+
+  最后，Bazel 中的有向依赖图始终且必须是*有向无环图*。也就是说，Bazel 依赖图中不允许存在环。在尝试创建连贯构建时，这一点非常重要，因为构建树中的环意味着需要某种启发式方法来打破环（或者让环打断构建）。如果你尝试在依赖图中创建环并据此构建，Bazel
+  会立即中断构建并向你报告该错误。
+
+
+
+
+  ### 高级可见性特性
+
+
+  Bazel 最优秀的特性之一是能够限制你的包和目标的可见性。也就是说，你可以有效地缩小哪些包实际上可以依赖你的构建目标的范围。虽然在 Java（即包可见性）和
+  C++（即命名空间）等语言中也有类似特性，但 Bazel 提供了将依赖可见性约束到任意语言的能力。
+
+
+  ### 显式工作区管理
+
+
+  与依赖图管理类似，Bazel 还让你能够完整地指定你的工作区对任何其他依赖（包括外部仓库）的依赖关系。这使你能够从其他来源引入代码、文件等内容，通常是通过外部依赖的特定版本来完成。这有助于在保持灵活性的同时提供正确性保障。
+
+
+  ### 远程构建执行与缓存
+
+
+  尽管 Bazel 默认在本地执行，但 Bazel 也允许你搭建带有智能缓存的分布式构建系统。这项能力对于加速单次构建非常有用，同时也有助于提升整个团队的开发速度。
+
+
+  ### 构建依赖分析
+
+
+  另一个强大的特性是能够分析某个构建目标的依赖。对于任何曾尝试剖析构建产物并问过“*那东西*怎么会在里面？”的人来说，Bazel 理解构建目标依赖图的能力会是一个非常受欢迎的工具。这对于简化依赖、优化等工作极其有用。
+
+
+  ### 快速且正确的构建（以及测试）
+
+
+  虽然其他特性各自都很出色，但它们组合在一起，帮助 Bazel 提供了最重要的特性：高效且可靠的构建（以及因此而来的测试）。归根结底，构建系统的目的就是以快速且正确的方式将代码和数据转换为可运行的应用程序。
+
+
+  Bazel 利用其众多特性，形成了一种连贯且优化的产品构建方法。此外，它还具备智能缓存系统，以确保重复构建（因为开发工作大多都与重复构建有关）快速且正确，并且几乎不需要清理操作。
+
+
+  说到底，Bazel 最好的特性是它运行快速、简单且正确。你可以搭建一个简单的 Bazel 项目，执行它，然后随着时间推移轻松扩展它。
+
+
+  ## 本书适合谁（以及可能不适合谁）
+
+
+  *Beginning Bazel* 旨在向所有人介绍 Bazel。不过，你能从 Bazel 中获得多大效用，在很大程度上取决于你要解决的问题类型。
+
+
+  正如本章开头所指出的，Bazel 最初是为了解决在多语言、多平台和多架构场景下，高效且正确地构建超大规模代码库的问题。不过，Bazel 也有很好的扩展性，从最简单的应用到完整栈的微服务与移动应用组合都能胜任。
+
+
+  确实，在以下情况下，Bazel 可能最有用，如果你……
+
+
+  *   ……从零开始，并希望构建系统能够随着你的需求扩展
+
+
+  *   ……希望以连贯方式构建并依赖多种语言
+
+
+  *   ……希望开箱即用地支持测试定义与运行
+
+
+  *   ……希望轻松面向多种架构构建
+
+
+  *   ……希望对构建产物进行智能缓存
+
+
+  *   ……希望每次构建都得到确定性输出
+
+
+  *   ……希望使用生产级构建系统
+
+
+  *   ……愿意在 Bazel 的边界内运作
+
+
+  最后这一点看起来可能有点奇怪；不过，Bazel 是一个有明确主张的构建系统。为了确保速度与正确性的保证，它会主动阻止你做一些适得其反的事情（例如循环构建依赖）。此外，当
+  Bazel 作为主要构建系统时表现最佳。虽然它*可以*与其他构建系统协同工作（尽管这超出了本书范围），但如果你在项目中尽可能全面地使用 Bazel，就能最大化其能力与价值。
+
+
+  为此，值得指出的是，Bazel 可能并不适合所有人。特别是在以下情形下，你*可能*不会从 Bazel 中获得太多价值：
+
+
+  *   你只处理单一语言（例如 Java、Kotlin）且用于特定目的（例如服务端编程、Android）。这种情况下，你可能会发现现有工具（例如 Gradle）已经足够满足需求。
+
+
+  *   你只有一个小型项目，只关注单一架构，并且对额外库的需求有限（例如 iOS 开发）。同样地，你可能会发现现有工具（例如 Xcode project）已经足够。
+
+
+  *   你已经对现有构建系统感到满意。
+
+
+  关于最后一点，你可能已经拥有一个非常好的构建系统，在这种情况下，Bazel 可能只是一个值得了解的新奇事物。
+
+
+  另外，你也可能已经是 Bazel 专家；在这种情况下，这本书可能无法为你提供太多价值（那你也许可以把它送给朋友，分享你对 Bazel 的热爱）。
+
+
+  不过，对于其他所有人来说，你可能刚刚找到了最适合自己需求的构建系统。
+
+
+  '
+- '# 2. 设置与安装
+
+
+  在我们开始构建之前，需要安装 Bazel 以及其他所需工具和框架（例如编译器）。在本章中，我们将演示在多种操作系统上的必要步骤。
+
+
+  ### 注意
+
+
+  在本书中，我们将使用 Bazel 1.0.0 版本。Bazel 发展非常迅速，新的能力和配置不断出现。在这一演进过程中，依赖关系可能发生变化，从而需要对构建代码进行调整。为了保证这里示例的一致性，建议你统一使用
+  1.0.0 版本。等你熟悉 Bazel 后，可以升级到更新版本，并按需调整示例。
+
+
+  我们将介绍以下操作系统的安装说明：Windows、MacOS 和 Ubuntu Linux。更多安装说明可在 [`https://docs.bazel.build/versions/master/install.html`](https://docs.bazel.build/versions/master/install.html)
+  找到。
+
+
+  由于我们聚焦于 Bazel 1.0.0 版本，可以在 [`https://github.com/bazelbuild/bazel/releases/`](https://github.com/bazelbuild/bazel/releases/)
+  找到我们所有平台所需的安装二进制文件。
+
+
+  对于所有操作系统，我们都需要一些基础工具来引导安装 Bazel。这些包括用于构建和运行 Python、Java 和 C++ 的工具与框架。虽然在本书中我们*不会*显式构建任何
+  C++ 项目，但我们会依赖一些确实会构建 C++ 的项目（例如 Protocol Buffers）。
+
+
+  ### 注意
+
+
+  就 Bazel 而言，Java、Python 和 C++ 是“特殊”的，因为它们基本构成了 Bazel 开箱即用的*内置*语言。也就是说，使用这些语言构建库和二进制文件的规则本身就是
+  Bazel 的一部分。
+
+
+  在本书过程中我们还会构建的其他语言包括 Go 和 Swift；不过，我们不需要显式下载它们的工具。相反，我们将看到，通过依赖外部项目并注册合适的工具链，我们可以“免费”获得构建这些语言所需的组件。后续章节会进一步介绍这部分内容。
+
+
+  ## MacOS
+
+
+
+
+  ### 安装 Xcode
+
+
+  在 MacOS 上安装时，我们首先需要安装 Xcode 来执行基础构建操作。获取 Xcode 最简单的方式是在 MacOS 上打开 App Store 应用并下载该应用。
+
+
+  ![../images/481224_1_En_2_Chapter/481224_1_En_2_Fig1_HTML.jpg](img/481224_1_En_2_Fig1_HTML.jpg)
+
+
+  图 2-1
+
+
+  从 App Store 获取 Xcode
+
+
+  下载完应用后，你需要打开该应用并接受许可协议。
+
+
+  另外，你也可以通过命令行接受许可协议。为此，请打开终端窗口并执行以下命令：
+
+
+  ```
+
+  ~$ sudo xcodebuild -license accept
+
+  ```
+
+
+  ### 安装 Bazel
+
+
+  在你完成 Xcode 设置后，就可以在你的机器上安装 Bazel 了。请下载 1.0.0 版本的 Bazel 二进制安装程序。可在[`https://github.com/bazelbuild/bazel/releases/download/1.0.0/bazel-1.0.0-installer-darwin-x86_64.sh`](https://github.com/bazelbuild/bazel/releases/download/1.0.0/bazel-1.0.0-installer-darwin-x86_64.sh)找到。
+
+
+  下载完成后，进入你下载该安装脚本的目录（例如 Downloads）。作为预防措施，你可能需要先通过更改文件权限来确保安装脚本可执行。完成后，即可运行安装。
+
+
+  ```
+
+  ~$ cd Downloads
+
+  ~/Downloads$ chmod +x bazel-1.0.0-installer-darwin-x86_64.sh
+
+  ~/Downloads$ ./bazel-1.0.0-installer-darwin-x86_64.sh –user
+
+  ```
+
+
+  *–-user* 标志会将 Bazel 安装到 ~/bin（即你用户的 *bin* 目录）。为了确保你可以运行 Bazel，请确认 ~/bin 在你的默认路径中。将以下内容添加到你的
+  ~/.zshrc（如果你使用的是早于 Catalina 的 MacOs 版本，则为 .bashrc）文件中。
+
+
+  ```
+
+  export PATH="$PATH:$HOME/bin"
+
+  ```
+
+
+  添加后，执行 source 你的 ~/.zshrc（或 ~/.bashrc）文件，以确保新路径被加载。
+
+
+  ```
+
+  ~$ source ~/.zshrc
+
+  ```
+
+
+  现在你已经可以在 MacOS 上运行 Bazel 了。你可以在命令行中使用 *version* 指令轻松验证，这会输出你正在使用的 Bazel 版本。
+
+
+  ```
+
+  ~$ bazel --version
+
+  bazel 1.0.0
+
+  ```
+
+
+  ### 安装 Java
+
+
+  运行本书示例至少需要 Java 8。对于 MacOS 10.7 及以上版本，Java 不再默认安装；因此我们需要显式下载并安装它。
+
+
+  访问[`https://java.com/en/download/mac_download.jsp`](https://java.com/en/download/mac_download.jsp)下载
+  Java。将文件下载到电脑后，按照说明在你的电脑上安装 Java。
+
+
+  完成后，打开终端并运行以下命令，验证你是否已在电脑上成功安装 Java：
+
+
+  ```
+
+  ~$ java -version
+
+  java version "1.8.0_181"
+
+  Java(TM) SE Runtime Environment (build 1.8.0_181-b13)
+
+  Java HotSpot(TM) 64-Bit Server VM (build 25.181-b13, mixed mode)java
+
+  ```
+
+
+  ### 验证你的 Python 版本
+
+
+  默认情况下，MacOS 机器会自带 Python。为了运行本书中的示例，你至少需要 Python 2.7.15。要验证你的电脑上是否有足够版本的 Python，请打开终端查看版本。
+
+
+  ```
+
+  ~$ python --version
+
+  Python 2.7.15
+
+  ```
+
+
+  ### 注意
+
+
+  在撰写本书时，Python 2 和 Python 3 都可与 Bazel 配合使用，当前也已有迁移到后者的路径。你*可以*将默认版本设置为其中任意一个；但是，为了本书示例讲解的需要，这超出了本书范围；目前这些示例应当可在任一版本下运行。
+
+
+  ## Ubuntu Linux
+
+
+  ### 安装必需软件包
+
+
+  在 Ubuntu 上的安装与 MacOS 非常相似。不过在这种情况下，我们不是下载 Xcode，而是安装一组必需软件包（即 pkg-config、zip、g++、zlib1g-dev、unzip、python3）。
+
+
+  打开终端窗口并执行以下命令：
+
+
+  ```
+
+  ~$ sudo apt-get install pkg-config zip g++ zlib1g-dev unzip python3
+
+  ```
+
+
+  这可能还会要求你安装其他附加软件包。当询问是否安装附加软件包时，按“Y”。
+
+
+  ### 安装 Bazel
+
+
+  在获取先决条件后，你就可以下载 Bazel 了。从[`https://github.com/bazelbuild/bazel/releases/download/1.0.0/bazel-1.0.0-installer-linux-x86_64.sh`](https://github.com/bazelbuild/bazel/releases/download/1.0.0/bazel-1.0.0-installer-linux-x86_64.sh)获取安装脚本。
+
+
+  打开终端并进入你下载该文件的位置（例如 ~/.Downloads）。你可能需要设置权限以执行该文件。处理完成后，即可运行执行。
+
+
+  ```
+
+  ~$ cd Downloads
+
+  ~/Downloads$ chmod +x bazel-1.0.0-installer-linux-x86_64.sh
+
+  ~/Downloads$ ./bazel-1.0.0-installer-linux-x86_64.sh --user
+
+  ```
+
+
+  *–-user* 标志会将 Bazel 安装到 ~/bin（即你用户的 *bin* 目录）。为了确保你可以运行 Bazel，请确认 ~/bin 在你的默认路径中。将以下内容添加到你的
+  ~/.bashrc 文件：
+
+
+  ```
+
+  export PATH="$PATH:$HOME/bin"
+
+  ```
+
+
+  添加后，source 你的 *~/.bashrc* 文件，以确保新路径被加载。
+
+
+  ```
+
+  ~$ source ~/.bashrc
+
+  ```
+
+
+  现在你已经可以在 Ubuntu 上运行 Bazel 了。你可以在命令行中使用 *version* 指令轻松验证，这会输出你正在使用的 Bazel 版本。
+
+
+  ```
+
+  ~$ bazel –-version
+
+  bazel 1.0.0
+
+  ```
+
+
+  ### 安装 Java
+
+
+  为了确保我们安装的是正确版本的 Java（通过 OpenJDK），我们首先需要检查你的 Ubuntu 版本。打开终端并执行以下命令：
+
+
+  ```
+
+  ~$ lsb_release -a
+
+  No LSB modules area available
+
+  Distributor ID: Ubuntu
+
+  Description:      Ubuntu 16.04.5 LTS
+
+  Release:          16.04
+
+  Codename:         xenial
+
+  ```
+
+
+  如果你使用的是 Ubuntu 16.04，那么你需要使用 OpenJDK 8。运行以下命令：
+
+
+  ```
+
+  ~$ sudo apt-get install openjdk-8-jdk
+
+  ```
+
+
+  如果你使用的是 Ubuntu 18.04，那么你需要使用 Open JDK 11。请改为运行以下命令：
+
+
+  ```
+
+  ~$ sudo apt-get install openjdk-11-jdk
+
+  ```
+
+
+  在每种情况下，为了完成 Java 安装，都可能需要安装其他附加软件包。
+
+
+  安装完成后，运行以下命令验证你已安装的 Java 版本：
+
+
+  ```
+
+  ~$ java -version
+
+  openjdk version "1.8.0_222"
+
+  OpenJDK Runtime Environment (build 1.8.0_222-8u222-b10-1ubuntu1~16.04.1-b10)
+
+  OpenJDK 64-Bit Server VM (build 25.222-b10, mixed mode)
+
+  ```
+
+
+  ## Windows
+
+
+  ### 设置你的系统
+
+
+  为了使用 Bazel，建议你使用 64 位 Windows 10，版本 1703 或更高。要检查你的 Windows 版本，请打开*设置*。
+
+
+  ![../images/481224_1_En_2_Chapter/481224_1_En_2_Fig2_HTML.jpg](img/481224_1_En_2_Fig2_HTML.jpg)
+
+
+  图 2-2
+
+
+  Windows 设置
+
+
+  选择 *System* ➤ *About*。你需要的信息位于 *Windows* *Specification* *.* 下。
+
+
+  ![../images/481224_1_En_2_Chapter/481224_1_En_2_Fig3_HTML.jpg](img/481224_1_En_2_Fig3_HTML.jpg)
+
+
+  图 2-3
+
+
+  验证 Windows 的 OS build
+
+
+  此外，你还需要启用开发者模式，才能在你的机器上进行开发。前往 *Settings* ➤ *Update & Security* ➤ *For developers*。
+
+
+  ![../images/481224_1_En_2_Chapter/481224_1_En_2_Fig4_HTML.jpg](img/481224_1_En_2_Fig4_HTML.jpg)
+
+
+  图 2-4
+
+
+  启用开发者模式
+
+
+  在 *Use developer features* 下，选择 *Developer mode*。你可能需要等待开发者包下载完成。
+
+
+
+
+  ### 安装所需应用程序
+
+
+  在真正获取 Bazel 本体之前，你需要先安装若干应用程序。
+
+
+  #### 适用于 Visual Studio 2015 的 Visual C++ 可再发行组件
+
+
+  该软件包包含运行使用 Visual Studio 2015 构建的 C++ 应用程序所需的运行时组件。访问 [`www.microsoft.com/en-us/download/developer-tools.aspx`](http://www.microsoft.com/en-us/download/developer-tools.aspx)，并搜索
+  *适用于 Visual Studio 2015 的 Visual C++ 可再发行组件*。
+
+
+  ![../images/481224_1_En_2_Chapter/481224_1_En_2_Fig5_HTML.jpg](img/481224_1_En_2_Fig5_HTML.jpg)
+
+
+  图 2-5
+
+
+  获取 Visual C++ 可再发行组件包
+
+
+  下载该软件包并安装到你的计算机上。
+
+
+  #### MSYS2
+
+
+  MSYS2 是一个为软件分发与构建提供基础工具的平台；在这里，我们最关注的是它为 Windows 提供了一个 bash shell。它还提供了一个包管理系统，使软件安装变得简单，类似
+  Linux 中的方式（例如通过 *apt-get*）或 MacOS 中的方式（例如类似 *Homebrew* 的工具）。
+
+
+  访问 [`www.msys2.org/`](http://www.msys2.org/) 并下载适用于 x86_64 的 MSYS2。将该软件安装到你的计算机上；为简化操作，请使用默认安装路径。
+
+
+  ![../images/481224_1_En_2_Chapter/481224_1_En_2_Fig6_HTML.jpg](img/481224_1_En_2_Fig6_HTML.jpg)
+
+
+  图 2-6
+
+
+  在你的计算机上安装 MSYS2
+
+
+  安装完成后，打开一个 MSYS2 终端。你需要安装若干软件包（即 *zip*、*unzip*、*patch*、*diffutils* 和 *git*）。在终端中执行以下命令：
+
+
+  ```
+
+  pjmcn@WINDOWS-HOME MSYS~
+
+  $ pacman -S zip unzip patch diffutils git
+
+  ```
+
+
+  你可能还需要安装其他附加包才能完成安装过程。
+
+
+  ### Bazel 安装
+
+
+  处理完必要组件后，现在你就可以下载并安装 Bazel 本体了。从 [`https://github.com/bazelbuild/bazel/releases/download/1.0.0/bazel-1.0.0-windows-x86_64.exe`](https://github.com/bazelbuild/bazel/releases/download/1.0.0/bazel-1.0.0-windows-x86_64.exe)
+  获取可执行文件。
+
+
+  与 Linux 和 MacOS 不同，下载得到的可执行文件*就是* Bazel 可执行文件；不存在单独的安装脚本。下载完成后，将该应用移动到某个目录（例如，C:\Users\<user
+  name>\bin），并将其重命名为 *bazel.exe*。
+
+
+  将该路径添加到你的 MSYS2 *.bashrc* 文件中。
+
+
+  ```
+
+  export PATH="$PATH:/c/Users//bin"
+
+  ```
+
+
+  添加后，source 一下你的 *~/.bashrc* 文件，以确保新路径被加载。
+
+
+  ```
+
+  ~$ source ~/.bashrc
+
+  ```
+
+
+  现在你已经可以在 Windows 上运行 Bazel 了。你可以在命令行中使用 *version* 指令轻松验证，这将输出你正在使用的 Bazel 版本。
+
+
+  ```
+
+  pjmcn@WINDOWS-HOME MSYS~
+
+  $ bazel –-version
+
+  bazel 1.0.0
+
+  ```
+
+
+  #### 安装语言支持
+
+
+  为了使用多种语言（C++、Java 和 Python），你需要安装对应的支持框架和应用程序。
+
+
+  ##### C++
+
+
+  尽管本书不会直接构建 C++ 应用程序，但我们将依赖若干需要 C++ 支持的库。访问 [`https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019`](https://visualstudio.microsoft.com/downloads/%2523build-tools-for-visual-studio-2019)。下载
+  Build Tools Installer 并运行安装。
+
+
+  ![../images/481224_1_En_2_Chapter/481224_1_En_2_Fig7_HTML.jpg](img/481224_1_En_2_Fig7_HTML.jpg)
+
+
+  图 2-7
+
+
+  获取适用于 Visual Studio 2019 的构建工具
+
+
+  在安装过程中，请确保你选择了 C++ 构建工具。
+
+
+  ![../images/481224_1_En_2_Chapter/481224_1_En_2_Fig8_HTML.jpg](img/481224_1_En_2_Fig8_HTML.jpg)
+
+
+  图 2-8
+
+
+  安装 C++ 构建工具
+
+
+  ##### Java
+
+
+  本书中的许多示例都会使用 Java。访问 [`www.oracle.com/technetwork/java/javase/downloads/index.html`](http://www.oracle.com/technetwork/java/javase/downloads/index.html)。你至少需要下载适用于
+  Windows x64 的 Java SE Development Kit 10。下载合适的安装可执行文件并安装到你的计算机上。
+
+
+  ### 注意
+
+
+  MSYS2 对路径中的空格处理有困难。默认路径会把 Java 安装到 *Program Files*。为避免问题，你应将安装路径改为不含空格的位置（例如，C:\Users\<user
+  name>\bin\Java\<jdk-version>\）。
+
+
+  与 Bazel 一样，确保将 Java 安装路径添加到 bash shell 的 PATH（位于你的 *.bashrc* 文件中）。
+
+
+  ```
+
+  export PATH="$PATH:/c/Users//bin/Java//bin"
+
+  ```
+
+
+  此外，你还需要设置 *JAVA_HOME* 变量。
+
+
+  ```
+
+  export JAVA_HOME="/c/Users//bin/Java/"
+
+  ```
+
+
+  source 该 *.bashrc*，并确认 Java 已在 MSYS2 中配置完毕。
+
+
+  ```
+
+  pjmcn@WINDOWS-HOME MSYS~
+
+  $ source .bashrc
+
+  pjmcn@WINDOWS-HOME MSYS~
+
+  $ java --version
+
+  java version "11.0.4" 2019-07-16 LTS
+
+  Java™ SE Runtime Environment 18.9 (build 11.0.4+10-LTS)
+
+  Java Hotspot™ 64-Bit Server VM 18.9 (build 11.0.4+10-LTS, mixed mode)
+
+  ```
+
+
+  ##### Python
+
+
+  最后，为了构建 Python 项目，你需要下载适用于 Windows 的 Python 2.7 或 3。访问 [`www.python.org/downloads/release/python-2716`](http://www.python.org/downloads/release/python-2716)
+  并下载 Windows x86-64 MSI Installer。下载完成后，执行安装程序以安装 Python。
+
+
+  再次提醒，确保将 Python 路径添加到你的 bash shell 的 PATH 中。
+
+
+  ```
+
+  export PATH="$PATH:/c/Python27"
+
+  ```
+
+
+  source .bashrc 并确认 python 已在 MSYS2 中配置完毕。
+
+
+  ```
+
+  pjmcn@WINDOWS-HOME MSYS~
+
+  $ source .bashrc
+
+  pjmcn@WINDOWS-HOME MSYS~
+
+  $ python –-version
+
+  Python 2.7.16
+
+  ```
+
+
+  ## 最后说明
+
+
+  到这个阶段，你应该已经能够执行本书中的 Bazel 示例。若你希望在其他操作系统上安装 Bazel，请访问 [`https://docs.bazel.build/versions/master/install.html`](https://docs.bazel.build/versions/master/install.html)。
+
+
+  完成运行 Bazel 所需的基础准备后，你现在可以开始上手并享受其中的乐趣了。
+
+
+  '
+- "# 3. 你的第一个 Bazel 项目\n\n现在你已经下载并配置好了 Bazel，真正有趣的部分开始了。我们将先从一个小项目入手，然后在此基础上逐步构建（双关一下）。\n\
+  \n在本章结束时，你将成功运行你的第一个 Bazel 项目，并能够构建和测试代码。\n\n## 设置你的工作区\n\n在添加任何代码之前，我们通过在指定目录中创建一个\
+  \ `WORKSPACE` 文件来建立一个新的 Bazel 项目。\n\n为你的项目创建目录，并创建一个空的 `WORKSPACE` 文件：\n\n```\n\
+  $ mkdir chapter_03 (or )\n$ cd chapter_03 (or )\nchapter_03$ touch WORKSPACE\n```\n\
+  \n`WORKSPACE` 文件的位置应始终位于 Bazel 项目的根目录。在你的 Bazel 项目中，所有路径都会相对于 `WORKSPACE` 文件进行解析。随着你在不同目录中创建各种构建目标，你将能够以相对于\
+  \ `WORKSPACE` 文件的方式引用它们。\n\n不过，这只是 `WORKSPACE` 文件强大能力的冰山一角。后续我们将看到如何使用 `WORKSPACE`\
+  \ 文件来：\n\n*   向你的工作区添加新的远程代码仓库（之后你可以引用它们）\n\n*   添加用于编译不同语言的新规则\n\n不过目前，仅一个空的 `WORKSPACE`\
+  \ 文件就已经足够我们开展很多工作，因此我们将从这里开始。\n\n\n\n## 添加源代码\n\n虽然 `WORKSPACE` 文件定义了 Bazel 项目的根目录，但你还需要定义一个源代码目录（也可能是多个源代码目录）来放置代码。这样做的一个原因是代码组织，因为你通常希望具备某种结构。\n\
+  \n不过，至少还有一个很重要的原因：Bazel 会在与你的 `WORKSPACE` 目录相同的位置创建新的子目录。稍后我们会详细介绍这些目录，因为它们与 Bazel\
+  \ 构建过程中产出的构建产物有关。\n\n为你的源代码创建一个目录：\n\n```\nchapter_03$ mkdir src (or your favorite\
+  \ directory name)\n```\n\n### 注意\n\n在考虑目录名称时，不要使用以下名称之一：\n\n*   `bazel-bin`\n\n\
+  *   `bazel-out`\n\n*   `bazel-testlogs`\n\n*   `bazel-chapter_03` (or `bazel-<name\
+  \ of your directory>`)\n\n    如果你还没猜到，这些就是 Bazel 会创建的特殊目录。创建一个与这些目录同名的目录就是在自找麻烦，所以请通过选择不同的名称（例如\
+  \ `src`）来省去很多头痛。另外，尽管上述目录对应的是当前版本 Bazel 的命名，也建议避免任何符合 “bazel-*” 模式的目录名。\n\n### Hello\
+  \ World，Java 风格\n\n开箱即用（在撰写本文时），Bazel 无需额外配置即可支持 C++、Java 和 Python。开始时，我们将创建一个（稍作修改的）Java\
+  \ 版 Hello World。（别担心，我们后面会更复杂；这只是起步。）\n\n在你偏好的代码编辑器中，创建文件 `HelloWorld.java` 并写入以下内容。\n\
+  \n```\npublic class HelloWorld {\npublic static void main(String[] args) {\nSystem.out.println(\"\
+  Hello, World!);\n}\n}\nListing 3-1\nA simple Java program\n```\n\n将该文件保存到磁盘上的 `src`\
+  \ 目录下。\n\n### 指定 BUILD 目标\n\n代码创建完成后，我们现在可以把注意力转向实际构建所需的 Bazel 基础组件。\n\n在你的 `src`\
+  \ 目录中，创建文件 `BUILD`，写入并保存以下内容。\n\n```\njava_binary(\nname = \"HelloWorld\",\nsrcs\
+  \ = [\"HelloWorld.java\"],\n)\nListing 3-2\nYour first BUILD file\n```\n\n在这个示例中，`HelloWorld`\
+  \ 是一个*构建目标*；也就是说，`HelloWorld` 是一个可以被识别并构建的单元。\n\n### 构建你的目标\n\n定义好要构建的内容后，我们现在就可以真正开始构建了。不过在此之前，先回到根目录，也就是包含\
+  \ `WORKSPACE` 文件的那个目录。先列出其中内容：\n\n```\nchapter_03$ ls\nWORKSPACE\nsrc (or your favorite\
+  \ directory name)\n```\n\n另外，再确认一下 `src` 目录中的内容。如下：\n\n```\nchapter_03$ ls src\n\
+  BUILD    HelloWorld.java\n```\n\n这就是 Bazel 项目的干净状态，此时还没有任何内容被构建。接下来我们来改变这一点。\n\n\
+  #### 构建二进制文件\n\n要构建你的第一个项目，请在命令行中运行：\n\n```\nchapter_03$ bazel build src:HelloWorld\n\
+  ```\n\n把 `bazel` 命令的参数稍作拆解：\n\n*   `build`\n    *   这表示你要构建/编译/组装给定目标。\n\n*   `src`\n\
+  \    *   这表示包含所需构建目标的目录。\n\n    *   在这个示例中，目录层级比较浅；不过你可以（并且将会）指定任意数量的有效目录路径来补充这个参数。\n\
+  \n*   `:HelloWorld`\n    *   这是 `src` 目录中的实际构建目标。\n\n    *   在 Bazel 中，一个目录可以有一个或多个可构建目标。\n\
+  \n假设一切按计划进行，你的输出应类似如下：\n\n```\nINFO: Analysed target //src:HelloWorld (19 packages\
+  \ loaded, 550 targets configured).\nINFO: Found 1 target...\nTarget //src:HelloWorld\
+  \ up-to-date:\nbazel-bin/src/HelloWorld.jar\nbazel-bin/src/HelloWorld\nINFO: Elapsed\
+  \ time: 0.144s, Critical Path: 0.00s\nINFO: 0 processes.\nINFO: Build completed\
+  \ successfully, 1 total action.\n```\n\n#### 运行二进制文件\n\n构建好可执行文件后，你可以使用以下命令运行它：\n\
+  \n```\nchapter_03$ bazel-bin/src/HelloWorld\nHello, World!\n```\n\n不过，在实际开发中，你不会想要不断在“先构建可执行文件”与“再直接执行二进制文件”之间来回切换。好在你不需要这么做；Bazel\
+  \ 提供了直接构建并运行可执行文件的能力。\n\n类似于你最初构建可执行文件的方式，你可以通过以下命令直接运行它：\n\n```\nchapter_03% bazel\
+  \ run src:HelloWorld\nINFO: Analysed target //src:HelloWorld (0 packages loaded,\
+  \ 0 targets configured).\nINFO: Found 1 target...\nTarget //src:HelloWorld up-to-date:\n\
+  bazel-bin/src/HelloWorld.jar\nbazel-bin/src/HelloWorld\nINFO: Elapsed time: 0.217s,\
+  \ Critical Path: 0.07s\nINFO: 1 process: 1 worker.\nINFO: Build completed successfully,\
+  \ 2 total actions\nINFO: Build completed successfully, 2 total actions\nHello, World!\n\
+  ```\n\n### 说明\n\n在两次运行中都值得注意的一点是关于 (*X* packages loaded, *Y* targets configured)\
+  \ 的那一行。它大致反映了项目缓存状态。在第一个示例中，这两个值都非 0，说明为了生成目标，需要在依赖项上执行一些工作。在第二个示例中，这两个值都为 0，说明构建应当是完全命中缓存的。只有当发生变化时，Bazel\
+  \ 才会加载包和目标，并智能地仅重建必要部分。\n\n\n\n### 创建和使用依赖\n\n创建单个二进制文件是可以的；然而，这在开发中显然并不实用。在实践中，我们希望将程序拆分为更细粒度的组件。细粒度组件有很多优点，包括更易共享、更易测试、构建更快，以及更容易优化构建过程。\n\
+  \n在这个特定案例中，我们能从原始示例中抽离出的内容并不多，因此我们来添加一些新功能。\n\n在你的 `src` 目录中，新建文件 `IntMultiplier.java`，并添加以下代码。\n\
+  \n```\npublic class IntMultiplier {\nprivate int a;\nprivate int b;\npublic IntMultiplier(int\
+  \ a, int b) {\nthis.a = a;\nthis.b = b;\n}\npublic int GetProduct() {\nreturn a\
+  \ * b;\n}\n}\nListing 3-3\nIntMultiplier.java\n```\n\n暂时不要向 `BUILD` 文件中添加任何内容；我们将先尝试把新类加入我们的二进制目标中。\n\
+  \n```\npublic class HelloWorld {\npublic static void main(String[] args) {\nSystem.out.println(\"\
+  Hello, World!\");\nIntMultiplier im = new IntMultiplier(3, 4);\nSystem.out.println(im.GetProduct());\n\
+  }\n}\nListing 3-4\nAdding IntMultiplier to HelloWorld.java\n```\n\n现在我们再次尝试运行 HelloWorld\
+  \ 的构建：\n\n```\nchapter_03% bazel run src:HelloWorld\nINFO: Analysed target //src:HelloWorld\
+  \ (0 packages loaded, 0 targets configured).\nINFO: Found 1 target...\nERROR: /Users/pj/Dropbox/Books/Beginning_Bazel/code_samples/chapter_03/src/BUILD:6:1:\
+  \ Building src/HelloWorld.jar (1 source file) failed (Exit 1)\nsrc/HelloWorld.java:5:\
+  \ error: cannot find symbol\nIntMultiplier im = new IntMultiplier(3, 4);\n^\nsymbol:\
+  \   class IntMultiplier\nlocation: class HelloWorld\nsrc/HelloWorld.java:5: error:\
+  \ cannot find symbol\nIntMultiplier im = new IntMultiplier(3, 4);\n^\nsymbol:  \
+  \ class IntMultiplier\nlocation: class HelloWorld\nTarget //src:HelloWorld failed\
+  \ to build\nUse --verbose_failures to see the command lines of failed build steps.\n\
+  INFO: Elapsed time: 0.246s, Critical Path: 0.10s\nINFO: 0 processes.\nFAILED: Build\
+  \ did NOT complete successfully\n```\n\n在这个例子中，构建失败是因为无法找到 `IntMultiplier`*。* 这体现了\
+  \ Bazel 最重要的特性之一：构建中没有任何隐式行为；你需要显式指定所有内容，包括全部依赖。Bazel 不会自动神奇地查找同目录、同包等位置中的内容。\n\n\
+  我们可以通过以下两种方式之一解决这个问题：\n\n*   将新的源文件添加到二进制目标中。\n\n*   创建一个新的库，并让二进制目标依赖它。\n\n我们将两种方法都进行探索。\n\
+  \n#### 将 IntMulitplier.java 添加到 java_binary\n\n在这种情况下，我们可以直接把 `IntMultiplier.java`\
+  \ 作为 `HelloWorld` 构建目标的另一个源码文件添加进去。\n\n```\njava_binary(\nname = \"HelloWorld\"\
+  ,\nsrcs = [\n\"HelloWorld.java\",\n\"IntMultiplier.java\",\n],\n)\nListing 3-5\n\
+  Adding to the HelloWorld srcs\n```\n\n现在，让我们尝试重新运行 `HelloWorld`：\n\n```\nchapter_03%\
+  \ bazel run src:HelloWorld\nINFO: Analysed target //src:HelloWorld (0 packages loaded,\
+  \ 0 targets configured).\nINFO: Found 1 target...\nTarget //src:HelloWorld up-to-date:\n\
+  bazel-bin/src/HelloWorld.jar\nbazel-bin/src/HelloWorld\nINFO: Elapsed time: 0.141s,\
+  \ Critical Path: 0.00s\nINFO: 0 processes.\nINFO: Build completed successfully,\
+  \ 1 total action\nINFO: Build completed successfully, 1 total action\nHello, World!\n\
+  \n```\n\n通过显式列出该目标所依赖的文件，`HelloWorld` 就能够成功构建并运行。\n\n不过，虽然这个方案可行，但仍然不是最优；按目前这种方式，`IntMultiplier`\
+  \ 本可以很容易在其他地方复用，但现在它被锁定在 `HelloWorld` 二进制目标内部。\n\n#### 创建 java_library 依赖\n\n与其把文件直接添加到\
+  \ `HelloWorld` 构建目标，不如创建一个完全独立的依赖。这一次，我们不再创建 `java_binary` 构建目标，而是引入一种新的构建目标类型：`java_library`。\n\
+  \n顾名思义，`java_library` 构建目标用于封装一组可共享的 Java 功能。创建后，其他构建目标（包括其他 `java_library` 构建目标）就可以依赖这个\
+  \ `java_library`。\n\n```\njava_library(\nname = \"LibraryExample\",\nsrcs = [\"\
+  IntMultiplier.java\"],\n)\nListing 3-6\nCreating the java_library dependency\n```\n\
+  \n创建了新的构建目标后，我们先直接构建它：\n\n```\nchapter_03% bazel build src:LibraryExample\nINFO:\
+  \ Analysed target //src:LibraryExample (1 packages loaded, 2 targets configured).\n\
+  INFO: Found 1 target...\nTarget //src:LibraryExample up-to-date:\nbazel-bin/src/libLibraryExample.jar\n\
+  INFO: Elapsed time: 0.203s, Critical Path: 0.06s\nINFO: 1 process: 1 worker.\nINFO:\
+  \ Build completed successfully, 2 total actions\n```\n\n不过，正如预期且与 `HelloWorld` 示例不同，我们不能运行这个构建目标。尝试运行会得到如下错误：\n\
+  \n```\nchapter_03% bazel run src:LibraryExample\nERROR: Cannot run target //src:LibraryExample:\
+  \ Not executable\nINFO: Elapsed time: 0.097s\nINFO: 0 processes.\nFAILED: Build\
+  \ did NOT complete successfully (0 packages loaded)\nFAILED: Build did NOT complete\
+  \ successfully (0 packages loaded)\n```\n\n#### 依赖构建目标\n\n现在我们已经创建了该构建目标，接下来让 `HelloWorld`\
+  \ 依赖这个目标。\n\n```\njava_binary(\nname = \"HelloWorld\",\nsrcs = [ \"HelloWorld.java\"\
+  ],\ndeps = [\":LibraryExample\"],\n)\nListing 3-7\nAdding a dependency to HelloWorld\n\
+  ```\n\n现在让我们重新运行 `HelloWorld`：\n\n```\nchapter_03% bazel run src:HelloWorld\nINFO:\
+  \ Analysed target //src:HelloWorld (1 packages loaded, 4 targets configured).\n\
+  INFO: Found 1 target...\nTarget //src:HelloWorld up-to-date:\nbazel-bin/src/HelloWorld.jar\n\
+  bazel-bin/src/HelloWorld\nINFO: Elapsed time: 0.955s, Critical Path: 0.78s\nINFO:\
+  \ 3 processes: 1 darwin-sandbox, 2 worker.\nINFO: Build completed successfully,\
+  \ 7 total actions\nINFO: Build completed successfully, 7 total actions\nHello, World!\n\
+  \n```\n\n在 Bazel 中，二进制目标与库目标的这种模式是跨语言通用的一对结构。一般来说，你创建的 `<insert language>_binary`\
+  \ 目标数量会相对较少；它们对应你希望生成的可执行文件数量。相对地，你创建的 `<insert language>_library` 构建目标数量通常会相对较多。\n\
+  \n### 测试你的构建目标\n\n创建更小构建单元的一个主要优势是它们更容易测试。既然我们已经创建了一些模块化功能，接下来就设置一个测试来验证这些功能。\n\n\
+  #### 配置测试依赖\n\n在创建测试之前，我们首先需要配置一些必需的依赖。\n\n在项目根目录下，新建目录 `third_party`，并在其中创建两个子目录：`hamcrest`\
+  \ 和 `junit`：\n\n```\nchapter_03$ mkdir third_party\nchapter_03$ mkdir third_party/hamcrest\n\
+  chapter_03$ mkdir third_party/junit\n```\n\n根据以下网站的说明 [`https://github.com/junit-team/junit4/wiki/download-and-install`](https://github.com/junit-team/junit4/wiki/download-and-install)\
+  \ 下载以下 jar 包：\n\n*   `hamcrest-core-1.3.jar`\n\n*   `junit-4.12.jar`\n\n将这些 jar\
+  \ 包移动到 `third_party` 下各自对应的目录中。为了使用这些 jar 包，我们将使用另一种构建目标类型：`java_import`*。*\n\n\
+  让我们新建一个 `BUILD` 文件来容纳 `java_import` 构建目标。\n\n```\npackage(default_visibility = [\"\
+  //visibility:public\"])\njava_import(\nname = \"junit4\",\njars = [\n\"hamcrest/hamcrest-core-1.3.jar\"\
+  ,\n\"junit/junit-4.12.jar\",\n]\n)\nListing 3-8\nBUILD file for third_party targets\n\
+  ```\n\n\n\n### 注意\n\n细心的读者会注意到，我们在 `BUILD` 文件中加入了一个新的指令 `package`。我们将在后续章节进一步深入这一点，用来控制构建目标对其他目标的可见性。现在只需要知道，这个指令使得此\
+  \ `BUILD` 文件中包含的目标可以被任何其他 `BUILD` 文件中的 `BUILD` 目标可见。\n\n将 `BUILD` 文件保存到 `third_party`\
+  \ 目录。你可以通过运行以下命令来测试其是否配置正确：\n\n```\nchapter_03$ bazel build third_party:junit4\n\
+  INFO: Analysed target //third_party:junit4 (2 packages loaded, 25 targets configured).\n\
+  INFO: Found 1 target...\nTarget //third_party:junit4 up-to-date (nothing to build)\n\
+  INFO: Elapsed time: 0.157s, Critical Path: 0.00s\nINFO: 0 processes.\nINFO: Build\
+  \ completed successfully, 1 total action\n```\n\n#### 创建 java_test 构建目标\n\n现在让我们使用\
+  \ `java_test` 构建目标为我们的功能创建一个测试。\n\n```\nimport static org.junit.Assert.assertEquals;\n\
+  import org.junit.Test;\npublic class IntMultiplierTest {\n@Test\npublic void testIntMultiplier()\
+  \ throws Exception {\nIntMultiplier im = new IntMultiplier(3, 4);\nassertEquals(12,\
+  \ im.GetProduct());\n}\n}\nListing 3-9\nIntMultiplierTest.java\n```\n\n保存到 `src/IntMultiplierTest.java`。\n\
+  \n现在让我们向 `BUILD` 文件添加一个新的构建目标。\n\n```\njava_test(\nname = \"LibraryExampleTest\"\
+  ,\nsrcs = [\"IntMultiplierTest.java\"],\ndeps = [\n\":LibraryExample\",\n\"//third_party:junit4\"\
+  ,\n],\ntest_class = \"IntMultiplierTest\",\n)\nListing 3-10\nAdding java_test to\
+  \ BUILD\n```\n\n运行你刚创建的测试：\n\n```\nchapter_03$ bazel test src:LibraryExampleTest\n\
+  INFO: Build options --collect_code_coverage, --instrumentation_filter, and --test_timeout\
+  \ have changed, discarding analysis cache.\nINFO: Analysed target //src:LibraryExampleTest\
+  \ (0 packages loaded, 617 targets configured).\nINFO: Found 1 test target...\nTarget\
+  \ //src:LibraryExampleTest up-to-date:\nbazel-bin/src/LibraryExampleTest.jar\nbazel-bin/src/LibraryExampleTest\n\
+  INFO: Elapsed time: 2.710s, Critical Path: 2.40s\nINFO: 3 processes: 1 darwin-sandbox,\
+  \ 2 worker.\nINFO: Build completed successfully, 7 total actions\n//src:LibraryExampleTestPASSED\
+  \ in 0.4s\nExecuted 1 out of 1 test: 1 test passes.\nINFO: Build completed successfully,\
+  \ 7 total actions\n```\n\n不出所料，测试通过了。\n\n为了验证一下，我们再添加一个测试用例。这次先故意创建一个失败的测试，看看会发生什么。\n\
+  \n```\npublic class IntMultiplierTest {\n@Test\npublic void testIntMultiplier()\
+  \ throws Exception {\nIntMultiplier im = new IntMultiplier(3, 4);\nassertEquals(12,\
+  \ im.GetProduct());\n}\n@Test\npublic void testIntMultiplier_Failure() throws Exception\
+  \ {\nIntMultiplier im = new IntMultiplier(4, 5);\nassertEquals(21, im.GetProduct());\n\
+  }\n}\nListing 3-11\nAdd a failing test\n```\n\n保存文件并重新执行测试：\n\n```\nchapter_03$\
+  \ bazel test src:LibraryExampleTest\nINFO: Analysed target //src:LibraryExampleTest\
+  \ (20 packages loaded, 617 targets configured).\nINFO: Found 1 test target...\n\
+  FAIL: //src:LibraryExampleTest (see /execroot/__main__/bazel-out/darwin-fastbuild/testlogs/src/LibraryExampleTest/test.log)\n\
+  Target //src:LibraryExampleTest up-to-date:\nbazel-bin/src/LibraryExampleTest.jar\n\
+  bazel-bin/src/LibraryExampleTest\nINFO: Elapsed time: 13.038s, Critical Path: 2.91s\n\
+  INFO: 3 processes: 1 darwin-sandbox, 2 worker.\nINFO: Build completed, 1 test FAILED,\
+  \ 7 total actions\n//src:LibraryExampleTestFAILED in 0.3s\n/execroot/__main__/bazel-out/darwin-fastbuild/testlogs/src/LibraryExampleTest/test.log\n\
+  ```\n\n从这个（相当明显的）失败中，Bazel 会将信息输出到前面提到的 `test.log` 文件。打开该文件会看到如下内容。\n\n```\nThere\
+  \ was 1 failure:\n1) testIntMultiplier_Failure(IntMultiplierTest)\njava.lang.AssertionError:\
+  \ expected: but was:\nListing 3-12\nFailure found in test.log file\n```\n\n请注意，实际输出可能会详细得多，但上述代码已足以让我们诊断并修复问题。让我们修正这个问题并重新运行测试。\n\
+  \n```\npublic class IntMultiplierTest {\n...\n@Test\npublic void testIntMultiplier_Failure()\
+  \ throws Exception {\nIntMultiplier im = new IntMultiplier(4, 5);\nassertEquals(20,\
+  \ im.GetProduct());\n}\n}\nListing 3-13\nCorrecting the failing test\n```\n\n重新运行测试：\n\
+  \n```\nchapter_03$ bazel test src:LibraryExampleTest\nINFO: Analysed target //src:LibraryExampleTest\
+  \ (0 packages loaded, 0 targets configured).\nINFO: Found 1 test target...\nTarget\
+  \ //src:LibraryExampleTest up-to-date:\nbazel-bin/src/LibraryExampleTest.jar\nbazel-bin/src/LibraryExampleTest\n\
+  INFO: Elapsed time: 0.717s, Critical Path: 0.56s\nINFO: 2 processes: 1 darwin-sandbox,\
+  \ 1 worker.\nINFO: Build completed successfully, 3 total actions\n//src:LibraryExampleTestPASSED\
+  \ in 0.3s\n```\n\n## 构建（并清理）整个世界\n\n在结束之前，我们再来看几个 Bazel 核心功能。\n\n### 构建所有内容（在某个目录中）\n\
+  \n在前面的示例中，我们是逐个构建各个构建目标的。对于开发单个组件来说这没问题，但显然这不是一个可扩展的流程。\n\nBazel 内置了可同时构建多种目标的功能。例如，不必逐个构建\
+  \ `src` 目录中的构建目标，我们可以通过运行以下命令让 Bazel 一次性全部构建：\n\n```\nchapter_03$ bazel build src:all\n\
+  INFO: Analysed 3 targets (20 packages loaded, 619 targets configured).\nINFO: Found\
+  \ 3 targets...\nINFO: Elapsed time: 8.892s, Critical Path: 5.87s\nINFO: 9 processes:\
+  \ 6 darwin-sandbox, 3 worker.\nINFO: Build completed successfully, 16 total actions\n\
+  ```\n\n在这里，`:all` 并不是某个具体的构建目标；它是一个元目标，用来告诉 Bazel 构建给定包（即目录）中的所有构建目标。\n\n同样地，我们也可以让\
+  \ Bazel 构建 `third_party` 目录中的所有内容：\n\n```\nchapter_03$ bazel build third_party:all\n\
+  INFO: Analysed target //third_party:junit4 (13 packages loaded, 520 targets configured).\n\
+  INFO: Found 1 target...\nTarget //third_party:junit4 up-to-date (nothing to build)\n\
+  INFO: Elapsed time: 1.467s, Critical Path: 0.00s\nINFO: 0 processes.\nINFO: Build\
+  \ completed successfully, 1 total action\n```\n\n`:all` 目标不仅可用于构建，也可用于所有 Bazel 命令（例如\
+  \ `bazel test <insert target>`）。\n\n这可能已经很明显了，但不要把任何构建目标命名为“all”。这只会导致混淆。\n\n###\
+  \ 构建所有内容（当前目录及其下级目录）\n\n再次说明，前面的 `build all` 命令在处理特定目录时很好用；但是如果要以这种方式为所有目录构建，就会再次变得繁琐。幸运的是，Bazel\
+  \ 再次提供了另一个命令来帮助我们。\n\n在你的工作区根目录运行以下命令：\n\n```\nchapter_03$ bazel build ...\nINFO:\
+  \ Analysed 4 targets (20 packages loaded, 620 targets configured).\nINFO: Found\
+  \ 4 targets...\nINFO: Elapsed time: 7.234s, Critical Path: 5.78s\nINFO: 9 processes:\
+  \ 6 darwin-sandbox, 3 worker.\nINFO: Build completed successfully, 16 total actions\n\
+  ```\n\n这一次，`\"...\"` 元目标是在告诉 Bazel 构建当前目录以及该目录下的所有内容。当在工作区根级别执行时，它会构建你工作区中的*所有*内容。以这种方式构建时请谨慎，尽管在更新本地仓库后，这很可能是开启一天工作的好方式。\n\
+  \n与 `:all` 元目标类似，`\"...\"` 元目标同样适用于其他 Bazel 命令（例如 `test`）。\n\n另外，你也可以将“...”限定到特定目录。比如，你可以使用“bazel\
+  \ build src/...”来构建 `src` 目录下的所有内容。\n\n\n\n### （几乎）全部清理干净\n\n尽管 Bazel 在管理依赖方面表现非常出色，但你可能会在某个时刻需要彻底清空一切并重新开始。在\
+  \ Bazel 中，清理操作非常简单：\n\n```\nchapter_03$ bazel clean\nINFO: Starting clean.\n```\n\
+  \n就是这么简单。如果你在根目录下快速执行一次 `ls`，你会注意到所有 `bazel-*` 目录都不见了；所有输出、缓存等内容都已被移除。当然，在你下一次使用\
+  \ Bazel 命令构建目标时，它们还会再次出现。\n\n## 最后的话\n\n恭喜你！你刚刚已经创建并连接好了第一组 Bazel 目标，涵盖了一系列不同功能：\n\
+  \n*   `java_binary`\n    *   表示并创建一个 Java 可执行文件\n\n*   `java_library`\n    *   封装可共享的\
+  \ Java 功能模块\n\n*   `java_import`\n    *   将一个或多个现有 jar 文件封装为可被依赖的单元\n\n*   `java_test`\n\
+  \    *   创建用于验证 `java_library` 预期行为的测试\n\n即便只是 Bazel 构建目标中的这一小部分子集，你也已经具备了创建、组织、测试和运行\
+  \ Java 程序的足够能力。\n\n值得注意的是，本章专门聚焦于 Java 目标，以便说明 Bazel 的功能。不过，`{language}_binary`、`{language}_library`\
+  \ 和 `{language}_test` 这种模式，会在 Bazel（及其扩展）支持的各种语言中反复出现并变得熟悉。\n\n例如：\n\n*   C/C++（Bazel\
+  \ 内置支持）\n    *   `cc_binary`、`cc_library`、`cc_test`\n\n*   Python（Bazel 内置支持）\n\
+  \    *   `py_binary`、`py_library`、`py_test`\n\n*   Go（由外部规则提供）\n    *   `go_binary`、`go_library`、`go_test`\n\
+  \n当然，Bazel 支持的每种语言也可能会有一些语言特定的构造（例如 `java_import`）；不过，即使在这些情况下，仍然存在大量在所有构建目标类型中基本通用的特性（例如名称、可见性、依赖关系等）。\n\
+  \n在接下来的章节中，我们将减少对某一特定语言的关注，进一步深入 Bazel 本身的一些结构性元素，主要围绕 `BUILD` 和 `WORKSPACE files.`\
+  \ 展开。\n\n### 练习——Python Helloworld\n\n在本章中，我们始终只专注于创建 Java 目标。然而，开箱即用的 Bazel 具备面向\
+  \ Java、Python 和 C++ 的构建能力。既然你已经完成了 Java 的 HelloWorld 练习，现在请用 Python 再实现一遍。\n\n由于\
+  \ Bazel 的一个标志性特征是可同时处理多种语言，你可以在同一个 `BUILD` 文件中，像 Java 目标那样创建一组类似的 `HelloWorld` Python\
+  \ 目标。就实际情况而言，你在真实项目中不太可能这样做；不过，这确实能够体现 Bazel 在同一 `BUILD` 文件中跨语言处理多个目标的能力。你的 Python\
+  \ 可执行程序最终会落在一个 py_binary 构建目标中。\n\n最后，你还可以在独立的 `py_library` 构建目标中创建类似的 `IntMultiplier`\
+  \ 功能，并在对应的 `py_test` 构建目标中编写一组测试。与 Java 不同，Python 是“自带电池”的语言，内置了自己的单元测试框架，因此无需像\
+  \ Java 那样再创建类似 `junit4` 的构建目标。\n\n"
+- '# 4. WORKSPACE 文件功能
+
+
+  在上一章中，我们创建并运行了第一个 Bazel 项目，重点基本放在“让它跑起来”所需的最小内容上。在那一章过程中，我们使用了两个具有特殊名称的文件：`BUILD`，以及（程度要小得多的）`WORKSPACE`。虽然
+  `BUILD` 文件的用途非常明显，但我们（有意地）没有深入 `WORKSPACE` 文件。本章中，我们将探索 `WORKSPACE` 文件更丰富的一组功能。
+
+
+  ### 注意
+
+
+  本章将对 `WORKSPACE` 文件做一个高层次概览；不过，要真正开始体会它的实际工作方式，完成练习至关重要。
+
+
+  ## WORKSPACE 文件
+
+
+  在上一章中，我们让 `WORKSPACE` 文件保持完全空白。对于那个特定示例来说，我们不需要添加任何其他内容，因为我们只使用了 Bazel 开箱即用提供的全部功能。
+
+
+  具体来说，上一个练习有两个明显特征：
+
+
+  *   所有代码都位于单个本地仓库中。
+
+
+  *   所需的规则和构建目标都来自 Bazel 的开箱即用能力。
+
+
+  但在实际中，这种组合通常对大多数项目并不可行。你*一定*会需要依赖额外功能，而且很可能还会在项目中使用其他语言或其他类型的构建目标。`WORKSPACE` 文件正是为项目所需功能和规则搭建基础舞台的地方。
+
+
+  ## 向 WORKSPACE 添加新规则
+
+
+  如前所述，Bazel 开箱即用支持若干构建规则（Rules）。例如，它提供了定义 C++、Java、Python 等语言如何构建、编译、链接等的规则。此外，一个原生
+  Bazel 项目还定义了一些实用规则，用于规定项目中的资源（例如数据文件）应如何打包和引用。
+
+
+  Bazel 最强大的方面之一，就是能够通过添加新规则来扩展其能力。通过向项目的 workspace 添加新规则，我们可以加入远程依赖获取能力、增加新语言支持等等。
+
+
+  值得注意的是，Bazel 自带了一些规则，但它们默认不会自动加载。这使你作为项目创建者，能够显式控制希望在项目中可用的规则集合。
+
+
+  我们将用来加载新规则的基本命令是 Bazel 内置的 `load`。
+
+
+  ### 注意
+
+
+  `load` 命令会同时在 `WORKSPACE` 和 `BUILD` 文件中使用。正如你可能已经猜到的那样，我们最终也会用它把新类型的功能显式引入到 `BUILD`
+  文件中。
+
+
+  使用 `load` 的基本结构如下：
+
+
+  ```
+
+  load("//local/path/to/my:file.bzl", "symbol_to_load")
+
+  ```
+
+
+  这会让 `load` 拉取本地路径中的文件，并将指定符号加载到本地环境中；当它写在 `WORKSPACE` 文件中时，就是把该符号加载到 `WORKSPACE`
+  的本地环境中。
+
+
+  作为 `load` 的一个实际示例，我们将用它把 `http_archive` 规则引入 `WORKSPACE`。让我们创建一个新的项目目录。不过这次我们稍微“偷个懒”，复制上一章的成果。在复制之前，我们首先需要清理已有的构建输出，以避免意外把它们一并拷过去：
+
+
+  ```
+
+  $ cd chapter_03
+
+  chapter_03$ bazel clean
+
+  chapter_03$ cd ..
+
+  $ cp -r chapter_03 chapter_04
+
+  $ cd chapter_04
+
+  ```
+
+
+  在上一章中，我们让 `WORKSPACE` 文件保持完全空白，并且完全依赖内置规则。现在，让我们开始向 `WORKSPACE` 文件加入一点新功能。
+
+
+  用你喜欢的编辑器打开 `WORKSPACE` 文件，并写入以下内容。
+
+
+  ```
+
+  load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+  Listing 4-1
+
+  A simple load command
+
+  ```
+
+
+  将该文件保存到磁盘。
+
+
+  恭喜！你刚刚向 `WORKSPACE` 文件添加了一些功能。当然，这个功能此刻实际上还没有做任何事（我们会在下一节讲到）。
+
+
+  ### 注意
+
+
+  细心的读者会再次注意到一种新文件类型：`.bzl`。虽然这超出了本书范围，但你只需知道：`.bzl` 文件用于为 Bazel 定义规则（例如构建规则），并让我们能够扩展
+  Bazel 的能力（例如添加新语言）。
+
+
+
+
+  ### 深入解析加载路径
+
+
+  如果你仔细查看前一个示例中的加载路径，可能会注意到一件有趣的事：那个特定路径在你的文件系统中并不存在。那么，它是从哪里来的呢？
+
+
+  路径中的第一个元素是 `@bazel_tools`。`@` 用于向 Bazel 表明你正在从一个特定的 Bazel 仓库加载，该仓库名为 `bazel_tools`。`bazel_tools`
+  右侧下方的文件路径，则指定了*该仓库内部*某个文件的具体路径。
+
+
+  这是一个重要细节，因为它很快就会变得非常关键。随着你的项目开始引用其他 Bazel 仓库中的功能，你会使用名称来区分这些仓库。这样你就可以为项目所需的构建目标创建绝对路径。
+
+
+  到目前为止，你还没有引入任何外部仓库，那么 `bazel_tools` 实际上是从哪里来的？`bazel_tools` 仓库很特殊，（某种意义上）是“开箱即用”的。
+
+
+  这很关键，因为它自带一些重要功能，其中尤其重要的一项就是能够引入其他仓库。可以把它看作一个引导（bootstrapping）仓库：你只要安装了 Bazel 并创建了
+  `WORKSPACE`，就会获得它。
+
+
+  ### 查找 bazel_tools 仓库
+
+
+  如果你想稍微探索一下，可以在项目中找到 `bazel_tools` 仓库的位置。不过首先，先清理我们现有的项目：
+
+
+  ```
+
+  chapter_04$ bazel clean
+
+  ```
+
+
+  现在，如果你尝试在当前项目中定位 `bazel_tools` 仓库，可能会一无所获：
+
+
+  ```
+
+  chapter_04$ ls -1
+
+  WORKSPACE
+
+  src
+
+  third_party
+
+  ```
+
+
+  请注意，这里只有我们之前创建的目录和文件；`clean` 命令已经清除了所有构建产物、依赖、输出等内容。此时，这个 Bazel 项目基本上是“未触碰”的状态；实际上还没有执行任何
+  Bazel 命令。Bazel 的目标是在任意时刻都不下载超出所需的内容；因此，除非绝对必要，它甚至不会把 `bazel_tools` 下载到某个 `WORKSPACE`
+  中。
+
+
+  现在，让我们重新运行上一章中一个有效的构建命令：
+
+
+  ```
+
+  chapter_04$ bazel build src:LibraryExampleTest
+
+  chapter_04$ ls -1
+
+  WORKSPACE
+
+  bazel-bin
+
+  bazel-chapter_04
+
+  bazel-out
+
+  bazel-testlogs
+
+  src
+
+  third_party
+
+  ```
+
+
+  这一次，我们要更深入地查看生成的文件，尤其是 `bazel-chapter_04`：
+
+
+  ```
+
+  chapter_04$ cd bazel-chapter_04
+
+  chapter_04/bazel-chapter_04$ ls -1
+
+  bazel-out
+
+  external
+
+  src
+
+  third_party
+
+  chapter_04$ cd external
+
+  chapter_04/bazel-chapter_04/external$ ls -1
+
+  bazel_tools
+
+  (other directories may be here)
+
+  ```
+
+
+  恭喜！你已经找到了这个仓库。值得注意的是，它所在的位置揭示了 Bazel 的几个重要特性。
+
+
+  ### 注意
+
+
+  对于好奇的读者，如果你继续浏览 bazel_tools 目录，会在其中发现 tools/build_defs/repo 目录。你之前加载的 http.bzl 文件就在这里。
+
+
+  首先，你的每个项目都旨在成为各自明确的事实来源。并不存在一个跨所有项目共享的中心位置来放置通用的 `bazel_tools` 仓库；每个项目都应拥有自己版本的仓库（当然，这并不妨碍
+  Bazel 在幕后通过文件链接共享仓库来做一些优化）。
+
+
+  其次，除非*绝对需要*，否则 Bazel 不会下载依赖。我们会在本章稍后再次讨论这一点；不过即使你在 `WORKSPACE` 文件中新增了外部依赖，如果你从未使用这些依赖中的任何内容，*Bazel
+  也不会下载它们。* 这正体现了“把一切都显式声明”这一理念的核心：Bazel 因此能够进行一些很酷的优化。
+
+
+  ### 同时加载多个规则
+
+
+  在离开这一节之前，值得了解的是：同一个文件中可以包含多个规则。虽然你可以执行多条 *load* 命令来引入所需功能，但你也可以一次性获取所有必需的符号。
+
+
+  其格式如下：
+
+
+  ```
+
+  load("//local/path/to/my:file.bzl", "symbol_to_load_1", "symbol_to_load_2", "symbol_to_load_3")
+
+  ```
+
+
+  也就是说，你只需在 load 命令后追加任意多个想从某个文件中加载的符号即可。一个实际示例如下：
+
+
+  ```
+
+  load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file")
+
+  Listing 4-2
+
+  A load command that pulls in multiple symbols
+
+  ```
+
+
+  这会将 *http_archive* 和 *http_file* 两个符号都加载到你的 workspace 中。
+
+
+  ## 引用其他依赖
+
+
+  在上一章中，我们显式下载了 JUnit 库并将其直接加入项目中。这与 Bazel 偏好的模型（即 monorepo）非常契合。
+
+
+  不过，Bazel 还提供了几种不同方式来引用其他外部依赖。这带来了额外的灵活性，使你可以在不显式纳入依赖源码的情况下扩展项目。
+
+
+  在 `WORKSPACE` 文件中，有一些规则可用于拉取项目外部的依赖。实践中，其中两个最常见（你会在各种 Bazel 项目中看到）的是：
+
+
+  *   `http_archive`
+
+
+  *   `git_repository`
+
+
+  请注意，虽然这些规则在早期版本的 Bazel 中曾是开箱即用的，但现在你需要显式加载它们，才能在项目中使用。
+
+
+  这些规则都用于获取远程 Bazel 仓库，并将其包含的 targets 作为你项目可用的依赖。
+
+
+
+
+  ### http_archive
+
+
+  `http_archive`用于在给定压缩文件路径的情况下，引用并获取一个压缩的 Bazel 仓库。压缩仓库获取完成后，会被解压，其中包含的规则、目标等内容就可以在你的项目中使用。
+
+
+  `http_archive`最基础、最精简的形式如下。
+
+
+  ```
+
+  http_archive (
+
+  name = "foo",
+
+  urls = ["http://my_favorite_url.com/path/to/archive.zip"],
+
+  )
+
+  Listing 4-3
+
+  Example http_archive
+
+  ```
+
+
+  我们来稍微拆解一下前面的代码。上述规则指定从位置*http://my_favorite_url.com/path/to/archive.zip*获取仓库。假设该过程成功，归档文件将被获取、下载并解压（如果之前尚未完成），从而使其内容可供使用。
+
+
+  前面我们讨论过，为了使用该仓库中的任何功能，需要使用标签`bazel_tools`。类似地，为了使用我们新仓库`foo`中的任何功能，我们需要使用标签`@foo`。
+
+
+  为了让这些内容更具体一些，我们来看一个真实的`http_archive`示例。请将以下内容添加到你的`chapter_04 WORKSPACE`文件中。
+
+
+  ```
+
+  load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+  http_archive (
+
+  name = "io_bazel_rules_go",
+
+  urls = ["https://github.com/bazelbuild/rules_go/releases/download/v0.19.5/rules_go-v0.19.5.tar.gz"],
+
+  )
+
+  Listing 4-4
+
+  http_archive for Go language rules
+
+  ```
+
+
+  保存你的`WORKSPACE`文件。
+
+
+  正如你所想，这会拉取 Go 语言规则的压缩仓库并将其解压，使该仓库的目标可供使用。正如我们之前探讨的，这个仓库最终会出现在`chapter_04/bazel-chapter_04/external`目录中（需要注意的是，它不会立刻出现在那里，原因我们在本章前文已经讨论过）。
+
+
+  为了使用仓库中的任何功能，我们需要确保正确指定相应功能。为说明这一点，请将以下内容添加到`WORKSPACE`文件中，放在`http_archive`指令下面。
+
+
+  ```
+
+  load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
+
+  Listing 4-5
+
+  Retrieving functionality for Go
+
+  ```
+
+
+  将其保存到你的`WORKSPACE`文件中。
+
+
+  你应该会注意到，你需要指定`@io_bazel_rules_go`，才能形成正确路径并访问底层功能。
+
+
+  ### git_repository
+
+
+  `http_archive`侧重于获取 Bazel 仓库的压缩归档（无论其是否属于某个 SCM 系统），而`git_repository`用于克隆一个 git
+  仓库，并在指定的提交（或标签）上检出。
+
+
+  同样地，我们先从一个最简示例开始。注意，我们需要像`http_archive`一样，显式加载`git_repository`规则。
+
+
+  ```
+
+  load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+  git_repository(
+
+  name = "foo",
+
+  remote = "http://my_favorite_url.com/path/to/repo.git",
+
+  commit = "some_commit_hash_to_check_out_repo",
+
+  )
+
+  Listing 4-6
+
+  Loading and using the git_repository
+
+  ```
+
+
+  在我们拆解过`http_archive`之后，这里有些特性看起来非常相似。在这个例子中，`name`作用完全一致，作为仓库的消歧标签。与`http_archive`的`urls`参数类似，`remote`指定我们想克隆的
+  Git 仓库路径（例如位于[GitHub.com](http://github.com)之类的平台）。唯一的主要差异是`commit`，用于指定实际要获取的仓库版本。
+
+
+  #### 获取一个 Git 仓库
+
+
+  再次说明，我们用一个真实示例来演示。请将以下内容添加到你的`WORKSPACE`文件中。
+
+
+  ```
+
+  load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+  git_repository(
+
+  name = "io_bazel_rules_go",
+
+  remote = "https://github.com/bazelbuild/rules_go.git",
+
+  commit = "f5cfc31d4e8de28bf19d0fb1da2ab8f4be0d2cde",
+
+  )
+
+  Listing 4-7
+
+  Retrieving the repository for Go
+
+  ```
+
+
+  ### 注意
+
+
+  这里使用的具体提交哈希仅在本文写作时是最新的；你可能需要到该仓库中查看更新的版本。
+
+
+  在将这段内容保存到你的`WORKSPACE`文件之前，强烈建议你先注释掉相同请求的`http_archive`版本。否则，`http_archive`版本和`git_repository`版本会出现同名。Bazel
+  会通过取文件中最后一个定义来消歧决定谁“生效”；不过为了清晰起见，你不应在`WORKSPACE`文件的依赖中引入这种歧义。
+
+
+  保存你的`WORKSPACE`文件。
+
+
+  #### 关于 git_repository 的补充说明
+
+
+  尽管`git_repository`会将远程 git 仓库克隆到你的 Bazel 项目中，但这并不意味着你可以像操作普通 git 仓库那样与之交互。也就是说，你不能进入包含该
+  Git 仓库的目录（例如`bazel-chapter_04/external/<name of git repository>`）并开始执行一套常规 git 操作（例如`commit`、`push`等）。考虑到仓库所在位置，这一点其实也容易理解：所有`bazel-*`目录都是临时性的。它们都可以通过一次`bazel
+  clean`被移除，这很容易清除任何本地创建的更改。
+
+
+  如果你想编辑外部 git 仓库并让变更反映到项目中，一种方式是：单独克隆该仓库，完成并提交你的更改，然后*再*更新项目中的提交哈希，使其匹配新创建的提交。诚然，这可能不是最顺滑的工作流；但请记住，Bazel
+  始终强调可复现性。对依赖进行显式跟踪，正是 Bazel 强大能力的关键之一。
+
+
+  还有另一种使用`git_repository`的方法：不使用提交哈希，而是引用该提交对应的标签。示例如下。
+
+
+  ```
+
+  git_repository(
+
+  name = "foo",
+
+  remote = "http://my_favorite_url.com/path/to/repo.git",
+
+  tag = ""
+
+  )
+
+  Listing 4-8
+
+  Using the tag instead of the commit hash
+
+  ```
+
+
+  这样你就不再锁定到某个特定提交哈希，而是跟踪某个标签；如果你对 Git 仓库进行了更新（并随后更新该标签），你的项目将获得该标签对应的版本。
+
+
+  除了 tag 和 commit 之外，你还可以使用“branch”来引用 Git 仓库的特定分支。
+
+
+  ### 说明
+
+
+  你必须在“tag”“commit”或“branch”中选择其一来指向某个特定代码版本；不能同时使用多个。
+
+
+  虽然这会让外部仓库的使用更方便，但相比提交哈希，这种方式提供的保证会**弱得多**。它在开发过程中可能很方便，但在实践中也可能引发问题，因为你依赖的是一种可变的“浮动版本”代码。
+
+
+  ### http_archive 与 git_repository 对比
+
+
+  `http_archive`和`git_repository`都是用于引用外部 Bazel 仓库的工具；但这就引出了一个问题：“两者都能用时，我应该用哪一个？”例如，GitHub
+  同时提供 git 仓库（显然）和归档文件。
+
+
+  默认情况下，Bazel 的建议是优先使用`http_archive`。这很合理，因为它能提供最强的可复现性保证（即给定版本的归档是静态的）。下载并解压归档也比克隆仓库更快。此外，它还省去了为构建项目安装
+  git 的需求。对于那些预期版本变化较慢的依赖，这尤其是个好主意。
+
+
+
+
+  ### 注意
+
+
+  严格来说，即使是 http_archive 的 URL，其内容*也可能*发生变化。为了增强可复现性并确保检索到正确文件的保证，还有*另一个*属性 `sha256`，它包含要检索的归档文件预期的
+  SHA-256。虽然这里为了简洁省略了该字段，但在实际开发中，你应该设置这个字段，以确保构建的密封性（hermeticity）。
+
+
+  另一方面，如果某个归档不可用，或者你*需要*与变化非常快的外部依赖协作，那么 `git_repository` 可能更有意义得多（尤其是考虑到前文提到的可配合
+  git tag 使用的能力）。
+
+
+  最后补充一点，Bazel 项目倾向于单体化（monolithic），因此一个可考虑的方向是*避免*使用外部依赖，而是将必要代码直接纳入你的项目。这样并非总是可行或方便，但它*确实*能为你的构建提供最强保证。
+
+
+  ### 引入一门新语言
+
+
+  虽然 Bazel 开箱即用支持多种语言，但我们仍需要能够按项目需要添加更多语言。如果你还没猜到，我们将为项目添加 Go 支持。
+
+
+  让我们利用一路学到的一些工具。请确保你的 `WORKSPACE` 文件中包含以下内容。
+
+
+  ```
+
+  load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+  http_archive (
+
+  name = "io_bazel_rules_go",
+
+  urls = ["https://github.com/bazelbuild/rules_go/releases/download/v0.19.5/rules_go-v0.19.5.tar.gz"],
+
+  )
+
+  load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
+
+  go_rules_dependencies()
+
+  go_register_toolchains()
+
+  Listing 4-9
+
+  Loading the Go language rules
+
+  ```
+
+
+  保存 `WORKSPACE` 文件。
+
+
+  该示例中的大部分内容你之前都见过，例外是最后两行。最后两行会调用已加载的规则，为你的项目配置 Go 语言。
+
+
+  ### 注意
+
+
+  与 Bazel 中许多结构和模式不同，上面这两行不应被视为适用于所有语言的规范示例。每种新语言都有自己的一组（一个或多个）初始化规则，因此函数名每次都可能略有不同。
+
+
+  既然 Go 规则已经配置好，让我们用它们创建一个新目标。和之前一样，我们先从一个基础示例开始。
+
+
+  ```
+
+  chapter_04$ cd src
+
+  chapter_04/src$ touch hello_world.go
+
+  ```
+
+
+  让我们创建一个简单的 Go 程序。
+
+
+  ```
+
+  package main
+
+  import "fmt"
+
+  func main() {
+
+  fmt.Println("Hello, World!")
+
+  }
+
+  Listing 4-10
+
+  Hello World in Go
+
+  ```
+
+
+  将其保存为 `hello_world.go`。
+
+
+  现在，打开 `src` 目录中的 `BUILD` 文件，以便我们创建 Go 目标。不过，在真正创建目标之前，我们需要显式加载 Go 规则。
+
+
+  将以下内容添加到 `BUILD` 文件中。
+
+
+  ```
+
+  load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+
+  Listing 4-11
+
+  Loading the Go language rules
+
+  ```
+
+
+  请注意，我们使用标签 `@io_bazel_rules_go` 来进行加载，以便正确引用规则所需的包。保存之前，再添加新的 Go 目标。
+
+
+  ```
+
+  go_binary(
+
+  name = "hello_world_go",
+
+  srcs = ["hello_world.go"],
+
+  )
+
+  Listing 4-12
+
+  Create the go_binary target
+
+  ```
+
+
+  保存到 `BUILD` 文件。现在我们应该能够实际构建并运行该目标：
+
+
+  ```
+
+  chapter_04/src$ bazel run :hello_world_go
+
+  INFO: Analysed target //src:go_hello_world (23 packages loaded, 6239 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:go_hello_world up-to-date:
+
+  bazel-bin/src/darwin_amd64_stripped/go_hello_world
+
+  INFO: Elapsed time: 3.221s, Critical Path: 1.08s
+
+  INFO: 6 processes: 6 darwin-sandbox.
+
+  INFO: Build completed successfully, 10 total actions
+
+  INFO: Build completed successfully, 10 total actions
+
+  Hello, World!
+
+  ```
+
+
+  恭喜！你现在已经添加了一门新语言，并为其创建了一个目标！
+
+
+  ### 定位 Go 语言规则仓库
+
+
+  前面我们查找过 `bazel_tools` 仓库，它只会在我们执行了实际需要它的构建后才出现。以同样的方式，你现在也应该有一个 Go 语言规则仓库。我们快速确认一下：
+
+
+  ```
+
+  chapter_04/src$ cd ../bazel-chapter_04/external
+
+  chapter_04/bazel-chapter_04/external$ ls -1
+
+  bazel_tools
+
+  io_bazel_rules_go
+
+  (possible other repos)
+
+  ```
+
+
+  如前所述，Bazel 只会拉取构建你所请求目标所需的依赖。如果你先执行一次*clean*，然后构建一个非 Go 目标（例如之前的 Java 目标），你会发现 `io_bazel_rules_go`
+  **不会**存在于你的 `bazel-chapter_04/external` 目录中，尽管这两个目标都在同一个 `BUILD` 文件里。
+
+
+  ### 练习——再添加一门语言
+
+
+  在关于 `WORKSPACE` 文件的这一节里，我们一直在积累将新语言添加到项目中的知识。现在你已经具备了这些工具，接下来应继续探索向项目中添加更多语言。
+
+
+  访问 [`https://github.com/bazelbuild`](https://github.com/bazelbuild)，查看他们提供的各类 rules
+  包。需要注意的是，虽然那里会有许多常见语言，但有些规则集可能不在 bazelbuild 组织下。如果你没有找到心仪的语言，还可以在 Awesome Bazel（[`https://awesomebazel.com`](https://awesomebazel.com)）上找到更大的列表。选择你喜欢的语言，配置你的
+  `WORKSPACE` 文件，并为该语言创建一个构建目标。
+
+
+  '
+- '# 5. 一个简单的 Echo 客户端/服务器程序
+
+
+  在上一章中，你学习了 `WORKSPACE` 文件的基础知识，了解了如何添加外部依赖，包括新语言。在本章中，我们将基于这些内容创建一对简单程序，分别使用不同语言（一个
+  Java，另一个 Go），让两者之间进行消息往返传递。
+
+
+  ## 配置你的工作区
+
+
+  让我们为工作创建一个新目录：
+
+
+  ```
+
+  $ mkdir chapter_05
+
+  $ cd chapter_05
+
+  chapter_05$ touch WORKSPACE
+
+  ```
+
+
+  我们将引入上一章使用过的 Go 规则。打开你新建的 `WORKSPACE` 文件并添加以下内容。
+
+
+  ```
+
+  load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+  http_archive (
+
+  name = "io_bazel_rules_go",
+
+  urls = ["https://github.com/bazelbuild/rules_go/releases/download/v0.19.5/rules_go-v0.19.5.tar.gz"],
+
+  )
+
+  load("@io_bazel_rules_go/go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
+
+  go_rules_dependencies()
+
+  go_register_toolchains()
+
+  Listing 5-1
+
+  Adding in the Go rules
+
+  ```
+
+
+  保存你的 `WORKSPACE` 文件。
+
+
+  对于这个特定示例，我们将把所有代码放在单个目录中。在实践中，出于组织上的考虑，你很可能会按语言拆分代码目录。
+
+
+  现在让我们创建工作目录以及配套的 `BUILD` 文件：
+
+
+  ```
+
+  chapter_05$ mkdir src
+
+  chapter_05$ cd src
+
+  chapter_05/src$ touch BUILD
+
+  ```
+
+
+  正如你之前所见，一些语言（例如 C++、Java 等）是 Bazel 开箱即用支持的；因此我们不需要显式加载这些规则。不过，正如上一章所示，其他语言的规则则需要显式加载。本例中，我们将加载
+  Go 规则。
+
+
+  打开 `BUILD` 文件并添加以下内容。
+
+
+  ```
+
+  load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_binary")
+
+  Listing 5-2
+
+  Loading the Go language rules
+
+  ```
+
+
+  保存你的 `BUILD` 文件。
+
+
+  现在让我们开始创建一些程序。我们将先从 Go 版本开始。
+
+
+
+
+  ## Go 回显服务器
+
+
+  我们将从一个简单的 Go 回显服务器开始。顾名思义，它的主要工作是接受传入连接，从连接中读取字节，并将这些字节（经过修改后的版本）返回给发送方。
+
+
+  ```
+
+  package main
+
+  import (
+
+  "log"
+
+  "net"
+
+  )
+
+  func main() {
+
+  log.Println("Spinning up the Echo Server in Go...")
+
+  listen, error := net.Listen("tcp", ":1234")
+
+  if error != nil {
+
+  log.Panicln("Unable to listen: " + error.Error())
+
+  }
+
+  defer listen.Close()
+
+  connection, error := listen.Accept()
+
+  if error != nil {
+
+  log.Panicln("Cannot accept a connection! Error: " + error.Error())
+
+  }
+
+  log.Println("Receiving on a new connection")
+
+  defer connection.Close()
+
+  defer log.Println("Connection now closed.")
+
+  buffer := make([]byte, 2048)
+
+  size, error := connection.Read(buffer)
+
+  if error != nil {
+
+  log.Println("Cannot read from the buffer! Error: " + error.Error())
+
+  }
+
+  data := string(buffer[:size])
+
+  log.Println("Received data: " + data)
+
+  connection.Write([]byte("Echoed from Go: " + data))
+
+  }
+
+  Listing 5-3
+
+  Simple Go echo server
+
+  ```
+
+
+  将其保存到 `chapter_05/src/echo_server.go`。
+
+
+  为了稍微梳理一下这段代码，Go 回显服务器会先在“1234”端口上监听连接。一旦接受到连接，它会从该连接读取数据，对其做一点小修改（即在前面加上“Echoed
+  from Go:”），然后把修改后的数据发回给发送者。为简化起见，它在回显完数据后就会关闭服务。
+
+
+  现在让我们在 `BUILD` 文件中创建这个构建目标的条目。
+
+
+  ```
+
+  go_binary(
+
+  name = "echo_server",
+
+  srcs = ["echo_server.go"],
+
+  )
+
+  Listing 5-4
+
+  Go echo server build target
+
+  ```
+
+
+  保存 `BUILD` 文件。
+
+
+  现在是时候真正构建并运行回显服务器了：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_server
+
+  INFO: Analysed target //src:echo_server (0 packages loaded, 0 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:echo_server up-to-date:
+
+  bazel-bin/src/darwin_amd64_stripped/echo_server
+
+  INFO: Elapsed time: 0.125s, Critical Path: 0.00s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 1 total action
+
+  INFO: Build completed successfully, 1 total action
+
+  2019/06/02 17:49:07 Spinning up the Echo Server in Go...
+
+  ```
+
+
+  此时，它会一直挂在那里，因为还没有任何客户端连接它。先终止这个进程，我们来修复这个问题。我们会暂时放下 Go，转到 Java。
+
+
+  ## Java 回显客户端
+
+
+  顾名思义，我们将创建一个连接到回显服务器的程序。回显客户端会尝试连接服务器，从用户读取一些数据，将其发送到服务器，然后把从服务器收到的内容输出出来。
+
+
+  ```
+
+  import java.io.BufferedReader;
+
+  import java.io.InputStreamReader;
+
+  import java.io.PrintWriter;
+
+  import java.net.Socket;
+
+  public class EchoClient {
+
+  public static void main (String args[]) {
+
+  System.out.println("Spinning up the Echo Client in Java...");
+
+  try {
+
+  final Socket socketToServer = new Socket("localhost", 1234);
+
+  final BufferedReader inputFromServer = new BufferedReader(
+
+  new InputStreamReader(socketToServer.getInputStream()));
+
+  final BufferedReader commandLineInput = new BufferedReader(
+
+  new InputStreamReader(System.in));
+
+  System.out.println("Waiting on input from the user...");
+
+  final String inputFromUser = commandLineInput.readLine();
+
+  if (inputFromUser != null) {
+
+  System.out.println("Received by Java: " + inputFromUser);
+
+  final PrintWriter outputToServer =
+
+  new PrintWriter(socketToServer.getOutputStream(), true);
+
+  outputToServer.println(inputFromUser);
+
+  System.out.println(inputFromServer.readLine());
+
+  }
+
+  socketToServer.close();
+
+  } catch (Exception e) {
+
+  System.err.println("Error: " + e);
+
+  }
+
+  }
+
+  }
+
+  Listing 5-5
+
+  Simple Java echo client
+
+  ```
+
+
+  将上述代码保存到文件 `chapter_05/src/EchoClient.java`。
+
+
+  `EchoClient` 会尝试在本地与 1234 端口上的服务器建立连接。若连接成功，它会从用户读取一行数据，通过连接发送出去，并打印来自服务器的响应。再次说明，为了简化示例，它只会运行一次然后退出。
+
+
+  现在让我们把它的条目添加到 `BUILD` 文件中。
+
+
+  ```
+
+  java_binary(
+
+  name = "EchoClient",
+
+  srcs = ["EchoClient.java"],
+
+  )
+
+  Listing 5-6
+
+  Java echo client build target
+
+  ```
+
+
+  将其保存到 `BUILD` 文件中。
+
+
+  让我们先单独运行它，以确保可以完成构建和运行：
+
+
+  ```
+
+  chapter_05/src$ bazel run :EchoClient
+
+  INFO: Analysed target //src:EchoClient (0 packages loaded, 2 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:EchoClient up-to-date:
+
+  bazel-bin/src/EchoClient.jar
+
+  bazel-bin/src/EchoClient
+
+  INFO: Elapsed time: 0.342s, Critical Path: 0.12s
+
+  INFO: 1 process: 1 worker.
+
+  INFO: Build completed successfully, 2 total actions
+
+  INFO: Build completed successfully, 2 total actions
+
+  Spinning up the Echo Client in Java...
+
+  Error: java.net.ConnectException: Connection refused (Connection refused)
+
+  ```
+
+
+  恭喜！你的程序成功运行了……然后由于没有可连接的目标而终止。别担心，我们马上就会修正这个问题。
+
+
+
+
+  ### 为 Echo 客户端和服务器命名
+
+
+  细心的读者会注意到，我们的 Java 目标名称风格与 Go 目标中的名称风格不同。
+
+
+  具体来说，一个名称主要由下划线组成，另一个则使用驼峰命名法。
+
+
+  ```
+
+  go_binary(
+
+  name = "echo_server",
+
+  srcs = ["echo_server.go"],
+
+  )
+
+  java_binary(
+
+  name = "EchoClient",
+
+  srcs = ["EchoClient.java"],
+
+  )
+
+  Listing 5-7
+
+  Build targets
+
+  ```
+
+
+  需要说明的是，这里并不是编辑错误；这种差异确实有其原因，至少对 Java 来说是如此。对于 Java 二进制构建目标，目标名称还会被用作一种简写，告知 Bazel
+  在这组源码中哪个类是主类。
+
+
+  为了说明这一点，让我们把 `java_binary` 构建目标的名称修改为与 `go_binary` 构建目标一致的风格。
+
+
+  ```
+
+  java_binary(
+
+  name = "echo_client",
+
+  srcs = ["EchoClient.java"],
+
+  )
+
+  Listing 5-8
+
+  Modified java_binary name style
+
+  ```
+
+
+  将此更改保存到 `BUILD` 文件中。
+
+
+  构建仍然会像预期那样工作：
+
+
+  ```
+
+  chapter_05/src$ bazel build :echo_client
+
+  INFO: Analysed target //src:echo_client (1 packages loaded, 2 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:echo_client up-to-date:
+
+  bazel-bin/src/echo_client.jar
+
+  bazel-bin/src/echo_client
+
+  INFO: Elapsed time: 0.261s, Critical Path: 0.09s
+
+  INFO: 1 process: 1 worker.
+
+  INFO: Build completed successfully, 3 total actions
+
+  ```
+
+
+  不过，你会发现实际上无法运行该程序：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_client
+
+  INFO: Analysed target //src:echo_client (0 packages loaded, 0 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:echo_client up-to-date:
+
+  bazel-bin/src/echo_client.jar
+
+  bazel-bin/src/echo_client
+
+  INFO: Elapsed time: 0.137s, Critical Path: 0.00s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 1 total action
+
+  INFO: Build completed successfully, 1 total action
+
+  Error: Could not find or load main class echo_client
+
+  ```
+
+
+  在没有任何额外指引的情况下，`java_binary` 规则会利用构建目标名称来推断 `main` 函数所在的类（更准确地说，是***应该***使用其 `main`
+  函数的那个类）。在我们修改后的示例中，Bazel 正在尝试查找并不存在的类 `echo_client`。
+
+
+  这个结果是合理的。尽管 Bazel 规则提供了一个便利机制，可用构建目标名来省略主类声明，但如果不遵循该约定，它不会尝试隐式选择一个可能包含主类的类。如示例所示，即使只有一个类也是如此。
+
+
+  幸运的是，我们可以添加显式声明让它重新工作。
+
+
+  ```
+
+  java_binary(
+
+  name = "echo_client",
+
+  srcs = ["EchoClient.java"],
+
+  main_class = "EchoClient",
+
+  )
+
+  Listing 5-9
+
+  Explicitly listing the java_binary main class
+
+  ```
+
+
+  将此更改保存到 `BUILD` 文件中。
+
+
+  现在运行会像之前一样正常：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_client
+
+  INFO: Analysed target //src:echo_client (1 packages loaded, 2 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:echo_client up-to-date:
+
+  bazel-bin/src/echo_client.jar
+
+  bazel-bin/src/echo_client
+
+  INFO: Elapsed time: 0.204s, Critical Path: 0.00s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 2 total actions
+
+  INFO: Build completed successfully, 2 total actions
+
+  Spinning up the Echo Client in Java...
+
+  Error: java.net.ConnectException: Connection refused (Connection refused)
+
+  ```
+
+
+  前面的代码提醒我们：Bazel 希望一切都尽可能显式。确实，有些规则提供了一些快捷方式来让使用更轻松，但归根结底，Bazel 不希望依赖管理或构建规范是“魔法式”的。通过显式声明依赖、构建规范等内容，Bazel
+  才能进行优化并提供保证，从而让构建快速、稳定且可理解。
+
+
+  现在，让我们真正把程序一起运行起来。
+
+
+  ## 在程序之间进行回显
+
+
+  客户端和服务器程序都创建好之后，现在该把它们一起运行了。你需要两个不同的 shell 实例分别运行它们。
+
+
+  在第一个 shell 中，先把服务器重新启动起来：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_server
+
+  INFO: Analysed target //src:echo_server (0 packages loaded, 2 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:echo_server up-to-date:
+
+  bazel-bin/src/darwin_amd64_stripped/echo_server
+
+  INFO: Elapsed time: 0.210s, Critical Path: 0.00s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 1 total action
+
+  INFO: Build completed successfully, 1 total action
+
+  2019/06/02 18:50:31 Spinning up the Echo Server in Go...
+
+  ```
+
+
+  它会一直阻塞，直到接收到连接；现在我们来提供一个连接。打开第二个 shell 并运行客户端程序：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_client
+
+  INFO: Analysed target //src:echo_client (0 packages loaded, 0 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:echo_client up-to-date:
+
+  bazel-bin/src/echo_client.jar
+
+  bazel-bin/src/echo_client
+
+  INFO: Elapsed time: 0.284s, Critical Path: 0.00s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 1 total action
+
+  INFO: Build completed successfully, 1 total action
+
+  Spinning up the Echo Client in Java...
+
+  Waiting on input from the user...
+
+  ```
+
+
+  现在，输入一些你想发送的文本并按下 *回车*。在第二个 shell（客户端）中，你应该会看到类似如下内容：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_client
+
+
+  Spinning up the Echo Client in Java...
+
+  Waiting on input from the user...
+
+  Hello, friends!
+
+  Received by Java: Hello, friends!
+
+  Echoed from Go: Hello, friends!
+
+  ```
+
+
+  客户端程序也应该已经干净地退出了。
+
+
+  查看第一个 shell（服务器端），你应该会看到类似如下内容：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_server
+
+
+  2019/06/02 18:50:31 Spinning up the Echo Server in Go...
+
+  2019/06/02 18:52:28 Receiving on a new connection
+
+  2019/06/02 18:53:25 Received data: Hello, friends!
+
+  2019/06/02 18:53:25 Connection now closed.
+
+  ```
+
+
+  和客户端一样，服务器此时也应已干净退出。恭喜！你已经在 Bazel 中用不同语言创建了一个回显客户端和服务器！
+
+
+  ## 升级到 JSON
+
+
+  来回发送字节串是一个不错的开始，但它并不是一种可扩展的消息传输方式。在本节中，我们将转而使用 JSON 在数据连接上传输数据。在这个过程中，我们会把过去几章中逐步建立的一些概念串联起来。
+
+
+  为了便于说明，我们将构造一条简单的 JSON 消息，其数据如下。
+
+
+  ```
+
+  {
+
+  "message": "This is my message",
+
+  "value": 1234.56
+
+  }
+
+  Listing 5-10
+
+  Simple JSON message
+
+  ```
+
+
+
+
+  ### Go 中的 JSON
+
+
+  Go 原生提供了对 JSON 与 Go 结构体实例之间数据编组（marshal）和解组（unmarshal）的支持。首先，我们将创建一个 Go 结构体来定义传输消息。
+
+
+  在大多数情况下，我们只需要在 Go 中创建一个包含必要字段的普通数据结构体。唯一的小改动是，我们需要添加一些注解来指定 JSON 键到结构体特定成员的映射关系。
+
+
+  ```
+
+  package transmission_object
+
+  type TransmissionObject struct {
+
+  Message string `json:"message"`
+
+  Value  float32  `json:"value"`
+
+  }
+
+  Listing 5-11
+
+  Simple JSON object in Go
+
+  ```
+
+
+  在 `chapter_05/src` 目录下，将上述文件保存为 `transmission_object.go`*.*。
+
+
+  现在让我们在 `BUILD` 文件中创建一个 `go_library`，为该功能提供构建目标。打开 `chapter_05/src/BUILD` 文件并添加以下内容。
+
+
+  ```
+
+  go_library(
+
+  name = "transmission_object_go",
+
+  srcs = ["transmission_object.go"],
+
+  importpath = "transmission_object",
+
+  )
+
+  Listing 5-12
+
+  Adding the TransmissionObject as a go_library
+
+  ```
+
+
+  保存 *BUILD* 文件。
+
+
+  现在，让我们在你的 Go 回显服务器中添加所需功能。在这个例子中，我们将读取传入消息，对消息中的值做一些修改，然后把修改后的消息发回去。
+
+
+  打开 `echo_server.go` 并添加以下代码行。
+
+
+  ```
+
+  package main
+
+  import (
+
+  "encoding/json"
+
+  "fmt"
+
+  "log"
+
+  "net"
+
+  "transmission_object"
+
+  )
+
+  func main() {
+
+
+  data := buffer[:size]
+
+  var transmissionObject transmission_object.TransmissionObject
+
+  error = json.Unmarshal(data, &transmissionObject)
+
+  if error != nil {
+
+  log.Panicln(
+
+  "Unable to unmarshal the buffer! Error: " +
+
+  error.Error())
+
+  }
+
+  log.Println("Message = " + transmissionObject.Message)
+
+  log.Println("Value = " + fmt.Sprintf("%f", transmissionObject.Value))
+
+  transmissionObject.Message =
+
+  "Echoed from Go: " + transmissionObject.Message
+
+  transmissionObject.Value = 2 * transmissionObject.Value
+
+  message, error := json.Marshal(transmissionObject)
+
+  if error != nil {
+
+  log.Panicln(
+
+  "Unable to marshall the object! Error: " +
+
+  error.Error())
+
+  }
+
+  connection.Write(message)
+
+  }
+
+  Listing 5-13
+
+  Unmarshaling, modifying, and marshaling a JSON object in Go
+
+  ```
+
+
+  将更改保存到 `chapter_05/src/echo_server.go`。
+
+
+  最后，我们需要更新 `BUILD` 文件，以便为 `echo_server` 配置正确的依赖。打开 `BUILD` 文件并进行如下修改。
+
+
+  ```
+
+  go_binary(
+
+  name = "echo_server",
+
+  srcs = ["echo_server.go"],
+
+  deps = [":transmission_object_go"],
+
+  )
+
+  Listing 5-14
+
+  Updating the BUILD file
+
+  ```
+
+
+  将更改保存到 `chapter_05/src/BUILD`。
+
+
+  现在让我们转到 `echo_client`，进行必要的修改。
+
+
+  ### Java 中的 JSON
+
+
+  Go 具备将 JSON 转换为 Go 结构体实例的内建能力；遗憾的是，Java 默认并不具备同样的开箱即用能力。幸运的是，我们可以通过使用 GSON 库获得类似行为。
+
+
+  #### GSON 设置
+
+
+  回到第 3 章，你曾下载过一个 jar 文件到 `third_party` 目录；这里我们也将再次这样做，这次是为了获取 GSON 库。
+
+
+  首先，创建 `third_party/gson` 目录：
+
+
+  ```
+
+  chapter_05$ mkdir third_party
+
+  chapter_05$ cd third_party
+
+  chapter_05/third_party$ mkdir gson
+
+  ```
+
+
+  从以下位置下载 JAR：
+
+
+  [`http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar)。
+
+
+  将 JAR 文件复制到 `the third_party/gson` 目录。和之前一样，我们现在为这个外部依赖创建 `BUILD` 文件。
+
+
+  ```
+
+  package(default_visibility = ["//visibility:public"])
+
+  java_import(
+
+  name = "gson",
+
+  jars = ["gson/gson-2.8.5.jar"]
+
+  )
+
+  Listing 5-15
+
+  Contents of the BUILD file for the third_party dependency
+
+  ```
+
+
+  将 `BUILD` 文件保存到 `third_party` 目录。
+
+
+  #### 向 EchoClient 添加传输对象
+
+
+  现在我们将在 Java 中创建一个 `TransmissionObject`（与我们在 Go 中所做的等价），用于在线路上传输和接收结构化且有类型的信息。
+
+
+  ```
+
+  public class TransmissionObject {
+
+  public String message;
+
+  public float value;
+
+  }
+
+  Listing 5-16
+
+  Transmission Object in Java
+
+  ```
+
+
+  将上述代码保存到 `chapter_05/src/TransmissionObject.java`*.*。现在让我们更新 `BUILD` 文件，为这个对象新增一个
+  `java_library` 构建目标。
+
+
+  ```
+
+  java_library(
+
+  name = "transmission_object_java",
+
+  srcs = ["TransmissionObject.java"],
+
+  )
+
+  Listing 5-17
+
+  Updating the BUILD file
+
+  ```
+
+
+  将更改保存到 `chapter_05/src/BUILD`。
+
+
+  现在让我们把这些改动添加到 `EchoClient.java` 中，以便编组数据、发送消息，然后打印来自回显服务器的响应。
+
+
+  ```
+
+  import com.google.gson.Gson;
+
+  import com.google.gson.GsonBuilder;
+
+
+  System.out.println("Waiting on input from the user...");
+
+  final String inputFromUser = commandLineInput.readLine();
+
+  if (inputFromUser != null) {
+
+  System.out.println("Received by Java: " + inputFromUser);
+
+  TransmissionObject transmissionObject =
+
+  new TransmissionObject();
+
+  transmissionObject.message = inputFromUser;
+
+  transmissionObject.value = 3.145f;
+
+  GsonBuilder builder = new GsonBuilder();
+
+  Gson gson = builder.create();
+
+  final PrintWriter outputToServer =
+
+  new PrintWriter(socketToServer.getOutputStream(), true);
+
+  outputToServer.println(gson.toJson(transmissionObject));
+
+  System.out.println(inputFromServer.readLine());
+
+  }
+
+  socketToServer.close();
+
+  }
+
+  Listing 5-18
+
+  Adding transmission to the echo client
+
+  ```
+
+
+  将上述代码保存到 `chapter_05/src/EchoClient.java`。最后，我们现在可以将必要更新添加到 `BUILD` 文件中。
+
+
+  ```
+
+  java_binary(
+
+  name = "echo_client",
+
+  srcs = ["EchoClient.java"],
+
+  main_class = "EchoClient",
+
+  deps = [
+
+  ":transmission_object_java",
+
+  "//third_party:gson",
+
+  ]
+
+  )
+
+  Listing 5-19
+
+  Updating the Java client with the new dependencies
+
+  ```
+
+
+  将上述代码保存到 `chapter_05/src/BUILD`。
+
+
+  ### 使用 JSON 执行 Echo 客户端/服务器
+
+
+  所有部分都就位后，让我们运行服务器和客户端。和前面一样，你需要两个终端实例，才能正确运行客户端和服务器。
+
+
+  首先，我们运行 echo 服务器：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_server
+
+  INFO: Analysed target //src:echo_server (0 packages loaded, 0 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:echo_server up-to-date:
+
+  bazel-bin/src/darwin_amd64_stripped/echo_server
+
+  INFO: Elapsed time: 0.132s, Critical Path: 0.00s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 1 total action
+
+  INFO: Build completed successfully, 1 total action
+
+  2019/06/04 00:27:23 Spinning up the Echo Server in Go...
+
+  ```
+
+
+  在第二个终端实例中，我们将运行 echo 客户端：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_client
+
+  INFO: Analysed target //src:echo_client (0 packages loaded, 0 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //src:echo_client up-to-date:
+
+  bazel-bin/src/echo_client.jar
+
+  bazel-bin/src/echo_client
+
+  INFO: Elapsed time: 0.115s, Critical Path: 0.00s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 1 total action
+
+  INFO: Build completed successfully, 1 total action
+
+  Spinning up the Echo Client in Java...
+
+  Waiting on input from the user...
+
+  ```
+
+
+  让我们添加用户输入：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_client
+
+
+  Spinning up the Echo Client in Java...
+
+  Waiting on input from the user...
+
+  My Client Message
+
+  {"message":"Echoed from Go: My Client Message","value":6.29}
+
+  ```
+
+
+  最后，让我们看看 echo 服务器的控制台输出：
+
+
+  ```
+
+  chapter_05/src$ bazel run :echo_server
+
+
+  2019/06/04 00:27:23 Spinning up the Echo Server in Go...
+
+  2019/06/04 00:29:08 Receiving on a new connection
+
+  2019/06/04 00:30:04 Message = My Client Message
+
+  2019/06/04 00:30:04 Value = 3.145000
+
+  ```
+
+
+  恭喜！你已经成功增强了客户端和服务器程序，实现了在不同语言之间传输 JSON 数据。
+
+
+
+
+  ## 总结：重复劳动
+
+
+  使用 JSON 的一个不幸现实是，我们需要为每种语言重复定义数据。一旦数据契约发生变化，就意味着每一处数据定义实例都需要修改。这个过程很容易出错，而且尽管比简单的字符串传输更好，仍然存在不少缺陷。
+
+
+  如前所述，Bazel 最擅长的领域之一是多语言支持；在下一章中，我们将利用这一能力，为我们的项目加入 Protocol Buffer 支持。
+
+
+  ### 练习——Python 客户端和/或服务器
+
+
+  和 Go 一样，Python 也提供了一些便捷能力，可在 JSON 与 Python 对象之间进行编组/反编组。请用 Python 创建一个新的客户端或服务器。
+
+
+  '
+- "# 6. Protocol Buffers 与 Bazel\n\n在上一章中，你创建了一个简单的 echo 服务器和客户端，展示了 Bazel 在仅需最少配置的情况下，驾驭和管理多语言的一部分能力。那个示例中一个明显的缺点来自于传输对象的定义：两种语言都需要各自独立地定义该对象。随着时间推移，这很容易导致通信的“字面崩溃”——两个（或更多）传输对象定义逐渐失去同步。\n\
+  \n在本章中，我们将引入一种专门解决这一问题的机制：*Protocol Buffer*（通常称为 *protobuf*）*。*Protocol Buffers\
+  \ 同样是 Google 的产物，它提供了一种声明式且类型安全的方式来描述对象结构，并提供用于序列化的线传输格式。Protocol Buffer 的定义在本质上与语言无关。定义完成后，可以将其编译为特定语言版本（Protocol\
+  \ Buffers 支持大量语言），从而把线传输格式读写为该语言的原生对象。\n\n虽然 Protocol Buffers 并不与 Bazel 强绑定，但 Bazel\
+  \ 对它提供了非常出色的支持，使其易于添加到项目中，并在多语言间复用。此外，借助 Bazel 的依赖管理，也可以非常轻松地在 Protocol Buffer 定义处做出修改，并确保所有依赖项目至少能够基于新定义通过编译。\n\
+  \n## 设置你的工作区\n\n首先，我们会在 `WORKSPACE` 文件中加入一些用于 Protocol Buffers 的基础支持。先为本章工作创建一个新目录：\n\
+  \n```\n$ mkdir chapter_06\n$ cd chapter_06\nchapter_06$ touch WORKSPACE\n```\n\n\
+  现在让我们引入使用 Protocol Buffers 所需的规则。打开你的 `WORKSPACE` 文件并添加以下内容。\n\n```\nhttp_archive(\n\
+  name = \"rules_proto\",\nstrip_prefix = \"rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313\"\
+  ,\nurls = [\"https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz\"\
+  ,],\n)\nload(\"@rules_proto//proto:repositories.bzl\", \"rules_proto_dependencies\"\
+  , \"rules_proto_toolchains\")\nrules_proto_dependencies()\nrules_proto_toolchains()\n\
+  Listing 6-1\nAdding support for Protocol Buffers\n```\n\n保存你的 `WORKSPACE` 文件*。*\n\
+  \n```\n如前几章你应已熟悉的那样，我们首先拉取具备所需功能的 Bazel 仓库，然后调用该仓库对应的初始化代码（即 rules_proto_dependencies()\
+  \ 和 rules_proto_toolchains()）。\n```\n\n## 创建你的第一个 Protocol Buffer\n\n完成设置后，我们就可以开始创建一些\
+  \ Protocol Buffers 了。先为代码创建目录，并为 Protocol Buffer 定义创建初始文件：\n\n```\nchapter_06$ mkdir\
+  \ src\nchapter_06$ cd src\nchapter_06/src$ touch transmission_object.proto\n```\n\
+  \n### 注意\n\n细心的读者会注意到，在上一章中，我们是在编写代码前先创建 `BUILD` 文件。这次顺序的变化是有意为之，我们很快会解释原因。\n\n\
+  让我们创建一个用于传输的基础消息。打开你的 `transmission_object.proto` 文件并添加以下内容。\n\n```\nsyntax = \"\
+  proto3\";\npackage transmission_object;\nmessage TransmissionObject {\nfloat value\
+  \ = 1;\nstring message = 2;\n}\nListing 6-2\nDefining a simple Protocol Buffer\n\
+  ```\n\n将其保存到 `transmission_object.proto`*。*\n\n我们简要看一下刚才写了什么。第一行（`syntax`）用于告诉编译器此处使用的是哪个\
+  \ Protocol Buffers 版本（在撰写本书时，最新版本是第 3 版）。\n\n下一行（`package`）用于定义该 Protocol Buffer\
+  \ 所在的概念包。这与 Java 或 Go 的包概念非常相似。\n\n最后是消息本身的定义。它最接近 C 风格的结构体：为对象命名（`TransmissionObject`），并给出一组带类型的字段（即\
+  \ `value` 和 `message`，类型分别为 `float` 和 `string`）。这里唯一的小扩展是字段编号的加入；它用于为消息中的每个成员定义唯一标识符。这一点很重要，因为它使你可以在保持向后兼容的同时新增或移除数据成员。\n\
+  \n现在我们为该 Protocol Buffer 创建构建目标。将以下内容添加到你的 `BUILD` 文件中。\n\n```\nload(\"@rules_proto//proto:defs.bzl\"\
+  , \"proto_library\")\nproto_library(\nname = \"transmission_object_proto\",\nsrcs\
+  \ = [\"transmission_object.proto\"],\n)\nListing 6-3\nCreating the build target\
+  \ for the Protocol Buffer\n```\n\n保存你的 `BUILD` 文件。\n\n### 注意\n\n已经熟悉 Bazel 的读者可能会觉得显式引入\
+  \ `proto_library` 有些奇怪。`proto_library` 规则过去是 Bazel 核心的一部分。这体现了 Bazel 的演进方式：将特定构件从核心中迁出，放入显式包中。\n\
+  \n到这一步，从技术上讲，我们已经具备了开始构建 Protocol Buffer 的条件，现在来执行：\n\n```\nchapter_06/src$ bazel\
+  \ build :transmission_object_proto\nINFO: Analysed target //src:transmission_object_proto\
+  \ (16 packages loaded, 624 targets configured).\nINFO: Found 1 target...\nTarget\
+  \ //src:transmission_object_proto up-to-date:\nbazel-genfiles/src/transmission_object_proto-descriptor-set.proto.bin\n\
+  INFO: Elapsed time: 80.442s, Critical Path: 24.91s\nINFO: 184 processes: 184 darwin-sandbox.\n\
+  INFO: Build completed successfully, 187 total actions\n```\n\n你首先会注意到的一点是，至少在第一次构建\
+  \ Protocol Buffer 目标时，相比前几章的执行会出现明显延迟。因为此时不仅需要拉取 Protocol Buffer 编译器的依赖，*还*需要为你的目标机器编译它。只有\
+  \ protobuf 编译器自身编译完成后，它才能编译你的 protobuf 定义。\n\n不用担心。这种变慢通常只会发生在你第一次实际运行 Protocol\
+  \ Buffer 编译器时；一旦生成完成，Protocol Buffer 编译器会保持在缓存中（除非你更改依赖或执行 `bazel clean`）。\n\n##\
+  \ 在 Java 中使用 Protocol Buffer\n\n尽管我们已经成功编译了 Protocol Buffer，但目前我们真正得到的只是它的语言无关描述符；若要真正使用它，还需要为其创建语言特定目标。我们先从\
+  \ Java 开始。再次利用这样一个事实：Java 作为 Bazel 的内置语言之一，自带对 Java 版 Protocol Buffers 的支持。\n\n\n\
+  \n### 创建 Java Proto 库目标\n\n打开你的 `BUILD` 文件并添加以下内容。\n\n```\njava_proto_library(\n\
+  name = \"transmission_object_java_proto\",\ndeps = [\":transmission_object_proto\"\
+  ],\n)\nListing 6-4\nCreating the Java Protocol Buffer library\n```\n\n保存 `BUILD`\
+  \ 文件。让我们构建新创建的目标：\n\n```\nchapter_06/src$ bazel build :transmission_object_java_proto\n\
+  INFO: Analysed target //src:transmission_object_java_proto (2 packages loaded, 350\
+  \ targets configured).\nINFO: Found 1 target...\nTarget //src:transmission_object_java_proto\
+  \ up-to-date:\nbazel-bin/src/libtransmission_object_proto-speed.jar\nbazel-genfiles/src/transmission_object_proto-speed-src.jar\n\
+  INFO: Elapsed time: 0.703s, Critical Path: 0.45s\nINFO: 2 processes: 1 darwin-sandbox,\
+  \ 1 worker.\nINFO: Build completed successfully, 3 total actions\n```\n\n恭喜！你现在有了一个我们实际上可以在\
+  \ Java 程序中使用的目标。\n\n### 注意\n\n在这个案例中，你不需要显式加载 `java_proto_library`。不过，考虑到 Bazel\
+  \ 的演进，请记住未来某些版本可能会要求你显式加载该规则。\n\n### 使用你的 Java Protocol Buffer 目标\n\n在上一章中，你使用 JSON\
+  \ 创建了一个简单的 Java echo 客户端。在这里，我们将复用几乎相同的代码来实现 Protocol Buffer 示例，只做少量改动。\n\n在你的 `src`\
+  \ 目录下创建 `EchoClient.java`，并添加以下内容（相较上一章的改动已加粗）。\n\n```\nimport java.io.BufferedReader;\n\
+  import java.io.InputStreamReader;\nimport java.io.PrintWriter;\nimport java.net.Socket;\n\
+  import transmission_object.TransmissionObjectOuterClass.TransmissionObject;\npublic\
+  \ class EchoClient {\npublic static void main (String args[]) {\nSystem.out.println(\"\
+  Spinning up the Echo Client in Java...\");\ntry {\nfinal Socket socketToServer =\
+  \ new Socket(\"localhost\", 1234);\n// Note we don't need the second BufferedReader\
+  \ here.\nfinal BufferedReader commandLineInput = new BufferedReader(new InputStreamReader(System.in));\n\
+  System.out.println(\"Waiting on input from the user...\");\nfinal String inputFromUser\
+  \ = commandLineInput.readLine();\nif (inputFromUser != null) {\nSystem.out.println(\"\
+  Received by Java: \" + inputFromUser);\nTransmissionObject transmissionObject =\
+  \ TransmissionObject.                  newBuilder()\n.setMessage(inputFromUser)\n\
+  .setValue(3.145f)\n.build();\ntransmissionObject.writeTo(socketToServer.getOutputStream());\n\
+  TransmissionObject receivedObject = TransmissionObject.parseFrom(socketToServer.getInputStream());\n\
+  System.out.println(\"Received Message from server: \");\nSystem.out.println(receivedObject);\n\
+  }\nsocketToServer.close();\n} catch (Exception e) {\nSystem.err.println(\"Error:\
+  \ \" + e);\n}\n}\n}\nListing 6-5\nProtocol Buffer version of the echo client\n```\n\
+  \n将其保存为 `EchoClient.java`。\n\n让我们花点时间分析一下前面的代码。用于引入我们生成的 Protocol Buffer 的 import\
+  \ 语句由三个主要部分组成：\n\n*   `transmission_object`\n    *   这是在原始 `transmission_object.proto`\
+  \ 文件中指定的包。\n\n*   `TransmissionObjectOuterClass`\n    *   这是一个生成的类，用于封装 Protocol\
+  \ Buffer 定义中包含的所有消息。\n\n    *   这是 Java 每个文件只能有一个（外部）类这一规则的产物；从技术上讲，我们本可以在 Protocol\
+  \ Buffer 文件中定义多个消息，但在一个 Java 文件中只能有一个类。\n\n    *   这使我们能够在 Java 中创建并使用多个 Protocol\
+  \ Buffer 消息。\n\n*   `TransmissionObject`\n    *   这是表示原始 Protocol Buffer 消息的实际 Java\
+  \ 对象。\n\n在代码本身中，Java Protocol Buffer 实例通过构建器模式（builder pattern）创建，这使你可以设置各个字段，然后生成一个不可变的\
+  \ `TransmissionObject` 实例。该对象随后可以直接将自身写入输出流，也可以从输入流中解析自身。\n\n最后，让我们创建构建目标，以便真正构建\
+  \ `EchoClient` 的新版本。打开你的 `BUILD` 文件并添加以下内容（同样，相较上一章的改动已加粗）。\n\n```\njava_binary(\n\
+  name = \"echo_client\",\nsrcs = [\"EchoClient.java\"],\nmain_class = \"EchoClient\"\
+  ,\ndeps = [\":transmission_object_java_proto\"],\n)\nListing 6-6\nCreating the BUILD\
+  \ target for the EchoClient\n```\n\n现在我们可以构建该目标：\n\n```\nchapter_06/src$ bazel build\
+  \ :echo_client\nINFO: Analysed target //src:echo_client (0 packages loaded, 0 targets\
+  \ configured).\nINFO: Found 1 target...\nTarget //src:echo_client up-to-date:\n\
+  bazel-bin/src/echo_client.jar\nbazel-bin/src/echo_client\nINFO: Elapsed time: 0.219s,\
+  \ Critical Path: 0.06s\nINFO: 1 process: 1 worker.\nINFO: Build completed successfully,\
+  \ 2 total actions\n```\n\n恭喜！你已经成功将客户端更新为使用 Protocol Buffers。不过，你再次得到了一个无可连接对象的客户端。接下来，我们将对服务端进行必要修改，使其也能处理我们的\
+  \ Protocol Buffer 定义。\n\n### 注意\n\n有人可能会想用上一章的服务端来运行这个新版本客户端。你当然可以尝试，但需要明确的是这样**无法**工作，因为客户端和服务端使用的是不同协议（JSON\
+  \ vs. Protocol Buffer）；这些字节会被以不同方式解释。\n\n尽管 Protocol Buffers *确实* 支持与 JSON 的相互转换，但你需要在代码中显式指定这一点。\n\
+  \n## 在 Go 中使用 Protocol Buffer\n\n在上一节中，我们能够利用 Java 是 Bazel 内置语言之一这一事实，直接开始开发。然而，由于\
+  \ Go *不是* 这些核心语言之一，我们需要做一些额外配置。幸运的是，其中大部分内容你在前几章已经见过。\n\n打开你的 `WORKSPACE` 文件，并在获取\
+  \ `rules_proto` 的配置之前，添加下面加粗的内容。\n\n```\nhttp_archive(\nname = \"io_bazel_rules_go\"\
+  ,\nurls = [\"https://github.com/bazelbuild/rules_go/releases/download/v0.19.5/rules_go-v0.19.5.tar.gz\"\
+  ],\n)\nload(\"@io_bazel_rules_go//go:deps.bzl\", \"go_rules_dependencies\", \"go_register_toolchains\"\
+  )\ngo_rules_dependencies()\ngo_register_toolchains()\nhttp_archive(\nname = \"rules_proto\"\
+  ,\nstrip_prefix = \"rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313\",\nurls\
+  \ = [\"https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz\"\
+  ,],\n)\nload(\"@rules_proto//proto:repositories.bzl\", \"rules_proto_dependencies\"\
+  , \"rules_proto_toolchains\")\nrules_proto_dependencies()\nrules_proto_toolchains()\n\
+  Listing 6-7\nAdding the Go rules to the project\n```\n\n保存你的 *WORKSPACE* 文件.j\n\n\
+  ### 注意\n\n在这个特定场景中，我们指定先加载 `io_bazel_rules_go`，再加载 `rules_proto`。原因是这两个包的底层依赖之间可能会产生冲突。按这种顺序排列可以消除该问题。不过，在你后续构建\
+  \ `WORKSPACE` 依赖时，这仍是一个需要特别留意的点。\n\n\n\n### 创建 Go Proto 库目标\n\n和将 Go 功能纳入我们的项目时一样，在创建\
+  \ Go proto 库目标时，我们需要将必要的规则显式引入到 `BUILD` 文件中。\n\n打开你的 `BUILD` 文件并添加以下内容。\n\n```\n\
+  load(\"@io_bazel_rules_go//proto:def.bzl\", \"go_proto_library\")\ngo_proto_library(\n\
+  name = \"transmission_object_go_proto\",\nproto = \":transmission_object_proto\"\
+  ,\nimportpath = \"transmission_object\"\n)\nListing 6-8\nCreating the Go proto library\
+  \ target\n```\n\n保存你的 `BUILD` 文件。让我们构建你的新目标：\n\n```\nchapter_06/src$ bazel build\
+  \ :transmission_object_go_proto\nINFO: Analysed target //src:transmission_object_go_proto\
+  \ (21 packages loaded, 6358 targets configured).\nINFO: Found 1 target...\n...\n\
+  Target //src:transmission_object_go_proto up-to-date:\nbazel-bin/src/darwin_amd64_stripped/transmission_object_go_proto%/transmission_object.a\n\
+  INFO: Elapsed time: 5.486s, Critical Path: 3.75s\nINFO: 52 processes: 52 darwin-sandbox.\n\
+  INFO: Build completed successfully, 54 total actions\n```\n\n和你之前创建 Java Protocol\
+  \ Buffer 目标的经验一样，你可能会注意到构建时间比平时稍长一些。再次说明，这是正常现象，因为特定语言（即 Go）的插件正在被编译；和之前一样，首次编译后会被缓存，后续构建会快得多。\n\
+  \n再次祝贺你，因为我们现在有了一个可以在 Go 程序中实际使用的目标。接下来让我们修改 echo 服务器来利用它。\n\n### 使用你的 Go Protocol\
+  \ Buffer 目标\n\n和 echo 客户端类似，在上一章中，你已经创建了一个 echo 服务器版本，它会将接收到的 JSON 消息回传（并做一些修改）。和之前一样，我们只需对原始程序做一些小改动，就可以处理\
+  \ Protocol Buffers。\n\n在 `src` 中创建文件 `echo_server.go`，并向其中添加以下内容（和之前一样，与上一章相比的更改已加粗）。\n\
+  \n```\npackage main\nimport (\n\"fmt\"\n\"log\"\n\"net\"\n\"transmission_object”\n\
+  \"github.com/golang/protobuf/proto\"\n)\nfunc main() {\nlog.Println(\"Spinning up\
+  \ the Echo Server in Go...\")\nlisten, error := net.Listen(\"tcp\", \":1234\")\n\
+  if error != nil {\nlog.Panicln(\"Unable to listen: \" + error.Error())\n}\ndefer\
+  \ listen.Close()\nconnection, error := listen.Accept()\nif error != nil {\nlog.Panicln(\"\
+  Cannot accept a connection! Error: \" + error.Error())\n}\nlog.Println(\"Receiving\
+  \ on a new connection\")\ndefer connection.Close()\ndefer log.Println(\"Connection\
+  \ now closed.\")\nbuffer := make([]byte, 2048)\nsize, error := connection.Read(buffer)\n\
+  if error != nil {\nlog.Panicln(\n\"Unable to read from the buffer! Error: \" + error.Error())\n\
+  }\ndata := buffer[:size]\ntransmissionObject := &transmission_object.TransmissionObject{}\n\
+  error = proto.Unmarshal(data, transmissionObject)\nif error != nil {\nlog.Panicln(\n\
+  \"Unable to unmarshal the buffer! Error: \" + error.Error())\n}\nlog.Println(\"\
+  Message = \" + transmissionObject.GetMessage())\nlog.Println(\"Value = \" +\nfmt.Sprintf(\"\
+  %f\", transmissionObject.GetValue()))\ntransmissionObject.Message = \"Echoed from\
+  \ Go: \" +\ntransmissionObject.GetMessage()\ntransmissionObject.Value = 2 ∗ transmissionObject.GetValue()\n\
+  message, error := proto.Marshal(transmissionObject)\nif error != nil {\nlog.Panicln(\"\
+  Unable to marshal the object! Error: \" + error.Error())\n}\nconnection.Write(message)\n\
+  }\nListing 6-9\nProtocol Buffer version of the Go server\n```\n\n将其保存为 `echo_server.go`。\n\
+  \n虽然这些改动并不是对 JSON 的完全直接替换，但最终结果与我们上一章中的实现非常接近。\n\n特别需要注意的是，我们必须引入 proto 库本身的依赖（[`github.com/golang/protobuf/proto`](http://github.com/golang/protobuf/proto)），以便对对象在数据流之间进行反序列化/序列化。不同于之前在\
+  \ Go 中对 encoding 包的依赖，我们需要在 `BUILD` 文件中指定依赖时将其考虑进去。\n\n打开 `BUILD` 文件并添加以下内容，以创建所需的构建目标（与上一章相比的差异已加粗）。\n\
+  \n```\nload(\"@io_bazel_rules_go//go:def.bzl\", \"go_binary\")\ngo_binary(\nname\
+  \ = \"echo_server\",\nsrcs = [\"echo_server.go\"],\ndeps = [\n\":transmission_object_go_proto\"\
+  ,\n\"@com_github_golang_protobuf//proto:go_default_library\",\n],\n)\nListing 6-10\n\
+  Adding the echo server build target\n```\n\n保存你的 `BUILD` 文件。\n\n### 依赖的依赖\n\n细心的读者会注意到，我们为\
+  \ go_default_library 指定的依赖实际上并没有在 WORKSPACE 文件中直接声明；然而，上述代码依然可以顺利编译。\n\n这个额外依赖的来源，是我们在为\
+  \ Go 规则设置额外依赖时调用的函数（即 go_rules_dependencies），它会拉取其他依赖，其中就包括上面列出的这个。\n\n尽管从技术上讲这在\
+  \ WORKSPACE 文件中是“显式”指定的，但由于使用了依赖函数，这一点被隐藏了。在这种情况下，我们利用了这样一个事实：这些特定依赖的版本本来就是为了协同工作而设计的。\n\
+  \n如果你觉得这种方式过于隐式，那么可以做两件事：（1）在 WORKSPACE 文件中显式指定一个依赖；这会替换隐式依赖的版本。（2）将该依赖拉入你的项目中（例如通过\
+  \ third_party 目录）。\n\n选择哪条路径取决于你希望对依赖控制得多严格。（1）可能更容易快速上手，也更便于后续更换依赖。然而，（2）能够为构建可复现性提供最强保证。\n\
+  \n现在我们可以构建支持 Protocol Buffer 的 echo 服务器了：\n\n```\nchapter_06/src$ bazel build :echo_server\n\
+  INFO: Analysed target //src:echo_server (0 packages loaded, 0 targets configured).\n\
+  INFO: Found 1 target...\nTarget //src:echo_server up-to-date:\nbazel-bin/src/darwin_amd64_stripped/echo_server\n\
+  INFO: Elapsed time: 0.169s, Critical Path: 0.00s\nINFO: 0 processes.\nINFO: Build\
+  \ completed successfully, 1 total action\n```\n\n\n\n## 使用 Protocol Buffers 实现 Echo\n\
+  \n我们已经用 Protocol Buffers 重构了 echo 客户端和服务器，现在可以让它们再次相互通信了。\n\n打开一个终端并启动服务器：\n\n```\n\
+  chapter_06/src$ bazel run :echo_server\nINFO: Analysed target //src:echo_server\
+  \ (0 packages loaded, 0 targets configured).\nINFO: Found 1 target...\nTarget //src:echo_server\
+  \ up-to-date:\nbazel-bin/src/darwin_amd64_stripped/echo_server\nINFO: Elapsed time:\
+  \ 0.169s, Critical Path: 0.00s\nINFO: 0 processes.\nINFO: Build completed successfully,\
+  \ 1 total action\nINFO: Build completed successfully, 1 total action\n2019/06/18\
+  \ 23:39:53 Spinning up the Echo Server in Go...\n```\n\n现在打开另一个终端并启动客户端：\n\n```\n\
+  chapter_06/src$ bazel run :echo_client\nINFO: Analysed target //src:echo_client\
+  \ (0 packages loaded, 0 targets configured).\nINFO: Found 1 target...\nTarget //src:echo_client\
+  \ up-to-date:\nbazel-bin/src/echo_client.jar\nbazel-bin/src/echo_client\nINFO: Elapsed\
+  \ time: 0.249s, Critical Path: 0.10s\nINFO: 1 process: 1 worker.\nINFO: Build completed\
+  \ successfully, 2 total actions\nINFO: Build completed successfully, 2 total actions\n\
+  Spinning up the Echo Client in Java...\nWaiting on input from the user...\n```\n\
+  \n现在，给它输入一小段文本：\n\n```\nchapter_06/src$ bazel run :echo_client\n\nSpinning up the\
+  \ Echo Client in Java...\nWaiting on input from the user...\nWaiting on input from\
+  \ the user...\nMy Client Message\nReceived by Java: My Client Message\nReceived\
+  \ Message from server:\nvalue: 6.29\nmessage: \"Echoed from Go: My Client Message\"\
+  \n```\n\n现在我们来看一下 echo 服务器端的控制台输出：\n\n```\nchapter_06/src$ bazel run :echo_server\n\
+  \n2019/06/18 23:41:50 Receiving on a new connection\n2019/06/18 23:43:34 Message\
+  \ = My Client Message\n2019/06/18 23:43:34 Value = 3.145000\n2019/06/18 23:43:34\
+  \ Connection now closed.\n```\n\n恭喜！你已经使用 Protocol Buffers 重新创建了 echo 客户端/服务器。\n\
+  \n## 依赖追踪与管理\n\n与上一章相比，这里在格式上有一些细微差异，但输出结果实际上是相同的。这就引出了一个显而易见的问题：为什么我们要把上一章的内容全部重做一遍？答案在于我们如何管理所选传输对象的变更；而这反过来也展示了\
+  \ Bazel 执行依赖管理的能力，甚至可以跨多种语言。\n\n在上一章中，echo 客户端和服务器的依赖树如下：\n\n![../images/481224_1_En_6_Chapter/481224_1_En_6_Fig1_HTML.png](img/481224_1_En_6_Fig1_HTML.png)\n\
+  \n图 6-1\n\nJSON echo 客户端和服务器的依赖树\n\n如前所述，一个主要缺陷是 JSON 对象的定义是各语言各自独立的，彼此没有关联。API\
+  \ 的任何变更（即修改 JSON 对象）都需要在两个位置同时进行，这就很容易出现只改了一个地方而另一个没改的错误。\n\n对比一下我们为 Protocol Buffer\
+  \ echo 客户端和服务器创建的依赖树：\n\n![../images/481224_1_En_6_Chapter/481224_1_En_6_Fig2_HTML.png](img/481224_1_En_6_Fig2_HTML.png)\n\
+  \n图 6-2\n\nProtocol Buffer echo 客户端和服务器的依赖树\n\n现在，Protocol Buffer echo 客户端和服务器的依赖树仍然相对简单，对于任何从事大规模开发的人来说都很熟悉。不过，它的显著之处在于以下几点：(a)\
+  \ 我们把三种语言（即 Java、Go、Protocol Buffer）之间的依赖连接在了一起；(b) 通过这样做，我们解决了 JSON 客户端中的 API 变更管理问题；以及\
+  \ (c) 我们用相对较少的配置代码就完成了这一点。\n\n### 变更管理实战\n\n在构建好我们的依赖树之后，现在来看看它在实践中的效果。首先，我们要确保所有目标都已经是最新状态。\n\
+  \n使用特殊目标 `all` 来构建所有目标：\n\n```\nchapter_06/src$ bazel build :all\nINFO: Analysed\
+  \ 5 targets (43 packages loaded, 7657 targets configured).\nINFO: Found 5 targets...\n\
+  INFO: Elapsed time: 12.039s, Critical Path: 1.03s\nINFO: 0 processes.\nINFO: Build\
+  \ completed successfully, 1 total action\n```\n\n现在检查构建目标 `echo_client` 和 `echo_server`\
+  \ 的时间戳：\n\n```\nchapter_06/src$ ll ../bazel-bin/src/echo_client.jar\n-r-xr-xr-x\
+  \  1 pj  wheel  12168 Jun 18 22:06 ../bazel-bin/src/echo_client.jar\nchapter_06/src$\
+  \ ll ../bazel-bin/src/darwin_amd64_stripped/echo_server\n-r-xr-xr-x  1 pj  wheel\
+  \  3595880 Jun 18 23:14 ../bazel-bin/src/darwin_amd64_stripped/echo_server\n```\n\
+  \n对 `echo_sever.go` 做一个微小修改，但要确保仍可编译（例如，修改某条日志语句中的文本）。现在再次重建全部内容，并重新检查时间戳：\n\n```\n\
+  chapter_06/src$ bazel build :all\nINFO: Analysed 5 targets (1 packages loaded, 126\
+  \ targets configured).\nINFO: Found 5 targets...\nINFO: Elapsed time: 1.103s, Critical\
+  \ Path: 0.55s\nINFO: 2 processes: 2 darwin-sandbox.\nINFO: Build completed successfully,\
+  \ 3 total actions\nchapter_06/src$ ll ../bazel-bin/src/echo_client.jar\n-r-xr-xr-x\
+  \  1 pj  wheel  12168 Jun 18 22:06 ../bazel-bin/src/echo_client.jar\nchapter_06/src$\
+  \ ll ../bazel-bin/src/darwin_amd64_stripped/echo_server\n-r-xr-xr-x  1 pj  wheel\
+  \  3595880 Jun 20 03:10 ../bazel-bin/src/darwin_amd64_stripped/echo_server\n```\n\
+  \n不出所料，Bazel 只需要重建 `echo_server`，因为我们的修改仅限于该目标。\n\n![../images/481224_1_En_6_Chapter/481224_1_En_6_Fig3_HTML.png](img/481224_1_En_6_Fig3_HTML.png)\n\
+  \n图 6-3\n\n对 echo_server 的修改只会影响单个目标\n\n不过，我们来做一个更实质性的变更：从 `TransmissionObject`\
+  \ 消息中移除一个字段。\n\n```\nsyntax = \"proto3\";\npackage transmission_object;\nmessage\
+  \ TransmissionObject {\nfloat value = 1;\n// string message = 2;\n}\nListing 6-11\n\
+  Removing the Message field from TransmissionObject\n```\n\n现在，让我们尝试重新构建 `echo_client`\
+  \ 和 `echo_server`：\n\n\n\n### 注意\n\n你会注意到，我们在构建命令中添加了标志 `keep_going（或其简写形式 -k）`。如果不加它，“构建全部”命令会在第一次失败时停止；使用它后，我们可以看到所有构建失败的目标。\n\
+  \n```\nchapter_06/src$ bazel build --keep_going :all\nINFO: Analysed 5 targets (0\
+  \ packages loaded, 0 targets configured).\nINFO: Found 5 targets...\nERROR: chapter_06/src/BUILD:12:1:\
+  \ Couldn't build file src/echo_client.jar: Building src/echo_\nclient.jar (1 source\
+  \ file) failed (Exit 1)\nsrc/EchoClient.java:22: error: cannot find symbol\n.setMessage(inputFromUser)\n\
+  ^\nsymbol:   method setMessage(String)\nlocation: class Builder\nERROR: chapter_06/src/BUILD:27:1:\
+  \ Couldn't build file src/darwin_amd64_stripped/echo_server%/\nsrc/echo_server.a:\
+  \ GoCompile src/darwin_amd64_stripped/echo_server%/src/echo_server.a failed (Exit\
+  \ 1) builder failed: error executing command bazel-out/host/bin/external/go_sdk/builder\
+  \ compile -sdk external/go_sdk -installsuffix darwin_amd64 -src src/echo_server.go\
+  \ -arc ... (remaining 12 argument(s) skipped)\nUse --sandbox_debug to see verbose\
+  \ messages from the sandbox\ncompile: error running compiler: exit status 2\n/private/var/tmp/_bazel_pj/e24198bf4e647dabf052e612ba765c04/sandbox/darwin-sandbox/1/execroot/__main__/src/echo_server.go:41:47:\
+  \ transmissionObject\n.GetMessage undefined (type *transmission_object.TransmissionObject\
+  \ has no field or method GetMessage)\n/private/var/tmp/_bazel_pj/e24198bf4e647dabf052e612ba765c04/sandbox/darwin-sandbox/1/execroot/__main__/src/echo_server.go:44:20:\
+  \ transmissionObject.Message undefined (type *transmission_object.TransmissionObject\
+  \ has no field or method Message)\n/private/var/tmp/_bazel_pj/e24198bf4e647dabf052e612ba765c04/sandbox/darwin-sandbox/1/execroot/__main__/src/echo_server.go:44:70:\
+  \ transmissionObject.GetMessage undefined (type *transmission_object.TransmissionObject\
+  \ has no field or method GetMessage)\nINFO: Elapsed time: 0.364s, Critical Path:\
+  \ 0.18s\nINFO: 0 processes.\nFAILED: Build did NOT complete successfully\n```\n\n\
+  在这个例子中，通过修改基础依赖，我们“污染”了整棵依赖树：\n\n![../images/481224_1_En_6_Chapter/481224_1_En_6_Fig4_HTML.png](img/481224_1_En_6_Fig4_HTML.png)\n\
+  \n图 6-4\n\n对 transmission_object_proto 的更改会影响所有目标\n\n如果你愿意，在通过恢复该字段修复代码后，可以再次检查修改日期进行确认。\n\
+  \n## 最后总结\n\n在本章中，你已经能够非常简单地为 Protocol Buffers 添加并使用所需功能。在这个过程中，你也亲眼看到了 Bazel 的能力：即使代码由多种语言编写，它也能非常轻松且强大地管理构建依赖。虽然这里的示例确实只是浅尝辄止，但你应该已经能够看到一种简单、标准的声明式构建语言所带来的可能性。\n\
+  \nProtocol Buffers 也进一步印证了 Bazel 在轻松处理多语言方面的能力。同时，你也初步了解了如何在多语言之间便捷地使用 Protocol\
+  \ Buffers 进行序列化。\n\n在后续章节中，我们还会继续探讨 Bazel 与 Protocol Buffers 的更多用法。不过现在，我们先退一步，看看\
+  \ Bazel 为代码组织提供的一些能力。\n\n"
+- "# 7. 代码组织与 Bazel\n\n在过去几章中，示例始终将所有代码放在单一目录里。虽然这对演示很方便，但在实际中并不可行。此外，示例也经常偏离某些语言中既有（甚至被强制执行）的目录和包结构模式（例如\
+  \ Java、Go 等）。在本章中，我们将修正前几章在组织结构上的不足，并演示 Bazel 在分层目录结构中工作的相关能力。\n\n### 注意\n\n我们在这里创建的目录结构将在本书剩余部分中持续使用。\n\
+  \n## 准备工作\n\n这里的大部分工作都是对上一章内容的重组。大体上，我们不会创建任何新功能。为了加快进度，我们先把上一章的内容复制到一个新目录。在此之前，我们还要先清理上一章产生的构建产物：\n\
+  \n```\n$ cd chapter_06\nchapter_06$ bazel clean\nchapter_06$ ls\nWORKSPACE     \
+  \ src\n```\n\n清理完之前缓存的文件后，现在把上一章的内容复制过来：\n\n```\nchapter_06$ cd ..\n$ cp -rf chapter_06\
+  \ chapter_07\n$ cd chapter_07\nchapter_07 $ ls\nWORKSPACE      src\n```\n\n如果你愿意，可以通过对上一章某个目标执行\
+  \ `build` 或 `run` 命令来确认一切按预期工作。如果你这样做了，也请再执行一次 `clean` 命令；虽然这并非绝对必要，但它有助于在进行重组任务时保持顶层目录整洁。\n\
+  \n## 分离 Protocol Buffers\n\n重组代码有很多方式（例如按语言、按客户端与服务端等）；不过，除了 Bazel 天然倾向 monorepo\
+  \ 之外，本章在这件事上并没有给出任何强烈主张（也就是说，按项目实际情况来做）。\n\n不过，这里一个明显可行的拆分是：把那些包含 Protocol Buffers\
+  \ 各类 `BUILD` 目标和定义的构建目标相关文件抽离出来。客户端和服务端都会引用它们，*而且*它们本身也属于独立语言，因此可以很容易地从当前混合目录中拆分出去。\n\
+  \n首先，创建一个顶层目录（`proto`），并将 Protocol Buffer 定义从当前位置移动过去：\n\n```\nchapter_07$ mkdir\
+  \ proto\nchapter_07$ mv src/transmission_object.proto proto/\n```\n\n接下来，我们会创建一个新的\
+  \ `BUILD` 文件，用于存放所有 protobuf 构建目标：\n\n```\nload(\"@io_bazel_rules_go//proto:def.bzl\"\
+  , \"go_proto_library\")\nproto_library(\nname = \"transmission_object_proto\",\n\
+  srcs = [\"transmission_object.proto\"],\n)\njava_proto_library(\nname = \"transmission_object_java_proto\"\
+  ,\ndeps = [\":transmission_object_proto\"],\n)\ngo_proto_library(\nname = \"transmission_object_go_proto\"\
+  ,\nproto = \":transmission_object_proto\",\nimportpath = \"transmission_object\"\
+  \n)\nListing 7-1\nProtobuf-only BUILD file\n```\n\n```\nchapter_07$ cd proto/\n\
+  chapter_07/proto$ touch BUILD\n```\n\n将上述内容保存到 `proto/BUILD`。\n\n现在，从 `src/BUILD`\
+  \ 中删除对应目标（例如 `src:transmission_object_proto` 等）。这会暂时导致该 `BUILD` 文件中的其他构建目标无法构建，但很快就会修复。\n\
+  \n最后，验证在新目录中的目标是否构建正确：\n\n```\nchapter_07/proto$ bazel build :all\nINFO: Analysed\
+  \ 3 targets (23 packages loaded, 6994 targets configured).\nINFO: Found 3 targets...\n\
+  INFO: Elapsed time: 0.993s, Critical Path: 0.35s\nINFO: 4 processes: 3 darwin-sandbox,\
+  \ 1 worker.\nINFO: Build completed successfully, 5 total actions\n```\n\n\n\n##\
+  \ 引用当前包之外的构建目标\n\n前面的示例利用了它们位于同一目录/包中的便利性，从而可以轻松指定 BUILD 目标之间的依赖关系。由于所有内容都在同一个位置，每个示例的构建目标都可以指定本地构建目标（或引用外部依赖）。\n\
+  \n当我们将 Protocol Buffer 构建目标拆分到单独的包中时，就破坏了现有目标。尝试构建现有目标之一会导致失败：\n\n```\nchapter_07$\
+  \ bazel build src:echo_client\nERROR: chapter_07/ src/BUILD:5:12: in deps attribute\n\
+  of java_binary rule //src:echo_client: target '//src:transmission_object_java_proto'\
+  \ does not exist\nERROR: Analysis of target '//src:echo_client' failed; build aborted:\
+  \ Analysis of target '//src:echo_client' failed; build aborted\nINFO: Elapsed time:\
+  \ 0.117s\nINFO: 0 processes.\nFAILED: Build did NOT complete successfully (1 packages\
+  \ loaded, 2 targets configured)\n```\n\n让我们修正各个 BUILD 目标，以便能够正确引用新创建的非本地 Protocol\
+  \ Buffer 依赖。打开 `src/BUILD` 文件（加粗处为变更）。\n\n```\njava_binary(\nname = \"echo_client\"\
+  ,\nsrcs = [\"EchoClient.java\"],\nmain_class = \"EchoClient\",\ndeps = [\"//proto:transmission_object_java_proto\"\
+  ],\n)\nload(\"@io_bazel_rules_go//go:def.bzl\", \"go_binary\")\ngo_binary(\nname\
+  \ = \"echo_server\",\nsrcs = [\"echo_server.go\"],\ndeps = [\n\"//proto:transmission_object_go_proto\"\
+  ,\n\"@com_github_golang_protobuf//proto:go_default_library\",\n],\n)\nListing 7-2\n\
+  Updating the src/BUILD dependencies\n```\n\n保存对 `src/BUILD` 的修改。\n\nBazel 的一个特性是：除了允许本地依赖之外，所有依赖引用都是相对于某个\
+  \ `WORKSPACE` 的绝对路径*。* 在前面的示例中，当我们指定对新建 protobuf 目标的依赖时，是相对于 `WORKSPACE` 根目录来写的（由\
+  \ `//` 表示）。这一点很重要：依赖并不是使用相对于当前 `BUILD` 文件的路径来指定的。虽然这看起来可能是一项繁琐的要求，但它源于 Bazel 一贯强调的“所有内容都应显式声明”的理念。\n\
+  \n如前所示，我们也可以引用被拉入 `WORKSPACE` 的依赖（例如我们的 Go 规则），方法是在依赖名称前使用 `@` 符号；这会告知 Bazel 该依赖并非\
+  \ `WORKSPACE` 本地依赖。\n\n然而，尽管我们已经正确引用了新创建的目标，仍然会遇到另一个问题。为说明这一点，让我们再运行一次构建：\n\n```\n\
+  chapter_07$ bazel build src:echo_client\nERROR: /chapter_07/src/BUILD:1:1: in java_binary\
+  \ rule //src:echo_client: target '//proto:transmission_object_java_proto' is not\
+  \ visible from target '//src:echo_client'. Check the visibility declaration of the\
+  \ former target if you think the dependency is legitimate\nERROR: Analysis of target\
+  \ '//src:echo_client' failed; build aborted: Analysis of target '//src:echo_client'\
+  \ failed; build aborted\nINFO: Elapsed time: 0.215s\nINFO: 0 processes.\nFAILED:\
+  \ Build did NOT complete successfully (6 packages loaded, 390 targets configured)\n\
+  ```\n\n我们将在下一节中修复这个问题。\n\n## 目标可见性\n\n许多面向对象语言（例如 Java、C++、Objective-C 等）都有对象成员变量和函数的*可见性*概念。通常，这会以*接口*（即面向外部的公共\
+  \ API）和*实现*（即实际执行工作的代码）来描述。为了实现*关注点分离*，这种划分在无数编程书籍中被反复强调。理论上，这使得实现可以在不影响功能使用方的情况下进行变更；因为它们都遵循同一套接口。\n\
+  \n在许多语言中，可见性不一定是二元选择；可以将可见性限定为某种特定范围（例如，仅父类子类可见的成员、仅同一 Java 包可见的成员等）。这在“哪些部分应可见、对谁可见”方面提供了灵活性。\n\
+  \nBazel 提供了强大的目标可见性机制，使项目架构师能够决定哪些内容应该可见、对谁可见。值得注意的是，这是一个*与语言无关*的特性；无论语言本身是否实现了某种成员可见性形式，任何构建目标都可以利用这一\
+  \ Bazel 特性。这使我们能够确定代码中的哪些部分应被视为可供“公开”使用（即*接口*），哪些部分应保留为私有（即*实现*）。\n\n在本书迄今为止的内容中，我们一直忽略了可见性的概念。这之所以可行，是因为我们的所有代码都位于同一目录和\
+  \ `BUILD` 文件中（即同一个 Bazel 包内）；同一包中的所有目标彼此自动可见。此外，如果没有额外声明，同一包中的所有目标默认对任何外部目标都*不可见*。也就是说，除非我们显式声明其可见性，否则某个目标*不能被其自身包外部依赖*。\n\
+  \n虽然这看起来可能是一项繁琐的要求，但它实际上是 Bazel 最强大的特性之一：作为代码作者，你可以决定如何最好地组织代码以便构建，*以及*如何最好地组织代码供使用方调用。这两者不必是同一件事。\n\
+  \n由于我们*确实*希望包外部的使用方能够使用我们的代码，因此需要指定可见性。实现方式主要有两种：（1）包级别；（2）目标级别。我们将同时探索这两种方式。\n\n\
+  ### 包可见性\n\n如前所述，默认情况下，同一包内的所有目标都不能作为依赖被包外其他目标使用。我们可以采用的最简单方式是让*所有*目标可见。\n\n打开 `proto/BUILD`\
+  \ 文件并添加以下指令。\n\n```\npackage(default_visibility = [\"//visibility:public\"])\nload(\"\
+  @io_bazel_rules_go//proto:def.bzl\", \"go_proto_library\")\nproto_library(\nname\
+  \ = \"transmission_object_proto\",\nsrcs = [\"transmission_object.proto\"],\n)\n\
+  java_proto_library(\nname = \"transmission_object_java_proto\",\ndeps = [\":transmission_object_proto\"\
+  ],\n)\ngo_proto_library(\nname = \"transmission_object_go_proto\",\nproto = \":transmission_object_proto\"\
+  ,\nimportpath = \"transmission_object\"\n)\nListing 7-3\nMaking all build targets\
+  \ visible\n```\n\n保存到 `proto/BUILD`。\n\n现在，让我们再次尝试构建 `src:echo_client`：\n\n```\n\
+  chapter_07$ bazel build src:echo_client\nINFO: Analysed target //src:echo_client\
+  \ (1 packages loaded, 4 targets configured).\nINFO: Found 1 target...\nTarget //src:echo_client\
+  \ up-to-date:\nbazel-bin/src/echo_client.jar\nbazel-bin/src/echo_client\nINFO: Elapsed\
+  \ time: 3.221s, Critical Path: 2.83s\nINFO: 2 processes: 1 darwin-sandbox, 1 worker.\n\
+  INFO: Build completed successfully, 6 total actions\n```\n\n现在我们已经更新了依赖的可见性，构建会按预期工作（`src:echo_server`\
+  \ 也应当可以工作，不过这里留给读者作为练习）。\n\n\n\n### 说明\n\n再次强调，细心的读者会注意到，我们在 *BUILD* 文件中又引入了一个新函数（`package`）。`package`\
+  \ 函数的作用是将相同的元数据应用到给定包中的所有目标。在这个例子里，我们仅用它来修改可见性。\n\n#### 路径特定可见性\n\n上一节的解决方案解决了让\
+  \ `echo_client` 和 `echo_server` 目标能够构建这一紧迫问题。  \n但是，把包中的*每一个*目标都设为可见，这种方案至少可以说是有些过于粗放。这种“全有或全无”的方式并不利于良好的代码组织；从极端来看，它只比把所有东西都放在同一个地方稍微好一点。\n\
+  \n幸运的是，我们可以做得更好。Bazel 支持显式指定目标可见性的路径。在这里，我们将访问限制为仅限 *src* 包。\n\n打开 `proto/BUILD`\
+  \ 文件，并修改我们的可见性配置。\n\n```\npackage(default_visibility = [\"//src:__pkg__\"])\nload(\"\
+  @io_bazel_rules_go//proto:def.bzl\", \"go_proto_library\")\n\nListing 7-4\nRestricting\
+  \ the visibility to a specific package\n```\n\n保存 `proto/BUILD` 文件。\n\n再次确认你可以同时构建\
+  \ `src:echo_client` 和 `src:echo_server`。现在你已经将可见性缩小到*仅*限于严格位于 `src` 包内的目标。\n\n###\
+  \ 说明\n\n尽管 `//src:__pkg__` 这一配置允许在 `src` 包内访问任意 `proto` 目标，但该配置**不会**自动包含 `src`\
+  \ 的任何*子包*。  \n也就是说，如果你有一个类似 `//src/client` 的包，那么 *proto* 目标对 `//src/client` 内的目标依然是**不可见**的。\n\
+  \n这可以通过将可见性配置从 `__pkg__` 改为 `__subpackages__` 轻松解决。这表示某个依赖不仅对特定包可见，也对其下的所有子包可见。\n\
+  \n### 单个目标可见性\n\n在上一节中，我们是在包级别指定可见性。虽然这通常是个不错的起点，但它仍然呼应了前面“全有或全无”的问题；我们仍在对给定包内的所有目标统一声明可见性。Bazel\
+  \ 再次提供了更细粒度的能力。\n\n单个目标可以自行声明其可见性；也就是说，每个单独目标都可以指定哪些其他包可以依赖它。这也包括某个单独目标直接声明 `visibility:public`\
+  \ 的情况。\n\n打开 `proto/BUILD` 文件；我们将修改各个目标的可见性。\n\n```\n#package(default_visibility\
+  \ = [\"//src: :__pkg__\"])\nload(\"@io_bazel_rules_go//proto:def.bzl\", \"go_proto_library\"\
+  )\nproto_library(\nname = \"transmission_object_proto\",\nsrcs = [\"transmission_object.proto\"\
+  ],\n)\njava_proto_library(\nname = \"transmission_object_java_proto\",\ndeps = [\"\
+  :transmission_object_proto\"],\nvisibility = [\"//src:__pkg__\"],\n)\ngo_proto_library(\n\
+  name = \"transmission_object_go_proto\",\nproto = \":transmission_object_proto\"\
+  ,\nimportpath = \"transmission_object\",\n)\nListing 7-5\nSpecifying visibility\
+  \ at the build target level\n```\n\n保存 `proto/BUILD`。现在，再次验证我们的 `src:echo_client`\
+  \ 仍可构建：\n\n```\nchapter_07$ bazel build src:echo_client\nINFO: Analysed target //src:echo_client\
+  \ (1 packages loaded, 4 targets configured).\nINFO: Found 1 target...\nTarget //src:echo_client\
+  \ up-to-date:\nbazel-bin/src/echo_client.jar\nbazel-bin/src/echo_client\nINFO: Elapsed\
+  \ time: 0.207s, Critical Path: 0.00s\nINFO: 0 processes.\nINFO: Build completed\
+  \ successfully, 1 total action\n```\n\n不过，当你尝试构建 *src:echo_server* 时会得到不同结果：\n\n\
+  ```\nchapter_07$ bazel build src:echo_server\nERROR: chapter_07/src/BUILD:10:1:\
+  \ in go_binary rule //src:echo_server: target '//proto:transmission_object_go_proto'\
+  \ is not visible from target '//src:echo_server'. Check the visibility declaration\
+  \ of the former target if you think the dependency is legitimate\nERROR: Analysis\
+  \ of target '//src:echo_server' failed; build aborted: Analysis of target '//src:echo_server'\
+  \ failed; build aborted\nINFO: Elapsed time: 0.109s\nINFO: 0 processes.\nFAILED:\
+  \ Build did NOT complete successfully (0 packages loaded, 1 target configured)\n\
+  ```\n\n这里，我们移除了包级别“让所有目标对 *src* 可见”的指令。取而代之的是，我们仅让 *transmission_object_java_proto*\
+  \ 目标（只被 *echo_client* 需要）对 *src* 包可见。于是，*echo_server* 所需的 *transmission_object_go_proto*\
+  \ 又再次变为不可见。\n\n显然，我们可以轻松修复它。重新打开 *proto/BUILD* 文件，并为 *transmission_object_go_proto*\
+  \ 增加可见性配置。\n\n```\n#package(default_visibility = [\"//src:echo_client\"])\nload(\"\
+  @io_bazel_rules_go//proto:def.bzl\", \"go_proto_library\")\nproto_library(\nname\
+  \ = \"transmission_object_proto\",\nsrcs = [\"transmission_object.proto\"],\n)\n\
+  java_proto_library(\nname = \"transmission_object_java_proto\",\ndeps = [\":transmission_object_proto\"\
+  ],\nvisibility = [\"//src:__pkg__\"],\n)\ngo_proto_library(\nname = \"transmission_object_go_proto\"\
+  ,\nproto = \":transmission_object_proto\",\nimportpath = \"transmission_object\"\
+  ,\nvisibility = [\"//src:__pkg__\"],\n)\nListing 7-6\nFixing the visibility for\
+  \ transmission_object_go_proto\n```\n\n将文件保存到 *proto/BUILD*，并重试构建 *src:echo_server*：\n\
+  \n```\nchapter_07$ bazel build src:echo_server\nINFO: Analysed target //src:echo_server\
+  \ (1 packages loaded, 4 targets configured).\nINFO: Found 1 target...\nTarget //src:echo_server\
+  \ up-to-date:\nbazel-bin/src/darwin_amd64_stripped/echo_server\nINFO: Elapsed time:\
+  \ 0.227s, Critical Path: 0.01s\nINFO: 0 processes.\nINFO: Build completed successfully,\
+  \ 1 total action\n```\n\n修复依赖可见性后，所有构建现在又都恢复正常了。\n\n### 混合使用包级与目标级可见性\n\n我们已经演示了两种表达可见性的方式（即\
+  \ *package* 和*单个*目标），还需要说明它们如何相互作用。\n\n简而言之，包级可见性配置会作为包内所有目标的*默认值*。而单个目标上的可见性配置则是该目标可见性的*最终*值。\
+  \  \n也就是说，包级与目标级之间不会尝试合并；始终是替换关系。\n\n虽然这看起来有些严格，但要记住一个关键点：Bazel 追求的是显式性；在可见性规则之间进行复杂的隐式合并并不符合这一目标。是的，这可能意味着你在制定某些非常细致的规则时需要多写一些配置；但显式定义胜过一时的便利。\n\
+  \nBazel 通过 `package_group.` 结构提供了一种缓解这种冗长性的策略。`package_group` 允许你将元数据（例如可见性规则）应用到一组包上。这在“给单个目标设置可见性”和“要求整个包统一可见性策略”之间提供了很好的折中。\n\
+  \n## 分离客户端与服务端代码\n\n在将 protobuf 代码拆分到独立包之后，我们也将把客户端和服务端代码分别拆分到各自独立的包中。\n\n\n\n###\
+  \ 拆分 Echo 服务器代码\n\n首先，让我们为 `echo_server` 创建一个目录。出于一些原因（这些原因在后文以及后续章节中会更明显），我们将为\
+  \ `echo_server` 创建一个子目录，并将对应代码移动到该目录中：\n\n```\nchapter_07$ mkdir -p server/echo_server\n\
+  chapter_07$ mv src/echo_server.go server/echo_server/echo_server.go\n```\n\n现在让我们创建一个\
+  \ `server/echo_server/BUILD` 文件。我们只需从原始 `src/BUILD` 文件中复制先前针对 `echo_server` 构建目标的定义。\n\
+  \n```\nload(\"@io_bazel_rules_go//go:def.bzl\", \"go_binary\")\ngo_binary(\nname\
+  \ = \"echo_server\",\nsrcs = [\"echo_server.go\"],\ndeps = [\n\"//proto:transmission_object_go_proto\"\
+  ,\n\"@com_github_golang_protobuf//proto:go_default_library\",\n],\n)\nListing 7-7\n\
+  Creating the server/echo_server/BUILD file\n```\n\n将该文件保存为 `server/echo_server/BUILD`。尝试构建它只会重新引入我们之前看到的\
+  \ proto 可见性问题。让我们先更新必要目标的可见性规则。\n\n打开 `proto/BUILD` 文件并进行如下修改。\n\n```\nload(\"@io_bazel_rules_go//proto:def.bzl\"\
+  , \"go_proto_library\")\nproto_library(\nname = \"transmission_object_proto\",\n\
+  srcs = [\"transmission_object.proto\"],\n)\njava_proto_library(\nname = \"transmission_object_java_proto\"\
+  ,\ndeps = [\":transmission_object_proto\"],\nvisibility = [\"//src:__pkg__\"],\n\
+  )\ngo_proto_library(\nname = \"transmission_object_go_proto\",\nproto = \":transmission_object_proto\"\
+  ,\nimportpath = \"transmission_object\",\nvisibility = [\"//server/echo_server:__pkg__\"\
+  ],\n)\nListing 7-8\nUpdating the visibility package for transmission_object_go_proto\n\
+  ```\n\n将更改保存到 `proto/BUILD`。现在，我们应该能够成功构建新创建的 `server/echo_server:echo_server` 目标：\n\
+  \n```\nchapter_07$ bazel build server/echo_server:echo_server\nINFO: Analysed target\
+  \ //server/echo_server:echo_server (2 packages loaded, 5 targets configured).\n\
+  INFO: Found 1 target...\nTarget //server/echo_server:echo_server up-to-date:\nbazel-bin/server/echo_server/darwin_amd64_stripped/echo_server\n\
+  INFO: Elapsed time: 0.896s, Critical Path: 0.56s\nINFO: 2 processes: 2 darwin-sandbox.\n\
+  INFO: Build completed successfully, 5 total actions\n```\n\n#### 省略构建目标名\n\n需要注意的一点是，我们在构建\
+  \ `echo_server` 的路径中出现了重复；具体来说，我们看到了两次 “echo_server”：\n\n```\nchapter_07$ bazel\
+  \ build server/echo_server:echo_server\n```\n\nBazel 提供的一项便利是：当构建目标与其所在包同名时，可以省略该目标名。也就是说，下面的调用在功能上是等价的：\n\
+  \n```\nchapter_07$ bazel build server/echo_server\nINFO: Analysed target //server/echo_server:echo_server\
+  \ (1 packages loaded, 2 targets configured).\nINFO: Found 1 target...\nTarget //server/echo_server:echo_server\
+  \ up-to-date:\nbazel-bin/server/echo_server/darwin_amd64_stripped/echo_server\n\
+  INFO: Elapsed time: 0.217s, Critical Path: 0.00s\nINFO: 0 processes.\nINFO: Build\
+  \ completed successfully, 1 total action\n```\n\n尽管此时你可能会想对 Bazel 提出质疑，但这种便利实际上提供了一个非常强大的约定：如果某个目标与其所在包同名，那么它就可以被视为该包对外暴露的“公共”目标（即\
+  \ *接口*）。这使得外部包在判断应依赖哪个（或哪些）目标时，预期更加统一、简单。\n\n值得注意的是，这一约定并不是 Bazel 的*强制要求*，但它的存在非常有力，在创建和分析构建依赖树时可以显著降低认知负担。\n\
+  \n### 拆分 Echo 客户端代码\n\n在处理完服务端之后，我们终于也将注意力转向客户端。在这种情况下，我们会创建一个略有不同的目录/包结构；这是为了后续章节做准备。和之前一样，我们将把相应代码移动到子目录中：\n\
+  \n```\nchapter_07$ mkdir -p client/echo_client/command_line\nchapter_07$ mv src/EchoClient.java\
+  \ client/echo_client/command_line/EchoClient.java\n```\n\n现在我们需要创建对应的 `BUILD` 文件；同样，我们最终只需复制之前该目标的定义。\n\
+  \n```\njava_binary(\nname = \"command_line\",\nsrcs = [\"EchoClient.java\"],\nmain_class\
+  \ = \"EchoClient\",\ndeps = [\"//proto:transmission_object_java_proto\"],\n)\nListing\
+  \ 7-9\nCreating the client/echo_client/command_line/BUILD file\n```\n\n将修改保存到 `client/echo_client/command_line/BUILD`\
+  \ 文件。再次说明，我们需要更新 `proto/BUILD` 中相应目标的可见性；否则，我们的 `echo_client` 目标将再次构建失败。\n\n打开 `proto/BUILD`，并对\
+  \ `transmission_object_java_proto` 做如下修改。\n\n```\nload(\"@io_bazel_rules_go//proto:def.bzl\"\
+  , \"go_proto_library\")\nproto_library(\nname = \"transmission_object_proto\",\n\
+  srcs = [\"transmission_object.proto\"],\n)\njava_proto_library(\nname = \"transmission_object_java_proto\"\
+  ,\ndeps = [\":transmission_object_proto\"],\nvisibility = [\"//client/echo_client:__subpackages__\"\
+  ],\n)\ngo_proto_library(\nname = \"transmission_object_go_proto\",\nproto = \":transmission_object_proto\"\
+  ,\nimportpath = \"transmission_object\",\nvisibility = [\"//server/echo_server:__pkg__\"\
+  ],\n)\nListing 7-10\nUpdating the visibility for transmission_object_java_proto\n\
+  ```\n\n将文件保存到 `proto/BUILD`。\n\n### 注意\n\n你可能已经注意到，我们为 `transmission_object_java_proto`\
+  \ 与其 Go 对应项设置了略有不同的可见性规则。具体来说，Go 版本非常明确地只面向 `echo_server` 包，而 Java 版本则允许更广泛的潜在包集合（即\
+  \ `echo_client` 包下的所有内容）。这同样是为了后续章节提前做准备。\n\n完成可见性更新后，让我们验证目标仍能按预期构建（并利用前面提到的目标名省略）：\n\
+  \n```\nchapter_07$ bazel build client/echo_client/command_line\nINFO: Analysed target\
+  \ //client/echo_client/command_line:command_line (1 packages loaded, 2 targets configured).\n\
+  INFO: Found 1 target...\nTarget //client/echo_client/command_line:command_line up-to-date:\n\
+  bazel-bin/client/echo_client/command_line/command_line.jar\nbazel-bin/client/echo_client/command_line/command_line\n\
+  INFO: Elapsed time: 0.192s, Critical Path: 0.01s\nINFO: 0 processes.\nINFO: Build\
+  \ completed successfully, 1 total action\n```\n\n### 清理\n\n由于原始目录中的内容基本都已移走，现在我们可以将其删除：\n\
+  \n```\nchapter_07$ rm -rf src\n```\n\n作为一次合理性检查，我们可以通过一个全量构建命令再次确认一切都能按预期构建：\n\n\
+  ```\nchapter_07$ bazel build ...\nINFO: Analysed 5 targets (0 packages loaded, 0\
+  \ targets configured).\nINFO: Found 5 targets...\nINFO: Elapsed time: 0.188s, Critical\
+  \ Path: 0.01s\nINFO: 0 processes.\nINFO: Build completed successfully, 1 total action\n\
+  ```\n\n由于我们并没有更改任何实际代码，只是移动了代码并创建/重配了 BUILD 文件和目标；因此所有功能都应与之前一致。验证过程留给读者作为练习。\n\n\
+  \n\n## 最后的话\n\n在上一章中，你使用 Bazel 的工具将代码重组为一种（更）可扩展的开发结构。尽管仍然是玩具示例，但内容已经足够让你开始使用 Bazel\
+  \ 的各种构件，把代码结构打造成易于理解、可扩展且可控的形式。\n\n虽然本章中完成的是一种特定的组织方式，但绝不应将其视为唯一标准。例如，Protocol Buffer\
+  \ 及其派生的语言特定目标的位置和可见性可以调整（例如，将语言特定的 proto 目标放到更接近其实际使用位置的地方）。另一个例子是切换为以语言为中心的目录/包结构。\n\
+  \n没有“正确”的唯一答案；每种可能性都有其权衡。无论如何，Bazel 都能灵活支持最适合你需求的代码组织方式，同时提供有助于长期维护该结构的工具。\n\n"
+- '# 8. gRPC 与 Bazel
+
+
+  在第 6 章中，你已经了解了 Protocol Buffers 的用法：它能提供简洁、强类型且易于序列化的数据描述，并且可跨语言工作。作为对应，Bazel 也提供了便捷方式来依赖
+  Protocol Buffers。在本章中，我们将进一步探索如何使用 Protocol Buffers 来轻松定义可跨多种语言工作的 API。
+
+
+  Protocol Buffer 格式通过 gRPC 来定义 API，而 gRPC 是 Google 创建*远程过程调用*（RPC）的一种方式。与 Protocol
+  Buffers 在多语言间统一数据访问的方式类似，gRPC 统一了客户端到服务器发起 RPC 的方式。
+
+
+  ## 设置
+
+
+  我们将在上一章工作的基础上继续。首先，在确认已清理所有构建产物后，将上一章的全部内容复制到一个新目录中：
+
+
+  ```
+
+  $ cd chapter_07
+
+  chapter_07$ bazel clean
+
+  chapter_07$ ls
+
+  WORKSPACE   client    proto   server
+
+  chapter_07$ cd ..
+
+  $ cp -rf chapter_07 chapter_08
+
+  $ cd chapter_08
+
+  chapter_08$
+
+  ```
+
+
+  最后，我们需要在 `WORKSPACE` 文件中添加更多依赖。请将下面高亮的变更加入你的 `WORKSPACE` 文件。
+
+
+  ```
+
+  load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+  skylib_version = "0.8.0"
+
+  http_archive(
+
+  name = "bazel_skylib",
+
+  url = "https://github.com/bazelbuild/bazel-skylib/releases/download/{}/bazel-skylib.{}.tar.gz".format(skylib_version,
+  skylib_version),
+
+  )
+
+
+  http_archive(
+
+  name = "io_grpc_grpc_java",
+
+  strip_prefix = "grpc-java-1.24.0",
+
+  urls = ["https://github.com/grpc/grpc-java/archive/v1.24.0.tar.gz"],
+
+  )
+
+  load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
+
+  grpc_java_repositories()
+
+  http_archive(
+
+  name = "bazel_gazelle",
+
+  urls = ["https://github.com/bazelbuild/bazel-gazelle/releases/download/v0.19.1/bazel-gazelle-v0.19.1.tar.gz"],
+
+  )
+
+  load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
+
+  gazelle_dependencies()
+
+  go_repository(
+
+  name = "org_golang_google_grpc",
+
+  build_file_proto_mode = "disable",
+
+  importpath = "google.golang.org/grpc",
+
+  sum = "h1:J0UbZOIrCAl+fpTOf8YLs4dJo8L/owV4LYVtAXQoPkw=",
+
+  version = "v1.22.0",
+
+  )
+
+  go_repository(
+
+  name = "org_golang_x_net",
+
+  importpath = "golang.org/x/net",
+
+  sum = "h1:oWX7TPOiFAMXLq8o0ikBYfCJVlRHBcsciT5bXOrH628=",
+
+  version = "v0.0.0-20190311183353-d8887717615a",
+
+  )
+
+  go_repository(
+
+  name = "org_golang_x_text",
+
+  importpath = "golang.org/x/text",
+
+  sum = "h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=",
+
+  version = "v0.3.0",
+
+  )
+
+  Listing 8-1
+
+  Adding the gRPC dependencies to the WORKSPACE
+
+  ```
+
+
+  将其保存到 `WORKSPACE` 文件中。
+
+
+  作为最后一项，我们将在 `WORKSPACE` 文件旁边创建一个空的 BUILD 文件。这与 Gazelle 的使用有关（下一节会讨论）。
+
+
+  ```
+
+  chapter_08$ touch BUILD
+
+  ```
+
+
+  ### 依赖讨论
+
+
+  我们值得花一点时间讨论刚刚添加的一些依赖，尤其是 Go 相关依赖。到目前为止，`http_archive` 的用法应该已经很熟悉了。
+
+
+  #### Skylib
+
+
+  Skylib 库包含了许多在创建自定义构建规则时会用到的实用函数和规则。它是很多包都会使用的常见依赖。因此，当不同依赖使用该库的多个版本时，你可能会遇到问题。在这里，我们显式加入这个库，并指定一个将在你的
+  `WORKSPACE` 中统一使用的版本。
+
+
+  关于我们*如何*引入这个特定版本的 Skylib，还有一点需要注意。如果你留意会发现，我们在字符串上使用了 `.format()` 函数，以便将版本号插入到路径中。这样做可以让我们后续更容易修改版本。它也展示了
+  Starlark 类 Python 特性的用法，可用于更丰富地描述依赖配置。
+
+
+  #### Gazelle
+
+
+  Gazelle 的独特之处在于，它是 Bazel 项目的构建文件生成器。也就是说，它可以从代码中“自动神奇地”生成某种语言的 BUILD 文件（当然，前提是代码本身结构良好）。Gazelle
+  开箱即支持 Go。由于 Go 具有一个很好的特性——能够在代码中非常明确地声明依赖——Gazelle 可以利用这一点为你生成 `BUILD` 文件。
+
+
+  Gazelle 还为 Go 定义了一个仓库规则，名字也很贴切：`go_repository`。你可能已经猜到了，go_repository 允许你（a）指定用于获取所需依赖的
+  import 路径，以及（b）为其中的包自动生成所需的 `BUILD` 文件。可以想象，这对于集成尚未原生支持 Bazel 的第三方库（至少对 Go 而言）会有巨大帮助。
+
+
+  项目根目录下的 `BUILD` 文件可作为配置 Gazelle 选项的位置，如果你想在自己的项目中使用它的功能的话。如果缺少这个 `BUILD` 文件，你的项目将构建失败。
+
+
+
+
+  ## 在 Protocol Buffers 中定义 gRPC
+
+
+  与我们此前以与语言无关的方式在 Protocol Buffers 中定义消息类似，我们也可以为 RPC 定义接口。我们将在 `proto` 目录中新建一个文件来承载这个新
+  API。
+
+
+  ```
+
+  syntax = "proto3";
+
+  import "proto/transmission_object.proto";
+
+  package transceiver;
+
+  message EchoRequest {
+
+  transmission_object.TransmissionObject from_client = 1;
+
+  }
+
+  message EchoResponse {
+
+  transmission_object.TransmissionObject from_server = 1;
+
+  }
+
+  service Transceiver {
+
+  rpc Echo (EchoRequest) returns (EchoResponse);
+
+  }
+
+  Listing 8-2
+
+  Defining the interface for the RPC
+
+  ```
+
+
+  将其保存为 `proto/transceiver.proto`*。*
+
+
+  让我们花一点时间来分析这些定义。我们在本地定义了两个消息：`EchoRequest` 和 `EchoResponse`，分别用于承载 RPC 的请求和响应。
+
+
+  值得注意的是，在 `EchoRequest` 和 `EchoResponse` 中，我们都包含了先前创建的 `TransmissionObject` 消息。严格来说，请求和响应中包含同一个消息并非必需；我们在这里这样做只是为了与前面章节中创建的功能保持一致。另外，也没有要求必须在与接口相同的文件中定义请求和响应消息；我们这样做只是为了简化示例。
+
+
+  随后我们定义了一个服务 `Transceiver`，其中只有一个 RPC：*Echo*。在 Echo 的定义中，我们指定了所需的请求和响应类型。
+
+
+  最后请注意，我们在这里所做的只是为 RPC 定义接口。除此之外，（这里）并没有定义它的实现。
+
+
+  为了真正使用并生成 RPC，我们需要在 `proto/BUIL`*D* 文件中更新相应的构建目标。打开 `proto/BUILD` 文件并添加以下内容。
+
+
+  ```
+
+  proto_library(
+
+  name = "transceiver_proto",
+
+  srcs = ["transceiver.proto"],
+
+  deps = [
+
+  ":transmission_object_proto",
+
+  ]
+
+  )
+
+  go_proto_library(
+
+  name = "transceiver_go_proto_grpc",
+
+  compiler = "@io_bazel_rules_go//proto:go_grpc",
+
+  proto = ":transceiver_proto",
+
+  importpath = "transceiver",
+
+  deps = [":transmission_object_go_proto",],
+
+  visibility = ["//server/echo_server:__pkg__"],
+
+  )
+
+  java_proto_library(
+
+  name = "transceiver_java_proto",
+
+  deps = [":transceiver_proto"],
+
+  visibility = ["//client/echo_client:__subpackages__"],
+
+  )
+
+  load("@io_grpc_grpc_java//:java_grpc_library.bzl", "java_grpc_library")
+
+  java_grpc_library(
+
+  name = "transceiver_java_proto_grpc",
+
+  srcs = [":transceiver_proto"],
+
+  deps = [":transceiver_java_proto"],
+
+  visibility = ["//client/echo_client:__subpackages__"],
+
+  )
+
+  Listing 8-3
+
+  Defining the build targets for the Transceiver service
+
+  ```
+
+
+  将文件保存到 `proto/BUILD`。
+
+
+  和 proto 代码一样，我们来看看这里新增了什么。第一个新构建目标看起来应该很熟悉；它只是为 `transceiver.proto` 文件定义了 `proto_library`
+  目标。类似地，`transceiver_java_proto` 也应该很熟悉，因为它定义了 `transceiver.proto` 的 Java 版本构建目标*。*
+
+
+  `transceiver_go_proto_grpc` 与我们之前看到的内容非常相似；主要区别是在 `go_proto_library` 目标中新增了 *compiler*
+  指令。它定义了在编译该目标以支持 gRPC 时应使用的规则。我们使用的是 `@io_bazel_rules_go` 依赖中的标准规则。
+
+
+  由于我们只在服务端使用 Go，因此将可见性设置为仅服务端子包可见。
+
+
+  `java_grpc_library` 执行的是类似工作，不过它定义的是 Java 所需的目标。与之对应地，我们将可见性设置为仅客户端子包可见。
+
+
+  为了确认一切正常，让我们构建该包中的所有目标：
+
+
+  ```
+
+  chapter_08$ bazel build proto:all
+
+  INFO: Analysed 7 targets (0 packages loaded, 0 targets configured).
+
+  INFO: Found 7 targets...
+
+  INFO: Elapsed time: 0.316s, Critical Path: 0.07s
+
+  INFO: 3 processes: 3 darwin-sandbox.
+
+  INFO: Build completed successfully, 4 total actions
+
+  ```
+
+
+  ## 将客户端升级为使用 gRPC
+
+
+  在定义好 gRPC 接口之后，我们现在将客户端升级为使用它。总体而言，代码看起来会与我们之前做的非常相似。我们将重点说明基础版本所需的一些变更。
+
+
+  我们之前创建了一个显式传输序列化对象的 Java 客户端。现在我们将做一些修改以支持 gRPC。
+
+
+  打开 `client/echo_client/command_line/EchoClient.java`。
+
+
+  ```
+
+  import io.grpc.ManagedChannel;
+
+  import io.grpc.ManagedChannelBuilder;
+
+  import java.io.BufferedReader;
+
+  import java.io.InputStreamReader;
+
+  import transmission_object.TransmissionObjectOuterClass.TransmissionObject;
+
+  import transceiver.TransceiverOuterClass.EchoRequest;
+
+  import transceiver.TransceiverOuterClass.EchoResponse;
+
+  import transceiver.TransceiverGrpc;
+
+  public class EchoClient {
+
+  public static void main(String args[]) {
+
+  System.out.println("Spinning up the Echo Client in Java...");
+
+  try {
+
+  final BufferedReader commandLineInput = new BufferedReader(new InputStreamReader(System.in));
+
+  System.out.println("Waiting on input from the user...");
+
+  final String inputFromUser = commandLineInput.readLine();
+
+  if (inputFromUser != null) {
+
+  ManagedChannel channel =
+
+  ManagedChannelBuilder
+
+  .forAddress("localhost", 1234)
+
+  .usePlaintext()
+
+  .build();
+
+  TransceiverGrpc.TransceiverBlockingStub stub =
+
+  TransceiverGrpc.newBlockingStub(channel);
+
+  EchoRequest request =  EchoRequest.newBuilder()
+
+  .setFromClient(
+
+  TransmissionObject.newBuilder()
+
+  .setMessage(inputFromUser)
+
+  .setValue(3.145f)
+
+  .build())
+
+  .build();
+
+  EchoResponse response = stub.echo(request);
+
+  System.out.println("Received Message from server: ");
+
+  System.out.println(response);
+
+  channel.shutdownNow();
+
+  }
+
+  } catch (Exception e) {
+
+  System.err.println("Error: " + e);
+
+  }
+
+  }
+
+  }
+
+  Listing 8-4
+
+  Using gRPC on the client side
+
+  ```
+
+
+  将文件保存到 `client/echo_client/command_line/EchoClient.java`。
+
+
+  再花一点时间审视这些改动：我们首先创建一个 `ManagedChannel`，以在特定端口上打开通道。然后使用它来创建一个 stub（`TransceiverBlockingStub`*）*，用于实际发起
+  RPC。为简化起见，我们使用最基础的 stub，它会对该服务的所有 RPC 发起阻塞调用（stub 还有其他更灵活的版本，但不在本书讨论范围内）。
+
+
+  stub 提供了本地方法，这些方法会通过通道转发调用。一旦创建完成，调用 RPC 就和调用本地方法一样简单。构造请求后，将其用于调用相应方法，并获得预期响应。
+
+
+  为完成功能，让我们在 `client/echo_client/command_line/BUILD` 文件中升级目标。与之前一样，原始目标的大部分内容保持不变，因此我们重点展示必要改动。
+
+
+  ```
+
+  java_binary(
+
+  name = "command_line",
+
+  srcs = ["EchoClient.java"],
+
+  main_class = "EchoClient",
+
+  runtime_deps = [
+
+  "@io_grpc_grpc_java//netty",
+
+  ],
+
+  deps = [
+
+  "//proto:transmission_object_java_proto",
+
+  "//proto:transceiver_java_proto",
+
+  "//proto:transceiver_java_proto_grpc",
+
+  "@io_grpc_grpc_java//api",
+
+  ]
+
+  )
+
+  Listing 8-5
+
+  Modifications for EchoClient to support gRPC
+
+  ```
+
+
+  将文件保存到 *client/echo_client/command_line/BUILD*。
+
+
+  正如此时你可能已经很清楚的那样，我们新增了来自 *proto* 子包的新依赖。此外，我们还添加了一个常规静态依赖 `(@io_grpc_grpc_java//api`)
+  以及一个新的运行时依赖 `(@io_grpc_grpc_java//netty`)。
+
+
+  在后者这种情况下，我们将其指定为运行时依赖，因为代码中并没有显式请求它。如果你尝试移除 *runtime_deps*，会发现程序构建仍然完全正常。然而，一旦尝试运行程序，就会出现错误信息，提示需要该运行时依赖。
+
+
+  我们将构建该目标以确认一切正常：
+
+
+
+
+  ```
+
+  chapter_08$ bazel build client/echo_client/command_line
+
+  INFO: Analysed target //client/echo_client/command_line:command_line (32 packages
+  loaded, 317 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //client/echo_client/command_line:command_line up-to-date:
+
+  bazel-bin/client/echo_client/command_line/command_line.jar
+
+  bazel-bin/client/echo_client/command_line/command_line
+
+  INFO: Elapsed time: 6.648s, Critical Path: 6.14s
+
+  INFO: 21 processes: 18 darwin-sandbox, 3 worker.
+
+  INFO: Build completed successfully, 25 total actions
+
+  ```
+
+
+  值得注意的是，我们现在还不能真正运行客户端；尽管我们已经成功创建了一个使用 gRPC 的客户端，但我们仍然需要一个实现该 RPC 的服务。
+
+
+  ## 将服务器升级为使用 gRPC
+
+
+  要将我们的服务器升级为使用 gRPC，我们需要为 RPC 注册并补全其功能实现。gRPC 会为我们生成大部分脚手架代码；我们只需要注册服务器并提供相应的方法来履行契约。
+
+
+  与前一节一样，我们可以在现有代码上做一些修改。需要注意的是，这一次为了支持 gRPC，我们将进行更大范围的改动。
+
+
+  打开 `server/echo_server/echo_server.go` 并进行高亮部分所示的修改。
+
+
+  ```
+
+  package main
+
+  import (
+
+  "fmt"
+
+  "log"
+
+  "net"
+
+  "transceiver"
+
+  "transmission_object"
+
+  "golang.org/x/net/context"
+
+  "google.golang.org/grpc"
+
+  )
+
+  type EchoServer struct{}
+
+  func (es *EchoServer) Echo(context context.Context, request *transceiver.EchoRequest)
+  (*transceiver.EchoResponse, error) {
+
+  log.Println("Message = " + (*request).FromClient.GetMessage())
+
+  log.Println("Value = " +
+
+  fmt.Sprintf("%f", (*request).FromClient.GetValue()))
+
+  server_message := "Received from client: " +
+
+  (*request).FromClient.GetMessage()
+
+  server_value := (*request).FromClient.Value * 2
+
+  from_server := transmission_object.TransmissionObject{
+
+  Message: server_message,
+
+  Value:   server_value,
+
+  }
+
+  return &transceiver.EchoResponse{
+
+  FromServer: &from_server,
+
+  }, nil
+
+  }
+
+  func main() {
+
+  log.Println("Spinning up the Echo Server in Go...")
+
+  listen, error := net.Listen("tcp", ":1234")
+
+  if error != nil {
+
+  log.Panicln("Unable to listen: " + error.Error())
+
+  }
+
+  defer listen.Close()
+
+  defer log.Println("Connection now closed.")
+
+  grpc_server := grpc.NewServer()
+
+  transceiver.RegisterTransceiverServer(grpc_server, &EchoServer{})
+
+  error = grpc_server.Serve(listen)
+
+  if error != nil {
+
+  log.Panicln("Unable to start serving! Error: " + error.Error())
+
+  }
+
+  }
+
+  Listing 8-6
+
+  Implementing the gRPC interface on the server side
+
+  ```
+
+
+  保存对 `server/echo_server/echo_server.go` 的修改。
+
+
+  再次退一步，看看主要变更。在这个例子中，你创建了一个 Go 结构体 `EchoServer`，它有一个特殊命名的方法 `Echo`。
+
+
+  `Echo` 方法接收一个 `Context` 对象和我们在 protobuf 定义中定义的 `EchoRequest`，并返回 `EchoResponse`
+  对象。这个方法满足了接口定义所要求的契约。就功能而言，虽然方法体与之前版本略有不同，但你应该能识别出相同的功能逻辑。
+
+
+  ```
+
+  Within the body of main, we created a new server and registered our EchoServer.
+  Having completed the setup, we then just start listening to incoming messages.
+
+  ```
+
+
+  现在让我们完成 `BUILD` 文件中目标的升级，以支持这项新功能。打开 `server/echo_server/BUILD` 并进行如下高亮修改。
+
+
+  ```
+
+  load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+
+  go_binary(
+
+  name = "echo_server",
+
+  srcs = ["echo_server.go"],
+
+  deps = [
+
+  "//proto:transceiver_go_proto_grpc",
+
+  "//proto:transmission_object_go_proto",
+
+  "@org_golang_x_net//context:go_default_library",
+
+  "@org_golang_google_grpc//:go_default_library",
+
+  ]
+
+  )
+
+  Listing 8-7
+
+  Modification for echo_server to support gRPC
+
+  ```
+
+
+  保存你对 `server/echo_server/BUILD` 的修改。
+
+
+  和之前一样，新的 `org_golang_*` 依赖并非凭空产生；它们来自我们在 `WORKSPACE` 文件中定义的 Go 依赖。
+
+
+  现在，让我们做一次构建健全性检查，确保一切都按预期工作：
+
+
+  ```
+
+  chapter_08$ bazel build server/echo_server
+
+  INFO: Analysed target //server/echo_server:echo_server (0 packages loaded, 0 targets
+  configured).
+
+  INFO: Found 1 target...
+
+  Target //server/echo_server:echo_server up-to-date:
+
+  bazel-bin/server/echo_server/darwin_amd64_stripped/echo_server
+
+  INFO: Elapsed time: 0.227s, Critical Path: 0.00s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 1 total action
+
+  ```
+
+
+  ## 运行客户端和服务器
+
+
+  客户端和服务器都完成后，我们就可以真正使用这项新功能了。
+
+
+  打开一个新的终端窗口。我们先运行服务器。
+
+
+  ```
+
+  chapter_08$ bazel run server/echo_server
+
+  INFO: Analysed target //server/echo_server:echo_server (83 packages loaded, 7969
+  targets configured).
+
+  INFO: Found 1 target...
+
+  Target //server/echo_server:echo_server up-to-date:
+
+  bazel-bin/server/echo_server/darwin_amd64_stripped/echo_server
+
+  INFO: Elapsed time: 110.524s, Critical Path: 27.33s
+
+  INFO: 466 processes: 466 darwin-sandbox.
+
+  INFO: Build completed successfully, 467 total actions
+
+  INFO: Build completed successfully, 467 total actions
+
+  2019/07/23 05:11:30 Spinning up the Echo Server in Go...
+
+  ```
+
+
+  服务器开始监听后，让我们运行客户端来发送一次请求。打开第二个终端窗口并运行以下命令，在末尾输入一些内容：
+
+
+  ```
+
+  chapter_08$ bazel run client/echo_client/command_line
+
+  INFO: Analysed target //client/echo_client/command_line:command_line (60 packages
+  loaded, 919 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //client/echo_client/command_line:command_line up-to-date:
+
+  bazel-bin/client/echo_client/command_line/command_line.jar
+
+  bazel-bin/client/echo_client/command_line/command_line
+
+  INFO: Elapsed time: 5.728s, Critical Path: 5.33s
+
+  INFO: 3 processes: 2 darwin-sandbox, 1 worker.
+
+  INFO: Build completed successfully, 4 total actions
+
+  INFO: Build completed successfully, 4 total actions
+
+  Spinning up the Echo Client in Java...
+
+  Waiting on input from the user...
+
+  This is a test using gRPC.
+
+  Received Message from server:
+
+  from_server {
+
+  value: 6.29
+
+  message: "Received from client: This is a test using gRPC."
+
+  }
+
+  ```
+
+
+  我们已经成功使用 gRPC 实现了 echo 功能。不过，让我们回到服务器终端看看那边的消息：
+
+
+  ```
+
+  chapter_08$ bazel run server/echo_server
+
+
+  INFO: Build completed successfully, 1 total action
+
+  2019/07/23 05:11:49 Spinning up the Echo Server in Go...
+
+  2019/07/23 05:15:02 Message = This is a test using gRPC.
+
+  2019/07/23 05:15:02 Value = 3.145000
+
+  ```
+
+
+  和你之前的实现一样，你可以看到客户端发送过来的消息。不过这里在功能上有一个重要区别：服务器没有退出。也就是说，服务器仍在运行并等待新的连接到来。
+
+
+  为了验证这一点，切回客户端终端，再运行一次：
+
+
+  ```
+
+  chapter_08$ bazel run client/echo_client/command_line
+
+
+  Spinning up the Echo Client in Java...
+
+  Waiting on input from the user...
+
+  Still up and running
+
+  Received Message from server:
+
+  from_server {
+
+  value: 6.29
+
+  message: "Received from client: Still up and running"
+
+  }
+
+  ```
+
+
+  现在让我们回到服务器终端查看消息：
+
+
+  ```
+
+  chapter_08$ bazel run server/echo_server
+
+
+  2019/07/23 05:11:49 Spinning up the Echo Server in Go...
+
+  2019/07/23 05:15:02 Message = This is a test using gRPC.
+
+  2019/07/23 05:15:02 Value = 3.145000
+
+  2019/07/23 05:21:20 Message = Still up and running
+
+  2019/07/23 05:21:20 Value = 3.145000
+
+  ```
+
+
+  这种持久化功能是 gRPC “开箱即用”就提供的。切换到它之后，我们实际上以大致相同的代码行数获得了更多功能。
+
+
+
+
+  ## 添加另一个 RPC
+
+
+  一个可能出现的抱怨是：你为了执行与之前相同的操作，几乎写了差不多同样数量的代码。为了进一步说明我们所创建内容的强大之处，我们将很快在整个系统中再添加一个 RPC。
+
+
+  打开 `proto/transceiver.proto` 并添加以下高亮行。
+
+
+  ```
+
+  syntax = "proto3";
+
+  import "proto/transmission_object.proto";
+
+  package transceiver;
+
+  message EchoRequest {
+
+  transmission_object.TransmissionObject from_client = 1;
+
+  }
+
+  message EchoResponse {
+
+  transmission_object.TransmissionObject from_server = 1;
+
+  }
+
+  message UpperCaseRequest {
+
+  string original = 1;
+
+  }
+
+  message UpperCaseResponse {
+
+  string upper_cased = 1;
+
+  }
+
+  service Transceiver {
+
+  rpc Echo (EchoRequest) returns (EchoResponse);
+
+  rpc UpperCase (UpperCaseRequest) returns (UpperCaseResponse);
+
+  }
+
+  Listing 8-8
+
+  Adding the interface for another RPC
+
+  ```
+
+
+  将文件保存到 `proto/transceiver.proto`*。*
+
+
+  请注意，所需的全部操作仅仅是将新的 RPC 声明添加到 service 中，同时为请求与响应补充一些明确的消息定义。
+
+
+  现在我们把实现添加到服务器中。打开 `server/echo_server/echo_server.go`。
+
+
+  ```
+
+  import (
+
+  "fmt"
+
+  "log"
+
+  "net"
+
+  "strings"
+
+  "transceiver"
+
+  "transmission_object"
+
+  "golang.org/x/net/context"
+
+  "google.golang.org/grpc"
+
+  )
+
+
+  func (es *EchoServer) UpperCase(contest context.Context, request *transceiver.UpperCaseRequest)
+  (*transceiver.UpperCaseResponse, error) {
+
+  log.Println("Original = " + (*request).GetOriginal())
+
+  return &transceiver.UpperCaseResponse{
+
+  UpperCased: strings.ToUpper((*request).GetOriginal()),
+
+  }, nil
+
+  }
+
+  func main() {
+
+  log.Println("Spinning up the Echo Server in Go...")
+
+  listen, error := net.Listen("tcp", ":1234")
+
+  if error != nil {
+
+  log.Panicln("Unable to listen: " + error.Error())
+
+  }
+
+  defer listen.Close()
+
+  defer log.Println("Connection now closed.")
+
+  grpc_server := grpc.NewServer()
+
+  transceiver.RegisterTransceiverServer(grpc_server, &EchoServer{})
+
+  error = grpc_server.Serve(listen)
+
+  if error != nil {
+
+  log.Panicln("Unable to start serving! Error: " + error.Error())
+
+  }
+
+  }
+
+  Listing 8-9
+
+  Adding the implementation to the server
+
+  ```
+
+
+  将修改保存到 `server/echo_server/echo_server.go`*。*
+
+
+  再次注意，所需的全部工作只是向该结构体中添加新方法。
+
+
+  最后，我们来进行客户端侧所需的修改。打开 `client/echo_client/command_line/EchoClient.java`。
+
+
+  ```
+
+  import io.grpc.ManagedChannel;
+
+  import io.grpc.ManagedChannelBuilder;
+
+  import java.io.BufferedReader;
+
+  import java.io.InputStreamReader;
+
+  import transmission_object.TransmissionObjectOuterClass.TransmissionObject;
+
+  import transceiver.TransceiverOuterClass.EchoRequest;
+
+  import transceiver.TransceiverOuterClass.EchoResponse;
+
+  import transceiver.TransceiverOuterClass.UpperCaseRequest;
+
+  import transceiver.TransceiverOuterClass.UpperCaseResponse;
+
+  import transceiver.TransceiverGrpc;
+
+  public class EchoClient {
+
+  public static void main(String args[]) {
+
+  System.out.println("Spinning up the Echo Client in Java...");
+
+  try {
+
+
+  UpperCaseRequest upperCaseRequest =
+
+  UpperCaseRequest.newBuilder()
+
+  .setOriginal(inputFromUser)
+
+  .build();
+
+  UpperCaseResponse upperCaseResponse =
+
+  stub.upperCase(upperCaseRequest);
+
+  System.out.println("Received upper cased:");
+
+  System.out.println(upperCaseResponse);
+
+  channel.shutdownNow();
+
+  }
+
+  } catch (Exception e) {
+
+  System.err.println("Error: " + e);
+
+  }
+
+  }
+
+  }
+
+  Listing 8-10
+
+  Calling the new RPC from the client
+
+  ```
+
+
+  将你的修改保存到 `client/echo_client/command_line/EchoClient.java`。
+
+
+  再次说明，所需内容依然很简单：创建合适的构造并调用新定义的 RPC。让我们运行一次测试来验证一切正常。
+
+
+  打开终端并启动服务器：
+
+
+  ```
+
+  chapter_08$ bazel run server/echo_server
+
+  INFO: Analysed target //server/echo_server:echo_server (1 packages loaded, 594 targets
+  configured).
+
+  INFO: Found 1 target...
+
+  Target //server/echo_server:echo_server up-to-date:
+
+  bazel-bin/server/echo_server/darwin_amd64_stripped/echo_server
+
+  INFO: Elapsed time: 1.409s, Critical Path: 0.03s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 1 total action
+
+  INFO: Build completed successfully, 1 total action
+
+  2019/07/23 05:40:16 Spinning up the Echo Server in Go...
+
+  ```
+
+
+  现在打开客户端终端，再运行一次客户端：
+
+
+  ```
+
+  chapter_08$ bazel run client/echo_client/command_line
+
+  INFO: Analysed target //client/echo_client/command_line:command_line (2 packages
+  loaded, 432 targets configured).
+
+  INFO: Found 1 target...
+
+  Target //client/echo_client/command_line:command_line up-to-date:
+
+  bazel-bin/client/echo_client/command_line/command_line.jar
+
+  bazel-bin/client/echo_client/command_line/command_line
+
+  INFO: Elapsed time: 0.616s, Critical Path: 0.27s
+
+  INFO: 1 process: 1 worker.
+
+  INFO: Build completed successfully, 2 total actions
+
+  INFO: Build completed successfully, 2 total actions
+
+  Spinning up the Echo Client in Java...
+
+  Waiting on input from the user...
+
+  This is the magic.
+
+  Received Message from server:
+
+  from_server {
+
+  value: 6.29
+
+  message: "Received from client: This is the magic."
+
+  }
+
+  Received upper cased:
+
+  upper_cased: "THIS IS THE MAGIC."
+
+  ```
+
+
+  恭喜！你刚刚在系统中添加了一个新的 RPC。值得注意的是，这仅仅要求你在每个位置（定义、服务器和客户端）增加少量代码。接下来，你可以用这种非常有条理且易于管理的方式，轻松定义更多功能。
+
+
+  ### 注意
+
+
+  在上一节的整个过程中，我们完全没有对 `BUILD` 文件做*任何*修改，因为并不需要变更依赖。你只需专注于代码并执行，且可以有把握地相信 Bazel 会处理必要的构建步骤。
+
+
+  ## 最后的话
+
+
+  在上一章中，重点与其说是 Bazel 使用方式的结构化知识，不如说是以更贴近真实开发的方式来使用它。你已经看到 Bazel 的多语言支持如何与 gRPC 协同工作，从而轻松创建新的客户端—服务器功能。
+
+
+  到目前为止，本书的重点主要放在实际上运行于后端的功能上。也就是说，迄今创建的客户端和服务器都很容易作为后端服务彼此通信的代理。
+
+
+  尽管后续仍将继续围绕“通信”这一主题展开，但我们将开始关注如何使用 Bazel 构建纯客户端功能，即移动应用。我们将再次大量依赖 Bazel 跨语言无缝协作的能力来创建这些应用。
+
+
+  '
+- "# 9. Bazel 与 Android\n\n在前面的章节中，你使用 Bazel 开发的功能大概率会部署到某个后端服务器。然而，Bazel 的用途并不止后端项目，它同样可以处理移动客户端。在本章中，我们将探索如何使用\
+  \ Bazel 构建 Android 应用。\n\n## 环境准备\n\n和之前一样，我们将基于前面章节继续构建。首先再次确认所有由 Bazel 生成的文件都已清除。然后，复制上一章的工作内容：\n\
+  \n```\n$ cd chapter_08\nchapter_08$ bazel clean\nchapter_08$ ls\nWORKSPACE   client\
+  \    proto   server\nchapter_08$ cd ..\n$ cp -rf chapter_08 chapter_09\n$ cd chapter_09\n\
+  chapter_09$\n```\n\n### 工作区\n\n正如你可能已经猜到的，我们需要在 `WORKSPACE` 文件中补充一个额外依赖。在这个场景下，我们要指定用于构建\
+  \ Android 项目的规则。\n\n打开 `WORKSPACE` 文件并添加以下内容。\n\n```\nhttp_archive(\nname = \"rules_android\"\
+  ,\nurls = [\"https://github.com/bazelbuild/rules_android/archive/v0.1.1.zip\"],\n\
+  strip_prefix = \"rules_android-0.1.1\",\n)\nandroid_sdk_repository(name = \"androidsdk\"\
+  )\nListing 9-1\nModifying the WORKSPACE file for the Android rules\n```\n\n\n\n\
+  ### 注意\n\n在前面的章节中，我们提到过有一些开箱即用的规则（例如 `java_library`、`cc_library` 等）。`android_library`\
+  \ 和 `android_binary` 的规则在技术上最初也属于更*开箱即用*的规则。不过，随着 Bazel 的成熟，他们开始将规则从这个核心集合中移除，并为这些规则创建显式的包，以便于维护。\n\
+  \n从开发角度看，这样做是合理的；通过让规则更加模块化、减少其作为单体包一部分的程度，它们就可以按合适的节奏进行修订，而不需要重建整个 Bazel 系统。\n\n\
+  在 *WORKSPACE* 文件中，我们正在调用一个规则 `android_sdk_repository`。它用于指定相对于该项目的 Android SDK 路径。在这个特定场景下，如果规则本身没有其他额外指定，该规则默认使用\
+  \ *ANDROID_HOME* 环境变量。我们很快就会设置它。\n\n### 注意\n\n在这种情况下依赖环境变量，考虑到 Bazel 对其依赖项保持可控性的做法，可能会引发一些担忧。在这个特定场景中，环境变量可以被视为一种便利；不过，在\
+  \ `android_sdk_repository` 规则中，*确实*可以指定 Android SDK 的显式路径，甚至可以是相对于当前 `WORKSPACE`\
+  \ 文件的路径。\n\n当你将 Android SDK 依赖纳入源代码版本控制时，这种指定方式非常有用。这也再次让 Bazel 回到它所偏好的那种封闭式（hermetic）构建模式。\n\
+  \n### Android Studio\n\n在本章中，我们下载 Android Studio 的目的是获得一个易于使用的 Android 模拟器，以便运行我们的成果，同时为\
+  \ Android SDK 提供一个方便的位置。严格来说，你*确实*可以使用你通过 Bazel 完成的工作来驱动一个 Android Studio（以及 IntelliJ）项目（类似于使用\
+  \ *gradle*）。不过，这种集成不在本书本章的讨论范围内。\n\n### 注意\n\n为此，你也可以使用你更喜欢的 Android 模拟器，*或者*仅仅把你的\
+  \ Android 设备连接到电脑来进行尝试。在这些情况下，你基本可以跳过 Android Studio（但请特别注意确保你已具备接下来“Environment”部分所要求的\
+  \ Android SDK）。\n\n前往 [`https://developer.android.com/studio`](https://developer.android.com/studio)，并按照说明在你的平台上下载和安装\
+  \ Android Studio。\n\n本书示例使用的 Android Studio 版本是 3.4.2。后续版本在界面上可能会有变化，因此截图可能无法完全对应。\n\
+  \n#### Environment\n\n如前所述，我们需要设置 `ANDROID_HOME` 环境变量，以确保 Bazel 知道去哪里查找 Android\
+  \ SDK。请确保在你的环境中设置 `ANDROID_HOME` 变量，其值指向你机器上 Android SDK 的位置。\n\nAndroid Studio\
+  \ 的 Android SDK 默认位置取决于具体操作系统。请根据你的系统设置环境变量：\n\n对于 Linux：\n\n```\nexport ANDROID_HOME=$HOME/Android/Sdk/\n\
+  ```\n\n对于 MacOS：\n\n```\nexport ANDROID_HOME=$HOME/Library/Android/sdk\n```\n\n\
+  对于 Windows：\n\n```\nset ANDROID_HOME=%LOCALAPPDATA%\\Android\\Sdk\n```\n\n需要注意的一点是，上述命令只会在当前控制台会话生命周期内设置环境变量。你可能需要考虑将这些设置加入你所用控制台和操作系统的默认配置文件中。\n\
+  \n此外，上述值只是 SDK 的*默认*位置；在安装 Android Studio 的过程中，你也可能将其安装到了其他位置。要找到该位置，请在 Android\
+  \ Studio 中打开 SDK Manager。\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig1_HTML.jpg](img/481224_1_En_9_Fig1_HTML.jpg)\n\
+  \n图 9-1\n\n在 Android Studio 中启动 SDK Manager\n\n在 SDK Manager 中，你将能够找到 Android SDK\
+  \ 的位置。使用该值来设置 `ANDROID_HOME` 环境变量的值。\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig2_HTML.jpg](img/481224_1_En_9_Fig2_HTML.jpg)\n\
+  \n图 9-2\n\n确认 Android SDK 的位置\n\n#### 下载 SDK\n\n当我们已经打开并运行 SDK Manager 时，也应确保至少有一个\
+  \ Android SDK 可用于开始开发。至少选择 *Android 8.1 (Oreo)*（即 API Level 27），然后点击 *OK* 开始下载 SDK（如果你选择了多个）。\n\
+  \n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig3_HTML.jpg](img/481224_1_En_9_Fig3_HTML.jpg)\n\
+  \n图 9-3\n\n选择要下载的 Android SDK 版本\n\n下载完 SDK 后，点击 *Finish*。\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig4_HTML.jpg](img/481224_1_En_9_Fig4_HTML.jpg)\n\
+  \n图 9-4\n\n下载 Android SDK\n\n### 创建模拟器\n\n最后，让我们创建一个 Android Emulator 实例。在主界面中，打开\
+  \ *AVD Manager*。\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig5_HTML.jpg](img/481224_1_En_9_Fig5_HTML.jpg)\n\
+  \n图 9-5\n\n在 Android Studio 中启动 AVD Manager\n\n此时，我们还没有任何模拟器配置文件，因此点击 *Create Virtual\
+  \ Device* 来创建一个。\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig6_HTML.jpg](img/481224_1_En_9_Fig6_HTML.jpg)\n\
+  \n图 9-6\n\n创建虚拟设备\n\n在 *Select Hardware* 页面中，从 Phone 类别选择一个设备（例如 Pixel 2），然后点击 *Next*。\n\
+  \n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig7_HTML.jpg](img/481224_1_En_9_Fig7_HTML.jpg)\n\
+  \n图 9-7\n\n选择特定设备\n\n在 *System Image* 页面中，选择你要使用的 Android SDK 具体版本（例如 Oreo），然后点击\
+  \ *Next*。\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig8_HTML.jpg](img/481224_1_En_9_Fig8_HTML.jpg)\n\
+  \n图 9-8\n\n选择 Android SDK 的版本\n\n最后，你可以为该模拟配置命名（如果你愿意）。点击 *Finish* 完成虚拟设备的创建。\n\n\
+  ![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig9_HTML.jpg](img/481224_1_En_9_Fig9_HTML.jpg)\n\
+  \n图 9-9\n\n命名并完成虚拟设备创建\n\n\n\n## 在 Bazel 中创建 Android Echo 客户端\n\n完成所有准备工作后，我们现在已经可以开始真正创建\
+  \ Android 应用了。在这个例子中，我们将创建 echo 客户端的移动版本。\n\n不过，在编写实际的 gRPC 代码之前，我们先从一个简单的壳版本开始，它只在本地回显（即输入文本会立即返回）。这样做只是为了先熟悉在\
+  \ Bazel 中开发 Android 应用的基础知识。\n\n让我们为 Android 相关工作创建一个新目录：\n\n```\nchapter_09$ cd\
+  \ client/echo_client/\nchapter_09/client/echo_client$ mkdir android\nchapter_09/client/echo_client$\
+  \ cd android\nchapter_09/client/echo_client/android$\n```\n\n在 `client/echo_client/android`\
+  \ 目录中，创建 `EchoClientMainActivity.java` 文件并添加以下内容。\n\n```\npackage client.echo_client.android;\n\
+  import android.app.Activity;\nimport android.os.Bundle;\nimport android.view.View;\n\
+  import android.widget.Button;\nimport android.widget.EditText;\nimport android.widget.TextView;\n\
+  public class EchoClientMainActivity extends Activity {\n@Override\npublic void onCreate(Bundle\
+  \ savedInstanceState) {\nsuper.onCreate(savedInstanceState);\nsetContentView(R.layout.echo_client_main_activity);\n\
+  Button textSenderButton = findViewById(R.id.text_sender);\nEditText clientTextEditor\
+  \ = findViewById(R.id.text_input);\nTextView serverResultsText = findViewById(R.id.server_result_text);\n\
+  textSenderButton.setOnClickListener(new View.OnClickListener() {\npublic void onClick(View\
+  \ v) {\nserverResultsText.setText(clientTextEditor.getText().toString());\n}});\n\
+  }\n}\nListing 9-2\nCreating a basic Android echo client\n```\n\n将文件保存为 `EchoClientMainActivity.java`*。*\
+  \ 从前面的代码可以看出，我们正在创建一个简单的文本编辑器用于输入文本；按下按钮后，文本会显示在一个文本视图中。\n\n现在让我们创建真正构建 UI 的布局文件：\n\
+  \n```\nchapter_09/client/echo_client/android$ mkdir -p res/layout\n```\n\n在 `client/echo_client/android/res/layout`\
+  \ 下创建以下文件。\n\n```\n\nListing 9-3\nCreating the layout file\n```\n\n将其保存到 `client/echo_client/android/res/layout`\
+  \ 下，文件名为 `echo_client_main_activity.xml`*。*\n\n对于我们的 Android 应用，还需要一个 `AndroidManifest.xml`\
+  \ 文件。\n\n```\n\nListing 9-4\nAndroidManifest.xml\n```\n\n将其保存到 `client/echo_client/android/AndroidManifest.xml`*。*\n\
+  \n最后，让我们创建 `BUILD` 文件并定义目标。\n\n```\nload(\"@rules_android//android:rules.bzl\",\
+  \ \"android_library\", \"android_binary\")\nandroid_library(\nname = \"echo_client_android_activity\"\
+  ,\nsrcs = [\"EchoClientMainActivity.java\"],\nmanifest = \"AndroidManifest.xml\"\
+  ,\ncustom_package = \"client.echo_client.android\",\nresource_files = [\n\"res/layout/echo_client_main_activity.xml\"\
+  \n],\n)\nandroid_binary(\nname = \"echo_client_android_app\",\nmanifest = \"AndroidManifest.xml\"\
+  ,\ncustom_package = \"client.echo_client.android\",\ndeps = [ \":echo_client_android_activity\"\
+  ,],\n)\nListing 9-5\nCreating the BUILD file for the Android client\n```\n\n将其保存到\
+  \ `client/echo_client/android/BUILD`。\n\n虽然 Android 的构建规则是新的，但你在本书中已经多次见过这种模式。不出所料，我们需要从\
+  \ `rules_android` 包中显式加载 `android_librar`*y* 和 `android_binary` 规则。\n\n对于每条规则，有不少我们熟悉的属性（即\
+  \ name、srcs、dep）。还有几个值得重点说明的属性：\n\n*   manifest\n    *   指向 `AndroidManifest.xm`*l*\
+  \ 文件。\n\n*   `android_library` 和 `android_binary` 都必需该属性。\n\n*   resource_files\n\
+  \    *   包含一组 Android 资源文件（例如 layout.xml、strings.xml 等）。\n\n*   严格来说这是*可选*的；但在本例中，如果去掉这里的这个属性，构建会失败（因为它将不再依赖生成类所需的文件）。\n\
+  \n*   custom_package\n    *   该属性显式指定应用使用的包名。\n\n*   `android_library` 和 `android_binary`\
+  \ 都对目录结构有要求。\n\n*   具体来说，它们期望目录以 `java` 或 `javatests` 开头，以此推断 Java 包名。\n\n*   如果目录*不是*以\
+  \ java 开头，则必须显式设置 `custom_package` 属性。\n\n从技术上讲，我们其实并不一定非要同时有 `android_library`\
+  \ 实例和 `android_binary` 实例。`android_binary` 规则本身提供了足够多的选项，理论上我们*可以*把所有需要的内容（即 Java\
+  \ 源文件和资源文件）都放在那里。不过，这里的拆分是为了演示这两条规则。\n\n让我们执行一次测试构建，确保一切都按预期运行。为简化起见，我们只构建最终二进制：\n\
+  \n```\nchapter_09/client/echo_client/android$ bazel build :echo_client_android_app\n\
+  INFO: Analyzed target //client/echo_client/android:echo_client_android_app (1 packages\
+  \ loaded, 5 targets configured).\nINFO: Found 1 target...\nTarget //client/echo_client/android:echo_client_android_app\
+  \ up-to-date:\nbazel-bin/client/echo_client/android/echo_client_android_app_deploy.jar\n\
+  bazel-bin/client/echo_client/android/echo_client_android_app_unsigned.apk\nbazel-bin/client/echo_client/android/echo_client_android_app.apk\n\
+  INFO: Elapsed time: 0.935s, Critical Path: 0.70s\nINFO: 3 processes: 3 darwin-sandbox.\n\
+  INFO: Build completed successfully, 4 total actions\n```\n\n恭喜！你已经使用 Bazel 构建了第一个\
+  \ Android 应用。现在我们可以在模拟器上测试它了。\n\n### 启动 Android 模拟器实例\n\n在你先前创建好虚拟设备后，现在就可以启动它。打开\
+  \ *AVD 管理器*，这里会列出你所有的虚拟设备（本例中只有一个）。点击“播放”按钮，启动一个虚拟设备实例。\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig10_HTML.jpg](img/481224_1_En_9_Fig10_HTML.jpg)\n\
+  \n图 9-10\n\n启动虚拟设备\n\n你应该会看到如下空白屏幕。\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig11_HTML.jpg](img/481224_1_En_9_Fig11_HTML.jpg)\n\
+  \n图 9-11\n\n启动后的模拟器\n\n### Bazel 移动安装\n\n在完成构建并设置好模拟器后，我们现在可以部署应用了。乍一看，我们可以使用 Android\
+  \ Debug Bridge（ADB）命令把应用装到模拟器上。不过，Bazel 提供了一个非常有用的命令 `mobile-install`*。* 与 `run`\
+  \ 类似，`mobile-install` 会构建目标应用，然后安装到已连接设备上（本例中即模拟器）。\n\n额外的好处是，我们还可以加上 `start_app`\
+  \ 选项，以便应用安装完成后立即启动。使用该选项后，`mobile-install` 在功能上就相当于前几章中 `run` 的移动端版本。\n\n运行以下命令来构建、部署并启动应用：\n\
+  \n```\nchapter_09/client/echo_client/android$ bazel mobile-install --start_app :echo_client_android_app\n\
+  ```\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig12_HTML.jpg](img/481224_1_En_9_Fig12_HTML.jpg)\n\
+  \n图 9-12\n\n应用初始界面\n\n恭喜！你的应用已经运行起来了，它会在本地回显你在文本编辑器中输入的任何内容。\n\n### 注意\n\n*mobile-install*\
+  \ 命令不仅仅是 ADB 功能的一个便捷代理。由于它与 Bazel 构建系统集成，还可以用于向移动应用部署增量变更。这能大幅提升开发效率，使你能够以更迭代的方式处理移动应用的各个方面（例如\
+  \ UI）。不过，关于这种增量部署的具体细节不在本书讨论范围之内。\n\n\n\n## 添加 gRPC 支持\n\n尽管前面的示例对于创建一个基础的 Android\
+  \ 应用很有帮助，但它并不是一个功能非常完善的应用。延续前几章的主题，我们现在把真正的 echo 客户端功能添加到这个应用中。幸运的是，你在前几章已经完成了大部分繁重工作；这里我们可以直接复用。\n\
+  \n在我们开始 Android 代码本身之前，首先必须确保添加了合适的权限；否则，当我们尝试执行进程间通信时会报错。\n\n打开 `AndroidManifest.xml`\
+  \ 文件并添加以下权限。\n\n```\n\nListing 9-6\nAdding permission to access networking to the\
+  \ Android app\n```\n\n将更改保存到 `AndroidManifest.xml`。\n\n现在让我们对 Android 代码本身做必要的修改。打开\
+  \ `EchoClientMainActivity.java` 文件，并添加下面加粗所示的更改。\n\n```\npackage java.com.beginning_bazel.client.echo_client;\n\
+  import android.app.Activity;\nimport android.os.Bundle;\nimport android.util.Log;\n\
+  import android.view.View;\nimport android.widget.Button;\nimport android.widget.EditText;\n\
+  import android.widget.TextView;\nimport io.grpc.ManagedChannel;\nimport io.grpc.ManagedChannelBuilder;\n\
+  import transmission_object.TransmissionObjectOuterClass.TransmissionObject;\nimport\
+  \ transceiver.TransceiverOuterClass.EchoRequest;\nimport transceiver.TransceiverOuterClass.EchoResponse;\n\
+  import transceiver.TransceiverGrpc;\npublic class EchoClientMainActivity extends\
+  \ Activity {\n@Override\npublic void onCreate(Bundle savedInstanceState) {\nsuper.onCreate(savedInstanceState);\n\
+  setContentView(R.layout.echo_client_main_activity);\nButton textSenderButton = findViewById(R.id.text_sender);\n\
+  EditText clientTextEditor = findViewById(R.id.text_input);\nTextView serverResultsText\
+  \ = findViewById(R.id.server_result_text);\ntextSenderButton.setOnClickListener(new\
+  \ View.OnClickListener() {\npublic void onClick(View v) {\nfinal String clientText\
+  \ =\nclientTextEditor.getText().toString();\nif (!clientText.isEmpty()) {\nManagedChannel\
+  \ channel =\nManagedChannelBuilder\n.forAddress(\"10.0.2.2\", 1234)\n.usePlaintext()\n\
+  .build();\nTransceiverGrpc.TransceiverBlockingStub stub =\nTransceiverGrpc.newBlockingStub(channel);\n\
+  EchoRequest request = EchoRequest.newBuilder()\n.setFromClient(\nTransmissionObject.newBuilder()\n\
+  .setMessage(clientText)\n.setValue(3.145f)\n.build();\n.build();\ntry {\nEchoResponse\
+  \ response = stub.echo(request);\nserverResultsText.setText(response.toString());\n\
+  } catch (Throwable t) {\nLog.d(\"EchoClientMainActivity\", \"error:\", t);\n} finally\
+  \ {\nchannel.shutdown();\n}\n}\n}});\n}\n}\nListing 9-7\nModifying the Android client\
+  \ to support gRPC\n```\n\n将更改保存到 `EchoClientMainActivity.java`。\n\n### 注意\n\n细心的读者会注意到，我们将地址从*localhost*改成了*10.0.2.2*。在模拟器中，*localhost*指向的是模拟设备本身，而不是运行模拟器的那台机器。Android\
+  \ Studio 指定了一个特殊 IP 地址（即 *10.0.2.2*），用于连接运行在你开发机器上的进程。你不需要对服务端做任何改动。\n\n如果你决定使用*不同的*模拟平台，请查阅该平台的文档，确认它是否指定了不同的地址（或采用不同策略）来连接你开发机器上的进程。\n\
+  \n所有新增代码你应该都很熟悉；只做了少量改动，它与上一章命令行 Java 客户端中的代码几乎一致。\n\n### 注意\n\n在上一章和本章中，我们都使用了*阻塞\
+  \ stub*版本来调用后端。虽然这在这里对我们来说很方便，但一般来说，你不会希望在 UI 线程上发起这种 I/O 调用，因为这可能导致 UI 无响应。相反，你很可能需要研究此调用生成的其他版本（例如使用\
+  \ Future），以便选择最适合你应用程序的方式。\n\n最后，让我们把必要的依赖添加到 `BUILD` 文件中。再一次，这部分对你来说应该非常熟悉，与前一章相比改动很少。\n\
+  \n```\nload(\"@rules_android//android:rules.bzl\", \"android_library\", \"android_binary\"\
+  )\nandroid_library(\nname = \"echo_client_android_activity\",\nsrcs = [\"EchoClientMainActivity.java\"\
+  ],\nmanifest = \"AndroidManifest.xml\",\ncustom_package = \"client.echo_client.android\"\
+  ,\nresource_files = [\n\"res/layout/echo_client_main_activity.xml\"\n],\ndeps =\
+  \ [\n\"//proto:transceiver_java_proto\",\n\"//proto:transceiver_java_proto_grpc\"\
+  ,\n\"//proto:transmission_object_java_proto\",\n\"@io_grpc_grpc_java//api\",\n\"\
+  @io_grpc_grpc_java//okhttp\",\n\"@io_grpc_grpc_java//stub\",\n],\n)\nandroid_binary(\n\
+  name = \"echo_client_android_app\",\nmanifest = \"AndroidManifest.xml\",\ndeps =\
+  \ [ \":echo_client_android_activity\",],\n)\nListing 9-8\nAdding dependencies into\
+  \ the Android BUILD file\n```\n\n\n\n### 注意\n\n再次强调，细心的读者会发现，我们已经将之前的运行时依赖 `@io_grpc_grpc_java//netty`\
+  \ 替换为静态依赖 `@io_grpc_grpc_java/okhttp`。可以肯定的是，`netty` 最适合同时支持客户端*和*服务器端功能。`OkHttp`\
+  \ 的设计目标是为纯客户端场景提供轻量化支持，因此这里将其引入 Android。\n\n将这些更改保存到 `BUILD` 文件中。\n\n为确保无误，我们再构建一次应用。不过，这次你可能会看到一条令人意外的错误信息。\n\
+  \n```\nchapter_09/client/echo_client/android$ bazel build :echo_client_android_app\n\
+  ERROR: \n'single_file' is no longer supported. use allow_single_file instead. You\
+  \ can use --incompatible_disable_deprecated_attr_params=false to temporarily disable\
+  \ this check.\nERROR: /external/io_grpc_grpc_java/protobuf-lite/BUILD.bazel:1:1:\
+  \ error loading package '@com_google_protobuf_javalite//': Extension file 'protobuf.bzl'\
+  \ has errors and referenced by '@io_grpc_grpc_java//protobuf-lite:protobuf-lite'\n\
+  ERROR: Analysis of target '//client/echo_client/android:echo_client_android_app'\
+  \ failed; build aborted: error loading package '@com_google_protobuf_javalite//':\
+  \ Extension file 'protobuf.bzl' has errors\n```\n\n在这个特定场景下，你其实并没有做错任何事；你之所以遇到这个错误，可能是因为\
+  \ Bazel 本身在持续演进。在这里，你的某个依赖由于使用了已弃用属性而报错。不过事情并非无解，上面高亮的那一行已经告诉了我们下一步该怎么做。\n\n如果我们在\
+  \ `build`（以及 `mobile-install`）命令中加入参数 `–-incompatible_disable_deprecated_attr_params=false`，你会看到问题自行修复。\n\
+  \n```\nchapter_09/client/echo_client/android$ bazel build –-incompatible_disable_deprecated_attr_params=false\
+  \ :echo_client_android_app\nINFO: Writing tracer profile to '/private/var/tmp/_bazel_pj/72676801ec24996691dac393febb05db/command.profile.gz'\n\
+  INFO: Analyzed target //client/echo_client/android:echo_client_android_app (80 packages\
+  \ loaded, 2140 targets configured).\nINFO: Found 1 target...\nTarget //client/echo_client/android:echo_client_android_app\
+  \ up-to-date:\nbazel-bin/client/echo_client/android/echo_client_android_app_deploy.jar\n\
+  bazel-bin/client/echo_client/android/echo_client_android_app_unsigned.apk\nbazel-bin/client/echo_client/android/echo_client_android_app.apk\n\
+  INFO: Elapsed time: 11.048s, Critical Path: 6.06s\nINFO: 13 processes: 9 darwin-sandbox,\
+  \ 4 worker.\nINFO: Build completed successfully, 14 total actions\n```\n\n严格来说，尽管这种方式可行，但不应将其视为永久解决方案。当你真正遇到类似问题时，正确做法是修复依赖中的问题（必要时可提交相应修改）。这也说明了尽可能将你的优势保持在本地化范围内的好处，这样你更容易掌控自己的技术命运。\n\
+  \n不过，这也体现出一点：即使 Bazel 本身仍在快速演进，它也在努力为你提供“应急阀门（escape valves）”，以便让开发继续推进。虽然这些不是长期方案，但它们确实能帮助你更平滑地在软件版本之间过渡。\n\
+  \n## 在后端上运行 Android 客户端\n\n现在我们已经增强了 Android 客户端，使其可以对本地服务器发起 RPC，接下来让我们同时启动服务器和客户端。\n\
+  \n之前你需要两个控制台实例，因为客户端和服务器都是命令行工具。在这里，你只需要一个。\n\n首先，构建、部署并启动我们更新后的 Android 应用。运行以下命令：\n\
+  \n```\nbazel mobile-install --incompatible_disable_deprecated_attr_params=false\
+  \ --start_app :echo_client_android_app\n```\n\n确认应用已经启动并运行后，运行以下命令启动服务器：\n\n```\n\
+  chapter_09$ bazel run server/echo_server\nINFO: Deleting stale sandbox base /private/var/tmp/_bazel_pj/72676801ec24996691dac393febb05db/sandbox\n\
+  Target //server/echo_server:echo_server up-to-date:\nbazel-bin/server/echo_server/darwin_amd64_stripped/echo_server\n\
+  INFO: Elapsed time: 16.670s, Critical Path: 0.30s\nINFO: 0 processes.\nINFO: Build\
+  \ completed successfully, 1 total action\nINFO: Build completed successfully, 1\
+  \ total action\n2019/08/01 16:39:03 Spinning up the Echo Server in Go\n```\n\n现在，输入一些文本并点击“Send\
+  \ to Server”。你应该会在 Android 客户端中收到响应，如下所示。\n\n![../images/481224_1_En_9_Chapter/481224_1_En_9_Fig13_HTML.jpg](img/481224_1_En_9_Fig13_HTML.jpg)\n\
+  \n图 9-13\n\n显示应用界面及后端返回响应的屏幕\n\n恭喜！你已经创建了 Android 回声客户端，并成功与本地回声服务器通信。\n\n## 结语\n\
+  \n在本章中，你通过学习如何使用 Bazel 构建 Android 应用，进一步拓展了自己的知识体系。此外，你还能将前面章节所学应用起来，构建出一个能够与此前工作成果进行通信的应用。虽然这显然只是一个远程通信的玩具示例，但它可以作为更大型项目的起点。\n\
+  \n在展示了 Bazel 构建 Android 项目的能力之后，我们将在下一章进一步扩展到 iOS 应用开发。\n\n\n\n### 练习——在 Android\
+  \ 上使用 Java Lite Protos\n\n在上一章中，你已经能够利用前面章节的成果，轻松地为你的 Android 应用添加 gRPC 支持。在这一过程中有一点被略过了：`java_proto_library`\
+  \ 的输出在函数数量上通常会比较冗长；也就是说，生成的类、内部类、静态类等数量往往很大。对于运行在服务器上的程序来说这通常问题不大，但对于大规模 Android\
+  \ 程序，这会逐渐成为一个问题。资深 Android 开发者都熟悉单个 DEX 文件中令人头疼的函数数量限制（即 64K 函数）。\n\n虽然你可以采用 multidex\
+  \ 策略来应对函数数量增加的问题，但这会因 Android SDK 版本不同而变得复杂。幸运的是，至少对于 `java_proto_library` 这一场景，我们有一个可行替代方案：`java_lite_proto_library`。该规则会生成功能更精简的\
+  \ proto Java 代码，同时仍保留大多数场景下常用的核心功能。\n\n值得注意的是，`java_lite_proto_library`（目前）属于那种开箱即用但仍需要一些外部支持的规则之一（这也许能说明这一组规则的迁移路径）。该规则的定义方式与\
+  \ `java_proto_library` 几乎*完全相同*。由 `java_lite_proto_library` 生成的 proto 并不实现原版本的*全部*功能，但在最常见的使用场景中通常可以直接替换（这里就是这种情况）。\n\
+  \n幸运的是，你可以通过在 `WORKSPACE` 文件中添加以下内容，轻松获得所需支持：\n\n```\nhttp_archive(\nname = \"com_google_protobuf_javalite\"\
+  ,\nstrip_prefix = \"protobuf-javalite\",\nurls = [\"https://github.com/google/protobuf/archive/javalite.zip\"\
+  ],\n)\n```\n\n此外，你还需要确保所使用的 grpc 库*同样*会生成与 `java_lite_proto_library` 输出兼容的代码。幸运的是，我们现有的\
+  \ `java_grpc_library` 规则已经为我们处理了这一点；你只需要在应用中添加选项 `flavor = \"lite\"`。\n\n例如：\n\n\
+  ```\njava_grpc_library(\nname = \"transceiver_java_lite_proto_grpc\",\nsrcs = [\"\
+  :transceiver_proto\"],\ndeps = [\":transceiver_java_lite_proto\"],\nflavor = \"\
+  lite\",\nvisibility = [\"//client/echo_client:__subpackages__\"],\n)\n```\n\n当你创建好\
+  \ `java_lite_proto_library` 和 `java_grpc_library`（带有 “lite” proto 支持）实例后，将应用的 `android_library`\
+  \ 重定向到这些新建规则上。由于我们在这里使用 protobuf 的方式，你无需修改任何 Android 代码。你应该能够顺利构建并运行代码，且功能不会发生变化。\n\
+  \n不过，你应当对比这次变更前后的应用体积。你会看到体积显著减小（如果你确实想了解具体差异，可以使用 Android Studio 的分析工具查看函数数量的变化）。\n\
+  \n对于玩具项目，这种差异可能不明显；但当你使用 protobuf 构建规模较大的 Android 应用时，你会希望使用 “lite” 版本来帮助保持应用体积小，并避免使用\
+  \ multidex。\n\n"
+- '# 10. Bazel 与 iOS
+
+
+  在上一章中，你使用 Bazel 从适用于服务器的命令行程序扩展到 Android，从而迈入移动端世界。为了完整起见，我们将为 iOS 创建一个等效客户端。
+
+
+  ### 注意
+
+
+  在本章中，我们将使用原生工具创建一个 iOS 项目。不过，由于 Xcode 仅在 MacOS 上可用，你只能在 MacOS 机器上构建本章项目。
+
+
+  ## 设置
+
+
+  我们将再次基于前面章节的内容继续构建。先确认上一章由 Bazel 生成的文件已清理，然后复制上一章的工作：
+
+
+  ```
+
+  $ cd chapter_09
+
+  chapter_09$ bazel clean
+
+  chapter_09$ ls
+
+  WORKSPACE   client    proto   server
+
+  chapter_09$ cd ..
+
+  $ cp -rf chapter_09 chapter_10
+
+  $ cd chapter_10
+
+  chapter_10$
+
+  ```
+
+
+  由于你已经在机器上配置好了 Xcode 来构建前几章的示例，因此你应当已经具备开发 iOS 应用所需的一切。
+
+
+  ## Workspace
+
+
+  我们再次在 `WORKSPACE` 文件中添加依赖，以获取构建 iOS 项目所需的规则。
+
+
+  打开 `WORKSPACE` 文件并添加以下内容。
+
+
+  ```
+
+  load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+  load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+  skylib_version = "0.8.0"
+
+  http_archive(
+
+  name = "bazel_skylib",
+
+  url = "https://github.com/bazelbuild/bazel-skylib/releases/download/{}/bazel-skylib.{}.tar.gz".format(skylib_version,
+  skylib_version),
+
+  )
+
+  git_repository(
+
+  name ="build_bazel_rules_apple",
+
+  commit="1445924a158a89ad634f562c84a600a3435ef8c2",
+
+  remote="https://github.com/bazelbuild/rules_apple.git",
+
+  )
+
+  load(
+
+  "@build_bazel_rules_apple//apple:repositories.bzl",
+
+  "apple_rules_dependencies",
+
+  )
+
+  apple_rules_dependencies()
+
+  load(
+
+  "@build_bazel_rules_swift//swift:repositories.bzl",
+
+  "swift_rules_dependencies",
+
+  )
+
+  swift_rules_dependencies()
+
+  load(
+
+  "@build_bazel_apple_support//lib:repositories.bzl",
+
+  "apple_support_dependencies",
+
+  )
+
+  apple_support_dependencies()
+
+
+  Listing 10-1
+
+  Modifying the WORKSPACE for the iOS rules
+
+  ```
+
+
+  将你对 *WORKSPACE* 文件的修改保存。
+
+
+  ### 注意
+
+
+  在这些改动中，我们仅对 `build_bazel_rules_apple` 显式调用了 `http_archive`；但很明显，我们还通过 `*_dependencies()`
+  函数获取了多个额外依赖。你在前面的章节中已经见过这种做法，但这里仍值得特别说明，因为我们将显式使用这些额外包之一中的规则（即 `build_bazel_rules_swift`
+  包）。
+
+
+
+
+  ## 在 Bazel 中创建 iOS 客户端
+
+
+  与你在 Android 示例中编写的内容类似，我们将首先创建一个基础的 iOS 应用程序，然后再实际使用任何 gRPC 代码。在此过程中，我们将探讨一些在 Bazel
+  下构建 iOS 应用的细节要点。
+
+
+  让我们为 iOS 开发创建一个新目录。正如预期的那样，它将位于 client 目录中，与 Android 和命令行客户端并列：
+
+
+  ```
+
+  chapter_10$ cd client/echo_client/
+
+  chapter_10/client/echo_client$ mkdir ios
+
+  chapter_10/client/echo_client$ cd ios
+
+  chapter_10/client/echo_client/ios$
+
+  ```
+
+
+  在 `client/echo_client/ios` 目录中，创建 `MainViewController.swift` 文件并添加以下内容。
+
+
+  ```
+
+  import UIKit
+
+  public class MainViewController : UIViewController {
+
+  private let textInput = UITextField()
+
+  private let sendButton =  UIButton(type: UIButton.ButtonType.system)
+
+  private let receivedText = UILabel()
+
+  override public func viewDidLoad() {
+
+  super.viewDidLoad()
+
+  self.view.backgroundColor = .white
+
+  textInput.placeholder = "Input text here"
+
+  textInput.textColor = .black
+
+  textInput.backgroundColor =.white
+
+  textInput.isEnabled = true
+
+  sendButton.setTitle("Send", for: UIControl.State.normal)
+
+  sendButton.addTarget(self, action: #selector(send), for: .touchUpInside)
+
+  sendButton.isEnabled = true
+
+  receivedText.numberOfLines = 0
+
+  receivedText.text = "Received text will show up here."
+
+  receivedText.backgroundColor = .gray
+
+  receivedText.textColor = .black
+
+  let stackView = UIStackView(arrangedSubviews: [self.textInput, self.sendButton,
+  self.receivedText])
+
+  stackView.alignment = .fill
+
+  stackView.axis = .vertical
+
+  stackView.distribution = .fillEqually
+
+  stackView.spacing = 10.0
+
+  stackView.translatesAutoresizingMaskIntoConstraints = false
+
+  self.view.addSubview(stackView)
+
+  }
+
+  override public func viewDidAppear(_ animated: Bool) {
+
+  super.viewDidAppear(animated)
+
+  textInput.text = ""
+
+  receivedText.text = ""
+
+  }
+
+  @objc func send(sender: UIButton!) {
+
+  receivedText.text = textInput.text
+
+  }
+
+  }
+
+  Listing 10-2
+
+  Creating the MainViewController
+
+  ```
+
+
+  将该文件保存为 `MainViewController.swift`*.* 正如我们在 Android 版本客户端中所做的那样，我们正在创建一个非常简单的本地回显客户端：点击
+  *Send* 后，它会将输入文本原样反映到输出中。
+
+
+  ### 注意
+
+
+  与 Android 客户端不同，我们是通过代码以编程方式生成 UI，而不是创建等效的 `.storyboard` 文件。尽管 Bazel 的 iOS 规则确实支持使用
+  `.storyboard` 文件，但生成这些文件的标准工具是 Xcode 本身（即通过创建一个新项目）。为简化起见，我们选择不使用 `.storyboard`
+  文件，因为用于生成 UI 的代码非常直接。
+
+
+  在 Android 示例中，我们将整个应用都定义在一个文件中；这里我们将再创建一个文件（即 `AppDelegate` 文件），以遵循 iOS 的惯例。
+
+
+  在 `client/echo_client/ios` 目录中，创建 `AppDelegate.swift` 文件并添加以下内容。
+
+
+  ```
+
+  import UIKit
+
+  @UIApplicationMain
+
+  class AppDelegate: NSObject, UIApplicationDelegate {
+
+  var window: UIWindow?
+
+  func application(
+
+  _ application: UIApplication, didFinishLaunchingWithOptions
+
+  launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {
+
+  window = UIWindow(frame: UIScreen.main.bounds)
+
+  window?.makeKeyAndVisible()
+
+  window?.rootViewController = MainViewController()
+
+  return true
+
+  }
+
+  }
+
+  Listing 10-3
+
+  Creating the basic AppDelegate
+
+  ```
+
+
+  将该文件保存为 `AppDelegate.swift`*.*
+
+
+  最后，我们还需要创建一个 `Info.plist` 文件，用于定义 iOS 应用程序的一些基础属性。
+
+
+  在 `client/echo_client/ios` 目录中，创建 `Info.plist` 文件并添加以下内容。
+
+
+  ```
+
+
+  CFBundleDevelopmentRegion
+
+  en
+
+  CFBundleExecutable
+
+  $(EXECUTABLE_NAME)
+
+  CFBundleIdentifier
+
+  $(PRODUCT_BUNDLE_IDENTIFIER)
+
+  CFBundleInfoDictionaryVersion
+
+  6.0
+
+  CFBundleName
+
+  $(PRODUCT_NAME)
+
+  CFBundlePackageType
+
+  APPL
+
+  CFBundleShortVersionString
+
+  1.0
+
+  CFBundleVersion
+
+
+  LSRequiresIPhoneOS
+
+
+  UIRequiredDeviceCapabilities
+
+
+  arm64
+
+
+  UISupportedInterfaceOrientations
+
+
+  UIInterfaceOrientationPortrait
+
+
+  Listing 10-4
+
+  Creating the Info.plist file
+
+  ```
+
+
+  将该文件保存为 `Info.plist`*.*
+
+
+  在 `client/echo_client/ios` 目录中，创建一个 `BUILD` 文件，并向其中添加以下内容。
+
+
+  ```
+
+  load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
+
+  load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+  swift_library(
+
+  name = "Lib",
+
+  srcs = [
+
+  "AppDelegate.swift",
+
+  "MainViewController.swift",
+
+  ],
+
+  )
+
+  ios_application(
+
+  name = "EchoClient",
+
+  bundle_id = "com.beginning-bazel.echo-client",
+
+  families = ["iphone"],
+
+  infoplists = [":Info.plist"],
+
+  minimum_os_version = "11.0",
+
+  deps = [":Lib"],
+
+  )
+
+  Listing 10-5
+
+  Creating the BUILD file for the iOS project
+
+  ```
+
+
+  保存 `BUILD` 文件。
+
+
+  结合前几章所做的工作，`BUILD` 文件中的内容应该不会让你感到陌生；你只是加载了一组新的规则，并用它们创建了一些构建目标。特别是，`swift_library`
+  看起来应当与其他语言中的类似用法非常相近。对于 `ios_application`，其中许多属性是新的，但也都应该容易理解。
+
+
+
+
+  ### 为 iOS 构建
+
+
+  在设置好代码和 BUILD 规则后，我们现在来执行一次构建。先从 `EchoClient` 目标开始：
+
+
+  ```
+
+  chapter_10/client/echo_client/ios$ bazel build :EchoClient
+
+  INFO: Analyzed target //client/echo_client/ios:EchoClient (19 packages loaded, 405
+  targets configured).
+
+  INFO: Found 1 target...
+
+  Target //client/echo_client/ios:EchoClient up-to-date:
+
+  bazel-bin/client/echo_client/ios/EchoClient.ipa
+
+  INFO: Elapsed time: 9.965s, Critical Path: 9.48s
+
+  INFO: 10 processes: 7 darwin-sandbox, 2 local, 1 worker.
+
+  INFO: Build completed successfully, 36 total actions
+
+  ```
+
+
+  这看起来应该和前几章的内容非常熟悉。
+
+
+  不过，我们还要对 `Lib` 目标执行一次构建。虽然我们已经作为 `EchoClient` 的依赖成功构建了这个目标，但仍值得讨论一下：要构建一个目标，具备足够上下文信息的重要性。
+
+
+  ```
+
+  chapter_10/client/echo_client/ios$ bazel build :Lib
+
+  INFO: Analyzed target //client/echo_client/ios:Lib (25 packages loaded, 854 targets
+  configured).
+
+  INFO: Found 1 target...
+
+  ERROR: chapter_10/client/echo_client/ios/BUILD:4:1: Compiling Swift module client_echo_client_ios_Lib
+  failed (Exit 1)
+
+  client/echo_client/ios/AppDelegate.swift:1:8: error: no such module ''UIKit''
+
+  import UIKit
+
+  ^
+
+  Target //client/echo_client/ios:Lib failed to build
+
+  Use --verbose_failures to see the command lines of failed build steps.
+
+  INFO: Elapsed time: 4.094s, Critical Path: 0.15s
+
+  INFO: 0 processes.
+
+  FAILED: Build did NOT complete successfully
+
+  ```
+
+
+  尽管我们已经正确设置了构建目标，构建仍然*失败*了，而且错误看起来有些奇怪。毕竟，`UIKit` 是 iOS 应用的核心库；在构建 iOS 应用时它本应始终可用。
+
+
+  要理解发生了什么，我们需要回顾一点：Swift 作为一种语言，并不只用于 iOS；你可以用 Swift 在很多平台上创建原生应用。我们在 `BUILD` 文件中的初始定义只是使用了
+  `swift_library`；仅凭这一点并没有说明该 Swift 库应为哪个平台构建。实际上，默认会为 MacOS 平台（即系统默认平台）构建。
+
+
+  而对于 `ios_application`，我们是在显式声明该目标应为 iOS 平台进行*交叉编译*，并引入正确编译所需的 SDK。Bazel 有一个叫做*配置（configuration）*的属性，它封装了执行构建时的环境信息。默认情况下，一个构建目标的配置会应用到其依赖项上。这就是为什么你之前能够成功构建
+  `EchoClient` 的全部内容：因为 `ios_application` 具有正确配置，并且该配置传递到了依赖项。
+
+
+  若要仅对 *swift_library* 启用这一点，我们可以在 *build* 命令中添加一些说明，以正确执行构建。
+
+
+  执行下面的命令，它在命令行中加入了指令 `–-apple_platform_type=ios`：
+
+
+  ```
+
+  chapter_10/client/echo_client/ios$ bazel build –-apple_platform_type=ios :Lib
+
+  INFO: Build option --apple_platform_type has changed, discarding analysis cache.
+
+  INFO: Analyzed target //client/echo_client/ios:Lib (3 packages loaded, 854 targets
+  configured).
+
+  INFO: Found 1 target...
+
+  Target //client/echo_client/ios:Lib up-to-date:
+
+  bazel-bin/client/echo_client/ios/Lib-Swift.h
+
+  bazel-bin/client/echo_client/ios/client_echo_client_ios_Lib.swiftdoc
+
+  bazel-bin/client/echo_client/ios/client_echo_client_ios_Lib.swiftmodule
+
+  bazel-bin/client/echo_client/ios/libLib.a
+
+  INFO: Elapsed time: 4.139s, Critical Path: 3.72s
+
+  INFO: 2 processes: 1 darwin-sandbox, 1 worker.
+
+  INFO: Build completed successfully, 3 total actions
+
+  ```
+
+
+  在完整指定平台后，构建成功了。
+
+
+  ### 注意
+
+
+  你可能还记得上一章中我们不需要显式指定平台。上一章里我们使用的是 `android_binary` 和 `android_library` 规则；和 `ios_application`
+  一样，它们足以指定目标的构建平台。
+
+
+  ### 注意
+
+
+  同样，细心的读者会注意到第一条 `INFO` 消息：由于构建选项变更，“analysis cache” 已被丢弃。回想一下，Bazel 会做大量工作来确保构建完整性。为了避免错误渗入系统，必须不仅按构建了*什么*来索引构建产物，也要按*如何*构建来索引。使用不同选项（例如平台、debug
+  与 opt 等）构建同一目标，基本上等价于对该目标*以及*其所有依赖项做了变更——至少从缓存结果的角度来看是如此。
+
+
+  ## 在 Xcode 模拟器中运行 iOS 客户端
+
+
+  和 Android 部分一样，我们将把初始构建结果运行在 iOS 模拟器上，以验证其可用性。
+
+
+  首先我们要创建一个 iPhone 模拟器实例。打开 Xcode，然后依次进入 *Xcode* ➤ *Open Developer Tool* ➤ *Simulator*。
+
+
+  ![../images/481224_1_En_10_Chapter/481224_1_En_10_Fig1_HTML.jpg](img/481224_1_En_10_Fig1_HTML.jpg)
+
+
+  图 10-1
+
+
+  启动模拟器
+
+
+  启动 Simulator 后，你现在可以关闭 Xcode（这与我们在上一章对 Android Studio 的操作类似）。
+
+
+  在 Simulator 应用中，我们为 iOS 12.4 创建一个 iPhone Xs 的硬件设备。
+
+
+  ![../images/481224_1_En_10_Chapter/481224_1_En_10_Fig2_HTML.jpg](img/481224_1_En_10_Fig2_HTML.jpg)
+
+
+  图 10-2
+
+
+  选择要模拟的特定 iOS 设备
+
+
+  这将创建一个 iPhone Xs 设备模拟器实例。
+
+
+  ![../images/481224_1_En_10_Chapter/481224_1_En_10_Fig3_HTML.jpg](img/481224_1_En_10_Fig3_HTML.jpg)
+
+
+  图 10-3
+
+
+  针对该设备的 iOS 模拟器启动界面
+
+
+  现在你已经准备好在模拟器上运行该应用了。
+
+
+
+
+  ### 在 Xcode 模拟器上执行应用程序
+
+
+  在上一章中，我们可以使用 `bazel mobile-install <android_target>` 来构建并将应用直接安装到 Android 模拟器上。遗憾的是，`mobile-install`
+  仅适用于 Android 模拟器实例；我们不能对 iOS 项目使用完全相同的流程。尝试这样做会*构建*成功，但不会在模拟器中实际*执行*该目标。
+
+
+  我们可以通过直接使用一些 Xcode 命令来达到与 `mobile-install` 近似的效果。首先，确保构建目标是完全最新的。我们需要特别留意生成的 .ipa
+  文件位置：
+
+
+  ```
+
+  chapter_10/client/echo_client/ios$ bazel build :EchoClient
+
+  Starting local Bazel server and connecting to it...
+
+  INFO: Analyzed target //client/echo_client/ios:EchoClient (44 packages loaded, 1155
+  targets configured).
+
+  INFO: Found 1 target...
+
+  INFO: Deleting stale sandbox base /private/var/tmp/_bazel_pj/6ba16646dc915b8e018ad2c967b485b8/sandbox
+
+  Target //client/echo_client/ios:EchoClient up-to-date:
+
+  bazel-bin/client/echo_client/ios/EchoClient.ipa
+
+  INFO: Elapsed time: 12.762s, Critical Path: 0.39s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 1 total action
+
+  ```
+
+
+  .ipa 文件实际上是一个压缩目录。虽然我们不能直接把 .ipa 文件安装到模拟器上，但我们可以将其解压，然后把底层的 .app 目录安装到模拟器上。先解压 .ipa
+  文件以获取其内部内容：
+
+
+  ```
+
+  chapter_10/client/echo_client/ios$ cd ../../..
+
+  chapter_10$ unzip bazel-bin/client/echo_client/ios/EchoClient.ipa
+
+  Archive:  bazel-bin/client/echo_client/ios/EchoClient.ipa
+
+  creating: Payload/
+
+  creating: Payload/EchoClient.app/
+
+  creating: Payload/EchoClient.app/_CodeSignature/
+
+  extracting: Payload/EchoClient.app/_CodeSignature/CodeResources
+
+  extracting: Payload/EchoClient.app/EchoClient
+
+  creating: Payload/EchoClient.app/Frameworks/
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftCoreImage.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftObjectiveC.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftCore.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftCoreGraphics.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftUIKit.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftMetal.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftDispatch.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftos.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftCoreFoundation.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftDarwin.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftQuartzCore.dylib
+
+  extracting: Payload/EchoClient.app/Frameworks/libswiftFoundation.dylib
+
+  extracting: Payload/EchoClient.app/Info.plist
+
+  extracting: Payload/EchoClient.app/PkgInfo
+
+  ```
+
+
+  接下来，执行以下命令以识别当前处于活动状态的 Xcode 模拟器实例。我们要找的是活动实例的 ID：
+
+
+  ```
+
+  chapter_10$ xcrun simctl list | grep Booted
+
+  iPhone Xs (1DE26879-2844-4036-ABE2-A6B718A9CADA) (Booted)
+
+  Phone: iPhone Xs (1DE26879-2844-4036-ABE2-A6B718A9CADA) (Booted)
+
+  ```
+
+
+  虽然看起来有两个活动实例，但仔细检查会发现它们的 ID 是相同的。现在，我们可以将应用安装到模拟器上。执行以下命令：
+
+
+  ```
+
+  chapter_10$ xcrun simctl install 1DE26879-2844-4036-ABE2-A6B718A9CADA Payload/EchoClient.app
+
+  ```
+
+
+  在应用列表中，你应该会看到如下内容。
+
+
+  ![../images/481224_1_En_10_Chapter/481224_1_En_10_Fig4_HTML.jpg](img/481224_1_En_10_Fig4_HTML.jpg)
+
+
+  图 10-4
+
+
+  已安装在模拟器上的应用
+
+
+  点击 `EchoClient` 应用。你应该会看到如下内容。
+
+
+  ![../images/481224_1_En_10_Chapter/481224_1_En_10_Fig5_HTML.jpg](img/481224_1_En_10_Fig5_HTML.jpg)
+
+
+  图 10-5
+
+
+  运行中的 iOS EchoClient
+
+
+  对于这个基础应用，你还应该能够点击输入文本框，输入一些文本，并在输出标签中看到本地回显结果。
+
+
+  ![../images/481224_1_En_10_Chapter/481224_1_En_10_Fig6_HTML.jpg](img/481224_1_En_10_Fig6_HTML.jpg)
+
+
+  图 10-6
+
+
+  运行一个简单的回显测试（仅本地）
+
+
+  恭喜！你已经使用 Bazel 创建并安装了你的第一个 iOS 应用！
+
+
+  ## 向 iOS 应用添加 gRPC
+
+
+  最后，正如你在前几章所做的那样，让我们加入 gRPC 功能。正如你可能预期的，iOS 所需的工作与其他客户端的做法非常相似。
+
+
+  打开 `proto/BUILD` 并添加以下更改（加粗部分为重点）。
+
+
+  ```
+
+  load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+
+  load("@io_grpc_grpc_java//:java_grpc_library.bzl", "java_grpc_library")
+
+  load("@build_bazel_rules_swift//swift:swift.bzl", "swift_grpc_library", "swift_proto_library")
+
+  proto_library(
+
+  name = "transmission_object_proto",
+
+  srcs = ["transmission_object.proto"],
+
+  )
+
+
+  swift_proto_library(
+
+  name = "transmission_object_swift_proto",
+
+  deps = [":transmission_object_proto"],
+
+  visibility = ["//client/echo_client:__subpackages__"],
+
+  )
+
+  swift_proto_library(
+
+  name = "transceiver_swift_proto",
+
+  deps = [":transceiver_proto"],
+
+  visibility = ["//client/echo_client:__subpackages__"],
+
+  )
+
+  swift_grpc_library(
+
+  name = "transceiver_swift_proto_grpc",
+
+  srcs = [":transceiver_proto"],
+
+  flavor = "client",
+
+  deps = [":transceiver_swift_proto"],
+
+  visibility = ["//client/echo_client:__subpackages__"],
+
+  )
+
+  Listing 10-6
+
+  Adding in the Swift protobuf rules
+
+  ```
+
+
+  将文件保存到 `proto/BUILD`。新增 `swift_proto_library` 和 `swift_grpc_library` 规则这件事对你来说应该并不意外。
+
+
+  ### 注意
+
+
+  `swift_proto_library` 和 `swift_grpc_library` 都会自动生成 Swift 模块名，其命名方式为：目标路径（相对于 workspace
+  根目录）与目标名本身的组合。例如，在本例中，`transmission_object_swift_proto` 的相对路径是 `/proto`，因此其模块名将是
+  `proto_transmission_object_swift_proto`。
+
+
+  创建完这些新目标后，让我们把它们加入 iOS 应用中。打开 `client/echo_client/ios/BUILD` 文件并添加以下更改（加粗部分为重点）。
+
+
+  ```
+
+  load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
+
+  load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+  swift_library(
+
+  name = "Lib",
+
+  srcs = [
+
+  "AppDelegate.swift",
+
+  "MainViewController.swift",
+
+  ],
+
+  deps = [
+
+  "//proto:transmission_object_swift_proto",
+
+  "//proto:transceiver_swift_proto",
+
+  "//proto:transceiver_swift_proto_grpc",
+
+  ],
+
+  )
+
+  ios_application(
+
+  name = "EchoClient",
+
+  bundle_id = "com.beginning-bazel.echo-client",
+
+  families = ["iphone"],
+
+  infoplists = [":Info.plist"],
+
+  minimum_os_version = "11.0",
+
+  deps = [":Lib"],
+
+  )
+
+  Listing 10-7
+
+  Adding in the Swift protobuf dependencies
+
+  ```
+
+
+  现在，我们将添加真正执行 gRPC 调用的 Swift 代码。打开 `client/echo_client/ios/MainViewController.swift`
+  并添加以下内容（加粗部分为重点）。
+
+
+  ```
+
+  import UIKit
+
+  import proto_transmission_object_proto
+
+  import proto_transceiver_proto
+
+  import proto_transceiver_swift_proto_grpc
+
+
+  @objc func send(sender: UIButton!) {
+
+  let client = Transceiver_TransceiverServiceClient(address: "localhost:1234", secure:
+  false)
+
+  var transmissionObject = TransmissionObject_TransmissionObject()
+
+  transmissionObject.message = textInput.text ?? ""
+
+  transmissionObject.value = 3.14
+
+  var request = Transceiver_EchoRequest()
+
+  request.fromClient = transmissionObject
+
+  let response = try? client.echo(request)
+
+  if let response = response {
+
+  receivedText.text = response.fromServer.textFormatString()
+
+  }
+
+  }
+
+  Listing 10-8
+
+  Adding in the send/receive functionality
+
+  ```
+
+
+  将更改保存到 `client/echo_client/ios/MainViewController.swift`*.*
+
+
+
+
+  ### 注意
+
+
+  你可能会注意到，与您为 Android Studio 模拟器所配置的内容不同，我们这里又改回使用“localhost”作为服务器地址。在 iOS 模拟器中访问你的开发机器时，这才是正确的地址。
+
+
+  添加了 gRPC 功能后，让我们来构建并测试我们的成果：
+
+
+  ```
+
+  chapter_10/client/echo_client/ios$ bazel build -–apple_platform_type=ios client/echo_client/ios:EchoClient
+
+  INFO: Analyzed target //client/echo_client/ios:EchoClient (16 packages loaded, 267
+  targets configured).
+
+  INFO: Found 1 target...
+
+  Target //client/echo_client/ios:EchoClient up-to-date:
+
+  bazel-bin/client/echo_client/ios/EchoClient.ipa
+
+  INFO: Elapsed time: 1.851s, Critical Path: 0.09s
+
+  INFO: 0 processes.
+
+  INFO: Build completed successfully, 3 total actions
+
+  ```
+
+
+  ### 注意
+
+
+  细心的读者会发现，我们在命令行中添加了`--apple_platform_type=ios`指令。此前，`ios_application`已足以表明应如何编译`swift_library`目标。在这个场景中，由于我们正在为一个
+  protobuf 依赖生成代码（截至本文写作时，它可能还不能正确处理隐式工具链转换），我们显式指定了该构建选项。
+
+
+  应用成功构建后，让我们重复之前的步骤，把最新版本安装到模拟器中（先删除之前解压出来的目录）：
+
+
+  ```
+
+  chapter_10/client/echo_client/ios$ cd ../../..
+
+  chapter_10/client/echo_client/ios$ rm -rf Payload
+
+  chapter_10$ unzip bazel-bin/client/echo_client/ios/EchoClient.ipa
+
+  chapter_10$ xcrun simctl install 1DE26879-2844-4036-ABE2-A6B718A9CADA Payload/EchoClient.app
+
+  ```
+
+
+  在 iOS 模拟器中打开新安装的应用。现在让我们在终端中运行服务器：
+
+
+  ```
+
+  chapter_10$ bazel run server/echo_server
+
+  Target //server/echo_server:echo_server up-to-date:
+
+  bazel-bin/server/echo_server/darwin_amd64_stripped/echo_server
+
+  INFO: Elapsed time: 14.009s, Critical Path: 12.36s
+
+  INFO: 324 processes: 324 darwin-sandbox.
+
+  INFO: Build completed successfully, 328 total actions
+
+  INFO: Build completed successfully, 328 total actions
+
+  2019/09/06 06:12:21 Spinning up the Echo Server in Go...
+
+  ```
+
+
+  当你在 iOS 模拟器中输入文本并点击*发送*时，你应该会在输出中看到熟悉的响应。
+
+
+  ![../images/481224_1_En_10_Chapter/481224_1_En_10_Fig7_HTML.jpg](img/481224_1_En_10_Fig7_HTML.jpg)
+
+
+  图 10-7
+
+
+  使用 gRPC 运行 Echo 测试
+
+
+  恭喜！你已经成功使用 Bazel 创建了一个 iOS 应用，并使用 gRPC 进行通信。
+
+
+  ## 结语
+
+
+  在本章中，你扩展了使用 Bazel 构建 iOS 应用的知识。可以想象，为 MacOS 系列构建其他应用也会非常容易。正如我们在前面章节看到的，这个 gRPC
+  示例在很大程度上只是一个玩具示例；不过，它可以很容易扩展成更有趣得多的应用（例如消息应用）。
+
+
+  ### 索引
+
+
+  ### A
+
+
+  Android 调试桥（ADB）命令 Android 平台 Android Studio 客户端命令 客户端选项 AndroidManifest.xml 属性
+  二进制 BUILD 文件目录 EchoClientMainActivity.java 文件 模拟器实例 布局文件 移动端安装 模拟器 AVD 管理器 完成窗口
+  创建 硬件屏幕 特定版本 虚拟设备环境 gRPC AndroidManifest.xml 文件依赖 EchoClientMainActivity.java 修改
+  SDK Manager 启动与运行 配置 版本选择 WORKSPACE 文件
+
+
+  ### B
+
+
+  Bazel 构建系统 一致且优化的方法 依赖分析 执行与缓存 显式依赖声明 高级构建语言特性 安装说明 含义 微服务与移动应用 场景 可见性特性 工作区管理
+
+
+  ### C, D
+
+
+  客户端/服务器程序，WORKSPACE 文件 代码组织 BUILD 文件 客户端和服务器代码 构建目标 echo_server 代码 protobuf 代码 当前包目录
+  代码 echo 客户端代码 协议缓冲区配置 src/BUILD 文件 个体目标可见性概念 语言无关特性 混合 包级别 包路径特定可见性
+
+
+  ### E, F
+
+
+  Echo 客户端/服务器程序 echo 程序 Go echo 服务器 Go 规则 Java echo 客户端 构建目标 java_binary 名称风格 源代码名称
+  JSON 重复 执行选项 Go 结构体 Java 简单消息
+
+
+  ### G, H
+
+
+  gRPC 参见远程过程调用（RPCs）
+
+
+  ### I
+
+
+  iOS 命令客户端 AppDelegate.swift 文件 BUILD 文件 代码和 BUILD 规则目录 Info.plist 文件 MainViewController
+  文件 gRPC 依赖 protobuf 规则 发送/接收函数 测试选项 配置工作区 Xcode 模拟器 应用执行 硬件设备 iPhone Xs 设备 模拟器欢迎屏幕
+
+
+  ### J, K, L
+
+
+  Java GSON 配置 Transmission Object/EchoClient
+
+
+  ### M, N, O
+
+
+  Mac OS X Bazel 安装 Java Python 版本 Xcode
+
+
+  ### P, Q
+
+
+  协议缓冲区 BUILD 文件定义 依赖 依赖树 echo 客户端和服务器 Go echo 服务器构建目标 proto 库目标 规则 服务器 Java 组件 echo
+  客户端 Proto 库目标管理 transmission_object.proto 文件 工作区
+
+
+  ### R, S, T
+
+
+  远程过程调用（RPCs） 客户端交互 定义 消息 实现 接口 修改 协议缓冲区 运行代码 服务器修改 配置 源代码（客户端终端） 收发器服务
+
+
+  ### U, V
+
+
+  Ubuntu Linux Bazel 安装 Java 必需软件包
+
+
+  ### W
+
+
+  Windows Bazel 安装 C++ 应用 Java Python 开发者模式 MSYS2 规范 版本设置 Visual C++ 可再发行组件 WORKSPACE
+  文件 bazel_tools 仓库 二进制 命令行 运行选项 构建目标 全量构建命令 clean 选项 目录特征 深入探讨 依赖 构建目标目录 包 HelloWorld.java
+  IntMultiplier.java java_library 依赖 目录创建 外部依赖 git_repository http_archive 语言规则 引用
+  git_repository 关于 load 方法的细节 获取工具 Go 语言规则 仓库 Hello World load 命令 加载多条规则 Python helloworld
+  代码 根目录 规则 源代码结构 测试依赖 失败测试 java_test 构建目标 配置 test.log 文件
+
+
+  ### X, Y, Z
+
+
+  Xcode
+
+  '

@@ -1,0 +1,2 @@
+# db.default.url="jdbc:h2:mem:play"
+
