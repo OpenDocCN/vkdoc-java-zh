@@ -1,0 +1,7 @@
+# 数据源配置
+spring:
+datasource:
+driverClassName: org.mariadb.jdbc.Driver
+url: jdbc:mariadb://localhost:3306/musicdb?useSSL=false
+username: prospring6
+password: prospring6
