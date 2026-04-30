@@ -1,0 +1,6 @@
++   [Java 平台的企业社交](README.md)
++   [1. 引言](enterprise-social-for-the-java-platform_1.md)
++   [2. 社交用例](enterprise-social-for-the-java-platform_2.md)
++   [3. 标准化](enterprise-social-for-the-java-platform_3.md)
++   [4. 社交安全](enterprise-social-for-the-java-platform_4.md)
++   [5. 安全框架](enterprise-social-for-the-java-platform_5.md)

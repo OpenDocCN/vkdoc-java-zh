@@ -1,0 +1,5 @@
++   [Apache Struts 入门指南](README.md)
++   [注册 Web 应用的属性文件](beginning-apache-struts_1.md)
++   [错误消息：](beginning-apache-struts_2.md)
++   [提示信息：](beginning-apache-struts_3.md)
++   [文档大纲](beginning-apache-struts_4.md)
