@@ -1,0 +1,6 @@
+# 索引
+
+### P-Q
+
+P，转换字符，PatternLayout，196 参数 通过系统参数配置 log4j，134 ConsoleHandler，77 DatePattern 配置参数，158 FileHandler，78-79 MemoryHandler，46-47，80 参数构造，以及日志记录请求，303 SocketHandler，79 父子层次结构，20，137-138，302，310 父级日志记录器 层次结构与，20，25-26，137-138，302 JDK 1.4 与 log4j 对比，310 ParentLoggers.java（代码清单），23 reset( ) 方法与，33 ParentLoggers.java（代码清单），23 pattern 属性 作为 FileHandler 默认属性，40 FileHandler 参数与，78 PatternLayout 对象 基础知识，194-198 格式化日志信息与，305 模式 为 Log 标签库配置文件与，288 log4j 中的转换模式，125 在 FileHandler 中，38-39，42 权限，以及远程日志记录，98 Person.java（代码清单），52 点对点消息传递，以及 JMS，213 port 属性 作为 SocketHandler 默认属性，48 SocketHandler 参数与，79 问题诊断，3 ProductFilterDemo.java（代码清单），174-175 ProductFilter.java（代码清单），171-172 属性 Appender，149 Bean DateLayout，186 HTMLLayout，187 JDBCAppender，204 JMSAppender，216 LevelRangeFilter，271 NTEventLogAppender，229 PatternLayout，194 SocketAppender，225，230 TTCCLayout，184 子级日志记录器继承的，20 ConsoleAppender，154 ConsoleHandler 默认属性，37-38 FileAppender，154-155 FileHandler 默认属性，39-40 handlers 属性，75 MemoryHandler 默认属性，43 父子层次结构与，20 ResourceBundle 属性文件，69 RollingFileAppender，156 SocketHandler 默认属性，47-48 StreamHandler 初始化属性，35 WindowHandler，90-91 WriterAppender，152 publish( ) 方法 自定义 WindowHandler 与，91，93 日志信息与，64 远程日志记录与，100 同步，84，89，90 发布-订阅消息传递，以及 JMS，213 push 属性，以及 MemoryHandler 参数，80 pushLevel 属性，MemoryHandler，43
+

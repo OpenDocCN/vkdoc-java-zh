@@ -1,0 +1,2871 @@
+<p><img src="images/cover.jpg"/></p>
+<p></p>
+<p>Java Quick Syntax Reference</p>
+<p><img src="images/FM-00.jpg" alt="image"/></p>
+<p>Mikael Olsson</p>
+<p><img src="images/FM-01.jpg" alt="image"/></p>
+<p></p>
+<p><strong>Java Quick Syntax Reference</strong></p>
+<p>Copyright © 2013 by Mikael Olsson</p>
+<p>This work is subject to copyright. All rights are reserved by the
+Publisher, whether the whole or part of the material is concerned,
+specifically the rights of translation, reprinting, reuse of
+illustrations, recitation, broadcasting, reproduction on microfilms or
+in any other physical way, and transmission or information storage and
+retrieval, electronic adaptation, computer software, or by similar or
+dissimilar methodology now known or hereafter developed. Exempted from
+this legal reservation are brief excerpts in connection with reviews or
+scholarly analysis or material supplied specifically for the purpose of
+being entered and executed on a computer system, for exclusive use by
+the purchaser of the work. Duplication of this publication or parts
+thereof is permitted only under the provisions of the Copyright Law of
+the Publisher’s location, in its current version, and permission for use
+must always be obtained from Springer. Permissions for use may be
+obtained through RightsLink at the Copyright Clearance Center.
+Violations are liable to prosecution under the respective Copyright
+Law.</p>
+<p>ISBN-13 (pbk): 978-1-4302-6286-2</p>
+<p>ISBN-13 (electronic): 978-1-4302-6287-9</p>
+<p>Trademarked names, logos, and images may appear in this book. Rather
+than use a trademark symbol with every occurrence of a trademarked name,
+logo, or image we use the names, logos, and images only in an editorial
+fashion and to the benefit of the trademark owner, with no intention of
+infringement of the trademark.</p>
+<p>The use in this publication of trade names, trademarks, service
+marks, and similar terms, even if they are not identified as such, is
+not to be taken as an expression of opinion as to whether or not they
+are subject to proprietary rights.</p>
+<p>While the advice and information in this book are believed to be true
+and accurate at the date of publication, neither the authors nor the
+editors nor the publisher can accept any legal responsibility for any
+errors or omissions that may be made. The publisher makes no warranty,
+express or implied, with respect to the material contained herein.</p>
+<p>President and Publisher: Paul Manning</p>
+<p>Lead Editor: Steve Anglin</p>
+<p>Technical Reviewer: Jeff Friesen</p>
+<p>Editorial Board: Steve Anglin, Mark Beckner, Ewan Buckingham, Gary
+Cornell, Louise Corrigan, Morgan Ertel, Jonathan Gennick, Jonathan
+Hassell, Robert Hutchinson, Michelle Lowman, James Markham, Matthew
+Moodie, Jeff Olson, Jeffrey Pepper, Douglas Pundick, Ben Renow-Clarke,
+Dominic Shakeshaft, Gwenan Spearing, Matt Wade, Tom Welsh</p>
+<p>Coordinating Editor: Kevin Shea</p>
+<p>Copy Editor: xxx</p>
+<p>Compositor: SPi Global</p>
+<p>Indexer: SPi Global</p>
+<p>Artist: SPi Global</p>
+<p>Cover Designer: Anna Ishchenko</p>
+<p>Distributed to the book trade worldwide by Springer Science+Business
+Media New York, 233 Spring Street, 6th Floor, New York, NY 10013. Phone
+1-800-SPRINGER, fax (201) 348-4505, e-mail <code>orders-ny@springer-sbm.com</code>,
+or visit <code>www.springeronline.com</code>.
+Apress Media, LLC is a California LLC and the sole member (owner) is
+Springer Science + Business Media Finance Inc (SSBM Finance Inc). SSBM
+Finance Inc is a <strong>Delaware</strong> corporation.</p>
+<p>For information on translations, please e-mail <code>rights@apress.com</code>, or visit
+<code>www.apress.com</code>.</p>
+<p>Apress and friends of ED books may be purchased in bulk for academic,
+corporate, or promotional use. eBook versions and licenses are also
+available for most titles. For more information, reference our Special
+Bulk Sales–eBook Licensing web page at <code>www.apress.com/bulk-sales</code>.</p>
+<p>Any source code or other supplementary material referenced by the
+author in this text is available to readers at <code>www.apress.com</code>. For detailed
+information about how to locate your book’s source code, go to <code>www.apress.com/source-code/</code>.</p>
+<p></p>
+<p>Contents at a Glance</p>
+<p><a href="#9781430262862_About_the_Author.xhtml">About the
+Author</a></p>
+<p><a href="#9781430262862_Introduction.xhtml">Introduction</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch01.xhtml"> Chapter 1: Hello World</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch02.xhtml"> Chapter 2: Compile and Run</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch03.xhtml"> Chapter 3: Variables</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch04.xhtml"> Chapter 4: Operators</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch05.xhtml"> Chapter 5: String</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch06.xhtml"> Chapter 6: Arrays</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch07.xhtml"> Chapter 7: Conditionals</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch08.xhtml"> Chapter 8: Loops</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch09.xhtml"> Chapter 9: Methods</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch10.xhtml"> Chapter 10: Class</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch11.xhtml"> Chapter 11: Static</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch12.xhtml"> Chapter 12: Inheritance</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch13.xhtml"> Chapter 13: Overriding</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch14.xhtml"> Chapter 14: Packages and
+Import</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch15.xhtml"> Chapter 15: Access Levels</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch16.xhtml"> Chapter 16: Constants</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch17.xhtml"> Chapter 17: Interface</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch18.xhtml"> Chapter 18: Abstract</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch19.xhtml"> Chapter 19: Enum</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch20.xhtml"> Chapter 20: Exception Handling</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch21.xhtml"> Chapter 21: Boxing and
+Unboxing</a></p>
+<p><img src="images/sq1.jpg" alt="image"/><a href="#9781430262862_Ch22.xhtml"> Chapter 22: Generics</a></p>
+<p><a href="#9781430262862_Index.xhtml">Index</a></p>
+<p></p>
+<p>Contents</p>
+<p><a href="#9781430262862_About_the_Author.xhtml"> About the
+Author</a></p>
+<p><a href="#9781430262862_Introduction.xhtml"> Introduction</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch01.xhtml"> Chapter 1: Hello World</a></p>
+<p><a href="#9781430262862_Ch01.xhtml#Sec1">Installing</a></p>
+<p><a href="#9781430262862_Ch01.xhtml#Sec2">Creating a project</a></p>
+<p><a href="#9781430262862_Ch01.xhtml#Sec3">Hello world</a></p>
+<p><a href="#9781430262862_Ch01.xhtml#Sec4">Code hints</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch02.xhtml"> Chapter 2: Compile and Run</a></p>
+<p><a href="#9781430262862_Ch02.xhtml#Sec1">Running from the IDE</a></p>
+<p><a href="#9781430262862_Ch02.xhtml#Sec2">Running from a console
+window</a></p>
+<p><a href="#9781430262862_Ch02.xhtml#Sec3">Comments</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch03.xhtml"> Chapter 3: Variables</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec1">Data types</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec2">Declaring variables</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec3">Assigning variables</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec4">Using variables</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec5">Integer types</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec6">Floating-point types</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec7">Char type</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec8">Boolean type</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec9">Variable scope</a></p>
+<p><a href="#9781430262862_Ch03.xhtml#Sec10">Anonymous block</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch04.xhtml"> Chapter 4: Operators</a></p>
+<p><a href="#9781430262862_Ch04.xhtml#Sec1">Arithmetic operators</a></p>
+<p><a href="#9781430262862_Ch04.xhtml#Sec2">Assignment operators</a></p>
+<p><a href="#9781430262862_Ch04.xhtml#Sec3">Combined assignment
+operators</a></p>
+<p><a href="#9781430262862_Ch04.xhtml#Sec4">Increment and decrement
+operators</a></p>
+<p><a href="#9781430262862_Ch04.xhtml#Sec5">Comparison operators</a></p>
+<p><a href="#9781430262862_Ch04.xhtml#Sec6">Logical operators</a></p>
+<p><a href="#9781430262862_Ch04.xhtml#Sec7">Bitwise operators</a></p>
+<p><a href="#9781430262862_Ch04.xhtml#Sec8">Operator precedence</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch05.xhtml"> Chapter 5: String</a></p>
+<p><a href="#9781430262862_Ch05.xhtml#Sec1">Combining strings</a></p>
+<p><a href="#9781430262862_Ch05.xhtml#Sec2">Escape characters</a></p>
+<p><a href="#9781430262862_Ch05.xhtml#Sec3">String compare</a></p>
+<p><a href="#9781430262862_Ch05.xhtml#Sec4">StringBuffer class</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch06.xhtml"> Chapter 6: Arrays</a></p>
+<p><a href="#9781430262862_Ch06.xhtml#Sec1">Array declaration</a></p>
+<p><a href="#9781430262862_Ch06.xhtml#Sec2">Array allocation</a></p>
+<p><a href="#9781430262862_Ch06.xhtml#Sec3">Array assignment</a></p>
+<p><a href="#9781430262862_Ch06.xhtml#Sec4">Multi-dimensional
+arrays</a></p>
+<p><a href="#9781430262862_Ch06.xhtml#Sec5">ArrayList class</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch07.xhtml"> Chapter 7: Conditionals</a></p>
+<p><a href="#9781430262862_Ch07.xhtml#Sec1">If statement</a></p>
+<p><a href="#9781430262862_Ch07.xhtml#Sec2">Switch statement</a></p>
+<p><a href="#9781430262862_Ch07.xhtml#Sec3">Ternary operator</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch08.xhtml"> Chapter 8: Loops</a></p>
+<p><a href="#9781430262862_Ch08.xhtml#Sec1">While loop</a></p>
+<p><a href="#9781430262862_Ch08.xhtml#Sec2">Do-while loop</a></p>
+<p><a href="#9781430262862_Ch08.xhtml#Sec3">For loop</a></p>
+<p><a href="#9781430262862_Ch08.xhtml#Sec4">Foreach loop</a></p>
+<p><a href="#9781430262862_Ch08.xhtml#Sec5">Break and continue</a></p>
+<p><a href="#9781430262862_Ch08.xhtml#Sec6">Labeled block</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch09.xhtml"> Chapter 9: Methods</a></p>
+<p><a href="#9781430262862_Ch09.xhtml#Sec1">Defining methods</a></p>
+<p><a href="#9781430262862_Ch09.xhtml#Sec2">Calling methods</a></p>
+<p><a href="#9781430262862_Ch09.xhtml#Sec3">Method parameters</a></p>
+<p><a href="#9781430262862_Ch09.xhtml#Sec4">Return statement</a></p>
+<p><a href="#9781430262862_Ch09.xhtml#Sec5">Method overloading</a></p>
+<p><a href="#9781430262862_Ch09.xhtml#Sec6">Passing arguments</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch10.xhtml"> Chapter 10: Class</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec1">Object creation</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec2">Accessing object
+members</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec3">Constructor</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec4">This keyword</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec5">Constructor
+overloading</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec6">Constructor chaining</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec7">Initial field values</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec8">Default constructor</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec9">Null</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec10">Default values</a></p>
+<p><a href="#9781430262862_Ch10.xhtml#Sec11">Garbage collector</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch11.xhtml"> Chapter 11: Static</a></p>
+<p><a href="#9781430262862_Ch11.xhtml#Sec1">Accessing static
+members</a></p>
+<p><a href="#9781430262862_Ch11.xhtml#Sec2">Static methods</a></p>
+<p><a href="#9781430262862_Ch11.xhtml#Sec3">Static fields</a></p>
+<p><a href="#9781430262862_Ch11.xhtml#Sec4">Static initialization
+blocks</a></p>
+<p><a href="#9781430262862_Ch11.xhtml#Sec5">Initialization
+blocks</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch12.xhtml"> Chapter 12: Inheritance</a></p>
+<p><a href="#9781430262862_Ch12.xhtml#Sec1">Object</a></p>
+<p><a href="#9781430262862_Ch12.xhtml#Sec2">Upcasting</a></p>
+<p><a href="#9781430262862_Ch12.xhtml#Sec3">Downcasting</a></p>
+<p><a href="#9781430262862_Ch12.xhtml#Sec4">Instanceof operator</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch13.xhtml"> Chapter 13: Overriding</a></p>
+<p><a href="#9781430262862_Ch13.xhtml#Sec1">Overriding members</a></p>
+<p><a href="#9781430262862_Ch13.xhtml#Sec2">Override annotation</a></p>
+<p><a href="#9781430262862_Ch13.xhtml#Sec3">Hiding members</a></p>
+<p><a href="#9781430262862_Ch13.xhtml#Sec4">Preventing method
+inheritance</a></p>
+<p><a href="#9781430262862_Ch13.xhtml#Sec5">Accessing overridden
+methods</a></p>
+<p><a href="#9781430262862_Ch13.xhtml#Sec6">Calling parent
+constructor</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch14.xhtml"> Chapter 14: Packages and
+Import</a></p>
+<p><a href="#9781430262862_Ch14.xhtml#Sec1">Import specific
+class</a></p>
+<p><a href="#9781430262862_Ch14.xhtml#Sec2">Import package</a></p>
+<p><a href="#9781430262862_Ch14.xhtml#Sec3">Import static</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch15.xhtml"> Chapter 15: Access Levels</a></p>
+<p><a href="#9781430262862_Ch15.xhtml#Sec1">Private access</a></p>
+<p><a href="#9781430262862_Ch15.xhtml#Sec2">Package-private
+access</a></p>
+<p><a href="#9781430262862_Ch15.xhtml#Sec3">Protected access</a></p>
+<p><a href="#9781430262862_Ch15.xhtml#Sec4">Public access</a></p>
+<p><a href="#9781430262862_Ch15.xhtml#Sec5">Top-level access</a></p>
+<p><a href="#9781430262862_Ch15.xhtml#Sec6">Nested class access</a></p>
+<p><a href="#9781430262862_Ch15.xhtml#Sec7">Access level
+guideline</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch16.xhtml"> Chapter 16: Constants</a></p>
+<p><a href="#9781430262862_Ch16.xhtml#Sec1">Local constants</a></p>
+<p><a href="#9781430262862_Ch16.xhtml#Sec2">Constant fields</a></p>
+<p><a href="#9781430262862_Ch16.xhtml#Sec3">Constant method
+parameters</a></p>
+<p><a href="#9781430262862_Ch16.xhtml#Sec4">Compile-time and run-time
+constants</a></p>
+<p><a href="#9781430262862_Ch16.xhtml#Sec5">Constant guideline</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch17.xhtml"> Chapter 17: Interface</a></p>
+<p><a href="#9781430262862_Ch17.xhtml#Sec1">Interface members</a></p>
+<p><a href="#9781430262862_Ch17.xhtml#Sec2">Interface example</a></p>
+<p><a href="#9781430262862_Ch17.xhtml#Sec3">Functionality
+interface</a></p>
+<p><a href="#9781430262862_Ch17.xhtml#Sec4">Class interface</a></p>
+<p><a href="#9781430262862_Ch17.xhtml#Sec5">Interface classes</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch18.xhtml"> Chapter 18: Abstract</a></p>
+<p><a href="#9781430262862_Ch18.xhtml#Sec1">Abstract class
+example</a></p>
+<p><a href="#9781430262862_Ch18.xhtml#Sec2">Abstract classes and
+interfaces</a></p>
+<p><a href="#9781430262862_Ch18.xhtml#Sec3">Abstract class and interface
+guideline</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch19.xhtml"> Chapter 19: Enum</a></p>
+<p><a href="#9781430262862_Ch19.xhtml#Sec1">Enum example</a></p>
+<p><a href="#9781430262862_Ch19.xhtml#Sec2">Enum class</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch20.xhtml"> Chapter 20: Exception Handling</a></p>
+<p><a href="#9781430262862_Ch20.xhtml#Sec1">Try-catch</a></p>
+<p><a href="#9781430262862_Ch20.xhtml#Sec2">Catch block</a></p>
+<p><a href="#9781430262862_Ch20.xhtml#Sec3">Finally block</a></p>
+<p><a href="#9781430262862_Ch20.xhtml#Sec4">Throwing exceptions</a></p>
+<p><a href="#9781430262862_Ch20.xhtml#Sec5">Checked and unchecked
+exceptions</a></p>
+<p><a href="#9781430262862_Ch20.xhtml#Sec6">Exception hierarchy</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch21.xhtml"> Chapter 21: Boxing and
+Unboxing</a></p>
+<p><a href="#9781430262862_Ch21.xhtml#Sec1">Autoboxing and
+autounboxing</a></p>
+<p><a href="#9781430262862_Ch21.xhtml#Sec2">Primitive and wrapper
+guideline</a></p>
+<p><img src="images/sq1.jpg" alt="images"/><a href="#9781430262862_Ch22.xhtml"> Chapter 22: Generics</a></p>
+<p><a href="#9781430262862_Ch22.xhtml#Sec1">Generic classes</a></p>
+<p><a href="#9781430262862_Ch22.xhtml#Sec2">Generic methods</a></p>
+<p><a href="#9781430262862_Ch22.xhtml#Sec3">Calling generic
+methods</a></p>
+<p><a href="#9781430262862_Ch22.xhtml#Sec4">Generic interfaces</a></p>
+<p><a href="#9781430262862_Ch22.xhtml#Sec5">Generic type
+parameters</a></p>
+<p><a href="#9781430262862_Ch22.xhtml#Sec6">Generic variable
+usages</a></p>
+<p><a href="#9781430262862_Ch22.xhtml#Sec7">Bounded type
+parameters</a></p>
+<p><a href="#9781430262862_Ch22.xhtml#Sec8">Generics and Object</a></p>
+<p><a href="#9781430262862_Index.xhtml">Index</a></p>
+<p></p>
+<p>About the Author</p>
+<p><strong>Mikael Olsson</strong> is a professional web entrepreneur,
+programmer, and author. He works for an R&amp;D company in Finland where
+he specializes in software development. In his spare time he writes
+books and creates websites that summarize various fields of interest.
+The books he writes are focused on teaching their subject in the most
+efficient way possible, by explaining only what is relevant and
+practical without any unnecessary repetition or theory.</p>
+<p></p>
+<p>Introduction</p>
+<p>Java is a high-level object-oriented programming language developed
+by Sun Microsystems, which became part of Oracle Corporation in 2010.
+The language is very similar to C++, but has been simplified to make it
+easier to write bug free code. Most notably, there are no pointers in
+Java, instead all memory allocation and deallocation is handled
+automatically.</p>
+<p>Despite simplifications like this Java has considerably more
+functionality than both C and C++, due to its large class library. Java
+programs also have high performance and can be made very secure, which
+has contributed to making Java the most popular general purpose
+programming language in use today.</p>
+<p>Another key feature of Java is that it is platform independent. This
+is achieved by only compiling programs half-way, into platform
+independent instructions called bytecode. The bytecode is then
+interpreted, or run, by the Java Virtual Machine (JVM). This means that
+any system that has this program and its accompanying libraries
+installed can run Java applications.</p>
+<p>There are three class libraries available for the Java programming
+language: Java ME, Java SE and Java EE. Java ME (Mobile Edition) is a
+stripped down version of Java SE (Standard Edition), while Java EE
+(Enterprise Edition) is an extended version of Java SE that includes
+libraries for building web applications.</p>
+<p>The Java language and class libraries have undergone major changes
+since their initial release in 1996. The naming conventions for the
+versions have gone through a few revisions as well. The major releases
+include: JDK 1.0, JDK 1.1, J2SE 1.2, J2SE 1.3, J2SE 1.4, J2SE 5.0, Java
+SE 6 and Java SE 7, which is the current version as of writing.</p>
+<p>After J2SE 1.4 the version number was changed from 1.5 to 5.0 for
+marketing reasons. As of J2SE 5.0, there is one version number for the
+product and another one used internally by the developers. J2SE 5.0 is
+the product name, while Java 1.5 is the developer version. Similarly,
+Java SE 7 is the product and Java 1.7 the internal version number. For
+simplicity’s sake, the Java versions will be referred to as Java 1-7 in
+this book. Note that Java is designed to be backwards compatible. Thus
+the Virtual Machine for Java 7 can still run Java 1 class files.</p>
+<p></p>
+<p>CHAPTER
+1</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Hello World</p>
+<p>Installing</p>
+<p>Before you can program in Java you need to download and install the
+Java Development Kit (JDK) Standard Edition (SE) from
+Oracle’s website.<a href="#9781430262862_Ch01.xhtml#Fn1" id="9781430262862_Ch01.xhtml#_Fn1"><sup>1</sup></a>  Among other things,
+the JDK includes the Java compiler, the class libraries and the virtual
+machine needed to run Java applications. Oracle’s download page also has
+a link to obtain Netbeans<a href="#9781430262862_Ch01.xhtml#Fn2" id="9781430262862_Ch01.xhtml#_Fn2"><sup>2</sup></a> bundled with the
+JDK. Netbeans is an Integrated Development Environment (IDE) that will make development
+in Java much easier. Alternatively, another free IDE you can use is
+Eclipse,<a href="#9781430262862_Ch01.xhtml#Fn3" id="9781430262862_Ch01.xhtml#_Fn3"><sup>3</sup></a> or if you do not
+want to use any IDE at all a regular text editor will work just
+fine.</p>
+<p>Creating a project</p>
+<p>If you decide to use an IDE (recommended) you need to create a
+project, which will manage the Java source files and other resources.
+Alternatively, if you prefer not to use an IDE you can create an empty
+file with the .java extension, for example MyApp.java, and open it in
+your text editor of choice.</p>
+<p>To create a project in Netbeans, go to the File menu and select New
+Project. From the dialog box select the Java Application project type
+under the Java category and click next. On this dialog box set the
+project name to “MyProject” and the name of the main class to
+“myproject.MyApp”. Change the project’s location if you want to, and
+then hit the Finish button to generate the project. The project’s only
+file, MyApp.java, will then open up, containing some default code. You
+can go ahead and remove all of that code so that you start with an empty
+source file.</p>
+<p>Hello world</p>
+<p>When you have your project and programming environment set up the
+first application you will create is the Hello World program. This
+program will teach you how to compile and run Java applications, as well
+as how to output a string to a command window.</p>
+<p>The first step in creating this program is to add a public class to
+your MyApp.java source file. The class must have the same name as the
+physical source file without the file extension, in this case “MyApp”.
+It is legal to have more than one class per file in Java, but only one
+public class is allowed, and that name must match the filename. Keep in
+mind that Java is case sensitive. The curly brackets following the class
+name delimits what belongs to the class and must be included. The
+brackets, along with their content, is referred to as a code block, or just a block.</p>
+<pre><code>public class MyApp {}</code></pre>
+<p>Next, add the main method inside the class. This is
+the starting point of the application and must always be included in the
+same form as is shown below. The keywords themselves will be looked at
+in later chapters.</p>
+<pre><code>public class MyApp {
+  public static void main(String[] args) {}
+} 
+ </code></pre>
+<p>The last step in completing the Hello World program is to output the
+text by calling the <code>print</code> method. This method is
+located inside the built-in <code>System</code> class,
+and then another level down inside the <code>out</code> class. The method takes a single argument –
+the string to be printed – and it ends with a semicolon, as do all statements in
+Java.</p>
+<pre><code>public class MyApp {
+  public static void main(String[] args) {
+    System.out.print("Hello World");
+  } 
+} 
+ </code></pre>
+<p>Note that the dot operator (<code>.</code>) is used to access members
+of a class.</p>
+<p>Code hints</p>
+<p>If you are unsure of what a specific class contains, or what
+arguments a method takes, you can take advantage of code hints in some
+IDEs, such as Netbeans. The code hint window appears anytime you are
+typing code and there are multiple predetermined alternatives. It can
+also be brought up manually by pressing Ctrl + Space. This is a very
+powerful feature that gives you quick access to the whole class library
+and their members, along with descriptions.</p>
+<p><a href="#9781430262862_Ch01.xhtml#_Fn1" id="9781430262862_Ch01.xhtml#Fn1"><sup>1</sup></a><code>http://www.oracle.com/technetwork/java/javase/downloads/index.html</code></p>
+<p><a href="#9781430262862_Ch01.xhtml#_Fn2" id="9781430262862_Ch01.xhtml#Fn2"><sup>2</sup></a><code>http://www.netbeans.org</code></p>
+<p><a href="#9781430262862_Ch01.xhtml#_Fn3" id="9781430262862_Ch01.xhtml#Fn3"><sup>3</sup></a><code>http://www.eclipse.org</code></p>
+<p></p>
+<p>CHAPTER
+2</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Compile and Run</p>
+<p>Running from the IDE</p>
+<p>With your Hello World program complete you can compile and run it in
+one of two ways. The first method is by selecting run from the menu bar
+of the IDE that you are using. In Netbeans the menu command is: Run ➤
+Run Main Project. The IDE will then compile and run the application,
+which displays the text “Hello World”.</p>
+<p>Running from a console window</p>
+<p>The other way is to manually compile the program by using a console
+window (C:\Windows\System32\cmd.exe). The most convenient way to do this
+is to first add the JDK bin directory to the <code>PATH</code> environment variable. In Windows, this can
+be done by using the <code>SET PATH</code> command,
+and then by appending the path to your JDK installation’s bin folder
+separated by a semicolon.</p>
+<pre><code>SET PATH=%PATH%;"C:\Program Files\JDK\bin"</code></pre>
+<p>By doing this the console will be able to find the Java compiler from
+any folder for the duration of this console session. The <code>PATH</code> variable can also be permanently
+changed.<a href="#9781430262862_Ch02.xhtml#Fn1" id="9781430262862_Ch02.xhtml#_Fn1"><sup>1</sup></a> Next, navigate to
+the folder where the source file is located and run the compiler by
+typing “javac” followed by the complete filename.</p>
+<pre><code>javac MyApp.java</code></pre>
+<p>The program will be compiled into a class file called MyApp.class.
+This class file contains bytecode instead of machine code, so to execute
+it you need to call the Java Virtual Machine by typing “java” followed
+by the filename.</p>
+<pre><code>java MyApp</code></pre>
+<p>Notice that the .java extension is used when compiling a file, but
+the .class extension is not used when running it.</p>
+<p>Comments</p>
+<p>Comments are used to insert notes into the source code and will have
+no effect on the end program. Java has the standard C++ comment
+notation, with both single-line and multi-line comments.</p>
+<pre><code>// single-line comment
+  
+/* multi-line
+   comment */
+  </code></pre>
+<p>In addition to these, there is the Javadoc comment. This comment is
+used to generate documentation by using a utility included in the JDK
+bin folder which is also called Javadoc.</p>
+<pre><code>/** javadoc
+    comment */</code></pre>
+<p><a href="#9781430262862_Ch02.xhtml#_Fn1" id="9781430262862_Ch02.xhtml#Fn1"><sup>1</sup></a><code>http://www.java.com/en/download/help/path.xml</code></p>
+<p></p>
+<p>CHAPTER
+3</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Variables</p>
+
+<p>Variables are used for storing data during program execution.</p>
+<p>Data types</p>
+<p>Depending on what data you need to store there are several kinds of
+data types. Java has eight types that are built into the language. These
+are called <em>primitives</em> . The integer (whole
+number) types are <code>byte</code>, <code>short</code>, <code>int</code> and
+<code>long</code>. The <code>float</code> and <code>double</code>
+types represent floating-point numbers (real numbers). The <code>char</code> type holds a Unicode character and the
+<code>boolean</code> type contains either a true or
+false value. Except for these primitive types, every other type in Java
+is represented by either a class, an interface or an array.</p>
+
+<table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data Type</th>
+<th>Size (bits)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd" data-valign="top">
+<td>byte<br/>
+short<br/>
+int<br/>
+long</td>
+<td>8<br/>
+16<br/>
+32<br/>
+64</td>
+<td>Signed integer</td>
+</tr>
+<tr class="even" data-valign="top">
+<td>float<br/>
+double</td>
+<td>32<br/>
+64</td>
+<td>Floating-point number</td>
+</tr>
+<tr class="odd" data-valign="top">
+<td>char</td>
+<td>16</td>
+<td>Unicode character</td>
+</tr>
+<tr class="even" data-valign="top">
+<td>boolean</td>
+<td>1</td>
+<td>Boolean value</td>
+</tr>
+</tbody>
+</table>
+
+<p>Declaring variables</p>
+<p>To declare
+(create) a variable you start with the data type you want it to hold
+followed by a variable name. The name can be anything you want, but it
+is a good idea to give your variables names that are closely related to
+the values they will hold. The standard naming convention for variables
+is that the first word should be lowercase and any subsequent words
+initially capitalized.</p>
+<pre><code>int myInt;</code></pre>
+<p>Assigning variables</p>
+<p>To give the variable a value you use the assignment operator (<code>=</code>) followed by the value.
+When a variable is initialized (assigned a value) it then
+becomes defined
+(declared and assigned).</p>
+<pre><code>myInt = 10;</code></pre>
+<p>The declaration and assignment can be combined into a single
+statement.</p>
+<pre><code>int myInt = 10;</code></pre>
+<p>If you need multiple variables of the same type, there is a shorthand
+way of declaring or defining them by using the comma operator (<code>,</code>).</p>
+<pre><code>int myInt = 10, myInt2 = 20, myInt3;</code></pre>
+<p>Using variables</p>
+<p>Once a variable has been defined it can be used by simply referencing
+the variable’s name, for example to print it.</p>
+<pre><code>System.out.print(myInt);</code></pre>
+<p>Integer types</p>
+<p>As shown earlier, there are four signed integer types that can be
+used depending on how large a number you need the variable to hold.</p>
+<pre><code>byte  myInt8  = 2;  // -128   to +127
+short myInt16 = 1;  // -32768 to +32767
+int   myInt32 = 0;  // -2^31  to +2^31-1
+long  myInt64 = -1; // -2^63  to +2^63-1</code></pre>
+<p>In addition to standard decimal notation, integers can also be
+assigned by using octal or hexadecimal notation.</p>
+<pre><code>int myHex = 0xF; // hexadecimal (base 16)
+int myOct = 07;  // octal (base 8)</code></pre>
+<p>Floating-point types </p>
+<p>The floating-point types can store integers as well as floats. They
+can be assigned with either decimal or exponential notation.</p>
+<pre><code>double myDouble = 3.14;
+double myDouble2 = 3e2; // 3*10^2 = 300</code></pre>
+<p>Note that constant floating-point numbers in Java are always kept
+internally as doubles. Therefore, if you try to assign a <code>double</code> to a <code>float</code> you will get an error, because a <code>double</code> has a higher precision than a <code>float</code>. To assign it correctly you can append an
+“F” character to the constant, which says that the number is in fact a
+<code>float</code>.</p>
+<pre><code>float myFloat = 3.14;  // error: possible loss
+                       // of precision
+float myFloat = 3.14F; // ok</code></pre>
+<p>A more common and useful way to do this is by using an explicit cast.
+An explicit cast is performed by placing the desired data type in
+parentheses before the variable or constant that is to be converted.
+This will convert the value to the specified type, in this case <code>float</code>, before the assignment occurs.</p>
+<pre><code>float myFloat = (float)3.14;</code></pre>
+<p>Char type</p>
+<p>The <code>char</code> data type can contain a
+single Unicode character, delimited by single quotes.</p>
+<pre><code>char myChar = 'A';</code></pre>
+<p>Chars can also be assigned by using a special hexadecimal notation
+that gives access to all Unicode characters.</p>
+<pre><code>char myChar = '\u0000'; // \u0000 to \uFFFF</code></pre>
+<p>Boolean type</p>
+<p>The <code>boolean</code> type can store a Boolean
+value, which is a value that can only be either true or false. These
+values are specified with the <code>true</code> and
+<code>false</code> keywords.<br/>
+ <br/>
+<code>boolean myBool = false;</code></p>
+<p>Variable scope</p>
+<p>The scope of a variable refers to the code block within which it is
+possible to use that variable without qualification. For example, a
+local variable is a variable declared within a method. Such a variable
+will only be available within the method’s code block, after it has been
+declared. Once the scope (code block) of the method ends, the local
+variable will be destroyed.</p>
+<pre><code>public static void main(String[] args)
+{
+  int localVar; // local variable
+}</code></pre>
+<p>In addition to local variables, Java has field and parameter type
+variables, which will be looked at in later chapters. Java does not,
+however, have global variables, as for example does C++.</p>
+<p>Anonymous block</p>
+<p>The scope of local variables can be restricted by using an anonymous
+(unnamed) code block. This construct is seldom used, because if a method
+is large enough to warrant the use of an anonymous block, a better
+choice is often to break up the code into separate methods.</p>
+<pre><code>public static void main(String[] args)
+{ 
+  // Anonymous code block
+  { 
+    int localVar = 10;
+  } 
+  // localVar is unavailable from here
+} 
+ </code></pre>
+
+<p></p>
+<p>CHAPTER
+4</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Operators</p>
+
+<p>Operators are used to operate on values. They can be grouped into
+five types: arithmetic, assignment, comparison, logical and bitwise
+operators.</p>
+<p>Arithmetic operators</p>
+<p>There are the four basic arithmetic operators, as well as the modulus
+operator (<code>%</code>) which is used to obtain
+the division remainder.</p>
+<pre><code>float x = 3+2; // 5 // addition
+      x = 3-2; // 1 // subtraction
+      x = 3*2; // 6 // multiplication
+      x = 3/2; // 1 // division
+      x = 3%2; // 1 // modulus (division remainder)</code></pre>
+<p>Notice that the division sign gives an incorrect result. This is
+because it operates on two integer values and will therefore round the
+result and return an integer. To get the correct value, one of the
+numbers must be explicitly converted to a floating-point type.</p>
+<pre><code>float x = (float)3/2; // 1.5</code></pre>
+<p>Assignment operators</p>
+<p>The second group is the assignment operators. Most importantly, the
+assignment operator (<code>=</code>) itself, which
+assigns a value to a variable.</p>
+<p>Combined assignment operators</p>
+<p>A common use of the assignment and arithmetic operators is to operate
+on a variable and then to save the result back into that same variable.
+These operations can be shortened with the combined assignment
+operators.</p>
+<pre><code>int x = 0;
+    x += 5; // x = x+5;
+    x -= 5; // x = x-5;
+    x *= 5; // x = x*5;
+    x /= 5; // x = x/5;
+    x %= 5; // x = x%5;</code></pre>
+<p>Increment and decrement operators</p>
+<p>Another common operation is to increment or decrement a variable by
+one. This can be simplified with the increment (<code>++</code>) and decrement (<code>−−</code>) operators.</p>
+<pre><code>++x; // x += 1
+−−x; // x -= 1</code></pre>
+<p>Both of these can be used either before or after a variable.</p>
+<pre><code>++x; // pre-increment
+−−x; // pre-decrement
+x++; // post-increment
+x−−; // post-decrement</code></pre>
+<p>The result on the variable is the same whichever is used. The
+difference is that the post-operator returns the original value before
+it changes the variable, while the pre-operator changes the variable
+first and then returns the value.</p>
+<pre><code>x = 5; y = x++; // y=5, x=6
+x = 5; y = ++x; // y=6, x=6</code></pre>
+<p>Comparison operators</p>
+<p>The comparison operators compare two values and return either
+true or false. They are mainly used to
+specify conditions, which are expressions that evaluate to either true
+or false.</p>
+<pre><code>boolean x = (2==3); // false // equal to
+        x = (2!=3); // true  // not equal to
+        x = (2&gt;3);  // false // greater than
+        x = (2&lt;3);  // true  // less than
+        x = (2&gt;=3); // false // greater than or equal to
+        x = (2&lt;=3); // true  // less than or equal to</code></pre>
+<p>Logical operators</p>
+<p>The logical operators are often used together with the comparison
+operators. Logical and (<code>&amp;&amp;</code>) evaluates to true if both
+the left and right side are true, and logical or (<code>||</code>) is true if either the left
+or right side is true. For inverting a Boolean result there is the
+logical not (<code>!</code>) operator. Note that for
+both “logical and” and “logical or” the right-hand side will not be
+evaluated if the result is already determined by the left-hand side.</p>
+<pre><code>boolean x = (true &amp;&amp; false); // false // logical and
+        x = (true || false); // true  // logical or
+        x = !(true);         // false // logical not</code></pre>
+<p>Bitwise operators</p>
+<p>The bitwise operators can manipulate individual bits inside an
+integer. For example, the right shift operator (<code>&gt;&gt;</code>) moves all bits except the sign bit to
+the right, whereas zero-fill right shift (<code>&gt;&gt;&gt;</code>) moves all bits right including
+the sign bit.</p>
+<pre><code>int x = 5 &amp; 4; // 101 &amp; 100 = 100 (4) // and
+    x = 5 | 4; // 101 | 100 = 101 (5) // or
+    x = 5 ^ 4; // 101 ^ 100 = 001 (1) // xor
+    x = 4 &lt;&lt; 1;// 100 &lt;&lt; 1  =1000 (8) // left shift
+    x = 4 &gt;&gt; 1;// 100 &gt;&gt; 1  =  10 (2) // right shift
+    x = 4 &gt;&gt;&gt;1;// 100 &gt;&gt;&gt;1  =  10 (2) // zero-fill
+                                      // right shift
+    x = ∼4;    // ∼00000100 = 11111011 (-5) // invert</code></pre>
+<p>These bitwise operators have shorthand assignment operators, just
+like the arithmetic operators.</p>
+<pre><code>int x = 5;
+    x  &amp;= 5; // "and" and assign
+    x  |= 5; // or and assign
+    x  ^= 5; // xor and assign
+    x &lt;&lt;= 5; // left shift and assign
+    x &gt;&gt;= 5; // right shift and assign
+    x&gt;&gt;&gt;= 5; // right shift and assign (move sign bit)</code></pre>
+<p>Operator precedence</p>
+<p>In Java, expressions are normally evaluated from left to right.
+However, when an expression contains multiple operators, the precedence
+of those operators decides the order that they are evaluated in. The
+order of precedence can be seen in the following table. This same order
+also applies to many other languages, such as C++ and C#.</p>
+
+<img src="images/Table4-1.jpg" alt="image"/>
+
+<p>For example, logical and (<code>&amp;&amp;</code>)
+binds weaker than relational operators, which in turn binds weaker than
+arithmetic operators.</p>
+<pre><code>x = 2+3 &gt; 1*4 &amp;&amp; 5/5 == 1; // true</code></pre>
+<p>To avoid having to learn the precedents of all operators and to
+clarify the intent, parentheses can be used to specify which part of the
+expression will be evaluated first. Parentheses have the highest
+precedence of all operators.</p>
+<pre><code>x = ( (2+3) &gt; (1*4) ) &amp;&amp; ( (5/5) == 1 ); // true</code></pre>
+
+<p></p>
+<p>CHAPTER
+5</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>String</p>
+
+<p>The <code>String</code> class in Java is a data
+type that can hold string literals. String is a reference data type, as
+are all non-primitive data types. This means that the variable contains
+an address to an object in the memory, and not the object itself. A
+<code>String</code> object is created in the memory,
+and the address to the object is returned to the variable.</p>
+<p>As seen below, string literals are delimited by double quotes. This
+is actually a shorthand notation for the regular reference type
+initialization (creation) syntax, which uses the <code>new</code> keyword.</p>
+<pre><code>String a = "Hello";
+String b = new String(" World");</code></pre>
+<p>Combining strings</p>
+<p>The plus sign is used to combine two strings. It is known as the
+concatenation operator (<code>+</code>) in this context. The
+operator has an accompanying assignment operator (<code>+=</code>), which appends one string to another and
+creates a new string.</p>
+<pre><code>String c = a+b; // Hello World
+       a += b;  // Hello World</code></pre>
+<p>Note that while a statement may be divided into multiple lines a
+string must be on a single row, unless it is split up by using the
+concatenation operator.</p>
+<pre><code>String x
+         = "Hello " +
+           "World";</code></pre>
+<p>Escape characters</p>
+<p>For adding new lines to the string itself, there is the escape
+character “<code>\n</code>”. This backslash notation
+is used to write special characters, such as backslash or double-quote.
+Among the special characters is also a Unicode character notation for
+writing any character. All of the escape characters can be seen in the
+following table.</p>
+
+<img src="images/Table5-1.jpg" alt="image"/>
+
+<p>String compare</p>
+<p>The way to compare two strings is by using the <code>equals</code> method of the <code>String</code> class. If the equality operator (<code>==</code>) is used, the memory addresses will be
+compared instead.</p>
+<pre><code>boolean x = a.equals(b); // compares string
+boolean y = (a == b);    // compares address</code></pre>
+<p>Bear in mind that all strings in Java are <code>String</code> objects. Therefore, it is possible to
+call methods directly on constant strings, just as on variables.</p>
+<pre><code>boolean z = "Hello".equals(a);</code></pre>
+<p>StringBuffer class</p>
+<p>The <code>String</code> class has a large number of
+methods available, but it does not contain any methods for manipulating
+strings. This is because strings in Java are immutable. Once a <code>String</code> object has been created the contents
+cannot be changed, unless the whole string is completely replaced. Since
+most strings are never modified this was done on purpose to make the
+<code>String</code> class more efficient. For cases
+when you need a modifiable string you can use the <code>StringBuffer</code> class, which is a mutable string
+object.</p>
+<pre><code>StringBuffer sb = new StringBuffer("Hello");</code></pre>
+<p>This class has several methods to manipulate strings, such as <code>append</code>, <code>delete</code>
+and <code>insert</code>.</p>
+<pre><code>sb.append(" World");   // add to end of string
+sb.delete(0, 5);       // remove 5 first characters
+sb.insert(0, "Hello"); // insert string at beginning</code></pre>
+<p>A <code>StringBuffer</code> object can be converted
+back into a regular string with the <code>toString</code> method.</p>
+<pre><code>String s = sb.toString();</code></pre>
+
+<p></p>
+<p>CHAPTER
+6</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Arrays</p>
+
+<p>An array is a data structure used for storing a collection of
+values.</p>
+<p>Array declaration</p>
+<p>To declare an array, a set of square brackets is appended to the data
+type the array will contain, followed by the array’s name.
+Alternatively, the brackets may be placed after the array name. Arrays
+can be declared with any data type and all of its elements must then be
+of that type.</p>
+<pre><code>int[] x;
+int y[];</code></pre>
+<p>Array allocation</p>
+<p>The array is allocated with the <code>new</code>
+keyword, followed again by the data type and a set of square brackets
+containing the length of the array. This is the fixed number of elements
+that the array can contain. Once the array is created, the elements will
+automatically be assigned to the default values for that data type.</p>
+<pre><code>int y[] = new int[3];</code></pre>
+<p>Array assignment</p>
+<p>To fill the array elements they can be referenced one at a time, by
+placing the element’s index inside the square brackets, and then
+assigning them values. Notice that the index starts with zero.</p>
+<pre><code>y[0] = 1;
+y[1] = 2;
+y[2] = 3;</code></pre>
+<p>Alternatively, the values can be assigned all at once by using a
+curly bracket notation. The <code>new</code> keyword
+and data type may be optionally left out if the array is declared at the
+same time.</p>
+<pre><code>int[] x = new int[] {1,2,3};
+int[] x = {1,2,3};</code></pre>
+<p>Once the array elements are initialized, they can be accessed by
+referencing the elements’ indexes inside the square brackets.</p>
+<pre><code>System.out.print(x[0] + x[1] + x[2]); // 6</code></pre>
+<p>Multi-dimensional arrays</p>
+<p>Multi-dimensional arrays are declared, created and initialized much
+like one-dimensional arrays, except that they have additional square
+brackets. They can have any number of dimensions, and for each dimension
+another set of square brackets is added.</p>
+<pre><code>String[][] x = {{"00","01"},{"10","11"}};
+String[][] y = new String[2][2];
+ 
+y[0][0] = "00";
+y[0][1] = "01";
+y[1][0] = "10";
+y[1][1] = "11";
+ 
+System.out.print(x[0][0] + x[1][1]); // "0011"</code></pre>
+<p>ArrayList class</p>
+<p>An important thing to keep in mind about arrays is that their length
+is fixed and there are no methods available to change their size. In
+fact, the only array member that is regularly used is <code>length</code>, to obtain the size of the array.</p>
+<pre><code>int x[] = new int[3];
+int size = x.length; // 3</code></pre>
+<p>For cases when a resizable array is needed the <code>ArrayList</code> class can be used, which is located
+in the <code>java.util</code> package. Items in the
+<code>ArrayList</code> are stored as the generic <code>Object</code> type. The <code>ArrayList</code> can therefore hold any data types,
+except for primitives.</p>
+<pre><code>// Create an Object ArrayList collection
+java.util.ArrayList a = new java.util.ArrayList();</code></pre>
+<p>The <code>ArrayList</code> class has several useful
+methods to change the array, including: <code>add</code>, <code>set</code> and
+<code>remove</code>.</p>
+<pre><code>a.add("Hi");       // add an element
+a.set(0, "Hello"); // change first element
+a.remove(0);       // remove first element</code></pre>
+<p>To retrieve an element from the <code>ArrayList</code> the <code>get</code> method is used. The element then has to be
+explicitly cast back to its original type.</p>
+<pre><code>a.add("Hello World");
+String s = (String)a.get(0); // Hello World</code></pre>
+
+<p></p>
+<p>CHAPTER
+7</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Conditionals</p>
+
+<p>Conditional statements are used to execute different code blocks
+based on different conditions.</p>
+<p>If statement</p>
+<p>The if statement will only execute if the condition inside the
+parentheses is evaluated to true. The condition can include any of the
+comparison and logical operators.</p>
+<pre><code>if (x &lt; 1) {
+  System.out.print(x + " &lt; 1");
+} 
+ </code></pre>
+<p>To test for other conditions, the if statement can be extended by any
+number of else if clauses. Each additional condition will only be tested
+if all previous conditions are false.</p>
+<pre><code>else if (x &gt; 1) {
+  System.out.print(x + " &gt; 1");
+} 
+ </code></pre>
+<p>The if statement can have one else clause at the end, which will
+execute if all previous conditions are false.</p>
+<pre><code>else {
+  System.out.print(x + " == 1");
+} 
+ </code></pre>
+<p>As for the curly brackets, they can be left out if only a single
+statement needs to be executed conditionally.</p>
+<pre><code>if (x &lt; 1)
+  System.out.print(x + " &lt; 1");
+else if (x &gt; 1)
+  System.out.print(x + " &gt; 1");
+else
+  System.out.print(x + " == 1");</code></pre>
+<p>Switch
+statement</p>
+<p>The switch statement checks for equality between an integer and a
+series of case labels. It then executes the matching case. The statement
+can contain any number of cases and may end with a default label for
+handling all other cases.</p>
+<pre><code>switch (y)
+{ 
+  case 0: System.out.print(y + " is 0"); break;
+  case 1: System.out.print(y + " is 1"); break;
+  default:System.out.print(y + " is something else");
+} 
+ </code></pre>
+<p>Note that the statements after each case label are not surrounded by
+curly brackets. Instead, the statements end with the <code>break</code> keyword. Without the <code>break</code> the execution will fall through to the
+next case. This can be useful if several cases need to be evaluated in
+the same way.</p>
+<p>The data types that can be used with a switch statement are: <code>byte</code>, <code>short</code>,
+<code>int</code> and <code>char</code>. As of Java 7, <code>String</code> types are also permitted.</p>
+<p>Ternary operator</p>
+<p>In addition to the if and switch statements there is the ternary
+operator (<code>?:</code>). This operator can replace
+a single if/else clause that assigns a value to a specific variable. The
+operator takes three expressions. If the first one is evaluated to true
+then the second expression is returned, and if it is false, the third
+one is evaluated and returned.</p>
+<pre><code>x = (x &lt; 0.5) ? 0 : 1; // ternary operator (?:)</code></pre>
+
+<p></p>
+<p>CHAPTER
+8</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Loops</p>
+
+<p>There are four looping structures in Java. These are used to execute
+a specific code block multiple times. Just as with the conditional if
+statement, the curly brackets for the loops can be left out if there is
+only one statement in the code block.</p>
+<p>While loop</p>
+<p>The while loop runs through the code block only if the condition is
+true, and will continue looping for as long as the condition remains
+true. The loop below will print out the numbers 0 to 9.</p>
+<pre><code>int i = 0;
+while (i &lt; 10) { System.out.print(i++); }</code></pre>
+<p>Note that the condition for the loop is only checked at the start of
+each iteration
+(loop).</p>
+<p>Do-while loop</p>
+<p>The do-while loop works the same way as the while loop, except that
+it checks the condition after the code block. It will therefore always
+run through the code block at least once.</p>
+<pre><code>int i = 0;
+do { System.out.print(i++); } while (i &lt; 10);</code></pre>
+<p>For loop</p>
+<p>The for loop is used to go through a code block a specific number of
+times. It uses three parameters. The first parameter initializes a
+counter and is always executed once, before the loop. The second
+parameter holds the condition for the loop and is checked before each
+iteration. The third parameter contains the increment of the counter and
+is executed at the end of each iteration.</p>
+<pre><code>for (int i = 0; i &lt; 10; i++)
+{ System.out.print(i); }</code></pre>
+<p>The for loop has several variations. For instance, the first and
+third parameters can be split into several statements by using the comma
+operator.</p>
+<pre><code>for (int k = 0, l = 10; k &lt; 10; k++, l--)
+{ System.out.print(k + l); }</code></pre>
+<p>There is also the option of leaving out one or more of the
+parameters. For example, the third parameter can be moved into the body
+of the loop.</p>
+<pre><code>for (int k = 0, l = 10; k &lt; 10;)
+{ System.out.print(k + l); k++, l--; }</code></pre>
+<p>Foreach loop</p>
+<p>The foreach loop gives an easy way to iterate through arrays. On each
+iteration the next element in the array is assigned to the specified
+variable, and the loop continues to execute until it has gone through
+the entire array.</p>
+<pre><code>int[] array = { 1,2,3 };
+for (int element : array) { System.out.print(element); }</code></pre>
+<p>Break and
+continue</p>
+<p>There are two special keywords that can be used inside loops – <code>break</code> and <code>continue</code>. The <code>break</code> keyword ends the loop structure, and
+<code>continue</code> skips the rest of the current
+iteration and continues at the beginning of the next iteration.</p>
+<pre><code>break;    // end current loop
+continue; // start next iteration</code></pre>
+<p>To break out of a loop above the current one, that loop must first be
+labeled by adding a name followed by a colon before it. With this label
+in place it can now be used as an argument to the break statement,
+telling it which loop to break out of. This also works with the <code>continue</code> keyword in order to skip to the next
+iteration of the named loop. Note that the <code>continue</code> statement in this example is
+unreachable because the previous <code>break</code>  statement always prevents <code>continue</code> from executing.</p>
+<pre><code>myLoop: for (int i = 0, j = 0; i &lt; 10; i++)
+        { 
+          while (++j &lt; 10)
+          { 
+            break myLoop;    // end for
+            continue myLoop; // start next for
+          } 
+        } 
+ </code></pre>
+<p>Labeled block</p>
+<p>A labeled block, also called a named block, is created by placing a
+label before an anonymous code block. The <code>break</code> keyword can be used to break out of such
+a block, just as in labeled loops. This could for example be useful when
+performing a validation, where if one validation step fails the whole
+process must be aborted.</p>
+<pre><code>validation:
+{ 
+  if(true)
+    break validation;
+} 
+ </code></pre>
+<p>Labeled blocks can be useful for organizing a large method into
+sections. In most cases though, splitting the method up is a better
+idea. However, if the new method would require a lot of parameters, or
+if the method would only be used from a single location, then one or
+more labeled blocks may be preferable.</p>
+
+<p></p>
+<p>CHAPTER
+9</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Methods</p>
+
+<p>Methods are reusable code blocks that will only execute when
+called.</p>
+<p>Defining methods</p>
+<p>A method can be created by typing <code>void</code>
+followed by the method’s name, a set of parentheses and a code block.
+The <code>void</code> keyword means that the
+method will not return a value. The naming convention for methods is the
+same as for variables – a descriptive name with the first word in
+lowercase and any other words initially capitalized.</p>
+<pre><code>class MyApp
+{ 
+  void myPrint()
+  { 
+    System.out.print("Hello");
+  } 
+} 
+ </code></pre>
+<p>Calling methods</p>
+<p>The method above will simply print out a text message. To invoke (call) it from the main
+method an instance of the <code>MyApp</code> class
+must first be created. The dot operator is then used after the
+instance’s name in order to access its members, which include the <code>myPrint</code> method.</p>
+<pre><code>public static void main(String[] args)
+{ 
+  MyApp m = new MyApp();
+  m.myPrint(); // Hello
+} 
+ </code></pre>
+<p>Method parameters</p>
+<p>The parentheses that follow the method name are used to pass
+arguments to the method. To do this the corresponding parameters must
+first be added to the method declaration in the form of a comma
+separated list.</p>
+<pre><code>void myPrint(String s)
+{ 
+  System.out.print(s);
+} 
+ </code></pre>
+<p>A method can be defined to take any number of arguments and they can
+have any data types, just ensure the method is called with the same
+types and number of arguments.</p>
+<pre><code>public static void main(String[] args)
+{ 
+  MyApp m = new MyApp();
+  m.myPrint("Hello"); // Hello
+} 
+ </code></pre>
+<p>To be precise, <em>parameters</em> appear in method definitions,
+while <em>arguments</em> appear in method calls. However, the two terms
+are sometimes used interchangeably.</p>
+<p>Return
+statement</p>
+<p>A method can return a value. The <code>void</code>
+keyword is then replaced with the data type the method will return, and
+the <code>return</code> keyword is added to the method
+body with an argument of the specified return type.</p>
+<pre><code>String getPrint()
+{ 
+  return "Hello";
+} 
+ </code></pre>
+<p>Return is a jump statement that causes the method to exit and return
+the specified value to the place where the method was called. For
+example, the method above can be passed as an argument to the <code>getPrint</code> method since the method evaluates to a
+string.</p>
+<pre><code>public static void main(String[] args)
+{ 
+  MyApp m = new MyApp();
+  System.out.print( getPrint() ); // Hello
+} 
+ </code></pre>
+<p>The return statement may also be used in void methods to exit before
+the end block is reached.</p>
+<pre><code>void myPrint(String s)
+{ 
+  System.out.print(s);
+} 
+ </code></pre>
+<p>Method overloading</p>
+<p>It is possible to declare multiple methods with the same name as long
+as the parameters vary in type or number. This is called method
+overloading and can for example be seen in the implementation of the
+<code>System.out.print</code> method. It is a powerful
+feature that allows a method to handle a variety of arguments without
+the programmer needing to be aware of using different methods.</p>
+<pre><code>void myPrint(String s)
+{ 
+  System.out.print(s);
+} 
+ 
+void myPrint(int i)
+{ 
+  System.out.print(i);
+} 
+ </code></pre>
+<p>Passing arguments</p>
+<p>Java is different from many other languages in that all method
+parameters are passed by value. In fact, they cannot be passed by
+reference. For value data types (primitive types) this means that only a
+local copy of the variable is changed within the method, so the change
+will not affect the original variable. For reference data types
+(classes, interfaces and arrays) it means that only a copy of the memory
+address is passed to the method. Therefore, if the entire object is
+replaced the change will not propagate back to the caller, but changes
+to the object will affect the original since the copy points to the same
+memory location.</p>
+<pre><code>public static void main(String[] args)
+{ 
+  int x = 0;              // value data type
+  m.set(x);               // value is passed
+  System.out.print(x);    // 0
+ 
+  int[] y = {0};          // reference data type
+  m.set(y);               // address is passed
+  System.out.print(y[0]); // 10
+} 
+ 
+void set(int a) { a = 10; }
+void set(int[] a) { a[0] = 10; }</code></pre>
+
+<p></p>
+<p>CHAPTER
+10</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Class</p>
+
+<p>A class is a template used to create objects. They are made up of
+members, the main two of which are fields and methods. Fields are
+variables that hold the state of the object, while methods define what
+the object can do.</p>
+<pre><code>class MyRectangle
+{ 
+  int x, y;
+  int getArea() { return x * y; }
+} 
+ </code></pre>
+<p>Object creation</p>
+<p>To access a class’s fields and methods from outside the defining
+class, an object of
+the class must first be created. This is done by using the <code>new</code> keyword, which will create
+a new object in the system’s memory.</p>
+<pre><code>public class MyApp
+{ 
+  public static void main(String[] args)
+ {
+    // Create an object of MyRectangle
+    MyRectangle r = new MyRectangle();
+  } 
+} 
+ </code></pre>
+<p>An object is also called an instance. The object will contain
+its own set of fields, which can hold values that are different to those
+of other instances of the class.</p>
+<p>Accessing object members</p>
+<p>In addition to creating the object, the members of the class that are
+to be accessible beyond their package need to be declared as <code>public</code> in the class definition.</p>
+<pre><code>class MyRectangle
+{ 
+  public int x, y;
+  public int getArea() { return x * y; }
+} 
+ </code></pre>
+<p>The members of this object can now be reached by using the dot
+operator after the instance name.</p>
+<pre><code>public static void main(String[] args)
+{ 
+  MyRectangle r = new MyRectangle();
+  r.x = 10;
+  r.y = 5;
+  int z = r.getArea() // 50 (5*10)
+} 
+ </code></pre>
+<p>Constructor</p>
+<p>The class can have a constructor. This is a special kind of method
+used to instantiate
+(construct) the object. It always has the same name as the class and
+does not have a return type, since it implicitly returns a new instance
+of the class. To be accessible from another class not in its package it
+needs to be declared with the <code>public</code>
+access modifier. When a new instance of the <code>MyRectangle</code> class is created, by using the
+<code>new</code> syntax, the constructor method is
+called, which in the example below sets the fields to some default
+values.</p>
+<pre><code>class MyRectangle
+{ 
+  int x, y;
+  public MyRectangle() { x = 10; y = 20; }
+ 
+  public static void main(String[] args)
+  { 
+    MyRectangle r = new MyRectangle();
+  } 
+} 
+ </code></pre>
+<p>The constructor can have a parameter list, just as any other method.
+As seen below, this can be used to make the fields’ initial values
+depend on the parameters passed when the object is created.</p>
+<pre><code>class MyRectangle
+{ 
+  int x, y;
+  public MyRectangle(int a, int b) { x = a; y = b; }
+ 
+  public static void main(String[] args)
+  { 
+    MyRectangle r = new MyRectangle(20,15);
+  } 
+} 
+ </code></pre>
+<p>This keyword</p>
+<p>Inside the constructor, as well as in other methods belonging to the
+object, a special keyword called <code>this</code> can
+be used. This keyword is a reference to the current instance of the
+class. If, for example, the constructor’s parameters have the same names
+as the corresponding fields, then the fields could still be accessed by
+using the <code>this</code> keyword, even though they
+are shadowed by the parameters.</p>
+<pre><code>class MyRectangle
+{ 
+  int x, y;
+  public MyRectangle(int x, int y)
+  { 
+    this.x = x; this.y = y;
+  } 
+} 
+ </code></pre>
+<p>Constructor overloading</p>
+<p>To support different parameter lists the constructor can be
+overloaded. In the example below, if the class is instantiated without
+any parameters the fields will be assigned default values. With one
+parameter both fields will be set to that value, and with two parameters
+each field will be assigned a separate value. Attempting to create an
+object with the wrong number of arguments or with incorrect data types
+will result in a compile-time error, just as with any other method.</p>
+<pre><code>class MyRectangle
+{ 
+  int x, y;
+  public MyRectangle()             { x = 10; y = 20; }
+  public MyRectangle(int a)        { x = a;  y = a;  }
+  public MyRectangle(int a, int b) { x = a;  y = b;  }
+} 
+ </code></pre>
+<p>Constructor chaining</p>
+<p>The <code>this</code> keyword can also be used to
+call one constructor from another. This is known as constructor
+chaining, and allows for greater code reuse. Note that the keyword
+appears as a method call, and that it must be on the first line in the
+constructor.</p>
+<pre><code>public MyRectangle()             { this(10,20);  }
+public MyRectangle(int a)        { this(a,a);    }
+public MyRectangle(int a, int b) { x = a; y = b; }</code></pre>
+<p>Initial field values</p>
+<p>If there are fields in the class that need to be assigned default
+values, such as in the first constructor above, the fields can simply be
+assigned at the same time as they are declared. These initial values
+will be assigned before the constructor is called.</p>
+<pre><code>class MyRectangle
+{ 
+  int x = 10, y = 20;
+} 
+ </code></pre>
+<p>Default constructor</p>
+<p>It is possible to create a class even if no constructors are defined.
+This is because the compiler will then automatically create a default
+parameterless constructor.</p>
+<pre><code>class MyClass
+{ 
+  public static void main(String[] args)
+  { 
+    // Default constructor used
+    MyClass c = new MyClass();
+  } 
+} 
+ </code></pre>
+<p>Null</p>
+<p>The built-in constant <code>null</code> is used to
+represent an uninitialized object. It can only be assigned to objects
+and not to variables of primitive types. The equal to operator (<code>==</code>) can be used to test whether an object is
+null.</p>
+<pre><code>String s = null;
+if (s == null) s = new String();</code></pre>
+<p>Default values</p>
+<p>The default value of an object is null. For primitive data types the
+default values are as follows: numerical types become <code>0</code>, a char has the Unicode character for zero
+(<code>\0000</code>) and a boolean is false. Default
+values will be automatically assigned by the compiler, but only for
+fields and not for local variables. However, explicitly specifying the
+default value for fields is considered good programming since it makes
+the code easier to understand. For local variables the default values
+will not be set by the compiler. Instead, the compiler forces the
+programmer to assign values to any local variables that are used, so as
+to avoid problems associated with using unassigned variables.</p>
+<pre><code>class MyApp
+{ 
+  int x;   // field is assigned default value 0
+ 
+  int dummy()
+  { 
+    int x; // local variable must be assigned if used
+  } 
+} 
+ </code></pre>
+<p>Garbage collector</p>
+<p>The Java runtime environment has a garbage collector that
+periodically releases the memory used by objects when they are no longer
+needed. This frees the programmer from the often tedious and error-prone
+task of memory management. An object will be eligible for destruction
+when there are no more references to it. This occurs, for example, when
+the object goes out of scope. An object can also be explicitly dropped
+by setting its references to null.</p>
+
+<p></p>
+<p>CHAPTER
+11</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Static</p>
+
+<p>The <code>static</code> keyword is used to create
+fields and methods that can be accessed without having to make an
+instance of the class. Static (class) members only exist in one copy,
+which belongs to the class itself, whereas instance (non-static)
+members are created
+as new copies for each new object. This means that static methods cannot
+use instance members since these methods are not part of an instance. On
+the other hand, instance methods can use both static and instance
+members.</p>
+<pre><code>class MyCircle
+{ 
+  float r = 10;            // instance field
+  static float pi = 3.14F; // static/class field
+ 
+  // Instance method
+  float getArea() { return newArea(r); }
+ 
+  // Static/class method
+  static float newArea(float a) { return pi*a*a; }
+} 
+ </code></pre>
+<p>Accessing static members</p>
+<p>To access a static member from outside the class, the class name is
+used followed by the dot operator. This operator is the same as the one
+used to access instance members, but to reach them an object reference
+is required. Trying to access a static member by using an object
+reference (instead of the class name) will give a warning since this
+makes it more difficult to see that a static member is being used.</p>
+<pre><code>public static void main(String[] args)
+{ 
+  float f = MyCircle.pi;
+  MyCircle c = new MyCircle();
+  float g = c.r;
+} </code></pre>
+<p>Static methods</p>
+<p>The advantage of static members is that they can be used by other
+classes without having to create an instance of the class. Fields should
+therefore be declared static when only a single instance of the variable
+is needed. Methods should be declared static if they perform a generic
+function that is independent of any instance variables. A good example
+of this is the <code>Math</code> class which contains
+only static methods and fields.</p>
+<pre><code>double pi = Math.PI;</code></pre>
+<p><code>Math</code> is one of the classes that are
+included by default in every Java application. The reason for this is
+because it belongs to the <code>java.lang</code> package, which is always
+imported. This package contains classes fundamental to the Java
+language, such as: <code>String</code>, <code>Object</code> and <code>System</code>.</p>
+<p>Static fields</p>
+<p>Static fields have the advantage that they persist throughout the
+life of the application. They can therefore, for example, be used to
+record the number of times that a method has been called across all
+instances of the class. The initial value for a static field will only
+be set once, sometime before the class or field is ever used.</p>
+<pre><code>class MyCircle
+{ 
+  static void dummy() { count++; }
+  static int count = 0;
+} 
+ </code></pre>
+<p>Static initialization blocks</p>
+<p>A static initialization block can be used if the initialization of
+static fields requires more than one line, or some other logic. This
+block, in contrast to the constructor, will only be run once, at the
+same time as the static fields are initialized.</p>
+<pre><code>static int[] array = new int[5];
+static
+{ 
+  int i = 0;
+  for(int element : array)
+    element = i++;
+} 
+ </code></pre>
+<p>Instance initialization blocks</p>
+<p>An initialization block provides an alternative method for assigning
+instance fields. This block is placed on the class level, just like the
+static initialization block, but without the use of the <code>static</code> keyword. Any code placed between the
+brackets will be copied to the start of every constructor by the
+compiler.</p>
+<pre><code>int[] array = new int[5];
+{ 
+  int i = 0;
+  for(int element : array) element = i++;
+} 
+ </code></pre>
+<p>A class can have multiple initialization and static initialization
+blocks.</p>
+
+<p></p>
+<p>CHAPTER
+12</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Inheritance</p>
+
+<p>Inheritance allows a class to acquire the members of another class.
+In the example below, Apple inherits from Fruit. This is specified with
+the <code>extends</code> keyword. Fruit then
+becomes the superclass of Apple, which in turn becomes a subclass of
+Fruit. In addition to its own members, Apple gains all accessible
+members in Fruit, except for its constructors.</p>
+<pre><code>// Superclass (parent class)
+class Fruit
+{ 
+  public String flavor;
+} 
+ 
+// Subclass (child class)
+class Apple extends Fruit
+{ 
+  public String variety;
+} 
+ </code></pre>
+<p>Object</p>
+<p>A class in Java may only inherit from one superclass, and if no class
+is specified it will implicitly inherit from <code>Object</code>. Therefore, <code>Object</code> is the root class of all classes.</p>
+<pre><code>class Fruit extends Object {}</code></pre>
+<p>Upcasting</p>
+<p>Conceptually, a subclass is a specialization of the superclass. This
+means that Apple is a kind of Fruit, as well as an Object, and can
+therefore be used anywhere a Fruit or Object is expected. For example,
+if an instance of Apple is created, it can be upcast to Fruit since the
+subclass contains everything in the superclass.</p>
+<pre><code>Apple a = new Apple();
+Fruit f = a;</code></pre>
+<p>The Apple is then seen as a Fruit, so only the Fruit members can be
+accessed.</p>
+<pre><code>f.flavor = "Sweet";</code></pre>
+<p>Downcasting</p>
+<p>When the class is downcast back into an Apple, the fields that are
+specific to Apple will have been preserved. This is because the Fruit
+only contained the Apple, it did not convert it. The downcast has to be
+made explicit since downcasting an actual Fruit into an Apple is not
+allowed.</p>
+<pre><code>Apple b = (Apple)f;</code></pre>
+<p>Instanceof operator</p>
+<p>As a safety precaution, you can test to see whether an object can be
+cast to a specific class by using the <code>instanceof</code> operator. This operator returns true
+if the left side object can be cast into the right side type without
+causing an exception.</p>
+<pre><code>Apple c = (f instanceof Apple) ? (Apple)f : null;</code></pre>
+
+<p></p>
+<p>CHAPTER
+13</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Overriding</p>
+
+<p>A member in a subclass can redefine a member in its superclass. This
+is most often done to give instance methods new implementations.</p>
+<p>Overriding members</p>
+<p>In the example below, Rectangle’s <code>getArea</code> method is overridden in Triangle, by
+redeclaring it there with the same method signature. The signature includes
+the name, parameters and return type of the method. However, the access
+level may be changed to allow for more access than the method being
+overridden.</p>
+<pre><code>class Rectangle
+{ 
+  public int w = 10, h = 10;
+  public int getArea() { return w * h; }
+} 
+ 
+class Triangle extends Rectangle
+{ 
+  public int getArea() { return w * h / 2; }
+} 
+ </code></pre>
+<p>Override annotation</p>
+<p>In order to show that this override was intentional, the <code>@Override</code> annotation should be
+placed before the method. This annotation was added in Java 5 to prevent
+accidental overrides.</p>
+<pre><code>class Triangle extends Rectangle
+{ 
+  @Override public int getArea()
+  { 
+    return w * h / 2;
+  } 
+} 
+ </code></pre>
+<p>Invoking the <code>getArea</code> method from a
+Triangle instance will call Triangle’s version of the method.</p>
+<pre><code>Triangle o = new Triangle();
+o.getArea(); // (50) calls Triangle's version</code></pre>
+<p>If Triangle’s instance is upcast into Rectangle, then Triangle’s
+version of the method will still get called because Rectangle’s version
+has been overridden.</p>
+<pre><code>Rectangle o = new Triangle();
+o.getArea();  // (50) calls Triangle's version</code></pre>
+<p>Hiding members</p>
+<p>This is only true for instance methods, and not for class methods. If
+a class method called <code>newArea</code> is added to
+Rectangle, and redefined in Triangle, then Triangle’s version of the
+method will only hide Rectangle’s implementation. Because of this the
+<code>@Override</code> annotation is not used.</p>
+<pre><code>class Rectangle
+{ 
+  public int w = 10, h = 10;
+  public static int newArea(int a, int b) {
+    return a * b;
+  } 
+} 
+ 
+class Triangle extends Rectangle
+{ 
+  public static int newArea(int a, int b) {
+    return a * b / 2;
+  } 
+} 
+ </code></pre>
+<p>Calling <code>newArea</code> from Triangle’s
+interface will, as expected, invoke Triangle’s version, but calling the
+method from Rectangle’s interface will invoke Rectangle’s
+implementation.</p>
+<pre><code>Triangle o = new Triangle();
+o.newArea(10,10); // (50) calls Triangle's version
+ 
+Rectangle r = o;
+r.newArea(10,10); // (100) calls Rectangle's version</code></pre>
+<p>Redefined instance methods will always be overridden in Java and
+redefined class methods will always be hidden. There is no way to change
+this behavior, as can be done in for example C++ or C#.</p>
+<p>Preventing method inheritance</p>
+<p>To prevent an instance method from being overridden in subclasses, it
+can be declared with the <code>final</code> method modifier.</p>
+<pre><code>public final int getArea() { return w * h; }</code></pre>
+<p>Bear in mind that the order of the method modifiers is not optional.
+The compiler will point out when the modifiers appear in the wrong
+order.</p>
+<p>Accessing overridden methods</p>
+<p>An overridden method can still be accessed from inside the subclass’s
+instance methods by using the <code>super</code> keyword. This keyword is a
+reference to the current instance of the superclass.</p>
+<pre><code>@Override public int getArea()
+{ 
+  return super.getArea() / 2;
+} 
+ </code></pre>
+<p>Calling parent constructor</p>
+<p>Another place where the <code>super</code> keyword
+can be used is on the first line of a constructor. There it can perform
+a method call that invokes the superclass’s constructor.</p>
+<pre><code>public Triangle(int a, int b) { super(a,b); }</code></pre>
+<p>If the first line of a constructor is not a call to another
+constructor, the Java compiler will automatically add a call to the
+superclass’s parameterless constructor. This ensures that all ancestor
+classes are properly constructed.</p>
+<pre><code>public Triangle() { super(); }</code></pre>
+
+<p></p>
+<p>CHAPTER
+14</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Packages and
+Import</p>
+
+<p>Packages are used to avoid naming conflicts and to organize code
+files into different directories. So far in this book the code file has
+been located at the root of the project’s source directory. Therefore,
+it has belonged to the so called <em>default package</em>. In Java, the
+directory a file belongs to, relative to the project’s source directory,
+corresponds to the package name.</p>
+<p>To assign a code file to a package, for example “mypackage”, it must
+be moved to a folder by that name, under the project directory.
+Furthermore, the file must specify which package it belongs to by using
+the <code>package</code> keyword followed by the
+package name (and path). There may only be one package statement in each
+source file and it must be the first line of code, except for any
+comments. Note that the naming convention for packages is all
+lowercase.</p>
+<pre><code>package mypackage; // this file belongs to mypackage</code></pre>
+<p>Packages may be any number of directory levels deep and the levels in
+the hierarchy are separated by dots. For example, if the “mypackage”
+folder containing the code file is placed in a project folder called
+“sub”, the package declaration would need to look like this:</p>
+<pre><code>package sub.mypackage;</code></pre>
+<p>Say this file contains a public class called MyClass. To access
+MyClass from another source file there are two options. The first is to
+type the fully qualified name.</p>
+<pre><code>sub.mypackage.MyClass m;</code></pre>
+<p>Import specific class</p>
+<p>The second option is to shorten the fully qualified name by including
+the class with the <code>import</code> keyword. An
+import statement must be located before all other members in the code
+file, and it has no other purpose than to free the programmer from
+having to type the fully qualified name.</p>
+<pre><code>import mypackage.sub.MyClass;
+// ... 
+MyClass m;</code></pre>
+<p>Import package</p>
+<p>In addition to importing a specific class, all types inside of a
+package can be imported by using an asterisk (<code>*</code>). Note that this does not import any of the
+subpackages.</p>
+<pre><code>import java.util.*;</code></pre>
+<p>Import static</p>
+<p>A third variation of the import statement is the static import, which
+imports all static members of a class. Once the static members are
+imported, they can be used without having to specify the class name.</p>
+<pre><code>import static java.lang.Math.*;
+// ... 
+double pi = PI; // Math.PI</code></pre>
+
+<p></p>
+<p>CHAPTER
+15</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Access Levels</p>
+
+<p>There are four access levels available in Java. These are <code>public</code>, <code>protected</code>, <code>private</code> and package-private. Package-private
+cannot be explicitly declared by using a keyword. Instead, it is the
+default access level for every member in Java.</p>
+<pre><code>public    int myPublic;   // unrestricted access
+protected int myProtected;// package or subclass access
+          int myPackage;  // package access
+private   int myPrivate;  // class access</code></pre>
+<p>Private access</p>
+<p>The most restrictive access level is <code>private</code>. Members with this level can only be
+used inside of the enclosing (containing) class.</p>
+<pre><code>package mypackage;
+public class MyApp
+{ 
+  public    int myPublic;
+  protected int myProtected;
+            int myPackage;
+  private   int myPrivate;
+ 
+  void test()
+  { 
+    myPublic    = 0; // allowed
+    myProtected = 0; // allowed
+    myPackage   = 0; // allowed
+    myPrivate   = 0; // allowed
+  } 
+} 
+ </code></pre>
+<p>Package-private access</p>
+<p>Package-private members can be accessed anywhere within the
+containing package, but not from another package.</p>
+<pre><code>package mypackage;
+public class MyClass
+{ 
+  void test(MyApp m)
+  { 
+    m.myPublic    = 0; // allowed
+    m.myProtected = 0; // allowed
+    m.myPackage   = 0; // allowed
+    m.myPrivate   = 0; // inaccessible
+  } 
+} 
+ </code></pre>
+<p>Protected access</p>
+<p>Protected members are accessible within subclasses and within the
+containing package. Note that the meaning of protected in Java is
+different from other languages – such as C++ and C# – where protected
+members are only accessible from subclasses and the containing
+class.</p>
+<pre><code>package newpackage;
+import mypackage.MyApp;
+ 
+public class MyClass extends MyApp
+{ 
+  void test()
+  { 
+    myPublic    = 0; // allowed
+    myProtected = 0; // allowed
+    myPackage   = 0; // inaccessible
+    myPrivate   = 0; // inaccessible
+  } 
+} 
+ </code></pre>
+<p>Public access</p>
+<p>The <code>public</code> modifier gives unrestricted
+access from anywhere the member can be referenced.</p>
+<pre><code>package newpackage;
+import mypackage.MyApp;
+ 
+public class MyClass
+{ 
+  void test(MyApp m)
+  { 
+    m.myPublic    = 0; // allowed
+    m.myProtected = 0; // inaccessible
+    m.myPackage   = 0; // inaccessible
+    m.myPrivate   = 0; // inaccessible
+  } 
+} 
+ </code></pre>
+<p>Top-level access</p>
+<p>Members declared directly in the package – top-level members – may
+only choose between package-private and public access. For instance, a
+top-level class without an access modifier will default to
+package-private. Such a class will only be accessible within the
+containing package. On the other hand, a top-level class explicitly
+declared as <code>public</code> can be reached from
+other packages as well.</p>
+<pre><code>// Accessible only from containing package
+class PackagePrivateClass {}
+ 
+// Accessible from any package
+public class PublicClass {}</code></pre>
+<p>Nested class access</p>
+<p>Java allows classes to be defined within other classes, so called
+nested classes. Such a class can have any one of the four access levels.
+If a class is inaccessible, it cannot be instantiated or inherited.</p>
+<pre><code>public class MyClass
+{ 
+  // Only accessible within MyClass
+  private class PrivateNestedClass {}
+} 
+ </code></pre>
+<p>Access level guideline</p>
+<p>As a guideline, when choosing an access level it is generally best to
+use the most restrictive level possible. This is because the more places
+a member can be accessed the more places it can be accessed incorrectly,
+which makes the code harder to debug. Using restrictive access levels
+will also make it easier to modify the class without breaking the code
+for any other programmers using that class.</p>
+
+<p></p>
+<p>CHAPTER
+16</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Constants</p>
+
+<p>A variable in Java can be made into a constant by adding the <code>final</code> keyword before the data type. This
+modifier means that the variable cannot be reassigned once it has been
+set, and any attempts to do so will result in a compile-time error.</p>
+<p>Local constants</p>
+<p>A local constant must always be initialized at the same time as it is
+declared. The Java naming convention for constants is to use all
+uppercase letters and to separate the words with underscores.</p>
+<pre><code>final double PI = 3.14;</code></pre>
+<p>Constant fields</p>
+<p>Class and instance variables can also be declared as <code>final</code>.</p>
+<pre><code>class MyClass
+{ 
+  final double E = 2.72;
+  static final double C = 3e8;
+} 
+ </code></pre>
+<p>In contrast to local constants, constant fields are not always
+assigned at declaration. A constant instance field can optionally be
+assigned in a constructor, and a constant static field may be assigned
+by using a static initialization block. These alternative assignments
+can be useful if the constant’s value needs to be calculated and does
+not fit on a single code line.</p>
+<pre><code>class MyClass
+{ 
+  final double E;
+  static final double C;
+ 
+  public MyClass() { E = 2.72; }
+  static { C = 3e8; }
+} 
+ </code></pre>
+<p>Constant method parameters</p>
+<p>Another place where the <code>final</code> modifier
+may be applied is to method parameters to make them unchangeable.</p>
+<pre><code>void f(final int A) {}</code></pre>
+<p>Compile-time and run-time constants</p>
+<p>As in most other languages, Java has both compile-time and run-time
+constants. However, only class constants can be compile-time constants
+in Java, and only if their value is known at compilation. All other uses
+of <code>final</code> will create run-time constants.
+With compile-time constants the compiler will replace the constant name
+everywhere in the code with its value. They are therefore faster than
+run-time constants, which are not set until the program is run. Run-time
+constants, however, can be assigned dynamic values that can change from
+one program run to the next.</p>
+<pre><code>class MyClass
+{ 
+  final double E = 2.72;         // run-time constant
+ 
+  final static double C = 3e8;   // compile-time constant
+ 
+  final static int RND = (new
+  java.util.Random()).nextInt(); // run-time constant
+} 
+ </code></pre>
+<p>Constant guideline</p>
+<p>In general, it is a good idea to always declare variables as <code>final</code> if they do not need to be reassigned.
+This ensures that the variables will not be changed anywhere in the
+program by mistake, which in turn helps to prevent bugs.</p>
+
+<p></p>
+<p>CHAPTER
+17</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Interface</p>
+
+<p>An interface is a type that decouples “interface” from
+implementation. It specifies a contract between its implementors and
+objects that call its methods (and access its constants). They are
+defined with the <code>interface</code> keyword
+followed by a name and a code block. Their naming convention is the same
+as for classes, which is to have each word initially capitalized. When
+an interface is not nested inside another type, its access level can be
+either package-private or public, just as any other top-level
+member.</p>
+<pre><code>interface MyInterface {}</code></pre>
+<p>Interface members</p>
+<p>The code block for an interface can first of all contain signatures
+for instance methods. These methods cannot have any implementations.
+Instead, their bodies are replaced by semicolons. Interface members must
+always be public, and since this is the default access level in
+interfaces this modifier can be left out.</p>
+<pre><code>interface MyInterface {
+  int myMethod(); // method signature
+} 
+ </code></pre>
+<p>The second member that an interface can contain is constants. Any
+field created in an interface will implicitly be declared as <code>static final</code>, so these modifiers can also be
+left out.</p>
+<pre><code>interface MyInterface {
+  int c = 10; // constant
+} 
+ </code></pre>
+<p>In addition to method signatures and constants, an interface can also
+contain nested containing types, such as classes or other
+interfaces.</p>
+<pre><code>interface MyInterface
+{ 
+  // Types
+  class Class {}
+  interface Interface {}
+  enum Enum {}
+} 
+ </code></pre>
+<p>Interface example</p>
+<p>The example below shows an interface called Comparable, which has a
+single method named compare.</p>
+<pre><code>interface Comparable
+{ 
+  int compare(Object o);
+} 
+ </code></pre>
+<p>The class below implements this interface, by using the <code>implements</code> keyword after the class name. By
+convention, the implements clause is placed after the extends clause, if
+the class has one. Note that although a class can only inherit from one
+superclass it may implement any number of interfaces, by specifying them
+in a comma separated list.</p>
+<pre><code>class Circle implements Comparable
+{ 
+  public int r;
+} 
+ </code></pre>
+<p>Because <code>Circle</code> implements <code>Comparable</code> it must define the <code>compare</code> method. For this class the method will
+return the difference between the circle radiuses. The implemented
+method must be public, in addition to having the same signature as the
+method defined in the interface.</p>
+<pre><code>class Circle implements Comparable
+{ 
+  public int r;
+ 
+  public int compare(Object o) {
+    return r - ( (Circle)o ).r;
+  } 
+} 
+ </code></pre>
+<p>Functionality interface</p>
+<p><code>Comparable</code> demonstrates the first
+usage of interfaces, which is to define a specific functionality that
+classes can share. It makes it possible to use the interface members
+without having to know the actual type of a class. To illustrate, the
+example below shows a simple method that takes two <code>Comparable</code> objects and returns the largest one.
+This method will work for all classes that implement the <code>Comparable</code> interface regardless of their type,
+since the method only uses the functionality exposed through that
+interface.</p>
+<pre><code>public static Object largest(Comparable a, Comparable b)
+{ 
+  return (a.compare(b) &gt; 0) ? a : b;
+} 
+ </code></pre>
+<p>Class interface</p>
+<p>A second way to use an interface is to provide an actual interface
+for a class, through which the class can be used. The example below
+defines an interface for <code>MyClass</code> called
+<code>MyInterface</code>. This interface only includes
+the functionality that programmers using <code>MyClass</code> may need.</p>
+<pre><code>interface MyInterface
+{ 
+  void exposed();
+} 
+ 
+class MyClass implements MyInterface
+{ 
+  public void exposed() {}
+  public void hidden() {}
+} 
+ </code></pre>
+<p>The interface type is then used to hold the implementing class, so
+that the class is only seen through this interface.</p>
+<pre><code>public static void main(String[] args)
+{ 
+  MyInterface i = new MyClass();
+} 
+ </code></pre>
+<p>This abstraction provides two benefits. First, it makes it easier for
+other programmers to use the class since they now only have access to
+the methods that are relevant. Second, it makes the class more flexible
+since its implementation can change, without being noticeable by other
+programmers using the class, as long as the interface is followed.</p>
+<p>Interface classes</p>
+<p>As mentioned previously, an interface can contain nested types, such
+as classes. In contrast to methods, these types are implemented inside
+the interface. This can, for example, be used to provide a class that
+contains static methods useful for implementing classes. These nested
+types are only visible to classes implementing the interface, and not to
+objects of those classes.</p>
+<pre><code>interface MyInterface
+{ 
+  class HelperClass {
+    public static void helperMethod() {}
+  } 
+} </code></pre>
+
+<p></p>
+<p>CHAPTER
+18</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Abstract</p>
+
+<p>An abstract class provides a partial implementation that other
+classes can build upon. When a class is declared as abstract it means
+that the class can contain incomplete methods that must be implemented
+in subclasses, in addition to normal class members. These methods are
+left unimplemented and only specify their signatures, while their bodies
+are replaced by semicolons.</p>
+<pre><code>abstract class Shape
+{ 
+  public int x = 100, y = 100;
+  public abstract int getArea();
+} 
+ </code></pre>
+<p>Abstract class example</p>
+<p>If a class called <code>Rectangle</code> inherits
+from the abstract class <code>Shape</code>, <code>Rectangle</code> is then forced to override the
+abstract <code>getArea</code> method. The only
+exception is if <code>Rectangle</code> is also
+declared <code>abstract</code>, in which case it does
+not have to implement any abstract methods.</p>
+<pre><code>class Rectangle extends Shape
+{ 
+  @Override public int getArea()
+  {
+    return x * y;
+  } 
+} 
+ </code></pre>
+<p>An abstract class cannot be instantiated, but it can be used to hold
+instances of its subclasses.</p>
+<pre><code>Shape s = new Rectangle();</code></pre>
+<p>Even though an abstract class cannot be instantiated it may have
+constructors, which can be called from the subclass’s constructors by
+using the <code>super</code> keyword.</p>
+<pre><code>abstract class Shape
+{ 
+  public int x = 100, y = 100;
+  public Shape(int a, int b) { x = a; y = b; }
+} 
+ 
+class Rectangle extends Shape
+{ 
+  public Rectangle(int a, int b) { super(a,b); }
+} </code></pre>
+<p>Abstract classes and interfaces</p>
+<p>Abstract classes are similar to interfaces in many ways. They can
+both define method signatures that subclasses must implement, and
+neither one of them can be instantiated. The key differences are first
+that the abstract class can contain non-abstract members, while the
+interface cannot. And second, that a class can implement any number of
+interfaces but only inherit from one class, abstract or not. Note that
+an abstract class can, just as a non-abstract class, extend one
+superclass and implement any number of interfaces. An interface,
+however, cannot inherit from a class. Although it can extend another
+interface, which effectively combines the two interfaces into one.</p>
+<p>Abstract class and interface guideline</p>
+<p>An interface is either used to define a specific functionality that a
+class can have, or to provide an interface for other programmers using a
+class. An abstract class on the other hand is used to provide a partial
+class implementation, leaving it up to subclasses to complete it. This
+is useful when subclasses have a lot of functionality in common, but
+also have some functionality that must be implemented differently for
+each subclass.</p>
+
+<p></p>
+<p>CHAPTER
+19</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Enum</p>
+
+<p>An enumeration is a type that consists of a fixed list of named
+constants. To create one, the <code>enum</code>
+keyword is used followed by a name and a code block, containing a comma
+separated list of constant elements. The access level for an enumeration
+is the same as for a class. Package-private by default, but it can also
+be set to <code>public</code> if it is declared in a
+file of the same name. Just as with classes, an enumeration can be
+contained within a class, where it can then be set to any access
+level.</p>
+<pre><code>enum Speed
+{ 
+  STOP, SLOW, NORMAL, FAST
+} 
+ </code></pre>
+<p>An object of the enum type above can hold any one of the four defined
+constants. The enum constants are accessed as if they were static fields
+of a class.</p>
+<pre><code>Speed s = Speed.SLOW;</code></pre>
+<p>Enum example</p>
+<p>The switch statement provides a good example of when an enumeration
+can be useful. Compared to using ordinary constants, an enumeration has
+the advantage of allowing the programmer to clearly specify what
+constant values are allowed. This provides compile-time type safety.
+Note that when using an enum in a switch statement, the case labels are
+not qualified with the name of the enum.</p>
+<pre><code>switch(s) { case SLOW: break; }</code></pre>
+<p>Enum class</p>
+<p>In Java, the enum type is more powerful than its counterparts in
+other languages, such as C++ or C#. It is essentially a special kind of
+class, and can include anything that a class can include. To add a class
+member the list of constants must be terminated with a semicolon, and
+the member must be declared after the constants. In the example below,
+an integer is added to the enum, which will hold the actual speed that
+the elements represent.</p>
+<pre><code>enum Speed
+{ 
+  STOP, SLOW, NORMAL, FAST;
+  public int speed;
+} 
+ </code></pre>
+<p>To set this field, a constructor needs to be added as well. A
+constructor in an enumeration must have either private or
+package-private access and is not called in the same way as for a
+regular class. Instead, the parameters to the constructor are given
+after the constant elements, as seen below. For example, if a <code>Speed</code> enum object is assigned the constant
+<code>SLOW</code>, then the argument <code>5</code> will be passed to the constructor for that
+enum instance.</p>
+<pre><code>enum Speed
+{ 
+  STOP(0), SLOW(5), NORMAL(10), FAST(20);
+  public int speed;
+ 
+  Speed(int s) { speed = s; }
+} 
+ </code></pre>
+<p>Another difference that enum types have when compared to regular
+classes, is that they implicitly extend from the <code>java.lang.Enum</code> class. In addition to the
+members inherited from this class, the compiler will also automatically
+add two static methods to the enumeration, namely <code>values</code> and <code>valueof</code>. The <code>values</code> method returns an array of the constant
+elements declared in the enum, and <code>valueof</code> returns the enum constant of the
+specified enum name.</p>
+<pre><code>Speed[] a = Speed.values();
+Speed s = Speed.valueOf(a[0].toString()); // Speed.STOP</code></pre>
+
+<p></p>
+<p>CHAPTER
+20</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Exception Handling</p>
+
+<p>Exception handling allows programmers to deal with unexpected
+situations that may occur in their programs. As an example, the <code>FileReader</code> class in the <code>java.io</code> package is used to open a file.
+Creating an instance of this class will cause Netbeans to give a
+reminder that the class’s constructor may throw a <code>FileNotFoundException</code>. Attempting to run the
+program will also cause the compiler to point this out.</p>
+<pre><code>import java.io.*;
+// ... 
+FileReader in = new FileReader("Missing.file"); // error</code></pre>
+<p>Try-catch</p>
+<p>To get rid of this compile-time error the exception must be caught by
+using a try-catch statement. This statement consists of a try block
+containing the code that may cause the exceptions, and one or more catch
+clauses. If the try block executes successfully the program will
+continue running after the try-catch statement, but if an exception
+occurs, execution will then be passed to the first catch block able to
+handle that exception type.</p>
+<pre><code>import java.io.*;
+// ... 
+try {
+  FileReader in = new FileReader("Missing.file");
+} 
+catch(FileNotFoundException e) {}</code></pre>
+<p>Catch block</p>
+<p>In the example above, the catch block is only set to handle the <code>FileNotFoundException</code>. If the code in the try
+block could throw more kinds of exceptions, and all of them should be
+handled in the same way, a more general exception can be caught instead,
+such as the <code>Exception</code> class itself. This
+catch clause would then be able to handle all the exceptions that
+inherit from this class, including the <code>FileNotFoundException</code>. Bear in mind that a more
+general exception needs to be caught after a more specific exception.
+The catch clause must always define an exception object. This object can
+be used to obtain more information about the exception, such as a
+description of the exception by using the <code>getMessage</code> method.</p>
+<pre><code>catch(FileNotFoundException e) {
+  System.out.print(e.getMessage());
+} 
+catch(Exception e) {
+  System.out.print(e.getMessage());
+} 
+ </code></pre>
+<p>Finally block</p>
+<p>As the last clause in a try-catch statement, a finally block can be
+added. This block is used to clean up resources allocated in the try
+block and will always execute whether or not there is an exception. In
+this example, the file opened in the try block should be closed, but
+only if it was successfully opened. To be able to access the <code>FileReader</code> object from the finally clause it
+must be declared outside of the try block. Additionally, because the
+close method can also throw an exception it needs to be surrounded with
+another try-catch block. Keep in mind that if you forget to close a file
+Java’s garbage collector will eventually do it for you, but it is a good
+programming practice to do it yourself.</p>
+<pre><code>import java.io.*;
+// ... 
+FileReader in = null;
+try {
+  in = new FileReader("Missing.file");
+} 
+catch(FileNotFoundException e) {
+  System.out.print(e.getMessage());
+} 
+finally {
+  if (in != null) {
+    try { in.close(); }
+    catch(IOException e) {}
+  } 
+} 
+ </code></pre>
+<p>Throwing exceptions</p>
+<p>When a situation occurs that a method cannot recover from, it can
+generate its own exception to signal to the caller that the method has
+failed. This is done by using the <code>throw</code>
+keyword followed by a new instance of a <code>Throwable</code> type.</p>
+<pre><code>static void MakeException()
+{ 
+  throw new Throwable("My Throwable");
+} 
+ </code></pre>
+<p>Checked and unchecked exceptions</p>
+<p>Exceptions in Java are grouped into two categories – checked and
+unchecked – depending on whether or not they need to be specified. A
+method that throws a checked exception, for example <code>IOException</code>, will not compile unless it is
+specified by using a throws clause after the method’s parameter list and
+the calling method catches the exception. Unchecked exceptions on the
+other hand, such as the <code>ArithmeticException</code>, do not have to be caught
+or specified. Note that to specify multiple exceptions the exception
+types are separated by a comma.</p>
+<pre><code>import java.io.*;
+// ... 
+static void MakeException() throws IOException,
+                                   ArithmeticException
+{ 
+  throw new IOException("My IO exception");
+  // ... 
+  throw new ArithmeticException("Division by zero");
+} 
+ </code></pre>
+<p>Exception hierarchy</p>
+<p>Exceptions, like most everything else in Java, are classes that exist
+in a hierarchy. At the root of this hierarchy (below <code>Object</code>) is the <code>Throwable</code> class, and all descendants of this
+class can be both thrown and caught. Inheriting from <code>Throwable</code> there are the <code>Error</code> and <code>Exception</code> classes. Classes descending from
+<code>Error</code> are used to indicate
+non-recoverable exceptions, such as the <code>OutOfMemoryError</code>. These are unchecked because
+once they have occurred it is unlikely that the programmer can do
+anything about them even if they are caught.</p>
+<p>Descending from <code>Exception</code> are the
+<code>RuntimeExceptions</code>, which are also
+unchecked. These are exceptions that can occur in almost any code, and
+it would therefore be cumbersome to catch and specify them. For example,
+a division by zero will throw an <code>ArithmeticException</code>, however surrounding every
+division operation with a try-catch would be bothersome. There is also
+an overhead associated with checking for exceptions and the cost of
+checking for these exceptions outweighs the benefit of catching them.
+The other <code>Exception</code> descendants, those
+that do not inherit from <code>RuntimeExceptions</code>, are all checked. These are
+exceptions that can be recovered from and that must be both caught and
+specified.</p>
+
+<p></p>
+<p>CHAPTER
+21</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Boxing and Unboxing </p>
+
+<p>Placing a primitive variable in an object is known as boxing. This
+allows the primitive to be used where objects are required. For this
+purpose Java provides wrapper classes for each primitive – namely: <code>Byte</code>, <code>Short</code>,
+<code>Integer</code>, <code>Long</code>, <code>Float</code>,
+<code>Double</code>, <code>Character</code> and <code>Boolean</code>. An <code>Integer</code> object, for example, can hold a
+variable of the type int.</p>
+<pre><code>int iPrimitive = 5;
+Integer iWrapper = new Integer(iPrimitive); // boxing</code></pre>
+<p>The opposite of boxing is unboxing. This converts the object type
+back into its primitive type.</p>
+<pre><code>iPrimitive = iWrapper.intValue(); // unboxing</code></pre>
+<p>The wrapper classes belong to the <code>java.lang</code> package, which is always imported. In
+contrast to primitives, wrapper objects are immutable (unchangeable). To
+change their value, a new instance must be created. Another difference
+between primitives and wrapper objects is how they are checked for
+equality. Primitives use the equal to operator (==), whereas objects of
+any type use the <code>equals</code> method, extending
+from <code>Object</code>. Also bear in mind that
+objects can be set to null whereas primitives cannot.</p>
+<p>Autoboxing and autounboxing</p>
+<p>Java 5 introduced autoboxing and autounboxing. These features allow
+for automatic conversion between primitives and their wrapper
+objects.</p>
+<pre><code>Integer iWrapper = iPrimitive; // autoboxing
+iPrimitive = iWrapper;         // autounboxing</code></pre>
+<p>Note that this is only syntactic sugar designed to make the code
+easier to read. The compiler will add the necessary code to box and
+unbox the primitives for you – using the <code>valueOf</code> and <code>intValue</code> methods.</p>
+<pre><code>Integer iWrapper = Integer.valueOf(iPrimitive);
+iPrimitive = iWrapper.intValue()</code></pre>
+<p>Primitive and wrapper guideline</p>
+<p>Primitive types should be used when there is no need for objects.
+This is because primitives are generally faster and more memory
+efficient than objects. Conversely, wrappers are useful when numerical
+values are needed, but objects are required. For example, to store
+numerical values in a collection class, such as <code>ArrayList</code>, the wrapper classes are needed.</p>
+<pre><code>java.util.ArrayList a = new java.util.ArrayList();
+a.add(Integer.valueOf(5)); // boxing
+a.add(10);                 // autoboxing</code></pre>
+<p>Bear in mind that conversions between primitives and wrapper objects
+should be kept low if speed is important. There is an inherit
+performance penalty associated with any boxing and unboxing
+operation.</p>
+
+<p></p>
+<p>CHAPTER
+22</p>
+<p><img src="images/frontdot.jpg" alt="image"/></p>
+<p>Generics</p>
+
+<p>Generics refer to the use of type parameters, which provide a way to
+define methods, classes and interfaces that can operate with different
+data types. The benefits of generics is that they provide compile-time
+type safety, and that they eliminate the need for most type
+conversions.</p>
+<p>Generic classes</p>
+<p>Generic classes allow class members to use type parameters. Such a
+class is defined by adding a type parameter section after the class
+name, which contains a type parameter enclosed between angle brackets.
+The naming convention for type parameters is that they should consist of
+a single uppercase letter. Typically, the letter <code>T</code> for type is used. The example below defines a
+generic container class that can hold a single element of the generic
+type.</p>
+<pre><code>// Generic container class
+class MyBox&lt;T&gt; { public T box; }</code></pre>
+<p>When an object of this generic class is instantiated, the type
+parameter must be replaced with an actual data type, such as <code>Integer</code>.</p>
+<pre><code>MyBox&lt;Integer&gt; iBox = new MyBox&lt;Integer&gt;();</code></pre>
+<p>Alternatively, as of Java 7, a generic class can be instantiated with
+an empty set of type parameters. This type of instantiation is possible
+as long as the compiler can infer (determine) the type parameters from
+the context.</p>
+<pre><code>MyBox&lt;Integer&gt; iBox = new MyBox&lt;&gt;();</code></pre>
+<p>When an instance of <code>MyBox</code> is created,
+each type parameter in the class definition is replaced with the passed
+in type argument. The object therefore behaves as a regular object, with
+a single field of the <code>Integer</code> type.</p>
+<pre><code>iBox.box = 5;
+Integer i = iBox.box;</code></pre>
+<p>Notice that no casting is required when the stored value is set or
+retrieved from the <code>box</code> field.
+Furthermore, if the generic field is mistakenly assigned to or set to an
+incompatible type, the compiler will point this out.</p>
+<pre><code>iBox.box = "Hello World"; // compile-time error
+String s = iBox.box;      // compile-time error</code></pre>
+<p>Generic methods</p>
+<p>A method can be made generic by declaring it with a type parameter
+section before the method’s return type. The type parameter can be used
+as any other type inside of the method. It can also be used for the
+method’s return type, in the throws clause and for its parameter types.
+The example below shows a generic class method that accepts a generic
+array parameter, the content of which is printed out.</p>
+<pre><code>class MyClass
+{ 
+  public static &lt;T&gt; void printArray(T[] array)
+  { 
+    for (T element : array)
+      System.out.print(element + " ");
+  } 
+} 
+ </code></pre>
+<p>Methods can be declared as generic, independently of whether or not
+the enclosing class or interface is generic. The same is true for
+constructors.</p>
+<p>Calling generic methods</p>
+<p>A generic method is typically invoked just as a regular (non-generic)
+method, without specifying the type argument.</p>
+<pre><code>Integer[] iArray = { 1, 2, 3 };
+MyClass.printArray(iArray);</code></pre>
+<p>In most cases, the Java compiler can infer the type argument of a
+generic method call, and so it does not have to be included. However, if
+this is not the case the type argument will then need to be explicitly
+specified.</p>
+<pre><code>MyClass.&lt;Integer&gt;printArray(iArray);</code></pre>
+<p>Generic interfaces</p>
+<p>Interfaces that are declared with type parameters become generic
+interfaces. Generic interfaces have the same two purposes as regular
+interfaces. They are either created to expose members of a class that
+will be used by other classes, or to force a class to implement a
+specific functionality. When a generic interface is implemented, the
+type argument must be specified. The generic interface can be
+implemented by both generic and non-generic classes.</p>
+<pre><code>// Generic functionality interface
+interface IGenericCollection&lt;T&gt;
+{ 
+  public void store(T t);
+} 
+ 
+// Non-generic class implementing generic interface
+class Box implements IGenericCollection&lt;Integer&gt;
+{ 
+  public Integer myBox;
+  public void store(Integer i) { myBox = i; }
+} 
+ 
+// Generic class implementing generic interface
+class GenericBox&lt;T&gt; implements IGenericCollection&lt;T&gt;
+{ 
+  public T myBox;
+  public void store(T t) { myBox = t; }
+} 
+ </code></pre>
+<p>Generic type parameters</p>
+<p>The passed in type argument for a generic can either be a class type,
+interface type or another type parameter. It cannot, however, be a
+primitive type. Generics can have more than one type parameter defined,
+just by adding more of them between the angle brackets in a
+comma-separated list. Bear in mind that each parameter within the
+brackets must be unique.</p>
+<pre><code>class MyClass&lt;T, U&gt; {}</code></pre>
+<p>If a generic has multiple type parameters defined, the same number of
+type arguments need to be specified when the generic is used.</p>
+<pre><code>MyClass&lt;Integer, Float&gt; myClass = new MyClass&lt;Integer,
+                                              Float&gt;();</code></pre>
+<p>Generic variable usages</p>
+<p>Generics are only a compile-time construct in Java. After the
+compiler has checked that the types used with generic variables are
+correct, it will then erase all type parameter and argument information
+from the generic code and insert the appropriate casts instead. This
+means that generics do not give any performance benefits over
+non-generic code, because of removed run-time casts, as they do in for
+example C#. It also means that generic types cannot be used for anything
+that requires run-time information – such as creating new instances of
+generic types or using the <code>instanceof</code>
+operator with type parameters. Operations that are allowed include:
+declaring variables of the generic type, assigning null to generic
+variables and calling <code>Object</code> methods.</p>
+<pre><code>class MyClass&lt;T&gt;
+{ 
+  public void myMethod(Object o)
+  { 
+    T t1;                            // allowed
+    t1 = null;                       // allowed
+    System.out.print(t1.toString()); // allowed
+    if (o instanceof T) {}           // invalid
+    T t2 = new T();                  // invalid
+  } 
+} 
+ </code></pre>
+<p>The process of removing type information from generic code is known
+as <em>type erasure</em>. For example, <code>MyBox&lt;Integer&gt;</code> would be reduced to <code>MyBox</code>, which is called the <em>raw type</em>.
+This step is performed in order to maintain backwards compatibility with
+code written before generics became part of the language in Java 5.</p>
+<p>Bounded type parameters</p>
+<p>It is possible to apply compile-time enforced restrictions on the
+kinds of type parameters that a generic may be used with. These
+restrictions are called <em>bounds</em> , and they are specified
+within the type parameter section by using the <code>extends</code> keyword. Type parameters can be bounded
+by either superclass or interface. For example, the class <code>B</code> below may only be instantiated with a type
+argument that either is of the type <code>A</code>, or
+has that class as a superclass.</p>
+<pre><code>// T must be or inherit from superclass A
+class B&lt;T extends A&gt; {}
+class A {}</code></pre>
+<p>The second example specifies an interface as the bound. This will
+restrict the type parameter to only those types that implement the
+specified interface, or are of the interface type itself.</p>
+<pre><code>// T must be or implement interface I
+class C&lt;T extends I&gt; {}
+interface I {}</code></pre>
+<p>Multiple bounds can be applied to a type parameter by specifying them
+in a list separated by ampersands.</p>
+<pre><code>class D&lt;T extends A &amp; I&gt; {}</code></pre>
+<p>The ampersand acts as the separator instead of a comma since comma is
+already used for separating type parameters.</p>
+<pre><code>class E&lt;T extends A &amp; I, U extends A &amp; I&gt; {}</code></pre>
+<p>Aside from restricting the use of a generic to only certain parameter
+types, another reason for applying bounds is to increase the number of
+permitted method calls supported by the bounded type. An unbounded type
+may only call the <code>Object</code> methods.
+However, by applying a superclass or interface bound, the accessible
+members of that type will also become available.</p>
+<pre><code>class Fruit
+{ 
+  public String name;
+} 
+ 
+class FruitBox&lt;T extends Fruit&gt;
+{ 
+  private T box;
+  public void FruitBox(T t) { box = t; }
+  public String getFruitName()
+  { 
+    // Use of Fruit member allowed since T extends Fruit
+    return box.name;
+  } 
+} 
+ </code></pre>
+<p>Generics and Object</p>
+<p>Before generics were introduced in Java 5, the <code>Object</code> type was used to create container
+classes that could store any type of objects. Now that generics are
+available, this use of the <code>Object</code> type as
+a universal container should be avoided. This is because the compiler
+helps ensure that generics are type safe at compile-time, which cannot
+be done when using the <code>Object</code> type.</p>
+<p>The collection classes in the Java library, among them <code>ArrayList</code>, have all been replaced with generic
+versions. Even so, any generic class can still be used as if it was not
+generic, simply by leaving out the type argument section. The default
+<code>Object</code> type will then be used as the type
+argument. This is the reason why the non-generic version of <code>ArrayList</code> is still allowed. Consider the
+following use of a non-generic <code>ArrayList</code>.</p>
+<pre><code>import java.util.ArrayList;
+// ... 
+// Object ArrayList
+ArrayList a = new ArrayList();
+a.add("Hello World");
+// ... 
+Integer b = (Integer)a.get(0); // run-time error</code></pre>
+<p>This <code>String</code> to <code>Integer</code> conversion will fail at run-time by
+throwing a <code>ClassCastException</code>. Had a
+generic <code>ArrayList</code> been used instead, the
+mistaken conversion would have been detected upon compilation, or
+immediately in an IDE such as Netbeans.</p>
+<pre><code>import java.util.ArrayList;
+// ... 
+// Generic ArrayList (recommended)
+ArrayList&lt;String&gt; a = new ArrayList&lt;String&gt;();
+a.add("Hello World");
+// ... 
+Integer b = (Integer)a.get(0); // compile-time error</code></pre>
+<p>With the generic alternative only the specified type argument will be
+allowed into the <code>ArrayList</code> collection.
+Additionally, values obtained from the collection do not have to be cast
+to the correct type since the compiler takes care of that.</p>
+
+<p></p>
+
+<p>Index</p>
+<p><img src="images/square1.jpg" alt="images"/>  A</p>
+
+<p><a href="#9781430262862_Ch18.xhtml#cXXX.101">abstract</a></p>
+
+
+<p><a href="#9781430262862_Ch15.xhtml#cXXX.91">Access levels</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.28">Anonymous block</a></p>
+
+
+<p><a href="#9781430262862_Ch06.xhtml#cXXX.15a">Array(s)</a></p>
+
+
+<p><a href="#9781430262862_Ch06.xhtml#cXXX.44">ArrayList</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.15">assignment operator
+(=)</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  B</p>
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.26">boolean</a></p>
+
+
+<p><a href="#9781430262862_Ch22.xhtml#cXXX.113">Bounds</a></p>
+
+
+<p><a href="#9781430262862_Ch21.xhtml#cXXX.109">Boxing</a></p>
+
+
+<p><a href="#9781430262862_Ch08.xhtml#cXXX.55">break</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.19">byte</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  C</p>
+
+<p><a href="#9781430262862_Ch20.xhtml#cXXX.105">catch</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.25">char</a></p>
+
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.63">class</a></p>
+
+
+<p><a href="#9781430262862_Ch11.xhtml#cXXX.75">class member</a></p>
+
+
+<p><a href="#9781430262862_Ch01.xhtml#cXXX.4">code block</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.18">comma operator
+(,)</a></p>
+
+
+<p><a href="#9781430262862_Ch02.xhtml#cXXX.10">Comments</a></p>
+
+
+<p><a href="#9781430262862_Ch02.xhtml#cXXX.9">compile</a></p>
+
+
+<p><a href="#9781430262862_Ch05.xhtml#cXXX.39">concatenation operator
+(+)</a></p>
+
+
+<p><a href="#9781430262862_Ch07.xhtml#cXXX.45">Conditionals</a></p>
+
+
+<p><a href="#9781430262862_Ch16.xhtml#cXXX.99">constant</a></p>
+
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.68">Constructor</a></p>
+
+
+<p><a href="#9781430262862_Ch08.xhtml#cXXX.56">continue</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  D</p>
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.12">Data types</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.14">declare</a></p>
+
+
+<p><a href="#9781430262862_Ch04.xhtml#cXXX.32">decrement operator
+(  )</a></p>
+
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.71">default
+constructor</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.17">define</a></p>
+
+
+<p><a href="#9781430262862_Ch01.xhtml#cXXX.8">dot operator (.)</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.24">double</a></p>
+
+
+<p><a href="#9781430262862_Ch08.xhtml#cXXX.52">do-while</a></p>
+
+
+<p><a href="#9781430262862_Ch12.xhtml#cXXX.82">downcast</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  E</p>
+
+<p><a href="#9781430262862_Ch15.xhtml#cXXX.93">enclosing class</a></p>
+
+
+<p><a href="#9781430262862_Ch19.xhtml#cXXX.102">enum</a></p>
+
+
+<p><a href="#9781430262862_Ch05.xhtml#cXXX.40">Escape characters</a></p>
+
+
+<p><a href="#9781430262862_Ch20.xhtml#cXXX.103">Exception
+handling</a></p>
+
+
+<p><a href="#9781430262862_Ch20.xhtml#cXXX.108">Exception
+hierarchy</a></p>
+
+
+<p><a href="#9781430262862_Ch12.xhtml#cXXX.80">extends</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  F</p>
+
+<p><a href="#9781430262862_Ch04.xhtml#cXXX.34">false</a></p>
+
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.64">field</a></p>
+
+
+<p><a href="#9781430262862_Ch13.xhtml#cXXX.87">final</a></p>
+
+
+<p><a href="#9781430262862_Ch20.xhtml#cXXX.106">finally</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.23">float</a></p>
+
+
+<p><a href="#9781430262862_Ch08.xhtml#cXXX.53">for</a></p>
+
+
+<p><a href="#9781430262862_Ch08.xhtml#cXXX.54">foreach</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  G</p>
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.73">Garbage collector</a></p>
+
+
+<p><a href="#9781430262862_Ch22.xhtml#cXXX.112">Generics</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  H</p>
+
+<p><a href="#9781430262862_Ch01.xhtml#cXXX.1">Hello world</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  I</p>
+
+<p><a href="#9781430262862_Ch01.xhtml#cXXX.3">IDE</a></p>
+
+
+<p><a href="#9781430262862_Ch07.xhtml#cXXX.46">if</a></p>
+
+
+<p><a href="#9781430262862_Ch14.xhtml#cXXX.90">import</a></p>
+
+
+<p><a href="#9781430262862_Ch04.xhtml#cXXX.31">increment operator
+(++)</a></p>
+
+
+<p><a href="#9781430262862_Ch12.xhtml#cXXX.79">Inheritance</a></p>
+
+
+<p><a href="#9781430262862_Ch11.xhtml#cXXX.78">Initialization
+block</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.16">initialize</a></p>
+
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.67">Instance</a></p>
+
+
+<p><a href="#9781430262862_Ch11.xhtml#cXXX.76">Instance member</a></p>
+
+
+<p><a href="#9781430262862_Ch12.xhtml#cXXX.83">instanceof
+operator</a></p>
+
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.69">instantiate</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.21">int</a></p>
+
+
+<p><a href="#9781430262862_Ch17.xhtml#cXXX.100">Interface</a></p>
+
+
+<p><a href="#9781430262862_Ch09.xhtml#cXXX.60">invoke</a></p>
+
+
+<p><a href="#9781430262862_Ch08.xhtml#cXXX.51">iteration</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  J, K</p>
+
+<p><a href="#9781430262862_Ch11.xhtml#cXXX.77">java.lang</a></p>
+
+
+<p><a href="#9781430262862_Ch01.xhtml#cXXX.2">JDK</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  L</p>
+
+<p><a href="#9781430262862_Ch08.xhtml#cXXX.57">Labeled block</a></p>
+
+
+<p><a href="#9781430262862_Ch04.xhtml#cXXX.35">logical and
+(&amp;&amp;)</a></p>
+
+
+<p><a href="#9781430262862_Ch04.xhtml#cXXX.37">logical not (!)</a></p>
+
+
+<p><a href="#9781430262862_Ch04.xhtml#cXXX.36">logical or (||)</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.22">long</a></p>
+
+
+<p><a href="#9781430262862_Ch08.xhtml#cXXX.49">loops</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  M</p>
+
+<p><a href="#9781430262862_Ch01.xhtml#cXXX.5">Main method</a></p>
+
+
+<p><a href="#9781430262862_Ch09.xhtml#cXXX.25a">Method(s)</a></p>
+
+
+<p><a href="#9781430262862_Ch09.xhtml#cXXX.62">Method
+overloading</a></p>
+
+
+<p><a href="#9781430262862_Ch04.xhtml#cXXX.30">modulus operator
+(%)</a></p>
+
+
+<p><a href="#9781430262862_Ch06.xhtml#cXXX.43">Multi-dimensional
+arrays</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  N</p>
+
+<p><a href="#9781430262862_Ch15.xhtml#cXXX.98">nested class</a></p>
+
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.66">new</a></p>
+
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.72">null</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  O</p>
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.65">Object</a></p>
+
+
+<p><a href="#9781430262862_Ch04.xhtml#cXXX.29">Operators</a></p>
+
+
+<p><a href="#9781430262862_Ch13.xhtml#cXXX.86">@Override</a></p>
+
+
+<p><a href="#9781430262862_Ch13.xhtml#cXXX.84">Overriding</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  P, Q</p>
+
+<p><a href="#9781430262862_Ch14.xhtml#cXXX.89">Package</a></p>
+
+
+<p><a href="#9781430262862_Ch15.xhtml#cXXX.94">Package-private</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.13">Primitives</a></p>
+
+
+<p><a href="#9781430262862_Ch01.xhtml#cXXX.6">print</a></p>
+
+
+<p><a href="#9781430262862_Ch15.xhtml#cXXX.92">private</a></p>
+
+
+<p><a href="#9781430262862_Ch15.xhtml#cXXX.95">protected</a></p>
+
+
+<p><a href="#9781430262862_Ch15.xhtml#cXXX.96">public</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  R</p>
+
+<p><a href="#9781430262862_Ch09.xhtml#cXXX.61">return</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  S</p>
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.27">Scope</a></p>
+
+
+<p><a href="#9781430262862_Ch01.xhtml#cXXX.2x">semicolon (;)</a></p>
+
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.20">short</a></p>
+
+
+<p><a href="#9781430262862_Ch13.xhtml#cXXX.85">signature</a></p>
+
+
+<p><a href="#9781430262862_Ch11.xhtml#cXXX.74">static</a></p>
+
+
+<p><a href="#9781430262862_Ch05.xhtml#cXXX.38">String</a></p>
+
+
+<p><a href="#9781430262862_Ch05.xhtml#cXXX.41">StringBuffer</a></p>
+
+
+<p><a href="#9781430262862_Ch13.xhtml#cXXX.88">super</a></p>
+
+
+<p><a href="#9781430262862_Ch07.xhtml#cXXX.47">switch</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  T</p>
+
+<p><a href="#9781430262862_Ch07.xhtml#cXXX.20a">ternary operator
+(?:)</a></p>
+
+
+<p><a href="#9781430262862_Ch10.xhtml#cXXX.70">this</a></p>
+
+
+<p><a href="#9781430262862_Ch20.xhtml#cXXX.107">throw</a></p>
+
+
+<p><a href="#9781430262862_Ch15.xhtml#cXXX.97">Top-level member</a></p>
+
+
+<p><a href="#9781430262862_Ch04.xhtml#cXXX.33">true</a></p>
+
+
+<p><a href="#9781430262862_Ch20.xhtml#cXXX.104">try</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  U</p>
+
+<p><a href="#9781430262862_Ch21.xhtml#cXXX.110">Unboxing</a></p>
+
+
+<p><a href="#9781430262862_Ch12.xhtml#cXXX.81">Upcast</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  V</p>
+
+<p><a href="#9781430262862_Ch03.xhtml#cXXX.11">Variables</a></p>
+
+
+<p><a href="#9781430262862_Ch09.xhtml#cXXX.59">void</a></p>
+
+<p><img src="images/square1.jpg" alt="images"/>  W, X, Y, Z</p>
+
+<p><a href="#9781430262862_Ch08.xhtml#cXXX.50">while</a></p>
+
+
+<p><a href="#9781430262862_Ch21.xhtml#cXXX.111">Wrapper classes</a></p>
+
+

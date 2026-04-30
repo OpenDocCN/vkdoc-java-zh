@@ -1,0 +1,540 @@
+- "\n\n![](img/cover.jpg)\n\nJava 快速语法参考\n\n![image](img/FM-00.jpg)\n\nMikael Olsson\n\
+  \n![image](img/FM-01.jpg)\n\n**Java 快速语法参考**\n\n版权所有 © 2013，Mikael Olsson\n\n本作品受版权保护。出版商保留所有权利，无论是涉及材料的全部或部分，特别是翻译、重印、重用插图、朗诵、广播、微缩胶片复制或任何其他物理方式的复制权，以及传输或信息存储与检索、电子改编、计算机软件，或现在已知或以后开发的任何类似或不同方法的权利。此法律保留的例外情况包括与评论或学术分析相关的简短摘录，或专门为输入计算机系统并执行而提供的材料，仅供作品购买者独家使用。仅可根据出版商所在地现行版权法的规定复制本出版物或其部分内容，且必须始终从\
+  \ Springer 获得使用许可。使用许可可通过 Copyright Clearance Center 的 RightsLink 获取。违反者将根据相应版权法被起诉。\n\
+  \nISBN-13 (平装): 978-1-4302-6286-2\n\nISBN-13 (电子版): 978-1-4302-6287-9\n\n本书中可能出现商标名称、标识和图像。我们并非在每次出现商标名称、标识或图像时都使用商标符号，而是仅以编辑方式使用这些名称、标识和图像，以利于商标所有者，且无意侵犯商标权。\n\
+  \n本出版物中使用的商品名称、商标、服务标志及类似术语，即使未明确标识，也不应被视为对其是否受专有权利保护的表达意见。\n\n尽管本书中的建议和信息在出版时被认为是真实准确的，但作者、编辑和出版商均不对可能出现的任何错误或遗漏承担法律责任。出版商对本书所含内容不作任何明示或暗示的保证。\n\
+  \n总裁兼出版人：Paul Manning\n\n首席编辑：Steve Anglin\n\n技术审校：Jeff Friesen\n\n编辑委员会：Steve Anglin,\
+  \ Mark Beckner, Ewan Buckingham, Gary Cornell, Louise Corrigan, Morgan Ertel, Jonathan\
+  \ Gennick, Jonathan Hassell, Robert Hutchinson, Michelle Lowman, James Markham,\
+  \ Matthew Moodie, Jeff Olson, Jeffrey Pepper, Douglas Pundick, Ben Renow-Clarke,\
+  \ Dominic Shakeshaft, Gwenan Spearing, Matt Wade, Tom Welsh\n\n协调编辑：Kevin Shea\n\
+  \n文字编辑：xxx\n\n排版：SPi Global\n\n索引编制：SPi Global\n\n美术设计：SPi Global\n\n封面设计：Anna Ishchenko\n\
+  \n本书通过 Springer Science+Business Media New York 在全球图书贸易中发行，地址：233 Spring Street,\
+  \ 6th Floor, New York, NY 10013。电话：1-800-SPRINGER，传真：(201) 348-4505，电子邮件：`orders-ny@springer-sbm.com`，或访问\
+  \ `www.springeronline.com`。Apress Media, LLC 是加利福尼亚州的有限责任公司，其唯一成员（所有者）是 Springer\
+  \ Science + Business Media Finance Inc (SSBM Finance Inc)。SSBM Finance Inc 是一家**特拉华州**公司。\n\
+  \n有关翻译信息，请发送电子邮件至 `rights@apress.com`，或访问 `www.apress.com`。\n\nApress 及 friends\
+  \ of ED 的书籍可批量购买用于学术、企业或促销用途。大多数图书也提供电子书版本和许可证。如需更多信息，请参考我们的特殊批量销售–电子书许可网页：`www.apress.com/bulk-sales`。\n\
+  \n作者在本文中引用的任何源代码或其他补充材料，读者可在 `www.apress.com` 获取。有关如何找到本书源代码的详细信息，请访问 `www.apress.com/source-code/`。\n\
+  \n内容概览\n\n关于作者\n\n引言\n\n\n\n![image](img/sq1.jpg) 第 1 章：Hello World\n\n![image](img/sq1.jpg) 第\
+  \ 2 章：编译与运行\n\n![image](img/sq1.jpg) 第 3 章：变量\n\n![image](img/sq1.jpg) 第 4 章：运算符\n\
+  \n![image](img/sq1.jpg) 第 5 章：字符串\n\n![image](img/sq1.jpg) 第 6 章：数组\n\n![image](img/sq1.jpg) 第\
+  \ 7 章：条件语句\n\n![image](img/sq1.jpg) 第 8 章：循环\n\n![image](img/sq1.jpg) 第 9 章：方法\n\
+  \n![image](img/sq1.jpg) 第 10 章：类\n\n![image](img/sq1.jpg) 第 11 章：静态\n\n![image](img/sq1.jpg) 第\
+  \ 12 章：继承\n\n![image](img/sq1.jpg) 第 13 章：重写\n\n![image](img/sq1.jpg) 第 14 章：包与导入\n\
+  \n![image](img/sq1.jpg) 第 15 章：访问级别\n\n![image](img/sq1.jpg) 第 16 章：常量\n\n![image](img/sq1.jpg) 第\
+  \ 17 章：接口\n\n![image](img/sq1.jpg) 第 18 章：抽象\n\n![image](img/sq1.jpg) 第 19 章：枚举\n\
+  \n![image](img/sq1.jpg) 第 20 章：异常处理\n\n![image](img/sq1.jpg) 第 21 章：装箱与拆箱\n\n![image](img/sq1.jpg) 第\
+  \ 22 章：泛型\n\n索引\n\n目录\n\n 关于作者\n\n 引言\n\n![images](img/sq1.jpg) 第 1 章：Hello World\n\
+  \n安装\n\n创建项目\n\nHello world\n\n代码提示\n\n![images](img/sq1.jpg) 第 2 章：编译与运行\n\n从 IDE\
+  \ 运行\n\n从控制台窗口运行\n\n注释\n\n![images](img/sq1.jpg) 第 3 章：变量\n\n数据类型\n\n声明变量\n\n赋值变量\n\
+  \n使用变量\n\n整数类型\n\n浮点类型\n\n字符类型\n\n布尔类型\n\n变量作用域\n\n匿名块\n\n![images](img/sq1.jpg) 第\
+  \ 4 章：运算符\n\n算术运算符\n\n赋值运算符\n\n复合赋值运算符\n\n自增与自减运算符\n\n比较运算符\n\n逻辑运算符\n\n位运算符\n\n\
+  运算符优先级\n\n![images](img/sq1.jpg) 第 5 章：字符串\n\n字符串拼接\n\n转义字符\n\n字符串比较\n\nStringBuffer\
+  \ 类\n\n![images](img/sq1.jpg) 第 6 章：数组\n\n数组声明\n\n数组分配\n\n数组赋值\n\n多维数组\n\n\n\nArrayList\
+  \ 类\n\n![images](img/sq1.jpg) 第 7 章：条件语句\n\nIf 语句\n\nSwitch 语句\n\n三元运算符\n\n![images](img/sq1.jpg) 第\
+  \ 8 章：循环\n\nWhile 循环\n\nDo-while 循环\n\nFor 循环\n\nForeach 循环\n\nBreak 和 Continue\n\
+  \n带标签的块\n\n![images](img/sq1.jpg) 第 9 章：方法\n\n定义方法\n\n调用方法\n\n方法参数\n\nReturn 语句\n\
+  \n方法重载\n\n传递参数\n\n![images](img/sq1.jpg) 第 10 章：类\n\n创建对象\n\n访问对象成员\n\n构造方法\n\n\
+  This 关键字\n\n构造方法重载\n\n构造方法链\n\n初始字段值\n\n默认构造方法\n\nNull\n\n默认值\n\n垃圾回收器\n\n![images](img/sq1.jpg) 第\
+  \ 11 章：静态\n\n访问静态成员\n\n静态方法\n\n静态字段\n\n静态初始化块\n\n初始化块\n\n![images](img/sq1.jpg) 第\
+  \ 12 章：继承\n\nObject 类\n\n向上转型\n\n向下转型\n\nInstanceof 运算符\n\n![images](img/sq1.jpg) 第\
+  \ 13 章：重写\n\n重写成员\n\n重写注解\n\n隐藏成员\n\n阻止方法继承\n\n访问被重写的方法\n\n调用父类构造方法\n\n![images](img/sq1.jpg) 第\
+  \ 14 章：包与导入\n\n导入特定类\n\n导入包\n\n静态导入\n\n![images](img/sq1.jpg) 第 15 章：访问级别\n\n私有访问\n\
+  \n包级私有访问\n\n受保护访问\n\n公共访问\n\n顶级访问\n\n嵌套类访问\n\n访问级别指南\n\n![images](img/sq1.jpg) 第\
+  \ 16 章：常量\n\n局部常量\n\n常量字段\n\n常量方法参数\n\n编译时常量与运行时常量\n\n常量指南\n\n![images](img/sq1.jpg) 第\
+  \ 17 章：接口\n\n接口成员\n\n接口示例\n\n功能接口\n\n类接口\n\n接口类\n\n![images](img/sq1.jpg) 第 18 章：抽象\n\
+  \n抽象类示例\n\n抽象类与接口\n\n抽象类与接口指南\n\n![images](img/sq1.jpg) 第 19 章：枚举\n\n枚举示例\n\n枚举类\n\
+  \n![images](img/sq1.jpg) 第 20 章：异常处理\n\nTry-catch\n\nCatch 块\n\nFinally 块\n\n抛出异常\n\
+  \n受检异常与非受检异常\n\n异常层次结构\n\n![images](img/sq1.jpg) 第 21 章：装箱与拆箱\n\n自动装箱与自动拆箱\n\n基本类型与包装类型指南\n\
+  \n![images](img/sq1.jpg) 第 22 章：泛型\n\n泛型类\n\n泛型方法\n\n调用泛型方法\n\n泛型接口\n\n泛型类型参数\n\n\
+  泛型变量用法\n\n有界类型参数\n\n泛型与 Object\n\n索引\n\n关于作者\n\n**Mikael Olsson** 是一位专业的网络创业者、程序员和作家。他在芬兰一家研发公司工作，专注于软件开发。业余时间，他撰写书籍并创建网站，总结各种感兴趣的领域。他写的书专注于以最高效的方式教授主题，只解释相关且实用的内容，没有任何不必要的重复或理论。\n\
+  \n引言\n\nJava 是一种高级面向对象编程语言，由 Sun Microsystems 开发，该公司于 2010 年成为 Oracle 公司的一部分。该语言与\
+  \ C++ 非常相似，但经过简化，使其更容易编写无错误的代码。最值得注意的是，Java 中没有指针，所有内存分配和释放都是自动处理的。\n\n尽管有诸如此类的简化，但由于其庞大的类库，Java\
+  \ 的功能比 C 和 C++ 都要多得多。Java 程序还具有高性能，并且可以做到非常安全，这使 Java 成为当今使用最广泛的通用编程语言。\n\nJava\
+  \ 的另一个关键特性是它的平台无关性。这是通过将程序仅编译到一半，即编译成称为字节码的平台无关指令来实现的。然后，字节码由 Java 虚拟机（JVM）解释或运行。这意味着任何安装了该程序及其附带库的系统都可以运行\
+  \ Java 应用程序。\n\nJava 编程语言有三种可用的类库：Java ME、Java SE 和 Java EE。Java ME（移动版）是 Java SE（标准版）的精简版本，而\
+  \ Java EE（企业版）是 Java SE 的扩展版本，包含用于构建 Web 应用程序的库。\n\nJava 语言及其类库自 1996 年首次发布以来经历了重大变化。版本的命名约定也经历了几次修订。主要版本包括：JDK\
+  \ 1.0、JDK 1.1、J2SE 1.2、J2SE 1.3、J2SE 1.4、J2SE 5.0、Java SE 6 和 Java SE 7，后者是撰写本文时的当前版本。\n\
+  \n\n\n在 J2SE 1.4 之后，出于营销原因，版本号从 1.5 改为了 5.0。从 J2SE 5.0 开始，产品有一个版本号，而开发者内部使用的则是另一个版本号。J2SE\
+  \ 5.0 是产品名称，而 Java 1.5 是开发者版本。类似地，Java SE 7 是产品名称，Java 1.7 是内部版本号。为简单起见，本书中将 Java\
+  \ 版本统称为 Java 1-7。请注意，Java 被设计为向后兼容的。因此，Java 7 的虚拟机仍然可以运行 Java 1 的类文件。\n\n第 1 章\n\
+  \n![image](img/frontdot.jpg)\n\nHello World\n\n安装\n\n在开始用 Java 编程之前，你需要从 Oracle\
+  \ 网站下载并安装 Java 开发工具包（JDK）标准版（SE）。¹ JDK 包含 Java 编译器、类库以及运行 Java 应用程序所需的虚拟机。Oracle\
+  \ 的下载页面还提供了一个链接，用于获取与 JDK 捆绑的 Netbeans。² Netbeans 是一个集成开发环境（IDE），它能让 Java 开发变得容易得多。或者，你也可以使用另一个免费的\
+  \ IDE——Eclipse，³ 如果你根本不想使用任何 IDE，那么一个普通的文本编辑器也完全可以胜任。\n\n创建项目\n\n如果你决定使用 IDE（推荐），你需要创建一个项目来管理\
+  \ Java 源文件和其他资源。或者，如果你倾向于不使用 IDE，你可以创建一个扩展名为 .java 的空文件，例如 MyApp.java，然后在你自己选择的文本编辑器中打开它。\n\
+  \n要在 Netbeans 中创建项目，请转到“文件”菜单并选择“新建项目”。在对话框中，在“Java”类别下选择“Java 应用程序”项目类型，然后点击“下一步”。在此对话框中，将项目名称设置为“MyProject”，将主类的名称设置为“myproject.MyApp”。如果需要，可以更改项目的位置，然后点击“完成”按钮来生成项目。项目的唯一文件\
+  \ MyApp.java 将会打开，其中包含一些默认代码。你可以继续删除所有这些代码，以便从一个空的源文件开始。\n\nHello World\n\n当你设置好项目和编程环境后，要创建的第一个应用程序就是\
+  \ Hello World 程序。这个程序将教你如何编译和运行 Java 应用程序，以及如何向命令窗口输出字符串。\n\n创建此程序的第一步是在你的 MyApp.java\
+  \ 源文件中添加一个公共类。该类必须与物理源文件同名（不含文件扩展名），在本例中为“MyApp”。在 Java 中，一个文件中可以有多个类，但只允许有一个公共类，并且该名称必须与文件名匹配。请记住，Java\
+  \ 是区分大小写的。类名后面的大括号界定了属于该类的部分，并且必须包含在内。大括号及其内容被称为代码块，或简称为块。\n\n```\npublic class\
+  \ MyApp {}\n```\n\n接下来，在类内部添加 main 方法。这是应用程序的入口点，并且必须始终以如下所示的形式包含。这些关键字本身将在后续章节中介绍。\n\
+  \n```\npublic class MyApp {\n  public static void main(String[] args) {}\n}\n\n\
+  ```\n\n完成 Hello World 程序的最后一步是通过调用 `print` 方法来输出文本。此方法位于内置的 `System` 类中，然后在其内部的\
+  \ `out` 类中再下一层。该方法接受一个参数——要打印的字符串——并且以分号结尾，Java 中的所有语句都是如此。\n\n```\npublic class\
+  \ MyApp {\n  public static void main(String[] args) {\n    System.out.print(\"Hello\
+  \ World\");\n  } \n}\n\n```\n\n请注意，点运算符（`.`）用于访问类的成员。\n\n代码提示\n\n如果你不确定某个特定类包含什么，或者某个方法接受什么参数，你可以利用某些\
+  \ IDE（如 Netbeans）中的代码提示功能。当你输入代码并且存在多个预定义的备选项时，代码提示窗口就会出现。你也可以通过按 Ctrl + 空格键手动调出它。这是一个非常强大的功能，可以让你快速访问整个类库及其成员，并附有描述。\n\
+  \n¹`http://www.oracle.com/technetwork/java/javase/downloads/index.html`\n\n²`http://www.netbeans.org`\n\
+  \n³`http://www.eclipse.org`\n\n第 2 章\n\n![image](img/frontdot.jpg)\n\n编译与运行\n\n\
+  从 IDE 中运行\n\n完成 Hello World 程序后，你可以通过两种方式之一来编译和运行它。第一种方法是从你使用的 IDE 的菜单栏中选择“运行”。在\
+  \ Netbeans 中，菜单命令是：运行 ➤ 运行主项目。然后 IDE 将编译并运行该应用程序，并显示文本“Hello World”。\n\n从控制台窗口运行\n\
+  \n另一种方法是使用控制台窗口（C:\\Windows\\System32\\cmd.exe）手动编译程序。最方便的方法是先将 JDK 的 bin 目录添加到\
+  \ `PATH` 环境变量中。在 Windows 中，可以使用 `SET PATH` 命令，然后附加你的 JDK 安装的 bin 文件夹路径，并用分号分隔。\n\
+  \n```\nSET PATH=%PATH%;\"C:\\Program Files\\JDK\\bin\"\n```\n\n通过这样做，控制台将能够在此控制台会话期间从任何文件夹找到\
+  \ Java 编译器。`PATH` 变量也可以永久更改。¹ 接下来，导航到源文件所在的文件夹，并通过输入“javac”后跟完整的文件名来运行编译器。\n\n```\n\
+  javac MyApp.java\n```\n\n该程序将被编译成一个名为 MyApp.class 的类文件。这个类文件包含的是字节码而不是机器码，因此要执行它，你需要通过输入“java”后跟文件名来调用\
+  \ Java 虚拟机。\n\n```\njava MyApp\n```\n\n请注意，编译文件时使用 .java 扩展名，但运行时不使用 .class 扩展名。\n\
+  \n注释\n\n注释用于在源代码中插入说明，并且对最终程序没有影响。Java 具有标准的 C++ 注释符号，包括单行注释和多行注释。\n\n```\n// 单行注释\n\
+  \n/* 多行\n   注释 */\n\n```\n\n除此之外，还有 Javadoc 注释。这种注释用于通过使用 JDK bin 文件夹中包含的一个名为 Javadoc\
+  \ 的工具来生成文档。\n\n```\n/** javadoc\n    注释 */\n```\n\n¹`http://www.java.com/en/download/help/path.xml`\n\
+  \n第 3 章\n\n![image](img/frontdot.jpg)\n\n变量\n\n变量用于在程序执行期间存储数据。\n\n数据类型\n\n根据你需要存储的数据类型，有几种不同的数据类型。Java\
+  \ 有八种内置于语言中的类型。这些被称为*基本类型*。整数类型有 `byte`、`short`、`int` 和 `long`。`float` 和 `double`\
+  \ 类型表示浮点数（实数）。`char` 类型保存一个 Unicode 字符，`boolean` 类型包含 true 或 false 值。除了这些基本类型之外，Java\
+  \ 中的其他所有类型都由类、接口或数组表示。\n\n| 数据类型 | 大小（位） | 描述 |\n| --- | --- | --- |\n| byte short\n\
+  int\nlong | 8 16\n\n64 | 有符号整数 |\n| float double | 32 64 | 浮点数 |\n| char | 16 |\
+  \ Unicode 字符 |\n| boolean | 1 | 布尔值 |\n\n声明变量\n\n\n\n要声明（创建）一个变量，你需要先指定其数据类型，然后跟上变量名。变量名可以任意取，但最好让变量名与其将要存储的值紧密相关。变量的标准命名规范是：首单词小写，后续单词首字母大写。\n\
+  \n```\nint myInt;\n```\n\n赋值变量\n\n要给变量赋值，需使用赋值运算符（`=`），后跟具体的值。当变量被初始化（即被赋予一个值）后，它就变成了已定义（即已声明并赋值）的状态。\n\
+  \n```\nmyInt = 10;\n```\n\n声明和赋值可以合并为一条语句。\n\n```\nint myInt = 10;\n```\n\n如果你需要多个相同类型的变量，可以使用逗号运算符（`,`）来简写声明或定义它们。\n\
+  \n```\nint myInt = 10, myInt2 = 20, myInt3;\n```\n\n使用变量\n\n一旦变量被定义，就可以通过直接引用变量名来使用它，例如将其打印出来。\n\
+  \n```\nSystem.out.print(myInt);\n```\n\n整数类型\n\n如前所述，有四种有符号整数类型可供选择，具体取决于变量需要存储的数字大小。\n\
+  \n```\nbyte  myInt8  = 2;  // -128   to +127\nshort myInt16 = 1;  // -32768 to +32767\n\
+  int   myInt32 = 0;  // -2³¹  to +2³¹-1\nlong  myInt64 = -1; // -2⁶³  to +2⁶³-1\n\
+  ```\n\n除了标准的十进制表示法，整数还可以使用八进制或十六进制表示法来赋值。\n\n```\nint myHex = 0xF; // 十六进制（基数为 16）\n\
+  int myOct = 07;  // 八进制（基数为 8）\n```\n\n浮点类型\n\n浮点类型可以存储整数和小数。它们可以使用十进制或科学计数法来赋值。\n\
+  \n```\ndouble myDouble = 3.14;\ndouble myDouble2 = 3e2; // 3*10² = 300\n```\n\n\
+  请注意，Java 中的常量浮点数在内部始终以 `double` 类型存储。因此，如果你试图将一个 `double` 值赋给一个 `float` 变量，将会出错，因为\
+  \ `double` 的精度高于 `float`。要正确赋值，可以在常量后附加一个“F”字符，表明该数字实际上是一个 `float` 类型。\n\n```\n\
+  float myFloat = 3.14;  // 错误：可能丢失精度\nfloat myFloat = 3.14F; // 正确\n```\n\n一种更常见且有用的方法是使用显式类型转换。显式类型转换通过在待转换的变量或常量前放置目标数据类型（用括号括起来）来实现。这会在赋值发生前将值转换为指定的类型，在此例中即转换为\
+  \ `float`。\n\n```\nfloat myFloat = (float)3.14;\n```\n\n字符类型\n\n`char` 数据类型可以包含单个\
+  \ Unicode 字符，用单引号界定。\n\n```\nchar myChar = 'A';\n```\n\n字符也可以通过一种特殊的十六进制表示法来赋值，这种表示法可以访问所有\
+  \ Unicode 字符。\n\n```\nchar myChar = '\\u0000'; // \\u0000 到 \\uFFFF\n```\n\n布尔类型\n\
+  \n`boolean` 类型可以存储一个布尔值，即只能为 `true` 或 `false` 的值。这些值通过 `true` 和 `false` 关键字来指定。\n\
+  \n`boolean myBool = false;`\n\n变量作用域\n\n变量的作用域指的是无需限定即可使用该变量的代码块。例如，局部变量是在方法内部声明的变量。这样的变量在其声明之后，仅在该方法的代码块内可用。一旦方法的作用域（代码块）结束，该局部变量就会被销毁。\n\
+  \n```\npublic static void main(String[] args)\n{\n  int localVar; // 局部变量\n}\n```\n\
+  \n除了局部变量，Java 还有字段变量和参数类型变量，这些将在后续章节中介绍。然而，Java 没有像 C++ 那样的全局变量。\n\n匿名块\n\n局部变量的作用域可以通过使用匿名（未命名）代码块来限制。这种结构很少使用，因为如果一个方法大到需要使用匿名块，更好的选择通常是将代码拆分成独立的方法。\n\
+  \n```\npublic static void main(String[] args)\n{ \n  // 匿名代码块\n  { \n    int localVar\
+  \ = 10;\n  } \n  // 从这里开始 localVar 不可用\n}\n\n```\n\n第 4 章\n\n![image](img/frontdot.jpg)\n\
+  \n运算符\n\n运算符用于对值进行操作。它们可以分为五种类型：算术运算符、赋值运算符、比较运算符、逻辑运算符和位运算符。\n\n算术运算符\n\n有四种基本的算术运算符，以及用于获取除法余数的取模运算符（`%`）。\n\
+  \n```\nfloat x = 3+2; // 5 // 加法\n      x = 3-2; // 1 // 减法\n      x = 3*2; // 6\
+  \ // 乘法\n      x = 3/2; // 1 // 除法\n      x = 3%2; // 1 // 取模（除法余数）\n```\n\n注意除法符号给出了一个不正确的结果。这是因为它对两个整数值进行运算，因此会对结果进行四舍五入并返回一个整数。要获得正确的值，必须将其中一个数字显式转换为浮点类型。\n\
+  \n```\nfloat x = (float)3/2; // 1.5\n```\n\n赋值运算符\n\n第二组是赋值运算符。最重要的是赋值运算符（`=`）本身，它将一个值赋给一个变量。\n\
+  \n复合赋值运算符\n\n赋值运算符和算术运算符的一个常见用法是对一个变量进行操作，然后将结果保存回同一个变量。这些操作可以使用复合赋值运算符来简化。\n\n\
+  ```\nint x = 0;\n    x += 5; // x = x+5;\n    x -= 5; // x = x-5;\n    x *= 5; //\
+  \ x = x*5;\n    x /= 5; // x = x/5;\n    x %= 5; // x = x%5;\n```\n\n递增和递减运算符\n\n\
+  另一个常见操作是将变量递增或递减 1。这可以通过递增（`++`）和递减（`--`）运算符来简化。\n\n```\n++x; // x += 1\n--x; //\
+  \ x -= 1\n```\n\n这两个运算符都可以用在变量的前面或后面。\n\n```\n++x; // 前递增\n--x; // 前递减\nx++; //\
+  \ 后递增\nx--; // 后递减\n```\n\n无论使用哪种方式，对变量的最终结果都是一样的。区别在于，后置运算符在修改变量之前返回其原始值，而前置运算符则先修改变量，然后返回修改后的值。\n\
+  \n```\nx = 5; y = x++; // y=5, x=6\nx = 5; y = ++x; // y=6, x=6\n```\n\n比较运算符\n\n\
+  比较运算符比较两个值，并返回 `true` 或 `false`。它们主要用于指定条件，即计算结果为 `true` 或 `false` 的表达式。\n\n```\n\
+  boolean x = (2==3); // false // 等于\n        x = (2!=3); // true  // 不等于\n      \
+  \  x = (2>3);  // false // 大于\n        x = (2<3);  // true  // 小于\n        x = (2>=3);\
+  \ // false // 大于等于\n        x = (2<=3); // true  // 小于等于\n```\n\n逻辑运算符\n\n逻辑运算符通常与比较运算符一起使用。逻辑与（`&&`）在左右两侧都为\
+  \ `true` 时计算结果为 `true`，逻辑或（`||`）在左侧或右侧任意一侧为 `true` 时计算结果为 `true`。要反转布尔结果，可以使用逻辑非（`!`）运算符。请注意，对于“逻辑与”和“逻辑或”，如果左侧的结果已经决定了最终结果，则右侧将不会被计算。\n\
+  \n```\nboolean x = (true && false); // false // 逻辑与\n        x = (true || false);\
+  \ // true  // 逻辑或\n        x = !(true);         // false // 逻辑非\n```\n\n位运算符\n\n\
+  位运算符可以操作整数内部的各个位。例如，右移运算符（`>>`）将所有位（符号位除外）向右移动，而无符号右移（`>>>`）则将包括符号位在内的所有位向右移动。\n\
+  \n\n```\n```\nint x = 5 & 4; // 101 & 100 = 100 (4) // 按位与\n    x = 5 | 4; // 101\
+  \ | 100 = 101 (5) // 按位或\n    x = 5 ^ 4; // 101 ^ 100 = 001 (1) // 按位异或\n    x =\
+  \ 4 << 1;// 100 << 1  =1000 (8) // 左移\n    x = 4 >> 1;// 100 >> 1  =  10 (2) //\
+  \ 右移\n    x = 4 >>>1;// 100 >>>1  =  10 (2) // 无符号右移\n                                      //\
+  \ 右移\n    x = ∼4;    // ∼00000100 = 11111011 (-5) // 按位取反\n```\n\n这些位运算符拥有简写的赋值运算符，与算术运算符类似。\n\
+  \n```\nint x = 5;\n    x  &= 5; // 按位与并赋值\n    x  |= 5; // 按位或并赋值\n    x  ^= 5;\
+  \ // 按位异或并赋值\n    x <<= 5; // 左移并赋值\n    x >>= 5; // 右移并赋值\n    x>>>= 5; // 右移并赋值（移动符号位）\n\
+  ```\n\n运算符优先级\n\n在 Java 中，表达式通常从左到右进行求值。然而，当一个表达式包含多个运算符时，这些运算符的优先级决定了它们的求值顺序。优先级顺序如下表所示。同样的顺序也适用于许多其他语言，例如\
+  \ C++ 和 C#。\n\n![image](img/Table4-1.jpg)\n\n例如，逻辑与（`&&`）的绑定优先级低于关系运算符，而关系运算符的绑定优先级又低于算术运算符。\n\
+  \n```\nx = 2+3 > 1*4 && 5/5 == 1; // true\n```\n\n为了避免记忆所有运算符的优先级并明确意图，可以使用括号来指定表达式中哪一部分将首先被求值。括号在所有运算符中具有最高的优先级。\n\
+  \n```\nx = ( (2+3) > (1*4) ) && ( (5/5) == 1 ); // true\n```\n\n第 5 章\n\n![image](img/frontdot.jpg)\n\
+  \n字符串\n\nJava 中的 `String` 类是一种可以保存字符串字面量的数据类型。String 是引用数据类型，所有非原始数据类型都是如此。这意味着变量包含的是内存中某个对象的地址，而不是对象本身。`String`\
+  \ 对象在内存中被创建，该对象的地址被返回给变量。\n\n如下所示，字符串字面量由双引号界定。这实际上是常规引用类型初始化（创建）语法的一种简写形式，该语法使用\
+  \ `new` 关键字。\n\n```\nString a = \"Hello\";\nString b = new String(\" World\");\n\
+  ```\n\n字符串拼接\n\n加号用于拼接两个字符串。在此上下文中，它被称为连接运算符（`+`）。该运算符有一个对应的赋值运算符（`+=`），用于将一个字符串追加到另一个字符串并创建一个新字符串。\n\
+  \n```\nString c = a+b; // Hello World\n       a += b;  // Hello World\n```\n\n请注意，虽然一条语句可以分成多行，但字符串必须位于单行中，除非使用连接运算符将其拆分。\n\
+  \n```\nString x\n         = \"Hello \" +\n           \"World\";\n```\n\n转义字符\n\n\
+  为了在字符串本身中添加新行，可以使用转义字符“`\\n`”。这种反斜杠表示法用于编写特殊字符，例如反斜杠或双引号。特殊字符中还包括用于编写任意字符的 Unicode\
+  \ 字符表示法。所有转义字符如下表所示。\n\n![image](img/Table5-1.jpg)\n\n字符串比较\n\n比较两个字符串的方法是使用 `String`\
+  \ 类的 `equals` 方法。如果使用相等运算符（`==`），则会比较内存地址。\n\n```\nboolean x = a.equals(b); // 比较字符串\n\
+  boolean y = (a == b);    // 比较地址\n```\n\n请记住，Java 中的所有字符串都是 `String` 对象。因此，可以直接在常量字符串上调用方法，就像在变量上调用一样。\n\
+  \n```\nboolean z = \"Hello\".equals(a);\n```\n\nStringBuffer 类\n\n`String` 类提供了大量方法，但不包含任何用于操作字符串的方法。这是因为\
+  \ Java 中的字符串是不可变的。一旦创建了 `String` 对象，其内容就无法更改，除非完全替换整个字符串。由于大多数字符串从未被修改，因此特意这样设计是为了使\
+  \ `String` 类更高效。当你需要一个可修改的字符串时，可以使用 `StringBuffer` 类，它是一个可变的字符串对象。\n\n```\nStringBuffer\
+  \ sb = new StringBuffer(\"Hello\");\n```\n\n该类提供了多种操作字符串的方法，例如 `append`、`delete`\
+  \ 和 `insert`。\n\n```\nsb.append(\" World\");   // 添加到字符串末尾\nsb.delete(0, 5);      \
+  \ // 删除前 5 个字符\nsb.insert(0, \"Hello\"); // 在开头插入字符串\n```\n\n`StringBuffer` 对象可以通过\
+  \ `toString` 方法转换回常规字符串。\n\n```\nString s = sb.toString();\n```\n\n第 6 章\n\n![image](img/frontdot.jpg)\n\
+  \n数组\n\n数组是一种用于存储值集合的数据结构。\n\n数组声明\n\n要声明一个数组，需要在数组将包含的数据类型后附加一对方括号，然后是数组的名称。或者，方括号也可以放在数组名称之后。数组可以用任何数据类型声明，并且其所有元素必须属于该类型。\n\
+  \n```\nint[] x;\nint y[];\n```\n\n数组分配\n\n使用 `new` 关键字分配数组，后面再次跟上数据类型和一对方括号，其中包含数组的长度。这是数组可以包含的固定元素数量。一旦创建了数组，元素将自动被分配为该数据类型的默认值。\n\
+  \n```\nint y[] = new int[3];\n```\n\n数组赋值\n\n要填充数组元素，可以通过将元素的索引放在方括号内来逐个引用它们，然后为其赋值。请注意，索引从零开始。\n\
+  \n```\ny[0] = 1;\ny[1] = 2;\ny[2] = 3;\n```\n\n或者，可以使用花括号表示法一次性赋值。如果同时声明数组，可以省略\
+  \ `new` 关键字和数据类型。\n\n```\nint[] x = new int[] {1,2,3};\nint[] x = {1,2,3};\n```\n\
+  \n一旦数组元素被初始化，就可以通过引用方括号内的元素索引来访问它们。\n\n```\nSystem.out.print(x[0] + x[1] + x[2]);\
+  \ // 6\n```\n\n多维数组\n\n多维数组的声明、创建和初始化与一维数组非常相似，只是它们有额外的方括号。它们可以有任意数量的维度，每增加一个维度就添加一对方括号。\n\
+  \n```\nString[][] x = {{\"00\",\"01\"},{\"10\",\"11\"}};\nString[][] y = new String[2][2];\n\
+  \ny[0][0] = \"00\";\ny[0][1] = \"01\";\ny[1][0] = \"10\";\ny[1][1] = \"11\";\n\n\
+  System.out.print(x[0][0] + x[1][1]); // \"0011\"\n```\n\nArrayList 类\n\n关于数组，需要牢记的一点是它们的长度是固定的，并且没有可用的方法来改变其大小。事实上，唯一经常使用的数组成员是\
+  \ `length`，用于获取数组的大小。\n\n```\nint x[] = new int[3];\nint size = x.length; // 3\n\
+  ```\n\n当需要可变大小的数组时，可以使用 `ArrayList` 类，它位于 `java.util` 包中。`ArrayList` 中的项存储为通用的 `Object`\
+  \ 类型。因此，`ArrayList` 可以保存任何数据类型，但原始类型除外。\n\n```\n// 创建一个 Object ArrayList 集合\njava.util.ArrayList\
+  \ a = new java.util.ArrayList();\n```\n\n`ArrayList` 类提供了多种有用的方法来更改数组，包括：`add`、`set`\
+  \ 和 `remove`。\n\n```\na.add(\"Hi\");       // 添加一个元素\na.set(0, \"Hello\"); // 更改第一个元素\n\
+  a.remove(0);       // 移除第一个元素\n```\n\n要从 `ArrayList` 中检索元素，可以使用 `get` 方法。然后必须将元素显式地强制转换回其原始类型。\n\
+  \n```\na.add(\"Hello World\");\nString s = (String)a.get(0); // Hello World\n```\n\
+  ```\n\n\n第七章\n\n![image](img/frontdot.jpg)\n\n条件语句\n\n条件语句用于根据不同的条件执行不同的代码块。\n\n\
+  If 语句\n\n只有当括号内的条件被评估为真时，`if` 语句才会执行。该条件可以包含任何比较运算符和逻辑运算符。\n\n```\nif (x < 1) {\n\
+    System.out.print(x + \" < 1\");\n}\n\n```\n\n为了测试其他条件，`if` 语句可以通过任意数量的 `else if`\
+  \ 子句进行扩展。每个附加条件仅在所有先前条件都为假时才会被测试。\n\n```\nelse if (x > 1) {\n  System.out.print(x\
+  \ + \" > 1\");\n}\n\n```\n\n`if` 语句可以在末尾包含一个 `else` 子句，当所有先前条件都为假时，该子句将执行。\n\n```\n\
+  else {\n  System.out.print(x + \" == 1\");\n}\n\n```\n\n至于花括号，如果只需要有条件地执行单个语句，则可以省略它们。\n\
+  \n```\nif (x < 1)\n  System.out.print(x + \" < 1\");\nelse if (x > 1)\n  System.out.print(x\
+  \ + \" > 1\");\nelse\n  System.out.print(x + \" == 1\");\n```\n\nSwitch 语句\n\n`switch`\
+  \ 语句检查一个整数与一系列 `case` 标签之间的相等性。然后执行匹配的 `case`。该语句可以包含任意数量的 `case`，并且可以以一个 `default`\
+  \ 标签结尾，用于处理所有其他情况。\n\n```\nswitch (y)\n{ \n  case 0: System.out.print(y + \" is\
+  \ 0\"); break;\n  case 1: System.out.print(y + \" is 1\"); break;\n  default:System.out.print(y\
+  \ + \" is something else\");\n}\n\n```\n\n请注意，每个 `case` 标签后的语句没有用花括号括起来。相反，语句以 `break`\
+  \ 关键字结束。如果没有 `break`，执行将会“穿透”到下一个 `case`。如果多个 `case` 需要以相同方式评估，这可能会很有用。\n\n可以与 `switch`\
+  \ 语句一起使用的数据类型有：`byte`、`short`、`int` 和 `char`。从 Java 7 开始，也允许使用 `String` 类型。\n\n\
+  三元运算符\n\n除了 `if` 和 `switch` 语句之外，还有三元运算符（`?:`）。此运算符可以替换为特定变量赋值的单个 `if/else` 子句。该运算符接受三个表达式。如果第一个表达式评估为真，则返回第二个表达式；如果为假，则评估并返回第三个表达式。\n\
+  \n```\nx = (x < 0.5) ? 0 : 1; // 三元运算符 (?:)\n```\n\n第八章\n\n![image](img/frontdot.jpg)\n\
+  \n循环\n\nJava 中有四种循环结构。它们用于多次执行特定的代码块。就像条件 `if` 语句一样，如果代码块中只有一条语句，则可以省略循环的花括号。\n\n\
+  While 循环\n\n`while` 循环仅在条件为真时执行代码块，并且只要条件保持为真，就会继续循环。下面的循环将打印出数字 0 到 9。\n\n```\n\
+  int i = 0;\nwhile (i < 10) { System.out.print(i++); }\n```\n\n请注意，循环的条件仅在每次迭代（循环）开始时检查。\n\
+  \nDo-while 循环\n\n`do-while` 循环的工作方式与 `while` 循环相同，不同之处在于它在代码块之后检查条件。因此，它总是至少执行一次代码块。\n\
+  \n```\nint i = 0;\ndo { System.out.print(i++); } while (i < 10);\n```\n\nFor 循环\n\
+  \n`for` 循环用于按特定次数执行代码块。它使用三个参数。第一个参数初始化一个计数器，并且在循环之前始终执行一次。第二个参数包含循环的条件，并在每次迭代之前检查。第三个参数包含计数器的增量，并在每次迭代结束时执行。\n\
+  \n```\nfor (int i = 0; i < 10; i++)\n{ System.out.print(i); }\n```\n\n`for` 循环有几种变体。例如，第一个和第三个参数可以通过使用逗号运算符拆分为多个语句。\n\
+  \n```\nfor (int k = 0, l = 10; k < 10; k++, l--)\n{ System.out.print(k + l); }\n\
+  ```\n\n还可以选择省略一个或多个参数。例如，可以将第三个参数移到循环体内部。\n\n```\nfor (int k = 0, l = 10; k < 10;)\n\
+  { System.out.print(k + l); k++, l--; }\n```\n\nForeach 循环\n\n`foreach` 循环提供了一种遍历数组的简单方法。在每次迭代中，数组中的下一个元素被分配给指定的变量，并且循环继续执行，直到遍历完整个数组。\n\
+  \n```\nint[] array = { 1,2,3 };\nfor (int element : array) { System.out.print(element);\
+  \ }\n```\n\nBreak 和 Continue\n\n有两个特殊的关键字可以在循环内部使用——`break` 和 `continue`。`break`\
+  \ 关键字结束循环结构，`continue` 跳过当前迭代的剩余部分，并在下一次迭代的开头继续执行。\n\n```\nbreak;    // 结束当前循环\n\
+  continue; // 开始下一次迭代\n```\n\n要跳出当前循环之上的循环，必须首先通过在该循环之前添加一个名称后跟冒号来标记该循环。有了这个标签，它就可以用作\
+  \ `break` 语句的参数，告诉它要跳出哪个循环。这也适用于 `continue` 关键字，以便跳到命名循环的下一次迭代。请注意，此示例中的 `continue`\
+  \ 语句是不可达的，因为前面的 `break` 语句总是阻止 `continue` 执行。\n\n```\nmyLoop: for (int i = 0, j\
+  \ = 0; i < 10; i++)\n        { \n          while (++j < 10)\n          { \n            break\
+  \ myLoop;    // 结束 for 循环\n            continue myLoop; // 开始下一次 for 循环\n          }\
+  \ \n        }\n\n```\n\n标记块\n\n标记块，也称为命名块，是通过在匿名代码块之前放置一个标签来创建的。`break` 关键字可用于跳出此类块，就像在标记循环中一样。例如，在执行验证时，如果某个验证步骤失败，必须中止整个过程，这可能会很有用。\n\
+  \n```\nvalidation:\n{ \n  if(true)\n    break validation;\n}\n\n```\n\n标记块对于将大型方法组织成多个部分可能很有用。但在大多数情况下，拆分方法是更好的主意。然而，如果新方法需要大量参数，或者该方法仅从单个位置使用，那么一个或多个标记块可能是更可取的。\n\
+  \n第九章\n\n![image](img/frontdot.jpg)\n\n方法\n\n方法是可重用的代码块，仅在调用时执行。\n\n定义方法\n\n可以通过输入\
+  \ `void` 后跟方法名、一对圆括号和一个代码块来创建方法。`void` 关键字意味着该方法不会返回值。方法的命名约定与变量相同——一个描述性的名称，首单词小写，其他单词首字母大写。\n\
+  \n```\nclass MyApp\n{ \n  void myPrint()\n  { \n    System.out.print(\"Hello\");\n\
+    } \n}\n\n```\n\n调用方法\n\n上面的方法将简单地打印出一条文本消息。要从 `main` 方法中调用它，必须首先创建 `MyApp` 类的一个实例。然后在实例名称后使用点运算符来访问其成员，其中包括\
+  \ `myPrint` 方法。\n\n```\npublic static void main(String[] args)\n{ \n  MyApp m =\
+  \ new MyApp();\n  m.myPrint(); // Hello\n}\n\n```\n\n方法参数\n\n方法名后面的圆括号用于向方法传递参数。为此，必须首先以逗号分隔列表的形式将相应的参数添加到方法声明中。\n\
+  \n```\nvoid myPrint(String s)\n{ \n  System.out.print(s);\n}\n\n```\n\n一个方法可以定义为接受任意数量的参数，并且它们可以具有任何数据类型，只需确保调用方法时使用相同类型和数量的参数即可。\n\
+  \n```\npublic static void main(String[] args)\n{ \n  MyApp m = new MyApp();\n  m.myPrint(\"\
+  Hello\"); // Hello\n}\n\n```\n\n准确地说，*形参*出现在方法定义中，而*实参*出现在方法调用中。然而，这两个术语有时可以互换使用。\n\
+  \nReturn 语句\n\n\n\n方法可以返回一个值。此时，`void` 关键字会被替换为方法将要返回的数据类型，并且需要在方法体中添加 `return`\
+  \ 关键字，后跟指定返回类型的参数。\n\n```\nString getPrint()\n{ \n  return \"Hello\";\n}\n\n```\n\
+  \n`return` 是一个跳转语句，它会导致方法退出，并将指定的值返回给调用该方法的地方。例如，上述方法可以作为参数传递给 `getPrint` 方法，因为该方法求值后得到一个字符串。\n\
+  \n```\npublic static void main(String[] args)\n{ \n  MyApp m = new MyApp();\n  System.out.print(\
+  \ getPrint() ); // Hello\n}\n\n```\n\n`return` 语句也可以在 `void` 方法中使用，以便在到达结束块之前退出。\n\
+  \n```\nvoid myPrint(String s)\n{ \n  System.out.print(s);\n}\n\n```\n\n方法重载\n\n\
+  可以声明多个同名方法，只要它们的参数在类型或数量上有所不同即可。这被称为方法重载，例如可以在 `System.out.print` 方法的实现中看到。这是一个强大的特性，它允许一个方法处理多种参数，而程序员无需意识到使用了不同的方法。\n\
+  \n```\nvoid myPrint(String s)\n{ \n  System.out.print(s);\n}\n\nvoid myPrint(int\
+  \ i)\n{ \n  System.out.print(i);\n}\n\n```\n\n传递参数\n\nJava 与许多其他语言不同，所有方法参数都是按值传递的。事实上，它们不能按引用传递。对于值数据类型（基本类型），这意味着在方法内部只会改变变量的一个本地副本，因此这种改变不会影响原始变量。对于引用数据类型（类、接口和数组），这意味着只有内存地址的副本被传递给方法。因此，如果整个对象被替换，这种改变不会传播回调用者，但对对象内部所做的更改会影响原始对象，因为副本指向同一个内存位置。\n\
+  \n```\npublic static void main(String[] args)\n{ \n  int x = 0;              //\
+  \ 值数据类型\n  m.set(x);               // 传递的是值\n  System.out.print(x);    // 0\n\n\
+  int[] y = {0};          // 引用数据类型\n  m.set(y);               // 传递的是地址\n  System.out.print(y[0]);\
+  \ // 10\n}\n\nvoid set(int a) { a = 10; }\nvoid set(int[] a) { a[0] = 10; }\n```\n\
+  \n第 10 章\n\n![image](img/frontdot.jpg)\n\n类\n\n类是用于创建对象的模板。它们由成员组成，其中最主要的两个是字段和方法。字段是保存对象状态的变量，而方法则定义了对象可以做什么。\n\
+  \n```\nclass MyRectangle\n{ \n  int x, y;\n  int getArea() { return x * y; }\n}\n\
+  \n```\n\n创建对象\n\n要从定义类的外部访问类的字段和方法，必须首先创建该类的一个对象。这通过使用 `new` 关键字来完成，它会在系统内存中创建一个新对象。\n\
+  \n```\npublic class MyApp\n{ \n  public static void main(String[] args)\n {\n    //\
+  \ 创建一个 MyRectangle 对象\n    MyRectangle r = new MyRectangle();\n  } \n}\n\n```\n\n\
+  对象也被称为实例。该对象将包含自己的一组字段，这些字段可以保存与该类其他实例不同的值。\n\n访问对象成员\n\n除了创建对象之外，那些需要在其包之外可访问的类成员，必须在类定义中声明为\
+  \ `public`。\n\n```\nclass MyRectangle\n{ \n  public int x, y;\n  public int getArea()\
+  \ { return x * y; }\n}\n\n```\n\n现在，可以通过在实例名称后使用点运算符来访问该对象的成员。\n\n```\npublic static\
+  \ void main(String[] args)\n{ \n  MyRectangle r = new MyRectangle();\n  r.x = 10;\n\
+    r.y = 5;\n  int z = r.getArea() // 50 (5*10)\n}\n\n```\n\n构造方法\n\n类可以有一个构造方法。这是一种特殊的方法，用于实例化（构造）对象。它总是与类同名，并且没有返回类型，因为它隐式地返回该类的一个新实例。为了能够从不在其包中的另一个类访问，它需要使用\
+  \ `public` 访问修饰符进行声明。当使用 `new` 语法创建 `MyRectangle` 类的新实例时，会调用构造方法，在下面的示例中，它将字段设置为一些默认值。\n\
+  \n```\nclass MyRectangle\n{ \n  int x, y;\n  public MyRectangle() { x = 10; y =\
+  \ 20; }\n\npublic static void main(String[] args)\n  { \n    MyRectangle r = new\
+  \ MyRectangle();\n  } \n}\n\n```\n\n构造方法可以像任何其他方法一样拥有参数列表。如下所示，这可以用来使字段的初始值依赖于创建对象时传递的参数。\n\
+  \n```\nclass MyRectangle\n{ \n  int x, y;\n  public MyRectangle(int a, int b) {\
+  \ x = a; y = b; }\n\npublic static void main(String[] args)\n  { \n    MyRectangle\
+  \ r = new MyRectangle(20,15);\n  } \n}\n\n```\n\n`this` 关键字\n\n在构造方法内部，以及属于该对象的其他方法中，可以使用一个名为\
+  \ `this` 的特殊关键字。这个关键字是对当前类实例的引用。例如，如果构造方法的参数与相应字段同名，那么即使字段被参数遮蔽，仍然可以通过使用 `this`\
+  \ 关键字来访问这些字段。\n\n```\nclass MyRectangle\n{ \n  int x, y;\n  public MyRectangle(int\
+  \ x, int y)\n  { \n    this.x = x; this.y = y;\n  } \n}\n\n```\n\n构造方法重载\n\n为了支持不同的参数列表，构造方法可以被重载。在下面的示例中，如果类在没有参数的情况下被实例化，字段将被赋予默认值。如果有一个参数，两个字段都将被设置为该值；如果有两个参数，每个字段将被分配一个单独的值。尝试使用错误数量的参数或错误的数据类型创建对象将导致编译时错误，就像任何其他方法一样。\n\
+  \n```\nclass MyRectangle\n{ \n  int x, y;\n  public MyRectangle()             {\
+  \ x = 10; y = 20; }\n  public MyRectangle(int a)        { x = a;  y = a;  }\n  public\
+  \ MyRectangle(int a, int b) { x = a;  y = b;  }\n}\n\n```\n\n构造方法链\n\n`this` 关键字也可以用来从一个构造方法调用另一个构造方法。这被称为构造方法链，并允许更大的代码复用。请注意，该关键字以方法调用的形式出现，并且它必须位于构造方法的第一行。\n\
+  \n```\npublic MyRectangle()             { this(10,20);  }\npublic MyRectangle(int\
+  \ a)        { this(a,a);    }\npublic MyRectangle(int a, int b) { x = a; y = b;\
+  \ }\n```\n\n初始字段值\n\n如果类中有需要分配默认值的字段，例如上面第一个构造方法中的情况，可以在声明字段的同时直接赋值。这些初始值将在构造方法被调用之前被分配。\n\
+  \n```\nclass MyRectangle\n{ \n  int x = 10, y = 20;\n}\n\n```\n\n默认构造方法\n\n即使没有定义任何构造方法，也可以创建一个类。这是因为编译器会自动创建一个默认的无参构造方法。\n\
+  \n```\nclass MyClass\n{ \n  public static void main(String[] args)\n  { \n    //\
+  \ 使用默认构造方法\n    MyClass c = new MyClass();\n  } \n}\n\n```\n\n`null`\n\n内置常量 `null`\
+  \ 用于表示一个未初始化的对象。它只能赋值给对象，而不能赋值给基本类型的变量。可以使用等于运算符（`==`）来测试一个对象是否为 null。\n\n```\n\
+  String s = null;\nif (s == null) s = new String();\n```\n\n默认值\n\n\n\n对象的默认值为 null。对于基本数据类型，默认值如下：数值类型变为\
+  \ `0`，char 类型为 Unicode 零字符（`\\0000`），boolean 类型为 false。编译器会自动分配默认值，但这仅适用于字段（fields），而不适用于局部变量（local\
+  \ variables）。然而，显式地为字段指定默认值被认为是良好的编程习惯，因为这能使代码更易于理解。对于局部变量，编译器不会设置默认值。相反，编译器会强制程序员为所有使用的局部变量赋值，以避免与使用未赋值变量相关的问题。\n\
+  \n```\nclass MyApp\n{ \n  int x;   // 字段被分配默认值 0\n\nint dummy()\n  { \n    int x;\
+  \ // 局部变量如果被使用则必须赋值\n  } \n}\n\n```\n\n垃圾回收器\n\nJava 运行时环境拥有一个垃圾回收器，它会定期释放不再需要的对象所占用的内存。这使程序员从通常繁琐且容易出错的内存管理任务中解放出来。当一个对象不再有任何引用时，它就符合销毁条件。例如，当对象超出作用域时就会发生这种情况。也可以通过将其引用设置为\
+  \ null 来显式地丢弃对象。\n\n第 11 章\n\n![image](img/frontdot.jpg)\n\n静态\n\n`static` 关键字用于创建无需创建类实例即可访问的字段和方法。静态（类）成员只存在一份副本，属于类本身；而实例（非静态）成员则为每个新对象创建新的副本。这意味着静态方法不能使用实例成员，因为这些方法不是实例的一部分。另一方面，实例方法可以同时使用静态成员和实例成员。\n\
+  \n```\nclass MyCircle\n{ \n  float r = 10;            // 实例字段\n  static float pi\
+  \ = 3.14F; // 静态/类字段\n\n// 实例方法\n  float getArea() { return newArea(r); }\n\n//\
+  \ 静态/类方法\n  static float newArea(float a) { return pi*a*a; }\n}\n\n```\n\n访问静态成员\n\
+  \n要从类外部访问静态成员，需要使用类名后跟点运算符。此运算符与用于访问实例成员的运算符相同，但访问实例成员需要对象引用。尝试使用对象引用（而不是类名）来访问静态成员会给出警告，因为这会使查看正在使用静态成员变得更加困难。\n\
+  \n```\npublic static void main(String[] args)\n{ \n  float f = MyCircle.pi;\n  MyCircle\
+  \ c = new MyCircle();\n  float g = c.r;\n} \n```\n\n静态方法\n\n静态成员的优点在于，其他类无需创建该类的实例即可使用它们。因此，当只需要变量的单个实例时，应将字段声明为\
+  \ static。如果方法执行独立于任何实例变量的通用功能，则应将其声明为 static。`Math` 类就是一个很好的例子，它只包含静态方法和字段。\n\n\
+  ```\ndouble pi = Math.PI;\n```\n\n`Math` 是每个 Java 应用程序中默认包含的类之一。原因在于它属于 `java.lang`\
+  \ 包，该包总是被自动导入。这个包包含 Java 语言的基础类，例如：`String`、`Object` 和 `System`。\n\n静态字段\n\n静态字段的优点在于它们在整个应用程序的生命周期内持续存在。因此，例如，它们可用于记录某个方法在该类的所有实例中被调用的次数。静态字段的初始值只会在类或字段被使用之前的某个时间点设置一次。\n\
+  \n```\nclass MyCircle\n{ \n  static void dummy() { count++; }\n  static int count\
+  \ = 0;\n}\n\n```\n\n静态初始化块\n\n如果静态字段的初始化需要多行代码或某些其他逻辑，则可以使用静态初始化块。与构造函数相比，此块只会在静态字段初始化时运行一次。\n\
+  \n```\nstatic int[] array = new int[5];\nstatic\n{ \n  int i = 0;\n  for(int element\
+  \ : array)\n    element = i++;\n}\n\n```\n\n实例初始化块\n\n初始化块为分配实例字段提供了一种替代方法。此块放置在类级别，就像静态初始化块一样，但无需使用\
+  \ `static` 关键字。大括号之间的任何代码都将被编译器复制到每个构造函数的开头。\n\n```\nint[] array = new int[5];\n\
+  { \n  int i = 0;\n  for(int element : array) element = i++;\n}\n\n```\n\n一个类可以有多个初始化块和静态初始化块。\n\
+  \n第 12 章\n\n![image](img/frontdot.jpg)\n\n继承\n\n继承允许一个类获取另一个类的成员。在下面的示例中，Apple 继承自\
+  \ Fruit。这是通过 `extends` 关键字指定的。Fruit 成为 Apple 的超类，而 Apple 则成为 Fruit 的子类。除了自己的成员之外，Apple\
+  \ 还获得了 Fruit 中所有可访问的成员，但其构造函数除外。\n\n```\n// 超类（父类）\nclass Fruit\n{ \n  public String\
+  \ flavor;\n}\n\n// 子类（子类）\nclass Apple extends Fruit\n{ \n  public String variety;\n\
+  }\n\n```\n\nObject\n\nJava 中的类只能继承自一个超类，如果没有指定类，它将隐式继承自 `Object`。因此，`Object` 是所有类的根类。\n\
+  \n```\nclass Fruit extends Object {}\n```\n\n向上转型\n\n从概念上讲，子类是超类的一种特化。这意味着 Apple\
+  \ 是一种 Fruit，也是一种 Object，因此可以在任何需要 Fruit 或 Object 的地方使用。例如，如果创建了一个 Apple 实例，它可以向上转型为\
+  \ Fruit，因为子类包含了超类中的所有内容。\n\n```\nApple a = new Apple();\nFruit f = a;\n```\n\n然后，Apple\
+  \ 被视为 Fruit，因此只能访问 Fruit 的成员。\n\n```\nf.flavor = \"Sweet\";\n```\n\n向下转型\n\n当类向下转型回\
+  \ Apple 时，Apple 特有的字段将被保留。这是因为 Fruit 只是包含了 Apple，并没有转换它。向下转型必须显式进行，因为不允许将实际的 Fruit\
+  \ 向下转型为 Apple。\n\n```\nApple b = (Apple)f;\n```\n\nInstanceof 运算符\n\n作为安全预防措施，您可以使用\
+  \ `instanceof` 运算符来测试某个对象是否可以转换为特定类。如果左侧对象可以转换为右侧类型而不会引发异常，则此运算符返回 true。\n\n```\n\
+  Apple c = (f instanceof Apple) ? (Apple)f : null;\n```\n\n第 13 章\n\n![image](img/frontdot.jpg)\n\
+  \n重写\n\n子类中的成员可以重新定义其超类中的成员。这最常用于为实例方法提供新的实现。\n\n重写成员\n\n在下面的示例中，Rectangle 的 `getArea`\
+  \ 方法在 Triangle 中被重写，方法是在那里使用相同的方法签名重新声明它。签名包括方法的名称、参数和返回类型。但是，可以更改访问级别以允许比重写的方法更多的访问权限。\n\
+  \n```\nclass Rectangle\n{ \n  public int w = 10, h = 10;\n  public int getArea()\
+  \ { return w * h; }\n}\n\nclass Triangle extends Rectangle\n{ \n  public int getArea()\
+  \ { return w * h / 2; }\n}\n\n```\n\n重写注解\n\n为了表明这次重写是有意的，应该在方法之前放置 `@Override`\
+  \ 注解。此注解是在 Java 5 中添加的，用于防止意外重写。\n\n```\nclass Triangle extends Rectangle\n{ \n\
+    @Override public int getArea()\n  { \n    return w * h / 2;\n  } \n}\n\n```\n\n\
+  从 Triangle 实例调用 `getArea` 方法将调用 Triangle 版本的该方法。\n\n```\nTriangle o = new Triangle();\n\
+  o.getArea(); // (50) 调用 Triangle 的版本\n```\n\n\n\n如果将 Triangle 的实例向上转型为 Rectangle，那么\
+  \ Triangle 版本的方法仍会被调用，因为 Rectangle 的版本已被覆盖。\n\n```\nRectangle o = new Triangle();\n\
+  o.getArea();  // (50) 调用 Triangle 的版本\n```\n\n隐藏成员\n\n这一规则仅适用于实例方法，而不适用于类方法。如果向\
+  \ Rectangle 添加一个名为 `newArea` 的类方法，并在 Triangle 中重新定义它，那么 Triangle 版本的该方法只会隐藏 Rectangle\
+  \ 的实现。因此，不会使用 `@Override` 注解。\n\n```\nclass Rectangle\n{ \n  public int w = 10,\
+  \ h = 10;\n  public static int newArea(int a, int b) {\n    return a * b;\n  } \n\
+  }\n\nclass Triangle extends Rectangle\n{ \n  public static int newArea(int a, int\
+  \ b) {\n    return a * b / 2;\n  } \n}\n\n```\n\n从 Triangle 的接口调用 `newArea` 时，会按预期调用\
+  \ Triangle 的版本；但从 Rectangle 的接口调用该方法时，则会调用 Rectangle 的实现。\n\n```\nTriangle o = new\
+  \ Triangle();\no.newArea(10,10); // (50) 调用 Triangle 的版本\n\nRectangle r = o;\nr.newArea(10,10);\
+  \ // (100) 调用 Rectangle 的版本\n```\n\n在 Java 中，重新定义的实例方法总是被覆盖，而重新定义的类方法则总是被隐藏。无法像在\
+  \ C++ 或 C# 中那样改变这一行为。\n\n阻止方法继承\n\n若要防止实例方法在子类中被覆盖，可以使用 `final` 方法修饰符来声明它。\n\n```\n\
+  public final int getArea() { return w * h; }\n```\n\n请注意，方法修饰符的顺序是固定的。如果修饰符顺序错误，编译器会指出问题。\n\
+  \n访问被覆盖的方法\n\n在子类的实例方法内部，仍然可以通过 `super` 关键字访问被覆盖的方法。该关键字是对超类当前实例的引用。\n\n```\n@Override\
+  \ public int getArea()\n{ \n  return super.getArea() / 2;\n}\n\n```\n\n调用父类构造器\n\
+  \n`super` 关键字的另一个用途是放在构造器的第一行。在那里，它可以执行一个方法调用，以调用超类的构造器。\n\n```\npublic Triangle(int\
+  \ a, int b) { super(a,b); }\n```\n\n如果构造器的第一行不是对另一个构造器的调用，Java 编译器会自动添加对超类无参构造器的调用。这确保了所有祖先类都能被正确构造。\n\
+  \n```\npublic Triangle() { super(); }\n```\n\n第 14 章\n\n![image](img/frontdot.jpg)\n\
+  \n包与导入\n\n包用于避免命名冲突，并将代码文件组织到不同的目录中。到目前为止，本书中的代码文件都位于项目源目录的根目录下。因此，它属于所谓的*默认包*。在\
+  \ Java 中，文件所属的目录（相对于项目源目录）对应着包名。\n\n要将代码文件分配给某个包，例如“mypackage”，必须将其移动到项目目录下同名的文件夹中。此外，文件必须使用\
+  \ `package` 关键字后跟包名（和路径）来指定它所属的包。每个源文件中只能有一条 package 语句，并且它必须是代码的第一行（注释除外）。请注意，包的命名约定是全小写。\n\
+  \n```\npackage mypackage; // 此文件属于 mypackage\n```\n\n包的目录层级可以是任意深度，层级之间用点分隔。例如，如果包含代码文件的“mypackage”文件夹位于名为“sub”的项目文件夹中，则包声明应如下所示：\n\
+  \n```\npackage sub.mypackage;\n```\n\n假设此文件包含一个名为 MyClass 的公共类。要从另一个源文件访问 MyClass，有两种选择。第一种是输入完全限定名称。\n\
+  \n```\nsub.mypackage.MyClass m;\n```\n\n导入特定类\n\n\n\n第二种选择是通过 `import` 关键字引入类来缩短完全限定名称。import\
+  \ 语句必须位于代码文件中所有其他成员之前，其唯一用途就是让程序员免于输入完全限定名称。\n\n```\nimport mypackage.sub.MyClass;\n\
+  // ... \nMyClass m;\n```\n\n导入包\n\n除了导入特定类之外，还可以使用星号（`*`）导入包内的所有类型。请注意，这并不会导入任何子包。\n\
+  \n```\nimport java.util.*;\n```\n\n静态导入\n\nimport 语句的第三种变体是静态导入，它会导入一个类的所有静态成员。一旦静态成员被导入，就可以在不指定类名的情况下使用它们。\n\
+  \n```\nimport static java.lang.Math.*;\n// ... \ndouble pi = PI; // Math.PI\n```\n\
+  \n第 15 章\n\n![image](img/frontdot.jpg)\n\n访问级别\n\nJava 中有四种访问级别。分别是 `public`、`protected`、`private`\
+  \ 和包级私有。包级私有无法通过关键字显式声明。相反，它是 Java 中每个成员的默认访问级别。\n\n```\npublic    int myPublic;\
+  \   // 无限制访问\nprotected int myProtected;// 包或子类访问\n          int myPackage;  //\
+  \ 包访问\nprivate   int myPrivate;  // 类访问\n```\n\n私有访问\n\n限制最严格的访问级别是 `private`。具有此级别的成员只能在其所属（包含）类内部使用。\n\
+  \n```\npackage mypackage;\npublic class MyApp\n{ \n  public    int myPublic;\n  protected\
+  \ int myProtected;\n            int myPackage;\n  private   int myPrivate;\n\nvoid\
+  \ test()\n  { \n    myPublic    = 0; // 允许\n    myProtected = 0; // 允许\n    myPackage\
+  \   = 0; // 允许\n    myPrivate   = 0; // 允许\n  } \n}\n\n```\n\n包级私有访问\n\n包级私有成员可以在所属包内的任何位置访问，但不能从其他包访问。\n\
+  \n```\npackage mypackage;\npublic class MyClass\n{ \n  void test(MyApp m)\n  { \n\
+      m.myPublic    = 0; // 允许\n    m.myProtected = 0; // 允许\n    m.myPackage   =\
+  \ 0; // 允许\n    m.myPrivate   = 0; // 不可访问\n  } \n}\n\n```\n\n受保护访问\n\n受保护成员可以在子类以及所属包内访问。请注意，Java\
+  \ 中 protected 的含义与其他语言（如 C++ 和 C#）不同，在那些语言中，受保护成员只能从子类和所属类访问。\n\n```\npackage newpackage;\n\
+  import mypackage.MyApp;\n\npublic class MyClass extends MyApp\n{ \n  void test()\n\
+    { \n    myPublic    = 0; // 允许\n    myProtected = 0; // 允许\n    myPackage   =\
+  \ 0; // 不可访问\n    myPrivate   = 0; // 不可访问\n  } \n}\n\n```\n\n公共访问\n\n`public` 修饰符允许从任何可以引用该成员的位置进行无限制访问。\n\
+  \n```\npackage newpackage;\nimport mypackage.MyApp;\n\npublic class MyClass\n{ \n\
+    void test(MyApp m)\n  { \n    m.myPublic    = 0; // 允许\n    m.myProtected = 0;\
+  \ // 不可访问\n    m.myPackage   = 0; // 不可访问\n    m.myPrivate   = 0; // 不可访问\n  } \n\
+  }\n\n```\n\n顶级访问\n\n直接在包中声明的成员（顶级成员）只能在包级私有和公共访问之间选择。例如，没有访问修饰符的顶级类将默认为包级私有。这样的类只能在所属包内访问。另一方面，显式声明为\
+  \ `public` 的顶级类也可以从其他包访问。\n\n```\n// 仅能从所属包访问\nclass PackagePrivateClass {}\n\n\
+  // 可以从任何包访问\npublic class PublicClass {}\n```\n\n嵌套类访问\n\nJava 允许在其他类内部定义类，即所谓的嵌套类。这样的类可以具有四种访问级别中的任何一种。如果一个类不可访问，则无法被实例化或继承。\n\
+  \n```\npublic class MyClass\n{ \n  // 仅在 MyClass 内部可访问\n  private class PrivateNestedClass\
+  \ {}\n}\n\n```\n\n访问级别指南\n\n\n\n作为指导原则，在选择访问级别时，通常最好使用限制最严格的级别。这是因为成员能被访问的地方越多，它被错误访问的可能性就越大，这会使代码更难调试。使用限制性的访问级别还能让你更容易地修改类，而不会破坏使用该类的其他程序员的代码。\n\
+  \n第 16 章\n\n![image](img/frontdot.jpg)\n\n常量\n\n在 Java 中，通过在数据类型前添加 `final` 关键字，可以将变量变为常量。这个修饰符意味着变量一旦被赋值就不能再被重新赋值，任何尝试重新赋值的操作都会导致编译时错误。\n\
+  \n局部常量\n\n局部常量必须在声明的同时进行初始化。Java 中常量的命名约定是使用全部大写字母，并用下划线分隔单词。\n\n```\nfinal double\
+  \ PI = 3.14;\n```\n\n常量字段\n\n类变量和实例变量也可以声明为 `final`。\n\n```\nclass MyClass\n{ \n\
+    final double E = 2.72;\n  static final double C = 3e8;\n}\n\n```\n\n与局部常量不同，常量字段并不总是在声明时赋值。常量实例字段可以选择在构造函数中赋值，而常量静态字段可以通过使用静态初始化块来赋值。如果常量的值需要计算且无法在一行代码内完成，这些替代赋值方式会很有用。\n\
+  \n```\nclass MyClass\n{ \n  final double E;\n  static final double C;\n\npublic\
+  \ MyClass() { E = 2.72; }\n  static { C = 3e8; }\n}\n\n```\n\n常量方法参数\n\n`final`\
+  \ 修饰符另一个可以应用的地方是方法参数，使其不可更改。\n\n```\nvoid f(final int A) {}\n```\n\n编译时常量与运行时常量\n\
+  \n与大多数其他语言一样，Java 既有编译时常量也有运行时常量。然而，在 Java 中，只有类常量可以是编译时常量，并且仅当其值在编译时已知时才是。所有其他使用\
+  \ `final` 的情况都会创建运行时常量。对于编译时常量，编译器会在代码中所有出现常量名的地方用其值进行替换。因此，它们比运行时常量更快，运行时常量直到程序运行时才被设置。不过，运行时常量可以被赋予动态值，这些值可以在不同的程序运行之间发生变化。\n\
+  \n```\nclass MyClass\n{ \n  final double E = 2.72;         // 运行时常量\n\nfinal static\
+  \ double C = 3e8;   // 编译时常量\n\nfinal static int RND = (new\n  java.util.Random()).nextInt();\
+  \ // 运行时常量\n}\n\n```\n\n常量使用指南\n\n通常，如果变量不需要重新赋值，最好始终将它们声明为 `final`。这可以确保变量不会在程序中的任何地方被意外更改，从而有助于防止错误。\n\
+  \n第 17 章\n\n![image](img/frontdot.jpg)\n\n接口\n\n接口是一种将“接口”与实现解耦的类型。它规定了其实现者与调用其方法（以及访问其常量）的对象之间的契约。接口使用\
+  \ `interface` 关键字定义，后跟名称和代码块。其命名约定与类相同，即每个单词的首字母大写。当接口没有嵌套在其他类型内部时，其访问级别可以是包级私有或公共，就像任何其他顶级成员一样。\n\
+  \n```\ninterface MyInterface {}\n```\n\n接口成员\n\n接口的代码块首先可以包含实例方法的签名。这些方法不能有任何实现。相反，它们的方法体由分号代替。接口成员必须始终是公共的，并且由于这是接口中的默认访问级别，因此可以省略此修饰符。\n\
+  \n```\ninterface MyInterface {\n  int myMethod(); // 方法签名\n}\n\n```\n\n接口可以包含的第二个成员是常量。在接口中创建的任何字段都将被隐式声明为\
+  \ `static final`，因此这些修饰符也可以省略。\n\n\n\n```\ninterface MyInterface {\n  int c = 10;\
+  \ // 常量\n}\n\n```\n\n除了方法签名和常量，接口还可以包含嵌套的包含类型，例如类或其他接口。\n\n```\ninterface MyInterface\n\
+  { \n  // 类型\n  class Class {}\n  interface Interface {}\n  enum Enum {}\n}\n\n```\n\
+  \n接口示例\n\n下面的示例展示了一个名为 `Comparable` 的接口，它有一个名为 `compare` 的单一方法。\n\n```\ninterface\
+  \ Comparable\n{ \n  int compare(Object o);\n}\n\n```\n\n下面的类通过在类名后使用 `implements`\
+  \ 关键字实现了该接口。按照惯例，如果该类有 `extends` 子句，则 `implements` 子句应放在其后。请注意，虽然一个类只能继承自一个超类，但它可以实现任意数量的接口，只需在逗号分隔的列表中指定它们即可。\n\
+  \n```\nclass Circle implements Comparable\n{ \n  public int r;\n}\n\n```\n\n因为 `Circle`\
+  \ 实现了 `Comparable`，所以它必须定义 `compare` 方法。对于此类，该方法将返回圆半径之间的差值。实现的方法必须是 `public` 的，并且其签名必须与接口中定义的方法签名相同。\n\
+  \n```\nclass Circle implements Comparable\n{ \n  public int r;\n\npublic int compare(Object\
+  \ o) {\n    return r - ( (Circle)o ).r;\n  } \n}\n\n```\n\n功能接口\n\n`Comparable`\
+  \ 展示了接口的第一种用途，即定义类可以共享的特定功能。它使得在不了解类实际类型的情况下使用接口成员成为可能。为了说明这一点，下面的示例展示了一个简单的方法，它接收两个\
+  \ `Comparable` 对象并返回较大的一个。该方法适用于所有实现了 `Comparable` 接口的类，无论其类型如何，因为该方法仅使用通过该接口暴露的功能。\n\
+  \n```\npublic static Object largest(Comparable a, Comparable b)\n{ \n  return (a.compare(b)\
+  \ > 0) ? a : b;\n}\n\n```\n\n类接口\n\n接口的第二种用途是为类提供一个实际的接口，通过该接口可以使用该类。下面的示例为 `MyClass`\
+  \ 定义了一个名为 `MyInterface` 的接口。该接口仅包含使用 `MyClass` 的程序员可能需要的功能。\n\n```\ninterface MyInterface\n\
+  { \n  void exposed();\n}\n\nclass MyClass implements MyInterface\n{ \n  public void\
+  \ exposed() {}\n  public void hidden() {}\n}\n\n```\n\n然后使用接口类型来持有实现类，这样该类就只能通过此接口被看到。\n\
+  \n```\npublic static void main(String[] args)\n{ \n  MyInterface i = new MyClass();\n\
+  }\n\n```\n\n这种抽象提供了两个好处。首先，它使其他程序员更容易使用该类，因为他们现在只能访问相关的方法。其次，它使该类更加灵活，因为只要遵循接口，其实现可以更改，而使用该类的其他程序员不会察觉到。\n\
+  \n接口类\n\n如前所述，接口可以包含嵌套类型，例如类。与方法不同，这些类型是在接口内部实现的。例如，这可以用于提供一个包含对实现类有用的静态方法的类。这些嵌套类型仅对实现接口的类可见，而对这些类的对象不可见。\n\
+  \n```\ninterface MyInterface\n{ \n  class HelperClass {\n    public static void\
+  \ helperMethod() {}\n  } \n} \n```\n\n第 18 章\n\n![image](img/frontdot.jpg)\n\n抽象\n\
+  \n抽象类提供了一个部分实现，其他类可以在此基础上构建。当一个类被声明为 `abstract` 时，意味着除了普通的类成员外，该类还可以包含必须在子类中实现的不完整方法。这些方法未被实现，仅指定了它们的签名，而它们的方法体被分号替换。\n\
+  \n```\nabstract class Shape\n{ \n  public int x = 100, y = 100;\n  public abstract\
+  \ int getArea();\n}\n\n```\n\n抽象类示例\n\n如果一个名为 `Rectangle` 的类继承自抽象类 `Shape`，那么 `Rectangle`\
+  \ 必须重写抽象的 `getArea` 方法。唯一的例外是如果 `Rectangle` 也被声明为 `abstract`，在这种情况下它不必实现任何抽象方法。\n\
+  \n```\nclass Rectangle extends Shape\n{ \n  @Override public int getArea()\n  {\n\
+      return x * y;\n  } \n}\n\n```\n\n抽象类不能被实例化，但可以用来持有其子类的实例。\n\n```\nShape s =\
+  \ new Rectangle();\n```\n\n尽管抽象类不能被实例化，但它可以有构造函数，可以通过在子类的构造函数中使用 `super` 关键字来调用这些构造函数。\n\
+  \n```\nabstract class Shape\n{ \n  public int x = 100, y = 100;\n  public Shape(int\
+  \ a, int b) { x = a; y = b; }\n}\n\nclass Rectangle extends Shape\n{ \n  public\
+  \ Rectangle(int a, int b) { super(a,b); }\n} \n```\n\n抽象类与接口\n\n抽象类在许多方面与接口相似。它们都可以定义子类必须实现的方法签名，并且两者都不能被实例化。关键区别在于：首先，抽象类可以包含非抽象成员，而接口不能。其次，一个类可以实现任意数量的接口，但只能继承自一个类，无论其是否为抽象类。请注意，抽象类可以像非抽象类一样，扩展一个超类并实现任意数量的接口。然而，接口不能继承自类。尽管它可以扩展另一个接口，这实际上将两个接口合并为一个。\n\
+  \n抽象类与接口使用指南\n\n接口要么用于定义类可以拥有的特定功能，要么为使用类的其他程序员提供接口。另一方面，抽象类用于提供部分类实现，由子类来完成它。当子类有很多共同的功能，但也有一些功能必须为每个子类以不同方式实现时，这非常有用。\n\
+  \n第 19 章\n\n![image](img/frontdot.jpg)\n\n枚举\n\n枚举是一种由固定列表的命名常量组成的类型。要创建一个枚举，使用\
+  \ `enum` 关键字，后跟一个名称和一个代码块，其中包含一个逗号分隔的常量元素列表。枚举的访问级别与类相同。默认是包级私有，但如果它在同名文件中声明，也可以设置为\
+  \ `public`。与类一样，枚举可以包含在类内部，此时它可以设置为任何访问级别。\n\n```\nenum Speed\n{ \n  STOP, SLOW,\
+  \ NORMAL, FAST\n}\n\n```\n\n上述枚举类型的对象可以持有四个已定义常量中的任意一个。枚举常量的访问方式如同类的静态字段。\n\n```\n\
+  Speed s = Speed.SLOW;\n```\n\n枚举示例\n\n`switch` 语句提供了一个很好的例子，说明枚举何时有用。与使用普通常量相比，枚举的优势在于允许程序员明确指定允许哪些常量值。这提供了编译时类型安全。请注意，在\
+  \ `switch` 语句中使用枚举时，`case` 标签不需要用枚举名称限定。\n\n```\nswitch(s) { case SLOW: break; }\n\
+  ```\n\n枚举类\n\n在 Java 中，枚举类型比 C++ 或 C# 等其他语言中的对应类型更强大。它本质上是一种特殊的类，可以包含类可以包含的任何内容。要添加类成员，常量列表必须以分号结束，并且成员必须在常量之后声明。在下面的示例中，向枚举添加了一个整数，该整数将保存元素所代表的实际速度。\n\
+  \n```\nenum Speed\n{ \n  STOP, SLOW, NORMAL, FAST;\n  public int speed;\n}\n\n```\n\
+  \n\n\n要设置此字段，还需要添加一个构造器。枚举中的构造器必须具有私有（private）或包级私有（package-private）访问权限，并且其调用方式与普通类不同。相反，构造器的参数是在常量元素之后给出的，如下所示。例如，如果一个\
+  \ `Speed` 枚举对象被赋值为常量 `SLOW`，那么参数 `5` 将被传递给该枚举实例的构造器。\n\n```\nenum Speed\n{ \n  STOP(0),\
+  \ SLOW(5), NORMAL(10), FAST(20);\n  public int speed;\n\nSpeed(int s) { speed =\
+  \ s; }\n}\n\n```\n\n枚举类型与普通类相比的另一个区别是，它们隐式地继承自 `java.lang.Enum` 类。除了从该类继承的成员外，编译器还会自动向枚举中添加两个静态方法，即\
+  \ `values` 和 `valueof`。`values` 方法返回一个包含枚举中声明的所有常量元素的数组，而 `valueof` 则返回指定枚举名称对应的枚举常量。\n\
+  \n```\nSpeed[] a = Speed.values();\nSpeed s = Speed.valueOf(a[0].toString()); //\
+  \ Speed.STOP\n```\n\n第 20 章\n\n![image](img/frontdot.jpg)\n\n异常处理\n\n异常处理允许程序员处理程序中可能出现的意外情况。例如，`java.io`\
+  \ 包中的 `FileReader` 类用于打开文件。创建该类的实例时，Netbeans 会提示该类的构造器可能抛出 `FileNotFoundException`。尝试运行程序时，编译器也会指出这一点。\n\
+  \n```\nimport java.io.*;\n// ... \nFileReader in = new FileReader(\"Missing.file\"\
+  ); // 错误\n```\n\nTry-catch\n\n要消除此编译时错误，必须使用 try-catch 语句来捕获异常。该语句由一个包含可能引发异常的代码的\
+  \ try 块，以及一个或多个 catch 子句组成。如果 try 块成功执行，程序将在 try-catch 语句之后继续运行；但如果发生异常，执行流程将转移到第一个能够处理该异常类型的\
+  \ catch 块。\n\n```\nimport java.io.*;\n// ... \ntry {\n  FileReader in = new FileReader(\"\
+  Missing.file\");\n} \ncatch(FileNotFoundException e) {}\n```\n\nCatch 块\n\n在上面的例子中，catch\
+  \ 块仅设置为处理 `FileNotFoundException`。如果 try 块中的代码可能抛出更多类型的异常，并且所有这些异常都应以相同方式处理，则可以捕获一个更通用的异常，例如\
+  \ `Exception` 类本身。这个 catch 子句随后将能够处理所有继承自该类的异常，包括 `FileNotFoundException`。请记住，更通用的异常需要在更具体的异常之后捕获。catch\
+  \ 子句必须始终定义一个异常对象。该对象可用于获取有关异常的更多信息，例如通过使用 `getMessage` 方法获取异常的描述。\n\n```\ncatch(FileNotFoundException\
+  \ e) {\n  System.out.print(e.getMessage());\n} \ncatch(Exception e) {\n  System.out.print(e.getMessage());\n\
+  }\n\n```\n\nFinally 块\n\n作为 try-catch 语句的最后一个子句，可以添加一个 finally 块。该块用于清理在 try 块中分配的资源，并且无论是否发生异常，它都会执行。在此示例中，在\
+  \ try 块中打开的文件应该被关闭，但前提是它已成功打开。为了能够在 finally 子句中访问 `FileReader` 对象，它必须在 try 块外部声明。此外，由于\
+  \ close 方法也可能抛出异常，因此它需要被另一个 try-catch 块包围。请记住，如果你忘记关闭文件，Java 的垃圾回收器最终会为你执行此操作，但自己动手关闭文件是一种良好的编程实践。\n\
+  \n```\nimport java.io.*;\n// ... \nFileReader in = null;\ntry {\n  in = new FileReader(\"\
+  Missing.file\");\n} \ncatch(FileNotFoundException e) {\n  System.out.print(e.getMessage());\n\
+  } \nfinally {\n  if (in != null) {\n    try { in.close(); }\n    catch(IOException\
+  \ e) {}\n  } \n}\n\n```\n\n抛出异常\n\n当方法遇到无法恢复的情况时，它可以生成自己的异常，以向调用者发出方法失败的信号。这是通过使用\
+  \ `throw` 关键字后跟一个 `Throwable` 类型的新实例来完成的。\n\n```\nstatic void MakeException()\n\
+  { \n  throw new Throwable(\"我的 Throwable\");\n}\n\n```\n\n已检查异常与未检查异常\n\nJava 中的异常分为两类——已检查异常和未检查异常——具体取决于是否需要指定它们。抛出已检查异常（例如\
+  \ `IOException`）的方法将无法编译，除非在方法参数列表之后使用 throws 子句指定它，并且调用方法捕获了该异常。另一方面，未检查异常（例如 `ArithmeticException`）不必被捕获或指定。请注意，要指定多个异常，异常类型之间用逗号分隔。\n\
+  \n```\nimport java.io.*;\n// ... \nstatic void MakeException() throws IOException,\n\
+                                     ArithmeticException\n{ \n  throw new IOException(\"\
+  我的 IO 异常\");\n  // ... \n  throw new ArithmeticException(\"除以零\");\n}\n\n```\n\n\
+  异常层次结构\n\n与 Java 中的大多数其他事物一样，异常是存在于层次结构中的类。此层次结构的根（在 `Object` 之下）是 `Throwable` 类，该类的所有后代都可以被抛出和捕获。继承自\
+  \ `Throwable` 的有 `Error` 和 `Exception` 类。从 `Error` 派生的类用于指示不可恢复的异常，例如 `OutOfMemoryError`。这些是未检查异常，因为一旦它们发生，即使被捕获，程序员也不太可能对它们采取任何措施。\n\
+  \n从 `Exception` 派生的是 `RuntimeExceptions`，它们也是未检查异常。这些异常几乎可能在任何代码中发生，因此捕获和指定它们会很麻烦。例如，除以零会抛出\
+  \ `ArithmeticException`，然而用 try-catch 包围每个除法运算会很烦人。检查异常也存在一定的开销，并且检查这些异常的成本超过了捕获它们的好处。其他\
+  \ `Exception` 的后代，即那些不继承自 `RuntimeExceptions` 的，都是已检查异常。这些是可以恢复的异常，并且必须被捕获和指定。\n\
+  \n第 21 章\n\n![image](img/frontdot.jpg)\n\n装箱与拆箱\n\n将基本类型变量放入对象中称为装箱。这允许在需要对象的地方使用基本类型。为此，Java\
+  \ 为每种基本类型提供了包装类，即：`Byte`、`Short`、`Integer`、`Long`、`Float`、`Double`、`Character` 和\
+  \ `Boolean`。例如，一个 `Integer` 对象可以持有一个 int 类型的变量。\n\n```\nint iPrimitive = 5;\nInteger\
+  \ iWrapper = new Integer(iPrimitive); // 装箱\n```\n\n与装箱相反的是拆箱。这会将对象类型转换回其基本类型。\n\
+  \n```\niPrimitive = iWrapper.intValue(); // 拆箱\n```\n\n包装类属于 `java.lang` 包，该包始终被导入。与基本类型相比，包装对象是不可变的（不可更改）。要更改它们的值，必须创建一个新实例。基本类型和包装对象之间的另一个区别是它们如何检查相等性。基本类型使用相等运算符\
+  \ (==)，而任何类型的对象都使用继承自 `Object` 的 `equals` 方法。还要记住，对象可以设置为 null，而基本类型则不能。\n\n自动装箱与自动拆箱\n\
+  \n\n\nJava 5 引入了自动装箱（autoboxing）和自动拆箱（autounboxing）。这些特性允许在基本类型与其对应的包装类对象之间进行自动转换。\n\
+  \n```\nInteger iWrapper = iPrimitive; // 自动装箱\niPrimitive = iWrapper;         //\
+  \ 自动拆箱\n```\n\n请注意，这仅仅是语法糖，旨在使代码更易于阅读。编译器会为你添加必要的代码来对基本类型进行装箱和拆箱——使用 `valueOf` 和\
+  \ `intValue` 方法。\n\n```\nInteger iWrapper = Integer.valueOf(iPrimitive);\niPrimitive\
+  \ = iWrapper.intValue()\n```\n\n基本类型与包装类指南\n\n当不需要对象时，应使用基本类型。这是因为基本类型通常比对象更快且更节省内存。相反，当需要数值但必须使用对象时，包装类就很有用。例如，要将数值存储在像\
+  \ `ArrayList` 这样的集合类中，就需要使用包装类。\n\n```\njava.util.ArrayList a = new java.util.ArrayList();\n\
+  a.add(Integer.valueOf(5)); // 装箱\na.add(10);                 // 自动装箱\n```\n\n请记住，如果速度很重要，则应尽量减少基本类型与包装类对象之间的转换。任何装箱和拆箱操作都会带来固有的性能开销。\n\
+  \n第 22 章\n\n![image](img/frontdot.jpg)\n\n泛型\n\n泛型指的是类型参数的使用，它提供了一种定义可操作不同数据类型的**方法**、**类**和**接口**的方式。泛型的好处在于它们提供了编译时的类型安全性，并且消除了大多数类型转换的需要。\n\
+  \n泛型类\n\n泛型类允许类成员使用类型参数。通过在类名后添加一个类型参数部分来定义此类，该部分包含一个用尖括号括起来的类型参数。类型参数的命名约定是它们应由单个大写字母组成。通常，使用字母\
+  \ `T` 表示类型。下面的示例定义了一个泛型容器类，它可以容纳一个泛型类型的元素。\n\n```\n// 泛型容器类\nclass MyBox<T> { public\
+  \ T box; }\n```\n\n当实例化此泛型类的对象时，必须将类型参数替换为实际的数据类型，例如 `Integer`。\n\n```\nMyBox<Integer>\
+  \ iBox = new MyBox<Integer>();\n```\n\n或者，从 Java 7 开始，可以使用一组空的类型参数来实例化泛型类。只要编译器能够从上下文中推断（确定）类型参数，这种实例化方式就是可行的。\n\
+  \n```\nMyBox<Integer> iBox = new MyBox<>();\n```\n\n当创建 `MyBox` 的实例时，类定义中的每个类型参数都会被替换为传入的类型实参。因此，该对象的行为就像一个常规对象，拥有一个\
+  \ `Integer` 类型的字段。\n\n```\niBox.box = 5;\nInteger i = iBox.box;\n```\n\n请注意，在设置或从\
+  \ `box` 字段检索存储的值时，不需要进行强制类型转换。此外，如果错误地将泛型字段赋值或设置为不兼容的类型，编译器会指出这一点。\n\n```\niBox.box\
+  \ = \"Hello World\"; // 编译时错误\nString s = iBox.box;      // 编译时错误\n```\n\n泛型方法\n\
+  \n通过在方法的返回类型之前声明一个类型参数部分，可以使方法成为泛型方法。类型参数可以在方法内部像任何其他类型一样使用。它也可以用于方法的返回类型、throws\
+  \ 子句以及参数类型。下面的示例展示了一个泛型类方法，它接受一个泛型数组参数，并打印出其内容。\n\n```\nclass MyClass\n{ \n  public\
+  \ static <T> void printArray(T[] array)\n  { \n    for (T element : array)\n   \
+  \   System.out.print(element + \" \");\n  } \n}\n\n```\n\n方法可以声明为泛型，无论其所在的类或接口是否为泛型。构造函数也是如此。\n\
+  \n调用泛型方法\n\n泛型方法通常像常规（非泛型）方法一样被调用，无需指定类型实参。\n\n```\nInteger[] iArray = { 1, 2, 3\
+  \ };\nMyClass.printArray(iArray);\n```\n\n在大多数情况下，Java 编译器可以推断出泛型方法调用的类型实参，因此不必包含它。但是，如果不是这种情况，则需要显式指定类型实参。\n\
+  \n```\nMyClass.<Integer>printArray(iArray);\n```\n\n泛型接口\n\n使用类型参数声明的接口成为泛型接口。泛型接口与常规接口有两个相同的目的。它们要么是为了公开将被其他类使用的类的成员而创建，要么是为了强制一个类实现特定的功能。当实现泛型接口时，必须指定类型实参。泛型接口可以由泛型类和非泛型类实现。\n\
+  \n```\n// 泛型功能接口\ninterface IGenericCollection<T>\n{ \n  public void store(T t);\n\
+  }\n\n// 实现泛型接口的非泛型类\nclass Box implements IGenericCollection<Integer>\n{ \n  public\
+  \ Integer myBox;\n  public void store(Integer i) { myBox = i; }\n}\n\n// 实现泛型接口的泛型类\n\
+  class GenericBox<T> implements IGenericCollection<T>\n{ \n  public T myBox;\n  public\
+  \ void store(T t) { myBox = t; }\n}\n\n```\n\n泛型类型参数\n\n为泛型传入的类型实参可以是类类型、接口类型或另一个类型参数。但是，它不能是基本类型。泛型可以定义多个类型参数，只需在尖括号之间以逗号分隔列表的形式添加更多参数即可。请记住，括号内的每个参数必须是唯一的。\n\
+  \n```\nclass MyClass<T, U> {}\n```\n\n如果泛型定义了多个类型参数，则在**使用**泛型时需要指定相同数量的类型实参。\n\n\
+  ```\nMyClass<Integer, Float> myClass = new MyClass<Integer,\n                  \
+  \                            Float>();\n```\n\n泛型变量的使用\n\n在 Java 中，泛型仅仅是编译时的构造。在编译器检查了与泛型变量一起使用的类型正确之后，它将擦除泛型代码中的所有类型参数和类型实参信息，并插入适当的强制类型转换。这意味着泛型不会像在\
+  \ C# 中那样，因为消除了运行时强制类型转换而带来比非泛型代码更好的性能。这也意味着泛型类型不能用于任何需要运行时信息的事情——例如创建泛型类型的新实例或对类型参数使用\
+  \ `instanceof` 运算符。允许的操作包括：声明泛型类型的变量、将 null 赋值给泛型变量以及调用 `Object` 方法。\n\n```\nclass\
+  \ MyClass<T>\n{ \n  public void myMethod(Object o)\n  { \n    T t1;            \
+  \                // 允许\n    t1 = null;                       // 允许\n    System.out.print(t1.toString());\
+  \ // 允许\n    if (o instanceof T) {}           // 无效\n    T t2 = new T();       \
+  \           // 无效\n  } \n}\n\n```\n\n从泛型代码中移除类型信息的过程称为*类型擦除*。例如，`MyBox<Integer>`\
+  \ 将被简化为 `MyBox`，这被称为*原始类型*。执行此步骤是为了保持与在 Java 5 中泛型成为语言一部分之前编写的代码的向后兼容性。\n\n受限类型参数\n\
+  \n可以对泛型可能使用的类型参数种类应用编译时强制执行的限制。这些限制称为*边界*，它们通过在类型参数部分中使用 `extends` 关键字来指定。类型参数可以由超类或接口限定。例如，下面的类\
+  \ `B` 只能使用类型为 `A` 或具有该类作为超类的类型实参进行实例化。\n\n\n\n```\n// T 必须继承自超类 A\nclass B<T extends\
+  \ A> {}\nclass A {}\n```\n\n第二个示例将接口指定为边界。这将把类型参数限制为仅实现指定接口的类型，或者本身就是该接口类型的类型。\n\
+  \n```\n// T 必须实现接口 I\nclass C<T extends I> {}\ninterface I {}\n```\n\n可以通过在列表中用与号（`&`）分隔来对类型参数应用多个边界。\n\
+  \n```\nclass D<T extends A & I> {}\n```\n\n与号用作分隔符，而不是逗号，因为逗号已用于分隔类型参数。\n\n```\n\
+  class E<T extends A & I, U extends A & I> {}\n```\n\n除了将泛型的使用限制为仅限某些参数类型之外，应用边界的另一个原因是增加有界类型所支持的方法调用数量。无界类型只能调用\
+  \ `Object` 的方法。然而，通过应用超类或接口边界，该类型的可访问成员也将变得可用。\n\n```\nclass Fruit\n{ \n  public\
+  \ String name;\n}\n\nclass FruitBox<T extends Fruit>\n{ \n  private T box;\n  public\
+  \ void FruitBox(T t) { box = t; }\n  public String getFruitName()\n  { \n    //\
+  \ 由于 T extends Fruit，因此允许使用 Fruit 的成员\n    return box.name;\n  } \n}\n\n```\n\n\
+  泛型与 Object\n\n在 Java 5 引入泛型之前，`Object` 类型被用于创建可以存储任何类型对象的容器类。既然泛型已经可用，就应该避免将 `Object`\
+  \ 类型用作通用容器。这是因为编译器有助于确保泛型在编译时是类型安全的，而使用 `Object` 类型时则无法做到这一点。\n\nJava 库中的集合类（包括\
+  \ `ArrayList`）都已替换为泛型版本。即便如此，任何泛型类仍然可以像非泛型类一样使用，只需省略类型参数部分即可。此时，默认的 `Object` 类型将用作类型参数。这就是为什么仍然允许使用非泛型版本的\
+  \ `ArrayList`。请考虑以下对非泛型 `ArrayList` 的使用。\n\n```\nimport java.util.ArrayList;\n//\
+  \ ... \n// Object ArrayList\nArrayList a = new ArrayList();\na.add(\"Hello World\"\
+  );\n// ... \nInteger b = (Integer)a.get(0); // 运行时错误\n```\n\n这种从 `String` 到 `Integer`\
+  \ 的转换将在运行时失败，并抛出 `ClassCastException`。如果改用泛型 `ArrayList`，则在编译时（或在 Netbeans 等 IDE\
+  \ 中）就会检测到错误的转换。\n\n```\nimport java.util.ArrayList;\n// ... \n// 泛型 ArrayList（推荐）\n\
+  ArrayList<String> a = new ArrayList<String>();\na.add(\"Hello World\");\n// ...\
+  \ \nInteger b = (Integer)a.get(0); // 编译时错误\n```\n\n使用泛型替代方案，只有指定的类型参数才允许进入 `ArrayList`\
+  \ 集合。此外，从集合中获取的值无需强制转换为正确的类型，因为编译器会处理这一点。\n\n索引\n\n![images](img/square1.jpg)  A\n\
+  \n抽象类\n\n访问级别\n\n匿名块\n\n数组\n\nArrayList\n\n赋值运算符 (=)\n\n![images](img/square1.jpg)  B\n\
+  \n布尔型\n\n边界\n\n装箱\n\nbreak\n\n字节型\n\n![images](img/square1.jpg)  C\n\ncatch\n\n\
+  字符型\n\n类\n\n类成员\n\n代码块\n\n逗号运算符 (,)\n\n注释\n\n编译\n\n\n\n连接运算符（+）\n\n条件语句\n\n常量\n\n\
+  构造器\n\ncontinue\n\n![images](img/square1.jpg)  D\n\n数据类型\n\n声明\n\n递减运算符（--）\n\n\
+  默认构造器\n\n定义\n\n点运算符（.）\n\ndouble\n\ndo-while\n\n向下转型\n\n![images](img/square1.jpg)  E\n\
+  \n封闭类\n\nenum\n\n转义字符\n\n异常处理\n\n异常层次结构\n\nextends\n\n![images](img/square1.jpg)  F\n\
+  \nfalse\n\n字段\n\nfinal\n\nfinally\n\nfloat\n\nfor\n\nforeach\n\n![images](img/square1.jpg)  G\n\
+  \n垃圾回收器\n\n泛型\n\n![images](img/square1.jpg)  H\n\nHello world\n\n![images](img/square1.jpg)  I\n\
+  \nIDE\n\nif\n\nimport\n\n递增运算符（++）\n\n继承\n\n初始化块\n\n初始化\n\n实例\n\n实例成员\n\ninstanceof\
+  \ 运算符\n\n实例化\n\nint\n\n接口\n\n调用\n\n迭代\n\n![images](img/square1.jpg)  J, K\n\njava.lang\n\
+  \nJDK\n\n![images](img/square1.jpg)  L\n\n带标签的块\n\n逻辑与（&&）\n\n逻辑非（!）\n\n逻辑或（||）\n\
+  \nlong\n\n循环\n\n![images](img/square1.jpg)  M\n\n主方法\n\n方法\n\n方法重载\n\n取模运算符（%）\n\
+  \n多维数组\n\n![images](img/square1.jpg)  N\n\n嵌套类\n\nnew\n\nnull\n\n![images](img/square1.jpg)  O\n\
+  \n对象\n\n运算符\n\n@Override\n\n重写\n\n![images](img/square1.jpg)  P, Q\n\n包\n\n包私有\n\
+  \n基本类型\n\n打印\n\nprivate\n\nprotected\n\npublic\n\n![images](img/square1.jpg)  R\n\
+  \nreturn\n\n![images](img/square1.jpg)  S\n\n作用域\n\n分号（;）\n\nshort\n\n签名\n\nstatic\n\
+  \nString\n\nStringBuffer\n\nsuper\n\nswitch\n\n![images](img/square1.jpg)  T\n\n\
+  三元运算符（?:）\n\nthis\n\nthrow\n\n顶级成员\n\ntrue\n\ntry\n\n![images](img/square1.jpg)  U\n\
+  \n拆箱\n\n向上转型\n\n![images](img/square1.jpg)  V\n\n变量\n\nvoid\n\n![images](img/square1.jpg)  W,\
+  \ X, Y, Z\n\nwhile\n\n包装类\n"

@@ -1,0 +1,5 @@
++   [Spring 2.5 秘籍](README.md)
++   [定义一个新组件 "reportGenerator"](spring-25-recipes_1.md)
++   [定义一个新组件 "reportService"](spring-25-recipes_2.md)
++   [将组件 "reportGenerator" 注入到属性 "reportGenerator" 中](spring-25-recipes_3.md)
++   [文档大纲](spring-25-recipes_4.md)
