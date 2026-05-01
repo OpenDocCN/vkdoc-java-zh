@@ -1,0 +1,3853 @@
+- '
+
+
+
+  ![](img/A978-1-4842-3015-2_CoverFigure.jpg)
+
+
+  ![A978-1-4842-3015-2_CoverFigure.jpg](img/A978-1-4842-3015-2_CoverFigure.jpg)谢卡尔·古拉蒂与拉胡尔·夏尔马
+  著 《Java 单元测试：基于 JUnit 5》 使用 JUnit 5 进行测试驱动开发
+
+
+  ![A429029_1_En_BookFrontmatter_Figa_HTML.png](img/A429029_1_En_BookFrontmatter_Figa_HTML.png)
+
+
+
+
+  本书作者引用的任何源代码或其他补充材料，读者均可通过本书在 GitHub 上的产品页面获取，网址为[`www.apress.com/978-1-4842-3014-5`](http://www.apress.com/978-1-4842-3014-5)。如需更详细信息，请访问[`http://www.apress.com/source-code`](http://www.apress.com/source-code)。ISBN
+  978-1-4842-3014-5e-ISBN 978-1-4842-3015-2 [`doi.org/10.1007/978-1-4842-3015-2`](https://doi.org/10.1007/978-1-4842-3015-2)
+  美国国会图书馆控制号：2017959333 © Shekhar Gulati, Rahul Sharma 2017 本作品受版权保护。出版商保留所有权利，无论涉及全部或部分材料，特别是翻译、重印、重用插图、朗诵、广播、微缩胶片复制或任何其他物理形式，以及电子改编、计算机软件或现在已知或以后开发的类似或不同方法的传输或信息存储与检索。本书中可能出现商标名称、标识和图像。我们仅在编辑风格中使用这些名称、标识和图像，以利于商标所有者，并无意侵犯商标权，而非在每次出现商标名称、标识或图像时都使用商标符号。本出版物中使用的商品名称、商标、服务标志和类似术语，即使未明确标识，也不应被视为对其是否受专有权利保护的看法。尽管本书中的建议和信息在出版时被认为是真实准确的，但作者、编辑和出版商均不对可能出现的任何错误或遗漏承担法律责任。出版商对本书所含内容不作任何明示或暗示的保证。本书采用无酸纸印刷，由
+  Springer Science+Business Media New York 在全球图书贸易中发行，地址：233 Spring Street, 6th Floor,
+  New York, NY 10013。电话：1-800-SPRINGER，传真：(201) 348-4505，电子邮件：orders-ny@springer-sbm.com，或访问
+  www.springeronline.com。Apress Media, LLC 是加利福尼亚州的有限责任公司，其唯一成员（所有者）是 Springer Science
+  + Business Media Finance Inc (SSBM Finance Inc)。SSBM Finance Inc 是特拉华州的一家公司。目录 第
+  1 章：以正确的方式构建软件 1 测试驱动开发 2 检测回归错误 3 保持系统设计简洁 3 测试级别 4 单元测试的好处 5 确定规范 6 提供早期错误检测 6
+  支持维护 6 改进设计 6 产品文档 6 优秀单元测试的特征 7 JUnit 简介 8 为什么我们需要新版本的 JUnit？ 8 JUnit 5 9 Java
+  8 入门 11 Lambda 表达式 12 Streams API 12 Optional<T> 14 项目设置 14 编写你的第一个测试 18 总结 23 第
+  2 章：理解 JUnit 5 核心 25 测试类 25 构造函数 27 使用@DisplayName 28 测试方法 29 测试方法中的参数 29 使用@DisplayName
+  30 断言 31 分组断言 34 错误与失败 36 JUnit 生命周期 API 37 @BeforeAll 38 @BeforeEach 38 @AfterEach
+  39 @AfterAll 39 测试执行 41 总结 44 第 3 章：使用 JUnit 5 开发应用程序 45 Bookstoread 应用程序 45 第一个功能
+  45 第二个功能 51 禁用测试 57 AssertJ 59 使用@DisplayName 60 第三个功能 62 嵌套测试 64 总结 66 第 4 章：依赖注入、模拟、测试特性与测试分组
+  67 依赖注入 67 功能：跟踪书架进度 72 缓存测试数据 76 使用 ExtensionContext 存储 77 功能：搜索书架 78 模拟 83 测试特性
+  86 按标签分组测试 87 总结 88 第 5 章：测试异常 89 上下文设置 89 原始方式：使用 try-catch-fail 89 JUnit 4 方式：使用@Test
+  注解和规则 API 91 JUnit 5 方式：使用 assertThrows 断言方法 92 在 JUnit 5 中使用 JUnit 4 的 ExpectedException
+  规则 93 异常处理扩展 94 处理测试超时 95 assertTimeoutPreemptively 96 重复测试 96 总结 98 第 6 章：集成工具
+  99 构建工具 99 Gradle 99 Maven 104 Ant 108 代码覆盖率 113 其他工具 117 总结 119 第 7 章：JUnit 5 扩展模型
+  121 JUnit 4 扩展模型 121 JUnit 5 扩展模型 122 测试生命周期回调 124 测试实例后处理 126 条件测试执行 127 参数解析 127
+  异常处理 129 注册扩展 129 JUnit 5 扩展 130 测试模板 130 参数化测试 133 总结 137 第 8 章：动态测试与从 JUnit 4
+  迁移 139 动态测试 139 JUnit 4 支持 141 使用 Vintage 引擎 143 迁移到 JUnit 5 144 总结 147 索引 149 内容概览
+  关于作者 xi   关于技术审阅者 xiii   第 1 章：以正确的方式构建软件 1   第 2 章：理解 JUnit 5 核心 25   第 3 章：使用
+  JUnit 5 开发应用程序 45   第 4 章：依赖注入、模拟、测试特性与测试分组 67   第 5 章：测试异常 89   第 6 章：集成工具 99  
+  第 7 章：JUnit 5 扩展模型 121   第 8 章：动态测试与从 JUnit 4 迁移 139   索引 149   关于作者与关于技术审阅者 关于作者
+  关于技术审阅者
+
+
+
+
+  '
+- "# 1. 以正确的方式构建软件\n\n程序员很快就会意识到编写软件既困难又容易出错。软件项目屡屡失败，原因在于团队无法应对软件的复杂性。结果，项目无法按时完成，成本远超预期，也无法交付预期的商业价值。\n\
+  \n回顾过去，软件编程作为一个职业仅有几十年的历史。在这短暂的发展历程中，我们见证了多种软件开发流程，并发现了一些最佳实践。我们认识到，如同其他进化过程一样，软件也会随时间演变。因此，我们应该适应变化，而不是固守僵化的计划。我们还发现，开发是一个协作过程——许多人共同参与软件的不同部分，以构建满足客户需求的产品。不同的人以迭代的方式扮演不同角色，共同决定产品的未来。许多组织正在采用敏捷软件开发流程来应对不断变化的业务需求。正如人们所说，唯一不变的就是变化。\n\
+  \n测试驱动开发（TDD）是敏捷软件开发的一种实践，许多开发者都以某种形式使用它。TDD 的前提是，在编写生产代码之前，先编写一个会失败的测试用例。如果正确实施，TDD\
+  \ 可以帮助你编写出满足客户期望、设计简洁且缺陷更少的软件。\n\n在本章中，我们将帮助你理解为什么作为一名专业程序员，你应该学习并遵循 TDD 实践。你将学习如何搭建一个基于\
+  \ Gradle 的 Java 8 JUnit 5 项目。我们还会简要介绍 Java 8 的新特性，以便即使你之前没有使用过 Java 8，也能轻松上手。本章最后，我们将通过一个遵循\
+  \ TDD 实践的简单示例来结束。本章将为你后续章节的学习做好准备，在后续章节中，我们将使用 TDD 构建一个功能完整的应用程序，并演示 JUnit 5 的高级特性。\n\
+  \n## 测试驱动开发\n\n你还记得上一次想要修改代码以修复客户发现的关键缺陷是什么时候吗？你当时能确定你的修复不会引入回归错误吗？另外，想想上一次你想要重构代码，却担心你的修改会破坏其他功能是什么时候？这种情况在软件开发中很常见——对破坏软件的恐惧。即使是最优秀的程序员也会犯错并引入缺陷。\n\
+  \n软件项目充满了不确定性。我们与新技术、不断变化的需求、人员流动打交道，或者同时面对这些情况。为了克服恐惧并管理这些不确定性，我们需要一种能够帮助我们产出可用软件的开发实践。它必须保持简单，并在出现问题时为我们提供快速反馈。\n\
+  \n测试驱动开发由 Kent Beck 于 2003 年重新发现，是一种通过倡导为所有软件需求编写测试来增强开发者信心的开发实践。它促使我们在短周期（几分钟）的增量开发循环中工作，从而为我们的进展提供快速反馈。TDD\
+  \ 强制我们在编写生产代码之前先编写一个会失败的测试。完整流程如下：\n\n1.  为新的功能或行为添加一个测试。\n2.  看到它失败。\n3.  编写足够的代码使测试通过。\n\
+  4.  确保所有之前的测试也都能通过。\n5.  重构代码。\n6.  重复以上步骤，直到完成。\n\n这里的关键是首先编写一个会失败的测试。测试体现了我们对系统的理解。我们编写的是当执行某个操作时，我们期望系统会做什么。这有助于我们清晰地理解系统。\n\
+  \n本书将重点介绍 TDD 的测试优先方法。有很多程序员是最后才编写测试。我们认为，测试后置的方法无法帮助你获得 TDD 的全部好处。TDD 有时被称为测试驱动设计（即，测试应帮助你设计系统）。TDD\
+  \ 的设计部分比测试部分更重要。当我们最后才编写测试时，我们无法从该实践中获得设计上的好处。\n\n在软件开发中，快速反馈是软件生产力的关键。TDD 为我们提供了快速反馈，表明我们正朝着正确的方向前进。从某种意义上说，它让我们的思维保持专注和积极。我们相信自己的代码，因为它满足了写在测试中的最终用户期望。\n\
+  \nTDD 帮助我们实现两个重要目标：\n\n*   检测回归错误。\n*   保持系统设计简洁。\n\n让我们详细讨论这两个方面。\n\n### 检测回归错误\n\
+  \n遵循 TDD 最明显的原因是以自动化方式检测回归错误。遵循 TDD 的团队可以自由地更改和添加新功能，而无需担心引入回归问题。如果所有之前的测试用例都运行良好，那么我们可以确信没有引入任何回归错误。此外，随着我们不断为新的行为添加测试，安全网也在不断扩大。每当有人进行修改时，这些测试用例都会发挥作用。我们在代码中发现错误越早，修复的速度就越快，成本也越低。谷歌分享的数据验证了这一点，你可以在表\
+  \ 1-1 中看到。\n\n表 1-1.\n\n修复缺陷的成本\n\n| 发现缺陷的软件测试阶段 | 每个缺陷的预估成本 |\n| --- | --- |\n\
+  | 系统测试 | $5,000 |\n| 集成测试 | $500 |\n| 完整构建 | $50 |\n| 单元测试/测试驱动开发 | $5 |\n\n有些人可能看不到编写测试的价值。他们更倾向于手动测试代码，或者在出现问题时使用日志语句来调试代码。手动测试既繁琐又耗时。除此之外，手动覆盖任何非平凡软件的所有边界情况都很困难。人类通常擅长检查快乐路径（即，总是能正常工作的场景）。因此，手动测试很可能会遗漏一些边界情况。\n\
+  \n如果系统是遵循 TDD 编写的，那么一旦你发现一个缺陷，团队就会添加一个额外的测试用例来重现该错误。现在，你就可以修改生产代码，使这个失败的测试用例通过。这将确保边界情况得到处理。同时，由于这个边界情况现在已成为自动化测试套件的一部分，你可以放心，不会再遗漏它了。\n\
+  \n\n\n### 保持系统设计简洁\n\n程序员编写的自动化测试传统上被视为一项质量保证工作。它们旨在验证实现代码在编写时的正确性，并在未来代码演进时验证其正确性。测试只是故事的一半。我们将在本书中证明，TDD\
+  \ 本质上是一种设计工具，而测试只是其附带效果。\n\n人们看待软件开发的一种方式是将其分解为不同阶段。最常见的两个阶段是：\n\n*   **设计**\n*\
+  \   **编码**\n\n通常，一个团队设计系统，另一个团队负责实现。当人们试图实现他人设计时，往往行不通。程序员在开始实现既定设计时会面临许多挑战。\n\n\
+  TDD 打破了设计与编码阶段分离的神话，它提倡“代码即设计”的理念。我们不需要一个在实现时总是捉襟见肘的、庞大的前期设计。我们需要一种即时设计，它随着系统的构建而演进。\n\
+  \n当我们开始编写测试时，我们就开始以调用者的视角来设计代码。测试成为代码的客户端。测试帮助我们编写刚好满足所需行为的代码。一旦测试通过，我们就毫不留情地重构代码。TDD\
+  \ 通常被视为一个“红 -> 绿 -> 重构”的持续循环。正是在重构阶段，设计才得以显现。重构被定义为在不改变代码外部行为的前提下改进其现有设计。测试帮助我们确信代码按预期工作。现在，我们可以安全地重构代码了。万一在重构过程中引入了破坏性变更，测试用例将会失败。因此，这能防止我们在重构时引入意外的副作用。\n\
+  \nTDD 的重构阶段是最关键的阶段。重构时，请思考童子军的行为准则：\n\n> 总是让营地比你发现它时更干净。\n\n重构并不意味着你必须让代码变得完美。试着让代码比你最初检出时好一点点。你可以改进变量、方法或类的名称。你可以将一个大型函数拆分成多个小函数，或者将某个关注点提取到另一个类中。目标是让当前版本比上一个版本更好。如果我们每天都遵循这种做法，我们将朝着更简单、更易读的代码库迈进。\n\
+  \n将 TDD 作为设计工具需要思维模式的转变。这不会一蹴而就。需要持续练习才能掌握并从中获益。\n\nTDD 迫使我们编写松散耦合的类，以便我们可以轻松地对它们进行隔离测试。为了隔离测试特定代码，我们被迫将依赖关系显式化。我们编写只做一件事的小型内聚模块，以便测试特定行为。这些模块可以在未来进行扩展以满足不断变化的需求。这些都是\
+  \ TDD 强制实施的良好设计实践。这一切都使得阅读和理解代码变得更加容易。多项研究表明，程序员花在阅读和理解代码上的时间比编写代码的时间更多。2007 年，微软进行的一项调查显示，95%\
+  \ 的受访者认为理解现有代码是他们工作的重要组成部分。\n\n## 测试的层级\n\n当你开始实践 TDD 时，你将编写不同层级的测试。你的应用程序应该包含以下每个层级的测试。每个层级都关注代码的不同方面，并提供不同的反馈。让我们逐一了解。\n\
+  \n*   **单元测试**：在此，你测试单个软件组件，以验证单个单元在隔离环境中是否做了正确的事情。\n*   **集成测试**：在此，你将多个单元放在一起测试，以验证它们作为一个整体是否能正确协同工作。\n\
+  *   **验收测试**：在此，你测试整个系统，以验证它是否按用户期望工作。这通常被称为功能测试。\n\n图 1-1 描绘了一个测试金字塔。图 1-1 要传达的重点是，你应该拥有比功能测试或集成测试多得多的单元测试。本书将主要关注单元测试，但你也应该花时间学习其他两种类型的测试。\n\
+  \n![A429029_1_En_1_Fig1_HTML.gif](img/A429029_1_En_1_Fig1_HTML.gif)\n\n图 1-1.\n\n\
+  测试金字塔\n\n单元测试的概念可以追溯到 1976 年，当时 David J. Panzal 在第二届国际软件工程会议上发表了《测试过程：一种软件验证的新方法》。该论文将测试过程描述为一种在目标模块上调用测试用例以生成报告的方法，该报告指示“测试用例”是否失败。这些测试过程是产品交付物的一部分，可用于初始产品验证和后续回归测试。这些过程是用一种称为测试过程语言（TPL）的语言为\
+  \ FORTRAN 编写的。\n\n## 单元测试的好处\n\n如前所述，单元测试不再是开发后的工作。它与编写生产代码同等重要，并且必须前置进行。它通过提供坚实的基础来提高团队生产力。让我们详细看看单元测试提供的好处。\n\
+  \n### 确定规格\n\n在开始编码某个组件之前，我们必须尝试确定该组件必须做什么？尝试为可能的输入和可能的输出构建一个测试用例。在开始时构建测试用例的行为有助于澄清组件的预期行为。\n\
+  \n如果我们无法提出一个测试，这意味着规格不够明确，需要更多思考。\n\n### 提供早期错误检测\n\n单元测试是代码正常工作的证明。它们在每次构建中执行，并能在第一时间检测到失败。\n\
+  \n单元测试不仅能检测编码错误，还能检测产品规格中的缺陷。单元测试展示了进展；因此，一旦组件完成，就可以向利益相关者演示，以发现是否存在差距。错误发现得越早，修复成本就越低。\n\
+  \n### 支持维护\n\n产品规格会随着时间的推移而演变。这些变化导致了开发周期。在每个周期中，团队在做出任何更改之前，都必须了解现有代码是如何工作的。单元测试有助于理解预期的行为，而不会被实际代码所困扰。一个编写良好的单元测试套件可以极大地提升团队的生产力。\n\
+  \n### 改进设计\n\n单元测试是被测试代码的第一个客户端。它们揭示了客户端在与被测试代码交互时可能遇到的各种问题。单元测试促使我们从预期输入和预期输出的角度进行思考。对于内部组件（服务、工具类等），这有助于划分职责边界。它通过暴露接口设计中的缺陷来帮助改进产品规格。\n\
+  \n### 产品文档\n\n单元测试描述了一段代码如何工作——即给定输入的预期输出。它们始终描述规格的最新状态，因为它们与代码变更保持同步。\n\n\n\n##\
+  \ 优秀单元测试的特征\n\n测试应像生产代码一样，以同样的专注度和清晰度来编写。我们必须重构测试用例，使其保持简洁和正确。只有当人们能够理解并信赖测试时，它们才能发挥价值。\n\
+  \n遵循 TDD（测试驱动开发）时，高质量的测试是成功的关键。拥有测试是一回事，拥有高质量的测试则是另一回事。测试需要具备若干特征，才能在其整个生命周期中保持有用。它们应当：\n\
+  \n*   **可读性**：测试的目标之一是让阅读者了解被测试单元的功能。如果测试不可读，阅读者就无法理解测试何时会失败。一个好的单元测试用例拥有有意义的名称，这样阅读者无需查看实现细节就能理解被测试单元的行为。\n\
+  *   **快速**：测试应在几秒内运行完毕，以便提供快速反馈。如果测试耗时过长，程序员就会想方设法跳过测试。单元测试必须模拟外部依赖，以便测试运行快速且独立于外部服务。模拟允许通过以可控方式模拟其依赖项的行为来测试代码单元。\n\
+  *   **独立且隔离**：优秀的单元测试不依赖于执行顺序。它们不依赖其他单元测试来保证自身正确运行。它们应在各自独立的隔离环境中运行。\n*   **正确性**：一个好的单元测试能做到名副其实。一个测试用例应对应一个单一场景（即行为）。通常，测试并未如其名称所示那样工作。这非常危险，因为在这种情况下，你无法信任你的测试。\n\
+  *   **环境无关性**：任何软件项目的试金石如下：“你能在一台干净的开发机器上检出代码，并毫无问题地运行包括测试在内的完整构建吗？”大多数时候，我们发现单元测试失败是因为它们依赖于某些外部因素。外部因素可能是特定位置的文件、环境变量或其他东西。这会导致脆弱的测试。一个好的单元测试不依赖于环境。\n\
+  *   **可重复性**：一个好的单元测试每次运行时都会产生相同的结果。测试执行应使用构建工具自动化。它们应成为自动化构建过程的一部分，以便每次执行构建时都能运行。当测试开始随机失败时，程序员会开始忽略它们。这些随机的测试失败难以重现，并且通常发生在持续集成服务器等外部系统上。团队应确保一旦发现失败的测试就立即修复。\n\
+  \n## JUnit 简介\n\nJUnit 由 Kent Beck 和 Erich Gamma 开发，是 Java 开发者最流行的单元测试框架之一。它最初基于\
+  \ SUnit（一个由 Kent Beck 用 Smalltalk 编写的单元测试框架）。JUnit 的第一个版本于 1997 年发布。此后，它已成为事实上的标准，被许多不同语言和工具所采用。Martin\
+  \ Fowler 在其名言中强调了 JUnit 框架的重要性：\n\n> 在软件开发领域，从未有如此多的人，欠了如此少的代码行如此大的恩情。\n\n在 JUnit\
+  \ 引入之前，测试领域由“捕获-回放”测试工具主导。这些工具是黑盒测试工具，它们曾用于捕获系统在给定输入下的状态，然后尝试回放。用此类框架编写的测试需要付出巨大的努力。这些工具并非为单元测试组件而设计，因为它们是通过图形用户界面（GUI）来测试应用程序的。\n\
+  \nJUnit 摒弃了基于 GUI 的测试理念。相反，它提供了一个轻量级框架，允许通过编写 Java 代码来创建测试。这使得开发者能够为他们代码的每一部分构建测试套件。由于其诸多优点，JUnit\
+  \ 被集成到各种构建工具和集成开发环境（IDE）中。\n\nJUnit 团队一直善于利用新的 Java 语言特性。在 Java 5 发布（支持注解、泛型等）之后，JUnit\
+  \ 4.0 也随之发布，带来了诸如 `@Test` 和 `@Setup` 等功能。Kent Beck 这样评价 JUnit 4：\n\n> JUnit 4 的主题是通过进一步简化\
+  \ JUnit，鼓励更多开发者编写更多测试。\n\nJUnit 4.0 通过摆脱命名约定并引入超时和测试异常等其他特性，简化了单元测试。JUnit 4.0 发布于十年前，大约在\
+  \ 2006 年 2 月。在接下来的十年里，我们看到了 JUnit 的多个小版本发布，最新的是 2014 年 12 月发布的 JUnit 4.12。在我们进一步了解\
+  \ JUnit 5 之前，先来理解为什么我们需要一个新版本的 JUnit 框架。\n\n### 为什么我们需要新版本的 JUnit？\n\n随着开发者测试在过去几年中获得动力并日趋成熟，开发者开始对他们的单元测试框架抱有更多期望。以下是需要新版本的原因：\n\
+  \n*   **特性**：开发者希望他们的测试框架支持集成测试、更好的断言以及许多其他特性，这样他们就不必依赖其他库。\n*   **模块化**：早期版本的 JUnit\
+  \ 缺乏模块化。所有东西都打包成一个单一的 jar 文件。只有一个单一的 JUnit 项目，包含了所有 JUnit 代码库。它通过使用不同的子包来实现模块化。这意味着每个人都依赖于\
+  \ JUnit jar——构建工具、IDE、你的 JUnit 测试、扩展等，都使用相同的代码。测试发现和测试执行就是紧密耦合问题的一个例子。\n*   **可扩展性**：JUnit\
+  \ 4 通过两种机制提供了可扩展性：\n    *   Runner API（应用程序编程接口）\n    *   Rule API\n    它们各有优缺点。要编写自定义的测试运行器，你必须实现完整的测试生命周期，包括测试实例化、测试执行、设置和清理等。Runner\
+  \ API 最大的缺点是你无法组合多个运行器。JUnit 4.7 引入的 Rule API 使用起来简单得多，但其功能有限。Rule API 的一个限制是，不能有一个单一的规则同时处理方法级别和类级别的回调。这使得\
+  \ JUnit 在可扩展性方面留下了很多不足。\n*   **Java 8**：Java 8 引入了许多新特性，比如 lambda 表达式。你可以将 Java\
+  \ 8 与旧版本的 JUnit 一起使用，但 JUnit 本身可以通过支持这些特性得到很大改进。\n\n\n\n### JUnit 5\n\n为了克服前述限制，JUnit\
+  \ Lambda 项目应运而生。JUnit Lambda 是 JUnit 5 的代号。JUnit 5 是基于 Java 8 对 JUnit 的完全重写。你需要\
+  \ Java 8 才能使用 JUnit 5。它从头开始重新设计，克服了之前 JUnit 版本中的错误和局限。但这并不意味着用 JUnit 3 和 JUnit 4\
+  \ 编写的测试无法在 JUnit 5 上运行。JUnit 团队确保 JUnit 5 向后兼容，因此你也可以用它来运行旧的 JUnit 测试。JUnit 5 支持\
+  \ JUnit 3.8 及以上版本。\n\nJUnit 5 由三个子项目组成。每个子项目又包含多个模块，我们稍后会逐一介绍。\n\n*   **JUnit Platform**：它为启动\
+  \ JVM（Java 虚拟机）测试框架提供了基础。这包括一个可用于为 JUnit Platform 开发测试框架的 `TestEngine` API。它还提供了一个\
+  \ `ConsoleLauncher`，可供 Gradle 和 Maven 等构建工具使用。\n*   **JUnit Jupiter**：它提供了用于编写测试的新编程模型。此外，新的扩展机制也属于这个子项目。它实现了\
+  \ JUnit Platform 定义的 `TestEngine` API，从而使 JUnit 5 测试能够运行。\n*   **JUnit Vintage**：它提供了用于运行\
+  \ JUnit 3 和 JUnit 4 测试的 `TestEngine` 实现。\n\nJUnit 5 的架构如图 1-2 所示。JUnit 5 用引擎（engine）取代了运行器（runner）的概念。因此，中间有一个引擎\
+  \ API，它为 JUnit 4 和 JUnit 5 API 都提供了实现。这允许你运行使用不同 JUnit 版本编写的测试。Gradle、IntelliJ 或\
+  \ Eclipse 等工具使用启动器（launcher）API。你的测试将依赖于 JUnit 5 API，从而使你无需接触 JUnit 内部实现。\n\n![A429029_1_En_1_Fig2_HTML.gif](img/A429029_1_En_1_Fig2_HTML.gif)\n\
+  \n图 1-2.\n\nJUnit 5 架构\n\nJUnit 5 的主要模块包括：\n\n*   **junit-jupiter-api**：该模块定义了编写测试所需的\
+  \ API。\n*   **junit-platform-launcher**：该模块定义了外部工具使用的启动器 API。启动器可用于发现、过滤和执行测试。\n\
+  *   **junit-platform-engine**：它提供了可用于编写自己的 `TestEngine` 的 API。`TestEngine` 负责测试的发现和执行。\n\
+  *   **junit-jupiter-engine**：它是针对 JUnit 5 的 `junit-platform-engine` API 的实现。\n*\
+  \   **junit-vintage-engine**：它是针对 JUnit 3 和 JUnit 4 的 `junit-platform-engine` API\
+  \ 的实现。\n*   **junit-platform-commons**：它包含所有跨不同模块使用的工具类。\n*   **junit-platform-console**：它提供了一个名为\
+  \ `ConsoleLauncher` 的启动器实现。`ConsoleLauncher` 是一个独立的应用程序，用于从控制台启动 JUnit Platform。\n\
+  *   **junit-platform-gradle-plugin**：这是一个 Gradle 插件，可用于运行 JUnit 5 测试。\n*   **junit-platform-surefire-provider**：该模块为\
+  \ JUnit 5 提供了 Maven 集成。\n\nJUnit 团队还致力于为测试工具提供商和构建工具/IDE 奠定坚实的基础。在此版本中，他们发起了 Open\
+  \ Test Alliance（[`https://github.com/ota4j-team/opentest4j`](https://github.com/ota4j-team/opentest4j)），旨在为\
+  \ JVM 上的测试执行定义标准。\n\n## Java 8 入门\n\nJava 8 已不再是新话题。市面上已经出版了许多关于它的优秀书籍。尽管如此，许多 Java\
+  \ 开发者仍未意识到 Java 8 的强大之处。在本书中，我们将使用 Java 8，因此本节将简要介绍 Java 8 的重要特性。\n\nJava 8 是迄今为止\
+  \ Java 最大的一次版本发布。它包含了众多特性，如 lambda 表达式、流 API、Optional、新的日期时间 API、接口中的默认方法和静态方法等。在本节中，我们将重点介绍\
+  \ Java 8 的三个最重要的特性——lambda 表达式、流 API 和 Optional——它们将改变我们使用 Java 的方式。\n\n### Lambda\
+  \ 表达式\n\nJava 8 中引入的最重要的特性是 lambda 表达式。Lambda 表达式允许你将行为作为数据传递。在 Java 的早期版本中，我们使用匿名内部类来传递行为。让我们看一个\
+  \ lambda 表达式的简单示例——Java 的 `Collections` 类中的排序函数。`sort` 函数接收 `List` 和 `Comparator`，并根据提供的\
+  \ `Comparator` 进行排序。\n\n```\nList books = Arrays.asList(\"Effective Java\", \"Clean\
+  \ Code\", \"Refactoring\");\nCollections.sort(books, (b1, b2) -> b1.length() – b2.length));\n\
+  ```\n\n这段代码根据书名的长度进行排序。程序的输出将是 [Refactoring, Clean Code, Effective Java]。\n\n代码片段中显示的表达式\
+  \ `(b1, b2) -> b1.length() – b2.length()` 是一个类型为 `Comparator<String>` 的 lambda 表达式。\n\
+  \n*   `(b1, b2)` 是 `Comparator` 的 `compare` 方法的参数。\n*   `b1.length() – b2.length()`\
+  \ 是比较两个书名长度的函数体。\n*   `->` 是 lambda 运算符，用于分隔参数和 lambda 体。\n\n\n\n### Streams API\n\
+  \nStreams 提供了一种更高层次的抽象，让你能以声明式的方式表达 Java 集合中的计算。这类似于你使用 SQL 以声明式方式查询数据库中的数据。声明式意味着开发者编写他们想要做什么，而不是指定所有关于数据应如何查询的指令。Streams\
+  \ 仅提供只读操作，它们永远不会改变底层的集合。\n\n以下是 Java 7 中执行集合处理的示例代码片段：\n\n```\npublic class ExampleJava7\
+  \ {\npublic static void main(String[] args) {\nList books = getBooks();\nList programmingBooks\
+  \ = new ArrayList();\nfor (Book book : books) {\nif (book.getType() == BookType.PROGRAMMING)\
+  \ {\nprogrammingBooks.add(book);\n}\n}\nCollections.sort(programmingBooks, new Comparator()\
+  \ {\n@Override\npublic int compare(Book b1, Book b2) {\nreturn b1.getTitle().length()\
+  \ – b2.getTitle().length();\n}\n});\nfor (Book book:  programmingBooks) {\nSystem.out.println(book.getTitle());\n\
+  }\n}\n}\n```\n\n这段代码会打印所有编程类书籍的标题，按标题长度排序，最后输出到控制台。Java 7 开发者每天都会编写这类代码。为了编写这样一个简单的程序，我们不得不写了\
+  \ 15 行 Java 代码。上述代码更大的问题不在于开发者需要编写的行数，而在于其意图（即过滤书籍、按标题长度排序，最后打印它们）。\n\n我们可以使用 Java\
+  \ 8 的 Stream API 来简化上述代码，如下所示：\n\n```\npublic class ExampleJava8Stream {\npublic\
+  \ static void main(String[] args) {\nList books = getBooks();\nList programmingBookTitles\
+  \ = books.stream()\n.filter(book -> book.getType() == BookType.PROGRAMMING)\n.sorted((b1,\
+  \ b2) -> b1.getTitle().length() – b2.getTitle().length())\n.map(Book::getTitle)\n\
+  .collect(Collectors.toList());\nprogrammingBookTitles.forEach(System.out::println);\n\
+  }\n}\n```\n\n这段代码构建了一个包含多个流操作的管道，接下来将逐一讨论每个操作。\n\n*   `stream()`：通过在源集合（即 `tasks\
+  \ List<Book>`）上调用 `stream()` 方法来创建一个流管道。\n*   `filter(Predicate<T>)`：此操作提取流中符合谓词定义条件的元素。一旦你有了一个流，就可以对其调用零个或多个中间操作。Lambda\
+  \ 表达式 `book -> book.getType() == BookType.PROGRAMMING` 定义了一个谓词，用于过滤所有编程类书籍。该 Lambda\
+  \ 表达式的类型是 `java.util.function.Predicate<Book>`。\n*   `sorted(Comparator<T>)`：此操作返回一个流，其中包含所有按\
+  \ Lambda 表达式定义的比较器（即上面示例中的 `(b1, b2) -> b1.getTitle().length() – b2.getTitle().length()`）排序后的流元素。\n\
+  *   `map(Function<T,R>)`：此操作在对流中的每个元素应用 `Function<T,R>` 后返回一个流。\n*   `collect(toList())`：此操作将对流执行操作的结果收集到一个\
+  \ `List` 中。\n\n### Optional<T>\n\nJava 8 引入了一种新的数据类型 `java.util.Optional<T>`，它封装了一个空值。这使得\
+  \ API 的意图更加清晰。如果一个函数返回 `Optional<T>` 类型的值，那么它就是在告诉调用者该值可能不存在。使用 `Optional` 数据类型可以明确地告知\
+  \ API 调用者何时应预期一个可选值。使用 `Optional` 类型的目的是帮助 API 设计者通过查看方法签名，让调用者清楚地知道他们是否应该预期一个可选值。`Optional`\
+  \ API 中包含三种创建方法。\n\n*   `Optional.empty`：当值不存在时，用于创建一个 `Optional`。与其返回 null，不如返回\
+  \ `Optional.empty`。\n*   `Optional.of(T value)`：用于从一个非空值创建 Optional。当值为 null 时，它会抛出\
+  \ `NullPointerException`。你可以这样使用它：`Optional<String> mayBeName = Optional.of(name)`。\n\
+  *   `Optional.ofNullable(T value)`：这是一个静态工厂方法，适用于 null 和非 null 值。对于 null 值，它会创建一个空的\
+  \ `Optional`；对于非 null 值，它会使用该值创建一个 `Optional`。\n\n\n\n## 项目设置\n\n本书采用实践导向的方法，我们将通过一个示例来学习\
+  \ TDD。在本书中，我们将构建一个名为 `bookstoread` 的应用程序。该应用程序类似于 [`www.goodreads.com/`](http://www.goodreads.com/)\
+  \ 网站。关于该应用程序的更多功能细节将在下一章介绍。本章将设置你将在本书中使用的项目。但在继续之前，我们需要做一些准备工作。请在你的机器上安装以下软件：\n\n\
+  *   **Java 8**：JUnit 5 需要 Java 8 或更高版本。请从 Oracle 官方网站 [`www.oracle.com/technetwork/java/javase/downloads/index.html`](http://www.oracle.com/technetwork/java/javase/downloads/index.html)\
+  \ 下载 Java 8 的最新更新。在撰写本文时，Java 版本为 1.8.0_101。你可以通过运行以下命令来检查你的 Java 版本：\n\n```\n \
+  \   $ java -version\n    java version \"1.8.0_101\"\n    Java(TM) SE Runtime Environment\
+  \ (build 1.8.0_101-b13)\n    Java HotSpot(TM) 64-Bit Server VM (build 25.101-b13,\
+  \ mixed mode)\n    ```\n\n*   **IntelliJ IDEA 2016.2 或更高版本**：许多 Java 开发者已从 Eclipse\
+  \ 转向 IntelliJ Idea IDE。我们将使用 IntelliJ 的最新社区版。你可以从 JetBrains 网站 [`www.jetbrains.com/idea/download/`](http://www.jetbrains.com/idea/download/)\
+  \ 下载最新版本。IntelliJ Idea 对 JUnit 5 有良好的支持。\n*   **Gradle**：Gradle 是 JVM 生态系统中流行的构建工具。它用于依赖管理和运行自动化任务。你不需要在本地机器上安装\
+  \ Gradle。我们将使用一个 Gradle 包装器，它会为你的项目下载并安装 Gradle。要了解更多关于 Gradle 的信息，你可以参考 Gradle\
+  \ 文档 [`https://docs.gradle.org/current/userguide/userguide.html`](https://docs.gradle.org/current/userguide/userguide.html)\
+  \ 。\n\n现在，我们已经准备好了所有先决条件，让我们使用 IntelliJ Idea 创建一个 Gradle 项目。\n\n1.  启动 IntelliJ\
+  \ IDEA，你将看到如下创建项目的界面，如图 1-3 所示：\n\n![A429029_1_En_1_Fig3_HTML.jpg](img/A429029_1_En_1_Fig3_HTML.jpg)\n\
+  \n图 1-3.\n\nIntelliJ 启动界面  \n2.  点击“Create New Project”开始创建 Java Gradle 项目。你将看到一个创建新项目的界面。请选择\
+  \ Gradle 和 Java，如图 1-4 所示。\n\n![A429029_1_En_1_Fig4_HTML.jpg](img/A429029_1_En_1_Fig4_HTML.jpg)\n\
+  \n图 1-4.\n\n导入项目  \n3.  你还需要指定项目 SDK。点击“New”按钮选择 JDK 8。点击“Next”进入下一个界面。现在，系统会要求你指定\
+  \ GroupId 和 ArtifactId，如图 1-5 所示。\n\n![A429029_1_En_1_Fig5_HTML.jpg](img/A429029_1_En_1_Fig5_HTML.jpg)\n\
+  \n图 1-5.\n\n项目属性  \n4.  点击“Next”按钮进入下一个界面。此界面会要求你指定一些 Gradle 设置。我们将选择“Use auto-import”，以便\
+  \ Gradle 在我们向构建文件添加新依赖时自动添加它们。同时，我们也会选择“Create directories for empty content roots\
+  \ automatically”选项（参考图 1-6）。\n\n![A429029_1_En_1_Fig6_HTML.jpg](img/A429029_1_En_1_Fig6_HTML.jpg)\n\
+  \n图 1-6.\n\nGradle 属性  \n5.  点击“Next”按钮进入最后一个界面。在此界面中，系统会询问你希望创建项目的位置。为应用程序选择一个方便的目录路径。最后，点击“Finish”按钮完成项目创建过程，如图\
+  \ 1-7 所示。\n\n![A429029_1_En_1_Fig7_HTML.jpg](img/A429029_1_En_1_Fig7_HTML.jpg)\n\
+  \n图 1-7.\n\n项目位置\n\n我们将在本书后面介绍 JUnit 5 与 Gradle 的集成。所以，现在只需按照与 Gradle 相关的步骤操作即可。\n\
+  \n现在，我们的 Java Gradle 项目已经创建完成，我们需要对 Gradle 构建文件（即 `build.gradle`）做一些修改。在 IDE 中打开\
+  \ `build.gradle` 文件，并将其修改为以下内容：\n\n```\ngroup 'com.junit5book'\nversion '1.0-SNAPSHOT'\n\
+  apply plugin: 'java'\nsourceCompatibility = 1.8\nrepositories {\nmavenCentral()\n\
+  }\ndependencies {\ndef junitVersion = '5.0.1'\ntestCompile 'org.junit.jupiter:junit-jupiter-api:'\
+  \ + junitVersion\ntestCompile 'org.junit.jupiter:junit-jupiter-engine:' + junitVersion\n\
+  }\n```\n\n在代码所示的 `build.gradle` 文件中，我们完成了以下操作：\n\n*   将 sourceCompatibility 从 1.5\
+  \ 改为 1.8：Gradle Java 插件的此属性用于指定要使用的 JVM 版本。由于我们将使用 JDK 1.8，因此将其改为 1.8。\n*   在 dependencies\
+  \ 部分添加了 JUnit 5 依赖：我们需要添加两个依赖——`junit-jupiter-api` 和 `junit-jupiter-engine` API。正如“JUnit\
+  \ 5”一节中所讨论的，`junit-jupiter-api` 定义了编写测试所需的 API。`junit-jupiter-engine` 是 JUnit 5\
+  \ 对 `junit-platform-engine` API 的实现。\n\n这就是开始使用 JUnit 5 所需做的全部工作。我们将在后续章节中介绍 Gradle\
+  \ 与 JUnit 5 的集成，请参考那些章节以了解更多信息。在接下来的几章中，我们将从 IDE 内部运行测试用例。\n\n\n\n## 编写你的第一个测试\n\
+  \n让我们开始构建 `bookstoread` 应用。我们将支持的第一个功能是向 BookShelf 添加书籍。在本章中，我们不会完全实现此功能。我们只会编写足够的代码来测试：当我们创建书架时，其中没有书籍（即书架是空的）。\n\
+  \n我们将从编写一个测试规范开始。在 `src/main/test` 目录下创建一个新的包 `bookstoread`。我们将保持扁平的包结构，以使代码更易于阅读。在\
+  \ bookstoread 包内，我们将创建一个新类 `BookShelfSpec`。如果你之前编写过 JUnit 测试用例，那么你通常会编写以 Test 或\
+  \ Tests 结尾的测试类。在本书中，我们将遵循行为驱动开发（BDD）的命名约定。`*Test` 命名约定会迫使你认为单元测试是唯一的质量保证手段。我们希望你能从行为规范的角度思考，因此我们的测试将以\
+  \ `Spec` 结尾。\n\n你将得到一个空的规范类，如代码片段所示。\n\n```\npackage bookstoread;\npublic class\
+  \ BookShelfSpec {\n}\n```\n\n让我们编写第一个测试用例，该用例将断言：当没有书籍添加到书架时，它应该是空的。在 `BookShelfSpec`\
+  \ 内部，添加如下测试用例：\n\n```\npackage bookstoread;\nimport org.junit.jupiter.api.Test;\n\
+  import java.util.List;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\
+  public class BookShelfSpec {\n@Test\npublic void shelfEmptyWhenNoBookAdded() throws\
+  \ Exception {\nBookShelf shelf = new BookShelf();\nList books = shelf.books();\n\
+  assertTrue(books.isEmpty(), () -> \"BookShelf should be empty.\");\n}\n}\n```\n\n\
+  这段代码无法编译，因为还没有 `BookShelf` 类。此时，我们只是假设 `BookShelf` 将来会存在，从而编写了客户端代码。我们只是想以客户端的身份感受一下我们的\
+  \ API。我们编写了期望以及我们希望 API 呈现的样子。随着学习的深入，我们将重构 API 以满足我们的期望。\n\n一个测试用例被分解为以下三个部分：\n\
+  \n*   设置测试用例所需的数据。\n*   调用被测试的单元。\n*   执行断言以验证预期行为是否正确。\n\n这也被称为 AAA（Arrange，Act\
+  \ 和 Assert）。\n\n在刚刚展示的测试用例中，你会注意到我们使用了 `org.unit.jupiter.api.Test` 注解。在早期版本的 JUnit\
+  \ 中，注解是 `org.junit.Test`。要编写 JUnit 5 测试用例，你必须使用 `org.unit.jupiter.api.Test` 注解。JUnit\
+  \ 5 根据测试用例上存在的注解来区分不同版本。\n\nJUnit 5 精简了断言支持。JUnit 5 中没有 `assertThat` 方法。预期你会使用像\
+  \ Hamcrest 或 AssertJ 这样的第三方断言库。我们将在后续章节中使用 AssertJ。在刚刚展示的代码中，我们使用了内置断言 `assertTrue`，它测试条件是否为真。\n\
+  \n让我们编写代码使测试通过。在 `src/main/java` 目录下创建一个新类 `BookShelf`。向其中添加 `books` 方法，如图 1-8 所示。如果你使用\
+  \ IntelliJ 为你创建类，则会生成此代码。要使用 IntelliJ 创建 BookShelf，请按 alt + enter 键选中 `BookShelfSpec`\
+  \ 中的 `BookShelf`，如图 1-8 所示。\n\n![A429029_1_En_1_Fig8_HTML.jpg](img/A429029_1_En_1_Fig8_HTML.jpg)\n\
+  \n图 1-8.\n\n创建类\n\n要使用 IntelliJ 快捷键创建 `books` 方法，请再次按 alt + enter 键选中 `books` 方法。最后，你将得到一个类，如下面代码所示：\n\
+  \n```\npackage bookstoread;\nimport java.util.List;\npublic class BookShelf {\n\
+  public List books() {\nreturn null;\n}\n}\n```\n\n现在我们的代码可以编译了，让我们运行测试用例。要运行测试用例，请右键单击测试类并选择\
+  \ `Run ‘BookShelfSpec’`，如图 1-9 所示。\n\n![A429029_1_En_1_Fig9_HTML.jpg](img/A429029_1_En_1_Fig9_HTML.jpg)\n\
+  \n图 1-9.\n\n运行测试\n\n当你运行测试时，你会看到测试失败，如图 1-10 所示。\n\n![A429029_1_En_1_Fig10_HTML.jpg](img/A429029_1_En_1_Fig10_HTML.jpg)\n\
+  \n图 1-10.\n\n测试失败\n\n在图 1-10 中你会注意到提到了 JUnit Jupiter。图 1-10 显示 `BookShelfSpec shelfEmptyWhenNoBookAdded`\
+  \ 测试是由 JUnit Jupiter 引擎执行的。如果你也有 JUnit 4 测试用例，那么你还会看到 JUnit Vintage。我们将在第 8 章中介绍这一点。\n\
+  \n为了使这个测试用例通过，我们将修改 `BookShelf books` 方法的实现，使其返回一个空列表，如下面代码所示：\n\n```\npackage bookstoread;\n\
+  import java.util.Collections;\nimport java.util.List;\npublic class BookShelf {\n\
+  public List books() {\nreturn Collections.emptyList();\n}\n}\n```\n\n再次运行测试用例。这次你将看到令人愉悦的绿色条（见图\
+  \ 1-11）。\n\n![A429029_1_En_1_Fig11_HTML.jpg](img/A429029_1_En_1_Fig11_HTML.jpg)\n\
+  \n图 1-11.\n\n测试成功\n\n绿色条表示代码符合我们的预期。我们现在可以继续并添加一个新的测试用例。我们将在第 3 章讨论完 JUnit 5 的核心概念后，继续实现此功能。\n\
+  \n## 总结\n\n在本章中，你了解了为什么开发者测试对每个程序员来说都是一项宝贵的技能。我们详细讨论了 TDD，然后讨论了单元测试。单元测试通过为软件开发人员提供防止回归的安全网和帮助程序员设计应用程序的指南，从而显著提高生产力。\n\
+  \n本章还讨论了 JUnit，它是 Java 中单元测试的事实标准。JUnit 5 是 JUnit 的一个模块化和可扩展的版本。我们通过使用 IntelliJ\
+  \ IDEA IDE 创建一个 Java Gradle 项目并编写了第一个测试用例来结束本章。在下一章中，我们将学习 JUnit 5 的核心概念。\n\n"
+- "# 2. 理解 JUnit 5 核心概念\n\n在第一章中，我们学习了测试驱动开发（TDD）的重要性。我们还讨论了单元测试的关键作用。但在我们继续使用 JUnit\
+  \ 5 构建应用程序之前，理解其核心概念非常重要。\n\n本章的目标是概述 JUnit 5 的核心概念。JUnit 5 基于以下原则：\n\n*   最小化占用空间。\n\
+  *   简化测试用例。\n*   提供功能上的可扩展性。\n*   优先选择特定的扩展点而非通用的。\n\n所有这些概念使得新版本在保持更精简和可扩展的同时，专注于测试需求。总而言之，JUnit\
+  \ 5 是对 JUnit 框架的完全重写，因此底层发生了很多变化。因此，即使你了解之前版本 JUnit 的核心概念，理解 JUnit 5 的不同之处也很重要。\n\
+  \n然后，在下一章中，我们将开始使用 JUnit 5 构建一个 bookstoread 应用程序。构建应用程序将帮助你学习如何将这些核心概念应用到你的工作中。\n\
+  \n\n\n## 测试类\n\n作为程序员，我们通过测试类与单元测试框架进行交互。在第一章中，我们编写了第一个测试类 `BookShelfSpec`，它包含一个测试方法\
+  \ `shelfEmptyWhenNoBookAdded`，该方法断言当没有添加任何书籍时，`BookShelf` 应为空。\n\n在 JUnit 的早期版本中，如果一个类具有以下特征，则被视为测试类：\n\
+  \n*   公开访问权限\n*   一个无参构造函数\n*   至少一个测试方法\n\n在第一章中，我们编写了测试类 `BookShelfSpec`，如下代码所示，它满足了这些约束条件：\n\
+  \n```\npackage bookstoread;\nimport org.junit.jupiter.api.Test;\nimport java.util.List;\n\
+  import static org.junit.jupiter.api.Assertions.assertTrue;\npublic class BookShelfSpec\
+  \ {\n@Test\npublic void shelfEmptyWhenNoBookAdded() {\nBookShelf shelf = new BookShelf();\n\
+  List books = shelf.books();\nassertTrue(books.isEmpty(), () -> \"BookShelf should\
+  \ be empty\");\n}\n}\n```\n\n我们不必编写无参构造函数，因为如果类没有其他构造函数，Java 会隐式创建一个。\n\n在 JUnit\
+  \ 5 中，其中一些约束条件已被放宽。JUnit 5 的测试类和测试方法不再要求是公开的。我们现在可以将它们设为包级私有，如下代码所示：\n\n```\n//\
+  \ 为简洁起见，省略了包和导入语句\nclass BookShelfSpec {\n@Test\nvoid shelfEmptyWhenNoBookAdded(){\n\
+  BookShelf shelf = new BookShelf();\nList books = shelf.books();\nassertTrue(books.isEmpty(),\
+  \ () -> \"BookShelf should be empty.\");\n}\n}\n```\n\n放宽此限制的原因是 JUnit 内部使用反射来查找测试类和测试方法。即使它们具有有限的可见性，反射也能发现它们，因此无需将它们设为公开。这意义不大，因为我们可以使用我们喜欢的集成开发环境轻松生成测试类和测试方法存根。所以，作为程序员，我们以前也不需要做太多工作。但在我看来，这是一种微妙的方式，表明如果你不需要某样东西，为什么还要要求它呢。在本节中，我们将只关注测试类。我们将在下一节介绍测试方法。\n\
+  \n### 构造函数\n\nJUnit 5 不要求测试类具有公开的无参构造函数。构造函数可以是包级私有的、受保护的，甚至是私有的。以下是带有私有无参构造函数的\
+  \ `BookShelfSpec`。运行测试用例，你会发现测试仍然可以正常工作。\n\n```\nclass BookShelfSpec {\nprivate\
+  \ BookShelfSpec() {\n/*\n此构造函数是私有的\n*/\n}\n// 为简洁起见，省略了测试方法\n}\n```\n\nJUnit 早期版本对构造函数的另一个约束是它们不能有参数。我们被要求有一个公开的无参构造函数。我们看到在\
+  \ JUnit 5 中可见性约束被放宽了，但 JUnit 5 是否也放宽了无参构造函数的约束？你会惊喜地发现，在 JUnit 5 中，测试类构造函数允许有参数。测试方法不仅可以有构造函数，还可以有参数。这是通过提供\
+  \ `ParameterResolver` 来实现的。`ParameterResolver` 在运行时动态解析参数。只有当你有一个解析器来解析这些参数并注入它们时，你才能在构造函数或测试方法中使用参数。我们将在第\
+  \ 8 章中更详细地介绍解析器。为了给你一个快速示例，我们将使用 JUnit 5 内置的解析器之一——`TestInfoParameterResolver`。\n\
+  \n```\nimport org.junit.jupiter.api.TestInfo;\nclass BookShelfSpec {\nprivate BookShelfSpec(TestInfo\
+  \ testInfo) {\nSystem.out.println(\"Working on test \" + testInfo.getDisplayName());\n\
+  }\n// 为简洁起见，省略了测试方法\n}\n```\n\n在上述代码中，我们在测试类构造函数中定义了一个 `TestInfo` 类型的参数，该参数稍后在 `print`\
+  \ 语句中使用。`TestInfoParameterResolver` 向构造函数提供一个 `TestInfo` 实例。`TestInfo` 包含有关当前测试的信息。我们用它来显示测试类的名称。\n\
+  \n当你运行上述代码时，它会为每个测试用例打印语句“`Working on test BookShelfSpec`”。因为我们只有一个测试用例，所以它只会被打印一次。\n\
+  \n### 使用 @DisplayName\n\n大多数程序员刚开始使用 JUnit 时，认为测试类名称需要以 `Test` 后缀结尾。在测试类名称中使用 `Test`\
+  \ 只是一种约定；你不必像那样命名你的测试类。如今，许多程序员以 `Spec` 或 `Specification` 结尾来命名他们的测试类。因此，我们可以编写\
+  \ `BookShelfSpec` 或 `BookShelfSpecification`，而不是编写 `BookShelfTest`。`Spec` 命名约定是由行为驱动开发实践推广的。你的目标应该是选择一种命名约定，并在你的项目中坚持使用。\n\
+  \n行为驱动开发将 TDD 原则与领域驱动设计相结合，为软件团队提供共享工具和共享流程，以便在软件开发上进行协作。\n\nJUnit 5 允许你为测试类使用自定义名称。你可以使用\
+  \ `org.junit.jupiter.api.DisplayName` 注解来提供一个可以包含空格、特殊字符甚至表情符号的名称。这允许你为测试类使用更有意义的名称。在下一章中，我们将为测试类使用\
+  \ `@DisplayName` 注解。\n\n```\nimport org.junit.jupiter.api.DisplayName;\nimport org.junit.jupiter.api.Test;\n\
+  import org.junit.jupiter.api.TestInfo;\n@DisplayName(\"\")\nclass BookShelfSpec\
+  \ {\nprivate BookShelfSpec(TestInfo testInfo) {\nSystem.out.println(\"Working on\
+  \ test \" + testInfo.getDisplayName());\n}\n@Test\nvoid shelfEmptyWhenNoBookAdded()\
+  \ {\n// 为简洁起见，省略了内容\n}\n}\n```\n\n当你在 IDE 中运行 `BookShelfSpec` 时，你将看到正在执行的测试类的名称为\
+  \ BookShelf Specification，如图 2-1 所示。\n\n![A429029_1_En_2_Fig1_HTML.jpg](img/A429029_1_En_2_Fig1_HTML.jpg)\n\
+  \n图 2-1.\n\n测试成功\n\n## 测试方法\n\n在 JUnit 的早期版本中，测试方法具有以下特征：\n\n*   应使用 `org.junt.Test`\
+  \ 注解进行注解。\n*   应具有公开可见性。\n*   不应接受任何参数。\n*   应返回 void。\n\n在上一节中，我们讨论了在 JUnit 5 中测试方法不再需要是公开的。测试方法可以是受保护的或包级私有的。首选是使用包级私有，因为这样可以减少输入。\n\
+  \nJUnit 5 中的测试必须使用 `org.junit.jupiter.api.Test` 注解进行注解。这与 JUnit 4 中使用的注解不同。JUnit\
+  \ 5 的设计者选择使用不同的注解，以便他们能够区分不同版本的 JUnit。JUnit 5 可以根据使用的 `@Test` 注解来运行 JUnit 4 和 JUnit\
+  \ 5 的测试。\n\n### 测试方法中的参数\n\n与测试类构造函数一样，在 JUnit 5 中，测试方法也可以接受参数。以下代码是一个测试方法将 `TestInfo`\
+  \ 作为其参数的示例：\n\n```\n@Test\nvoid shelfEmptyWhenNoBookAdded(TestInfo testInfo) {\n\
+  System.out.println(\"Working on test case \" + testInfo.getDisplayName());\nBookShelf\
+  \ shelf = new BookShelf();\nList books = shelf.books();\nassertTrue(books.isEmpty(),\
+  \ () -> \"BookShelf should be empty.\");\n}\n```\n\n上述代码使用了 JUnit 5 的 `ParameterResolver`\
+  \ API。我们将在本书后面进一步了解它。\n\n\n\n### 使用 @DisplayName\n\n据说编程中最难的问题就是命名。大多数程序员都觉得给类、方法和变量起个好名字很困难。测试方法也是如此。我们见过名为\
+  \ `test1`、`test2`、`testSomeMethodName` 等等的测试方法。测试方法名称中包含“test”的根本原因在于，JUnit 4 之前的版本要求测试方法名必须以“test”开头，这样\
+  \ JUnit 才能找到测试方法。在 JUnit 4 引入 `@Test` 注解后，程序员不再需要在测试方法名中使用“test”。但正如人们所说，“旧习难改”，所以大多数程序员仍然沿用旧的惯例。\n\
+  \n许多 TDD 大师和布道者曾在各种会议和聚会上提出过测试名称的问题。他们一直敦促人们开始为测试用例使用更好的名称。\n\n> 测试名称应该说明它们测试的是什么行为，而不是它们测试的方法名称。\
+  \ — 敏捷大师 Steve Freeman\n\n大多数程序员认为测试方法名与生产类方法名之间存在一一对应关系。事实并非如此。我们通常最终会为一个方法编写多个行为测试。\n\
+  \n测试方法名称必须表达其意图。我们为测试方法起了一个行为名称 `shelfEmptyWhenNoBookAdded`。如果有人读到这个测试名称，他/她就会知道我们在测试什么行为。但将行为作为方法名的问题在于，它会导致方法名非常长。此外，我们不能在方法名中使用空格，因此可读性会受到影响。\n\
+  \n> 以简短声明式语句编写的测试名称，比机器可读的名称更具表现力。也就是说，后者只有在你理解了一种用于解析其含义的隐藏代码语言时才有意义。 — 《单元测试的艺术》作者\
+  \ Roy Osherove\n\n在像 Groovy 这样的编程语言中，我们可以使用字符串作为测试名称，这意味着我们可以在方法名中使用空格。在 Java 中，方法命名有严格的规则，因此程序员经常使用下划线\
+  \ (_)，如下面的代码所示，这使其更具可读性：\n\n```\n@Test\nvoid shelf_empty_when_no_book_added() {\n\
+  BookShelf shelf = new BookShelf();\nList books = shelf.books();\nassertTrue(books.isEmpty(),\
+  \ () -> \"BookShelf should be empty.\");\n}\n```\n\n我们在上一节讨论的 `@DisplayName` 注解与测试方法一起使用，以提供有意义的名称，如下面的代码所示：\n\
+  \n```\n@DisplayName(\"一个书架\")\nclass BookShelfSpec {\n@Test\n@DisplayName(\"当没有书添加到其中时是空的\"\
+  )\nvoid shelfEmptyWhenNoBookAdded() {\nBookShelf shelf = new BookShelf();\nList\
+  \ books = shelf.books();\nassertTrue(books.isEmpty(), () -> \"BookShelf should be\
+  \ empty.\");\n}\n}\n```\n\n在前面展示的 `BookShelfSpec` 类中，我们在测试类和测试方法上都使用了 `@DisplayName`\
+  \ 注解来提供可读的名称。再次运行测试，你将看到更具可读性的测试输出，如图 2-2 所示。\n\n![A429029_1_En_2_Fig2_HTML.jpg](img/A429029_1_En_2_Fig2_HTML.jpg)\n\
+  \n图 2-2.\n\n使用 @DisplayName 注解执行测试用例\n\n## 断言\n\nJUnit 中的断言是我们在测试方法中调用的静态方法，用于验证预期行为。每个断言都测试给定条件是否为真。如果断言的条件不为真，则会报告测试失败。所有\
+  \ JUnit 5 断言都定义在 `org.junit.jupiter.api.Assertions` 类中。在我们迄今为止编写的单个测试用例中，我们使用了 `assertTrue`。\n\
+  \n如第 1 章所述，与 JUnit 4 相比，JUnit 5 中的断言更少。在后续章节中，我们将使用 AssertJ，这是一个有助于编写清晰断言的第三方库。现在，让我们先了解\
+  \ JUnit 5 内置的功能。\n\nJUnit 4 支持两种断言语法——JUnit 原始版本自带的传统断言，如 `assertTrue`、`assertEquals`\
+  \ 等，以及使用 `assertThat` 的更易读的语法。JUnit 5 不支持 `assertThat` 语法。建议你使用 AssertJ 或 Hamcrest\
+  \ 等第三方库来编写 `assertThat` 断言。\n\nJUnit 提供的每个 `assertXXX` 方法至少有三个重载方法。让我们看看其中一个断言方法\
+  \ `assertNull`。以下是使用了所有重载 `assertNull` 方法的测试用例：\n\n*   在这种情况下，第一个 `assertNull` 检查值（即\
+  \ str）是否为 null。如果该值不为 null，则会抛出 `AssertionFailedError`，并且测试将失败。\n*   第二个重载方法允许你传入一个字符串消息，该消息将在测试失败时显示给用户。最佳实践是为所有断言方法调用提供错误消息。\n\
+  *   第三个方法使用了 Java 8 的 `java.util.function.Supplier` 函数式接口。我们向其传递了一个 lambda 表达式，该表达式将生成所需的消息。此方法的优点是，只有在断言失败时，才会从\
+  \ supplier 中延迟获取失败消息。如果你正在构建一条复杂的消息，那么通过使用 supplier，你只需在失败发生时付出代价。\n\n```\n@Test\n\
+  void nullAssertionTest() {\nString str = null;\nassertNull(str);\nassertNull(str,\
+  \ \"str 应该为 null\");\nassertNull(str, () -> \"str 应该为 null\");\n}\n```\n\n带有两个值参数的断言方法遵循一种模式。第一个参数是期望值，第二个参数是实际值。\n\
+  \n表 2-1 列出了 JUnit 5 中存在的一些最流行的断言方法。\n\n表 2-1.\n\n断言\n\n| 断言方法 | 作用 |\n| --- | ---\
+  \ |\n| assertTrue | 断言条件为真 |\n| assertFalse | 断言条件为假 |\n| assertNull | 断言对象为 null\
+  \ |\n| assertNotNull | 断言对象不为 null |\n| assertEquals | 断言期望值和实际值相等 |\n| assertNotEquals\
+  \ | 断言期望值和实际值不相等 |\n| assertArrayEquals | 断言期望数组和实际数组相等 |\n| assertSame | 断言期望值和实际值引用同一个对象\
+  \ |\n| assertNotSame | 断言期望值和实际值不引用同一个对象 |\n\n需要注意的是，除了前面讨论的三种变体外，`assertTrue` 和\
+  \ `assertFalse` 还有另一种重载方法。它接受一个 `java.util.function.BooleanSupplier` 作为参数。可以向该方法传递一个\
+  \ lambda 表达式，或者我们可以将其与流、谓词和偏函数结合使用，以完全表达我们的期望。\n\n\n```java\n@Test\nvoid shouldCheckForEvenNumbers()\
+  \ {\nint number = new Random(10).nextInt();\nassertTrue(() -> number%2 == 0, number+\
+  \ \" is not an even number.\");\nBiFunction divisible = (x, y) -> x % y == 0;\n\
+  Function multipleOf2 = (x) -> divisible.apply(x, 2);\nassertTrue(() -> multipleOf2.apply(number),\
+  \ () -> \" 2 is not factor of \" + number);\nList numbers = Arrays.asList(1, 1,\
+  \ 1, 1, 2);\nassertTrue(() -> numbers.stream().distinct().anyMatch(DSLTest::isEven),\
+  \ \"Did not find an even number in the list\");\n}\nstatic boolean isEven(int number)\
+  \ {\nreturn number % 2 == 0;\n}\n```\n\n在上述测试用例中，我们使用了几个特性。\n\n*   第一个断言展示了如何使用简单的\
+  \ lambda 表达式。\n*   在下一个断言中，我们构建了几个函数（例如 `divisible` 和 `multipleOf2`），并用它们来测试是否能被\
+  \ 2 整除。\n*   在最后一个断言中，我们使用了一个整数流和一个谓词来判断流中是否包含偶数。\n\n这里需要注意的另一件事是，JUnit 5 改变了消息参数的顺序。在\
+  \ JUnit 4 中，消息是第一个参数，但在 JUnit 5 中，消息是最后一个参数。\n\n表 2-2.\n\nJUnit 4 与 JUnit 5 断言方法参数列表\n\
+  \n| JUnit 4 assert*(message, expected, actual) | JUnit 5 assert*(expected, actual,\
+  \ message) |\n\nJUnit 5 也提供了一个 `fail` 方法，该方法在 JUnit 的早期版本中就已存在。它用于使测试因给定的失败消息而失败。它还有一个接受供应商的重载变体。\n\
+  \n```java\n@Test\nvoid thisTestShouldFail() {\nfail(() -> \"This test should fail\"\
+  );\n}\n```\n\n与 JUnit 4 不同，JUnit 5 提供了以下用于断言异常的方法：\n\n*   `assertThrows(Class<?\
+  \ extends Throwable> expectedType, Executable executable)`：此断言断言提供的可执行对象会抛出 `expectedType`\
+  \ 类型的异常。这是在 JUnit 5 中断言异常的新方法。你不再需要 JUnit 4 的异常规则来测试异常。我们将在第 5 章中介绍此方法。\n\n### 分组断言\n\
+  \n> JUnit 的设计初衷是与大量小型测试协同工作。它在测试类的单独实例中执行每个测试。它会报告每个测试的失败。在测试之间共享设置代码是最自然的方式。这是一个贯穿\
+  \ JUnit 的设计决策，当你决定在每个测试中报告多个失败时，你就开始与 JUnit 的设计相悖。不推荐这样做。——JUnit 4.0 常见问题解答\n\n\
+  JUnit 提倡每个测试只包含一个断言的做法。当我们说单个断言时，意味着测试单一行为。前面编写的 `shouldCheckForEvenNumbers` 测试违反了这一建议，因为我们在其中测试了三个不同的东西。\n\
+  \n但是，如果我们测试的是单个单元，我们仍然可以断言多个属性（例如，对 `BookShelf` 的 `toString` 方法进行测试）。\n\n```java\n\
+  @Test\npublic void shelfToStringShouldPrintBookCountAndTitles() throws Exception\
+  \ {\nBookShelf shelf = new BookShelf();\nList books = shelf.books();\nshelf.add(\"\
+  The Phoenix Project\");\nshelf.add(\"Java 8 in Action\");\nString shelfStr = shelf.toString();\n\
+  assertTrue(shelfStr.contains(\"The Phoenix Project\"),  \"1st book title missing\"\
+  );\nassertTrue(shelfStr.contains(\"Java 8 in Action\") , \"2nd book title missing\
+  \ \");\nassertTrue(shelfStr.contains(\"2 books found\"), \"Book  count missing\"\
+  );\n}\n```\n\n上述测试用例会在第一个断言处失败。但这可能无法提供正确的信息。我们希望运行所有断言以查看完整的测试结果，如图 2-3 所示。\n\n\
+  ![A429029_1_En_2_Fig3_HTML.jpg](img/A429029_1_En_2_Fig3_HTML.jpg)\n\n图 2-3.\n\n\
+  未使用分组断言的测试失败\n\n`assertAll` 方法可以解决这个问题。该断言可用于将所有相关断言组合在一起，并作为单个断言运行，仅报告失败的断言。每个断言都指定为一个\
+  \ lambda 表达式。\n\n```java\n@Test\npublic void shelfToStringShouldPrintBookCountAndTitles()\
+  \ throws Exception {\nBookShelf shelf = new BookShelf();\nList books = shelf.books();\n\
+  shelf.add(\"The Phoenix Project\");\nshelf.add(\"Java 8 in Action\");\nString shelfStr\
+  \ = shelf.toString();\nassertAll( ()  -> assertTrue(shelfStr.contains(\"The Phoenix\
+  \ Project\"),  \"1st book title missing\"),\n() -> assertTrue(shelfStr.contains(\"\
+  Java 8 in Action\") , \"2nd book title missing \"),\n() -> assertTrue(shelfStr.contains(\"\
+  2 books found\"), \"Book  count missing\"));\n}\n```\n\n现在，如果发生失败，我们将得到如下输出。它会列出所有单独失败的断言，如图\
+  \ 2-4 所示。\n\n![A429029_1_En_2_Fig4_HTML.jpg](img/A429029_1_En_2_Fig4_HTML.jpg)\n\
+  \n图 2-4.\n\n`assertAll` 失败输出\n\n我们也可以选择将一个字符串作为第一个参数传递。该字符串将用作所有失败异常的标题。\n\n###\
+  \ 错误与失败\n\n在 JUnit 中，错误和失败是有区别的。当断言未满足时，测试失败；当测试抛出意外异常时，则发生错误。假设我们有以下示例测试类，其中包含两个测试方法：\n\
+  \n```java\nimport org.junit.jupiter.api.Test;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\n\
+  import static org.junit.jupiter.api.Assertions.assertTrue;\nclass FailureAndErrorTests\
+  \ {\n@Test\nvoid stringIsNotEmpty() {\nString str = \"\";\nassertFalse(str.isEmpty());\n\
+  }\n@Test\nvoid thisMethodThrowsException() {\nString str = null;\nassertTrue(str.isEmpty());\n\
+  }\n}\n```\n\n如果你运行上述代码，`stringIsNotEmpty` 将被报告为失败，而 `thisMethodThrowsException`\
+  \ 将被报告为错误。在 IntelliJ IDEA 等工具中，失败以橙色显示，而错误以红色显示，如图 2-5 所示。\n\n![A429029_1_En_2_Fig5_HTML.jpg](img/A429029_1_En_2_Fig5_HTML.jpg)\n\
+  \n图 2-5.\n\n测试错误与失败\n\n## JUnit 生命周期 API\n\n一个典型的 JUnit 测试类包含多个测试用例。每个测试用例都由一个测试生命周期管理。完整的生命周期包括以下三个阶段：\n\
+  \n1.  首先是设置阶段，在此阶段建立测试基础设施。JUnit 提供了两个级别的设置。一个是类级别，可以创建像数据库连接这样代价高昂的对象，这些对象可以在所有测试中重用而不会产生副作用。影响测试运行的测试对象需要在各个测试的设置方法中创建。\n\
+  2.  接下来是测试执行本身。结果验证也是测试执行阶段的一部分。执行结果将表示成功或失败。\n3.  最后一个阶段是清理阶段，在此阶段执行测试后所需的任何清理工作。就像类级别的设置一样，也有类级别的清理，可用于销毁在类级别创建的所有单例对象。\n\
+  \nJUnit API 提供了用于执行测试用例设置和清理的注解（见图 2-6）。\n\n![A429029_1_En_2_Fig6_HTML.gif](img/A429029_1_En_2_Fig6_HTML.gif)\n\
+  \n图 2-6.\n\n测试生命周期\n\n### @BeforeAll\n\n`org.junit.jupiter.api.BeforeAll` 注解负责为类中的所有测试用例执行一次性初始化。该方法必须是静态的且非私有的。它通常用于创建像数据库连接这样代价高昂的对象，这些对象可以在所有测试用例中重用。在\
+  \ `BeforeAll` 中完成的工作可以移到 `BeforeEach` 中，但由于这通常是计算开销很大的操作，因此整体测试执行时间可能会大大延长。\n\n\
+  该注解还具有继承行为。如果超类方法标记了 `@BeforeAll`，它们将在测试类的任何此类方法之前执行。\n\n\n### @BeforeEach\n\n`org.junit.jupiter.api.BeforeEach`\
+  \ 注解负责在执行单个测试之前执行任何初始化操作。每个测试都会创建对象，从而消除其他测试执行带来的副作用。\n\n保持测试的独立性是一个好习惯。如果测试相互依赖，那么整个测试套件将变得难以阅读和理解。此外，在测试失败时，调试也会变得非常困难。想象一个场景：testA\
+  \ 依赖于 testB，而 testB 又依赖于 testC。如果 testA 失败，我们需要花费精力来确定之前的所有测试用例是否都正确执行并正确初始化了测试环境。这是一种不受欢迎的“测试坏味道”。\n\
+  \n一个测试用例可以有任意数量的方法标记为 `@BeforeEach`，但执行顺序无法保证。JUnit 引擎可以按任意顺序运行它们。这些方法在每个测试之前都会执行；因此，请务必确保它们包含对所有测试用例都有意义的初始化代码。\n\
+  \n该注解还具有继承行为。如果超类方法或接口默认方法标记了 `@BeforeEach`，它们将在测试类的任何此类方法之前执行。\n\n### @AfterEach\n\
+  \n`org.junit.jupiter.api.AfterEach` 注解是 `org.junit.jupiter.api.BeforeEach` 注解的对应物。它用于实现“有始有终”的原则。标记了\
+  \ `@AfterEach` 的方法负责测试执行后的清理工作。该方法必须是静态且非私有的。该注解也具有继承行为。如果超类方法或接口默认方法标记了 `@AfterEach`，它们将在测试类的任何此类方法之后执行。\n\
+  \n### @AfterAll\n\n`org.junit.jupiter.api.AfterAll` 注解是 `org.junit.jupiter.api.BeforeAll`\
+  \ 注解的对应物。`@AfterAll` 执行一次方法调用（即在执行完测试类的所有测试用例之后）。该方法必须是静态且非私有的。该注解也具有继承行为。如果超类方法标记了\
+  \ `@AfterAll`，它们将在测试类的任何此类方法之后执行。\n\n在我们当前的用户故事中，我们只使用了 `@BeforeEach`，但假设明天我们构建了一个由数据库支持的\
+  \ BookShelf。那么我们可以按以下方式使用所有这些注解：\n\n```\nclass BookShelfSpec {\n@BeforeAll\nstatic\
+  \ void connectDBConnectionPool() {\n}\n@BeforeEach\nvoid initializeBookShelfWithDatabase()\
+  \ {\n}\n@Test\nvoid shouldGiveBackAllBooksInShelf() {\n// 检查书架上的书籍\n}\n@AfterEach\n\
+  void deleteShelfFromDB() {\n}\n@AfterAll\nstatic void closeDBConnectionPool() {\n\
+  }\n}\n```\n\n可选地，我们可以将 `@BeforeAll` 和 `@AfterAll` 方法提取到一个超类中。如果数据库在更多测试用例中使用，这将清理重复代码。\n\
+  \n```\nabstract class DBConnectionPool{\n@BeforeAll\nstatic void connectDBConnectionPool()\
+  \ {\n}\n@AfterAll\nstatic void closeDBConnectionPool() {\n}\n}\nclass BookShelfSpec\
+  \ extends DBConnectionPool{\n@BeforeEach\nvoid initializeShelfWithDatabase() {\n\
+  }\n@Test\nvoid shouldGiveBackAllBooksInShelf() {\n// 检查书架上的书籍\n}\n@AfterEach\nvoid\
+  \ deleteCartFromDB() {\n}\n}\n```\n\nJUnit 测试执行引擎会为每个测试方法构建一个测试类的实例。这有助于保持测试执行的独立性，并消除一个测试对其他测试的影响。这种“每个测试一个实例”的行为强制要求为\
+  \ `@BeforeAll` 和 `@AfterAll` 创建静态方法。可以将“每个测试一个实例”的行为更改为所有测试共享一个实例。为此，需要使用 `@TestListener(Lifecycle.PER_CLASS)`\
+  \ 注解该类。这样，JUnit 测试执行将创建一个单一实例。它将不再要求 `@BeforeAll`/`@AfterAll` 方法为静态。在这种情况下，一个测试的执行可能会影响其他测试的执行，因为测试用例状态在所有测试之间共享。因此，任何此类变量都必须在\
+  \ `@BeforeEach`/`@AfterEach` 方法中显式清除。\n\n## 测试执行\n\n在本节中，我们将学习如何发现和执行测试。JUnit 5\
+  \ 分为我们在第 1 章中讨论过的多个模块。其中两个有助于我们理解测试发现和执行过程的模块是 `junit-platform-launcher` 和 `junit-platform-engine`。`junit-platform-launcher`\
+  \ 定义了 IDE 等工具用于发现和执行测试的 API。`junit-platform-engine` 提供了一个 API，我们可以用它来编写自己的测试引擎。到目前为止，我们一直在使用的测试引擎是\
+  \ `junit-jupiter-engine`。让我们看看在幕后执行的所有步骤，以运行你的测试用例。\n\n1.  一切从创建 `org.junit.platform.launcher.Launcher`\
+  \ 的实例开始。Launcher API 是 IDE 等工具用于发现和执行测试的入口点。测试执行并不在 Launcher 中发生。Launcher 会检测支持的测试引擎，而引擎负责执行测试。JUnit\
+  \ 5 提供了 Launcher 的默认实现 `org.junit.platform.launcher.core.DefaultLauncher`，你可以使用\
+  \ `org.junit.platform.launcher.core.LauncherFactory` 创建它。DefaultLauncher 是包级保护的，因此你不能直接创建它的实例。你必须使用\
+  \ LauncherFactory 来创建实例。你可以通过实现 Launcher API 来编写自己的 Launcher，但大多数情况下不需要这样做。\n2.\
+  \  要使用 Launcher API，你必须将其添加到类路径中。在你的构建文件中，将以下内容添加到依赖项部分。\n\n```\n    testCompile\
+  \ 'org.junit.platform:junit-platform-launcher: 1.0.1'\n    ```\n\n3.  添加依赖项后，你可以创建一个新的\
+  \ Launcher 实例，如下面的代码所示：\n\n```\n    import org.junit.platform.launcher.Launcher;\n\
+  \    import org.junit.platform.launcher.core.LauncherFactory;\n    public class\
+  \ TestLauncher {\n    public static void main(String[] args) {\n    Launcher launcher\
+  \ = LauncherFactory.create();\n    }\n    }\n    ```\n\n4.  `LauncherFactory.create`\
+  \ 方法会创建一个 DefaultLauncher 实例。DefaultLauncher 的构造函数接受一个 TestEngine 的 Iterable。如前所述，JUnit\
+  \ 支持 TestEngine API，该 API 在 `junit-platform-engine` 模块中定义。目前有两个 TestEngine 实现，分别定义在\
+  \ `junit-jupiter-engine`（用于 JUnit 5）和 `junit-vintage-engine`（用于 JUnit 4 及更低版本）中。为了发现\
+  \ TestEngine 的实现，JUnit 5 依赖于 JDK 的 `java.util.ServiceLoader` 机制。JDK 6 引入了 ServiceLoader\
+  \ 的概念，允许开发者通过向应用程序类路径添加新的 JAR 来扩展其代码的功能。在 Service Loader 模式中，所有实现都是通过 `META-INF/services`\
+  \ 目录中的一个文件来发现的。如果你查看 `junit-jupiter-engine` 模块内部，你会发现 `META-INF/services` 目录中有一个名为\
+  \ `org.junit.platform.engine.TestEngine` 的文件。它包含一个条目，即 `org.junit.platform.engine.TestEngine`\
+  \ 的实现。\n\n```\n    org.junit.jupiter.engine.JupiterTestEngine\n    ```\n\n5.  JUnit\
+  \ 5 执行以下代码来发现类路径上存在的所有 TestEngine：\n\n```\n    Iterable testEngines = ServiceLoader.load(TestEngine.class,ReflectionUtils.getDefaultClassLoader());\n\
+  \    ```\n\n6.  一旦发现了测试引擎，就会通过调用 Launcher 上的 `registerTestExecutionListeners` 方法向\
+  \ Launcher 注册监听器。监听器的类型是 `org.junit.platform.launcher.TestExecutionListener`。JUnit\
+  \ 5 自身提供了一些实现。我们将注册 JUnit 5 提供的 `TestExecutionListener org.junit.platform.launcher.listeners.SummaryGeneratingListener`。`SummaryGeneratingListener`\
+  \ 会生成测试执行的摘要。让我们修改 TestLauncher 来注册一个监听器，如下面的代码所示：\n\n\n\n```\n    import org.junit.platform.launcher.Launcher;\n\
+  \    import org.junit.platform.launcher.core.LauncherFactory;\n    import org.junit.platform.launcher.listeners.SummaryGeneratingListener;\n\
+  \    public class TestLauncher {\n    public static void main(String[] args) {\n\
+  \    Launcher launcher = LauncherFactory.create();\n    SummaryGeneratingListener\
+  \ summaryGeneratingListener = new SummaryGeneratingListener();\n    launcher.registerTestExecutionListeners(summaryGeneratingListener);\n\
+  \    }\n    }\n    ```\n\n7.  我们可以向启动器注册多个监听器，因为`registerTestExecutionListeners`方法接受`TestExecutionListener`的可变参数。\n\
+  8.  下一步是将发现请求发送到已注册的测试引擎。为此，我们首先使用`org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder`创建一个新的`org.junit.platform.launcher.LauncherDiscoveryRequest`，如代码所示。在以下代码中，我们告诉请求它应该查找`bookstoread`包内的所有测试。\n\
+  \n```\n    LauncherDiscoveryRequest discoveryRequest =\n    LauncherDiscoveryRequestBuilder\n\
+  \    .request()\n    .selectors(DiscoverySelectors.selectPackage(\"bookstoread\"\
+  ))\n    .build();\n    我们使用 execute 方法将请求发送到已注册的引擎。\n    launcher.execute(discoveryRequest);\n\
+  \    ```\n\n9.  `execute`方法执行一个`TestPlan`，该计划是根据提供的`LauncherDiscoveryRequest`，通过查询所有已注册的引擎并收集其结果而构建的。已注册的监听器会收到进度和执行结果的通知。要查看测试结果的摘要，我们可以调用`SummaryGeneratingListener`的`getSummary`方法，如下代码所示：\n\
+  \n```\n    import org.junit.platform.engine.discovery.DiscoverySelectors;\n    import\
+  \ org.junit.platform.launcher.Launcher;\n    import org.junit.platform.launcher.LauncherDiscoveryRequest;\n\
+  \    import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;\n\
+  \    import org.junit.platform.launcher.core.LauncherFactory;\n    import org.junit.platform.launcher.listeners.SummaryGeneratingListener;\n\
+  \    import java.io.PrintWriter;\n    public class TestLauncher {\n    public static\
+  \ void main(String[] args) {\n    Launcher launcher = LauncherFactory.create();\n\
+  \    SummaryGeneratingListener summaryGeneratingListener = new SummaryGeneratingListener();\n\
+  \    launcher.registerTestExecutionListeners(summaryGeneratingListener);\n    LauncherDiscoveryRequest\
+  \ discoveryRequest =\n    LauncherDiscoveryRequestBuilder\n    .request()\n    .selectors(DiscoverySelectors.selectPackage(\"\
+  bookstoread\"))\n    .build();\n    launcher.execute(discoveryRequest);\n    summaryGeneratingListener.getSummary().printTo(new\
+  \ PrintWriter(System.out));\n    }\n    }\n    ```\n\n10. 如果你运行前面展示的`TestLauncher`，你将看到以下输出：\n\
+  \n```\n    Test run finished after 53 ms\n    [         1 tests found      ]\n \
+  \   [         0 tests skipped    ]\n    [         1 tests started    ]\n    [  \
+  \       0 tests aborted    ]\n    [         1 tests successful ]\n    [        \
+  \ 0 tests failed     ]\n    [         0 containers failed]\n    ```\n\n测试输出清楚地表明我们执行了一个测试并且它成功了。`TestEngine`在调用每个测试方法之前会创建一个测试类的新实例。这有助于使测试相互独立，因为你不能依赖它们的执行顺序，从而避免任何意外的副作用。\n\
+  \n## 总结\n\n在本章中，你学习了 JUnit 5 的核心概念，以及 JUnit 5 与之前版本的 JUnit 有何不同。你了解了 JUnit 5 如何放宽对测试类和方法的某些约束，从而产生更简洁的测试。你还学习了如何使用`@DisplayName`注解为测试类和方法提供人类可读的名称。\n\
+  \n本章最后介绍了如何使用`Launcher`和`TestEngine` API 发现和执行测试。在下一章中，我们将开始按照 TDD 实践并利用 JUnit 5\
+  \ 的特性来开发`bookstoread`应用程序。\n\n"
+- '# 3. 使用 JUnit 5 开发应用程序
+
+
+  在上一章中，我们学习了 JUnit 5 的基础知识以及 JUnit 5 如何执行测试。我们了解了 JUnit 5 的核心类和方法，以及它们如何相互交互。现在，我们有了坚实的基础来开始构建`bookstoread`应用程序。
+
+
+  在本章中，我们将付诸实践，构建我们在前几章中开始的应用程序的几个功能。我们将遵循测试驱动开发（TDD）实践，迭代地构建功能。这将帮助你掌握我们之前讨论过的 TDD
+  持续循环：RED ➤ GREEN ➤ REFACTOR。
+
+
+  在编写应用程序的过程中，你将学习并掌握 JUnit 5 的新特性。
+
+
+  ## Bookstoread 应用程序
+
+
+  Bookstoread 是一个社交编目网站，允许用户创建虚拟书架，他们可以在其中添加想要阅读的书籍。他们将能够根据不同的标准（作者姓名、书名、出版年份等）来整理书架。此外，他们还可以标记阅读进度，并查看自己的进展如何。
+
+
+  在本节中，我们将构建应用程序的功能。
+
+
+  ### 第一个功能
+
+
+  > 作为用户，我想将多本书添加到我的书架中，以便稍后阅读。
+
+
+  #### 编写一个会失败的测试
+
+
+  我们将从开发第一个功能开始：将多本书添加到书架。在第一章中，我们为这个用例编写了第一个测试用例，如下代码所示：
+
+
+  ```
+
+  @Test
+
+  public void emptyBookShelfWhenNoBookAdded() {
+
+  BookShelf shelf = new BookShelf();
+
+  List books = shelf.books();
+
+  assertTrue(books.isEmpty(), () -> "BookShelf should be empty.");
+
+  }
+
+  ```
+
+
+  为了使这个测试用例通过，我们只编写了刚好能使其通过的代码。
+
+
+  ```
+
+  import java.util.Collections;
+
+  import java.util.List;
+
+  public class BookShelf {
+
+  public List books() {
+
+  return Collections.emptyList();
+
+  }
+
+  }
+
+  ```
+
+
+  让我们编写第二个测试用例，它将验证如果我们向书架添加两本书，书架将包含两本书。我们将保持简单，使用`String`来表示书籍。我们将推迟到合适的时候再决定为书籍创建领域对象。我们的测试将帮助我们决定何时应该为书籍使用合适的类型。
+
+
+  ```
+
+  @Test
+
+  void bookshelfContainsTwoBooksWhenTwoBooksAdded() {
+
+  BookShelf shelf = new BookShelf();
+
+  shelf.add("Effective Java");
+
+  shelf.add("Code Complete");
+
+  List books = shelf.books();
+
+  assertEquals(2, books.size(), () -> "BookShelf should have two books.");
+
+  }
+
+  ```
+
+
+  在上述代码中，我们编写了一个测试用例，通过两次调用`BookShelf`对象的`add`方法向书架添加两本书。添加书籍后，我们在`BookShelf`上调用了`books`方法，并断言它包含两本书。
+
+
+  这个测试用例现在无法编译，因为我们还没有在`BookShelf`中定义`add`方法。在`BookShelf`类中创建`add`方法，如下代码所示，以便代码能够编译：
+
+
+  ```
+
+  public void add(String bookToAdd) {
+
+  }
+
+  ```
+
+
+  上述对`BookShelf`类的添加将使我们的代码能够编译。再次运行所有测试；这次`bookshelfContainsTwoBooksWhenTwoBooksAdded`测试用例将会失败，如图
+  3-1 所示。在图 3-1 中，我们可以看到之前的测试用例仍然有效。
+
+
+  ![A429029_1_En_3_Fig1_HTML.jpg](img/A429029_1_En_3_Fig1_HTML.jpg)
+
+
+  图 3-1.
+
+
+  测试失败
+
+
+  每次都要运行所有测试用例，以确保之前的所有测试都是绿色的。随着你添加更多测试，确保之前的测试用例仍然正常工作非常重要。
+
+
+
+
+  #### 使测试通过
+
+
+  让我们编写以下代码使测试用例通过：
+
+
+  ```
+
+  package bookstoread;
+
+  import java.util.ArrayList;
+
+  import java.util.List;
+
+  public class BookShelf {
+
+  private final List books = new ArrayList();
+
+  public List books() {
+
+  return books;
+
+  }
+
+  public void add(String bookToAdd) {
+
+  books.add(bookToAdd);
+
+  }
+
+  }
+
+  ```
+
+
+  在上述代码中，我们执行了以下操作：
+
+
+  1.  创建了一个类型为 `List<String>` 的实例变量 `books` 用于存储书籍。
+
+  2.  修改了 `books` 方法，使其返回 `books` 实例变量。
+
+  3.  实现了 `add` 方法，将 `bookToAdd` 添加到 `books` 列表中。
+
+
+  运行测试用例，这次测试将通过（见图 3-2）。
+
+
+  ![A429029_1_En_3_Fig2_HTML.jpg](img/A429029_1_En_3_Fig2_HTML.jpg)
+
+
+  图 3-2.
+
+
+  测试成功
+
+
+  #### 重构代码
+
+
+  现在我们有两个通过的测试，让我们看看是否有需要重构的地方。我们可以改进的一点是允许用户一次添加多本书。我们可以重构 `add` 方法，使其接受可变参数，而不是简单的
+  `String`。让我们进行这个修改。
+
+
+  ```
+
+  public void add(String... booksToAdd) {
+
+  Arrays.stream(booksToAdd).forEach(book -> books.add(book));
+
+  }
+
+  ```
+
+
+  在上述代码中，我们首先使用 Java 8 的 `Arrays.stream` 方法将 `booksToAdd` 转换为 `Stream<String>`，然后使用
+  Stream 的 `forEach` 方法将每本书添加到 `books` 集合中。
+
+
+  我们可以使用 Java 8 的方法引用来使 `add` 方法更简洁，如图 3-3 所示。
+
+
+  ![A429029_1_En_3_Fig3_HTML.jpg](img/A429029_1_En_3_Fig3_HTML.jpg)
+
+
+  图 3-3.
+
+
+  用方法引用替换 lambda 表达式
+
+
+  ```
+
+  public void add(String... booksToAdd) {
+
+  Arrays.stream(booksToAdd).forEach(books::add);
+
+  }
+
+  ```
+
+
+  如果你使用的是 IntelliJ，则可以使用快捷键 ALT+Enter 将 lambda 表达式转换为方法引用，如下所示。
+
+
+  再次运行你的测试用例，以验证所有测试仍然通过。重构绝不应改变程序的行为，因此针对预期行为编写的测试应保持通过。如果你编写依赖于程序内部状态的测试，那么它们很可能在重构后失效。这就是我们建议你针对公共
+  API（应用程序编程接口）方法编写测试的原因，并且你的测试应记录预期行为，而非实现细节。
+
+
+  我们修改了 `add` 方法签名，以便 BookShelf 的客户端能够通过一次方法调用添加多本书。由于测试用例是你的代码的第一个客户端，它会告诉你是否可以改进
+  API。让我们重构测试用例，使其在一次方法调用中传递多本书。
+
+
+  ```
+
+  @Test
+
+  public void bookshelfContainsTwoBooksWhenTwoBooksAdded() {
+
+  BookShelf shelf = new BookShelf();
+
+  shelf.add("Effective Java", "Code Complete");
+
+  List books = shelf.books();
+
+  assertEquals(2, books.size(), () -> "BookShelf should have two books.");
+
+  }
+
+  ```
+
+
+  再次运行测试，所有测试应仍然通过。
+
+
+  #### 为异常场景添加测试用例
+
+
+  没有更多需要重构的内容了，让我们进入下一个测试用例。我们需要编写一个新的测试用例吗？如果你再次阅读用户故事，你会发现我们已经实现了该用户故事中预期的功能。但我们仍然可以编写一些额外的行为测试，以确保在异常情况下会发生什么。
+
+
+  让我们编写一个测试用例，测试调用 `add` 方法但不传递任何书籍的场景。我们期望得到一个空的书架，如下代码所示：
+
+
+  ```
+
+  @Test
+
+  public void emptyBookShelfWhenAddIsCalledWithoutBooks() {
+
+  BookShelf shelf = new BookShelf();
+
+  shelf.add();
+
+  List books = shelf.books();
+
+  assertTrue(books.isEmpty(), () -> "BookShelf should be empty.");
+
+  }
+
+  ```
+
+
+  运行测试以验证所有测试仍然通过。你会发现所有测试都是通过的。现在，我们确信如果调用 `add` 方法时不传递任何参数，也不会出现问题。
+
+
+  我们可以为该用户故事添加的最后一个测试用例是确保 `BookShelf` 的客户端无法修改 `books` 方法返回的书籍集合。
+
+
+  ```
+
+  @Test
+
+  void booksReturnedFromBookShelfIsImmutableForClient() {
+
+  BookShelf shelf = new BookShelf();
+
+  shelf.add("Effective Java", "Code Complete");
+
+  List books = shelf.books();
+
+  try {
+
+  books.add("The Mythical Man-Month");
+
+  fail(() -> "Should not be able to add book to books");
+
+  } catch (Exception e) {
+
+  assertTrue(e instanceof UnsupportedOperationException, () -> "Should throw UnsupportedOperationException.");
+
+  }
+
+  }
+
+  ```
+
+
+  在上述测试用例中，我们首先向书架添加了几本书，然后尝试向 `books` 集合中添加另一本书（该集合是通过调用 BookShelf 的 `books` 方法获得的）。我们期望向
+  `books` 集合添加书籍会抛出 `UnsupportedOperationException`。如果没有抛出异常，则通过调用 JUnit 的 `fail`
+  方法使测试失败。我们将在第 5 章详细介绍如何测试异常。JUnit 5 显著改进了编写异常测试的方式。敬请期待！
+
+
+  再次运行所有测试用例。我们的新测试用例将会失败，因为从 `books` 方法获得的集合是可变的，所以我们能够成功地向其中添加一本书。
+
+
+  为了使测试通过，我们将修改 `books` 方法，使其返回一个不可变列表，如下代码片段所示：
+
+
+  ```
+
+  public List books() {
+
+  return Collections.unmodifiableList(books);
+
+  }
+
+  ```
+
+
+  再次运行测试，所有测试应通过。
+
+
+  #### 使用 @BeforeEach
+
+
+  如果我们查看测试用例，会发现每个测试的初始化代码都是重复的。我们可以将这段代码提取到一个方法中，并使用 `@BeforeEach` 进行注解。
+
+
+  ```
+
+  public class BookShelfSpec {
+
+  private BookShelf shelf;
+
+  @BeforeEach
+
+  void init() throws Exception {
+
+  shelf = new BookShelf();
+
+  }
+
+  @Test
+
+  public void emptyBookShelfWhenNoBookAdded() {
+
+  List books = shelf.books();
+
+  assertTrue(books.isEmpty(), () -> "BookShelf should be empty.");
+
+  }
+
+  @Test
+
+  void bookshelfContainsTwoBooksWhenTwoBooksAdded() {
+
+  shelf.add("Effective Java", "Code Complete");
+
+  List books = shelf.books();
+
+  assertEquals(2, books.size(), () -> "BookShelf should have two books.");
+
+  }
+
+  // 为简洁起见，其余代码已删除
+
+  }
+
+  ```
+
+
+  再次运行所有测试以验证它们仍然通过。现在代码状态良好，我们可以开始处理下一个功能了。
+
+
+  ### 第二个功能
+
+
+  > 作为用户，我应该能够根据特定条件整理我的书架
+
+
+  #### 编写一个会失败的测试用例
+
+
+  下一个功能帮助用户根据特定条件整理书架。条件可以是书名、作者名、书籍出版日期，或者这些条件的组合。
+
+
+  让我们从按书名按字典序排列书籍开始这个功能。
+
+
+  ```
+
+  @Test
+
+  void bookshelfArrangedByBookTitle() {
+
+  BookShelf shelf = new BookShelf();
+
+  shelf.add("Effective Java", "Code Complete","The Mythical Man-Month" );
+
+  List books = shelf.arrange();
+
+  assertEquals(Arrays.asList( "Code Complete", "Effective Java", "The Mythical Man-Month"),
+  books, () -> "Books in a bookshelf should be arranged lexicographically by book
+  title");
+
+  }
+
+  ```
+
+
+  上述代码将无法编译，因为 `arrange` 方法未定义。为了使代码能够编译，让我们向 BookShelf 添加 `arrange` 方法。
+
+
+  ```
+
+  public List arrange() {
+
+  return null;
+
+  }
+
+  ```
+
+
+  运行所有测试用例，你会发现我们的新测试用例失败了。
+
+
+
+
+  #### 让测试通过
+
+
+  为了让测试用例通过，我们需要返回一个排序后的书籍集合。
+
+
+  ```
+
+  public List arrange() {
+
+  books.sort(Comparator.naturalOrder());
+
+  return books;
+
+  }
+
+  ```
+
+
+  运行测试用例，一切都会变绿。
+
+
+  你是否注意到上述实现存在一个问题？我们对底层集合进行了排序，这意味着如果在调用 `arrange` 方法之后再调用 `books` 方法，它也会返回一个已排序的集合。我们希望
+  `books` 方法能保持插入顺序。为此，我们来编写一个测试用例。
+
+
+  ```
+
+  @Test
+
+  void booksInBookShelfAreInInsertionOrderAfterCallingArrange() {
+
+  BookShelf shelf = new BookShelf();
+
+  shelf.add("Effective Java", "Code Complete", "The Mythical Man-Month");
+
+  shelf.arrange();
+
+  List books = shelf.books();
+
+  assertEquals(Arrays.asList("Effective Java", "Code Complete", "The Mythical Man-Month"),
+  books, () -> "Books in bookshelf are in insertion order");
+
+  }
+
+  ```
+
+
+  这个测试用例将会失败。要修复此问题，我们必须返回一个新的已排序集合。
+
+
+  ```
+
+  public List arrange() {
+
+  return books.stream().sorted().collect(Collectors.toList());
+
+  }
+
+  ```
+
+
+  再次运行测试用例，所有测试都应该通过。
+
+
+  #### 重构
+
+
+  到目前为止，我们一直将书籍建模为简单的字符串。但是，我们希望用户能够根据不同的属性（如作者、出版日期等）对书籍进行排序。因此，我们应该捕获一本书的不同属性。这需要创建一个新类。
+
+
+  让我们在 `src/main/java/bookstoread` 包中创建一个新的 `Book` 类。
+
+
+  ```
+
+  package bookstoread;
+
+  import java.time.LocalDate;
+
+  public class Book {
+
+  private final String title;
+
+  private final String author;
+
+  private final LocalDate publishedOn;
+
+  public Book(String title, String author, LocalDate publishedOn) {
+
+  this.title = title;
+
+  this.author = author;
+
+  this.publishedOn = publishedOn;
+
+  }
+
+  public String getTitle() {
+
+  return title;
+
+  }
+
+  public String getAuthor() {
+
+  return author;
+
+  }
+
+  public LocalDate getPublishedOn() {
+
+  return publishedOn;
+
+  }
+
+  @Override
+
+  public String toString() {
+
+  return "Book{" +
+
+  "title=''" + title + ''\'''' +
+
+  ", author=''" + author + ''\'''' +
+
+  ", publishedOn=" + publishedOn +
+
+  ''}'';
+
+  }
+
+  }
+
+  ```
+
+
+  让我们修改测试，使用 `Book` 类而不是 `String`。由于每个测试中都使用相同的书籍，我们将它们提取出来作为测试初始化的一部分。
+
+
+  ```
+
+  public class BookShelfSpec {
+
+  private BookShelf shelf;
+
+  private Book effectiveJava;
+
+  private Book codeComplete;
+
+  private Book mythicalManMonth;
+
+  @BeforeEach
+
+  void init() throws Exception {
+
+  shelf = new BookShelf();
+
+  effectiveJava = new Book("Effective Java", "Joshua Bloch", LocalDate.of(2008, Month.MAY,
+  8));
+
+  codeComplete = new Book("Code Complete", "Steve McConnel", LocalDate.of(2004, Month.JUNE,
+  9));
+
+  mythicalManMonth = new Book("The Mythical Man-Month", "Frederick Phillips Brooks",
+  LocalDate.of(1975, Month.JANUARY, 1));
+
+  }
+
+  @Test
+
+  public void shelfEmptyWhenNoBookAdded() {
+
+  List books = shelf.books();
+
+  assertTrue(books.isEmpty(), () -> "BookShelf should be empty.");
+
+  }
+
+  @Test
+
+  public void bookshelfContainsTwoBooksWhenTwoBooksAdded() {
+
+  shelf.add(effectiveJava, codeComplete);
+
+  List books = shelf.books();
+
+  assertEquals(2, books.size(), () -> "BookShelf should have two books.");
+
+  }
+
+  @Test
+
+  public void emptyBookShelfWhenAddIsCalledWithoutBooks() {
+
+  shelf.add();
+
+  List books = shelf.books();
+
+  assertTrue(books.isEmpty(), () -> "BookShelf should be empty.");
+
+  }
+
+  @Test
+
+  public void booksReturnedFromBookShelfIsImmutableForClient() {
+
+  shelf.add(effectiveJava, codeComplete);
+
+  List books = shelf.books();
+
+  try {
+
+  books.add(mythicalManMonth);
+
+  fail(() -> "Should not be able to add book to books");
+
+  } catch (Exception e) {
+
+  assertTrue(e instanceof UnsupportedOperationException, () -> "Should throw UnsupportedOperationException.");
+
+  }
+
+  }
+
+  @Test
+
+  void bookshelfArrangedByBookTitle() {
+
+  shelf.add(effectiveJava, codeComplete, mythicalManMonth);
+
+  List books = shelf.arrange();
+
+  assertEquals(Arrays.asList(codeComplete, effectiveJava, mythicalManMonth), books,
+  () -> "Books in a bookshelf should be arranged lexicographically by book title");
+
+  }
+
+  @Test
+
+  void booksInBookShelfAreInInsertionOrderAfterCallingArrange() {
+
+  shelf.add(effectiveJava, codeComplete, mythicalManMonth);
+
+  shelf.arrange();
+
+  List books = shelf.books();
+
+  assertEquals(Arrays.asList(effectiveJava, codeComplete, mythicalManMonth), books,
+  () -> "Books in bookshelf are in insertion order");
+
+  }
+
+  }
+
+  ```
+
+
+  这会导致代码编译失败。因此，我们必须修改 `BookShelf` 以使用 `Book` 而不是 `String`。将 `BookShelf` 的内容替换为以下代码所示的内容：
+
+
+  ```
+
+  package bookstoread;
+
+  import java.util.*;
+
+  import java.util.stream.Collectors;
+
+  public class BookShelf {
+
+  private final List books = new ArrayList();
+
+  public List books() {
+
+  return Collections.unmodifiableList(books);
+
+  }
+
+  public void add(Book... booksToAdd) {
+
+  Arrays.stream(booksToAdd).forEach(books::add);
+
+  }
+
+  public List arrange() {
+
+  return books.stream().sorted().collect(Collectors.toList());
+
+  }
+
+  }
+
+  ```
+
+
+  这将修复所有编译问题。再次运行测试用例，你会发现有几个与失败的 `arrange` 用例相关的测试用例。你将看到的异常消息如下代码片段所示：
+
+
+  ```
+
+  java.lang.ClassCastException: bookstoread.Book cannot be cast to java.lang.Comparable
+
+  ```
+
+
+  你可能已经猜到，原因是 `Book` 类没有实现 `Comparable` 接口。之前使用的 `sorted` 方法假设你要排序的对象实现了 `Comparable`
+  接口。修改 `Book` 类以实现 `Comparable` 接口，如下所示：
+
+
+  ```
+
+  public class Book implements Comparable{
+
+  ... // 为简洁起见已省略
+
+  @Override
+
+  public int compareTo(Book that) {
+
+  return this.title.compareTo(that.title);
+
+  }
+
+  }
+
+  ```
+
+
+  再次运行测试用例，所有测试用例都将通过。
+
+
+  现在一切正常，让我们添加一个允许用户传入排序标准的测试用例。
+
+
+  ```
+
+  @Test
+
+  void bookshelfArrangedByUserProvidedCriteria() {
+
+  shelf.add(effectiveJava, codeComplete, mythicalManMonth);
+
+  List books = shelf.arrange(Comparator.naturalOrder().reversed());
+
+  assertEquals(
+
+  asList(mythicalManMonth, effectiveJava, codeComplete),
+
+  books,
+
+  () -> "Books in a bookshelf are arranged in descending order of book title");
+
+  }
+
+  ```
+
+
+  在上述代码中，我们从测试用例中传入了排序标准。我们希望按书名的逆字典序对书架进行排序。这段代码将无法编译。为了使其编译通过，我们需要修改现有的 `arrange`
+  方法以支持传入 `Comparator`，或者添加一个支持标准的新方法。我们将添加一个新方法，并保留旧方法用于自然排序（即按书名排序）。
+
+
+  ```
+
+  public List arrange() {
+
+  return books.stream().sorted().collect(Collectors.toList());
+
+  }
+
+  public List arrange(Comparator criteria) {
+
+  return null;
+
+  }
+
+  ```
+
+
+  这将使代码编译通过，但我们的新测试用例将会失败。为了让测试通过，我们将代码修改如下：
+
+
+  ```
+
+  public List arrange() {
+
+  return books.stream().sorted().collect(Collectors.toList());
+
+  }
+
+  public List arrange(Comparator criteria) {
+
+  return books.stream().sorted(criteria).collect(Collectors.toList());
+
+  }
+
+  ```
+
+
+  再次运行测试用例。这次所有测试用例都将通过。花点时间思考一下，你是否可以改进上述代码。你会注意到 `arrange` 方法中存在代码重复。我们可以像下面这样重构代码。
+
+
+  ```
+
+  public List arrange() {
+
+  return arrange(Comparator.naturalOrder());
+
+  }
+
+  public List arrange(Comparator criteria) {
+
+  return books.stream().sorted(criteria).collect(Collectors.toList());
+
+  }
+
+  ```
+
+
+  再次运行测试用例，所有测试用例将再次通过。你还可以再编写一个测试用例，按出版日期对书架进行排序。
+
+
+  在开发下一个功能之前，让我们先讨论一下 JUnit 5 的更多特性。
+
+
+
+
+  ### 禁用测试
+
+
+  有时测试因合理原因而失败。避免因忽略执行失败测试而头疼的方法之一是使用 `@Disabled` 注解。其意图与 JUnit 4 的 `@Ignore` 注解类似。
+
+
+  如果测试被标记为 `@Disabled`，则 JUnit 引擎不会运行它。该注解也可用于类级别。如果某个类被标记了 `@Disabled` 注解，那么它将跳过该类中的所有测试。`@Disabled`
+  注解接受一个字符串作为可选参数，当测试被跳过时，该字符串会打印在控制台上。另请注意，JUnit 引擎会打印总体统计信息，其中包含被忽略、失败和已执行测试的总数。
+
+
+  有多种方法可以忽略测试用例的执行。我们可以从方法/类中移除 `@Test` 注解。但这不仅会停止测试的执行，还会停止测试的发现。该测试用例将不再出现在 JUnit
+  统计信息中。使用 `@Disabled` 注解显式禁用测试，远比删除它或移除 `@Test` 注解要好得多。
+
+
+  让我们将 `bookshelfArrangedByBookTitle` 测试标记为 `@Disabled`，如下面的代码片段所示：
+
+
+  ```
+
+  @Disabled("需要实现 Comparator")
+
+  @Test
+
+  void bookshelfArrangedByBookTitle() {
+
+  shelf.add(effectiveJava, codeComplete, mythicalManMonth);
+
+  List books = shelf.arrange();
+
+  assertEquals(asList(codeComplete, effectiveJava, mythicalManMonth), books, () ->
+  "书架上的书籍应按书名按字典序排列");
+
+  }
+
+  ```
+
+
+  图 3-4 展示了 IntelliJ 如何显示一个被禁用的测试。
+
+
+  ![A429029_1_En_3_Fig4_HTML.jpg](img/A429029_1_En_3_Fig4_HTML.jpg)
+
+
+  图 3-4.
+
+
+  被禁用的测试
+
+
+  ### AssertJ
+
+
+  断言是测试类的关键部分，因为它们提供了结果验证。JUnit 5.0 提供了一组最少的断言 API。JUnit 平台只关心断言结果，而不关心断言 API。有许多第三方
+  API 可以帮助我们编写富有表现力的断言。旧版本的 JUnit 曾嵌入 Hamcrest 库来直接提供此功能。但新版本已弃用 Hamcrest；相反，它推荐使用
+  AssertJ 来完成这项工作。
+
+
+  AssertJ [`http://joel-costigliola.github.io/assertj/`](http://joel-costigliola.github.io/assertj/)
+  是编写断言的事实标准之一。它提供了丰富的流畅 API 来断言各个方面。总体而言，它带来了测试用例可读性和可维护性的好处。
+
+
+  在 `bookshelfArrangedByUserProvidedCriteria` 测试用例中，我们尝试将书籍的顺序与预期顺序进行比较。我们认为，该测试用例在验证结果时存在一个小问题。它比较两个不同的集合来检查元素顺序，但没有验证结果中的元素是否根据提供的比较器进行了排序。
+
+
+  假设我们将比较器改为自然顺序。这将改变结果的完整顺序。但失败的测试用例会提供一个错误，要求将顺序更正为降序。
+
+
+  ```
+
+  预期 :[Book{title=''人月神话'', author=''弗雷德里克·布鲁克斯'', publishedOn=1975-01-01}, Book{title=''Effective
+  Java'', author=''约书亚·布洛克'', publishedOn=2008-05-08}, Book{title=''代码大全'', author=''史蒂夫·麦康奈尔'',
+  publishedOn=2004-06-09}]
+
+  实际   :[Book{title=''代码大全'', author=''史蒂夫·麦康奈尔'', publishedOn=2004-06-09}, Book{title=''Effective
+  Java'', author=''约书亚·布洛克'', publishedOn=2008-05-08}, Book{title=''人月神话'', author=''弗雷德里克·布鲁克斯'',
+  publishedOn=1975-01-01}]
+
+  ```
+
+
+  如果我们查看测试，代码按预期工作，但断言结果中存在一个错误。如果我们能验证结果是按提供的比较器排序的，而不是将结果与另一个集合进行比较，那么我们可以大大改进这一点。AssertJ
+  正好允许我们这样做。让我们先在 build.gradle 的 dependencies 部分添加 AssertJ 依赖。
+
+
+  ```
+
+  dependencies {
+
+  def junitVersion = ''5.0.1''
+
+  testCompile ''org.junit.jupiter:junit-jupiter-api:'' + junitVersion
+
+  testCompile ''org.junit.jupiter:junit-jupiter-engine:'' + junitVersion
+
+  testCompile ''org.assertj:assertj-core:3.8.0''
+
+  }
+
+  ```
+
+
+  现在，让我们使用 AssertJ 库的 `assertThat` 方法来修改测试用例。我们希望确保列表是使用提供的 Comparator 排序的。`assertThat`
+  断言是 `org.assertj.core.api.Assertions` 类的一部分，因此在使用该断言之前，我们必须导入该类。
+
+
+  ```
+
+  import static org.assertj.core.api.Assertions.assertThat;
+
+  @Test
+
+  void bookshelfArrangedByUserProvidedCriteria() {
+
+  shelf.add(effectiveJava, codeComplete, mythicalManMonth);
+
+  Comparator reversed = Comparator.naturalOrder().reversed();
+
+  List books = shelf.arrange(reversed);
+
+  assertThat(books).isSortedAccordingTo(reversed);
+
+  }
+
+  ```
+
+
+  上述测试用例更准确地表达了我们的意图。接下来，我们将进一步探索 AssertJ 库来执行我们的验证。
+
+
+  ### 使用 @DisplayName
+
+
+  我们已经为我们开发的几个功能编写了一些测试用例。现在是时候讨论测试的一个重要方面——测试用例名称了。为测试用例命名是开发人员最困难的任务之一。测试的命名方式应使其在不查看测试代码的情况下，更容易找出测试失败的原因。
+
+
+  > 什么造就了干净的测试？三件事：可读性、可读性、还是可读性。可读性在单元测试中甚至可能比在生产代码中更重要。——鲍勃大叔
+
+
+  让我们看看它如何影响测试用例。在测试失败的情况下，`bookshelfArrangedByBookTitle` 的测试用例报告如图 3-5 所示。
+
+
+  ![A429029_1_En_3_Fig5_HTML.jpg](img/A429029_1_En_3_Fig5_HTML.jpg)
+
+
+  图 3-5.
+
+
+  测试失败消息
+
+
+  失败信息不够描述性。我们需要查看日志或阅读测试代码来了解更多关于失败的信息。我们可以通过使用第 2 章讨论的 `@DisplayName` 注解来编写合适的测试名称，从而帮助自己（见图
+  3-6）。
+
+
+  ![A429029_1_En_3_Fig6_HTML.jpg](img/A429029_1_En_3_Fig6_HTML.jpg)
+
+
+  图 3-6.
+
+
+  测试显示名称
+
+
+  ```
+
+  @Test
+
+  @DisplayName("书架按书名以字典序排列")
+
+  void bookshelfArrangedByBookTitle() {
+
+  // 测试用例
+
+  }
+
+  ```
+
+
+  测试用例名称相当具有描述性，并告诉我们书架没有按自然顺序排列。让我们尝试为我们所有的测试赋予有意义的描述。最终的测试运行应如图 3-7 所示。
+
+
+  ![A429029_1_En_3_Fig7_HTML.jpg](img/A429029_1_En_3_Fig7_HTML.jpg)
+
+
+  图 3-7.
+
+
+  通过的测试
+
+
+  ### 第三个功能
+
+
+  > 作为用户，我应该能够根据特定标准对书架上的书籍进行分组
+
+
+
+
+  #### 编写一个会失败的测试
+
+
+  在“第二个功能”部分，我们了解了如何根据用户条件整理书架。现在，客户希望我们支持书架内的分组功能。他们希望我们首先支持按出版年份分组，后续再支持按用户提供的任意条件进行分组。
+
+
+  ```
+
+  import static org.assertj.core.api.Assertions.assertThat;
+
+  @Test
+
+  @DisplayName("书架内的书籍按出版年份分组")
+
+  void groupBooksInsideBookShelfByPublicationYear() {
+
+  shelf.add(effectiveJava, codeComplete, mythicalManMonth, cleanCode);
+
+  Map<Year, List<Book>> booksByPublicationYear = shelf.groupByPublicationYear();
+
+  assertThat(booksByPublicationYear)
+
+  .containsKey(Year.of(2008))
+
+  .containsValues(Arrays.asList(effectiveJava, cleanCode));
+
+  assertThat(booksByPublicationYear)
+
+  .containsKey(Year.of(2004))
+
+  .containsValues(singletonList(codeComplete));
+
+  assertThat(booksByPublicationYear)
+
+  .containsKey(Year.of(1975))
+
+  .containsValues(singletonList(mythicalManMonth));
+
+  }
+
+  ```
+
+
+  上述代码无法编译，因为 `groupByPublication` 方法不存在。让我们按照下面的代码片段添加该方法：
+
+
+  ```
+
+  public Map<Year, List<Book>> groupByPublicationYear() {
+
+  return null;
+
+  }
+
+  ```
+
+
+  这会使代码可编译，但我们仍需编写实现代码。
+
+
+  #### 让测试通过
+
+
+  我们将使用代码片段中所示的 `groupingBy` 收集器来实现测试方法。`groupingBy` 收集器接收一个键函数，我们根据该函数对集合进行分组。
+
+
+  ```
+
+  public Map<Year, List<Book>> groupByPublicationYear() {
+
+  return books
+
+  .stream()
+
+  .collect(Collectors.groupingBy(book -> Year.of(book.getPublishedOn().getYear())));
+
+  }
+
+  ```
+
+
+  这将使所有测试变为绿色。
+
+
+  #### 重构
+
+
+  现在，让我们通过使代码通用化来改进它，以便客户端可以指定自己的分组条件。这将使我们的 API 灵活且可扩展。首先，我们将编写测试用例，根据不同的条件进行分组。
+
+
+  ```
+
+  @Test
+
+  @DisplayName("书架内的书籍根据用户提供的条件分组（按作者姓名分组）")
+
+  void groupBooksByUserProvidedCriteria() {
+
+  shelf.add(effectiveJava, codeComplete, mythicalManMonth, cleanCode);
+
+  Map<String, List<Book>> booksByAuthor = shelf.groupBy(Book::getAuthor);
+
+  assertThat(booksByAuthor)
+
+  .containsKey("Joshua Bloch")
+
+  .containsValues(singletonList(effectiveJava));
+
+  assertThat(booksByAuthor)
+
+  .containsKey("Steve McConnel")
+
+  .containsValues(singletonList(codeComplete));
+
+  assertThat(booksByAuthor)
+
+  .containsKey("Frederick Phillips Brooks")
+
+  .containsValues(singletonList(mythicalManMonth));
+
+  assertThat(booksByAuthor)
+
+  .containsKey("Robert C. Martin")
+
+  .containsValues(singletonList(cleanCode));
+
+  }
+
+  ```
+
+
+  代码无法编译，因为 `groupBy` 方法不存在。
+
+
+  ```
+
+  public <K> Map<K, List<Book>> groupBy(Function<Book, K> fx) {
+
+  return books
+
+  .stream()
+
+  .collect(groupingBy(fx));
+
+  }
+
+  ```
+
+
+  这将使所有测试用例变为绿色。现在我们将重构 `groupByPublicationYear`，使其使用 `groupBy` 方法。
+
+
+  ```
+
+  public Map<Year, List<Book>> groupByPublicationYear() {
+
+  return groupBy(book -> Year.of(book.getPublishedOn().getYear()));
+
+  }
+
+  public <K> Map<K, List<Book>> groupBy(Function<Book, K> fx) {
+
+  return books
+
+  .stream()
+
+  .collect(groupingBy(fx));
+
+  }
+
+  ```
+
+
+  运行测试用例，所有测试都应变为绿色。
+
+
+  ### 嵌套测试
+
+
+  在一个编写良好的测试套件中，针对应用程序的不同功能会有多个测试。在我们的示例中，到目前为止，我们实现了三个功能，同时编写了近 10 个测试用例。这常常导致我们的测试类中测试用例激增。JUnit
+  5 提供了 `@Nested` 注解，以静态内部成员类的形式提供测试用例的逻辑分组。每个静态内部类都可以拥有自己的生命周期方法。这些方法将按层次顺序执行。此外，嵌套类可以标记
+  `@DisplayName`，使我们能够充分利用恰当的测试名称带来的好处。嵌套的层级没有限制。
+
+
+  对于我们的目的，我们可以按以下方式对各个功能进行分组：
+
+
+  ```
+
+  @DisplayName("一个书架")
+
+  public class BookShelfSpec {
+
+  @BeforeEach
+
+  void init() {
+
+  // 为简洁起见，测试用例已移除
+
+  }
+
+  @Nested
+
+  @DisplayName("是空的")
+
+  class IsEmpty {
+
+  @Test
+
+  @DisplayName("当没有书籍添加到书架时")
+
+  public void emptyBookShelfWhenNoBookAdded() {
+
+  // 为简洁起见，测试用例已移除
+
+  }
+
+  @Test
+
+  @DisplayName("当调用 add 方法但未传入书籍时")
+
+  void emptyBookShelfWhenAddIsCalledWithoutBooks() {
+
+  // 为简洁起见，测试用例已移除
+
+  }
+
+  }
+
+  @Nested
+
+  @DisplayName("添加书籍后")
+
+  class BooksAreAdded {
+
+  @Test
+
+  @DisplayName("包含两本书")
+
+  void bookshelfContainsTwoBooksWhenTwoBooksAdded() {
+
+  // 为简洁起见，测试用例已移除
+
+  }
+
+  @Test
+
+  @DisplayName("向客户端返回不可变的书籍集合")
+
+  void bookshelfIsImmutableForClient() {
+
+  // 为简洁起见，测试用例已移除
+
+  }
+
+  }
+
+  }
+
+  // 为简洁起见，测试用例已移除
+
+  }
+
+  ```
+
+
+  运行所有测试用例。生成的树形结构应表达出如图 3-8 所示的逻辑分组。
+
+
+  ![A429029_1_En_3_Fig8_HTML.jpg](img/A429029_1_En_3_Fig8_HTML.jpg)
+
+
+  图 3-8.
+
+
+  嵌套测试
+
+
+  在本章开始时，我们并不知道书架的设计。随着我们逐步实现功能（和测试用例），我们发现书架是书籍的组合。将测试用例放在首位使我们的解决方案保持简单，同时让我们能够自由地为当前问题选择正确的设计。随着我们使用测试优先的方法开发更多功能，我们会发现这种方法迫使我们构建更多组件，从而推动整个应用程序设计的演进。
+
+
+  ## 总结
+
+
+  在本章中，我们使用 JUnit 5.0 深入探讨了 TDD。在构建应用程序功能的过程中，我们体验了红-绿-重构循环。我们使用 `@BeforeEach` 来提取初始化过程。我们还使用了
+  AssertJ 来在测试断言中精确表达我们的意图。`@DisplayName` 帮助我们实现了更好的可读性。随着测试包的演进，我们还使用 `@Nested` 将其组织成逻辑分组。
+
+
+  在下一章中，我们将为 bookstoread 应用程序添加更多功能，并将使用 JUnit 的特性，如依赖注入、接口默认方法等。
+
+
+  '
+- '# 4. 依赖注入、模拟、测试特性与测试分组
+
+
+  在上一章中，我们开始构建 bookstoread 应用程序。我们遵循 TDD（测试驱动开发）实践并遵循红-绿-重构循环，为应用程序添加了一些功能。在编写应用程序的过程中，您了解了
+  JUnit 5 的核心概念，以及如何开始构建您的 JUnit 5 测试套件。本章将基于前三章获得的知识，涵盖单元测试的更高级概念。
+
+
+  在任何实际应用程序中，多个类将协作完成工作。这些依赖关系需要被妥善处理，以便您能够编写干净且隔离的测试。大多数情况下，测试代码中充斥着测试数据设置或协作者设置，这两者都会导致测试难以阅读和理解。
+
+
+  在本章中，我们首先介绍 JUnit 5 中引入的依赖注入支持，它可以使我们的测试数据设置无缝且无侵入性。然后，我们将了解模拟如何帮助我们轻松替换协作者。我们将使用一个模拟库
+  Mockito，它将负责创建和管理模拟对象。它提供了一个更高级别的 API（应用程序编程接口），我们用它来编写模拟对象应满足的期望，并验证这些期望是否得到满足。模拟和依赖注入是相互关联的，您将看到依赖注入如何帮助我们向测试中注入模拟对象。最后，我们将通过查看
+  JUnit 5 中的测试特性支持和定义测试分组的功能来结束本章。
+
+
+
+
+  ## 依赖注入
+
+
+  在过去十年中，对简化软件设计非常有用的软件设计模式之一就是依赖注入（DI）。根据维基百科的定义：
+
+
+  > 依赖注入是一种技术，通过该技术，一个对象为另一个对象提供其依赖项。
+
+
+  DI 是 Java 生态系统中广泛使用的模式。它由 Spring 框架在 21 世纪初推广开来。DI 的核心在于使对象的依赖关系显式化。它简化了测试，因为你可以注入桩（stub）或模拟（mock）对象作为依赖项，从而让你能够控制并独立测试组件。DI
+  禁止在类内部使用 `new`（用于创建对象）或静态工厂方法。一个组件应暴露可被注入所需对象的方法或字段。DI 提供者将负责创建依赖项的实例，将其注入到所需组件中，并管理它们的生命周期。
+
+
+  JUnit 5 通过其扩展机制提供了对 DI 的支持。在 JUnit 5 中，你可以将依赖项注入到测试方法或构造函数中。这与早期版本的 JUnit 相比是一个重大变化，因为早期版本要求测试方法和构造函数必须是无参的。这使得测试代码更加灵活，因为你可以在需要的地方声明依赖项。
+
+
+  让我们看看如何使用 DI 来清理我们在第 3 章中编写的 `BookShelfSpec` 测试。如果你还记得，我们的 `BookShelfSpec` 在其 `@BeforeEach
+  init` 方法中初始化了测试数据，如下代码所示：
+
+
+  ```
+
+  public class BookShelfSpec {
+
+  private BookShelf shelf;
+
+  private Book effectiveJava;
+
+  private Book codeComplete;
+
+  private Book mythicalManMonth;
+
+  private Book cleanCode;
+
+  @BeforeEach
+
+  void init() {
+
+  shelf = new BookShelf();
+
+  effectiveJava = new Book("Effective Java", "Joshua Bloch", LocalDate.of(2008, Month.MAY,
+  8));
+
+  codeComplete = new Book("Code Complete", "Steve McConnel", LocalDate.of(2004, Month.JUNE,
+  9));
+
+  mythicalManMonth = new Book("The Mythical Man-Month", "Frederick Phillips Brooks",
+  LocalDate.of(1975, Month.JANUARY, 1));
+
+  cleanCode = new Book("Clean Code", "Robert C. Martin", LocalDate.of(2008, Month.AUGUST,
+  1));
+
+  }
+
+  // 其余代码已省略，以保持简洁
+
+  }
+
+  ```
+
+
+  上述代码存在几个问题。
+
+
+  *   测试代码与测试数据紧密耦合。如果我们想根据某些条件用不同的数据运行 `BookShelfSpec`，该怎么办？
+
+  *   我们无法重用测试数据。大多数情况下，多个测试类需要相同的数据。一种重用测试数据的方法是创建一个工具方法，调用该方法即可获取测试数据。这种解决方案可行，但它没有明确表达程序员的意图（即注入测试数据）。
+
+
+  现在，我们理解了要解决的问题，接下来学习 JUnit 5 如何帮助我们解决它。我们将从向 `init` 方法注入测试数据开始，如下代码所示：
+
+
+  ```
+
+  public class BookShelfSpec {
+
+  private BookShelf shelf;
+
+  private Book effectiveJava;
+
+  private Book codeComplete;
+
+  private Book mythicalManMonth;
+
+  private Book cleanCode;
+
+  @BeforeEach
+
+  void init(Map books) {
+
+  shelf = new BookShelf();
+
+  this.effectiveJava = books.get("Effective Java");
+
+  this.codeComplete = books.get("Code Complete");
+
+  this.mythicalManMonth = books.get("The Mythical Man-Month");
+
+  this.cleanCode = books.get("Clean Code");
+
+  }
+
+  }
+
+  ```
+
+
+  在上述代码中，我们将 `Map<String, Book>` 注入到了 `init` 方法中。Map 的键是书名，值是 Book 对象本身。为了尽量减少对测试的改动，我们将值赋给了不同的
+  Book 实例变量。这将确保我们所有的测试照常运行。我们的测试不再关心书籍测试数据的创建；相反，它们期望测试数据被注入进来。
+
+
+  DI API 允许我们在 JUnit 生命周期的所有阶段注入值。如果测试方法中存在带有 `@BeforeAll`、`@BeforeEach`、`@Test`、`@AfterEach`
+  或 `@AfterAll` 注解的参数，框架将尝试确定其值并进行注入。
+
+
+  但是 JUnit 5 将如何把测试数据注入到我们的 `init` 方法中呢？
+
+
+  JUnit 5 引入了 `ParameterResolver` 的概念，它提供了一个在运行时解析参数的 API。你可以使用内置的参数解析器，例如 `TestInfoParameterResolver`，或者通过实现
+  `ParameterResolver` 接口来提供你自己的解析器。`ParameterResolver` 是 JUnit 5 扩展机制的一部分，我们将在第 8
+  章中介绍。为了让你的测试识别自定义解析器，你应该使用 `ExtendWith` 注解来标注测试类，并为其提供解析器类，如下代码所示：
+
+
+  ```
+
+  @DisplayName("一个书架")
+
+  @ExtendWith(BooksParameterResolver.class)
+
+  public class BookShelfSpec {
+
+  private BookShelf shelf;
+
+  private Book effectiveJava;
+
+  private Book codeComplete;
+
+  private Book mythicalManMonth;
+
+  private Book cleanCode;
+
+  @BeforeEach
+
+  void init(Map books) {
+
+  shelf = new BookShelf();
+
+  this.effectiveJava = books.get("Effective Java");
+
+  this.codeComplete = books.get("Code Complete");
+
+  this.mythicalManMonth = books.get("The Mythical Man-Month");
+
+  this.cleanCode = books.get("Clean Code");
+
+  }
+
+  // 其余代码已省略，以保持简洁
+
+  }
+
+  ```
+
+
+  让我们看看实现 `BooksParameterResolver` 类需要做些什么。
+
+
+  ```
+
+  import org.junit.jupiter.api.extension.ExtensionContext;
+
+  import org.junit.jupiter.api.extension.ParameterContext;
+
+  import org.junit.jupiter.api.extension.ParameterResolutionException;
+
+  import org.junit.jupiter.api.extension.ParameterResolver;
+
+  class BooksParameterResolver implements ParameterResolver {
+
+  @Override
+
+  public boolean supportsParameter(final ParameterContext parameterContext, final
+  ExtensionContext extensionContext) throws ParameterResolutionException {
+
+  return false;
+
+  }
+
+  @Override
+
+  public Object resolveParameter(final ParameterContext parameterContext, final ExtensionContext
+  extensionContext) throws ParameterResolutionException {
+
+  return null;
+
+  }
+
+  }
+
+  ```
+
+
+  一个类需要实现 `ParameterResolver` 接口，才能被考虑用于参数解析。`ParameterResolver` 接口有两个方法，你的自定义实现必须实现它们。
+
+
+  *   `supportsParameter` 方法验证该实现是否能为所请求的参数提供解析。`BooksParameterResolver` 需要验证它是否支持
+  `Map<String, Book>` 类型的对象。
+
+  *   `resolveParameter` 方法返回所请求参数的值。`BooksParameterResolver` 返回一个包含书籍的 Map。
+
+
+  让我们以下面的方式查看 `BooksParameterResolver` 的完整实现：
+
+
+
+
+  ```java
+
+  import org.junit.jupiter.api.extension.ExtensionContext;
+
+  import org.junit.jupiter.api.extension.ParameterContext;
+
+  import org.junit.jupiter.api.extension.ParameterResolutionException;
+
+  import org.junit.jupiter.api.extension.ParameterResolver;
+
+  import java.lang.reflect.Parameter;
+
+  import java.time.LocalDate;
+
+  import java.time.Month;
+
+  import java.util.HashMap;
+
+  import java.util.Map;
+
+  import java.util.Objects;
+
+  class BooksParameterResolver implements ParameterResolver {
+
+  @Override
+
+  public boolean supportsParameter(final ParameterContext parameterContext, final
+  ExtensionContext extensionContext) throws ParameterResolutionException {
+
+  Parameter parameter = parameterContext.getParameter();
+
+  return Objects.equals(parameter.getParameterizedType().getTypeName(), "java.util.Map");
+
+  }
+
+  @Override
+
+  public Object resolveParameter(final ParameterContext parameterContext, final ExtensionContext
+  extensionContext) throws ParameterResolutionException {
+
+  Map books = new HashMap();
+
+  books.put("Effective Java", new Book("Effective Java", "Joshua Bloch", LocalDate.of(2008,
+  Month.MAY, 8)));
+
+  books.put("Code Complete", new Book("Code Complete", "Steve McConnel", LocalDate.of(2004,
+  Month.JUNE, 9)));
+
+  books.put("The Mythical Man-Month", new Book("The Mythical Man-Month", "Frederick
+  Phillips Brooks", LocalDate.of(1975, Month.JANUARY, 1)));
+
+  books.put("Clean Code", new Book("Clean Code", "Robert C. Martin", LocalDate.of(2008,
+  Month.AUGUST, 1)));
+
+  books.put("Refactoring: Improving the Design of Existing Code", new Book("Refactoring:
+  Improving the Design of Existing Code", "Martin Fowler", LocalDate.of(2002, Month.MARCH,
+  9)));
+
+  return books;
+
+  }
+
+  }
+
+  ```
+
+
+  在上述代码中
+
+
+  *   我们实现了 `supportsParameter` 方法，该方法检查参数的参数化类型是否为 `java.util.Map<java.lang.String,
+  bookstoread.Book>`。你必须执行字符串检查，因为这是检查参数化类型的唯一方法。`ParameterContext` 使用了 Java 8 的 Parameter
+  API。在 JDK 8 之前，无法查询方法参数的相关信息。
+
+  *   接着，我们实现了 `resolveParameter` 方法，该方法返回一个包含测试数据的 Map。
+
+
+  现在，如果你运行 `BookShelfSpec`，所有测试都应该通过，如图 4-1 所示。
+
+
+  ![A429029_1_En_4_Fig1_HTML.jpg](img/A429029_1_En_4_Fig1_HTML.jpg)
+
+
+  图 4-1.
+
+
+  注入测试数据后的测试执行结果
+
+
+  让我们再实现一个将在本章后续部分使用的功能。
+
+
+  ## 功能：追踪书架进度
+
+
+  作为用户，我希望根据已阅读的书籍来追踪书架的阅读进度。
+
+
+  该功能的核心是为书架构建一个进度指标。`bookstoread` 的用户将持续阅读书籍并标记他们的进度。因此，我们需要向他们展示一个进度指示器，显示他们已完成多少。完整的指标包含三项内容。
+
+
+  *   待办：表示用户尚未阅读或开始阅读的书籍（占书架上总书籍）的百分比
+
+  *   已完成：表示用户已读完的书籍（占书架上总书籍）的百分比
+
+  *   进行中：表示用户已阅读部分内容的书籍（占书架上总书籍）的百分比
+
+
+  假设我们有一个书架，包含以下四本书：
+
+
+  *   Effective Java
+
+  *   Code Complete
+
+  *   Clean Code
+
+  *   The Mythical Man-Month
+
+
+  我们已读完 Clean Code，并且正在阅读 Effective Java。在这种情况下，完整的指标应显示：已完成 25%，进行中 25%，待办 50%。
+
+
+  让我们通过添加一个测试用例来开始构建该功能。我们将添加一个新的 Spec，如下代码所示：
+
+
+  ```java
+
+  @DisplayName("A bookshelf progress")
+
+  public class BookShelfProgressSpec {
+
+  private BookShelf shelf;
+
+  private Book effectiveJava;
+
+  private Book codeComplete;
+
+  private Book mythicalManMonth;
+
+  private Book cleanCode;
+
+  private Book refactoring;
+
+  @BeforeEach
+
+  void init() {
+
+  shelf = new BookShelf();
+
+  effectiveJava = new Book("Effective Java", "Joshua Bloch", LocalDate.of(2008, Month.MAY,
+  8));
+
+  // 为简洁起见，省略部分代码
+
+  }
+
+  @Test
+
+  @DisplayName("is 0% completed and 100% to-read when no book is read yet")
+
+  void progress100PercentUnread() {
+
+  Progress progress = shelf.progress();
+
+  assertThat(progress.completed()).isEqualTo(0);
+
+  assertThat(progress.toRead()).isEqualTo(100);
+
+  }
+
+  }
+
+  ```
+
+
+  上述测试用例将会失败。我们意识到 `BookShelf` 返回了一个 `Progress` 类的实例。`Progress` 类包含了完整的指标信息。该进度对象封装了所需的三个指标。
+
+
+  ```java
+
+  public class Progress {
+
+  private final int completed;
+
+  private final int toRead;
+
+  private final int inProgress;
+
+  public Progress(int completed, int toRead, int inProgress) {
+
+  this.completed = completed;
+
+  this.toRead = toRead;
+
+  this.inProgress = inProgress;
+
+  }
+
+  public int completed() {         return this.completed;     }
+
+  public int toRead() {         return this.toRead;     }
+
+  public int inProgress() {         return this.inProgress;     }
+
+  }
+
+  ```
+
+
+  `BookShelf` 提供了 `progress` API 来确定指标。
+
+
+  ```java
+
+  public class BookShelf {
+
+  //  ....
+
+  // 为简洁起见，省略部分代码
+
+  public Progress progress() {     return new Progress(0, 100, 0); }
+
+  }
+
+  ```
+
+
+  再次运行测试，现在应该通过了。
+
+
+  现在让我们构建另一个测试用例，其中我们已阅读了几本书。
+
+
+  ```java
+
+  @Test
+
+  @DisplayName("is 40% completed and 60% to-read when 2 books are finished and 3 books
+  not read yet")
+
+  void progressWithCompletedAndToReadPercentages() {
+
+  effectiveJava.startedReadingOn(LocalDate.of(2016, Month.JULY, 1));
+
+  effectiveJava.finishedReadingOn(LocalDate.of(2016, Month.JULY, 31));
+
+  cleanCode.startedReadingOn(LocalDate.of(2016, Month.AUGUST, 1));
+
+  cleanCode.finishedReadingOn(LocalDate.of(2016, Month.AUGUST, 31));
+
+  Progress progress = shelf.progress();
+
+  assertThat(progress.completed()).isEqualTo(40);
+
+  assertThat(progress.toRead()).isEqualTo(60);
+
+  }
+
+  ```
+
+
+  进度只是一个报告指标。但要构建这个数字，我们需要追踪每本书的进度，正如上述测试用例中所做的那样。因此，我们现在必须向 `Book` 实体添加 `startedReadingOn`
+  和 `finishedReadingOn` 方法。
+
+
+  ```java
+
+  public class Book implements Comparable {
+
+  // 为简洁起见，省略部分代码
+
+  public void startedReadingOn(LocalDate startedOn) {     this.startedReadingOn =
+  startedOn; }
+
+  public void finishedReadingOn(LocalDate finishedOn) {     this.finishedReadingOn
+  = finishedOn; }
+
+  public boolean isRead() {     return startedReadingOn != null && finishedReadingOn
+  != null; }
+
+  }
+
+  ```
+
+
+
+
+  请注意 `isRead` 方法。我们将使用该方法处理 `BookShelf` 中的书籍列表。我们可以将 `List<Books>` 转换为 Stream，然后使用
+  `isRead` 方法应用过滤器，以获取已读书籍的数量。
+
+
+  ```
+
+  int booksRead = Long.valueOf(books.stream().filter(Book::isRead).count()).intValue();
+
+  ```
+
+
+  现在，基于我们已有的内容，来实现 `BookShelf` 的 `progress` 方法。
+
+
+  ```
+
+  public Progress progress() {
+
+  int booksRead = Long.valueOf(books.stream().filter(Book::isRead).count()).intValue();
+
+  int booksToRead = books.size() - booksRead;
+
+  int percentageCompleted = booksRead * 100 / books.size();
+
+  int percentageToRead = booksToRead * 100 / books.size();
+
+  return new Progress(percentageCompleted, percentageToRead, 0);
+
+  }
+
+  ```
+
+
+  这应该能让测试重新通过。到目前为止，我们已经为“已完成”和“待办”添加了进度指示器。现在，让我们添加几个测试用例来计算“进行中”的书籍。为此，请在 `Book`
+  类中添加 `isProgress()` 方法，并使用它来过滤书籍流。
+
+
+  同样地，我们可以添加一个测试用例，覆盖 `BookShelf` 中所有书籍都已完成的情况。图 4-2 展示了所有与书架进度相关的测试用例成功执行的结果。
+
+
+  ![A429029_1_En_4_Fig2_HTML.jpg](img/A429029_1_En_4_Fig2_HTML.jpg)
+
+
+  图 4-2.
+
+
+  BookShelf 进度测试成功执行
+
+
+  那么，这个功能就完成了吗？还没有完全完成，我们已经编写了测试和代码来让它们通过。我们仍然需要重构测试以进行改进。如果查看我们的测试用例，会发现确实没有什么可以改进的了。但现在让我们将
+  `BookShelfProgressSpec` 与 `BookShelfSpec`（在第 3 章中编写）进行比较。我们发现存在重复的测试数据设置。BookShelf
+  需要书籍才能工作。我们应该利用在“依赖注入”一节中学到的 DI 知识来改进这段代码。
+
+
+  让我们用 `ExtendWith` 注解标注 `BookShelfProgressSpec`，并为其提供 `BooksParameterResolver`。
+
+
+  ```
+
+  @DisplayName("progress")
+
+  @ExtendWith(BooksParameterResolver.class)
+
+  class BookShelfProgressSpec {
+
+  // 为简洁起见，其余部分已删除
+
+  }
+
+  ```
+
+
+  运行 `BookShelfProgressSpec`，所有测试用例都应该通过。这样，我们就不必为两个测试用例重复测试数据了。`ParameterResolver`
+  使我们能够轻松地重用数据设置。此外，如果需要，我们可以在运行时切换解析器提供的数据，以便用其他数据进行测试。我们的测试用例并不关心 `Map<String, Book>`
+  是如何提供给它的。数据可以从数据库读取、从文件读取或在内存中创建。
+
+
+  ### 缓存测试数据
+
+
+  JUnit 5 扩展机制会为测试类创建参数解析器的单个实例，但它会为每次注入点调用调用 `resolve` 方法。在我们的例子中，我们有一个注入点 `@BeforeEach
+  init` 方法，但根据 `@BeforeEach` 的生命周期，它会为每个测试用例调用。这意味着每次测试执行时，我们都会得到一份新的测试数据副本。如果测试不改变数据状态并且是只读的，那么可以通过将
+  `Map<String, Book>` 存储在 `BooksParameterResolver` 类的实例变量中来避免每次都创建新副本，如下代码所示：
+
+
+  ```
+
+  class BooksParameterResolver implements ParameterResolver {
+
+  private final Map books;
+
+  public BooksParameterResolver() {
+
+  Map books = new HashMap();
+
+  books.put("Effective Java", new Book("Effective Java", "Joshua Bloch", LocalDate.of(2008,
+  Month.MAY, 8)));
+
+  // 为简洁起见，其余部分已删除
+
+  this.books = books;
+
+  }
+
+  @Override
+
+  public boolean supportsParameter(final ParameterContext parameterContext, final
+  ExtensionContext extensionContext) throws ParameterResolutionException {
+
+  // 为简洁起见，其余部分已删除
+
+  }
+
+  @Override
+
+  public Map resolveParameter(final ParameterContext parameterContext, final ExtensionContext
+  extensionContext) throws ParameterResolutionException {
+
+  return books;
+
+  }
+
+  }
+
+  ```
+
+
+  如果运行所有测试，你会注意到其中一个测试失败，如图 4-3 中的截图所示。
+
+
+  ![A429029_1_En_4_Fig3_HTML.jpg](img/A429029_1_En_4_Fig3_HTML.jpg)
+
+
+  图 4-3.
+
+
+  缓存测试数据时测试失败
+
+
+  测试失败的原因是测试套件中的一个测试用例更改了测试数据的状态。该测试期望获得一份干净的测试数据副本，因此失败了。
+
+
+  链式团伙反模式：这种反模式指的是一组单元测试必须以特定顺序或作为一个整体进行处理。每个执行的测试都为下一个测试完成一些工作，因此它们相互依赖。
+
+
+  ### 使用 ExtensionContext Store
+
+
+  到目前为止，在我们的测试用例中，我们在 `@BeforeEach init` 方法中注入了测试数据，然后将不同的书籍存储在实例变量中。如果我们想在 `init`
+  和 `test` 方法中都注入相同的测试数据，这样就不必将其存储在测试类实例变量中，该怎么办？我们目前看到的两种方法都不能解决这个用例。
+
+
+  *   为每次调用创建测试数据会传递一份新的测试数据副本。
+
+  *   当另一个测试更改测试数据状态时，为测试类中的所有测试缓存测试数据将会失败。
+
+
+  为了寻找可能的解决方案，让我们深入研究 JUnit API 的细节。`resolve` 方法接受两个参数。
+
+
+  *   `ParameterContext`：包含所请求参数的详细信息。
+
+  *   `ExtensionContext`：包含当前测试的上下文。每次测试执行都会创建自己的 `ExtensionContext`。该上下文包含测试方法、ID
+  等详细信息。
+
+
+  除了测试特定的详细信息外，上下文还提供了 `ExtensionContext.Store`，可用于保存特定上下文执行的数据。
+
+
+  *   `Store getStore()`
+
+  *   `Store getStore(Namespace namespace)`
+
+
+  Store 是一个键值持有者，提供 get 和 put 方法。每个 Store 实例都由一个命名空间唯一标识，该命名空间可用于创建新的 Store。在每个测试的
+  `ExtensionContext` 中，都有一个可用的默认命名空间，但建议创建一个自定义命名空间来唯一标识你的数据，并避免任何数据损坏问题。现在修改 `BooksParameterResolver`，使其使用
+  `ExtensionContext.Store` 来存储自定义的 Books 命名空间，并从那里提供书籍数组。
+
+
+  ```
+
+  class BooksParameterResolver implements ParameterResolver {
+
+  @Override
+
+  public Object resolveParameter(final ParameterContext parameterContext, final ExtensionContext
+  extensionContext) throws ParameterResolutionException {
+
+  ExtensionContext.Store store = extensionContext.getStore(ExtensionContext.Namespace.create(Book.class));
+
+  return store.getOrComputeIfAbsent("books", k -> getBooks());
+
+  }
+
+  // 为简洁起见，其余部分已删除
+
+  }
+
+  ```
+
+
+  运行所有测试，并验证它们是否通过。现在，测试代码已经处于良好状态，我们可以开始处理下一个功能了。
+
+
+  在进入下一节关于模拟的内容之前，让我们先构建另一个功能，这将帮助我们在实际场景中应用模拟。
+
+
+
+
+  ## 功能：搜索书架
+
+
+  作为用户，我应该能够搜索我的书架。搜索结果可以根据书籍的不同属性（如作者和出版日期）进行筛选。
+
+
+  下一个功能为书架添加了搜索能力。作为用户，我们希望能在书架中找到特定的书名。搜索应基于部分文本匹配。这可能导致一个词条产生大量结果，因此可以通过传递附加信息（如出版日期或作者姓名）作为提示，将结果筛选到所需范围。
+
+
+  让我们从为书架添加一个简单的基于书名的搜索功能开始。
+
+
+  ```
+
+  @Nested
+
+  @DisplayName("search")
+
+  class BookShelfSeachSpec {
+
+  @BeforeEach
+
+  void setup() {
+
+  shelf.add(codeComplete, effectiveJava, mythicalManMonth, cleanCode);
+
+  }
+
+  @Test
+
+  @DisplayName(" should find books with title containing text")
+
+  void shouldFindBooksWithTitleContainingText() {
+
+  List books = shelf.findBooksByTitle("code");
+
+  assertThat(books.size()).isEqualTo(2);
+
+  }
+
+  }
+
+  ```
+
+
+  我们将省略 `findBooksByTitle` 方法的细节。读者必须尝试添加一个实现，使上述测试用例通过。
+
+
+  现在，让我们通过添加所需的提示来增强 API。在功能描述中，用户可能希望按出版日期搜索，因此我们应该为此添加一个测试用例。
+
+
+  ```
+
+  @Test
+
+  @DisplayName(" should find books with title containing text and published after
+  specified date.")
+
+  void shouldFilterSearchedBooksBasedOnPublishedDate() {
+
+  List books = shelf.findBooksByTitle("code", b -> b.getPublishedOn().isBefore(LocalDate.of(2014,
+  12, 31)));
+
+  assertThat(books.size()).isEqualTo(2);
+
+  }
+
+  ```
+
+
+  这里我们使用了 `findBooksByTitle` 方法的一个新变体。现在回到书架类，添加这个重载方法。
+
+
+  ```
+
+  public List findBooksByTitle(String title) {
+
+  return findBooksByTitle(title, b -> true);
+
+  }
+
+  public List findBooksByTitle(String title, Predicate filter) {
+
+  return books.stream()
+
+  .filter(b -> b.getTitle().toLowerCase().contains(title))
+
+  .filter(filter)
+
+  .collect(toList());
+
+  }
+
+  ```
+
+
+  让我们运行测试。它们都通过了，那么，我们是否应该继续？也许为作者姓名添加一个测试？首先，我们问问自己，双参数的 `findBooksByTitle` API 是否正确？上述实现是低层次的，无法充分表达过滤器的概念。该设计没有说明任何关于过滤器及其用途的信息。因此，尽管这个
+  API 能工作并达到目的，但它不符合所需的标准。
+
+
+  **基本类型偏执**
+
+
+  这是一种设计坏味道，指的是将业务领域概念表示为低层次类型。它意味着系统缺少必要的抽象。在这种情况下，我们基于基本类型构建交互，从而暴露了太多细节，使得代码难以理解和维护。
+
+
+  在上述场景中，我们需要构建 `BookFilter` 的概念。可能存在多种 `BookFilter` 的变体，它们可以执行不同类型的过滤。
+
+
+  ```
+
+  public interface BookFilter {
+
+  boolean apply(Book b);
+
+  }
+
+  ```
+
+
+  同时修改 `findBooksByTitle` API，使其使用 `BookFilter` 而不是 `java.util.function.Predicate`。
+
+
+  ```
+
+  public List findBooksByTitle(String title, BookFilter filter) {
+
+  return books.stream()
+
+  .filter(b -> b.getTitle().toLowerCase().contains(title))
+
+  .filter(b -> filter.apply(b))
+
+  .collect(toList());
+
+  }
+
+  ```
+
+
+  我们的测试用例无需任何修改即可正常工作。我们添加了一个函数式接口 `BookFilter`，测试用例中的 lambda 表达式提供了该接口所需的实现（参见图 4-4）。
+
+
+  ![A429029_1_En_4_Fig4_HTML.jpg](img/A429029_1_En_4_Fig4_HTML.jpg)
+
+
+  图 4-4.
+
+
+  搜索相关测试成功执行
+
+
+  现在我们已经添加了 `BookFilter` 的概念，我们希望构建一些过滤器，比如出版年份过滤器，用于筛选在指定年份之后出版的书籍。让我们添加一个简单的测试用例
+  `BookPublishedFilterSpec`。
+
+
+  ```
+
+  class BookFilterSpec {
+
+  private Book cleanCode;
+
+  private Book codeComplete;
+
+  @BeforeEach
+
+  void init() {
+
+  cleanCode = new Book("Clean Code", "Robert C. Martin", LocalDate.of(2008, Month.AUGUST,
+  1));
+
+  codeComplete = new Book("Code Complete", "Steve McConnel", LocalDate.of(2004, Month.JUNE,
+  9));
+
+  }
+
+  @Nested
+
+  @DisplayName("book published date")
+
+  class BookPulishedFilterSpec{
+
+  @Test
+
+  @DisplayName("is after specified year")
+
+  void validateBookPublishedDatePostAskedYear(){
+
+  BookFilter filter = BookPublishedYearFilter.After(2007);
+
+  assertTrue(filter.apply(cleanCode));
+
+  assertFalse(filter.apply(codeComplete));
+
+  }
+
+  }
+
+  }
+
+  ```
+
+
+  在前面的测试用例中，我们测试了 `BookPublishedYearFilter`。该过滤器确保书籍必须在指定年份之后出版。现在为其添加实现，使测试用例通过。
+
+
+  ```
+
+  class BookPublishedYearFilter implements BookFilter {
+
+  private LocalDate startDate;
+
+  static BookPublishedYearFilter After(int year) {
+
+  BookPublishedYearFilter filter = new BookPublishedYearFilter();
+
+  filter.startDate = LocalDate.of(year, 12, 31);
+
+  return filter;
+
+  }
+
+  @Override
+
+  public boolean apply(final Book b) {
+
+  return b.getPublishedOn().isAfter(startDate);
+
+  }
+
+  }
+
+  ```
+
+
+  类似于“之后年份”过滤器，我们想添加一个“之前年份”过滤器，用于查找在指定年份之前出版的书籍。作为练习，这部分留给读者完成。
+
+
+  运行测试用例，确保所有测试都通过（参见图 4-5）。
+
+
+  ![A429029_1_En_4_Fig5_HTML.jpg](img/A429029_1_En_4_Fig5_HTML.jpg)
+
+
+  图 4-5.
+
+
+  测试成功执行
+
+
+  现在我们有了多个过滤器，我们希望构建一个 `CompositeFilter`，它可以将多个过滤器组合成一个单一的过滤器。让我们先为此添加一个测试用例。
+
+
+  ```
+
+  @Test
+
+  @DisplayName("Composite criteria is based on multiple filters")
+
+  void shouldFilterOnMultiplesCriteria(){
+
+  CompositeFilter compositeFilter = new CompositeFilter();
+
+  compositeFilter.addFilter( b -> false);
+
+  assertFalse(compositeFilter.apply(cleanCode));
+
+  }
+
+  ```
+
+
+  添加组合过滤器的实现以满足测试标准。
+
+
+  ```
+
+  class CompositeFilter implements BookFilter {
+
+  private List filters;
+
+  CompositeFilter() {
+
+  filters = new ArrayList();
+
+  }
+
+  @Override
+
+  public boolean apply(final Book b) {
+
+  return filters.stream()
+
+  .map(bookFilter -> bookFilter.apply(b))
+
+  .reduce(true, (b1, b2) -> b1 && b2);
+
+  }
+
+  void addFilter(final BookFilter bookFilter) {
+
+  filters.add(bookFilter);
+
+  }
+
+  }
+
+  ```
+
+
+  测试用例通过了，但有一个令人困扰的问题。组合过滤器是否调用了传入的过滤器？另外，我们如何为只涉及部分过滤器调用的场景添加测试用例？我们是否应该为此构建一些测试？
+
+
+  ```
+
+  @DisplayName("Composite criteria does not invoke after first failure")
+
+  void shouldNotInvokeAfterFirstFailure(){
+
+  CompositeFilter compositeFilter = new CompositeFilter();
+
+  compositeFilter.addFilter( b -> false);
+
+  compositeFilter.addFilter( b -> true);
+
+  assertFalse(compositeFilter.apply(cleanCode));
+
+  }
+
+  @DisplayName("Composite criteria invokes all filters")
+
+  void shouldInvokeAllFilters(){
+
+  CompositeFilter compositeFilter = new CompositeFilter();
+
+  compositeFilter.addFilter( b -> true);
+
+  compositeFilter.addFilter( b -> true);
+
+  assertTrue(compositeFilter.apply(cleanCode));
+
+  }
+
+  ```
+
+
+  在上述所有场景中，很难确定过滤器调用发生在哪个时间点。
+
+
+
+
+  ### 模拟（Mocking）
+
+
+  到目前为止，在我们所有传递了 `BookFilter` 的测试用例中，我们都使用了 lambda 表达式。该表达式创建了一个 `BookFilter` 的实现，并将其传递给相应的方法。这些由测试生成的实现被称为模拟对象（即，真实系统实现的替代品）。创建模拟对象的目标之一是测试所需的行为。但是，基于
+  lambda 表达式的模拟只允许我们验证测试结果，而无法验证模拟的交互；也就是说，我们无法验证模拟实例是否被调用。这个问题在 `CompositeFilter`
+  中更为明显，因为它包含一个过滤器链。
+
+
+  使用模拟是一个好主意，因为它允许我们隔离地测试系统。但我们模拟的质量还不够好。我们需要改进模拟，以跟踪交互情况。我们可以将这些信息保存在一个外部数据结构中，比如
+  `Map`。
+
+
+  ```
+
+  @Test
+
+  @DisplayName("Composite criteria invokes multiple filters")
+
+  void shouldFilterOnMultiplesCriteria(){
+
+  CompositeFilter compositeFilter = new CompositeFilter();
+
+  final Map invocationMap = new HashMap();
+
+  compositeFilter.addFilter( b -> {
+
+  invocationMap.put(1,true);
+
+  return true;
+
+  });
+
+  compositeFilter.apply(cleanCode);
+
+  }
+
+  ```
+
+
+  上述解决方案看起来很不优雅。它包含了太多底层细节，使得测试用例难以理解。作为替代方案，我们可以构建一个 `MockFilter` 抽象，在其中跟踪调用情况。
+
+
+  ```
+
+  class MockedFilter implements BookFilter {
+
+  boolean returnValue;
+
+  boolean invoked;
+
+  MockedFilter(boolean returnValue){
+
+  this.returnValue=returnValue;
+
+  }
+
+  @Override
+
+  public boolean apply(Book b) {
+
+  invoked= true;
+
+  return returnValue;
+
+  }
+
+  }
+
+  ```
+
+
+  这种方法的问题在于，我们试图重新发明轮子。在任何项目中，随着我们开发更多组件，对模拟的需求都会增加。因此，对所有内容都使用模拟很快就会变得难以管理。
+
+
+  因此，作为上述问题的最终解决方案，我们应该尝试使用现有的某个模拟框架。这里我们将使用 Mockito。首先，在 `build.gradle` 中添加其依赖项：
+
+
+  ```
+
+  dependencies {
+
+  def junitVersion = ''5.0.1''
+
+  testCompile ''org.junit.jupiter:junit-jupiter-api:'' + junitVersion
+
+  testCompile ''org.junit.jupiter:junit-jupiter-engine:'' + junitVersion
+
+  testCompile ''org.assertj:assertj-core:3.5.2''
+
+  testCompile ''org.mockito:mockito-core:2.+''
+
+  }
+
+  ```
+
+
+  这会将 Mockito 库添加到我们项目的测试类路径中。要使用它，我们必须执行以下步骤：
+
+
+  *   使用 `Mockito.mock()` API 生成模拟对象。
+
+  *   使用 `Mockito.when` 记录所需的调用。`when` API 可以与 `thenXXX` API 链接以返回值。当测试用例进行所需调用时，这些记录的交互将被重放。
+
+  *   在测试结束时，验证与模拟对象发生的所有交互。
+
+
+  现在，我们的复合过滤器测试用例看起来如下：
+
+
+  ```
+
+  @Test
+
+  @DisplayName("Composite criteria does not invoke after first failure")
+
+  void shouldNotInvokeAfterFirstFailure() {
+
+  CompositeFilter compositeFilter = new CompositeFilter();
+
+  BookFilter invokedMockedFilter = Mockito.mock(BookFilter.class);
+
+  Mockito.when(invokedMockedFilter.apply(cleanCode)).thenReturn(false);
+
+  compositeFilter.addFilter(invokedMockedFilter);
+
+  BookFilter nonInvokedMockedFilter = Mockito.mock(BookFilter.class);
+
+  Mockito.when(nonInvokedMockedFilter.apply(cleanCode)).thenReturn(true);
+
+  compositeFilter.addFilter(nonInvokedMockedFilter);
+
+  assertFalse(compositeFilter.apply(cleanCode));
+
+  Mockito.verify(invokedMockedFilter).apply(cleanCode);
+
+  Mockito.verifyZeroInteractions(nonInvokedMockedFilter);
+
+  }
+
+  @Test
+
+  @DisplayName("Composite criteria invokes all filters")
+
+  void shouldInvokeAllFilters() {
+
+  CompositeFilter compositeFilter = new CompositeFilter();
+
+  BookFilter firstInvokedMockedFilter = Mockito.mock(BookFilter.class);
+
+  Mockito.when(firstInvokedMockedFilter.apply(cleanCode)).thenReturn(true);
+
+  compositeFilter.addFilter(firstInvokedMockedFilter);
+
+  BookFilter secondInvokedMockedFilter = Mockito.mock(BookFilter.class);
+
+  Mockito.when(secondInvokedMockedFilter.apply(cleanCode)).thenReturn(true);
+
+  compositeFilter.addFilter(secondInvokedMockedFilter);
+
+  assertTrue(compositeFilter.apply(cleanCode));
+
+  Mockito.verify(firstInvokedMockedFilter).apply(cleanCode);
+
+  Mockito.verify(secondInvokedMockedFilter).apply(cleanCode);
+
+  }
+
+  ```
+
+
+  让我们运行它！但现在有一个测试失败了，如图 4-6 所示。
+
+
+  ![A429029_1_En_4_Fig6_HTML.jpg](img/A429029_1_En_4_Fig6_HTML.jpg)
+
+
+  图 4-6.
+
+
+  模拟检测到失败
+
+
+  嗯，如果我们查看失败消息，它清楚地表明没有预期任何交互，但模拟对象被一个 lambda 表达式调用了。我们没有预料到这一点，但 `CompositeFilter`
+  的行为并非如此。它总是调用完整的过滤器链，而不考虑最终结果。对于我们的业务场景，这种行为没有太大区别。但该测试用例很好地记录了过滤器的预期行为。让我们修改测试用例使其通过。
+
+
+  在前面的章节中，我们使用 Mockito 来发现 `CompositeFilter` 的行为。该部分旨在简要介绍模拟框架，并未详细涵盖。请参考 Mockito
+  文档以了解更多关于其功能的信息。
+
+
+  ### 测试特性（Testing Traits）
+
+
+  现在，我们有一堆 `BookFilter`，我们可以期望它们具有一组共同的行为。每个过滤器都有自己的测试场景。但对于所有过滤器，我们都缺少边界条件测试用例。如果使用空书（null
+  book）调用过滤器，它应该失败还是抛出异常？
+
+
+  在这种情况下，当期望有共同行为时，我们应该避免为每个过滤器构建单独的测试。与其为每个过滤器添加单独的测试方法，不如为上述场景编写一个测试用例，并将其作为接口的默认方法添加。该方法必须使用
+  `@Test` 注解。
+
+
+  ```
+
+  interface FilterBoundaryTests {
+
+  BookFilter get();
+
+  @Test
+
+  @DisplayName("should not fail for null book.")
+
+  default void nullTest() {
+
+  assertThat(get().apply(null)).isFalse();
+
+  }
+
+  }
+
+  ```
+
+
+  需要注意的是，接口的默认方法实现了完整的测试用例。像被测对象这样的内容可以作为接口方法提出，由实现类来实现。我们现在可以在现有的 `FilterSpecs` 中实现前面的接口，从而在每个测试类中实现
+  `get()` 方法。结果，`nullTest()` 将成为每个测试类的一部分。
+
+
+  ![A429029_1_En_4_Fig7_HTML.jpg](img/A429029_1_En_4_Fig7_HTML.jpg)
+
+
+  图 4-7.
+
+
+  默认测试
+
+
+  ```
+
+  class BookPublishedBeforeFilterSpec implements FilterBoundaryTests {
+
+  BookFilter filter;
+
+  @BeforeEach
+
+  void init() {
+
+  filter = BookPublishedYearFilter.Before(2007);
+
+  }
+
+  @Override
+
+  public BookFilter get() {
+
+  return filter;
+
+  }
+
+  // 为简洁起见，其余部分已移除
+
+  }
+
+  ```
+
+
+  除了测试方法之外，接口还可以为 `@BeforeEach` 和 `@AfterEach` 生命周期事件提供默认方法。这些生命周期方法将针对测试类中的每个测试被调用。
+
+
+  默认方法不能参与 `@BeforeAll` 和 `@AfterAll` 生命周期事件。只有接口的静态方法才能参与这些事件。
+
+
+
+
+  ### 按标签对测试进行分组
+
+
+  在大多数项目中，测试具有多种特性。例如，有些测试运行缓慢，有些运行快速，还有些则与环境相关。因此，我们希望能在测试套件中区分这些测试，并将它们组织成相似的组。这种分组背后的理念是，我们可以选择一个组，并根据需求执行它。JUnit
+  5 允许我们通过使用 `@Tag` 注解在测试上标记这些特性。一个测试可以被标记为“慢速”、“快速”、“夜间运行”等。在测试类/方法上标记标签后，我们可以在集成开发环境（IDE）/构建工具运行器中选择该标签。这将选中所有标记了所需标签的测试并执行它们。`@Tag`
+  注解是一个 `java.lang.annotation.Repeatable` 注解。因此，我们可以多次向测试方法/类添加该注解，从而为其添加多个元数据。
+
+
+  在编写本书时，IntelliJ IDEA 尚未提供任何处理标签的选项。它仍在发布里程碑版本以支持 JUnit 5 的所有功能。
+
+
+  需要注意的是，标签信息仅限于 JUnit 测试运行器。元信息也是 `TestInfo` 对象的一部分。该对象可以被注入到生命周期方法中，以执行一些相关操作。
+
+
+  ```
+
+  @BeforeEach
+
+  void setup(Book[] books, TestInfo info) {
+
+  System.out.println(" 测试标签是 :  "+ info.getTags());
+
+  }
+
+  @Tag("nightly")
+
+  @Tag("generate-progress")
+
+  @Test
+
+  @DisplayName("当两本书已读且三本书未读时，完成度为 40%，待读度为 60%")
+
+  void progressWithCompletedAndToReadPercentages(Book[] books) {
+
+  // 为简洁起见已删除
+
+  }
+
+  ```
+
+
+  JUnit 4 API 包含 `@Category` 注解，用于标记带有元信息的测试，这些元信息可用于构建测试组。该 API 在 JUnit 5 中已不再可用。
+
+
+  ## 总结
+
+
+  在本章中，我们通过添加几个新功能增强了 `bookstoread` 应用程序。在此过程中，我们使用了依赖注入，并利用假设来验证测试前置条件。我们还快速学习了 JUnit
+  扩展模型。本书将在后续章节中更详细地讨论这个主题。
+
+
+  我们发现业务领域概念应被表达为系统中的抽象。所有这些抽象都可以通过模拟进行单元测试。我们发现可以为接口构建模拟实现，但使用像 Mockito 这样的模拟框架效率更高。最后，我们讨论了如何使用接口中的默认方法来测试抽象的共同行为。
+
+
+  在第 5 章中，我们将学习 JUnit 5 中新增的异常处理改进。
+
+
+  '
+- "# 5. 测试异常\n\n到目前为止，本书中我们还没有过多讨论如何使用 JUnit 5 处理异常。作为程序员，我们知道异常会发生，并且必须验证异常是否在预期时被抛出。在本章中，你将学习如何使用\
+  \ JUnit 5 支持的各种方式来处理异常。我们将在本章末尾讨论 JUnit 5 对重复测试执行的支持。当需要处理不稳定的测试时，重复测试执行会很有帮助。当一个测试在相同的代码基础上既表现出通过又表现出失败的结果时，该测试就是不稳定的。\n\
+  \n## 上下文设置\n\n让我们考虑一个用例，以确保当添加的书籍超过其容量时，`BookShelf` 会抛出异常。如下面的代码所示，当我们尝试添加的书籍超过\
+  \ `BookShelf` 容量时，会抛出 `BookShelfCapacityReached` 异常。\n\n```\npublic void add(Book...\
+  \ booksToAdd) throws BookShelfCapacityReached {\nArrays.stream(booksToAdd).forEach(book\
+  \ -> {\nif (books.size() == capacity) {\nthrow new BookShelfCapacityReached(String.format(\"\
+  BookShelf capacity of %d is reached. You can't add more books.\", this.capacity));\n\
+  }\nbooks.add(book);\n});\n}\n```\n\n## 原始方法：使用 try-catch-fail\n\n当处理可能抛出异常的代码时，首先必须创建一个会抛出异常的条件，然后必须验证它是否是预期的异常。此外，你可能还想验证异常中包含的消息。在前面显示的代码中，我们可以通过向容量为\
+  \ 2 的 `BookShelf` 添加书籍来在测试中创建异常条件。\n\n```\n@Test\nvoid throwsExceptionWhenBooksAreAddedAfterCapacityIsReached()\
+  \ {\nBookShelf bookShelf = new BookShelf(2);\nbookShelf.add(effectiveJava, codeComplete);\n\
+  bookShelf.add(mythicalManMonth);\n}\n```\n\n运行代码会导致测试失败，因为 `bookShelf.add(mythicalManMonth)`\
+  \ 这一行会抛出异常。这不是我们想要的。测试用例不仅要引发异常，还要验证异常。代码的预期行为是引发异常；因此测试应该成功，而不是失败。\n\n处理异常的经典方法是使用\
+  \ Java 内置的 try-catch 机制。try 块将包装会抛出异常的代码，而 catch 块允许我们捕获代码抛出的异常。\n\n始终在 try-catch\
+  \ 块中捕获特定的异常。\n\n```\n@Test\nvoid throwsExceptionWhenBooksAreAddedAfterCapacityIsReached()\
+  \ {\nBookShelf bookShelf = new BookShelf(2);\nbookShelf.add(effectiveJava, codeComplete);\n\
+  try {\nbookShelf.add(mythicalManMonth);\n} catch (BookShelfCapacityReached expected)\
+  \ {\nassertEquals(\"BookShelf capacity of 2 is reached. You can't add more books.\"\
+  , expected.getMessage());\n}\n}\n```\n\n在上述代码中，我们将 `bookShelf.add` 语句包装在 try-catch\
+  \ 块中。我们捕获了 `BookShelfCapacityReached` 异常，并验证了消息是否符合预期。\n\n上述测试用例完整吗？不，即使 `bookshelf.add`\
+  \ 语句没有抛出异常，它也会通过。为了确保在未引发异常时测试失败，我们调用 `org.junit.jupiter.api.Assertions.fail` 方法来实现预期的行为，如下面的代码所示：\n\
+  \n```\n@Test\nvoid throwsExceptionWhenBooksAreAddedAfterCapacityIsReached() {\n\
+  BookShelf bookShelf = new BookShelf(2);\nbookShelf.add(effectiveJava, codeComplete);\n\
+  try {\nbookShelf.add(mythicalManMonth);\nfail(\"Should throw BookShelfCapacityReached\
+  \ exception as more books are added than shelf capacity.\");\n} catch (BookShelfCapacityReached\
+  \ expected) {\nassertEquals(\"BookShelf capacity of 2 is reached. You can't add\
+  \ more books.\", expected.getMessage());\n}\n}\n```\n\ntry-catch-fail 方法自 JUnit\
+  \ 诞生以来就一直存在。它仍然是一种有效的方法，但大多数情况下，使用现代方法会更好。\n\n\n\n## JUnit 4 方式：@Test 注解与 Rule API\n\
+  \n你也会认同之前讨论的 try-catch-fail 方法既冗长又丑陋。它会导致代码难以阅读和维护。在 JUnit 5 之前，处理异常的两种推荐方式是：\n\n\
+  *   **使用 @Test 注解的 expected 属性**：旧版 JUnit 的 `@Test` 注解支持指定一个参数来标识预期异常的类型。这使得异常测试变得简单，如下代码所示。\n\
+  \n    ```\n    @Test(expected=BookShelfCapacityReached.class)\n    public void throwsExceptionWhenBooksAreAddedAfterCapacityIsReached()\
+  \ {\n    BookShelf bookShelf = new BookShelf(2);\n    bookShelf.add(effectiveJava,\
+  \ codeComplete);\n    bookShelf.add(mythicalManMonth);\n    }\n    ```\n\n    如果在测试执行期间抛出了\
+  \ `BookShelfCapacityReached` 异常，则上述测试通过。否则，测试将失败。这种方法有两个缺点：\n    *   你无法缩小抛出异常的代码范围。\n\
+  \    *   你无法断言异常消息。JUnit 5 的 `@Test` 注解没有 `expected` 属性，因此这种方法将不起作用。\n*   **使用 ExpectedException\
+  \ 规则**：JUnit 4 支持的另一种更具扩展性的方法是使用 `ExpectedException` 规则。JUnit Rule API 提供了对代码执行过程中发生情况的更多控制。`ExpectedException`\
+  \ 是 JUnit 4 自身提供的内置规则之一。\n\n    ```\n    public class BookShelfSpecWithRules {\n\
+  \    @Rule\n    public ExpectedException expectedException = ExpectedException.none();\n\
+  \    @Test\n    void throwsExceptionWhenBooksAreAddedAfterCapacityIsReached() {\n\
+  \    BookShelf bookShelf = new BookShelf(1);\n    expectedException.expect(BookShelfCapacityReached.class);\n\
+  \    expectedException.expectMessage(\"BookShelf capacity of 1 is reached. You can't\
+  \ add more books.\");\n    bookShelf.add(effectiveJava, codeComplete);\n    }\n\
+  \    }\n    ```\n\n    在上述代码中，我们首先创建了一个 `ExpectedException` 实例，然后告诉 `expectedException`\
+  \ 规则我们在测试执行期间期望什么。JUnit 4 的规则机制允许我们验证抛出的异常和消息。这种方法也存在局限性，即我们无法缩小抛出异常的代码范围。这意味着你的测试可能因为错误的原因而通过。\n\
+  \nJUnit 5 对 Rule API 的支持有限。JUnit 5 支持 `ExpectedException` 规则。这意味着你仍然可以运行使用 `ExpectedException`\
+  \ Rule API 编写的现有测试。我们将在本章后面介绍它。\n\n## JUnit 5 方式：使用 assertThrows 断言方法\n\nJUnit 5\
+  \ 的 `Assertions` 类提供了一个 `org.junit.jupiter.api.Assertions.assertThrows` 方法，让你能够以清晰易读的方式编写代码来验证异常及其关联消息。它还允许你缩小抛出异常的代码范围，从而避免\
+  \ JUnit 4 方法的问题。以下代码重构了测试用例以使用 `assertThrows` 方法：\n\n```\n@Test\nvoid throwsExceptionWhenBooksAreAddedAfterCapacityIsReached()\
+  \ {\nBookShelf bookShelf = new BookShelf(2);\nbookShelf.add(effectiveJava, codeComplete);\n\
+  BookShelfCapacityReached throwException = assertThrows(BookShelfCapacityReached.class,\
+  \ () -> bookShelf.add(mythicalManMonth));\nassertEquals(\"BookShelf capacity of\
+  \ 2 is reached. You can't add more books.\", throwException.getMessage());\n}\n\
+  ```\n\n`assertThrows` 方法接受这些参数——预期的异常类和一个类型为 `org.junit.jupiter.api.function.Executable`\
+  \ 的 lambda 表达式。\n\n`Executable` 用于封装一段可能抛出异常的代码。`Executable` 函数式接口类似于 Java 内置的 `java.lang.Runnable`\
+  \ 接口，唯一的区别在于 `Runnable` 在其声明中不使用 `throws` 子句。这意味着你的 lambda 表达式必须捕获受检异常，然后重新抛出非受检异常。你可以通过编写自己的使用\
+  \ `throws` 子句的函数式接口来避免这种麻烦。这正是 `Executable` 接口所做的。创建函数式接口的另一个优点是允许使用与你领域相对应的名称。`Executable`\
+  \ 告诉我们这个 lambda 封装了一次代码执行。\n\n```\n@FunctionalInterface\npublic interface Executable\
+  \ {\nvoid execute() throws Throwable;\n}\n```\n\n`assertThrows` 返回捕获到的异常，我们在下一条语句中使用它来断言异常消息，如前面的代码示例所示。\n\
+  \n## 在 JUnit 5 中使用 JUnit 4 的 ExpectedException 规则\n\nJUnit 5 对 JUnit 4 Rule API\
+  \ 的支持有限。这意味着你仍然可以使用 JUnit 4 Rule API 编写/运行测试。对 Rule API 的支持定义在 `junit-jupiter-migration-support`\
+  \ 模块中。对于任何新测试，你应该使用 `assertThrows` 方法，但如果你有 JUnit 4 的代码库，则可以依赖此扩展。要使用 Rule API，首先将依赖项添加到你的构建工具中。如果你使用\
+  \ Gradle，请将以下内容添加到你的 `build.gradle` 文件中。\n\n```\ntestCompile 'org.junit.jupiter:junit-jupiter-migrationsupport:5.0.1'\n\
+  ```\n\nMaven 用户可以将以下内容添加到他们的 `pom.xml` 中。\n\n```\n<dependency>\n    <groupId>org.junit.jupiter</groupId>\n\
+  \    <artifactId>junit-jupiter-migrationsupport</artifactId>\n    <version>5.0.1</version>\n\
+  \    <scope>test</scope>\n</dependency>\n```\n\n添加依赖项后，你需要通过使用 `@EnableRuleMigrationSupport`\
+  \ 注解来注解你的测试类，以在测试用例中启用 Rule API 支持，如下代码所示。\n\n```\nimport org.junit.Rule;\nimport\
+  \ org.junit.jupiter.api.Test;\nimport org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;\n\
+  import org.junit.platform.runner.JUnitPlatform;\nimport org.junit.rules.ExpectedException;\n\
+  import org.junit.runner.RunWith;\n@EnableRuleMigrationSupport\npublic class BookShelfSpecWithRules\
+  \ {\n@Rule\npublic ExpectedException expectedException = ExpectedException.none();\n\
+  @Test\nvoid throwsExceptionWhenBooksAreAddedAfterCapacityIsReached() {\nBookShelf\
+  \ bookShelf = new BookShelf(1);\nexpectedException.expect(BookShelfCapacityReached.class);\n\
+  expectedException.expectMessage(\"BookShelf capacity of 1 is reached. You can't\
+  \ add more books.\");\nbookShelf.add(effectiveJava, codeComplete);\n}\n}\n```\n\n\
+  除了添加 `@EnableRuleMigrationSupport` 注解之外，你无需对代码库进行任何更改。\n\n现在，你可以运行测试用例，它将成功通过。\n\
+  \n\n\n## 异常处理扩展\n\n如第 4 章所述，JUnit 5 通过其扩展 API 提供了可扩展性。我们将在第 7 章详细讨论扩展 API。JUnit\
+  \ 5 通过扩展 API 为开发者提供了扩展点。当测试结果出现异常时，会调用 `TestExecutionExceptionHandler` 扩展接口。假设我们有一个用例，需要记录测试用例抛出的所有异常。我们可以编写\
+  \ `LoggingTestExecutionExceptionHandler`，如下列代码所示：\n\n```\nimport org.junit.jupiter.api.extension.TestExecutionExceptionHandler;\n\
+  import org.junit.jupiter.api.extension. ExtensionContext;\nimport java.util.logging.Level;\n\
+  import java.util.logging.Logger;\npublic class LoggingTestExecutionExceptionHandler\
+  \ implements TestExecutionExceptionHandler {\nprivate Logger logger = Logger.getLogger(LoggingTestExecutionExceptionHandler.class.getName());\n\
+  @Override\npublic void handleTestExecutionException(ExtensionContext context, Throwable\
+  \ throwable) throws Throwable {\nlogger.log(Level.INFO, \"Exception thrown \", throwable);\n\
+  throw throwable;\n}\n}\n```\n\n接下来，你需要通过使用 `ExtendWith` 注解来注册你的扩展，并将 `LoggingTestExecutionExceptionHandler`\
+  \ 扩展传递给它，如下列代码所示：\n\n```\n@ExtendWith(LoggingTestExecutionExceptionHandler.class)\n\
+  public class BookShelfSpecWithRules {\n}\n```\n\n当你运行代码时，异常将被记录，如下所示。\n\n```\nbookstoread.LoggingTestExecutionExceptionHandler\
+  \ handleTestExecutionException\nINFO: Exception thrown\nbookstoread.BookShelfCapacityReached:\
+  \ BookShelf capacity of 1 is reached. You can't add more books.\nat bookstoread.BookShelf.lambda$add$0(BookShelf.java:30)\n\
+  at java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)\n\
+  at java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:580)\n\
+  at bookstoread.BookShelf.add(BookShelf.java:28)\nat bookstoread.BookShelfSpecWithRules.throwsExceptionWhenBooksAreAddedAfterCapacityIsReached(BookShelfSpecWithRules.java:27)\n\
+  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\nat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\
+  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\
+  at java.lang.reflect.Method.invoke(Method.java:498)\n```\n\n## 使用测试超时\n\n当你不想让测试无限期等待时，超时非常有用。在\
+  \ JUnit 的旧版本中，`@Test` 注解有一个属性用于提供超时值。JUnit 5 的测试注解不支持任何属性。相反，JUnit 5 提供了断言方法来帮助你处理这种情况。JUnit\
+  \ 5 对超时提供了广泛的支持。\n\n让我们先看一个简单的测试用例，我们期望测试在一秒内完成。\n\n```\n@Test\nvoid test_should_complete_in_one_second()\
+  \ {\nassertTimeout(Duration.of(1, ChronoUnit.SECONDS), () -> Thread.sleep(2000));\n\
+  }\n```\n\n这个测试将会失败，因为代码执行会休眠两秒钟。我们期望测试用例在一秒内成功完成。\n\n`assertTimeout` 有许多重载变体。上面展示的那个接受两个参数——超时持续时间和可执行代码。当你运行前面提到的测试用例时，它会按预期失败。你可能期望测试在一秒后失败，但它会在两秒后失败。\n\
+  \n原因是 `assertTimeout` 在与调用代码相同的线程中执行可执行代码。这意味着测试会等待代码执行完成后再抛出异常。这会导致测试在两秒后失败。在本地测试机器上，测试在\
+  \ 2 秒 40 毫秒后失败。\n\n还有另一组 `assertTimeout` 的重载方法，它们接受 Duration 和 `ThrowingSupplier`。区别在于\
+  \ `ThrowingSupplier` 返回一个值，而 Executable 不返回值。因此，当你想要断言代码执行返回的值时，应该使用 `assertTimeout\
+  \ ThrowingSupplier` 变体。\n\n```\nString message = assertTimeout(Duration.of(1, ChronoUnit.SECONDS),\
+  \ () -> \"Hello, World!\");\nassertEquals(\"Hello, World!\", message);\n```\n\n\
+  ### assertTimeoutPreemptively\n\n这个方法克服了 assertTimeout 的局限性。它确保测试在超时之前完成。它在与调用线程不同的线程中运行测试。当超过超时时间时，它会中止代码。\n\
+  \n```\nassertTimeoutPreemptively(Duration.of(1, ChronoUnit.SECONDS), () -> Thread.sleep(2000));\n\
+  ```\n\n现在测试将在超时时间过后立即完成。\n\n## 重复测试\n\nJUnit 5 增加了对运行指定次数测试的支持。当你处理本质上不稳定的测试时，这至关重要。不稳定的测试是指那些在相同代码库下既表现出通过又表现出失败行为的测试。要运行一个测试\
+  \ X 次，请使用 `RepeatedTest` 注解标记它，如下列代码所示：\n\n```\n@RepeatedTest(10)\nvoid i_am_a_repeated_test()\
+  \ {\nassertTrue(true);\n}\n```\n\n这个测试将运行十次，你将在集成开发环境（IDE）的截图中看到测试结果，如图 5-1 所示。\n\
+  \n![A429029_1_En_5_Fig1_HTML.jpg](img/A429029_1_En_5_Fig1_HTML.jpg)\n\n图 5-1.\n\n\
+  重复测试执行\n\n你可以使用一组预定义的占位符来自定义测试的名称。\n\n```\n@RepeatedTest(value = 10, name = \"i_am_a_repeated_test__{currentRepetition}/{totalRepetitions}\"\
+  )\nvoid i_am_a_repeated_test() {\nassertTrue(true);\n}\n```\n\n当你运行测试时，你将在 IDE 中看到以下测试输出，如图\
+  \ 5-2 的截图所示。\n\n![A429029_1_En_5_Fig2_HTML.jpg](img/A429029_1_En_5_Fig2_HTML.jpg)\n\
+  \n图 5-2.\n\n带名称的重复测试\n\n## 总结\n\n在本章中，你学习了如何在出现异常时断言测试的正确行为。你学习了如何应用各种策略来处理异常。\n\
+  \n在第 6 章中，我们将讨论如何将 JUnit 5 与你的工具集成。我们将涵盖构建工具、代码覆盖率、IDE 以及更多内容。\n\n"
+- "# 6. 集成工具\n\n到目前为止，我们一直在 IntelliJ Idea 中进行开发。我们使用了 JUnit 5 的各种功能，并研究了做事的新方法。但是\
+  \ Java 生态系统中存在大量的工具。工具有很多类别——构建工具、集成开发环境（IDE）、持续集成（CI）工具等等。每个类别都为开发者提供了多种选择。在本章中，我们将研究如何将\
+  \ JUnit 5 与我们选择的工具集成。我们将首先将 JUnit 5 与我们选择的构建工具集成。然后，我们将集成代码覆盖率指标。最后，我们将使用其他 IDE。\n\
+  \n## 构建工具\n\n构建工具负责自动化项目构建。构建工具的任务不仅限于源代码编译和二进制文件创建。它还涉及执行任何其他过程，如单元测试、静态代码分析、二进制文件上传等。Java\
+  \ 生态系统中有许多构建工具，其中 Apache Ant、Maven 和 Gradle 是最常采用的。对于这些工具中的每一个，都有大量的插件目录可以执行各种操作。但在本章中，我们将专注于围绕单元测试的任务。默认的单元测试插件/扩展基于旧版本的\
+  \ JUnit。因此，它们不适用于 JUnit 5 测试。让我们看看如何用这些构建工具中的每一个来执行基于 JUnit 5 的测试。我们将从 Gradle 开始，因为我们的\
+  \ bookstoread 应用程序是基于它的。\n\n\n\n### Gradle\n\nGradle 构建工具最初借鉴了其前身（如 Ant 和 Maven）的许多概念。它以\
+  \ `build.gradle` 文件作为输入，来确定项目构建的步骤。需要注意的是，该构建文件是用 Groovy 编写的，而非其他工具事实上的标准 XML。Gradle\
+  \ 遵循 Maven 的“约定优于配置”方法，即大多数代码构建实践都通过通用默认值进行配置；例如，所有源代码都放在 `src/main/java` 下，测试代码放在\
+  \ `src/test/java` 下。\n\n到目前为止，对于我们的 `bookstoread` 项目，我们添加了一个 `build.gradle` 文件（见第\
+  \ 1 章）。该构建文件将源代码描述为一个 Java 项目。它还列出了所有必需的依赖项以及用于下载依赖项的仓库。\n\n```\ngroup 'com.junit5book'\n\
+  version '1.0-SNAPSHOT'\napply plugin: 'java'\nsourceCompatibility = 1.8\nrepositories\
+  \ {\nmavenCentral()\n}\ndependencies {\ndef junitVersion = '5.0.1'\ntestCompile\
+  \ 'org.junit.jupiter:junit-jupiter-api:' + junitVersion\ntestCompile 'org.junit.jupiter:junit-jupiter-engine:'\
+  \ + junitVersion\ntestCompile 'org.assertj:assertj-core:3.5.2'\n}\n```\n\n那么，我们是否尝试在控制台上运行它呢？\n\
+  \n```\n./gradle clean build\nNo command 'gradle' found\n```\n\n啊哈！我们的机器上没有安装 Gradle。但这对于\
+  \ Gradle 来说并不是问题。Gradle 最显著的特性之一是“Gradle Wrapper”。其概念是让 Gradle 构建无需事先安装即可运行。它不仅消除了\
+  \ Gradle 安装的先决条件，还强制要求所有使用该项目的机器上使用相同版本的 Gradle。\n\nWrapper 是一个小脚本文件 `gradlew.sh/gradlew.bat`，它与必要的文件一起被添加到项目中。现在让我们运行\
+  \ wrapper 脚本。\n\n```\n./gradlew clean build\nDownloading https://services.gradle.org/distributions/gradle-3.4.1-all.zip\n\
+  .......................................................................\n:clean\n\
+  :compileJava\n:processResources UP-TO-DATE\n:classes\n:jar\n:assemble\n:compileTestJava\n\
+  :processTestResources UP-TO-DATE\n:testClasses\n:test\n:check\n:build\nBUILD SUCCESSFUL\n\
+  ```\n\n哇！通过使用 wrapper，我们无需在机器上安装 Gradle 就能启动构建。Gradle wrapper 进程下载了所需的 Gradle 版本和项目依赖项。然后使用这些来构建应用程序源代码。完整的构建过程由不同的阶段组成，如构建输出所示。\n\
+  \n我们的重点是测试执行任务。遵循合理默认值的概念，Gradle 为我们的构建添加了一个测试插件。该插件的目的是执行测试用例并发布相应的报告。但如果我们查看 `:test`\
+  \ 下的构建输出，会发现没有执行任何测试用例。这是因为 Gradle 测试插件遵循一个约定，即期望测试类名以 `Test` 或 `Tests` 结尾。在我们的应用程序中，测试类名以\
+  \ `Spec` 结尾，因此它们没有被执行。\n\n让我们通过显式指定 Gradle 应查找以 `Spec` 结尾的类来重新运行 Gradle 构建，如下代码所示：\n\
+  \n```\n./gradlew clean test --tests *Spec\n:test FAILED\nFAILURE: Build failed with\
+  \ an exception.\n* What went wrong:\nExecution failed for task ':test'.\n> No tests\
+  \ found for given includes: [*Spec]\n```\n\nGradle 仍然无法找到我们的测试。这是因为 JUnit 5 更改了其\
+  \ API（应用程序编程接口）。JUnit 5 版本不仅面向开发者，也面向基于 JUnit 的工具/平台。它们将此类平台所需的测试发现和执行（用于测试过滤和配置）解耦了。由于当前的测试插件不可用，JUnit\
+  \ 5 团队提供了一个可用于执行测试的 Gradle 测试插件。\n\n在应用该插件之前，我们必须告诉 Gradle 在哪里可以找到它。这在 `build.gradle`\
+  \ 的 `buildscript` 部分中进行了描述。\n\n```\nbuildscript {\nrepositories {\nmavenCentral()\n\
+  // 以下内容仅在您想使用 SNAPSHOT 版本时才需要。\n// maven { url 'https://oss.sonatype.org/content/repositories/snapshots'\
+  \ }\n}\ndependencies {\nclasspath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'\n\
+  }\n}\napply plugin: 'org.junit.platform.gradle.plugin'\n```\n\n`org.junit.platform.gradle.plugin`\
+  \ 插件被配置为查找以 `*Test(s)` 结尾的测试。我们必须重新配置它以发现我们的测试。\n\n```\njunitPlatform{\nfilters{\n\
+  includeClassNamePattern '.*Spec'\n}\n}\n```\n\n现在再次运行 gradle 构建，`gradle clean build`。它将运行所有测试并在控制台上打印测试结果摘要。\n\
+  \n```\n:junitPlatformTest\nMar 06, 2017 6:56:47 AM org.junit.platform.launcher.core.ServiceLoaderTestEngineRegistry\
+  \ loadTestEngines\nINFO: Discovered TestEngines with IDs: [junit-jupiter]\nTest\
+  \ run finished after 1095 ms\n[        10 containers found      ]\n[         0 containers\
+  \ skipped    ]\n[        10 containers started    ]\n[         0 containers aborted\
+  \    ]\n[        10 containers successful ]\n[         0 containers failed     ]\n\
+  [        19 tests found           ]\n[         0 tests skipped         ]\n[    \
+  \    19 tests started         ]\n[         0 tests aborted         ]\n[        19\
+  \ tests successful      ]\n[         0 tests failed          ]\n```\n\n需要注意的是，该插件会将\
+  \ XML 报告发布到 `build/test-results/junit-platform` 目录下，而不是标准的 Gradle 测试报告位置（`build/reports`）。该报告按每个测试引擎分别指定。\n\
+  \n现在让我们探索该插件提供的各种选项。默认情况下，该插件会发现项目类路径下的所有测试。可以通过使用 `selectors` 块来改变此行为。该块允许我们将测试限制到文件夹、包、类、测试方法或任何其他外部位置。\n\
+  \n```\njunitPlatform{\nselectors{\naClass 'bookstoread.BookShelfSpec'\n}\nfilters{\n\
+  includeClassNamePattern '.*Spec'\n}\n}\n```\n\n上述块将仅运行 `BookShelfSpec` 类的测试。需要注意的是，即使我们只选择了一个单独的类，`filters`\
+  \ 部分也是必需的。基本上，`selectors` 部分用于测试发现元素，而 `filters` 部分实际上负责测试发现。\n\n```\nMar 06, 2017\
+  \ 7:53:27 AM org.junit.platform.launcher.core.ServiceLoaderTestEngineRegistry loadTestEngines\n\
+  INFO: Discovered TestEngines with IDs: [junit-jupiter]\nTest run finished after\
+  \ 304 ms\n[         6 containers found      ]\n[         0 containers skipped  \
+  \  ]\n[         6 containers started    ]\n[         0 containers aborted    ]\n\
+  [         6 containers successful ]\n[         0 containers failed     ]\n[    \
+  \     9 tests found           ]\n[         0 tests skipped         ]\n[        \
+  \ 9 tests started         ]\n[         0 tests aborted         ]\n[         9 tests\
+  \ successful      ]\n[         0 tests failed          ]\n```\n\n过滤器使我们能够基于 JUnit\
+  \ 5 引擎、包、标签或类名来选择测试。以下块将过滤并执行 `Filters` 标签下的测试（见第 4 章）。\n\n```\njunitPlatform{\n\
+  filters{\nincludeClassNamePattern '.*Spec'\ntags {\ninclude 'Filter'\n}\n}\n}\n\
+  ```\n\nJUnit 5 Gradle 平台插件禁用了标准的 Gradle 任务。可以通过 `junitPlatform` 块下的 `enableStandardTestTask`\
+  \ 选项来改变此行为。将其设置为 `true` 以启用标准任务运行。\n\n\n\n### Maven\n\nMaven 旨在提供一个标准统一的构建流程，可用于任何\
+  \ Java 项目。它采用基于 XML 的方式来配置项目的构建步骤（项目对象模型，简称 POM）。如前所述，它遵循“约定优于配置”原则，只有例外情况需要显式配置。一个极简的\
+  \ Maven 构建文件 `pom.xml` 包含唯一的项目标识符和依赖项列表。在接下来的部分中，我们将尝试为我们的 bookstoread.com 项目配置一个\
+  \ pom.xml。\n\n在开始之前，我们必须确保 Maven 已添加到系统路径中。与 Gradle 不同，它没有附带一个可以自动下载并使其工作的包装脚本。可以从\
+  \ [`http://maven.apache.org/`](http://maven.apache.org/) 下载最新版本的 Maven。解压归档文件，并将其路径添加到\
+  \ PATH 环境变量中。验证它是否按预期工作。\n\n```\n$ mvn --version\nApache Maven 3.3.1\nMaven home:\
+  \ /usr/share/maven\nJava version: 1.8.0_101, vendor: Oracle Corporation\nJava home:\
+  \ /usr/lib/jvm/java-8-oracle/jre\n```\n\n现在，让我们为项目添加以下 POM 文件：\n\n```\n\n4.0.0\n\
+  com.junit5book\nbookstoread\n1.0-SNAPSHOT\n\nUTF-8\n1.8\n1.8\n5.0.1\n\norg.junit.jupiter\n\
+  junit-jupiter-api\n${junit.jupiter.version}\ntest\n\norg.assertj\nassertj-core\n\
+  3.5.2\ntest\n\nmockito-core\norg.mockito\n2.7.12\ntest\n\n```\n\n现在，我们来看看重要的部分。\n\
+  \n*   项目由 `groupId:artifactId` 标识。此外，项目的每个发布版本都由 version 标识。\n*   文件的 properties\
+  \ 部分列出了各种键值，这些键值可以在 POM 的其他部分中引用。\n*   默认情况下，Maven 会添加一个 Java 编译器插件。其 JDK 版本由 `maven.compiler.source`\
+  \ 和 `maven.compiler.target` 属性描述。\n*   dependencies 标签包含项目所需的依赖项列表，以及它们各自的作用域。从\
+  \ Gradle 构建中获取列表，我们添加了所需的依赖项。\n\n现在让我们进行一次构建：\n\n```\n$ mvn clean test\n[INFO] ------------------------------------------------------------------------\n\
+  [INFO] Building bookstoread 1.0-SNAPSHOT\n[INFO] ------------------------------------------------------------------------\n\
+  [INFO]\n[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ bookstoread ---\n\
+  [INFO] Deleting /home/rahul/projects/bookstoread/target\n[INFO]\n[INFO] --- maven-resources-plugin:2.3:resources\
+  \ (default-resources) @ bookstoread ---\n[INFO] Using 'UTF-8' encoding to copy filtered\
+  \ resources.\n[INFO] skip non existing resourceDirectory /home/rahul/projects/bookstoread/src/main/resources\n\
+  [INFO]\n[INFO] --- maven-compiler-plugin:2.0.2:compile (default-compile) @ bookstoread\
+  \ ---\n[INFO] Compiling 4 source files to /home/rahul/projects/bookstoread/target/classes\n\
+  [INFO]\n[INFO] --- maven-resources-plugin:2.3:testResources (default-testResources)\
+  \ @ bookstoread ---\n[INFO] Using 'UTF-8' encoding to copy filtered resources.\n\
+  [INFO] skip non existing resourceDirectory /home/rahul/projects/bookstoread/src/test/resources\n\
+  [INFO]\n[INFO] --- maven-compiler-plugin:2.0.2:testCompile (default-testCompile)\
+  \ @ bookstoread ---\n[INFO] Compiling 2 source files to /home/rahul/projects/bookstoread/target/test-classes\n\
+  [INFO]\n[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ bookstoread\
+  \ ---\n[INFO] Surefire report directory : /home/rahul/projects/bookstoread/target/surefire-reports\n\
+  \nT E S T S\n\nResults :\nTests run: 0, Failures: 0, Errors: 0, Skipped: 0\n[INFO]\
+  \ ------------------------------------------------------------------------\n[INFO]\
+  \ BUILD SUCCESS\n[INFO] ------------------------------------------------------------------------\n\
+  ```\n\n但是没有运行任何测试。这与我们在修复 Gradle 构建时遇到的问题类似。基本上，测试引擎无法找到测试，因为它遵循命名约定。因此，我们需要配置 surefire\
+  \ 插件来识别我们的测试。\n\n```\n\nmaven-surefire-plugin\n2.19.1\n\n**/*Spec.java\n\n```\n\n\
+  现在让我们进行一次构建，看看它是否运行我们的测试。\n\n```\n[INFO] --- maven-surefire-plugin:2.19.1:test (default-test)\
+  \ @ bookstoread ---\n\nT E S T S\n\nRunning bookstoread.BookShelfSpec\nTests run:\
+  \ 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec - in bookstoread.BookShelfSpec\n\
+  ```\n\n根据控制台输出，插件找到了所需的测试类，但没有在其中找到任何测试用例。这是因为默认插件配置为与 JUnit 4 一起工作。surefire 插件具有可插拔的架构。可以通过向插件类路径添加额外的\
+  \ `surefireProvider` 来配置它。JUnit 5 附带了一个 `junit-platform-surefire-provider`，它可以基于\
+  \ Jupiter 引擎或 Vintage 引擎（根据类路径）运行测试。现在，让我们将提供程序和 Jupiter 引擎添加到插件依赖项中。\n\n```\nmaven-surefire-plugin\n\
+  2.19.1\n\n**/*Spec.java\n\norg.junit.platform\njunit-platform-surefire-provider\n\
+  ${junit.platform.version}\n\norg.junit.jupiter\njunit-jupiter-engine\n${junit.jupiter.version}\n\
+  \n```\n\n现在让我们进行一次构建。所有测试用例都应该被执行。执行过程将在控制台生成输出，并在 `target/surefire-reports` 目录下生成测试文件（供后续参考）。\n\
+  \n![A429029_1_En_6_Fig1_HTML.jpg](img/A429029_1_En_6_Fig1_HTML.jpg)\n\n图 6-1.\n\n\
+  Maven 与 JUnit 5\n\n该插件还支持基于标签的测试过滤。为了执行/排除一组标签，请在 surefire 插件配置中指定 `includeTags`/`excludeTags`\
+  \ 属性。\n\n```\n\n**/*Spec.java\n\nFilter\n\n```\n\nMaven surefire 插件有各种参数（例如，`forkcount`\
+  \ 和 `parallel`）。这些参数目前不受支持。\n\n\n\n### Ant\n\nAnt 是历史最悠久、功能最全面的项目自动化工具之一。它基于一个名为\
+  \ `build.xml` 的文件，该文件配置了项目需要运行的任务。每个任务都可以与其他任务链接，以定义执行顺序。Ant 将构建调用定义为一个“目标”。一个项目可以有多个目标，这些目标可以链接在一起，以定义一个完整的构建周期。在本节中，我们将配置\
+  \ Ant，使其在项目构建过程中运行基于 JUnit5 的测试。本节假定读者已了解 Ant。\n\n在开始创建 `build.xml` 之前，请确保我们的操作系统\
+  \ PATH 中已包含 Ant。可以从 [`http://ant.apache.org`](http://ant.apache.org) 下载最新版本的 Ant。解压归档文件，并将其路径添加到\
+  \ PATH 变量中。验证其是否按预期工作。\n\n```\n$ ant -version\nApache Ant(TM) version 1.9.3 compiled\
+  \ on April 8 2014\n```\n\nAnt 有许多扩展，可以执行不同的任务。Apache Ivy 就是这样一个扩展，用于执行依赖解析。在没有依赖管理器的情况下，我们需要将项目依赖项作为源代码的一部分保留。Ivy\
+  \ 使得在 Ivy.xml 中表达所有项目依赖项成为可能。当执行构建时，它会下载所有必需的依赖项。要添加 Ivy 扩展，请从 [`http://ant.apache.org/ivy/`](http://ant.apache.org/ivy/)\
+  \ 下载最新版本。解压归档文件，并将 `ivy-{version}.jar` 复制到 `${ANT_HOME}/lib` 目录。\n\n现在，让我们添加一个能够执行以下操作的\
+  \ `build.xml`：\n\n*   编译 src 文件。\n*   编译测试文件。\n*   运行测试并发布报告。\n\n上述构建会下载 `ivy.xml`\
+  \ 中声明的依赖项。然后，它调用 `javac` 任务来编译源代码。接着，它将下载的库添加到类路径中，并再次调用 `javac` 任务来编译测试代码。\n\n\
+  该构建仅编译代码。但我们如何调用测试呢？有一个“junit” Ant 任务可以运行单元测试。但该任务只运行基于 JUnit4 的测试用例。因此，该任务不适用于我们基于\
+  \ JUnit 5 的测试。\n\nJUnit5 团队提供了一个控制台启动器，可以在控制台上执行测试。该运行器根据测试的成功或失败，分别将进程输出设为 1 或\
+  \ 0。该运行器具有大量用于发现和执行测试的选项。可以从 Maven 中央仓库下载控制台运行器。由于 1.0.1 是目前可用的最新版本，可以从 [`http://central.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.0.1/junit-platform-console-standalone-1.0.1.zip`](http://central.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.0.1/junit-platform-console-standalone-1.0.1.zip)\
+  \ 下载。\n\n在我们的 `bookstoread` 项目中解压 zip 文件。使用以下命令通过控制台启动器运行测试（见图 6-2）：\n\n![A429029_1_En_6_Fig2_HTML.jpg](img/A429029_1_En_6_Fig2_HTML.jpg)\n\
+  \n图 6-2.\n\n控制台启动器\n\n```\njava -jar lib/junit-platform-console-standalone-1.0.1.jar\
+  \ --scan-classpath -cp lib/build/classes\n```\n\n上述命令执行以下操作：\n\n*   发现已添加到类路径中的\
+  \ Jupiter 引擎。\n*   ‘-scan-classpath’ 尝试查找属于类路径一部分的测试用例。\n*   该命令不会执行任何测试，因为我们的测试后缀（*spec）与默认约定不匹配。\n\
+  \n该命令提供 `-n` 选项来执行与传递的模式匹配的类。因此，我们可以添加 `-n \"^.*Spec?$\"` 来发现我们的测试用例。我们还需要将 assertj\
+  \ 和 mockito 的必需依赖项添加到类路径中。\n\n由于控制台运行器可以执行我们所有的测试用例，我们也可以将其添加到我们的 Ant build.xml\
+  \ 中。完整的方法包括以下构建步骤：\n\n1.  配置 Ivy.xml 以下载归档文件。需要注意的是，我们需要的是 zip 归档文件，而不是 jar 文件（与其他依赖项一样）。\n\
+  2.  将归档文件解压到单独的目录。\n3.  使用 exec Ant 任务执行控制台运行器。\n4.  此外，我们可以向控制台运行器传递一个 `-reports-dir`\
+  \ 参数。这将在指定目录中创建一个基于 XML 的报告。\n5.  可以使用 `junitreport` 任务将基于 XML 的测试报告转换为 HTML。\n\n\
+  ### 代码覆盖率\n\n代码覆盖率是通过执行测试用例捕获的一个重要指标。它是一个以百分比表示的指标，表示项目被其测试套件测试的程度。有许多工具（付费和开源）可用于确定覆盖率。这些工具中的大多数都有扩展/插件，可以与项目构建工具集成。在本节中，我们将使用\
+  \ Java 代码覆盖率（JaCoCo）工具。它是一个开源工具，与所有版本的 Java 都能很好地配合，并且与 IntelliJ Idea、Gradle、Ant、Jenkins\
+  \ 等各种工具集成良好。在下一节中，我们将把 JaCoCo 集成到我们的项目构建中。\n\n#### Gradle 扩展\n\nJaCoCo 工具提供了一个 Gradle\
+  \ 插件。该插件与 Gradle 测试插件集成。但由于 JUnit 5 测试不是由默认的 Gradle 测试插件执行的，因此无法确定其覆盖率。我们需要将 jacoco\
+  \ 与 JUnit 5 团队提供的 junit-platform 测试插件一起配置。现在，让我们将插件添加到我们的 `build.gradle` 中，并尝试将其与\
+  \ `junitPlatformTest` 一起配置。\n\n```\napply plugin: 'jacoco'\nsourceCompatibility\
+  \ = 1.8\nrepositories {\nmavenCentral()\n}\n// 为简洁起见，省略其余部分\njacoco {\ntoolVersion\
+  \ = '0.7.4.201502262128'\napplyTo junitPlatformTest\n}\n```\n\n上述配置将生成一个二进制文件形式的代码覆盖率结果。我们需要一个\
+  \ `jacoco` 报告任务来将二进制文件转换为 xml/html 报告。现在，让我们运行 gradle 构建以生成覆盖率。\n\n构建失败，因为 `jacoco`\
+  \ 配置无法找到所需的 `junitPlatformTest` 插件（见图 6-3）。这是因为该插件在项目初始化期间不可用。只有在 Gradle 运行器评估项目之后，它才可用。现在我们只需要在项目的\
+  \ `afterEvaluate` 部分配置 `jacoco` 插件。让我们也添加 `jacoco` 报告任务；完整的配置应如下所示：\n\n![A429029_1_En_6_Fig3_HTML.jpg](img/A429029_1_En_6_Fig3_HTML.jpg)\n\
+  \n图 6-3.\n\nGradle `JaCoCo` 失败\n\n```\nafterEvaluate {\njacoco {\ntoolVersion =\
+  \ '0.7.4.201502262128'\napplyTo junitPlatformTest\n}\ntask junit5JacocoReport(type:JacocoReport,\
+  \ dependsOn : junitPlatformTest){\nexecutionData junitPlatformTest\nsourceDirectories\
+  \ = files(sourceSets.main.allSource.srcDirs)\nclassDirectories = files(sourceSets.main.output)\n\
+  reports {\nxml.enabled = true\nhtml.enabled = true\n}\n}\nbuild.dependsOn junit5JacocoReport\n\
+  }\n```\n\n现在进行构建以获取 `jacoco` 报告（见图 6-4）。\n\n![A429029_1_En_6_Fig4_HTML.jpg](img/A429029_1_En_6_Fig4_HTML.jpg)\n\
+  \n图 6-4.\n\n`Jacoco` 覆盖率报告\n\n#### Maven 扩展\n\n用于 `jacoco` 的 Maven 插件（jacoco-maven-plugin）开箱即用，适用于基于\
+  \ JUnit 5 的测试。与 Gradle 一样，我们首先确定二进制文件中的代码覆盖率结果，然后将其转换为报告。Maven 插件有不同的目标，这些目标被配置来完成这些任务。以下\
+  \ POM 配置为我们的 bookstoread.com 生成了覆盖率报告：\n\n```\norg.jacoco\njacoco-maven-plugin\n\
+  \npre-unit-test\n\nprepare-agent\n\n${project.build.directory}/coverage-reports/jacoco-ut.exec\n\
+  \nsurefireArgLine\n\npost-unit-test\ntest\n\nreport\n\n${project.build.directory}/coverage-reports/jacoco-ut.exec\n\
+  \n${project.reporting.outputDirectory}/jacoco-ut\n\n```\n\n\n\n#### Ant 扩展\n\n现在让我们尝试使用\
+  \ Ant 配置 `jacoco`。与之前的配置类似，这里我们也将分两步确定代码覆盖率。`JaCoCo 工具` 提供了一个 Ant 任务，可以通过执行单元测试用例或任何其他\
+  \ Java 程序来确定代码覆盖率。由于我们使用控制台运行器执行 JUnit5 测试用例，我们将通过配置一个 Java 可执行程序来确定覆盖率。\n\n在开始配置\
+  \ `jacoco` 之前，让我们先查看 `consoleRunner` 脚本，找到完整的 Java 命令。该命令执行 `org.junit.platform.console.ConsoleLauncher`\
+  \ 类，其类路径中包含所有测试类。现在我们需要在构建脚本中配置相同的命令。该类是 junit-platform-console 依赖 jar 的一部分。\n\n\
+  对 `ivy.xml` 进行以下更改，以确保我们下载 junit-platform-console 的 jar 包（而非发行版 zip 包）以及所需的 `jacoco`\
+  \ jar 包：\n\n```\n// 为简洁起见，省略了其余部分\n```\n\n现在我们需要使用 Java 主类配置 `jacoco` 任务。以下 `build.xml`\
+  \ 配置确保我们实现相同的目标：\n\n```\n\n// 为简洁起见，省略了其余部分\n\n```\n\n运行 Ant 构建以获取 HTML 格式的覆盖率报告。\n\
+  \n## 其他工具\n\n到目前为止，我们一直使用 IntelliJ 开发所有代码，该 IDE 对 JUnit 5 功能的支持正在不断改进。我们已经成功地将 JUnit\
+  \ 5 与 Gradle、Maven 和 Ant 集成。但 Java 生态系统包含大量工具。有许多 IDE（Eclipse、STS、IntelliJ、NetBeans\
+  \ 等）。那么，如果我们选择的工具尚不支持 JUnit 5，该怎么办？假设我们偏好的 IDE 是 Eclipse；那我们该怎么做？\n\nJUnit 5 提供了一个基于\
+  \ JUnit 4 Runner API 的 `PlatformRunner`。该运行器能够在所有支持 JUnit 4 的平台上执行测试。JUnit 5 测试用例必须使用\
+  \ `@RunWith` 注解，并将 `PlatformRunner` 作为参数传入。因此，如果我们想在 Eclipse Neon 或更早版本中开发代码，可以执行以下操作：\n\
+  \n1.  将 JUnit 4 的依赖添加到我们的 `pom.xml` 或 `build.gradle` 中\n\n    ```\n    testCompile\
+  \ 'junit:junit:4.12'\n    ```\n\n2.  添加 junit-platform-runner 的依赖\n\n    ```\n \
+  \   testCompile 'org.junit.platform:junit-platform-runner:1.0.1'\n    ```\n\n3.\
+  \  将项目作为 Gradle 项目（或 Maven 项目）导入 Eclipse（见图 6-5）\n\n    ![A429029_1_En_6_Fig5_HTML.jpg](img/A429029_1_En_6_Fig5_HTML.jpg)\n\
+  \n    图 6-5.\n    Eclipse 导入对话框  \n4.  每个测试类都需要使用 `@RunWith` 进行注解\n\n    ```\n \
+  \   @RunWith(JUnitPlatform.class)\n    @DisplayName(\"一个书架\")\n    public class\
+  \ BookShelfSpec {\n    private BookShelf shelf;\n    // 为简洁起见，省略了其余部分\n    }\n \
+  \   ```\n\n5.  现在执行我们的测试用例\n\n    ![A429029_1_En_6_Fig6_HTML.jpg](img/A429029_1_En_6_Fig6_HTML.jpg)\n\
+  \n    图 6-6.\n    Eclipse JUnit 5 报告  \n\nEclipse 团队正在开发一个 Oxygen 版本，该版本将包含对 JUnit\
+  \ 5 的支持。在撰写本章时，Eclipse 团队已添加了 JUnit 5 支持 [ [`https://bugs.eclipse.org/bugs/show_bug.cgi?id=488566#c4`](https://bugs.eclipse.org/bugs/show_bug.cgi?id=488566#c4)\
+  \ ]，但尚未发布。\n\n## 总结\n\n在本章中，我们探讨了如何根据我们选择的工具配置 JUnit 5。我们为 booktoread.com 添加了基于\
+  \ Gradle、Maven 和 Ant 的配置。然后，我们使用 `jacoco` 配合这些工具生成了代码覆盖率指标。最后，我们研究了那些不支持 JUnit 5\
+  \ 的工具，并以向后兼容模式配置了 JUnit 5。\n\n在第 7 章中，我们将讨论 JUnit 5 扩展模型以及从 JUnit 4 迁移到新版本的相关内容。\n\
+  \n"
+- "# 7. JUnit 5 扩展模型\n\nJUnit 的核心原则之一是优先考虑扩展点而非功能。这意味着 JUnit 团队希望提供一种可扩展的机制，供开发者根据自身需求使用，而不是将所有功能都塞进\
+  \ JUnit 核心。这一理念在 JUnit 的早期版本中就已存在。在 JUnit 4 中，团队添加了对 Rule API（应用程序编程接口）的支持，以提供诸如创建临时目录和文件、异常验证等功能。这些功能本可以轻松地添加到\
+  \ JUnit 核心中，而无需提供扩展机制。相反，JUnit 团队决定构建 Runner 和 Rule API，从而提供一种扩展 JUnit 的机制。这不仅使\
+  \ JUnit 能够干净地构建这些功能，还使第三方开发者能够使用该 API 实现自己的功能。其中一个例子是 `MockitoRule`，它允许你将模拟对象注入到测试中。\n\
+  \n## JUnit 4 扩展模型\n\n在学习 JUnit 5 的新扩展 API 之前，我们先讨论一下 JUnit 4 的可扩展性方法。这将有助于我们理解为什么\
+  \ JUnit 5 团队决定设计和构建一种新的可扩展性机制。如前所述，扩展对 JUnit 来说并不新鲜。JUnit 4 提供了两种扩展机制：Runner API\
+  \ 和 Rule API。\n\n1.  Runner API 被添加到 JUnit 4 中，以提供编写自定义运行器的能力。运行器管理测试的完整生命周期——测试类的实例化、调用\
+  \ setup 和 tear-down 方法、执行测试用例、通过 `RunNotifier` 通知测试进度。JUnit 4 提供了一个默认使用的实现 `JUnit4`。任何人都可以通过扩展\
+  \ `Runner` 类来编写自己的自定义运行器。要告诉 JUnit 使用自定义运行器，可以使用 `@RunWith` 注解并指定自定义运行器，如下面的代码片段所示：\n\
+  \n    ```\n    import org.junit.runner.RunWith;\n    @RunWith(MyCustomRunner.class)\n\
+  \    public class MyTest {\n    }\n    ```\n\n    Runner API 的两个主要缺点是：\n    1. \
+  \ 即使开发者只想为特定生命周期阶段提供扩展，也必须实现完整的生命周期。这使得它在大多数用例中变得复杂且重量级。  \n    2.  每个测试用例只能使用一个运行器类。这使得它们无法组合。例如，你不能在同一个测试类中同时使用\
+  \ Parameterized 和 Mockito 运行器。   \n2.  Rule API 在 JUnit 4.7 中引入，提供了一种轻量级的 JUnit\
+  \ 扩展机制。要使用规则，你需要创建一个规则的公共实例变量，并使用 `@Rule` 注解对其进行注解。Rule API 通过将测试方法包装到一个语句中来工作。该语句将首先运行任何\
+  \ `@Before` 方法，然后运行 `@Test` 方法，最后运行任何 `@After` 方法。Rule API 克服了 Runner API 的局限性，但其能力也有限。Rule\
+  \ API 的主要缺点是：\n    1.  Rule API 无法控制测试的完整生命周期，因此不能用于所有用例。它们仅适用于需要在测试用例执行前后执行某些操作的场景。\
+  \  \n    2.  你必须为方法级别和类级别的回调创建单独的规则。\n\n\n\n## JUnit 5 扩展模型\n\n扩展 API 是 JUnit Jupiter\
+  \ 引擎的一部分。考虑到 JUnit 4 中扩展方法的局限性，JUnit 5 团队决定构建一个统一的扩展 API，使其能够挂钩到测试生命周期的不同阶段。这意味着当到达某个生命周期阶段时，Jupiter\
+  \ 引擎将调用所有为该阶段注册的扩展。共有五个主要的扩展点可供挂钩。\n\n1.  测试生命周期回调\n2.  测试实例后处理\n3.  条件测试执行\n4.\
+  \  参数解析\n5.  异常处理\n\n让我们逐一详细了解。\n\n后续章节中介绍的每个扩展都实现了与 JUnit 扩展点相对应的接口。所有扩展点接口都扩展了一个名为\
+  \ `Extension` 的标记接口。\n\n另一个需要与之交互的接口是 `ExtensionContext`。它用于封装执行测试或测试容器的上下文。这种抽象允许扩展访问有关正在运行的测试的信息，并与\
+  \ Jupiter 引擎进行交互。让我们看看该接口的主要方法以进一步了解它。\n\n```\npublic interface ExtensionContext\
+  \ {\nOptional getParent();\nString getUniqueId();\nString getDisplayName();\nSet\
+  \ getTags();\nOptional getElement();\nOptional> getTestClass();\nOptional getTestInstance();\n\
+  Optional getTestMethod();\nOptional getExecutionException();\nvoid publishReportEntry(Map\
+  \ map);\ndefault Store getStore() {\nreturn getStore(Namespace.DEFAULT);\n}\nStore\
+  \ getStore(Namespace namespace);\n}\n```\n\n`getParent()` 方法返回父级的 ExtensionContext。要理解这里的“父级”含义，必须了解\
+  \ Jupiter 会创建一个测试节点树，每个节点都有其 ExtensionContext。一个测试节点会有一个测试类节点作为其父节点。因此，在测试类节点上调用\
+  \ `getParent` 时，返回 Optional.empty；而在测试方法上调用 `getParent` 时，则返回非空值。\n\n接下来的一组方法提供测试的唯一标识符、人类可读的名称以及一组测试标签。再下一组扩展方法用于访问测试类、实例和测试方法。你可以利用这些方法通过反射访问测试方法注解或实例字段。\n\
+  \n`getExecutionException()` 方法用于获取测试或容器执行期间抛出的异常。`publishReportEntry` 用于发布键/值对，供控制台或\
+  \ XML 报告等监听器使用。\n\n最后一个重要的方法是 `getStore()`。JUnit 扩展使用 Store 来读写数据。Store 是一个带命名空间、分层结构的键/值数据存储。要通过\
+  \ ExtensionContext 访问 Store，需要使用 Namespace 对象调用 `getStore` 方法。可以使用工厂方法 `create`\
+  \ 创建 Namespace，例如 `Namespace.create(\"com\",\"shekhargulati\",\"SummaryExtension\"\
+  )`。每个扩展都应使用唯一的命名空间，以避免不同扩展之间的数据混淆。\n\nStore 本身就像一个功能增强的哈希映射。它提供了你期望从 Map 中获得的方法，如下列代码所示：\n\
+  \n```\ninterface Store {\nV get(Object key, Class requiredType);\nObject getOrComputeIfAbsent(K\
+  \ key, Function defaultCreator);\nvoid put(Object key, Object value);\nV remove(Object\
+  \ key, Class requiredType);\n}\n```\n\n## 测试生命周期回调\n\n这组扩展允许你挂钩到测试生命周期的特定阶段。正如我们在第\
+  \ 4 章所学，测试类由以下生命周期方法组成：\n\n1.  BeforeAll：标记有 `@BeforeAll` 注解的方法在当前测试类的所有测试之前执行。它们对于每个测试类仅执行一次。\n\
+  2.  BeforeEach：标记有 `@BeforeEach` 注解的方法在当前测试类的每个测试方法之前执行。它们对于当前测试类中的每个测试执行一次。\n3.\
+  \  Test：所有标记有 `@Test` 注解的方法都是实际的测试方法。\n4.  AfterEach：标记有 `@AfterEach` 注解的方法在当前测试类的每个测试方法之后执行。它们对于当前测试类中的每个测试执行一次。\n\
+  5.  AfterAll：标记有 `@AfterAll` 注解的方法在当前测试类的所有测试之后执行。它们对于每个测试类仅执行一次。\n\n对于这些测试生命周期阶段中的每一个，JUnit\
+  \ 5 都提供了一个扩展接口。\n\n1.  BeforeAllCallback：此扩展在所有测试方法执行之前执行。\n2.  AfterAllCallback：此扩展在所有测试方法执行之后执行。\n\
+  3.  BeforeEachCallback：此扩展在每个测试方法执行之前执行。\n4.  AfterEachCallback：此扩展在每个测试方法执行之后执行。\n\
+  5.  BeforeTestExecutionCallback：此扩展在测试即将执行之前立即执行。\n6.  AfterTestExecutionCallback：此扩展在测试执行之后立即执行。\n\
+  \n对于一个包含所有扩展和生命周期方法的测试类，其执行顺序为：\n\n1.  BeforeAllCallback\n2.  BeforeAll\n3.  BeforeEachCallback\n\
+  4.  BeforeEach\n5.  BeforeTestExecution\n6.  Test\n7.  AfterTestExecution\n8.  AfterEach\n\
+  9.  AfterEachCallback\n10. AfterAll\n11. AfterAllCallback\n\n让我们编写一个扩展，用于打印测试类执行的摘要。该摘要将包括测试类所花费的总时间以及每个测试用例所花费的时间。让我们从创建实现某些生命周期扩展接口的扩展开始。\n\
+  \n```\npublic class TestSummaryExtension implements\nBeforeAllCallback,\nAfterAllCallback,\n\
+  BeforeTestExecutionCallback,\nAfterTestExecutionCallback{\n}\n```\n\n每个接口都有一个需要实现的单一生命周期方法。我们将实现的第一个方法是\
+  \ `BeforeAllCallback` 接口的 `beforeAll` 方法。我们将存储测试用例的开始时间。\n\n```\n@Override\npublic\
+  \ void beforeAll(ExtensionContext context) throws Exception {\ncontext.getStore().put(\"\
+  TEST_CLASS\", System.currentTimeMillis());\n}\n```\n\n接下来，我们将实现 `beforeTestExecution`\
+  \ 来存储测试开始时间。然后，我们将实现 `afterTestExecution` 来计算运行测试用例所花费的时间，如下列代码所示：\n\n```\n@Override\n\
+  public void beforeTestExecution(ExtensionContext context) throws Exception {\ncontext.getStore().put(\"\
+  TEST\", System.currentTimeMillis());\n}\n@Override\npublic void afterTestExecution(ExtensionContext\
+  \ context) throws Exception {\nlong startTime = context.getStore().get(\"TEST\"\
+  , long.class);\nlong timeTook = System.currentTimeMillis() - startTime;\ncontext.publishReportEntry(Collections.singletonMap(\n\
+  \"Summary\",\nString.format(\"%s took %d ms\", context.getDisplayName(), timeTook)));\n\
+  }\n```\n\n最后，我们将实现 `afterAll` 方法来计算运行测试类所花费的时间并打印摘要。\n\n```\n@Override\npublic void\
+  \ afterAll(ExtensionContext context) throws Exception {\nlong startTime = context.getStore().get(\"\
+  TEST_CLASS\", long.class);\nlong timeTook = System.currentTimeMillis() - startTime;\n\
+  context.publishReportEntry(Collections.singletonMap(\n\"Summary\",\nString.format(\"\
+  %s took %d ms\", context.getDisplayName(), timeTook)));\n}\n```\n\n要使你的测试使用此扩展，你需要使用\
+  \ `@ExtendWith` 注解。我们将在本章后面介绍它。\n\n\n\n## 测试实例后处理\n\n此扩展允许你在测试实例创建后执行钩子操作。你需要实现\
+  \ `TestInstancePostProcessor` 接口。该接口包含一个需要重写的方法——`postProcessTestInstance`。\n\n\
+  正如 `TestInstancePostProcessor` 接口的 JavaDoc 所述，此扩展的典型应用场景是向测试实例注入依赖。例如，让我们编写一个向实例字段注入\
+  \ SLF4J 日志器的扩展。\n\n```\nimport java.lang.reflect.Field;\nimport org.junit.jupiter.api.extension.ExtensionContext;\n\
+  import org.junit.jupiter.api.extension.TestInstancePostProcessor;\nimport org.slf4j.Logger;\n\
+  import org.slf4j.LoggerFactory;\npublic class LoggingExtension implements TestInstancePostProcessor\
+  \ {\n@Override\npublic void postProcessTestInstance(Object testInstance, ExtensionContext\
+  \ context) throws Exception {\nLogger logger = LoggerFactory.getLogger(testInstance.getClass());\n\
+  Field field = testInstance.getClass().getDeclaredField(\"logger\");\nfield.set(testInstance,\
+  \ logger);\n}\n}\n```\n\n在上述代码中，我们获取了 `testInstance` 的访问权限，并通过反射设置了 logger 字段。\n\
+  \n## 条件测试执行\n\n在某些情况下，我们需要控制是否运行某个测试用例。JUnit 5 提供了 `ExecutionCondition` 扩展接口来实现这一用例。\n\
+  \n让我们创建一个实现 `ExecutionCondition` 接口的 `RunOnCIExtension` 扩展类。\n\n```\nimport org.junit.jupiter.api.extension.ConditionEvaluationResult;\n\
+  import org.junit.jupiter.api.extension.ExecutionCondition;\nimport org.junit.jupiter.api.extension.ExtensionContext;\n\
+  public class RunOnCIExtension implements ExecutionCondition {\n@Override\npublic\
+  \ ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext context)\
+  \ {\nString jenkinsHome = System.getenv(\"JENKINS_HOME\");\nif (jenkinsHome != null)\
+  \ {\nreturn ConditionEvaluationResult.enabled(\"Test enabled on CI\");\n}\nreturn\
+  \ ConditionEvaluationResult.disabled(\"Test disabled as the environment is not CI\"\
+  );\n}\n}\n```\n\n## 参数解析\n\n此扩展用于解析构造函数或测试方法接收的参数。\n\n让我们创建一个解析 `Book` 类型的扩展。在测试用例中，我们经常需要处理测试数据，因此参数解析可以在此处提供帮助。\n\
+  \n```\npublic class BookParameterResolver implements ParameterResolver {\n@Override\n\
+  public boolean supportsParameter(ParameterContext parameterContext,\nExtensionContext\
+  \ extensionContext) throws ParameterResolutionException {\nreturn parameterContext.getParameter().getType()\n\
+  .equals(Book.class);\n}\n@Override\npublic Object resolveParameter(ParameterContext\
+  \ parameterContext,\nExtensionContext extensionContext) throws ParameterResolutionException\
+  \ {\nreturn new Book(\"Effective Java\");\n}\n}\n```\n\nJUnit 5 内置了以下三个 `ParameterResolver`：\n\
+  \n*   `TestInfoParameterResolver`：该解析器提供 `org.junit.jupiter.api.TestInfo` 实例。`TestInfo`\
+  \ 对象保存当前正在执行的测试的元信息。该对象可以提供显示名称、测试类、测试方法以及标签（如果有）。\n*   `TestReporterParameterResolver`：该解析器提供\
+  \ `org.junit.jupiter.api.TestReporter` 实例。`TestReporter` 允许我们为当前测试执行提供附加值。所有这些值都会包含在测试报告中，并显示在\
+  \ IDE（集成开发环境）中。\n*   `RepetitionInfoParameterResolver`：该解析器提供 `org.junit.jupiter.api.RepetitionInfo`\
+  \ 实例。`RepetitionInfo` 对象保存有关测试重复的信息（即当前重复索引和总重复次数）。该对象仅对使用 `org.junit.jupiter.api.RepeatedTest`\
+  \ 注解的测试可用。如果测试用例未标记 `@RepeatedTest`，则会抛出 `org.junit.jupiter.api.extension.ParameterResolutionException`。\n\
+  \n```\nclass ParameterResolverSpec {\n@BeforeEach\nvoid initialize(TestInfo info,TestReporter\
+  \ reporter) {\nreporter.publishEntry(\"Associated tags :\", info.getTags().toString());\n\
+  }\n@RepeatedTest(value = 10)\n@Tag(\"Numbers\")\nvoid numberTest(RepetitionInfo\
+  \ info) {\nassertTrue(true);\n}\n@Test\nvoid nonRepeated(RepetitionInfo info) {\n\
+  assertTrue(true);\n}\n}\n```\n\n`TestReporter` 是 JUnit 5 向标准输出/标准错误输出打印信息的首选方式。另请注意，上述每个\
+  \ `ParameterResolver` 都由 JUnit 执行引擎自动激活，无需使用 `@ExtendsWith` 进行显式激活。\n\n## 异常处理\n\
+  \n我们将讨论的最后一个扩展点是 `TestExecutionExceptionHandler`。此扩展可用于在测试遇到异常时改变其行为。\n\n假设我们想创建一个扩展，用于记录并忽略所有\
+  \ `IOException` 类型的异常，同时重新抛出所有其他异常。\n\n```\npublic class IgnoreIOExceptionExtension\n\
+  implements TestExecutionExceptionHandler {\nLogger logger = LoggerFactory\n.getLogger(IgnoreIOExceptionExtension.class);\n\
+  @Override\npublic void handleTestExecutionException(ExtensionContext context,\n\
+  Throwable throwable) throws Throwable {\nif (throwable instanceof IOException) {\n\
+  logger.error(\"IO Exception {}\", throwable);\nreturn;\n}\nthrow throwable;\n}\n\
+  }\n```\n\n## 注册扩展\n\n在前几节中，我们创建了测试扩展。现在，我们需要将它们注册到 JUnit 5 测试中。为此，我们使用 `@ExtendWith`\
+  \ 注解。你可以多次使用此注解来注册多个扩展，也可以将多个扩展作为数组传递给 `@ExtendWith` 注解。\n\n```\n@ExtendWith({\n\
+  IgnoreIOExceptionExtension.class,\nBookParameterResolver.class,\nRunOnCIExtension.class,\n\
+  TestSummaryExtension.classs\n})\n@ExtendWith(LoggingExtension.class)\npublic class\
+  \ UserServiceTests{\n}\n```\n\n你也可以通过使用 `ServiceLoader` 机制自动注册扩展。你的扩展需要有一个文件 `META-INF/services/org.junit.jupiter.api.extension.Extension`，其中包含扩展的完全限定名称。\n\
+  \n```\ncom.shekhargulati.extensions.TestSummaryExtension .\n```\n\n要启用此扩展注册机制，你需要将\
+  \ `junit.extensions.autodetection.enabled` 配置属性设置为 `true`。一种方法是通过向 JVM（Java 虚拟机）传递系统属性来实现。另一种方法是将配置参数添加到\
+  \ `LauncherDiscoveryRequest` 中，如下代码所示：\n\n```\nLauncherDiscoveryRequest request\n\
+  = LauncherDiscoveryRequestBuilder.request()\n.selectors(selectClass(\"com.junit5book.UserServiceTests\"\
+  ))\n.configurationParameter(\"junit.extensions.autodetection.enabled\", \"true\"\
+  )\n.build();\n```\n\n## JUnit 5 扩展\n\nJUnit 团队使用扩展模型开发了以下新的测试类型：\n\n*   `@TestTemplate`：定义一个在运行时生成测试的模板。\n\
+  *   `@ParameterizedTest`：定义一个带参数的测试方法。\n\n在接下来的章节中，我们将介绍如何使用上述每个扩展。这些章节不会涵盖每个扩展的实现细节。如需了解此类细节，请参阅\
+  \ JUnit 5 文档。\n\n\n\n### 测试模板\n\nJUnit 5 允许我们创建测试骨架，这些骨架通过 `TestTemplateInvocationContext`\
+  \ 实例化，从而在运行时生成测试。生成的测试类似于 `@Test` 方法。模板支持完整的测试生命周期。任何使用 `@BeforeAll`/`@BeforeEach`/`@AfterEach`/`@AfterAll`\
+  \ 注解的方法都会根据生成测试的生命周期来执行。\n\n测试模板是通过在非静态方法测试类上标记 `org.junit.jupiter.api.TestTemplate`\
+  \ 注解来创建的。此外，我们必须注册一个 `TestTemplateInvocationContextProvider` 扩展的实现，该扩展用于从模板生成实际的测试。\n\
+  \n让我们尝试为我们的 `bookstoread` 应用程序添加一个测试模板。在第 4 章中，我们添加了可应用于 `Book` 的 `BookFilter`。该过滤器验证书籍是否满足某个条件。我们还创建了\
+  \ `BookPublishedYearFilter`，它可以根据出版年份来过滤书籍。\n\n在当前上下文中，让我们添加一个测试模板，该模板可以接收 `BookFilter`\
+  \ 和一个书籍数组，然后断言过滤器的验证结果。\n\n```\nclass BookFilterTemplateSpec {\n@TestTemplate\n\
+  @ExtendWith(BookFilterTestInvocationContextProvider.class)\nvoid validateFilters(BookFilter\
+  \ filter, Book[] books) {\nassertNotNull(filter);\nassertFalse(filter.apply(books[0]));\n\
+  assertTrue(filter.apply(books[1]));\n}\n}\n```\n\n如上述测试用例所示，我们还需要创建一个 `BookFilterTestInvocationContextProvider`，它是\
+  \ `org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider` 的一个实现。该提供者需要实现以下方法：\n\
+  \n`supportsTestTemplate`：该方法验证提供者是否适用于传入的 `ExecutionContext`。JUnit 执行引擎首先调用此方法来验证提供者是否适用。\n\
+  \n`provideTestTemplateInvocationContexts`：该方法提供一个 `org.junit.jupiter.api.extension.TestTemplateInvocationContext`\
+  \ 的流。每个 `TestTemplateInvocationContext` 实例负责提供相应的测试名称以及额外的扩展（如果有的话）。\n\n```\nclass\
+  \ BookFilterTestInvocationContextProvider implements TestTemplateInvocationContextProvider\
+  \ {\n@Override\npublic boolean supportsTestTemplate(ExtensionContext context) {\n\
+  return true;\n}\n@Override\npublic Stream provideTestTemplateInvocationContexts(ExtensionContext\
+  \ context) {\nBook cleanCode = new Book(\"Clean Code\", \"Robert C. Martin\", LocalDate.of(2008,\
+  \ Month.AUGUST, 1));\nBook codeComplete = new Book(\"Code Complete\", \"Steve McConnel\"\
+  , LocalDate.of(2004, Month.JUNE, 9));\nreturn Stream.of(bookFilterTestContext(\"\
+  Before Filter\", BookPublishedYearFilter.Before(2007), cleanCode, codeComplete),\n\
+  bookFilterTestContext(\"After Filter\", BookPublishedYearFilter.After(2007), codeComplete,\
+  \ cleanCode));\n}\nprivate TestTemplateInvocationContext bookFilterTestContext(String\
+  \ testName, BookFilter bookFilter, Book... array) {\nreturn new TestTemplateInvocationContext()\
+  \ {\n@Override\npublic String getDisplayName(int invocationIndex) {\nreturn testName;\n\
+  }\n@Override\npublic List getAdditionalExtensions() {\nreturn Lists.newArrayList(new\
+  \ TypedParameterResolver(bookFilter), new TypedParameterResolver(array));\n}\n};\n\
+  }\n}\n```\n\n让我们详细看看 `provideTestTemplateInvocationContexts` 方法。该方法返回一个 `Stream<TestTemplateInvocationContext>`。每个\
+  \ `TestTemplateInvocationContext` 实例提供一个测试显示名称和两个额外的扩展。这些扩展负责为我们的 `validateFilters`\
+  \ 测试解析方法参数。\n\n我们的 `BookFilterTestInvocationContextProvider` 生成了以下两个测试用例：\n\n* \
+  \  **年份之前测试**：该测试包含 `BookPublishedYearFilter.Before(2007)` 过滤器和一个包含两本书的数组。\n*  \
+  \ **年份之后测试**：该测试包含 `BookPublishedYearFilter.After(2007)` 过滤器和一个包含两本书的数组。\n\n我们添加了一个\
+  \ `TypedParameterResolver` 扩展。该扩展接收一个值，并验证它是否是传入方法参数之一的实例。如果是，则返回该值。\n\n```\nclass\
+  \ TypedParameterResolver implements ParameterResolver {\nT data;\nTypedParameterResolver(T\
+  \ data) {\nthis.data = data;\n}\n@Override\npublic boolean supportsParameter(ParameterContext\
+  \ parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException\
+  \ {\nClass parameterClass = parameterContext.getParameter().getType();\nreturn parameterClass.isInstance(data);\n\
+  }\n@Override\npublic Object resolveParameter(ParameterContext parameterContext,\
+  \ ExtensionContext extensionContext) throws ParameterResolutionException {\nreturn\
+  \ data;\n}\n}\n```\n\n现在我们已经为测试模板添加了所有必需的组件，让我们执行它。将会运行两个测试，一个执行“年份之前”检查，另一个执行“年份之后”检查（参见图\
+  \ 7-1）。\n\n![A429029_1_En_7_Fig1_HTML.jpg](img/A429029_1_En_7_Fig1_HTML.jpg)\n\n\
+  图 7-1.\n\n测试模板结果\n\n\n\n### 参数化测试\n\n在第 4 章中，我们了解到 JUnit 5 允许我们向测试中注入参数。参数可以注入到测试方法或\
+  \ `BeforeEach`/`AfterEach` 方法中。这是通过实现 `org.junit.jupiter.extension.Extension` 接口（该接口可以提供值），然后使用\
+  \ `@ExtendWith` 将其注册到测试中来实现的。\n\n但如果只需要向测试方法中注入值，我们可以省去 `org.junit.jupiter.extension.Extension`\
+  \ 的自定义实现。相反，我们可以使用 `org.junit.jupiter.params.ParameterizedTest` 注解测试方法。我们还需要注册一个用于提供值的\
+  \ `ValueSource`。\n\n在我们的 `bookstoread` 应用中，我们向 `Bookshelf` 添加了一个 `findBookByTitle`\
+  \ 方法。让我们添加一个测试用例，在其中按现有标题搜索书架。\n\n```\n@ParameterizedTest\n@ValueSource(strings\
+  \ = {\"Effective Java\", \"Code Complete\", \"Clean Code\"})\nvoid shouldGiveBackBooksForTitle(String\
+  \ title) {\nBookShelf shelf = new BookShelf();\nBook effectiveJava = new Book(\"\
+  Effective Java\", \"Joshua Bloch\", LocalDate.of(2008, Month.MAY, 8));\nBook codeComplete\
+  \ = new Book(\"Code Complete\", \"Steve McConnel\", LocalDate.of(2004, Month.JUNE,\
+  \ 9));\nBook mythicalManMonth = new Book(\"The Mythical Man-Month\", \"Frederick\
+  \ Phillips Brooks\", LocalDate.of(1975, Month.JANUARY, 1));\nBook cleanCode = new\
+  \ Book(\"Clean Code\", \"Robert C. Martin\", LocalDate.of(2008, Month.AUGUST, 1));\n\
+  shelf.add(effectiveJava, codeComplete, mythicalManMonth, cleanCode);\nList foundBooks\
+  \ = shelf.findBooksByTitle(title.toLowerCase());\nassertNotNull(foundBooks);\nassertEquals(1,foundBooks.size());\n\
+  foundBooks = shelf.findBooksByTitle(title.toUpperCase());\nassertNotNull(foundBooks);\n\
+  assertEquals(0,foundBooks.size());\n}\n```\n\n`shouldGiveBackBooksForTitle` 测试方法接收一个\
+  \ `String` 作为输入。该方法随后构建一个包含书籍列表的 `BookShelf`。测试用例接着使用 `findBooksByTitle` 方法对指定的标题进行断言。\n\
+  \n`String` 参数值由测试方法上的 `@ValueSource` 指定。该注解接收一个字符串数组作为输入，从而为每个值重复执行测试（见图 7-2）。\n\
+  \n![A429029_1_En_7_Fig2_HTML.jpg](img/A429029_1_En_7_Fig2_HTML.jpg)\n\n图 7-2.\n\n\
+  字符串参数\n\n`@ValueSource` 可用于指定原始类型（整数/双精度浮点数/长整数）和字符串的数组。该包还提供了以下数据源：\n\n*   `EnumSource`：该数据源可用于从枚举中注入值。它允许选择/取消选择指定枚举值的子集。\n\
+  *   `MethodSource`：该数据源可用于提供值的流/数组/可迭代对象。该方法必须是静态的，且不能接受任何参数。\n*   `CSVSource`：该数据源可用于注入逗号分隔值的列表。每个逗号分隔的值可用于匹配测试方法的一个参数。\n\
+  *   `CSVFileSource`：该数据源可用于从指定文件中注入逗号分隔值的列表。每个逗号分隔的值可用于匹配测试方法的一个参数。\n*   `ArgumentsSource`：该数据源可用于注册一个自定义的\
+  \ `Stream<Arguments>` 提供者。注册的提供者可用于注入自定义类型或多个参数（成对出现）。\n\n现在，让我们为 `bookstoread`\
+  \ 应用使用其中一些数据源。我们可以使用 `MethodSource` 来提供一个 `BookFilter` 数组，这些过滤器可以单独进行验证。\n\n```\n\
+  @ParameterizedTest\n@MethodSource(\"bookFilterProvider\")\nvoid validateFilterWithNullData(BookFilter\
+  \ filter) {\nassertThat(filter.apply(null)).isFalse();\n}\nstatic Stream bookFilterProvider()\
+  \ {\nreturn Stream.of(BookPublishedYearFilter.Before(2007), BookPublishedYearFilter.After(2007));\n\
+  }\n```\n\n我们还可以注册一个自定义提供者，它可以成对注入值。这可以用来简化我们在上一节中创建的 `BookFilter` 模板测试。同样，测试方法将接收一个\
+  \ `BookFilter` 和 `Book[]` 作为参数。然后，它使用提供的过滤器验证 `Book[]` 的值。\n\n```\n@ParameterizedTest\n\
+  @ArgumentsSource(BookFilterCompositeArgsProvider.class)\nvoid validateBookFiltersWithBooks(BookFilter\
+  \ filter, Book[] books) {\nassertNotNull(filter);\nassertFalse(filter.apply(books[0]));\n\
+  assertTrue(filter.apply(books[1]));\n}\nclass BookFilterCompositeArgsProvider implements\
+  \ ArgumentsProvider {\n@Override\npublic Stream provideArguments(ExtensionContext\
+  \ context) {\nBook cleanCode = new Book(\"Clean Code\", \"Robert C. Martin\", LocalDate.of(2008,\
+  \ Month.AUGUST, 1));\nBook codeComplete = new Book(\"Code Complete\", \"Steve McConnel\"\
+  , LocalDate.of(2004, Month.JUNE, 9));\nreturn Stream.of(Arguments.of(BookPublishedYearFilter.Before(2007),\
+  \ Arrays.array(cleanCode, codeComplete)),\nArguments.of(BookPublishedYearFilter.After(2007),\
+  \ Arrays.array(codeComplete, cleanCode)));\n}\n}\n```\n\n`BookFilterCompositeArgsProvider`\
+  \ 提供了一个参数流，其中每个参数实例包含两个值（即一个 `BookFilter` 和一个 `Book[]`）。\n\n前面讨论的所有数据源都是可重复的。一个测试可以有多个注解，这些注解可以提供不同的值集。在下面的测试用例中，我们将\
+  \ `Book[]` 替换为一个 `Book` 实例。因此，测试方法接收一个 `BookFilter` 和一个 `Book` 作为参数。该测试使用 `BeforeYearArgsProvider`\
+  \ 注解（用于满足 `BeforePublishedYear` 过滤器条件的值）和 `AfterYearArgsProvider` 注解（用于满足 `AfterPublishYear`\
+  \ 过滤器条件的值）。\n\n```\n@ParameterizedTest(name = \"{index} : Validating {1}\")\n@DisplayName(\"\
+  Filter validates a passing book\")\n@ArgumentsSource(BeforeYearArgsProvider.class)\n\
+  @ArgumentsSource(AfterYearArgsProvider.class)\nvoid validateBookFiltersWithBooks1(BookFilter\
+  \ filter, Book book) {\nassertNotNull(filter);\nassertTrue(filter.apply(book));\n\
+  }\n}\nclass BeforeYearArgsProvider implements ArgumentsProvider {\n@Override\npublic\
+  \ Stream provideArguments(ExtensionContext context) {\nBook cleanCode = new Book(\"\
+  Clean Code\", \"Robert C. Martin\", LocalDate.of(2006, Month.AUGUST, 1));\nBook\
+  \ codeComplete = new Book(\"Code Complete\", \"Steve McConnel\", LocalDate.of(2004,\
+  \ Month.JUNE, 9));\nreturn Stream.of(Arguments.of(BookPublishedYearFilter.Before(2007),\
+  \ cleanCode),\nArguments.of(BookPublishedYearFilter.Before(2007), codeComplete));\n\
+  }\n}\nclass AfterYearArgsProvider implements ArgumentsProvider {\n@Override\npublic\
+  \ Stream provideArguments(ExtensionContext context) {\nBook cleanCode = new Book(\"\
+  Clean Code\", \"Robert C. Martin\", LocalDate.of(2009, Month.AUGUST, 1));\nBook\
+  \ codeComplete = new Book(\"Code Complete\", \"Steve McConnel\", LocalDate.of(2008,\
+  \ Month.JUNE, 9));\nreturn Stream.of(Arguments.of(BookPublishedYearFilter.After(2007),\
+  \ cleanCode),\nArguments.of(BookPublishedYearFilter.After(2007), codeComplete));\n\
+  }\n}\n```\n\n现在，在上述代码中我们使用了 `@DisplayName`。该注解为整个测试执行（包含所有传入的值）赋予一个有意义的名称。此外，通过指定\
+  \ `@ParameterizedTest` 的 `name` 属性，可以为每次测试执行提供一个有意义的名称。如果我们不提供任何名称，测试执行会使用注入的值生成一个默认名称。现在让我们运行完整的测试（见图\
+  \ 7-3）。\n\n![A429029_1_En_7_Fig3_HTML.jpg](img/A429029_1_En_7_Fig3_HTML.jpg)\n\n\
+  图 7-3.\n\n参数化测试结果\n\n## 总结\n\n在本章中，我们首先学习了 JUnit 5 的新扩展 API。我们发现扩展 API 支持测试执行的所有生命周期阶段。该\
+  \ API 还支持条件测试执行以及测试执行期间生成的异常。JUnit 5 包使用扩展 API 提供了许多功能，如默认提供者、测试模板和参数化测试。\n\n\n\n"
+- "# 8. 动态测试与从 JUnit 4 迁移\n\n在本书中，我们通过为 `bookstoread` 应用构建测试，学习了 JUnit 5 的不同特性。到目前为止，我们添加的所有测试本质上都是静态的。JUnit\
+  \ 5 为我们提供了一种全新的运行时测试创建范式。在本章中，我们将探讨动态测试的生成。\n\n我们已经介绍了 JUnit 5 的所有特性。现在可以说，JUnit\
+  \ 5 将成为未来单元测试的事实标准。各种工具和平台正在构建对 JUnit 5 的支持。我们可以紧跟 JUnit 5 的潮流并开始采用它。但在过去，我们基于 JUnit\
+  \ 4 开发了大量测试和工具，这些代码至今仍为我们创造价值。我们可以保留旧工具/基础设施中的所有代码。但随着我们继续前进，这会使事情变得困难。在本章中，我们还将探讨将现有基于\
+  \ JUnit 4 的代码迁移到新版本的方法。\n\n## 动态测试\n\n到目前为止，我们已经体验了多种创建测试用例的方式（`@Test`、`@TestTemplate`、`@ParameterizedTest`）。所有这些方法定义的测试都是静态的。此类测试中定义的行为在编译时确定，无法在运行时更改。假设（Assumptions）允许我们添加一些运行时行为，但其能力也有限。JUnit\
+  \ 5 引入了 `@TestFactory`，这是一种动态的测试执行模型。该模型使我们能够在运行时生成测试用例。在预期基于环境、操作系统、参数、应用配置等产生不同行为的场景中，该模型非常有用。被\
+  \ `@TestFactory` 注解的方法必须返回 `DynamicTest` 的 `Stream`/`Collection`/`Iterable`/`Iterator`。尝试返回其他任何内容都会导致\
+  \ `org.junit.platform.commons.JUnitException`。`org.junit.jupiter.api.DynamicTest`\
+  \ 类包含一个测试名称和一个可执行体，该可执行体必须作为测试执行的一部分被执行。\n\n```\npublic class DynamicSpec  {\n@TestFactory\n\
+  Collection generateFirstTest() {\nreturn Arrays.asList(\ndynamicTest(\"Week Test\"\
+  , () -> assertEquals(DayOfWeek.MONDAY,DayOfWeek.of(1))),\ndynamicTest(\"Month Test\"\
+  , () -> assertEquals(Month.JANUARY, Month.of(1)))\n);\n}\n}\n```\n\n与静态测试相比，动态测试具有完全不同的生命周期。没有回调/生命周期方法。此外，这些测试不支持\
+  \ JUnit 5 扩展模型。因此，我们无法使用扩展模型注入任何参数。但 Java 8 lambda 表达式允许我们将单个方法参数传递给相应的动态生成的测试。有一个\
+  \ `DynamicTest.stream` API（应用程序编程接口），它允许我们传递一个输入参数的迭代器。从迭代器中检索到的每个值都会传递给一个新的测试执行。\n\
+  \n```\n@TestFactory\nStream generateParameterizedTest() {\nLocalDate startDate =\
+  \ LocalDate.now();\nIterator daysIter = Stream.iterate(startDate, date -> date.plusDays(1)).limit(10).iterator();\n\
+  return  stream(daysIter, d -> DateTimeFormatter.ISO_LOCAL_DATE.format(d), d -> assertNotNull(d));\n\
+  }\n```\n\n让我们运行 `DynamicSpec`。我们应该会看到一个绿色条，表示有 12 个测试用例正在执行。我们已经讨论了动态测试没有测试生命周期和扩展支持的事实。但这并不意味着我们不能在动态测试中使用这些特性。负责生成测试的\
+  \ `@TestFactory` 方法支持所有这些特性。我们可以注册一个扩展来向 `@TestFactory` 方法注入值。\n\n```\n@TestFactory\n\
+  @ExtendWith(BooksProvider.class)\nStream generateBooksTest(Book[] books) {\nreturn\
+  \  stream(Arrays.asList(books).iterator(), b  -> String.format(\"Validating : %s\"\
+  ,b.getTitle()), b -> assertFalse(b.isProgress()));\n}\n```\n\n上述测试方法使用 `BooksProvider`\
+  \ 注入了一个 `Book[]`，该提供器已在第 4 章中添加。生成的测试将包含一个书名作为测试名称的一部分。\n\n![A429029_1_En_8_Fig1_HTML.jpg](img/A429029_1_En_8_Fig1_HTML.jpg)\n\
+  \n图 8-1.\n\n动态测试\n\n## JUnit 4 支持\n\nJUnit 5 是基于过去经验教训对框架的重写。它为我们提供了新的、简单的方法来完成工作。它构建了一个新的编程模型和一个与旧版本框架不兼容的扩展框架。尽管新版本与旧版本不兼容，但框架编写者确保新旧版本可以在同一基础设施中共存。他们构建了足够的支持，以便开发者能够拥有轻松的迁移路径。\n\
+  \n让我们开始向我们的 `bookstoread` 项目添加一个基于 JUnit 4 的示例测试。在第 1 章中，我们添加了 `BookShelfSpec`。这些测试用例定义了\
+  \ `BookShelf` 类在各种场景下的行为。现在，添加一个新的测试用例 `bookstoread.junit4.BookShelfSpec`。\n\n```\n\
+  @RunWith(MockitoJUnitRunner.class)\npublic class BookShelfSpec {\nprivate BookShelf\
+  \ shelf;\n@Mock\nprivate Book effectiveJava;\n@Mock\nprivate Book codeComplete;\n\
+  @Rule\npublic TemporaryFolder temporaryFolder = new TemporaryFolder();\n@Before\n\
+  public void init() throws Exception{\nshelf = new BookShelf();\ntemporaryFolder.newFile();\n\
+  }\n@Test\npublic void emptyBookShelfWhenNoBookAdded() {\nList books = shelf.books();\n\
+  assertTrue(books.isEmpty(), () -> \"BookShelf should be empty\");\n}\n@Test\npublic\
+  \ void bookshelfContainsTwoBooksWhenTwoBooksAdded() {\nshelf.add(effectiveJava,\
+  \ codeComplete);\nList books = shelf.books();\nassertEquals(2, books.size(), ()\
+  \ -> \"BookShelf should have two books\");\n}\n}\n```\n\n在上述测试用例中，我们的测试注解来自 `org.juint`\
+  \ 包。要使用这个包，我们必须将 `testCompile junit:junit:4.12` 依赖添加到我们的 `build.gradle` 中。\n\n在上述测试用例中，我们添加了\
+  \ JUnit 4 的特性，如 Runners 和 Rules，尽管其中一些并非必需。这里的目标是确定我们如何与所有这些特性协同工作。\n\n让我们尝试执行 `./gradlew\
+  \ clean build` 以确保构建成功。我们的 `bookstoread` 应用源代码包含一个 `junitPlatformTest` 插件。该插件默认禁用标准的\
+  \ Gradle 测试任务。通过添加以下配置来启用它：\n\n```\njunitPlatform{\nenableStandardTestTask true\n\
+  }\n```\n\n我们还需要为 `bookstoread.junit4` 包配置测试插件。\n\n```\ntest {\ninclude '**/junit4/**'\n\
+  }\n```\n\n构建后，我们将在 `build/reports` 文件夹中获得测试执行报告（见图 8-2）：\n\n![A429029_1_En_8_Fig2_HTML.jpg](img/A429029_1_En_8_Fig2_HTML.jpg)\n\
+  \n图 8-2.\n\nJUnit 4 测试\n\n\n\n### 使用 Vintage 引擎\n\nJUnit 的下一个版本不仅改进了测试 API，还定义了一个平台框架，可供基于\
+  \ JUnit 构建的各种工具/插件使用。该平台框架包含面向测试发现、过滤、报告等功能的工具 API。它还定义了一个可插拔的引擎，负责执行测试。这使我们能够拥有独立的引擎来执行不同类型的测试。JUnit\
+  \ 5 版本定义了 Jupiter 引擎，用于执行基于 JUnit 5 API 的测试。它还定义了一个 Vintage 引擎，用于执行基于旧版本 JUnit 的测试。\n\
+  \nJunitPlatformTest 插件基于前面描述的框架。该插件会发现项目类路径中可用的引擎并执行它们。到目前为止，我们只使用了 Jupiter 引擎。可以通过将其添加到我们的\
+  \ `build.gradle` 中来启用 Vintage 引擎。\n\n```\ntestCompile 'org.junit.vintage:junit-vintage-engine:4.12.1'\n\
+  ```\n\n现在，执行 `./gradlew clean build` 应该在 `build/test-results/junit-platform` 文件夹中提供一个测试执行报告。该文件夹将为每个执行的引擎提供一个\
+  \ XML 报告。\n\nVintage 引擎是一种无缝集成所有现有基于 JUnit 4 代码的方式。需要注意的是，使用 Vintage 引擎将有助于基于不同\
+  \ JUnit 版本的测试用例在同一个项目中共存。但这并不会使旧版本的测试使用 JUnit 5 的新特性/方面。如图 8-3 中的 JUnit 执行报告所示，这两个引擎是相互独立执行的。\n\
+  \n![A429029_1_En_8_Fig3_HTML.jpg](img/A429029_1_En_8_Fig3_HTML.jpg)\n\n图 8-3.\n\n\
+  组合引擎报告\n\n### 迁移到 JUnit 5\n\nVintage 引擎为开发者提供了迁移的灵活性。我们可以从它开始，用新的生态系统构建我们所有的测试用例，然后逐步将我们的测试迁移到新的\
+  \ JUnit 5 API。新的 API 位于 `org.junit.jupiter.api` 包下。大多数测试生命周期注解在旧版本和新版本之间都有一一对应的关系。\n\
+  \n| Junit 4 (org.juint) | Junit 5 (org.junit.jupiter.api) |\n| --- | --- |\n| Test\
+  \ | Test |\n| Before | BeforeEach |\n| BeforeClass | BeforeAll |\n| After | AfterEach\
+  \ |\n| AfterClass | AfterAll |\n| Ignore | Disabled |\n| Category | Tag |\n| RunWith\
+  \ | ExtendWith |\n\n为了迁移我们现有的基于 JUnit 4 的 `bookstoread.junit4.BookShelfSpec` 测试，我们必须执行以下操作：\n\
+  \n*   将所有旧的测试注解替换为对应的新值。\n*   重构 JUnit 4 断言的测试用例。一些 JUnit 4 断言不再被支持。在新版本中，所有断言都是\
+  \ `org.junit.jupiter.api.Assertions` 类的一部分。\n*   重构 JUnit 4 假设的测试用例。一些 JUnit 4 假设不再被支持。在新版本中，所有假设都是\
+  \ `org.junit.jupiter.api.Assumptions` 类的一部分。\n*   `RunWith` 注解接受一个 `MockitoJunit4Runner`\
+  \ 类。但同样的类不能与 `ExtendWith` 一起使用。JUnit 4 的 Runner 模型在新版本中不再被支持。新版本要求使用扩展来代替 Runner。这些扩展需要添加到每个框架的新版本中（例如，Mockito\
+  \ 需要有一个 `MockitoExtension`）。类似地，当我们处理基于 Spring 的应用程序时，我们有一个 `SpringJUnit4ClassRunner`，用于通过\
+  \ Spring 上下文注入依赖。同一个 Runner 不能与 JUnit 5 一起使用；因此 Spring 开发者添加了一个 `SpringExtension`，目前正在\
+  \ Spring 5.0-SNAPSHOT 下开发。\n*   `RunWith` 注解只能应用于一个测试类一次。因此，只能将一个 Runner 应用于一个测试类。但\
+  \ `ExtendWith` 注解没有这个限制。它是一个可重复的注解，允许一个测试类拥有多个扩展。\n*   如果扩展不可用，就像我们这种情况，我们需要在测试用例中执行相同的任务（即创建模拟对象）。\n\
+  *   JUnit 4 引入了规则（Rules），可用于向每个测试用例添加行为。规则有两种注解。\n    *   `@Rule`，为每个测试执行。\n   \
+  \ *   `@ClassRule`，为测试类中的所有测试执行一次。在新版本中，这两者都不再被支持。开发者应该使用扩展来扩展行为，而不是使用规则。但是规则有很多种，用于各种事情，比如添加临时文件、超时、秒表等等。因此，所有这些都需要重构到新模型中，但这意味着我们失去了功能吗？JUnit\
+  \ 5 团队提供了特定的扩展，以确保所有现有的规则无需任何更改即可工作。以下扩展已添加到 JUnit 5：\n    *   `ExternalResourceSupport`\n\
+  \    *   `VerifierSupport`\n    *   `ExpectedExceptionSupport`\n\n我们可以将每个扩展添加到我们的测试用例中，或者我们可以使用\
+  \ `EnableRuleMigrationSupport` 注解，它可以启用所有这些扩展。这些扩展是 `junit-jupiter-migration-support`\
+  \ 组件的一部分。因此我们需要将其添加到我们的 `build.gradle` 中：\n\n```\ntestCompile 'org.junit.jupiter:junit-jupiter-migrationsupport:5.0.1'\n\
+  ```\n\n最后，我们迁移后的测试用例看起来如下：\n\n```\n@EnableRuleMigrationSupport\nclass BookShelfSpec\
+  \ {\nprivate BookShelf shelf;\n@Mock\nprivate Book effectiveJava;\n@Mock\nprivate\
+  \ Book codeComplete;\n@Rule\npublic TemporaryFolder temporaryFolder = new TemporaryFolder();\n\
+  @BeforeEach\nvoid init() throws Exception {\nshelf = new BookShelf();\nMockitoAnnotations.initMocks(this);\n\
+  temporaryFolder.newFile();\n}\n@Test\nvoid emptyBookShelfWhenNoBookAdded() {\nList\
+  \ books = shelf.books();\nassertTrue(books.isEmpty(), () -> \"BookShelf should be\
+  \ empty\");\n}\n}\n```\n\n在 JUnit 5 中，如果我们运行规则而没有相应的扩展，执行引擎会在执行规则方法时抛出各种异常。这些异常主要与规则中编写的逻辑有关，而不是通用的\
+  \ JUnit 5 错误。\n\n上述测试用例不再需要 Vintage 引擎来执行测试。但我们仍然不能移除它的依赖。该测试用例使用了 `TemporaryFolder`\
+  \ 规则，这是 JUnit 4 的一部分。\n\n运行 `./gradlew clean build` 以确保所有测试都通过，如图 8-4 中的报告所示。\n\n\
+  ![A429029_1_En_8_Fig4_HTML.jpg](img/A429029_1_En_8_Fig4_HTML.jpg)\n\n图 8-4.\n\n\
+  从 Vintage 到 Jupiter\n\n\n\n## 总结\n\n在本章中，我们学习了如何将所有现有测试迁移到新版本。JUnit 5 定义了一个平台框架，允许我们使用可插拔的引擎来执行测试。基于\
+  \ JUnit 5 API 的测试由 Jupiter 引擎执行，而基于旧版本 JUnit 的测试则由 Vintage 引擎执行。这两个引擎使我们能够在同一个项目中同时使用新旧\
+  \ JUnit API 进行测试。但这并不能让旧版本的测试使用 JUnit 5 提供的新特性。如果我们想使用这些新特性，就需要将测试迁移到新版本。最后，我们列出了在迁移到\
+  \ JUnit 5 时需要考虑的重要事项。\n\n索引 A 应用程序编程接口 (API) 断言 错误与失败 分组 JUnit 4 与 JUnit 5 方法 测试用例\
+  \ AssertJ B 黑盒测试 BooksToRead 应用 添加书籍 add 方法 排列 条件 字典序 重构 排序书籍 AssertJ @BeforeEach\
+  \ @Disabled @DisplayName 空书架 失败测试 分组 使测试通过 重构 使测试通过 重构 构建工具，JUnit 5 Ant 目标 构建步骤\
+  \ 控制台启动器 创建 build.xml javac 任务 代码覆盖率 Ant 扩展 Gradle 扩展 Maven 扩展 Gradle API BookShelfSpec\
+  \ 类 依赖 过滤器 插件 合理默认值 包装器 Maven clean test junit-platform-surefire-provider 插件 POM\
+  \ 项目标识 C 持续集成 (CI) 工具 D 依赖注入 (DI) 动态测试 E, F, G, H 异常处理 参见测试异常 ExpectedException\
+  \ 规则 扩展模型 条件测试执行 异常处理 JUnit 4 规则 API Runner API JUnit 5 getExecutionException()\
+  \ 方法 getParent() 方法 getStore() 方法 参数化测试 测试模板 参数解析 注册扩展 测试实例后处理 测试生命周期回调 beforeTestExecution\
+  \ @ExtendWith 注解 方法 阶段 I 集成开发环境 (IDE) IntelliJ J, K Java 代码覆盖率 (JaCoCo) 工具 JUnit\
+  \ 架构 模块 子项目 工具 版本 JUnit4 支持 迁移到 JUnit 5 测试 使用 vintage 引擎 vintage 到 Jupiter JUnit\
+  \ 5 构建工具 参见构建工具，JUnit 5 其他工具 原则 测试类 特性 构造函数 @DisplayName 参数和测试方法 L Lambda 表达式 M,\
+  \ N MockitoRule O Optional<T> P, Q 项目对象模型 (POM) 项目设置 Gradle 属性 安装 Gradle Java 8\
+  \ 项目位置 属性 R 回归错误 S 搜索书架 BookFilter BookPublishedFilterSpec 过滤器 findBooksByTitle\
+  \ 模拟 nullTest() 标签 @Test 测试执行 Streams API 系统设计 T 测试类 特性 构造函数 @DisplayName 参数和测试方法\
+  \ 测试驱动开发 (TDD) 优势 反馈 过程 回归错误 系统设计 测试级别 测试执行 测试异常 ExpectedException 规则 扩展 API 重复测试\
+  \ @Test 方法 超时 try-catch-fail 测试生命周期 @AfterAll @AfterEach @BeforeAll @BeforeEach\
+  \ 阶段 @Test 方法 TestReporter 测试规范 类 创建 执行 JUnit 5 超时 跟踪书架进度 API 缓存测试数据 ExtensionContext\
+  \ 存储 isRead 方法 规范 添加 测试执行 Try-catch-fail U, V, W, X, Y, Z 单元测试 优势 特性\n"

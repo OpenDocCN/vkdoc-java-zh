@@ -1,0 +1,2935 @@
+- '
+
+  '
+- '# 目录
+
+
+  JavaFX 基础 致谢 关于作者 关于审校者 www.PacktPub.com 支持文件、电子书、折扣优惠及更多内容 为何订阅？ Packt 账户持有者的免费访问权限
+  前言 本书涵盖内容 本书所需环境 本书目标读者 排版约定 读者反馈 客户支持 下载示例代码 下载本书彩色图片 勘误 盗版 问题咨询 1. JavaFX 8 入门
+  JavaFX 目标 入门指南 JavaFX 发展史 JavaFX 8 何时可用？ JavaFX 特性 JavaFX 8 的新特性 安装所需软件 安装 Java
+  SE 8 JDK 设置环境变量 安装 NetBeans IDE 创建 "Hello World" 风格的 JavaFX 应用 使用 Netbeans IDE 工作原理
+  总结 2. JavaFX 8 基础与创建自定义 UI JavaFX 8 架构快速回顾 场景图 JavaFX 特性的 Java 公共 API 图形系统 Glass
+  窗口工具包 JavaFX 线程 媒体与图像 Web 组件 布局组件 JavaFX 控件 Java SE 8 特性 Lambda 表达式 语法 函数式接口 主题化
+  CSS 应用 CSS 主题 Scene Builder 下载与启动 FXML 将 FXML 加载到 JavaFX 应用 开发自定义 UI 登录对话框自定义 UI
+  登录对话框自定义 UI 的结构 编写登录对话框自定义 UI 的代码 总结 3. 开发 JavaFX 桌面与 Web 应用 开发笔记应用 构建 UI 原型 让应用活起来——添加交互
+  使用属性实现强大的应用变更同步 过滤 TableView 数据列表 作为桌面应用的笔记应用 为桌面分发部署应用 Web 上的 JavaFX WebEngine
+  WebView WebView 与引擎实战 作为 Web 应用的笔记应用 为 Web 运行应用 Java Web Start 为 Web 分发部署应用 总结 4.
+  开发适用于 Android 的 JavaFX 应用 为何将 JavaFX 移植到移动环境？ 工作原理 谁在维护它？ 入门指南 准备并安装必备软件 Java SE
+  8 JDK8 u45 Gradle Android SDK 为 Android 准备项目 项目结构 使用 Gradle 应用 使用 CSS 开发并设计应用 UI
+  样式 添加一些逻辑 让你的项目为移动设备做好准备 与底层 Android API 的互操作性 构建应用 构建最终的 .apk Android 包 部署应用 在基于
+  Android 的设备上部署 在 Google Play 商店部署 签名 APK 测试技巧 总结 5. 开发适用于 iOS 的 JavaFX 应用 使用 RoboVM
+  在 iOS 上运行 JavaFX 特性 限制 工作原理 入门指南 前提条件 为 iOS 准备项目 项目结构 应用 与底层 iOS API 的互操作性 Gradle
+  构建文件 构建应用 生成 iOS .ipa 包文件 部署应用 部署到模拟器 部署到 Apple 设备 总结 6. 在树莓派上运行 JavaFX 应用 什么是树莓派？
+  你能用它做什么？ 为什么树莓派是 JavaFX 的完美选择？ 你应该购买哪个型号？ 购买树莓派 相关网站与文档 为 JavaFX 8 准备树莓派 创建可启动的
+  SD 卡 使用 NOOBS 配置树莓派 远程连接树莓派 在树莓派上安装 VNC 设置 VNC 开机自启 设置静态 IP 地址 树莓派自动登录 使用客户端连接 VNC
+  JavaFX 8 开发前提条件 在树莓派上安装 Java SE 8 安装 Java SE 8 添加 JavaFX 为树莓派配置 NetBeans 开关应用 什么是
+  Pi4J 库？ 电路搭建 应用 将 NetBeans 与树莓派结合使用 总结 7. 使用 JavaFX 监控与控制 Arduino 什么是 Arduino 板？
+  你能用它做什么？ 相关网站与文档 设置你的 Arduino 购买 Arduino 你需要的其他组件 Arduino IDE 下载 IDE 安装驱动程序 Windows
+  设置 Mac OS X 和 Linux 设置 探索 IDE 与草图 血氧计项目 调试电路 草图 工作原理 测试、验证并将草图上传到 Arduino 从串口读取数据
+  JavaFX 血氧计监控应用 Java 中的串口通信 应用逻辑与图表 API 运行应用 总结 8. 使用 JavaFX 开发交互式 Leap Motion 应用
+  Leap Motion 控制器 工作原理 坐标系 获取设备 包装内容 Leap SDK 入门 安装控制器驱动与软件 验证是否正常工作 支持的语言 Leap JavaFX
+  应用 JavaFX 3D API 概览 更多学习资源 基本应用结构 JavaFX 8 3D 应用 工作原理 运行应用 更多示例 总结 A. 成为 JavaFX
+  专家 资源与参考 官方文档 JavaFX 示例 Java SE 8 Java SE 8 API 文档与教程 Lambda 项目 Nashorn JavaFX 属性与绑定
+  JavaFX 社区 Java SE / JavaFX 书籍与杂志 索引
+
+
+
+
+  '
+- '# JavaFX 精髓
+
+
+  * * *
+
+
+  '
+- '# JavaFX 精髓
+
+
+  版权所有 © 2015 Packt Publishing
+
+
+  保留所有权利。未经出版商事先书面许可，不得以任何形式或任何方式复制、存储于检索系统或传播本书的任何部分，但嵌入在评论或评论文章中的简短引用除外。
+
+
+  在编写本书时，已尽一切努力确保所提供信息的准确性。然而，本书所包含的信息按“原样”销售，不提供任何明示或暗示的担保。作者、Packt Publishing 及其经销商和分销商均不对因本书直接或间接造成的任何损害承担责任。
+
+
+  Packt Publishing 已尽力通过适当使用大写字母来提供本书中提及的所有公司和产品的商标信息。但 Packt Publishing 无法保证此信息的准确性。
+
+
+  首次出版：2015 年 6 月
+
+
+  生产编号：1250615
+
+
+  由 Packt Publishing Ltd. 出版
+
+
+  Livery Place
+
+
+  35 Livery Street
+
+
+  Birmingham B3 2PB, UK.
+
+
+  ISBN 978-1-78439-802-6
+
+
+  [www.packtpub.com](http://www.packtpub.com)
+
+
+  '
+- '# 致谢
+
+
+  **作者**
+
+
+  Mohamed Taman
+
+
+  **审校者**
+
+
+  Sergey Grinev
+
+
+  José Pereda
+
+
+  **策划编辑**
+
+
+  Amarabha Banerjee
+
+
+  **采编编辑**
+
+
+  Aaron Lazar
+
+
+  **内容开发编辑**
+
+
+  Sumeet Sawant
+
+
+  **技术编辑**
+
+
+  Naveenkumar Jain
+
+
+  **文字编辑**
+
+
+  Roshni Banerjee
+
+
+  Aditya Nair
+
+
+  Adithi Shetty
+
+
+  **项目协调员**
+
+
+  Shweta Birwatkar
+
+
+  **校对员**
+
+
+  Safis Editing
+
+
+  **索引编制员**
+
+
+  Hemangini Bari
+
+
+  **图形设计**
+
+
+  Sheetal Aute
+
+
+  **制作协调员**
+
+
+  Nitesh Thakur
+
+
+  **封面设计**
+
+
+  Nitesh Thakur
+
+
+  '
+- '# 关于作者
+
+
+  **Mohamed Taman**，e-finance 公司的首席架构师和软件开发经理，居住在埃及开罗。他毕业于开罗大学工程学院电气工程专业。他是一位经验丰富的
+  Java 开发者，曾从事 Web、移动和物联网领域的开发，涉及金融、银行、旅游、政府和医疗保健等行业。在此之前，他曾在辉瑞、Intercom Enterprise（IBM
+  金牌合作伙伴）、Silicon Expert 和 Oracle 工作，使用过多种技术，包括面向用户的 GUI 前端、后端、中间件以及大型系统的集成。
+
+
+  他热衷于在许多会议上演讲，推广 Java 标准并分享他的全球经验，他是 Java 社区的活跃成员，自 2015 年起成为 Java 冠军。
+
+
+  此外，Mohamed 还是 Adopts Java EE 8、OpenJDK 和 JavaFX 项目的成员。他曾是 Java 社区流程组织的执行成员，是首位加入其董事会的非洲人。
+
+
+  他还是 JSR 354、363 和 373 专家组的成员。他也是 EGJUG 和 MoroccoJUG 的领导者，以及 Oracle 埃及架构师俱乐部的董事会成员。他获得了
+  2014 年 Duke 选择奖和第 11 届年度 JCP adopt 2013 奖项。
+
+
+  您可以在 [`about.me/mohamedtaman`](http://about.me/mohamedtaman) 了解更多关于作者的信息。
+
+
+  '
+- '# 关于审校者
+
+
+  **Sergey Grinev** 是一位经验丰富的软件开发和 QA 工程师，专注于为 Java 平台构建可靠的质量流程。他在 Oracle 工作期间开始涉足该领域，负责
+  JavaFX 的质量。过去几年，他一直在 Azul Systems 工作，负责其定制 JVM 的质量。
+
+
+  此外，Sergey 喜欢教学，在各种 Java 会议上演讲，授课，并在 [`stackoverflow.com`](http://stackoverflow.com)
+  上回答与 Java 相关的问题。
+
+
+  他毕业于圣彼得堡国立大学，目前居住在俄罗斯圣彼得堡。
+
+
+  **José Pereda** 拥有结构工程博士学位，并在西班牙巴利亚多利德大学工业工程学院担任助理教授。他的热情在于应用编程解决实际问题。自 1999 年开始使用
+  Java，他现在是 JavaFX 的倡导者，开发商业应用和开源项目（JFXtras、FXyz、[`github.com/jperedadnr`](https://github.com/jperedadnr)），合著了一本
+  JavaFX 书籍（*JavaFX 8 Introduction by Example*），撰写博客（[`jperedadnr.blogspot.com.es/`](http://jperedadnr.blogspot.com.es/)），发推文（`@JPeredaDnr`），并在会议（JavaOne、JAX、Jfokus、JavaLand
+  等）上发表演讲。José 与妻子和孩子居住在西班牙巴利亚多利德。
+
+
+  '
+- '# www.PacktPub.com
+
+
+  '
+- '# 支持文件、电子书、折扣优惠及更多
+
+
+  如需获取与您书籍相关的支持文件和下载，请访问 [www.PacktPub.com](http://www.PacktPub.com)。
+
+
+  您是否知道 Packt 提供已出版每本书的电子书版本，包括 PDF 和 ePub 文件？您可以在 [www.PacktPub.com](http://www.PacktPub.com)
+  升级到电子书版本，作为印刷版书籍的客户，您有权获得电子书副本的折扣。请通过 `<``service@packtpub.com``>` 与我们联系以获取更多详情。
+
+
+  在 [www.PacktPub.com](http://www.PacktPub.com)，您还可以阅读一系列免费技术文章，注册各种免费新闻通讯，并享受 Packt
+  书籍和电子书的独家折扣和优惠。
+
+
+  ![支持文件、电子书、折扣优惠及更多](img/PacktLibLogo.jpg)
+
+
+  [`www2.packtpub.com/books/subscription/packtlib`](https://www2.packtpub.com/books/subscription/packtlib)
+
+
+  您是否需要针对 IT 问题的即时解决方案？PacktLib 是 Packt 的在线数字图书库。在这里，您可以搜索、访问和阅读 Packt 的整个图书库。
+
+
+  ## 为何订阅？
+
+
+  *   可全文搜索 Packt 出版的每一本书
+
+  *   可复制粘贴、打印和书签内容
+
+  *   按需访问，可通过网页浏览器使用
+
+
+  ## Packt 账户持有者免费访问
+
+
+  如果您在 [www.PacktPub.com](http://www.PacktPub.com) 拥有 Packt 账户，您可以使用它立即访问 PacktLib，并免费阅读九本完整书籍。只需使用您的登录凭据即可立即访问。
+
+
+  '
+- '# 前言
+
+
+  本书，正如其标题（*JavaFX 8 精髓*）所暗示的，是一本实用的书籍，为您提供一套强大的基本技能，引导您充满信心地快速构建高性能的 JavaFX 8 客户端应用程序。这些应用程序通过硬件加速图形利用现代
+  GPU，同时为您的客户提供引人入胜、复杂且精美的富客户端 GUI，这将给他们留下深刻印象。
+
+
+  学习 JavaFX 8 精髓是深入创建应用程序的第一步，这些应用程序最重要的是可以在任何平台上运行，从*桌面、Web、移动设备、平板电脑*到*嵌入式*设备，如*Arduino*、*Raspberry
+  Pi* 和多核开发。遵循 Java 的*一次编写，随处运行*范式，JavaFX 也保留了这一点。因为 JavaFX 8 完全是用 Java 语言从头编写的，您会感到得心应手。
+
+
+  大多数章节都是快节奏的指南，将帮助您在 Java GUI 编程中抢占先机，利用 JavaFX 8 并在任何平台上部署和运行。
+
+
+  在阅读本书示例时，您会发现代码是使用 Java 8（是的，Java SE 8）上的 JavaFX 8 编写的，这样新的 API 和语言增强将帮助您成为更高效的开发者。话虽如此，探索所有新的
+  Java 8 功能将会非常方便（我鼓励您这样做）。
+
+
+  最后但同样重要的是，您将能够使用 JavaFX 开发令人惊叹的非接触式交互式运动应用程序，这些应用程序可与 Leap motion 设备进行交互。
+
+
+
+
+  '
+- '# 本书内容概览
+
+
+  第 1 章 *JavaFX 8 入门*，是对 JavaFX 8 的介绍。本章将 JavaFX 8 作为一种技术进行探讨，阐述为何值得关注它，并介绍其历史、核心特性以及应用场景。
+
+
+  现在是时候准备好合适的工具，并按照必要步骤安装 JavaFX 8 及其配套开发工具了。在本章中，您将了解一些能提高读者生产力的附加工具。作为验证我们方向正确的最后一步，我们将以一个简单的“Hello
+  JavaFX”应用程序来结束本章。
+
+
+  第 2 章 *JavaFX 8 要点与创建自定义 UI*，讨论了没有什么比收到复杂建议作为问题解决方案更令人沮丧的了。正因如此，我一直坚持专注于核心要点。为了在
+  JavaFX 场景中渲染图形，您需要一个基础应用程序、场景、画布、形状、文本、控件和颜色。
+
+
+  此外，您还将学习作为未来任何应用程序支柱的 JavaFX 8 基本应用结构。最后，我们还将探索一些 Java SE 8 特性（例如 Lambda、Streams、JavaFX
+  属性等），以帮助提高代码的可读性、质量和生产力。
+
+
+  在获得创建结构化 JavaFX 8 应用程序的实践经验后，如果您能在不改变功能的情况下更改应用程序的 UI，那岂不是很好？在本章中，您将了解主题化，以及如何通过应用各种主题（外观和感觉）来自定义应用程序，并学习
+  JavaFX CSS 样式的基础知识。
+
+
+  您将使用 Scene Builder 来图形化地创建和定义 UI 屏幕，并将其保存为 JavaFX FXML 格式的文件。最后，您将学习如何创建自定义控件。
+
+
+  第 3 章 *开发 JavaFX 桌面与 Web 应用程序*，涵盖了如何开发一款引人入胜的桌面和 Web 应用程序，该应用程序利用多核硬件加速 GPU，以出色的外观提供高性能的基于
+  UI 的应用程序。
+
+
+  由于 JavaFX 完全是用 Java 从头编写的，因此我们将使用一些 Java SE 8 内置的核心库来驱动我们的应用程序。此外，您还将学习如何将应用程序打包为独立的应用程序，以便启动和分发。
+
+
+  另外，我们还将介绍任何由 JavaFX 8 驱动的 Web 应用程序中必备的核心 Web API，例如`javafx.scene.web.WebEngine`和`javafx.scene.web.WebView`。
+
+
+  我们还将讨论 JavaFX 与 HTML5 之间的关系，这一点很重要，因为它们相辅相成。JavaFX 丰富的客户端 API，结合 HTML5 丰富的 Web 内容，创造了一种兼具原生桌面软件特性的
+  RIA Web 应用用户体验。
+
+
+  第 4 章 *开发适用于 Android 的 JavaFX 应用程序*，随着非 PC 客户端的兴起，手机和平板电脑的市场份额正在增长。JavaFX 8 可以为
+  Web 和桌面提供丰富的客户端应用程序。如果您编写一个 JavaFX 应用程序，请确保您希望它能在尽可能多的设备上运行。本章将为您提供关于 SDK 的必要实践经验和知识，这些
+  SDK 允许用户为 Android 手机创建原生应用程序。
+
+
+  第 5 章 *开发适用于 iOS 的 JavaFX 应用程序*，是前一章的延伸。如果您为 Android 编写了一个 JavaFX 应用程序，请确保您希望它能在尽可能多的
+  iOS 设备上运行。本章将为您提供关于 SDK 的必要实践经验和知识，这些 SDK 允许他们为 Apple iOS 创建原生应用程序。
+
+
+  第 6 章 *在树莓派上运行 JavaFX 应用程序*，将为您提供开发能在信用卡大小的计算机——树莓派板上运行的 JavaFX 8 应用程序所需的所有必要技能和知识。随着物联网（IoT）近来成为热门话题，Java
+  可以说是为物联网而生的。
+
+
+  第 7 章 *使用 JavaFX 监控与控制 Arduino*，涵盖了另一种万物互联（IoT）。Arduino 是一个开源电子原型平台，提供低成本的原型平台，以支持
+  DIY 理念和创客运动。
+
+
+  本章将为您提供所有必要的技能和知识，以便快速将 JavaFX 与 Arduino 板结合使用，开发用于监控来自现实世界的数据或控制真实设备的桌面应用程序。
+
+
+  第 8 章 *使用 JavaFX 开发交互式 Leap Motion 应用*，将使您了解手势识别。您将发现一个很酷的小工具——Leap Motion 设备，它允许采用非接触式方法来开发增强型
+  JavaFX 应用程序。
+
+
+  机器用户输入界面正日益摆脱以鼠标为中心的模式，转而支持多点触控甚至非接触式输入。手势是当今人类与机器自然交流的方式之一。
+
+
+  附录 *成为 JavaFX 专家*，将为您提供许多有用的链接和参考资料，帮助您进一步了解关于 JavaFX 的一切。
+
+
+  在本章末尾，请务必查看当今在生产环境中使用 JavaFX 的众多框架、库和项目。
+
+
+  '
+- '# 本书所需环境
+
+
+  本书中的示例使用了编写时最新版本的 Java SE 8，即 Java SE 8 update 45 JDK 版本。从 Java SE 8 开始，它预装了我们在整本书中使用的
+  JavaFX 8。此外，NetBeans IDE 8.0.2 版本被用作集成开发环境，以及 JavaFX 设计工具 Gluon Scene Builder 8
+  版本，作为通用软件和工具。
+
+
+  由于每章性质独特，并且需要特定的软件和硬件才能使 JavaFX 8 示例正常运行，本书提供了所有必需的软件、工具和硬件，并详细说明了如何安装和配置它们，以便顺利运行
+  JavaFX 8 示例。
+
+
+  '
+- '# 本书读者对象
+
+
+  如果您是一名 Java 开发者，或是一位经验丰富的 Java Swing、Flash/Flex、SWT 或 Web 开发者，希望将您的客户端应用程序提升到新的水平，那么本书适合您。本书将引导您走上正确的道路，开始创建精美、可定制且引人入胜的用户界面。
+
+
+  此外，您还将学习如何快速创建高性能的富客户端应用程序，这些应用程序可以在任何平台上运行，无论是桌面、Web、移动设备还是嵌入式系统，例如树莓派、Arduino，以及基于非接触式
+  Leap Motion 的应用。
+
+
+  本书是一本快节奏的指南，将帮助您在利用 JavaFX 8 进行 Java GUI 编程方面抢占先机，该技术可部署并在任何平台上运行。
+
+
+
+
+  '
+- "# 约定\n\n本书中，你将看到多种文本样式，用以区分不同类型的信息。以下是这些样式的示例及其含义说明。\n\n正文中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟\
+  \ URL、用户输入以及 Twitter 账号显示如下：\"我们可以通过使用`include`指令来包含其他上下文。\"\n\n代码块示例如下：\n\n```\n\
+  btn.setOnAction(new EventHandler<ActionEvent>() {\n  @Override\n  public void handle(ActionEvent\
+  \ event) {\n    message.setText(\"Hello World! JavaFX style :)\");\n  }\n});\n```\n\
+  \n任何命令行输入或输出均按如下方式书写：\n\n```\n$ gradle build\n```\n\n**新术语**和**重要词汇**以粗体显示。你在屏幕上（例如菜单或对话框）看到的词语在文中显示如下：点击**安装**开始安装。\n\
+  \n### 注意\n\n警告或重要提示会出现在这样的方框中。\n\n### 提示\n\n技巧和窍门会以这种方式呈现。\n\n"
+- '# 读者反馈
+
+
+  我们始终欢迎读者的反馈。请告诉我们您对本书的看法——您喜欢哪些内容，或可能不喜欢哪些内容。读者反馈对我们开发出真正让您受益的书籍至关重要。
+
+
+  如需发送一般性反馈，只需发送电子邮件至`<``feedback@packtpub.com``>`，并在邮件主题中注明书名。
+
+
+  如果您在某个领域有专长，并且有兴趣撰写或参与编写书籍，请参阅我们的作者指南：[www.packtpub.com/authors](http://www.packtpub.com/authors)。
+
+
+  '
+- '# 客户支持
+
+
+  既然您已成为 Packt 图书的骄傲拥有者，我们提供多项服务帮助您充分利用此次购买。
+
+
+  ## 下载示例代码
+
+
+  您可以从您的账户中下载所有已购 Packt 图书的示例代码文件，网址为：[`www.packtpub.com`](http://www.packtpub.com)。如果您在其他地方购买了本书，可以访问[`www.packtpub.com/support`](http://www.packtpub.com/support)并注册，以便将文件直接通过电子邮件发送给您。
+
+
+  ## 下载本书彩色图片
+
+
+  我们还为您提供一份 PDF 文件，其中包含本书使用的截图/图表的彩色图片。彩色图片将帮助您更好地理解输出中的变化。您可以从以下网址下载此文件：[`www.packtpub.com/sites/default/files/downloads/8026OS_ColorImages.pdf`](http://www.packtpub.com/sites/default/files/downloads/8026OS_ColorImages.pdf)。
+
+
+  ## 勘误
+
+
+  尽管我们已竭尽全力确保内容的准确性，但错误仍可能发生。如果您在本书中发现错误——可能是文本或代码中的错误——我们将不胜感激您向我们报告。这样做可以帮助其他读者避免困扰，并帮助我们改进本书的后续版本。如果您发现任何勘误，请访问[`www.packtpub.com/submit-errata`](http://www.packtpub.com/submit-errata)，选择您的书籍，点击**勘误提交表**链接，并输入勘误详情。一旦您的勘误得到验证，您的提交将被接受，勘误将上传至我们的网站，或添加到该标题下现有勘误列表的勘误部分。任何现有勘误可通过从[`www.packtpub.com/support`](http://www.packtpub.com/support)选择您的标题进行查看。
+
+
+  ## 盗版
+
+
+  互联网上的版权材料盗版是所有媒体持续存在的问题。在 Packt，我们非常重视保护我们的版权和许可。如果您在互联网上发现任何形式的非法复制品，请立即向我们提供位置地址或网站名称，以便我们采取补救措施。
+
+
+  请通过`<``copyright@packtpub.com``>`联系我们，并附上疑似盗版材料的链接。
+
+
+  我们感谢您帮助保护我们的作者以及我们为您提供有价值内容的能力。
+
+
+  ## 问题
+
+
+  如果您在本书的任何方面遇到问题，可以通过`<``questions@packtpub.com``>`联系我们，我们将尽力解决。
+
+
+  '
+- '# 第 1 章 JavaFX 8 入门
+
+
+  JavaFX 是 Java 的下一代**图形用户界面（GUI）**工具包。它是一个能够轻松快速构建高性能 Java 客户端应用程序的平台。
+
+
+  JavaFX 的底层引擎通过硬件加速图形利用现代 GPU，同时提供设计良好的编程接口，使开发者能够结合图形、动画和 UI 控件。
+
+
+  这些功能使您能够为客户提供引人入胜、复杂且完全可定制的客户端 GUI，给他们留下深刻印象。
+
+
+  虽然 Java 最初的目标是*嵌入式*和*客户端*领域，但自 2006 年以来，许多原因促使 Java 语言成为企业级领域的顶级开发平台。
+
+
+  但最近，随着 JavaFX 平台作为标准客户端 GUI 的引入，这些最初的目标再次开始流行。
+
+
+  尽管 JavaFX 远不止是一个 GUI 工具包，但它允许 Java 开发者创建具有引人入胜用户界面的客户端应用程序，并轻松连接到后端系统。
+
+
+  此外，JavaFX 灵活的 FXML 支持使您能够轻松构建**MVC**（**模型-视图-控制器**）架构模式的应用程序，并使用 Scene Builder 工具实现所见即所得的方法。
+
+
+  JavaFX 的绑定功能简化了实体间的通信，并进一步支持 MVC。除此之外，JavaFX 还提供了使用 CSS 进行快速、可定制的 UI 建模。
+
+
+  通过添加一个具有文档模型的完整`WebView`组件，映射到 Java 代码变得容易，并为 3D 和媒体功能提供了强大支持。
+
+
+  在本章中，我们将涵盖以下主题：
+
+
+  *   什么是 JavaFX 及其目标平台？
+
+  *   JavaFX 历史回顾
+
+  *   JavaFX 的目标、特性以及 JavaFX 8 的新功能
+
+  *   如何安装 Java SE 8、JavaFX 8、NetBeans 以及配置环境变量
+
+  *   开发一个"Hello World" JavaFX 8 应用程序，并理解 JavaFX 8 基本应用程序架构和构建块
+
+
+
+
+  '
+- '# JavaFX 目标
+
+
+  JavaFX 的诞生主要目标是在多种设备上使用，例如嵌入式设备、智能手机、电视、平板电脑和台式机。JavaFX 也遵循 Java 的*一次编写，随处运行*范式。
+
+
+  JavaFX 8 完全用 Java 语言从头编写，让你感觉宾至如归。因此，用 JavaFX 编写的应用程序可以部署在台式机、笔记本电脑、Web、嵌入式系统、手机和平板电脑上。
+
+
+  Oracle 已不再支持嵌入式系统；这项工作留给了 ARM 等公司。从 JavaFX 2.x 到 8.x，移动设备从未得到官方支持；现在之所以存在支持，完全是因为
+  **OpenJFX**。开源社区将 JavaFX 带到移动环境，使大家从中受益。
+
+
+  有关 OpenJFX 的更多信息，请访问 [`wiki.openjdk.java.net/display/OpenJFX/Main`](https://wiki.openjdk.java.net/display/OpenJFX/Main)。
+
+
+  JavaFX 是一套图形和媒体包，使开发人员能够设计、创建、测试、调试和部署富客户端应用程序，这些应用程序能在不同平台上一致运行，且只需一个捆绑包，无需使用许多单独的库、框架和
+  API 来实现相同目标。这些单独的库包括媒体、UI 控件、`WebView`、3D 和 2D API。
+
+
+  因此，如果你是一名 Java 前端开发人员，或是一位经验丰富的 Java Swing、Flash/Flex、SWT 或 Web 开发人员，希望将你的客户端应用程序提升到新水平，并想为客户开发一个美观且复杂的用户界面，那么你正在学习
+  JavaFX 技能的正确道路上——这本书就是为你准备的。
+
+
+  '
+- '# 入门
+
+
+  本章是对 JavaFX 8 的介绍；我们已经讨论了 JavaFX 8 作为一种技术以及你为何应该关注它。
+
+
+  接下来，我们将回顾其历史，探索其核心功能以及它的应用场景。
+
+
+  在开始使用本书学习 JavaFX 8 之前，我们将通过安装各种必需的软件包来准备你的开发环境，以便能够编译和运行书中的许多示例。
+
+
+  在本章中，你将学习如何安装所需软件，例如 **Java 开发工具包 JDK** 和 NetBeans **集成开发环境**（**IDE**）。
+
+
+  安装完所需软件后，你将开始创建一个传统的 *Hello JavaFX 8* 示例。当你对开发环境感到熟悉后，作为最终验证我们是否走在正确轨道上的步骤，我们将逐步分析
+  Hello JavaFX 8 的源代码，以了解基本的 JavaFX 8 应用程序架构。
+
+
+  ### 注意
+
+
+  如果你已经熟悉 JDK 和 NetBeans IDE 的安装，可以跳到第 2 章，*JavaFX 8 要点与创建自定义 UI*，该章涵盖了 JavaFX 8 基础知识以及如何创建自定义
+  UI 组件。
+
+
+  那你还在等什么？让我们开始吧！
+
+
+  '
+- '# JavaFX 历史
+
+
+  你可能认为 JavaFX 是一项相当新的技术，但实际上并非如此。JavaFX 已经存在很长时间了；非正式地说，自 2005 年起。自从 Sun Microsystems
+  收购了 *SeeBeyond* 公司以来，就存在一种名为 **F3**（**形**式**追**随**功**能）的图形丰富脚本语言，由工程师 Chris Oliver
+  创建。
+
+
+  在 2007 年的 JavaOne 大会上，Sun Microsystems 正式将 JavaFX 作为该语言的名称，取代了 F3。在 2007 年至 2010
+  年期间，Oracle 收购了许多大公司，如 BEA Systems、JD Edwards、Siebel Systems 等。我当时在 Oracle 工作，负责将不同的客户支持渠道整合到当时被称为
+  *MetaLink* 的 Oracle 支持网站。
+
+
+  2009 年 4 月 20 日，Oracle 公司宣布收购 Sun Microsystems，使 Oracle 成为 JavaFX 的新管理者。
+
+
+  在 2010 年的 JavaOne 大会上，Oracle 宣布了 JavaFX 路线图，其中包括逐步淘汰 JavaFX 1.3 脚本语言，并基于 Java 平台将
+  JavaFX 平台重建为基于 Java 的 API。正如承诺的那样，JavaFX 2.0 SDK 于 2011 年 10 月在 JavaOne 大会上发布。
+
+
+  除了发布 JavaFX 2.0，Oracle 还通过宣布承诺采取措施使 JavaFX 开源，将平台提升到了新水平，从而允许 Java 强大且多才多艺的社区帮助推动平台向前发展。使
+  JavaFX 开源增加了其采用率，加快了错误修复的周转时间，并产生了新的增强功能。
+
+
+  在 JavaFX 2.1 和 2.2 版本之间，新功能的数量迅速增长。JavaFX 2.1 是 Mac OS 上 Java SDK 的官方版本。JavaFX 2.2
+  是 Linux 操作系统上 Java SDK 的官方版本。
+
+
+  并没有 JavaFX 3.x 这样的版本，但 Java 开发领域的重大变化发生在 Java SE 8 发布之时，该版本于 2014 年 3 月 18 日宣布。Java
+  SE 8 有许多新的 API 和语言增强功能，包括 **Lambdas**、Stream API、Nashorn JavaScript 引擎，以及 *JavaFX
+  API*，这些都被整合到标准 JDK 捆绑包中，JavaFX 版本变为 8，作为 JavaFX 2.0 的直接继承者。
+
+
+  要查看 Java SE 8 中的所有新功能，请访问 [`www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html`](http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html)。
+
+
+  ## JavaFX 8 何时可用？
+
+
+  答案是*现在*。如前所述，Java SE 8 于 2014 年 3 月 18 日发布。对于使用 Java 构建客户端应用程序的开发人员来说，JavaFX 富互联网应用框架现在支持
+  Java 8。
+
+
+  大多数 Java 企业版供应商也支持 Java 8。你是否立即迁移到 Java SE 8 取决于你正在从事的项目类型。
+
+
+  ### 注意
+
+
+  事实上，根据 Oracle JDK 支持路线图，2015 年 4 月之后，Oracle 将不再在其公共下载站点上发布 Java SE 7 的进一步更新。
+
+
+  JavaFX API 作为 **Java SE 运行时环境**（**JRE**）和 JDK 的完全集成功能提供。JDK 适用于所有主要桌面平台（*Windows*、*Mac
+  OS X*、*Solaris* 和 *Linux*），因此 JavaFX 也将在所有主要桌面平台上运行。
+
+
+  关于 JavaFX 8，它支持以下 API：
+
+
+  *   3D 图形
+
+  *   富文本支持
+
+  *   打印 API
+
+
+
+
+  '
+- '# JavaFX 特性
+
+
+  根据 JavaFX 官方文档，JavaFX 8 及更高版本包含以下特性：
+
+
+  *   **Java API**：JavaFX 是一个 Java 库，包含用 Java 代码编写的类和接口。
+
+  *   **FXML 和 Scene Builder**：这是一种基于 XML 的声明式标记语言，用于构建 JavaFX 应用程序用户界面。你可以使用 FXML
+  编码，或使用 JavaFX Scene Builder 以交互方式设计 GUI。Scene Builder 生成的 FXML 标记可以移植到 NetBeans
+  等 IDE 中，你可以在其中添加业务逻辑。此外，生成的 FXML 文件可以直接在 JavaFX 应用程序内部使用。
+
+  *   **WebView**：这是一个 Web 组件，它使用 `WebKit`（一种 HTML 渲染引擎技术）使得在 JavaFX 应用程序中嵌入网页成为可能。在
+  `WebView` 中运行的 JavaScript 可以调用 Java API，反之亦然。
+
+  *   **Swing/SWT 互操作性**：现有的 Swing 和 SWT 应用程序可以利用 JavaFX 的特性，例如丰富的图形、媒体播放和嵌入式 Web
+  内容。
+
+  *   **内置 UI 控件和 CSS**：JavaFX 提供了所有主要的 UI 控件，以及一些开发全功能应用程序所需的额外不常见控件，如图表、分页和手风琴式布局。组件可以使用标准
+  Web 技术（如 CSS）进行皮肤定制。
+
+  *   **3D 图形特性**：包含对 3D 图形库的支持。
+
+  *   **Canvas API**：你可以使用 Canvas API 直接在 JavaFX 场景区域内绘图，该 API 包含一个图形元素（节点）。
+
+  *   **多点触控支持**：基于底层平台的能力支持多点触控操作。
+
+  *   **硬件加速图形管线**：JavaFX 图形基于图形渲染管线 *Prism*。当与支持的显卡或**图形处理单元**（**GPU**）一起使用时，Prism
+  引擎可以平滑快速地渲染 JavaFX 图形。如果系统不具备这些条件，则 Prism 默认使用软件渲染堆栈。
+
+  *   **高性能媒体引擎**：该引擎提供了一个稳定、低延迟的媒体框架，该框架基于 `GStreamer` 多媒体框架。通过媒体管线支持 Web 多媒体内容的播放。
+
+  *   **自包含部署模型**：自包含应用程序包包含所有应用程序资源以及 Java 和 JavaFX 运行时的私有副本。它们作为本机可安装包分发，并提供与该操作系统本机应用程序相同的安装和启动体验。
+
+
+  ## JavaFX 8 的新特性
+
+
+  以下是 Java SE 8 版本中 JavaFX 组件的新特性和重大产品变更的简要总结：
+
+
+  *   新的 *Modena 主题* 现在是 JavaFX 应用程序的默认主题。
+
+  *   增加了对更多 HTML5 特性的支持，包括 Web Sockets、Web Workers、Web Fonts 和打印功能。
+
+  *   API 通过新的 `SwingNode` 类使你能够将 **Swing** 内容嵌入到 JavaFX 应用程序中，从而改进了 Swing 互操作性特性。
+
+  *   现在提供了 `DatePicker`、`Spinner` 和 `TableView` 内置 UI 控件。
+
+  *   通过 `javafx.print` 包提供了公共的 JavaFX 打印 API。
+
+  *   提供了对高 DPI 显示器的支持。
+
+  *   CSS 样式类成为公共 API。
+
+  *   引入了一个计划服务类。
+
+  *   3D 图形库通过几个新的 API 类得到了增强。
+
+  *   此版本中对 *Camera API* 类进行了重大更新。
+
+  *   现在 JavaFX 8 支持富文本功能。这包括 UI 控件中的双向和复杂文本脚本（如泰语和印地语），以及文本节点中的多行、多样式文本。
+
+  *   支持对话框和辅助功能 API。
+
+
+  在附录 *成为 JavaFX 大师* 中，我提供了成为 JavaFX 大师所需的所有参考资料（链接、书籍、杂志、文章、博客和工具）以及真实的 JavaFX 8
+  生产应用程序列表。
+
+
+  下图展示了使用 JavaFX 8 构建的 `Ensemble8.jar` 应用程序，显示了涉及各种 JavaFX 8 组件、主题和概念的示例。更有趣的是，其源代码可供学习和修改——请参阅最后一章了解如何安装此应用程序。
+
+
+  ![JavaFX 8 的新特性](img/B03998_01_01.jpg)
+
+
+  JavaFX 8 应用程序
+
+
+  该应用程序涵盖了许多主题，尤其是新的 JavaFX 8 3D API，可以在“Graphics 3D”部分找到，如下图所示：
+
+
+  ![JavaFX 8 的新特性](img/B03998_01_02.jpg)
+
+
+  JavaFX 8 3D 应用程序
+
+
+  '
+- "# 安装所需软件\n\n到目前为止，我们已经对 JavaFX 有了很好的了解，我和你一样渴望开始创建并启动我们的第一个 `\"Hello JavaFX 8\"\
+  ` 应用程序。但这需要下载并安装正确的工具，以便我们能够创建和编译本书中的大部分代码。\n\n你需要下载并安装 *Java 8 开发工具包*（JDK）或更高版本。注意不是运行时版本（JRE）。\n\
+  \n从以下位置下载最新的 Java SE 8u45 JDK 或更高版本：\n\n[`www.oracle.com/technetwork/java/javase/downloads/index.html`](http://www.oracle.com/technetwork/java/javase/downloads/index.html)\n\
+  \n从以下链接 [`netbeans.org/downloads`](https://netbeans.org/downloads) 下载并安装 NetBeans\
+  \ 8.0.2 或更高版本，虽然推荐使用 NetBeans IDE **All** 捆绑包，*你也可以使用 Java EE 捆绑包*，如下图所示：\n\n![安装所需软件](img/B03998_01_03.jpg)\n\
+  \nNetBeans 捆绑包下载。\n\n目前，JavaFX 8 支持以下操作系统：\n\n*   Windows 操作系统（XP、Vista、7、8）32 位和\
+  \ 64 位\n*   Mac OS X（64 位）\n*   Linux（32 位和 64 位）、Linux ARMv6/7 VFP、HardFP ABI（32\
+  \ 位）\n*   Solaris（32 位和 64 位）\n\n\n\n## 安装 Java SE 8 JDK\n\n本节概述的步骤将指导您成功下载并安装 Java\
+  \ SE 8。请从以下位置下载 Java SE 8 JDK：\n\n[`www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html`](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)\n\
+  \n在以下步骤中，将以 Mac OS X Yosemite (10.10.3) 操作系统上的 Java SE 8u45 JDK 64 位版本（撰写本文时的版本）为例。\n\
+  \n其他操作系统和 JDK 版本的步骤类似。但是，如果您的环境不同，请参考以下链接获取更多详细信息：\n\n[`docs.oracle.com/javase/8/docs/technotes/guides/install/toc.html`](http://docs.oracle.com/javase/8/docs/technotes/guides/install/toc.html)\n\
+  \n以下是安装 Java SE 8 JDK 的步骤：\n\n1.  通过启动镜像文件 `jdk-8u45-macosx-x64.dmg` 来安装 Java 8\
+  \ JDK。启动 JDK 8 安装镜像文件后，将出现如下截图所示的屏幕。这是软件包安装文件。双击它，安装程序将启动：![安装 Java SE 8 JDK](img/B03998_01_04.jpg)\n\
+  \n    JDK 8 安装镜像文件\n\n    ### 提示\n\n    通常，您需要拥有机器的管理员权限才能安装软件。\n\n2.  开始安装 Java\
+  \ 8 JDK。安装过程开始时将出现如下截图所示的屏幕。点击**继续**按钮，然后在**安装类型**屏幕向导中，点击**安装**以开始安装。![安装 Java\
+  \ SE 8 JDK](img/B03998_01_05.jpg)\n\n    Java SE 开发工具包 8 安装\n\n3.  点击**安装**后，系统可能会要求您提供密码。提供密码，点击**确定**，安装将继续并显示进度条，如下图所示：![安装\
+  \ Java SE 8 JDK](img/B03998_01_06.jpg)\n\n    Java SE 开发工具包 8 安装进行中\n\n4.  安装程序将完成\
+  \ Java 8 SE 开发工具包的安装。点击**关闭**按钮退出。\n\n### 设置环境变量\n\n现在您需要设置几个关键的环境变量。设置方式及其值取决于您的操作系统。需要设置的两个变量是：\n\
+  \n*   **JAVA_HOME**：此变量告诉您的操作系统 Java 的安装目录在哪里。\n*   **PATH**：此变量指定 Java 可执行文件目录的位置。此环境变量允许系统搜索包含可执行文件的路径或目录。Java\
+  \ 可执行文件位于 `JAVA_HOME` 主目录下的 bin 目录中。\n\n为了使 `JAVA_HOME` 和 `PATH` 的设置更持久，您需要将它们添加到系统中，以便在每次启动或登录时始终可用。根据您的操作系统，您需要能够编辑环境变量名称和值。\n\
+  \n在 *Windows 环境*中，您可以使用键盘快捷键 *Windows 徽标键 + Pause/Break 键*，然后点击**高级系统设置**以显示**系统属性**对话框。\n\
+  \n接下来，点击**环境变量**。您可以在此处添加、编辑和删除环境变量。您将通过使用已安装的主目录作为值来添加或编辑 `JAVA_HOME` 环境变量。此截图显示了\
+  \ Windows 操作系统上的环境变量对话框：\n\n![设置环境变量](img/B03998_01_07.jpg)\n\nWindows 环境变量\n\n\
+  让我们设置环境变量：\n\n*   要为 **Mac OS X** 平台设置您的 `JAVA_HOME` 环境变量，您需要启动一个终端窗口，通过添加以下 export\
+  \ 命令来编辑您主目录下的 `.bash_profile` 文件：\n\n    ```\n    export JAVA_HOME=$(/usr/libexec/java_home\
+  \ -v 1.8)\n    ```\n\n*   在 **Linux** 和其他使用 Bash shell 环境的 **Unix** 操作系统上，启动一个终端窗口，编辑\
+  \ `~/.bashrc` 或 `~/.profile` 文件，使其包含 export 命令：\n\n    ```\n    export JAVA_HOME=/usr/java/jdk1.8.0\n\
+  \    export PATH=$PATH:$JAVA_HOME/bin\n    ```\n\n*   在 Linux 和其他使用 `C` shell (csh)\
+  \ 环境的 Unix 操作系统上，启动一个终端窗口，编辑 `~/.cshrc` 或 `~/.login` 文件，使其包含 `setenv` 命令：\n\n  \
+  \  ```\n    setenv JAVA_HOME /usr/java/jdk1.8.0_45\n    setenv PATH ${JAVA_HOME}/bin:${PATH}\n\
+  \    ```\n\n设置好路径和 `JAVA_HOME` 环境变量后，您需要验证设置，方法是启动一个终端窗口，并在命令提示符下执行以下两个命令：\n\n```\n\
+  java -version\njavac –version\n```\n\n### 注意\n\n每个命令的输出都应显示一条消息，指示 Java SE 8 的语言和运行时版本。\n\
+  \n## 安装 NetBeans IDE\n\n在开发 JavaFX 应用程序时，您将使用 NetBeans IDE（或您喜欢的任何其他 IDE）。请务必下载包含\
+  \ JavaFX 的正确 NetBeans 版本。要安装 NetBeans IDE，请遵循以下步骤：\n\n1.  从以下位置下载 NetBeans IDE 8.0.2\
+  \ 或更高版本：\n\n    [`netbeans.org/downloads/index.html`](https://netbeans.org/downloads/index.html)\n\
+  \n2.  启动 `.dmg` 镜像文件 `netbeans-8.0.2-macosx.dmg`。镜像将被验证，然后会打开一个包含安装程序包存档 `netbeans-8.0.2.pkg`\
+  \ 的文件夹；双击它以启动安装程序。将出现一个对话框，显示消息：*此软件包将运行一个程序以确定是否可以安装该软件。* 点击**继续**按钮。\n3.  启动 NetBeans\
+  \ 安装对话框后，再次点击**继续**。接下来，接受许可协议，点击**继续**，然后点击**同意**。\n4.  点击**安装**按钮继续。以下截图显示了一个\
+  \ **Mac** 安全警告提示；提供您的密码并点击**安装软件**。![安装 NetBeans IDE](img/B03998_01_08.jpg)\n\n\
+  \    Mac 安全警告对话框\n\n5.  NetBeans IDE 安装过程将开始。以下截图显示了安装进度条：![安装 NetBeans IDE](img/B03998_01_09.jpg)\n\
+  \n    安装进度\n\n6.  点击**关闭**按钮完成安装，如下所示：![安装 NetBeans IDE](img/B03998_01_10.jpg)\n\
+  \n    安装完成\n\n现在您可以继续创建 JavaFX 应用程序了。\n\n"
+- "# 创建 \"Hello World\" JavaFX 风格的应用程序\n\n向您展示创建和构建 JavaFX 应用程序是什么样的最好方式，就是通过一个 `Hello\
+  \ World` 应用程序。\n\n在本节中，您将使用我们刚刚安装的 NetBeans IDE 来开发、编译和运行一个基于 JavaFX 的 `Hello World`\
+  \ 应用程序。\n\n\n\n## 使用 NetBeans IDE\n\n要快速开始使用 NetBeans IDE 创建、编码、编译并运行一个简单的 JavaFX\
+  \ 风格的 `Hello World` 应用程序，请遵循本节概述的步骤：\n\n1.  从 **文件** 菜单中，选择 **新建项目**。\n2.  从 **JavaFX\
+  \ 应用程序类别** 中，选择 **JavaFX 应用程序**。点击 **下一步**。\n3.  将项目命名为 `HelloJavaFX`。你也可以选择为应用程序类定义包结构。然后点击\
+  \ **完成**，如下图所示：\n\n    ![使用 NetBeans IDE](img/B03998_01_11.jpg)\n\n    新建 JavaFX\
+  \ 应用程序向导\n\n    NetBeans 会打开 `HelloJavaFX.java` 文件，并用一个基本的“Hello World”应用程序代码填充它。\n\
+  \n    ### 注意\n\n    你会发现此版本的代码与 NetBeans 实际生成的代码略有不同，你可以比较它们以找出差异，但它们具有相同的结构。我这样做是为了在点击\
+  \ **说“Hello World”** 按钮时，将结果显示在 `Scene` 上的文本节点中，而不是控制台中。为此，还使用了一个 `VBox` 容器。\n\n\
+  4.  右键点击项目，然后从菜单中选择 **运行**，如下图所示：![使用 NetBeans IDE](img/B03998_01_12.jpg)\n\n  \
+  \  运行应用程序\n\n5.  NetBeans 将编译并运行该应用程序。输出应如下图所示：![使用 NetBeans IDE](img/B03998_01_13.jpg)\n\
+  \n    从 NetBeans IDE 启动的 JavaFX Hello World\n\n6.  点击按钮，你应该会看到以下结果：![使用 NetBeans\
+  \ IDE](img/B03998_01_14.jpg)\n\n    JavaFX Hello World 结果\n\n以下是基本 Hello World 应用程序\
+  \ (`HelloJavaFX.java`) 的修改后代码：\n\n```\nimport javafx.application.Application;\n\
+  import javafx.scene.Scene;\nimport javafx.scene.control.Button;\nimport javafx.scene.text.Text;\n\
+  import javafx.stage.Stage;\nimport static javafx.geometry.Pos.CENTER;\nimport javafx.scene.layout.VBox;\n\
+  \n/**\n  * @author mohamed_taman\n */\npublic class HelloJavaFX extends Application\
+  \ {\n\n  @Override\n  public void start(Stage primaryStage) {\n\n    Button btn\
+  \ = new Button();\n    Text message = new Text();\n\n    btn.setText(\"Say 'Hello\
+  \ World'\");\n\n    btn.setOnAction(event -> {\n      message.setText(\"Hello World!\
+  \ JavaFX style :)\");\n    });\n\n    VBox root = new VBox(10,btn,message);\n  \
+  \  root.setAlignment(CENTER);\n\n    Scene scene = new Scene(root, 300, 250);\n\n\
+  \    primaryStage.setTitle(\"Hello JavaFX 8 World!\");\n    primaryStage.setScene(scene);\n\
+  \    primaryStage.show();\n  }\n  public static void main(String[] args) {\n   \
+  \ launch(args);\n  }\n}\n```\n\n## 工作原理\n\n以下是关于 JavaFX 应用程序基本结构需要了解的重要事项：\n\n*\
+  \   JavaFX 应用程序的主类应继承 `javafx.application.Application` 类。`start()` 方法是所有 JavaFX\
+  \ 应用程序的*主入口点*。\n*   JavaFX 应用程序通过*舞台*和*场景*来定义用户界面容器。JavaFX `Stage` 类是顶层的 JavaFX\
+  \ 容器。JavaFX `Scene` 类是所有内容的容器。以下代码片段创建了一个舞台和场景，并使场景在给定的像素大小下可见——`new Scene(root,\
+  \ 300, 250)`。\n*   在 JavaFX 中，场景的内容表示为节点的分层场景图。在此示例中，根节点是一个 `VBox` 布局对象，它是一个可调整大小的布局节点。这意味着根节点的大小会跟随场景的大小，并在用户调整舞台大小时发生变化。\n\
+  *   这里使用 `VBox` 作为容器，将其内容节点垂直排列成单列多行。我们将按钮 **btn** 控件添加到列的第一行，然后将文本 **message**\
+  \ 控件添加到同一列的第二行，垂直间距为 10 像素，如下代码片段所示：\n\n    ```\n    VBox root = new VBox(10,btn,message);\n\
+  \    root.setAlignment(CENTER);\n    ```\n\n*   我们为按钮控件设置了文本，并添加了一个事件处理器，当按钮被点击时，将消息文本控件设置为\
+  \ **Hello World! JavaFX style :)**。\n*   你可能会注意到一段用 Java 编写的奇怪代码语法，却没有编译器错误。这是一个\
+  \ **Lambda** 表达式，它已被添加到 Java SE 8 中，我们将在第 2 章 *JavaFX 8 要点与创建自定义 UI* 中简要讨论它。与旧的匿名内部类风格稍作比较，现在使用\
+  \ Lambda 表达式更简洁、更精炼。请看这段代码对比：\n\n    旧式写法：\n\n    ```\n    btn.setOnAction(new EventHandler<ActionEvent>()\
+  \ {\n      @Override\n      public void handle(ActionEvent event) {\n        message.setText(\"\
+  Hello World! JavaFX style :)\");\n      }\n    });\n    ```\n\n    新时代写法：\n\n  \
+  \  ```\n    btn.setOnAction(event -> {\n        message.setText(\"Hello World! JavaFX\
+  \ style :)\");\n    });\n    ```\n\n*   当应用程序的 **JAR** 文件是使用 JavaFX Packager 工具创建时，该工具会将\
+  \ JavaFX Launcher 嵌入到 JAR 文件中，因此 JavaFX 应用程序不需要 `main()` 方法。\n*   然而，包含 `main()`\
+  \ 方法是有用的，这样你就可以运行那些没有使用 JavaFX Launcher 创建的 JAR 文件，例如在使用 JavaFX 工具未完全集成的 IDE 时。此外，嵌入\
+  \ JavaFX 代码的 **Swing** 应用程序也需要 `main()` 方法。\n*   在这里，在我们的 `main()` 方法的入口点，我们通过简单地将命令行参数传递给\
+  \ `Application.launch()` 方法来启动 JavaFX 应用程序。\n*   在 `Application.launch()` 方法执行后，应用程序将进入就绪状态，框架内部将调用\
+  \ `start()` 方法来开始。\n*   此时，程序执行发生在 *JavaFX 应用程序线程* 上，而不是 **主线程** 上。当调用 `start()`\
+  \ 方法时，一个 JavaFX `javafx.stage.Stage` 对象可供你使用和操作。\n\n### 注意\n\n高级主题将在接下来的章节中详细讨论。更重要的是，我们将在接下来的章节中深入了解\
+  \ JavaFX 应用程序线程。在最后三章中，我们将看到如何将其他线程的结果带入 JavaFX 应用程序线程，以便在场景上正确渲染。\n\n"
+- '# 总结
+
+
+  到目前为止，你已经了解了 JavaFX 是什么，并看到了它的强大之处。你已经成功下载并安装了 Java 8 JDK 和 NetBeans IDE。在成功安装必备软件后，你通过
+  NetBeans IDE 创建了一个 JavaFX Hello World GUI 应用程序。在学习了如何编译和运行 JavaFX 应用程序之后，你对源文件 `HelloJavaFX.java`
+  进行了快速的代码走查。
+
+
+  接下来，在第 2 章 *JavaFX 8 要点与创建自定义 UI* 中，你将了解 JavaFX 8 的架构组件和引擎，它们使 JavaFX 应用程序能够在底层高效、流畅地运行。你还将学习最常见的布局
+  UI 组件，并了解如何为整个应用程序或单个场景节点设置主题。
+
+
+  我们还将介绍 Java SE 8 最重要的特性——Lambda 表达式及其工作原理。然后，我们将深入了解 **Scene Builder**，将其作为声明式 UI
+  和高效工具，接着学习生成的基于 FXML 的标记文档，以及如何将其导入 NetBeans IDE，以继续实现你的应用程序逻辑，并将其与你已在 FXML 文档中声明的
+  UI 控件关联起来。
+
+
+  最后，你将能够创建一个未随默认 JavaFX 8 UI 控件一起提供的自定义 UI 组件。
+
+
+
+
+  '
+- '# 第 2 章 JavaFX 8 核心知识与创建自定义 UI
+
+
+  了解 JavaFX 的核心知识将帮助你轻松构建复杂且精巧的 UI 解决方案。
+
+
+  在本章中，你将简要了解 JavaFX 8 的架构，从而理解 JavaFX 架构组件和引擎如何与你的 JavaFX 应用程序高效协同工作，并流畅地渲染其图形。
+
+
+  你将学习如何在 JavaFX 场景上渲染图形，为此，我们将使用场景、一些控件和样式创建一个基础应用程序。
+
+
+  我们将探讨 Java SE 8 特性的基础知识（例如 **Lambda 表达式**和**函数式接口**），以帮助提高代码的可读性、质量和生产力。
+
+
+  当我们创建了第一个结构化的 JavaFX 8 应用程序后，如果能够在不改变其功能的情况下更改应用程序的 UI，那岂不是很好？你将通过了解 JavaFX CSS
+  样式的基础知识来学习主题化。
+
+
+  最后，你将了解如何使用 Scene Builder 以图形方式创建和定义 UI 屏幕，并将其保存为 JavaFX FXML 格式的文件。你还将获得创建*自定义控件*的实践经验。
+
+
+  在本章中，我们将涵盖以下主题：
+
+
+  *   理解 JavaFX 架构组件
+
+  *   使用 JavaFX 组件设置 UI
+
+  *   使用 Java SE 8、Lambda 表达式和其他特性
+
+  *   为你的应用程序设置主题以适配不同平台
+
+  *   使用 CSS 自定义应用程序 UI
+
+  *   使用 Scene Builder 工具以可视化方式创建 UI
+
+  *   使用 FXML 构建自定义 UI
+
+
+  '
+- "# JavaFX 8 架构快速回顾\n\n为了更好地理解框架的组件和引擎如何协同工作来运行你的 JavaFX 应用程序，本节将对 JavaFX 架构和生态系统进行高层描述。\n\
+  \n下图展示了 JavaFX 平台的架构组件。它显示了每个组件以及它们之间如何相互连接。\n\n负责运行你的 JavaFX 应用程序代码的引擎位于 JavaFX\
+  \ 公共 API 之下。\n\n该引擎由子组件组成。这些组件包括 **Prism**（一个 JavaFX 高性能图形引擎）、Glass 工具包（一个小巧高效的窗口系统）、一个媒体引擎和一个\
+  \ Web 引擎。\n\n### 注意\n\n虽然这些组件未通过公共 API 公开，但我们仍将对其进行描述，以便你更好地了解是什么让 JavaFX 应用程序能够高效地成功运行。\n\
+  \n![JavaFX 8 架构快速回顾](img/B03998_02_01.jpg)\n\nJavaFX 架构图\n\n有关 JavaFX 架构和生态系统的更多信息和描述，请访问\
+  \ [`docs.oracle.com/javase/8/javafx/get-started-tutorial/jfx-architecture.htm`](http://docs.oracle.com/javase/8/javafx/get-started-tutorial/jfx-architecture.htm)。\n\
+  \n## 场景图\n\n每个应用程序都有一个起始根节点来构建 UI 层次结构，而 JavaFX 应用程序的起点是*场景图*。在上面的截图中，它显示为顶层蓝色部分的一部分。它是节点的根树，代表了应用程序用户界面的所有视觉元素。它还跟踪并处理任何用户输入，并且可以被渲染，因为它本身就是一个\
+  \ UI 节点。\n\n*节点*是场景图树中的任何一个元素。每个节点默认具有以下属性：用于标识的 ID、用于更改其视觉属性的样式类列表，以及一个边界体积，以便与场景上的其他组件及其父布局容器节点（场景图的根节点除外）正确适配。\n\
+  \n场景图树中的每个节点都有一个父节点，但可以有零个或多个子节点；然而，场景根节点没有父节点（为 null）。此外，JavaFX 有一种机制来确保一个节点只能有一个父节点；它还可以具有以下内容：\n\
+  \n*   视觉效果，例如模糊和阴影\n*   通过不透明度控制组件透明度\n*   CPU 加速的 2D 变换、过渡和旋转\n*   3D 变换，例如过渡、缩放和旋转\n\
+  *   事件处理器（例如鼠标事件、键盘事件或其他输入方法，如触摸事件）\n*   特定于应用程序的状态\n\n下图显示了舞台、场景、UI 节点和图形树之间的关系：\n\
+  \n![场景图](img/B03998_02_02.jpg)\n\nJavaFX UI 树层次结构关系\n\n图形基元也是 JavaFX 场景图不可或缺的一部分，例如线条、矩形和文本，以及图像、媒体、UI\
+  \ 控件和布局容器。\n\n在为客户提供复杂且丰富的 UI 时，场景图简化了这项任务。此外，你可以使用 `javafx.animation` API 快速轻松地动画化场景图中的各种图形。\n\
+  \n除了这些特性之外，`javafx.scene` API 还允许创建和指定以下几种内容类型：\n\n*   **节点**：任何表示为 UI 控件、图表、组、容器、嵌入式\
+  \ Web 浏览器、形状（2D 和 3D）、图像、媒体和文本的节点元素\n*   **效果**：这些是简单的对象，当应用于 UI 节点时，会改变其在场景图节点上的外观，例如模糊、阴影和颜色调整\n\
+  *   **状态**：任何特定于应用程序的状态，例如变换（节点的定位和方向）和视觉效果\n\n## 用于 JavaFX 特性的 Java 公共 API\n\n\
+  这是你的瑞士军刀工具包，以一套完整的 Java 公共 API 形式提供，支持富客户端应用程序开发。\n\n这些 API 为你提供了前所未有的灵活性，通过将 Java\
+  \ SE 平台的最佳功能与全面、沉浸式的媒体功能相结合，构建你的富客户端 UI 应用程序，形成一个直观且全面的、触手可及的一站式开发环境。\n\n这些用于 JavaFX\
+  \ 的 Java API 允许你执行以下操作：\n\n*   使用 Java SE 的强大功能，从泛型、注解和多线程，到新的 Lambda 表达式（在 Java\
+  \ SE 8 中引入）。\n*   为 Web 开发人员提供了一种更简单的方法，从其他基于 JVM 的动态语言（例如 *JavaScript*）中使用 JavaFX。\n\
+  *   通过集成其他系统语言（例如 *Groovy*）来编写大型且复杂的 JavaFX 应用程序。\n*   将你的 UI 控件绑定到控制器属性，以便自动通知和更新从模型反映到绑定的\
+  \ UI 节点。绑定包括对高性能惰性绑定、绑定表达式、绑定序列表达式和部分绑定重新评估的支持。我们将在第 3 章 *开发 JavaFX 桌面和 Web 应用程序*中看到这一点以及更多内容。\n\
+  *   引入可观察列表和映射，通过扩展 Java 集合库，允许应用程序将 UI 连接到数据模型，以观察这些数据模型中的变化并相应地更新相应的 UI 控件。\n\n\
+  \n\n## 图形系统\n\nJavaFX 图形系统（上图中以紫色显示）支持 2D 和 3D 场景图，使其能够在 JavaFX 场景图层上流畅运行。作为该层之下的实现细节，当系统缺乏足够的图形硬件来支持硬件加速渲染时，它会提供渲染软件栈。\n\
+  \nJavaFX 平台拥有两条实现图形加速的管线：\n\n*   **Prism**：这是处理所有渲染作业的引擎。它可以在硬件和软件渲染器上运行，包括 3D 渲染。JavaFX\
+  \ 场景的栅格化和渲染均由该引擎负责。根据所使用的设备，可能采用以下多种渲染路径：\n    *   Windows XP 和 Vista 上的 DirectX\
+  \ 9，以及 Windows 7 上的 DirectX 11\n    *   Linux、Mac 和嵌入式系统上的 OpenGL\n    *   当无法进行硬件加速时的软件渲染\n\
+  *   **Quantum Toolkit**：负责将 Prism 引擎和 Glass 窗口工具包连接在一起，使其可供堆栈中上层的 JavaFX 层使用。此外，它还管理与渲染和事件处理相关的任何线程规则。\n\
+  \n## Glass 窗口工具包\n\nGlass 窗口工具包（上图中部以红色显示）作为平台相关层，负责将 JavaFX 平台连接到原生操作系统。\n\n其主要职责是提供原生操作系统服务，例如管理定时器、窗口和表面，因此它在渲染堆栈中的位置是最低的。\n\
+  \n## JavaFX 线程\n\n通常，系统在任何给定时间会运行以下两个或多个线程：\n\n*   **JavaFX 应用程序线程**：这是 JavaFX 应用程序运行所使用的主要线程。\n\
+  *   **Prism 渲染线程**：该线程独立于事件分发器处理渲染。它在准备处理下一帧（第 N+1 帧）的同时，渲染当前帧（第 N 帧）。其巨大优势在于能够执行并发处理，尤其是在拥有多个处理器的现代系统上。\n\
+  *   **媒体线程**：该线程在后台运行，并通过使用 JavaFX 应用程序线程，经由场景图同步最新的帧。\n*   **脉冲**：它提供了一种异步处理事件的方式。它有助于管理\
+  \ JavaFX 场景图元素状态与 Prism 引擎中场景图事件之间的同步。当脉冲被触发时，场景图上元素的状态会同步到渲染层。\n\n### 注意\n\n任何布局节点和\
+  \ CSS 也都与脉冲事件相关联。\n\n*Glass 窗口工具包*使用高精度原生定时器来执行所有脉冲事件。\n\n## 媒体与图像\n\nJavaFX 的 `javafx.scene.media`\
+  \ API 提供了媒体功能。JavaFX 支持视觉和音频媒体。对于音频文件，它支持 `MP3`、`AIFF` 和 `WAV` 文件以及 `FLV` 视频文件。\n\
+  \n你可以通过 JavaFX 媒体提供的三个主要独立组件来访问媒体功能——`Media` 对象代表一个媒体文件，`MediaPlayer` 播放媒体文件，`MediaView`\
+  \ 是一个节点，用于将媒体显示到场景图中。\n\n### 注意\n\n媒体引擎组件（上图中以橙色显示）在设计时充分考虑了稳定性和性能，以在所有支持的平台上提供一致的行为。\n\
+  \n## Web 组件\n\nWeb 引擎组件（上图中以绿色显示）是最重要的 JavaFX UI 控件之一，它基于 WebKit 引擎构建，WebKit 是一个开源\
+  \ Web 浏览器引擎，支持 HTML5、JavaScript、CSS、DOM 渲染和 SVG 图形。它通过其 API 提供 Web 查看器和完整的浏览功能。我们将在第\
+  \ 3 章 *开发 JavaFX 桌面和 Web 应用程序*中深入探讨这一点，届时将开发 Web 应用程序。\n\n它允许你在 Java 应用程序中添加和实现以下功能：\n\
+  \n*   渲染来自本地或远程 URL 的任何 HTML 内容\n*   提供前进和后退导航，并支持历史记录\n*   重新加载内容以获取任何更新\n*   为\
+  \ Web 组件添加动画并应用 CSS 效果\n*   为 HTML 内容提供丰富的编辑控件\n*   可以执行 JavaScript 命令并处理 Web 控件事件\n\
+  \n## 布局组件\n\n在构建丰富且复杂的 UI 时，我们需要一种方法来灵活、动态地安排 JavaFX 应用程序中的 UI 控件。这是使用布局容器或窗格的最佳场景。\n\
+  \n布局 API 包含以下容器类，它们可以自动化常见的布局 UI 模式：\n\n*   **BorderPane**：将其内容节点布局在顶部、底部、右侧、左侧或中心区域\n\
+  *   **HBox**：将其内容节点水平排列成单行\n*   **VBox**：将其内容节点垂直排列成单列\n*   **StackPane**：将其内容节点以从后到前的顺序堆叠在窗格中心\n\
+  *   **GridPane**：允许创建灵活的行列网格，用于布局内容节点\n*   **FlowPane**：将其内容节点按水平或垂直方向流动排列，并在达到指定宽度（水平方向）或高度（垂直方向）边界时自动换行\n\
+  *   **TilePane**：将其内容节点放置在统一大小的布局单元格或磁贴中\n*   **AnchorPane**：允许创建锚定节点到布局的顶部、底部、左侧或中心，并且我们可以自由定位其子节点\n\
+  \n### 提示\n\n不同的容器可以在 JavaFX 应用程序中嵌套使用；为了实现所需的布局结构，我们将在接下来开发自定义 UI 时看到实际应用。\n\n##\
+  \ JavaFX 控件\n\nJavaFX 控件是 UI 布局的构建块，它们作为一组 JavaFX API 位于 `javafx.scene.control`\
+  \ 包中。它们通过使用场景图中的节点构建而成。可以通过 JavaFX CSS 对它们进行主题化和外观定制。它们可跨不同平台*移植*。它们充分利用了 JavaFX\
+  \ 平台丰富的视觉特性。\n\n下图展示了一些当前支持的 UI 控件，此外还有更多未在此显示：\n\n![JavaFX 控件](img/B03998_02_03.jpg)\n\
+  \nJavaFX UI 控件示例\n\n### 注意\n\n有关所有可用 JavaFX UI 控件的更多详细信息，请参阅官方教程 [`docs.oracle.com/javase/8/javafx/user-interface-tutorial/ui_controls.htm#JFXUI336`](http://docs.oracle.com/javase/8/javafx/user-interface-tutorial/ui_controls.htm#JFXUI336)\
+  \ 以及 `javafx.scene.control` 包的 API 文档。\n\n"
+- "# Java SE 8 特性\n\n我们将浅尝 Java SE 8，以理解两个最重要的特性——lambda 或 lambda 表达式以及函数式接口（它们使 lambda\
+  \ 可用），从而帮助我们编写更好、更简洁、样板代码更少的 JavaFX 8 代码。但请记住，本书不会涉及每个 lambda 细节，因为这不是一本关于 Java\
+  \ SE 8 的书。\n\n### 注意\n\n要更好地了解 Java 的 lambda 路线图，请访问以下官方教程：[`docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html`](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)。\n\
+  \n\n\n## Lambda 表达式\n\nJava 语言中 **lambda** 项目的首要目标是解决函数式编程缺失的问题，并提供一种通过创建匿名（未命名）函数来轻松实现函数式编程的方式，其方式类似于在\
+  \ Java 中创建匿名对象而非方法。\n\n正如你在第 1 章的示例中所见，*JavaFX 8 入门*，我们讨论了为 JavaFX 按钮的按下事件定义处理器的常规方法——使用匿名内部类：\n\
+  \n```\nbtn.setOnAction(new EventHandler<ActionEvent>() {\n   @Override\n   public\
+  \ void handle(ActionEvent event) {\n     message.setText(\"Hello World! JavaFX style\
+  \ :)\");\n   }\n});\n```\n\n这段代码与仅仅编写一行设置按钮动作中消息文本字段 `text` 属性的代码相比，显得非常冗长。如果能重写这段包含逻辑的代码，而无需这么多样板代码，那该多好啊？\n\
+  \nJava SE 8 通过 Lambda 表达式解决了这个问题，如下所示：\n\n```\nbtn.setOnAction(event -> {\n    message.setText(\"\
+  Hello World! JavaFX style :)\");\n});\n```\n\n除了使代码更简洁易读之外，lambda 表达式还能让你的代码性能更佳。\n\
+  \n### 语法\n\n编写 lambda 表达式有两种方式，其通用形式如下图所示：\n\n![语法](img/B03998_02_04.jpg)\n\nLambda\
+  \ 表达式通用形式——以创建新线程为例\n\n这两种方式如下：\n\n*   `(param1, param2, ...) -> expression;`\n\
+  *   `(param1, param2, ...) -> { /* 代码语句 */ };`\n\n第一种形式，即表达式形式，用于我们只分配一行代码或一个简单表达式的情况。而第二种形式，即代码块形式，包含单行或多行代码体，并带有\
+  \ return 语句，因此我们需要用花括号将它们括起来。\n\n以下三条语句是等价的：\n\n*   `btn.setOnAction((ActionEvent\
+  \ event) -> {message.setText(\"Hello World!\");});`\n*   `btn.setOnAction( (event)\
+  \ -> message.setText(\"Hello World!\"));`\n*   `btn.setOnAction(event -> message.setText(\"\
+  Hello World!\"));`\n\n### 提示\n\n为了更深入地了解新的 lambda 表达式及其相关特性，以及 Java SE 8 的功能，我建议你阅读这个系列文章——Java\
+  \ SE 8 新特性之旅：[`tamanmohamed.blogspot.com/2014/06/java-se-8-new-features-tour-big-change.html`](http://tamanmohamed.blogspot.com/2014/06/java-se-8-new-features-tour-big-change.html)\n\
+  \n## 函数式接口\n\nLambda 表达式很棒，不是吗？但你可能想知道它的确切类型是什么，这样它才能被赋值给变量并传递给方法。\n\n答案在于函数式接口的强大功能。如何实现呢？函数式接口由\
+  \ Java 语言设计者/架构师巧妙地创建为闭包，它使用了**单一抽象方法**（**SAM**）的概念，提供了一个仅包含一个抽象方法的接口，以及 `@FunctionalInterface`\
+  \ 注解。单一抽象方法模式是 Java SE 8 lambda 表达式不可或缺的一部分。\n\n让我们通过一个示例来阐明函数式接口和 lambda 表达式的概念。我创建了一个名为\
+  \ `Calculator.java` 的函数式接口，其中包含一个名为 `calculate()` 的单一抽象方法。一旦创建完成，你就可以声明变量并将 lambda\
+  \ 表达式赋值给它们。以下是该函数式接口：\n\n```\n@FunctionalInterface\npublic interface Calculator\
+  \ {\n    double calculate(double width, double height);\n}\n```\n\n现在，我们准备创建变量并将\
+  \ lambda 表达式赋值给它们。以下代码创建了 lambda 表达式并将其赋值给我们的函数式接口变量：\n\n```\nCalculator area =\
+  \ (width, height) -> width * height; //面积 = 宽 × 高\n//周长 = 2(宽+高)\nCalculator perimeter\
+  \ = (width, height) -> 2 * (height + width);\nout.println(\"矩形面积: \"+ area.calculate(4,\
+  \ 5)+\" 厘米.\");\nout.println(\"矩形周长: \"+ perimeter.calculate(4, 5)+\" 厘米.\");\n\
+  ```\n\n代码的输出应如下所示：\n\n```\n矩形面积: 20.0 厘米.\n矩形周长: 18.0 厘米.\n```\n\n"
+- "# 主题化\n\n当与设计师和 UX/UI 专家合作时，你会听到关于为应用程序换肤或更改其外观的说法。这两个术语通常可以互换使用，并且都反映了*主题化*的基本概念。\n\
+  \n主题化的思想是通过更改控件的样式来改变整个应用程序的风格，而不改变其底层功能。\n\n在 JavaFX 中，你可以创建、修改或使用现有主题来为你的应用程序、场景甚至只是一个\
+  \ UI 控件换肤。\n\n## CSS\n\nJavaFX **层叠样式表**（**CSS**）可以应用于 JavaFX 场景图中的任何节点；它们是异步应用于节点的。样式也可以在运行时轻松地分配给场景，从而允许应用程序的外观动态变化。\n\
+  \n它基于 W3C CSS 2.1 规范，并且目前兼容当前版本 3 工作草案中的一些新增内容。JavaFX CSS 支持和扩展的设计允许任何兼容的 CSS 解析器干净地解析\
+  \ JavaFX CSS 样式表。这使得可以将用于 JavaFX 的 CSS 样式与用于其他目的（例如 HTML 页面）的 CSS 样式混合到单个样式表中。\n\
+  \n所有 JavaFX 属性名称都带有 `-fx-` 扩展前缀，包括那些看起来可能与标准 HTML CSS 兼容的属性，因为某些 JavaFX 值的语义与标准值略有不同。\n\
+  \n### 注意\n\n有关 JavaFX CSS 的更多信息，请参阅《使用 CSS 为 JavaFX 应用程序换肤》文档以及位于 [`docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html`](http://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html)\
+  \ 的参考指南。\n\n\n\n### 应用 CSS 主题\n\n以下是一个自定义的简单 JavaFX CSS 规则文件 `ButtonStyle.css`，它将在我们的主题化过程中用于为按钮设置主题：\n\
+  \n```\n/* ButtonStyle.css */\n.button {\n-fx-text-fill: SKYBLUE;\n-fx-border-color:\
+  \ rgba(255, 255, 255, .80);\n-fx-border-radius: 8;\n-fx-padding: 6 6 6 6;\n-fx-font:\
+  \ bold italic 20pt \"Arial\";\n}\n```\n\n我们有两种方法应用 CSS 样式表来更改 JavaFX 应用程序的外观主题：\n\
+  \n1.  使用 JavaFX 应用程序（`javafx.application.Application`）类的静态方法 `setUserAgentStylesheet(String\
+  \ URL)`，该方法会为整个应用程序层级设置样式，包括 JavaFX 应用程序中的每个场景及其所有子节点。使用方法如下：\n\n    ```\n    Application.setUserAgentStylesheet(getClass().getResource(\"\
+  ButtonStyle.css\").toExternalForm());\n    ```\n\n    现在，你可以使用 JavaFX 8 预装的两个样式表：Caspian\
+  \ 和 Modena，并且我们可以使用相同的方法在它们之间切换，如下所示：\n\n    ```\n    // 切换到 JavaFX 2.x 的 CASPIAN\
+  \ 外观。\n    Application.setUserAgentStylesheet(STYLESHEET_CASPIAN);\n\n    // 切换到\
+  \ JavaFX 8 的 Modena 外观。\n    Application.setUserAgentStylesheet(STYLESHEET_MODENA);\n\
+  \    ```\n\n    ### 提示\n\n    如果你通过传递 `null` 值来调用 `setUserAgentStylesheet(null)`，则会加载默认外观（此处为\
+  \ Modena）；而如果你使用的是 JavaFX 2.x Caspian，则会加载默认的 Caspian 外观。\n\n2.  使用场景的 `getStylesheets().add(String\
+  \ URL)` 方法将自动为单个场景及其子节点设置样式，如下所示：\n\n    ```\n    Application.setUserAgentStylesheet(null);\
+  \ // 默认为 Modena\n    // 为场景应用自定义外观。\n    scene.getStylesheets()\n    .add(getClass().getResource(\"\
+  ButtonStyle.css\")\n    .toExternalForm());\n    ```\n\n    基本上，由于调用了 `Application.setUserAgentStylesheet(null)`，会加载默认主题（Modena）。然后，通过调用\
+  \ `getStylesheets().add()` 方法为场景设置额外的样式。\n\n样式首先应用于父节点，然后应用于其子节点。节点在添加到场景图后即被设置样式，无论其是否显示。\n\
+  \nJavaFX CSS 实现遵循以下优先级顺序——来自用户代理样式表的样式优先级低于来自代码设置的值，而来自代码设置的值优先级又低于场景或父节点的样式表。\n\
+  \n内联样式具有最高优先级。来自父节点实例的样式表被认为比来自场景样式表的样式更具体。\n\n"
+- '# Scene Builder
+
+
+  对于大多数复杂且精细的 UI 需求，设计师使用一种工具，通过所见即所得的界面来设计 UI，无需编写任何代码，然后将结果（`FXML` 文件）加载到他们的 JavaFX
+  应用程序逻辑中，这样不是更容易吗？
+
+
+  因此，你需要 JavaFX Scene Builder；它是一个可视化布局工具，允许你轻松布局 UI 控件，以便快速构建带有效果和动画的应用程序原型。Scene
+  Builder（2.0 及以上版本）是与 JavaFX 8 兼容的版本。
+
+
+  在项目创建过程中的任何时候，你都可以预览你的工作，以检查其在实际部署前的真实外观。
+
+
+  它是开源的，因此可以与大多数 IDE 集成，但与 NetBeans IDE 的集成更为紧密。它也是一个跨平台、自包含的应用程序，可在大多数平台上运行。
+
+
+  除了支持 CSS 之外，它还允许你轻松地为原型应用自定义主题。
+
+
+  ## 下载与启动
+
+
+  2015 年初，Oracle 发布了 JavaFX Scene Builder 工具 2.0 版本，并宣布将不再提供 JavaFX Scene Builder
+  工具（编译形式）的构建版本。
+
+
+  一家名为 **Gluon** ([`gluonhq.com`](http://gluonhq.com)) 的公司深知工具可以成就或破坏编码体验。因此，他们决定开始提供基于他们将在公开可访问的仓库中维护的一个分支的构建版本。
+
+
+  Gluon 提供 IDE 插件，以及基于 OpenJFX 最新源码改进的 JavaFX Scene Builder 工具构建版本，这些改进源于社区参与以及更好地支持第三方项目的愿望，例如
+  **ControlsFX** ([`www.controlsfx.org/`](http://www.controlsfx.org/))、**FXyz** ([`github.com/FXyz/FXyz`](https://github.com/FXyz/FXyz))
+  和 **DataFX** ([`www.datafx.io/`](http://www.datafx.io/))。
+
+
+  让我们开始从以下 URL 下载该工具：[`gluonhq.com/products/downloads/`](http://gluonhq.com/products/downloads/)。
+
+
+  下载 8.0 版本并安装后，启动它，Scene Builder 工具应打开，如下图所示：
+
+
+  ![下载与启动](img/B03998_02_05.jpg)
+
+
+  JavaFX 8 Scene Builder 工具。
+
+
+  ## FXML
+
+
+  在添加组件并构建你精美的 UI 布局时，Scene Builder 会在后台自动为你生成一个基于 FXML 和 XML 的标记文件，该文件稍后将用于将你的 UI
+  绑定到 Java 应用程序逻辑。
+
+
+  FXML 提供的主要优势之一是关注点分离，因为它将 UI 层（*视图*）与逻辑（*控制器*）解耦；这意味着你可以随时更改 UI，而无需更改底层逻辑。由于 FXML
+  文件不被编译，它可以在运行时动态加载，无需任何编译。这意味着它有助于你进行快速原型设计。
+
+
+  ### 将 FXML 加载到 JavaFX 应用程序中
+
+
+  从 Scene Builder 工具生成 UI 设计后，将其添加到应用程序中是非常容易的。以下是在 `start()` 方法中加载 FXML 文件的代码：
+
+
+  ```
+
+  BorderPane root = new BorderPane();
+
+  Parent content = FXMLLoader.load(getClass().getResource("filename.fxml"));
+
+  root.setCenter(content);
+
+  ```
+
+
+  如你所见，我使用了 `javafx.fxml.FXMLLoader` 类的静态方法 `load`。`load()` 方法将加载（反序列化）由 Scene Builder
+  工具创建的 FXML 文件。
+
+
+  '
+- "# 开发自定义 UI\n\n在本章的最后一节，我们将基于 JavaFX 8 的内置控件开发一个自定义 UI 组件。\n\n我们将使用之前讨论过的基于 FXML\
+  \ 的概念来开发这个自定义 UI；其主要优势是关注点分离，以便以后自定义组件时无需更改其功能或与之绑定的任何其他逻辑。\n\n## 登录对话框自定义 UI\n\n\
+  我们将使用前面介绍的大部分工具和技术来开发我们的自定义 UI：登录对话框，这是每个企业应用程序中必不可少的组件。我们的 UI 组件将如下图所示：\n\n![登录对话框自定义\
+  \ UI](img/B03998_02_06.jpg)\n\n登录自定义 UI 组件\n\n### 登录对话框自定义 UI 的结构\n\n基于 FXML 标记的自定义组件开发中最常见的结构和阶段如下：\n\
+  \n*   在 Scene Builder 工具中开发 UI；然后将结果导出为基于 FXML 的文件\n*   从 Scene Builder 中提取控制器骨架\n\
+  *   创建一个控制器，将 UI（视图）绑定到其逻辑，并扩展一个控件或布局\n*   在控制器构造函数中加载 FXML 文件\n*   创建一个初始化方法，确保所有\
+  \ FXML 控件都已成功初始化和加载\n*   公开公共属性以获取和设置控件数据，以及需要实现逻辑的操作方法\n*   开发一个单独的 CSS 文件\n* \
+  \  在你的应用程序中使用自定义组件\n\n\n\n### 编写登录对话框自定义 UI\n\n让我们来编写并开发自定义 UI——登录对话框：\n\n1.  打开\
+  \ Scene Builder 工具并创建 UI。其属性如下图所示：![编写登录对话框自定义 UI](img/B03998_02_07.jpg)\n2.  登录对话框的布局层级结构如下所示：\n\
+  \n![编写登录对话框自定义 UI](img/B03998_02_08.jpg)\n\n它由一个 Pane 布局作为顶层和根布局节点。然后，使用 `GridPane(1,4)`\
+  \ 将控件排列成一行四列的网格，具体如下：\n\n*   **第一**行在位置 (`0,0`) 处包含 `HBox` 布局控件，用于水平排列控件。它由显示徽标的\
+  \ `ImageView` 控件和显示标题的 Label 组成。\n    *   **第二**行在位置 (`0,1`) 处放置用于输入用户名的 `TextField`\
+  \ 控件。\n    *   **第三**行在位置 (`0,2`) 处放置用于输入密码的 `PasswordField` 控件。\n    *   **最后**一行位于位置\
+  \ (`0,3`)，包含一个根布局控件 `HBox`，该控件内部又包含另一个 HBox，其中放置了 `CheckBox` 和 `Label`（用于显示错误及其他消息）控件，并居左对齐。然后我们有两个按钮控件，**Reset**\
+  \ 和 **Login**，它们居右对齐。\n    *   在“代码”选项卡中，为对话框中的所有控件添加合适的 **fx:id** 名称，并为按钮和复选框事件的\
+  \ `onAction` 添加名称，如下截图所示：![编写登录对话框自定义 UI](img/B03998_02_09.jpg)\n\n登录按钮属性\n\n3.\
+  \  从 Scene Builder 的 **Preview** 菜单中选择 **Show preview in windows**。你的布局将会弹出。如果一切正常且你对最终设计满意，从菜单栏点击\
+  \ **File**，然后 **Save**，并将文件名输入为 `LoginUI.fxml`。恭喜！你已经创建了第一个 JavaFX UI 布局。\n4.  现在我们将打开\
+  \ NetBeans 来设置一个 JavaFX FXML 项目，因此启动 NetBeans，并从 **File** 菜单中选择 **New Project**。\n\
+  5.  在 **JavaFX** 类别中，选择 **JavaFX FXML Application**。点击 **Next**。然后将项目命名为 **LoginControl**，将\
+  \ **FXML name** 改为 `LoginUI`，并点击 **Finish**。\n\n### 提示\n\n确保 JavaFX 平台为 Java SE\
+  \ 8。\n\n6.  NetBeans 将创建一个如下所示的项目结构：![编写登录对话框自定义 UI](img/B03998_02_10.jpg)\n\nLogin\
+  \ Control NetBeans 项目结构。\n\n### 注意\n\n在运行项目之前，务必*清理并构建*项目，以避免可能遇到的问题，尤其是在运行应用程序时，运行时加载\
+  \ `*.fxml` 文件可能返回 `null`。\n\n7.  转到 Scene Builder 工具，从 **View** 中选择 **Show sample\
+  \ controller skeleton**。将打开如下截图所示的窗口，我们将复制其内容，替换 `LoginUIController.java`（该类扩展了\
+  \ `Pane` 类，将 NetBeans 中复制的内容替换原有代码），然后修复缺失的导入。\n8.  用 NetBeans 已创建的 `LoginUI.fxml`\
+  \ 文件替换之前从 Scene Builder 生成并保存的文件。\n9.  右键点击 `LoginController.java` 文件，选择 **Refactor**，然后\
+  \ **Rename**，将其重命名为 `Main.java`。\n10. 最后，在 `Main.java` 类的 `start(Stage stage)` 方法中添加如下代码。我们正在创建一个登录组件的新实例，作为场景的根节点，并将其添加到舞台中：\n\
+  \n```\n    LoginUIController loginPane = new LoginUIController();\n\nstage.setScene(new\
+  \ Scene(loginPane));\n    stage.setTitle(\"Login Dialog Control\");\n    stage.setWidth(500);\n\
+  \    stage.setHeight(220);\n    stage.show();\n    ```\n\n![编写登录对话框自定义 UI](img/B03998_02_11.jpg)\n\
+  11. 在 `LoginUIController.java` 类中，右键点击类名下方，选择 **Insert Code**；然后选择 **Constructor**，最后在构造函数中添加以下代码：\n\
+  \n```\n    public LoginUIController() throws IOException {\n      FXMLLoader fxmlLoader\
+  \ = new FXMLLoader(getClass().getResource(\"LoginUI.fxml\"));\n      fxmlLoader.setRoot(this);\n\
+  \      fxmlLoader.setController(this);\n      fxmlLoader.load();\n    }\n    ```\n\
+  \n此代码加载我们的 `LoginUI.fxml` 文档，并将其作为包含层级结构的 Pane 布局返回。然后，它将其绑定到当前控制器实例，同时作为控制器和根节点。请注意，控制器扩展了\
+  \ Pane，这与 `LoginUI.fxml` 中的根元素定义一致。\n\n12. 在 NetBeans 中，选择 **Clean and Build**，然后右键点击项目并选择\
+  \ **Run**。之前看到的相同屏幕应该会出现。\n13. 程序运行时，输入任意凭据并点击 **Login** 按钮；将出现一条红色错误消息，如下截图所示：![编写登录对话框自定义\
+  \ UI](img/B03998_02_12.jpg)\n\nLogin Control 无效登录。\n\n14. 如果输入了正确的凭据（用户名：*tamanm*，密码：*Tamanm*），则会显示绿色消息“*Valid\
+  \ Credentials*”，如下图所示。\n15. 如果点击 **Reset** 按钮，则所有控件将恢复为默认值。\n\n恭喜！您已成功创建并实现了一个自定义\
+  \ UI 控件。\n\n![编写登录对话框自定义 UI](img/B03998_02_13.jpg)\n\n"
+- '# 总结
+
+
+  在本章中，我们涵盖了大量内容——首先简要介绍了 JavaFX 8 架构组件，这些组件是流畅高效运行 JavaFX 应用程序的基础层。接着，我们探讨了如何在场景上渲染图形，并简要说明了最常用的布局和
+  UI 控件。
+
+
+  您了解了 Java SE 8 中的新特性，如 lambda 表达式和函数式接口，并通过示例展示了各自的强大功能。
+
+
+  您学习了如何使用 `setUserAgentStylesheet(String URL)` 和 `getStylesheets().add(String URL)`
+  方法，通过自定义 CSS 文件为应用程序设置样式。接下来，您简要了解了 Scene Builder 以及如何将 FXML 加载到场景中。最后，您学习了 JavaFX
+  中的自定义 UI 组件及其创建方法。
+
+
+  在下一章中，您将学习如何创建包含多个场景的桌面应用程序，以及如何对其进行打包。此外，我们还将学习如何与 Web 交互，并使用 JavaFX 8 开发 Web 应用程序。
+
+
+
+
+  '
+- '# 第 3 章 开发 JavaFX 桌面与 Web 应用程序
+
+
+  本章将介绍如何开发引人入胜的桌面和 Web 应用程序，利用多核硬件加速 GPU，交付具有惊艳外观和体验的高性能 UI 应用。
+
+
+  由于 JavaFX 完全用 Java 从头编写，我们将使用一些 Java SE 8 内置核心库来驱动应用程序。此外，我们还将学习如何将应用程序打包为独立应用，以便启动和分发。
+
+
+  同时，我们还将介绍 JavaFX 8 中任何 Web 应用所必需的核心 Web API，例如`javafx.scene.web.WebEngine`、`java.net.HttpURLConnection`和`javafx.scene.web.WebView`。
+
+
+  我们将讨论 JavaFX 与 HTML5 之间的关系，这一点很重要，因为 JavaFX 的 API 与 HTML5 的特性相辅相成。HTML5 是一个富 Web
+  内容平台，用于创建类似**RIA**（**富互联网应用**）Web 应用的用户体验，同时具备原生桌面软件的特性。
+
+
+  更重要的是，我们将逐步开发桌面版的*笔记应用*，然后将其在 Web 上运行。
+
+
+  此外，我们还将涵盖将*笔记应用作为 Web 应用*部署到桌面和 Web 所需的所有知识和技能。
+
+
+  以下是本章将学到的技能：
+
+
+  *   开发和运行桌面与 Web 应用程序
+
+  *   控制应用程序 UI
+
+  *   如何打包 JavaFX 8 桌面应用程序
+
+  *   在 JavaFX 应用程序中加载 HTML5 内容
+
+  *   从 JavaFX 向 JavaScript 发送数据，反之亦然
+
+  *   部署 JavaFX Web 应用程序
+
+
+  '
+- "# 开发笔记应用\n\n仅为一个平台构建应用程序已经不够了。成功的产品需要支持桌面、Web、移动和嵌入式环境，但学习不同环境很困难。这时 JavaFX 的强大之处就体现出来了——只需简单调整，就能编写出在不同平台上运行的应用程序，正如本章将要展示的那样。\n\
+  \n在这里，我们将同时为桌面和 Web 构建一个*笔记*应用。在这个项目中，我将向你展示如何使用 JavaFX 8 SDK 和 Java 编程语言，利用之前安装的开发工具（参考第\
+  \ 1 章，*开始使用 JavaFX 8*），从零开始创建一个完整的 JavaFX 应用程序。\n\n然后，我将展示如何创建应用程序的两个屏幕布局，并创建控制它们的\
+  \ Java 类。我将创建按钮来控制不同场景之间的导航、保存数据，并通过属性绑定的强大功能动态更新 UI 控件。\n\n最终项目将如下图所示：\n\n![开发笔记应用](img/B03998_03_01.jpg)\n\
+  \n笔记应用\n\n此图显示了从主屏幕的“新建笔记”按钮打开的添加和编辑屏幕，用于添加新笔记，或通过“编辑”按钮编辑列出的笔记之一，如下所示：\n\n![开发笔记应用](img/B03998_03_02.jpg)\n\
+  \n那么，你还在等什么？让我们开始吧！\n\n## 构建 UI 原型\n\n构建任何成功的**复杂 UI**（即使是简单的 UI）应用的第一步，都是对布局、屏幕关系、状态和导航进行原型设计。先在纸上画出草图，然后从团队和经理那里获取反馈。修改后，一旦获得批准，就开始为客户构建一个真正的交互式原型，以便获取他们对最终产品的反馈。\n\
+  \n这就是我们现在要做的。我们的应用已经在纸上或任何易于使用的 UI 草图工具中布局好了，如下图所示。然后，我们将使用 Scene Builder 工具将其开发为完整的原型。\n\
+  \n此外，我们还将看到 NetBeans 与 Scene Builder 工具之间的互操作性。\n\n### 注意\n\n请注意，先在纸上画出布局草图更容易，因为这是一种非常快速的方法，可以在使用工具开发之前编辑、改进并确定最终的应用布局。\n\
+  \n现在，我们已经画好了草图，准备构建应用的真实原型。\n\n充分利用这些工具的最佳方式是在 NetBeans IDE 中创建应用骨架（*控制器类和 FXML\
+  \ 基础页面定义*），然后在 Scene Builder 工具中创建和开发 FXML 页面。这就是两个工具之间强大的互操作性。\n\n![构建 UI 原型](img/B03998_03_03.jpg)\n\
+  \n以下是开始使用 JavaFX FXML 应用的步骤：\n\n1.  打开 NetBeans IDE，从主菜单中选择**文件**，然后选择**新建项目**，将打开**新建项目**对话框。从**类别**中选择**JavaFX**，然后在**项目**下选择**JavaFX\
+  \ FXML 应用程序**。然后点击**下一步**按钮：![构建 UI 原型](img/B03998_03_04.jpg)\n\n一个新的 JavaFX FXML\
+  \ 应用程序\n\n2.  在**JavaFX FXML 应用程序**对话框中，添加相关信息。在**项目名称**中，添加位置和**FXML 名称**（在我的例子中是`ListNotesUI`）。在**创建应用程序类**中，我添加了`packt.taman.jfx8.ch3.NoteTakingApp`，如下图所示。点击**完成**。![构建\
+  \ UI 原型](img/B03998_03_05.jpg)\n3.  现在我们有了一个包含第一个 FXML UI 文档（`ListNotesUI.fxml`）的项目，我们需要添加第二个\
+  \ FXML UI 文档（`AddEditUI.fxml`）及其控制器。\n4.  为此，从文件菜单中选择**新建文件**；然后在**类别**列表中选择**JavaFX**，从**文件类型**列表中选择**空\
+  \ FXML**，最后点击**下一步**，如下图所示。\n5.  在**新建空 FXML 和位置**对话框中，将**FXML 名称**字段编辑为`AddEditUI`，然后点击**下一步**。![构建\
+  \ UI 原型](img/B03998_03_06.jpg)\n\n添加新的空 FXML 文档\n\n6.  在如下屏幕所示的**控制器类**对话框中，勾选**使用\
+  \ Java 控制器**复选框。确保已选择**创建新控制器**，并将**控制器名称**设为`AddEditUIController`。然后点击**下一步**，跳过**层叠样式表**对话框，最后点击**完成**：![构建\
+  \ UI 原型](img/B03998_03_07.jpg)\n\n为 FXML 文档添加新控制器\n\n构建好项目结构后，是时候使用 Scene Builder\
+  \ 将控件添加到页面 UI 中了，就像我们在纸上画的那样。操作很简单：\n\n1.  在 NetBeans 中，右键点击`ListNotesUI.fxml`并选择**打开**，或者直接双击它。**Scene\
+  \ Builder**将以设计模式打开你的 FXML 文档。\n\n### 注意\n\n注意：仅当你的机器上安装了 Scene Builder 时才有效。\n\n\
+  2.  按照以下截图设计页面。最重要的是，在返回 NetBeans 或关闭**Scene Builder**进行逻辑实现之前，别忘了保存更改。![构建 UI 原型](img/B03998_03_08.jpg)\n\
+  \n完整的 ListNotesUI.fxml 文档设计\n\n3.  对`AddEditUI.fxml`执行相同步骤，你的设计应如下所示：![构建 UI 原型](img/B03998_03_09.jpg)\n\
+  \n完整的 AddEditUI.fxml 文档设计\n\n你需要检查 FXML 文档，看看我们是如何嵌套许多容器和 UI 控件来实现之前草图的 UI 的，此外还使用了它们的属性来控制间距、对齐、字体和颜色。\n\
+  \n恭喜！你已经将草图布局转化为生动的原型，可以作为无逻辑的项目展示给团队领导和经理，获取他们对颜色、主题和最终布局的反馈。而且，一旦获得批准，你就可以在深入业务逻辑之前，继续获取最终客户的反馈。\n\
+  \n\n\n## 为应用程序注入活力——添加交互功能\n\n设计好应用程序后，你需要通过使其更具交互性，并能对客户提出的功能需求做出响应，来让它真正“活”起来。\n\
+  \n我做的第一件事总是添加页面间的导航处理器，并且我已经在每个 FXML 文档的控制器类中完成了这项工作。\n\n为了消除冗余并实现模块化，我在 `BaseController.java`\
+  \ 类中创建了一个基础的导航方法，系统中所有的控制器都将继承这个类。这个类对于添加任何通用功能和共享属性都非常有用。\n\n以下 `navigate(Event\
+  \ event, URL fxmlDocName)` 方法是我们所有系统导航中最重要的代码片段之一（注释说明了其工作机制）：\n\n```\nprotected\
+  \ void navigate(Event event, URL fxmlDocName) throws IOException {\n  //加载新的 fxml\
+  \ UI 文档\n  Parent pageParent = FXMLLoader.load(fxmlDocName);\n  //创建新场景\n  Scene\
+  \ scene = new Scene(pageParent);\n  //获取当前舞台\n  Stage appStage = (Stage)((Node)\
+  \ event.getSource()).getScene().getWindow();\n  //隐藏旧舞台\n  appStage.hide(); // 可选\n\
+  \  //为舞台设置新场景\n  appStage.setScene(scene);\n  //显示舞台\n  appStage.show();\n}\n```\n\
+  \n此方法将分别从 `ListNotesUI.fxml` 页面（位于 `ListNotesUIController.java`）中的**新建笔记**和编辑按钮，以及\
+  \ `AddEditUI.fxml` 页面（位于 `AddEditUIController.java`）中的**笔记列表**、保存和**取消**按钮的动作处理器中调用，具体如下所示。\n\
+  \n请注意 FXML 文档中定义的按钮与控制器之间的关系。`@FXML` 注解在此发挥作用，它将 FXML 属性（*使用 #*）与控制器中定义的动作绑定在一起：\n\
+  \n`ListNotesUI.fxml` 文件中的**新建笔记**按钮定义如下：\n\n```\n<Button alignment=\"TOP_CENTER\"\
+  \n        contentDisplay=\"TEXT_ONLY\"\n        mnemonicParsing=\"false\"\n    \
+  \    onAction=\"#newNote\" \n        text=\"新建笔记\" \n        textAlignment=\"CENTER\"\
+  \ \n        wrapText=\"true\" \n/>\n```\n\n**新建笔记**动作在 `ListNotesUIController.java`\
+  \ 中定义，并通过 `onAction=\"#newNote\"` 与上述按钮绑定：\n\n```\n@FXML\n private void newNote(ActionEvent\
+  \ event) throws IOException {\n        editNote = null;\n        navigate(event,\
+  \ ADD.getPage());\n }\n```\n\n`AddEditUI.fxml` 文件中的**返回**按钮定义如下：\n\n```\n<Button\
+  \ alignment=\"TOP_CENTER\"    \n        contentDisplay=\"TEXT_ONLY\"\n        mnemonicParsing=\"\
+  false\"\n        onAction=\"#back\" \n        text=\"笔记列表\" \n        textAlignment=\"\
+  CENTER\"\n        wrapText=\"true\"\n/>\n```\n\n**返回**动作在 `AddEditUIController.java`\
+  \ 中定义，并通过 `onAction=\"#back\"` 与上述按钮绑定：\n\n```\n@FXML\nprivate void back(ActionEvent\
+  \ event) throws IOException {\n        navigate(event, FXMLPage.LIST.getPage());\n\
+  }\n```\n\n你可能想知道 `FXMLPage.java` 类是做什么的。它是一个枚举（关于枚举的更多信息，请访问 [`docs.oracle.com/javase/tutorial/java/javaOO/enum.html`](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html)）。我创建了枚举来定义我们所有的\
+  \ FXML 文档名称及其位置，以及与这些 FXML 文档相关的任何实用方法，这有助于简化我们系统中的编码工作。\n\n### 提示\n\n这种可维护性的概念有助于在大型系统中将恒定的属性和功能集中在一个地方，以便将来轻松重构，并允许我们在一个地方更改名称，而无需在整个系统中四处寻找并修改同一个名称。\n\
+  \n如果你检查系统控制器，你会发现处理其他按钮动作（删除、编辑、清除和保存笔记）的所有逻辑。\n\n\n\n### 使用属性实现电源应用变更同步\n\n属性是基于\
+  \ JavaFX 的对象属性（如 String 或 Integer）的包装器对象。属性允许你添加监听器代码，以便在对象包装值发生更改或被标记为无效时做出响应。此外，属性对象可以相互绑定。\n\
+  \n绑定行为允许属性根据另一个属性的更改值来更新或同步其值。\n\n属性是包装器对象，能够使值以可读写或只读的方式访问。\n\n简而言之，JavaFX 的属性是持有实际值的包装器对象，同时提供变更支持、失效支持和绑定功能。我稍后会讨论绑定，但现在，让我们先看看常用的属性类。\n\
+  \n所有包装器属性类都位于 `javafx.beans.property.* package` 命名空间中。下面列出的是常用的属性类。要查看所有属性类，请参阅\
+  \ Javadoc 中的文档（[`docs.oracle.com/javase/8/javafx/api/index.html?javafx/beans/property.html`](https://docs.oracle.com/javase/8/javafx/api/index.html?javafx/beans/property.html)）。\n\
+  \n*   `javafx.beans.property.SimpleBooleanProperty`\n*   `javafx.beans.property.ReadOnlyBooleanWrapper`\n\
+  *   `javafx.beans.property.SimpleIntegerProperty`\n*   `javafx.beans.property.ReadOnlyIntegerWrapper`\n\
+  *   `javafx.beans.property.SimpleDoubleProperty`\n*   `javafx.beans.property.ReadOnlyDoubleWrapper`\n\
+  *   `javafx.beans.property.SimpleStringProperty`\n*   `javafx.beans.property.ReadOnlyStringWrapper`\n\
+  \n前缀为 `Simple`、后缀为 `Property` 的属性是*可读写属性*类，而前缀为 `ReadOnly`、后缀为 `Wrapper` 的类是只读属性。稍后，你将看到如何使用这些常用属性创建\
+  \ JavaFX bean。\n\n让我们快进到 JavaFX 的 Properties API，看看它如何处理常见问题。你可能已经注意到，主页面中添加了 `TableView`\
+  \ 控件，用于列出当前加载的笔记以及任何新添加的笔记。\n\n为了用数据正确填充 `TableView`，我们应该有一个数据模型来表示笔记数据，这也是我第一次在\
+  \ JavaFX JavaBean 风格的 Note 类中使用 Properties API 的地方，该类定义如下：\n\n```\npublic class\
+  \ Note {\n    private final SimpleStringProperty title;\n    private final SimpleStringProperty\
+  \ description;\n    public Note(String title, String description) {\n        this.title\
+  \ = new SimpleStringProperty(title);\n        this.description = new SimpleStringProperty(description);\n\
+  \    }\n    public String getTitle() {\n        return title.get();\n    }\n   \
+  \ public void setTitle(String title) {\n        this.title.set(title);\n    }\n\
+  \    public String getDescription() {\n        return description.get();\n    }\n\
+  \    public void setDescription(String description) {\n        this.description.set(description);\n\
+  \    }\n}\n```\n\n为了用已存储在应用程序数据库中的数据填充 `TableView` 类，例如（我们这里的数据库是瞬态的，使用笔记对象 data\
+  \ 的 `ObservableList<Note>`），我们必须传递一个此数据的集合。\n\n我们需要摆脱每次笔记数据集合更新时手动更新 UI 控件（在我们的例子中是\
+  \ `TableView` 控件）的负担。因此，我们需要一个解决方案，能够自动同步表格视图和笔记数据集合模型之间的变更，例如添加、更新或删除数据，而无需从代码中对\
+  \ UI 控件进行任何进一步修改。只有数据模型集合得到更新——UI 应该自动同步。\n\n此功能已经是 JavaFX 集合的一个组成部分。我们将使用 JavaFX\
+  \ 的 `ObservableList` 类。`ObservableList` 类是一个集合，能够在对象被添加、更新或删除时通知 UI 控件。\n\nJavaFX\
+  \ 的 `ObservableList` 类通常用于列表 UI 控件，例如 `ListView` 和 `TableView`。让我们看看我们将如何使用 `ObservableList`\
+  \ 集合类。\n\n在 `BaseController` 中，我创建了静态数据作为 `ObservableList<Note>`，以便在所有控制器之间共享，从而能够从中添加、更新和删除笔记。此外，它还用一些数据进行了初始化，如下所示：\n\
+  \n```\nprotected static ObservableList<Note> data = FXCollections.<Note>observableArrayList(\n\
+  \  new Note(\"笔记 1\", \"笔记 41 的描述\"),\n    new Note(\"笔记 2\", \"笔记 32 的描述\"),\n\
+  \    new Note(\"笔记 3\", \"笔记 23 的描述\"),\n    new Note(\"笔记 4\", \"笔记 14 的描述\"));\n\
+  ```\n\n在 `ListNotesUIController.java` 类的 `initialize()` 方法中，我创建了一个 `javafx.collections.transformation.FilteredList`\
+  \ 类的实例，该实例将用作我们在表格内容中搜索时的过滤类。它将传递类型为 `ObservableList<Note>` 的 `data` 对象作为源数据：\n\n\
+  ```\nFilteredList<Note> filteredData = new FilteredList<>(data, n -> true);\n```\n\
+  \n`FilteredList` 的第二个参数是用于过滤数据的谓词；这里它返回 `true`，表示不过滤，我们稍后会添加过滤谓词。\n\n创建的类型为 `ObservableList<Note>`\
+  \ 的数据列表应传递给我们的 `TableView` 数据，以便表格视图监视当前数据集合的操作，例如添加、删除、编辑和过滤，如下面的 `ListNotesUIController.java`\
+  \ 类的 `initialize()` 方法所示，但我们传递的是 `filteredData` 包装器实例：\n\n```\nnotesListTable.setItems(filteredData);\n\
+  ```\n\n最后一步是告知我们的 `notesListTable` 列（类型为 `TableColumn`）以及要渲染和处理的 Note 类的哪个属性。我们使用\
+  \ `setCellValueFactory()` 方法来实现这一点，如下所示：\n\n```\ntitleTc.setCellValueFactory(new\
+  \ PropertyValueFactory<>(\"title\"));\ndescriptionTc.setCellValueFactory(new PropertyValueFactory<>(\"\
+  description\"));\n```\n\n请注意，`title` 和 `description` 是 `Note` 类的实例变量名。\n\n查看最终项目代码以获取完整实现。然后，从\
+  \ NetBeans 主菜单运行应用程序，选择“运行”，然后单击**运行主项目**。\n\n尝试添加一条新笔记，并在表格视图中查看你新添加的笔记。尝试选择并删除笔记，或更新现有笔记。你将立即看到更改。\n\
+  \n通过检查应用程序代码，你将看到我们所做的只是操作数据列表，而所有其他同步工作都是借助 `ObservableList` 类完成的。\n\n\n\n####\
+  \ 过滤 TableView 数据列表\n\n在此，我们将接触到 Java SE 8 和 JavaFX 8 两个最强大的特性：`Predicate` 和 `FilteredList`。让我们说明当前面临的问题，以及如何利用\
+  \ `stream` 特性来解决它。\n\n在我们的 `ListNotesUI.fxml` 页面中，你可能会注意到笔记表格上方的文本字段；其作用是过滤当前表格数据，缩小结果范围以找到特定笔记。同时，我们需要维护当前列表，注意不要从中移除任何数据，也不要为每次搜索命中而查询数据库。\n\
+  \n我们已经有了笔记数据列表，接下来将使用文本字段来过滤该列表，查找任何笔记标题或描述中包含该字符或字符组合的内容，如下图所示：\n\n![过滤 TableView\
+  \ 数据列表](img/B03998_03_10.jpg)\n\n填充了数据的表格\n\n现在，输入 `d`、`de`、`dev` 或 `developing`、`JavaFX`\
+  \ 后，表格将被过滤，如下截图所示。此外，尝试删除所有文本，你会发现数据会再次恢复。接下来，我们将揭示如何实现这一效果。\n\n![过滤 TableView 数据列表](img/B03998_03_11.jpg)\n\
+  \n通过搜索字段中的文本过滤后的表格数据\n\n以下是实现这一功能的神奇代码片段：\n\n```\nsearchNotes.setOnKeyReleased(e\
+  \ ->\n{\n  filteredData.setPredicate(n ->\n  {              \nif (searchNotes.getText()\
+  \ == null || searchNotes.getText().isEmpty())\nreturn true;\n\nreturn n.getTitle().contains(searchNotes.getText())\n\
+  || n.getDescription().contains(searchNotes.getText());\n  });\n});\n```\n\n`searchNotes`\
+  \ 是我们用于过滤笔记数据的文本字段的引用。我们为其注册了一个 `setOnKeyReleased(EventHandler<? super KeyEvent>\
+  \ value)` 方法，一旦输入任何字符，该方法就会获取我们的文本进行过滤。同时，请注意我们在此处使用了 Lambda 表达式，使代码更加简洁清晰。\n\n\
+  在动作方法的定义内部，`filteredData` 是一个 `FilteredList<Note>` 类，我们将一个谓词 `test()` 方法的实现传递给了\
+  \ `setPredicate(Predicate<? super E> predicate)`，以仅过滤与 `searchNotes` 文本输入匹配的笔记标题或描述。\n\
+  \n过滤后的数据会自动更新到表格 UI 中。\n\n有关 Predicate API 的更多信息，请访问 [`docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html`](http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html)。\n\
+  \n## 作为桌面应用的笔记应用\n\n完成应用程序后，更专业的做法不是分发最终的 jar 文件，而是要求用户安装 JRE 环境才能运行你的应用程序，尤其是当你面向大量用户时。\n\
+  \n更专业的做法是准备本机安装程序包，如 `.exe`、`.msi`、`.dmg` 或 `.img` 格式。\n\n每个安装程序都会管理应用程序所需的资源和运行时环境。这也能确保你的应用程序在多个平台上运行。\n\
+  \n### 为桌面分发部署应用程序\n\nNetBeans 的高级特性之一是允许你通过其部署处理程序为不同平台打包应用程序，这提供了以下主要功能：\n\n* \
+  \  通过本机安装程序部署应用程序\n*   管理应用程序资源，如应用程序图标、启动画面和本机安装程序图标\n*   在准备最终包时接受应用程序最终签名的证书\n\
+  *   管理所需的 JavaFX 运行时版本\n*   在 Windows 上添加开始菜单的桌面快捷方式\n*   处理 Java Web Start 技术的需求和自定义设置\n\
+  \n让我们看看 NetBeans 部署的配置：\n\n![为桌面分发部署应用程序](img/B03998_03_12.jpg)\n\nNetBeans 部署配置\n\
+  \n要了解如何将应用程序打包成针对每个目标平台的本机安装程序，请访问以下 URL，其中提供了完成该任务所需的所有步骤和软件：\n\n[`netbeans.org/kb/docs/java/native_pkg.html`](https://netbeans.org/kb/docs/java/native_pkg.html)\n\
+  \n"
+- "# Web 上的 JavaFX\n\n在本节中，我们将了解 Web 上的 JavaFX，以及如何将我们的笔记应用部署到 Web 上。\n\n## WebEngine\n\
+  \nJavaFX 提供了一个能够加载 HTML5 内容的非 GUI 组件，称为 **WebEngine** API（`javafx.scene.web.WebEngine`）。该\
+  \ API 本质上是 `WebEngine` 类的一个对象实例，用于加载包含 HTML5 内容的文件。HTML5 文件可以从本地文件系统、Web 服务器或 JAR\
+  \ 文件内部加载。\n\n当使用 Web 引擎对象加载文件时，会使用后台线程来加载文件内容，以避免阻塞 *JavaFX 应用程序线程*。\n\n以下是两个用于加载\
+  \ HTML5 内容的 `WebEngine` 方法：\n\n*   load(String URL)\n*   loadContent(String HTML)\n\
+  \n## WebView\n\nJavaFX 提供了一个 GUI `WebView`（`javafx.scene.web.WebView`）节点，可以将 HTML5\
+  \ 内容渲染到场景图上。`WebView` 节点本质上是一个迷你浏览器，能够响应 Web 事件，并允许开发者与 HTML5 内容进行交互。\n\n由于加载 Web\
+  \ 内容与显示 Web 内容之间的紧密关系，`WebView` 节点对象也包含一个 `WebEngine` 实例。\n\nJavaFX 8 的 `WebView`\
+  \ 类实现支持以下 HTML5 特性：\n\n*   Canvas 和 SVG\n*   媒体播放\n*   表单控件\n*   历史记录维护\n*   交互式元素标签\n\
+  *   DOM\n*   Web Workers\n*   Web Sockets\n*   Web 字体\n\n\n\n### WebView 与引擎实战\n\
+  \n接下来，我们将通过一个简单示例，演示如何使用 `WebView` 加载包含谷歌地图的 HTML5 网页文档，并将其作为 JavaFX 场景控件进行集成。随后，我们利用\
+  \ `WebEngine` 从 JavaFX 的 `TextField` 控件中获取经纬度，执行一个 JavaScript 方法，将地图定位到新传入的位置并显示标记，如下图所示：\n\
+  \n![WebView 与引擎实战](img/B03998_03_13.jpg)\n\nJavaFX 8 应用中的谷歌地图查看器\n\n为清晰起见，我将仅展示并解释代码中体现前述概念的关键部分。本章的完整代码请查看\
+  \ `web` 包中的 `GoogleMapViewerFX.java` 类和 `map.html` 文件。\n\n要在 JavaFX 应用中显示谷歌地图，首先需要创建一个\
+  \ HTML 文件来加载并集成 Maps API，该文件定义在 `map.html` 中。如上图所示，地图中心定位在埃及开罗（我的城市），这是在创建地图时作为经纬度值传入的，如以下代码片段所示：\n\
+  \n```\nvar latlng = new google.maps.LatLng(30.0594885, 31.2584644);\nvar Options\
+  \ = {\n    zoom: 13,\n    center: latlng,\n    mapTypeId: google.maps.MapTypeId.ROADMAP\n\
+  };\nvar map = new google.maps.Map(document.getElementById(\"canvas\"), Options);\n\
+  ```\n\n接下来，请注意 JavaScript 方法 `goToLocation(lng, lat)`；该方法将通过 `webEngine` 实例从 JavaFX\
+  \ 应用中被调用，以便根据 JavaFX 控件传入的经纬度来定位地图。\n\n在 `GoogleMapViewerFX.java` 中，我们创建了四个控件来组成用户界面——两个用于输入经纬度的\
+  \ `TextField` 类、一个更新按钮，以及一个用于显示 `map.html` 文档的 `WebView` 对象：\n\n```\nWebView webView\
+  \ = new WebView();\nWebEngine webEngine = webView.getEngine();\nfinal TextField\
+  \ latitude = new TextField(\"\" + 29.8770037);\nfinal TextField longitude = new\
+  \ TextField(\"\" + 31.3154412);\nButton update = new Button(\"Update\");\n```\n\n\
+  请注意，我创建的文本控件中初始经纬度与原始地图位置不同。这个位置是我的家庭住址，你可以将其改为你自己的位置，然后点击更新按钮查看新位置。\n\n要加载 `map.html`\
+  \ 文件，我们需要将其传递给从已创建的 `WebView` 类中实例化的 `WebEngine` 类，如上文代码片段所示。\n\n实现按钮的 `onAction()`\
+  \ 方法，通过 `webEngine` 的 `executeScript()` 方法实现 JavaFX 控件与 JavaScript 之间的集成，代码如下：\n\
+  \n```\nupdate.setOnAction(evt -> {\n   double lat = Double.parseDouble(latitude.getText());\n\
+  \   double lon = Double.parseDouble(longitude.getText());\n\n   webEngine.executeScript(\"\
+  \" +\n             \"window.lat = \" + lat + \";\" +\n             \"window.lon\
+  \ = \" + lon + \";\" +\n             \"document.goToLocation(window.lat, window.lon);\"\
+  );\n});\n```\n\n运行应用，你应该会看到上图定位到开罗市！点击更新按钮，你应该会看到我的家，如下图所示。\n\n尝试获取你所在位置的经纬度，然后也定位到你的家吧！\n\
+  \n很强大，不是吗？集成 HTML5 内容并与已有的 Web 应用交互，从而为现有的 JavaFX 应用添加更丰富的网络内容，这非常容易。\n\n![WebView\
+  \ 与引擎实战](img/B03998_03_14.jpg)\n\n在 JavaFX 8 应用中更改谷歌地图位置\n\n## 作为 Web 应用的笔记功能\n\n\
+  一旦你的应用经过测试（如前所述），你就可以将其分发到多个平台和环境。我们已经通过本章介绍的方法，使用项目 `dist` 文件夹下的 `.jar` 文件，为桌面平台生成了原生安装程序。\n\
+  \n同样的 `.jar` 文件也可用于 Web 部署，并且可以通过多种方式将应用部署为 Web 应用，我们将在下文介绍。\n\n### 在 Web 上运行应用\n\
+  \n在 Web 上运行 JavaFX 应用有三种方式：\n\n1.  使用 **Java Web Start** 一次性下载并启动应用；之后，你可以从本地机器离线使用它。\n\
+  2.  将你的 JAR 文件嵌入 HTML 文件中，以便在企业环境中运行。\n3.  如前所述，从 `WebEngine` 类加载 HTML 内容，并通过 `WebView`\
+  \ 类进行显示。\n\n#### Java Web Start\n\nJava Web Start 软件提供了单击启动全功能应用的能力。用户可以下载并启动诸如完整电子表格程序或互联网聊天客户端等应用，而无需经历冗长的安装过程。\n\
+  \n使用 Java Web Start，用户只需点击网页上的链接即可启动 Java 应用。该链接指向一个 **JNLP**（**Java 网络启动协议**）文件，该文件指示\
+  \ Java Web Start 下载、缓存并运行该应用。\n\nJava Web Start 为 Java 开发者和用户提供了许多部署优势：\n\n*   使用\
+  \ Java Web Start，你可以将单个 Java 应用放置在 Web 服务器上，以部署到包括 Windows、Linux 和 Solaris 在内的多种平台。\n\
+  *   它支持 Java 平台的多个并发版本。应用可以请求特定版本的 Java 运行时环境（JRE）软件，而不会与其他应用的需求冲突。\n*   用户可以在浏览器外创建桌面快捷方式，以启动\
+  \ Java Web Start 应用。\n*   Java Web Start 利用了 Java 平台固有的安全性。默认情况下，应用对本地磁盘和网络资源的访问受到限制。\n\
+  *   使用 Java Web Start 启动的应用会被缓存到本地，以提高性能。\n*   当 Java Web Start 应用在用户桌面上独立运行时，其更新会自动下载。\n\
+  \nJava Web Start 作为 JRE 软件的一部分安装。用户无需单独安装 Java Web Start 或执行额外任务即可使用 Java Web Start\
+  \ 应用。\n\n有关 **Java Web Start** 的更多信息，请参阅以下链接：\n\n*   Java Web Start 指南 ([`docs.oracle.com/javase/8/docs/technotes/guides/javaws/developersguide/contents.html`](http://docs.oracle.com/javase/8/docs/technotes/guides/javaws/developersguide/contents.html))\n\
+  *   `javax.jnlp` API 文档 ([`docs.oracle.com/javase/8/docs/jre/api/javaws/jnlp/index.html`](http://docs.oracle.com/javase/8/docs/jre/api/javaws/jnlp/index.html))\n\
+  *   Java Web Start 开发者网站 ([`www.oracle.com/technetwork/java/javase/javawebstart/index.html`](http://www.oracle.com/technetwork/java/javase/javawebstart/index.html))\n\
+  \n### 为 Web 分发部署应用\n\n要将 JavaFX 应用部署到 Web 上，有一种使用 NetBeans 的非常简单的方法。\n\nNetBeans\
+  \ 已经为你的 JavaFX 应用提供了三种部署类型——桌面、Java Web Start 和 Web——如下图所示：\n\n![为 Web 分发部署应用](img/B03998_03_15.jpg)\n\
+  \n\n\n"
+- '# 总结
+
+
+  到目前为止，我们一直在学习如何为桌面端和 Web 端开发 JavaFX 企业级应用。
+
+
+  在本章中，我们掌握了开发任何应用程序的技能：首先在纸上勾勒布局草图，然后将其转化为实际的、可交互的彩色 UI 原型。我们学习了如何嵌套容器和控件以实现所需的布局。一旦最终开发方案获得批准，我们便通过响应用户操作并实现功能需求，让应用程序真正“活”了起来。
+
+
+  借助 Java SE 8 的强大特性以及 JavaFX 绑定，我们让代码变得更加强大、整洁且简洁。最后，我们学习了如何将应用程序部署到目标桌面用户或 Web 用户，以适应不同的平台和环境。
+
+
+  在下一章中，我们将学习如何为基于 Android 的智能手机开发 JavaFX 应用程序。此外，我们还将掌握下载和安装 Android SDK 工具、与日志记录器、模拟器以及其他工具交互所需的技能，这些技能将有助于你未来进行任何与
+  JavaFX 无关的移动开发。
+
+
+  '
+- '# 第 4 章 为 Android 开发 JavaFX 应用程序
+
+
+  毫无疑问，我们每天都能看到非 PC 客户端的增长。几乎每个人都至少拥有一部手机或平板电脑，可能来自不同的厂商，但几乎都搭载了 Android 或 iOS 系统——毕竟，在
+  2014 年售出的智能手机操作系统中，这两者占据了 96%的份额。
+
+
+  如今，智能手机和平板电脑极为流行，并且这些数字每年都在增长。因此，开发者应该考虑掌握为这个巨大市场开发应用程序所需的技能。
+
+
+  正如我们在第 3 章 *开发 JavaFX 桌面和 Web 应用程序*中所看到的，JavaFX 8 已经能够为 Web 和桌面提供丰富的客户端应用程序。但是，如果你像我一样编写过
+  JavaFX 应用程序，你肯定希望它能尽可能多地运行在各种设备上，以遵循*一次编写，随处运行*的真正精神。借此机会，我想告诉你：是的，我们可以在移动设备上运行
+  JavaFX。
+
+
+  基于 Oracle 公司对 JavaFX 的官方支持，JavaFX 社区中的许多人正在努力将 JavaFX 移植到尽可能多的设备和平台（桌面、移动和嵌入式）以及不同的操作系统上，并且使用相同的代码库。
+
+
+  他们已经成功创建了 SDK，使我们能够将 JavaFX 应用程序作为原生应用开发，以单个捆绑包（*JVM 加应用程序*）的形式在 Android 或 iOS 设备上运行，无需像桌面或
+  Web 应用那样额外安装任何软件。
+
+
+  本章将为你提供关于这些 SDK 的必备实践知识，使你能够为 Android 创建、打包和部署原生应用程序。
+
+
+  以下是本章将掌握的一些技能：
+
+
+  *   安装和配置 Android 环境工具及软件
+
+  *   准备和创建 JavaFX 8 移动项目结构
+
+  *   创建一个 Android JavaFX 8 应用程序
+
+  *   JavaFX 8 与 Android 底层 API 的互操作性
+
+  *   在移动设备上打包和部署应用程序
+
+  *   为最终提交到 Google Play 商店对应用程序进行签名
+
+
+  '
+- '# 为什么要把 JavaFX 移植到移动环境？
+
+
+  为什么要把 JavaFX 移植到移动环境？它难道不是**一次编写，随处运行**（**WORA**）吗？这是一个非常好的问题。任何 Java 应用程序都遵循 WORA
+  范式，但它依赖于一个非常关键的抽象软件来运行，这个软件被称为**Java 虚拟机**（**JVM**）。
+
+
+  JVM 负责将编译后的字节码（*.class 文件*）转换为特定机器能够理解和运行的平台指令，从而使你的应用程序得以运行。因此，你会看到针对不同硬件（Intel、AMD、SPARC
+  或 ARM）和平台（Windows、Mac、Linux 或 Solaris）的不同版本的 JRE 或**JDK**。
+
+
+  在桌面、Web 或嵌入式设备上，你必须先安装**Java 运行时环境**（**JRE**）才能运行 Java 应用程序。但对于移动设备，你会发现你只需从商店下载应用程序，安装它，然后直接运行，无需任何额外软件。此外，一些封闭平台不允许安装
+  JVM。
+
+
+  为了获得更好的最终用户体验，运行 JavaFX 应用程序与运行其他针对 Android 或 iOS 的应用程序之间不应有任何区别。
+
+
+  因此，我们应该拥有一个自包含（应用程序加 JVM）的 JavaFX 应用程序，它可以在移动设备上运行。除了能够与 Android 底层 API 交互以控制设备功能外，它在
+  Google Play 商店中也会与其他应用程序一样被对待。
+
+
+  我们应该感谢社区推出了这样的移植 SDK，填补了这一空白，使我们能够使用 RoboVM（[`www.robovm.org/`](http://www.robovm.org/)）的移植在
+  iOS 上创建和运行 JavaFX 应用程序，并使用 JavaFXPorts（[`javafxports.org/`](http://javafxports.org/)）的移植在
+  Android 上创建和运行 JavaFX 应用程序。
+
+
+  自 2015 年 2 月起，这些项目背后的公司之间达成了一项协议，现在一个名为`jfxmobile-plugin`的单一插件允许我们从同一个代码库为桌面、Android
+  和 iOS 三个平台构建应用程序。
+
+
+  此外，一家名为**Gluon**的新公司为**NetBeans**提供了一个免费插件（[`gluonhq.com/products/tools/ide-plugins/`](http://gluonhq.com/products/tools/ide-plugins/)），该插件可以创建一个包含基于`jfxmobile-plugin`构建应用程序所需一切的项目。
+
+
+  ### 注意
+
+
+  但请记住，这一切都在不断发展，实际情况可能与本文所述有所不同。
+
+
+  ## 工作原理
+
+
+  用于 iOS 移植的 RoboVM 和用于 Android 移植的 JavaFXPorts 都包含了所有必需的库，以便轻松地将你的 JavaFX 8 应用程序与所需的运行时环境打包在一起。
+
+
+  当使用 RoboVM for iOS 打包你的 JavaFX 应用程序（生成`.ipa`包文件）时，你所有的 JavaFX 应用程序都会被转换为**Objective-C**（目前是**Swift**）应用程序。
+
+
+  当使用 JavaFXPorts for Android 打包你的 JavaFX 应用程序（生成`.apk`包文件）时，应用程序会被转换为运行在**Dalvik**虚拟机之上的
+  Android 包。
+
+
+  这些 SDK 包含大量原生代码，这些代码在注入到你的 JavaFX 应用程序内部后，会被移植到 iOS 和 Android，以提高应用程序性能。
+
+
+  使用这些 SDK，我们可以将应用程序打包成适合提交到应用商店的格式（iOS 为`.ipa`，Android 为`.apk`）。
+
+
+  ## 谁在维护它？
+
+
+  别担心——将 JavaFX 移植到 Android 和 iOS 有大规模的免费支持，也有商业支持。
+
+
+  ### 注意
+
+
+  对于免费和商业支持，RoboVM 和 JavaFXPorts 社区都使用这个 Google 群组：
+
+
+  [`groups.google.com/forum/#!forum/javafxports`](https://groups.google.com/forum/#!forum/javafxports)
+
+
+  免费和商业支持主要来自社区中的人以及积极参与这两个项目的人。他们也鼓励更多的第三方参与进来。
+
+
+  对于 iOS，RoboVM 为开发者提供了不同的方案；你可以在[`robovm.com/pricing/`](http://robovm.com/pricing/)查看。
+
+
+  而对于 Android，**LodgON**公司提供 JavaFX-Android 集成的支持，作为其 JavaFX 移植支持的一部分（[`www.lodgon.com/dali/page/JavaFX_Consulting`](http://www.lodgon.com/dali/page/JavaFX_Consulting)）。
+
+
+
+
+  '
+- "# 开始入门\n\n现在我们已经掌握了足够的信息，了解之前讨论的工具和 SDK 如何帮助我们开始开发 JavaFX 应用程序，并将其移植到 Android 移动设备上。\n\
+  \n但在进入开发阶段之前，我们需要正确安装和配置相关工具与软件，以便基于所提供的 SDK 完成整个开发流程，最终生成一个可用的 `.apk` 包。\n\n我们将把这个\
+  \ `.apk` 包部署到真实设备上，最后对其进行签名，以便最终提交到 Google Play 商店。\n\n那么，让我们开始安装必要的工具和软件，以便着手开发我们的应用程序。\n\
+  \n## 准备并安装必备软件\n\n我们需要安装以下工具和软件，以确保构建过程能够顺利完成，不会出现任何问题。\n\n### Java SE 8 JDK8 u45\n\
+  \n我们之前已经完成过这一步；请参考第 1 章中的*安装 Java SE 8 JDK* 部分，该章节标题为*开始使用 JavaFX 8*。\n\n### 注意\n\
+  \n开发适用于 Android 的 JavaFX 应用程序，至少需要 Java SE 8 update 40 版本。\n\n### Gradle\n\n根据其官网的定义，Gradle\
+  \ 是：\n\n> *Gradle 是一个开源构建自动化系统。Gradle 可以自动化完成软件包或其他类型项目（例如生成的静态网站、生成的文档，或者实际上任何其他内容）的构建、测试、发布、部署等任务。*\n\
+  \n最近，Android 开发工具将其构建系统切换到了 Gradle。RoboVM 和 JavaFXPorts 移植项目也采用了相同的工具。\n\n安装 Gradle\
+  \ 是一项非常直接的任务：\n\n1.  访问 [`gradle.org`](https://gradle.org)。\n2.  在右侧的 **GET GRADLE!**\
+  \ 部分下，点击 **Downloads 2.4**（截至撰写本文时），将开始下载 `gradle-2.4-all.zip` 文件。\n3.  将下载的 `.zip`\
+  \ 文件复制到你选择的方便位置，并解压缩。\n4.  最后一步是在你的系统中设置环境变量，如下所示：\n    *   在 Windows 上 – 假设 Gradle\
+  \ 安装在 `c:\\tools\\gradle_2.4`：\n\n        ```\n        set GRADLE_HOME=c:\\tools\\\
+  gradle_2.4\n        set PATH=%PATH%;%GRADLE_HOME%\\bin\n        ```\n\n    *   在\
+  \ Mac 上 – 假设 Gradle 安装在 `/usr/local/tools/gradle_2.4`：\n\n        ```\n        export\
+  \ GRADLE_HOME=/usr/local/tools/gradle_2.4\n        export PATH=${PATH}:${GRADLE_HOME}/bin\n\
+  \        ```\n\n### Android SDK\n\nAndroid SDK 包含了 Android 平台完整的开发和调试工具集。\n\n安装\
+  \ Android SDK 也是一项非常直接的任务：\n\n1.  访问 [`developer.android.com/sdk/index.html#Other`](http://developer.android.com/sdk/index.html#Other)。\n\
+  2.  在“仅 SDK 工具”下，根据你偏好的平台名称，点击对应的 `android-sdk_r24.2-{platform}`。`{exe|zip|tgz}`（截至撰写本文时）：![Android\
+  \ SDK](img/B03998_04_01.jpg)\n3.  将打开一个 `Download` 页面；接受条款，点击 `Download android-sdk_r24.2-{platform}`。`{exe|zip|tgz}`\
+  \ 按钮，下载过程将开始。\n4.  将下载的 `.zip` 文件复制到一个方便的位置并解压缩，或者在 Windows 上双击 `.exe` 文件开始安装。\n\
+  5.  在命令行中运行以下命令：\n\n    ```\n    $ android\n    ```\n\n    Android SDK Manager 将打开；点击\
+  \ `Build-tools version 21.1.2` 或更高版本，以及 API 21 或更高版本的 SDK Platform。\n\n    点击 **Install\
+  \ x packages**，接受许可协议，然后点击 **Install**。这样就完成了。\n\n    Android SDK Manager 的一个很好的参考文档位于\
+  \ [`developer.android.com/sdk/installing/adding-packages.html`](http://developer.android.com/sdk/installing/adding-packages.html)。\n\
+  \n6.  最后一步是在你的系统中设置环境变量，如下所示：\n    *   在 Windows 上 – 假设 Android SDK 安装在 `c:\\tools\\\
+  android_ADT`：\n\n        ```\n        set ANDROID_HOME=c:\\tools\\android_ADT\\\
+  sdk\n        set PATH=%PATH%;%ANDROID_HOME%\\platform-tools;%ANDROID_HOME%\\tools\n\
+  \        ```\n\n    *   在 Mac 上 – 假设 Android SDK 安装在 `/usr/local/tools/android_ADT`：\n\
+  \n        ```\n        export ANDROID_HOME=/usr/local/tools/android_adt/sdk\n  \
+  \      export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools\n\
+  \        ```\n\n    *   最佳做法是在 `C:\\Users\\<user>\\.gradle\\gradle.properties` 下创建一个名为\
+  \ ANDROID_HOME 的 Gradle 属性。\n\n## 为 Android 准备项目\n\n我们已经成功安装了必备的软件和工具，并配置了环境变量，因此我们已经准备好开始开发将要移植到\
+  \ Android 设备上的应用程序了。\n\n但在开始之前，我们还需要准备好项目结构和构建文件，以便能够使用 JavaFXPorts 库来构建和打包我们的应用程序。\n\
+  \n在此之前，搭建一个包含三个不同平台的复杂项目是一项艰巨的任务。但最近，Gluon (http://gluonhq.com/) 发布了一个 NetBeans\
+  \ 插件 ([`gluonhq.com/gluon-plugin-for-netbeans/`](http://gluonhq.com/gluon-plugin-for-netbeans/))，极大地简化了这项任务。\n\
+  \n### 项目结构\n\n最简单的方法是使用 Gluon 的 NetBeans 插件。这将为你创建一切：一个 Java 项目，你只需添加 JavaFX 源代码，以及一个包含所有就绪任务的\
+  \ `build.gradle` 文件。\n\n安装好插件后，执行以下任务：\n\n1.  只需创建一个新的 JavaFX 项目，并选择 **Basic Gluon\
+  \ Application**，如下所示：![项目结构](img/B03998_04_02.jpg)\n2.  为项目（`DialPad2`）、包（`packt.taman.jfx8.ch4`）和主类（`DialPad2`）选择有效的名称，你会在新项目中看到一堆文件夹。\n\
+  3.  使用 Gluon 插件后的顶层项目结构将更加复杂，应如下图所示：![项目结构](img/B03998_04_04.jpg)\n\n    Gluon 插件项目结构\n\
+  \n接下来，我们将添加构建脚本文件以完成我们的任务。\n\n#### 使用 Gradle\n\n要构建一个 Gradle 项目，我们需要 `build.gradle`\
+  \ 脚本文件。Gluon 插件默认已经为你添加了这个文件，其中包含了允许我们的应用程序成功运行和编译的所有属性。\n\n默认的 Gradle 构建文件 `build.gradle`\
+  \ 内容应如下所示：\n\n```\nbuildscript {\n    repositories {\n        jcenter()\n    }\n\
+  \    dependencies {\n        classpath 'org.javafxports:jfxmobile-plugin:1.0.0-b8'\n\
+  \    }\n}\n\napply plugin: 'org.javafxports.jfxmobile'\n\nrepositories {\n    jcenter()\n\
+  }\n\nmainClassName = 'packt.taman.jfx8.ch4.DialPad2'\n\njfxmobile {\n\n    android\
+  \ {\n        manifest = 'lib/android/AndroidManifest.xml'\n    }\n}\n```\n\n唯一需要更改的重要事项是将\
+  \ `jfxmobile-plugin` 版本更新为 1.0.0-b8（或最新版本；请经常查看 [`bitbucket.org/javafxports/javafxmobile-plugin/overview`](https://bitbucket.org/javafxports/javafxmobile-plugin/overview)\
+  \ 以保持更新）。\n\n## 应用程序\n\n既然你已经读到了这一部分，说明我们已经正确完成了应用程序项目结构的搭建，现在它已准备好用于移动设备开发。\n\n\
+  我们的应用程序将是一个新的智能手机拨号盘界面，用于通过设备的默认拨号器进行通话。它将使用 CSS 进行定制，以控制其外观样式，并且可以修改以获得不同平台的原生外观和感觉。\n\
+  \n该应用程序的主要目的是提供一个全新的 UI 概念（使用 CSS 定制应用程序），你将学习如何使用 CSS 的 id 和类选择器，以及如何从代码内部设置它们以应用于不同的控件。\n\
+  \n以下截图显示了应用 CSS 文件前后的应用程序界面：\n\n![应用程序](img/B03998_04_03.jpg)\n\n\n\n### 使用 CSS\
+  \ 开发和设计应用程序 UI\n\n正如我们之前所学，我将开始制作应用程序的原型；原型制作完成后，我们应该能看到之前见过的应用程序 UI。\n\n这个应用程序\
+  \ UI 是直接写在 `DialPad2.java` 类的 `start(Stage)` 函数中的，这是一种不使用静态 FXML 设计来开发 UI 的替代方法。\n\
+  \n在这里，我们从代码内部嵌套控件，以便在需要动态生成 UI 控件并为其分配不同的设置、`CSS` 类、`id` 选择器和`监听器`时使用。\n\n以下代码片段展示了我们如何生成上述应用程序\
+  \ UI：\n\n```\nBorderPane root = new BorderPane();\nRectangle2D bounds = Screen.getPrimary().getVisualBounds();\n\
+  Scene scene = new Scene(root, bounds.getWidth(), bounds.getHeight());\nscene.getStylesheets().add(getClass().getResource(\"\
+  ui/Mobile_UI.\"+PlatformFactory.getName()+\".css\").toExternalForm());\nTextField\
+  \ output = new TextField(\"\");\noutput.setDisable(true);\n\nroot.setTop(output);\n\
+  String[] keys = {\"1\", \"2\", \"3\",\n                 \"4\", \"5\", \"6\",\n \
+  \                \"7\", \"8\", \"9\",\n                 \"*\", \"0\", \"#\"};\n\n\
+  GridPane numPad = new GridPane();\nnumPad.setAlignment(Pos.CENTER);\nnumPad.getStyleClass().add(\"\
+  num-pad\");\nfor (int i = 0; i < keys.length; i++) {\n       Button button = new\
+  \ Button(keys[i]);\n       button.getStyleClass().add(\"dial-num-btn\");\n     \
+  \  button.setOnAction(e -> output.setText(output.getText().concat(Button.class.\n\
+  \      cast(e.getSource()).getText())));\n      numPad.add(button, i % 3, (int)\
+  \ Math.ceil(i / 3));\n}\n// 呼叫按钮\nButton call = new Button(\"Call\");\ncall.setOnAction(e->PlatformFactory.getPlatform().callNumber(output.getText()));\n\
+  call.setId(\"call-btn\");\ncall.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);\n\
+  numPad.add(call, 0, 4);\nGridPane.setColumnSpan(call, 3);\nGridPane.setHgrow(call,\
+  \ Priority.ALWAYS);\nroot.setCenter(numPad);\n\n// 舞台设置\nstage.setScene(scene);\n\
+  stage.setTitle(\"Phone Dial v2.0\");\nstage.show();\n```\n\n代码首先创建一个以 `BorderPane`\
+  \ 为根节点的场景。创建场景后，代码通过 `getStylesheets().add()` 方法加载 CSS 样式表文件 `Mobile_UI.<platform>.css`，以设置当前场景节点的样式，如下所示：\n\
+  \n```\nscene.getStylesheets().add(getClass().getResource(\"ui/Mobile_UI.\"+PlatformFactory.getName()+\"\
+  .css\").toExternalForm());\n```\n\n在我们创建了一个 `TextField` 输出来显示拨号结果，并将其设置为禁用状态（这样我们就无法编辑它）之后，只需点击按钮即可添加并显示数字。\n\
+  \n接下来，代码简单地使用 `GridPane` 类创建了一个网格，并生成了 12 个按钮放置在每个单元格中。注意在 for 循环中，每个按钮都通过 `getStyleClass().add()`\
+  \ 方法设置了名为 `dial-num-btn` 的样式类。\n\n### 注意\n\n我们在这里使用了一个经典的旧式 `for` 循环来添加按钮，而不是花哨的\
+  \ Java 8 流。请注意，`Dalvik VM` 仅在 Java 7 上运行，并且只能使用 lambda 表达式（因为 JavaFXPorts 内部使用了\
+  \ Retrolambda 项目）。\n\n最后，深蓝色的**呼叫**按钮将被添加到网格面板的最后一行。由于**呼叫**按钮是唯一的，其 id 选择器被设置为\
+  \ `#call-btn`，并且它将使用 id 选择器进行样式设置，这意味着 CSS 文件中命名的选择器将以 `#` 符号为前缀。\n\n以下是用于设置应用程序样式的\
+  \ CSS 文件：\n\n```\n.root {\n    -fx-background-color: white;\n    -fx-font-size:\
+  \ 20px;\n    bright-green: rgb(59,223, 86);\n    bluish-gray: rgb(189,218,230);\n\
+  }\n.num-pad {\n    -fx-padding: 15px, 15px, 15px, 15px;\n    -fx-hgap: 10px;\n \
+  \   -fx-vgap: 8px;\n}\n\n#call-btn {\n    -fx-background-color: \n        #090a0c,\n\
+  \        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),\n        linear-gradient(#20262b,\
+  \ #191d22),\n        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9),\
+  \ rgba(255,255,255,0));\n    -fx-background-radius: 5,4,3,5;\n    -fx-background-insets:\
+  \ 0,1,2,0;\n    -fx-text-fill: white;\n    -fx-effect: dropshadow( three-pass-box\
+  \ , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );\n    -fx-font-family: \"Arial\";\n    -fx-text-fill:\
+  \ linear-gradient(white, #d0d0d0);\n    -fx-font-size: 16px;\n    -fx-padding: 10\
+  \ 20 10 20;\n}\n#call-btn .text {\n    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9)\
+  \ , 1, 0.0 , 0 , 1 );\n}\n\n.dial-num-btn {\n    -fx-background-color:\n       \
+  \ linear-gradient(#f0ff35, #a9ff00),\n        radial-gradient(center 50% -40%, radius\
+  \ 200%, #b8ee36 45%, #80c800 50%);\n    -fx-background-radius: 30;\n    -fx-background-insets:\
+  \ 0,1,1;\n    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0\
+  \ , 0 , 1 );\n    -fx-text-fill: #395306;\n}\n\n.dial-num-btn:hover {\n    -fx-background-color:\
+  \ \n        #c3c4c4,\n        linear-gradient(#d6d6d6 50%, white 100%),\n      \
+  \  radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0)\
+  \ 50%);\n    -fx-background-radius: 30;\n    -fx-background-insets: 0,1,1;\n   \
+  \ -fx-text-fill: black;\n    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6)\
+  \ , 3, 0.0 , 0 , 1 );\n}\n\n.dial-num-btn:pressed {\n    -fx-background-color: linear-gradient(#ff5400,\
+  \ #be1d00);\n    -fx-background-radius: 30;\n    -fx-background-insets: 0,1,1;\n\
+  \    -fx-text-fill: white;\n}\n```\n\n有关 JavaFX 8 CSS 属性的更多信息，请访问以下 JavaFX 8 CSS\
+  \ 参考文档：\n\n[`docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html`](http://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html)\n\
+  \n### 添加一些逻辑\n\n正如你在代码片段中所见，12 个按钮中的每一个都使用动态创建的 lambda 表达式分配了一个动作，如下所示：\n\n```\n\
+  button.setOnAction(e -> output.setText(output.getText().concat(Button.class.cast(e.getSource()).getText())));\n\
+  ```\n\n我们获取输出 `TextField`，并通过获取事件 `e` 的源（在我们的例子中是点击的按钮），然后获取其文本值（包含要拨打的号码），来拼接下一个数字、星号或井号。\n\
+  \n\n\n### 让项目适配移动设备\n\n基本上，这个新项目是使用 Gluon 插件生成的（`build.gradle` 已更新至 **b8**）。\n\n\
+  为了让应用程序适配移动设备，我们需要根据目标设备的屏幕调整其高度和宽度，并使 UI 树做出相应响应。\n\n这是一个非常简单但重要的步骤，我们可以通过动态地将场景的高度和宽度设置为目标设备的屏幕尺寸来调整以下代码行。请看下面这行代码：\n\
+  \n```\nScene scene = new Scene(root, 175, 300);\n```\n\n将其修改为以下代码行：\n\n```\nRectangle2D\
+  \ bounds = Screen.getPrimary().getVisualBounds();\nScene scene = new Scene(root,\
+  \ bounds.getWidth(), bounds.getHeight());\n```\n\n第一行代码获取设备屏幕的 `bounds`（边界）。然后，我们根据这个边界变量设置场景的高度和宽度。\n\
+  \n第二行代码将你的源代码添加到“源包”[Java] 和“资源”[Main] 中。然后，它会添加一个 `PlatformFactory` 类，该类负责查找项目运行在哪个平台上。请看带有方法签名的\
+  \ `Platform` 接口：\n\n```\npublic interface Platform {   \n    void callNumber(String\
+  \ number);\n}\n```\n\n这允许你在源代码中调用以下方法：\n\n```\nButton call = new Button(\"Call\"\
+  );\ncall.setOnAction(e-> PlatformFactory.getPlatform().callNumber(output.getText()));\n\
+  ```\n\n最后，你需要为每个平台提供原生解决方案。例如，对于 Android：\n\n```\npublic class AndroidPlatform implements\
+  \ Platform {\n\n    @Override\n    public void callNumber(String number) {\n   \
+  \     if (!number.equals(\"\")) {\n            Uri uriNumber = Uri.parse(\"tel:\"\
+  \ + number);\n            Intent dial = new Intent(Intent.ACTION_CALL, uriNumber);\n\
+  \            FXActivity.getInstance().startActivity(dial);\n         }\n    }\n\
+  }\n```\n\n为了在 Android 上运行，我们只需要修改 `AndroidManifest.xml`，添加所需的权限和 Activity Intent。这个自定义清单文件必须在\
+  \ `build.gradle` 文件中被引用，如下所示：\n\n```\nandroid {\n    manifest = 'lib/android/AndroidManifest.xml'\n\
+  \  }\n```\n\n#### 与底层 Android API 的互操作性\n\n你需要 `android.jar` 来使用 Android API，并且需要\
+  \ `jfxdvk.jar` 来访问 `FXActivity` 类，该类是 `JavaFX` 和 `Dalvik` 运行时之间的桥梁。我们在 `FXActivity`\
+  \ 上使用一个静态方法来获取 `FXActivity`，它继承了 Android 的 `Context`。这个 `Context` 可用于查找 Android\
+  \ 服务。\n\n## 构建应用程序\n\n为了为我们的应用程序创建 Android `.apk` 包文件，我们首先需要构建应用程序；这是一项非常简单的任务。在命令行中（或者在\
+  \ NetBeans 中，右键单击**项目**选项卡并选择 `Tasks/task`），定位到当前项目文件夹，运行以下命令：\n\n```\n$ gradle\
+  \ build\n```\n\nGradle 将下载所有必需的库并开始构建我们的应用程序。完成后，你应该看到类似如下的成功输出：\n\n```\n$ gradle\
+  \ build\nDownload https://jcenter.bintray.com/org/robovm/robovm-rt/1.0.0-beta-04/robovm-rt-1.0.0-beta-08.pom\n\
+  :compileJava\n:compileRetrolambdaMain\nDownload https://jcenter.bintray.com/net/orfjackal/retrolambda/retrolambda/1.8.0/retrolambda-1.8.0.pom\n\
+  :processResources UP-TO-DATE\n:classes\n:compileDesktopJava UP-TO-DATE\n:compileRetrolambdaDesktop\
+  \ SKIPPED\n……...…\n:check UP-TO-DATE\n:build\n\nBUILD SUCCESSFUL\nTotal time: 44.74\
+  \ secs\n```\n\n到目前为止，我们已经成功构建了应用程序。接下来，我们需要生成 `.apk` 并将其部署到多个源。\n\n### 构建最终的 .apk\
+  \ Android 包\n\n在构建 `.apk` 文件时，我们有两个选项。第一个是运行以下命令：\n\n```\ngradle android \n```\n\
+  \n这将在目录 `build/javafxports/android` 中生成 `.apk` 文件。\n\n第二个是运行以下命令：\n\n```\nandroidInstall\
+  \ \n```\n\n这会将生成的 `.apk` 包部署到连接到你的台式机或笔记本电脑的设备上。\n\n我们将使用第一个选项（`gradle android`）来确保我们能够成功生成\
+  \ `.apk` 文件。成功完成后，你应该会在前面提到的路径下找到一个名为 `DialPad2.apk` 的文件。\n\n## 部署应用程序\n\n为了能够使用\
+  \ `gradle androidInstall` 命令将我们的应用程序部署到已连接的移动设备上，你需要在设备上启用**开发者选项**并在其中启用一些其他设置，具体步骤如下：\n\
+  \n1.  在你的设备上，点击**设置**以打开设置菜单。\n2.  从顶部菜单中，选择**更多**。具体选项取决于你的设备。\n3.  在**更多选项**菜单列表的末尾，你应该会看到**开发者选项**。\n\
+  4.  点击**开发者选项**菜单。\n5.  通过打开右上角的滑块来启用**开发者选项**。\n6.  在**调试**下，启用 **USB 调试**，点击**允许\
+  \ USB 调试**警告窗口中的**确定**按钮，并启用**未知来源**。\n7.  恭喜！你已经完成了——让我们去安装我们的应用程序吧。\n\n### 注意\n\
+  \n**可选**：如果你没有看到**开发者选项**，请不要担心。它存在但被隐藏了。诀窍如下——点击**关于设备**，找到**版本号**，并连续点击 7 次（在\
+  \ Lollipop 系统上）。你会看到一个数字倒计时，最后**开发者选项**将被启用。\n\n### 在基于 Android 的设备上部署\n\n现在我们已经准备好了，运行以下命令：\n\
+  \n```\n$ gradle androidinstall\n```\n\n发出此命令后，它将开始构建和打包 JavaFX 8 应用程序。该插件将连接到你的已连接设备并将应用程序安装到其中。你应该会得到如下结果：\n\
+  \n```\n:compileJava\n:compileRetrolambdaMain\n………...…\n:processAndroidResources\
+  \ UP-TO-DATE\n:apk\n:zipalign\n:androidInstall\nInstalled on device.\n\nBUILD SUCCESSFUL\n\
+  Total time: 47.537 secs\n```\n\n现在打开你的设备，从主屏幕找到你的应用程序图标；在右下角，你应该会看到你的 `DialPad2`\
+  \ JavaFX 应用程序已安装，如下面的屏幕截图所示，带有默认的 Android 图标：\n\n![在基于 Android 的设备上部署](img/B03998_04_05.jpg)\n\
+  \n安装在 Android 设备上的 JavaFX 8 应用程序\n\n点击 **DialPad2** 应用程序，你应该会看到你的应用程序在你的设备上启动并运行，并且功能完全符合预期：\n\
+  \n![在基于 Android 的设备上部署](img/B03998_04_06.jpg)\n\n在 Android 设备上运行的 JavaFX 8 应用程序\n\
+  \n点击**呼叫**按钮，Android 默认拨号器将被启动，并拨打你输入的号码，如下所示：\n\n![在基于 Android 的设备上部署](img/B03998_04_07.jpg)\n\
+  \nJavaFX 8 应用程序正在拨号\n\n如果某些功能未按预期工作，请转到命令行并输入：\n\n```\n$ adb logcat \n```\n\n你将看到设备上所有应用程序的输出。\n\
+  \n\n\n### 在 Google Play 商店部署\n\n要在 Google Play 商店部署你的应用程序，你需要执行以下步骤：\n\n1.  你必须先注册成为\
+  \ Google Play 开发者（[`play.google.com/apps/publish/`](https://play.google.com/apps/publish/)），填写包含应用描述和若干截图的表单，最后提交\
+  \ DialPad2 的 apk 文件。\n2.  在 `AndroidManifest.xml` 文件中，你需要通过在 `application` 标签中添加\
+  \ `android:debuggable=\"false\"` 来禁用调试选项。\n3.  你还可以在 `application` 标签下添加应用图标（`android:icon=\"\
+  @icons/ic_launcher\"`）。这里的 `icons-*` 是包含多种分辨率图片的文件夹。\n\n#### 签署 APK\n\n`apk` 文件必须经过签署才能发布。**签署**意味着你需要一个私钥；为此，我们可以使用\
+  \ keytool（[`developer.android.com/tools/publishing/app-signing.html#signing-manually`](http://developer.android.com/tools/publishing/app-signing.html#signing-manually)）。\n\
+  \n而**发布**则意味着我们需要将签署配置添加到 `build.gradle` 文件中，如下所示：\n\n```\njfxmobile {\n    android\
+  \ {\n        signingConfig {\n            storeFile file(\"path/to/my-release-key.keystore\"\
+  )\n            storePassword 'STORE_PASSWORD'\n            keyAlias 'KEY_ALIAS'\n\
+  \            keyPassword 'KEY_PASSWORD'\n        }\n        manifest = 'lib/android/AndroidManifest.xml'\n\
+  \        resDirectory = 'src/android/resources'\n    }\n}\n```\n\n右键点击 **DialPad2**\
+  \ 项目，从 **Tasks** 菜单中选择 **apk**，然后选择 **apkRelease**。\n\n恭喜！生成的 `DialPad2.apk` 文件已准备好提交到\
+  \ Google Play 商店。\n\n## 测试技巧\n\n在交付应用之前，最重要的一点是进行测试，尤其是在各种基于 Android 的移动设备上进行测试。\n\
+  \n根据我在移动行业的经验，我接触过十多个厂商的测试手机和平板电脑，它们都运行 Android 平台，但每个设备都定制了不同功能和性能的 UI 层。\n\n根据我的经验，移动测试领域的四条黄金法则是：\n\
+  \n1.  尽可能在多种真实设备和 Android 平台上进行测试，以覆盖你的应用可能运行的所有情况，并了解其在生产环境中的表现。\n2.  模拟器仅适用于 *GUI\
+  \ 测试和功能测试*，不适用于*性能测试*。所有模拟器都依赖于你底层的 PC/笔记本电脑硬件和内存，而移动硬件的情况则大不相同，要达到相同的性能非常具有挑战性。\n\
+  3.  有一个名为 ARC Welder 的新模拟器，适用于 Chrome。请访问 [`developer.chrome.com/apps/getstarted_arc`](https://developer.chrome.com/apps/getstarted_arc)\
+  \ 查看。\n4.  在真实设备上进行最终的生产和性能测试。这样你才能确保你的应用在目标市场的设备上能够正常运行。\n\n"
+- '# 总结
+
+
+  本章让你深入了解了移动行业，以及如何利用不同的项目（例如用于 **iOS** 的 **RoboVM** 和用于 **Android** 的 **JavaFXPorts**）来开发和定制基于
+  JavaFX 的应用程序，从而使其能够在两个平台上运行。
+
+
+  接着，我们学习了如何安装 Android 开发所需的软件和工具，以及如何启用 Android SDK 和 *JavaFXPorts* 库，以便将我们基于 JavaFX
+  的拨号器应用打包并安装到真实的 Android 设备上，并提交到 Google Play 商店。
+
+
+  我们看到了如何使用 CSS 来自定义应用，为同一个应用提供不同的外观和风格，以确保你为 Android 版本提供了不同的 CSS。
+
+
+  接下来，我们学习了如何将设备置于调试模式，以便通过命令行从 `jfxmobile-plugin` 成功安装应用。最后，我们介绍了测试的四条黄金法则。
+
+
+  下一章与本章内容不会有太大差异，但它将为你提供很好的入门指导，让你了解如何将 JavaFX 8 应用定位到 iOS 设备上运行。你还将学习如何使用其开发工具。
+
+
+  '
+- '# 第 5 章. 为 iOS 开发 JavaFX 应用
+
+
+  苹果在移动和 PC/笔记本电脑领域拥有巨大的市场份额，拥有众多不同的设备，从 iPhone 等手机到 iPod 等音乐设备，再到 iPad 等平板电脑。
+
+
+  它拥有一个快速增长的应用市场，称为 Apple Store，为其社区服务，其中可用的应用数量每天都在增加。移动应用开发者应该为这样的市场做好准备。
+
+
+  同时针对 iOS 和 Android 的移动应用开发者面临着许多挑战。只需比较这两个平台的原生开发环境，你就会发现它们存在巨大差异。
+
+
+  根据苹果的说法，iOS 开发基于 **Xcode IDE**（[`developer.apple.com/xcode/`](https://developer.apple.com/xcode/)）及其编程语言。传统上是
+  **Objective-C**，而在 2014 年 6 月，苹果推出了 **Swift**（[`developer.apple.com/swift/`](https://developer.apple.com/swift/)）；另一方面，根据谷歌的定义，*Android*
+  开发基于 Intellij IDEA IDE 和 Java 编程语言。
+
+
+  没有多少开发者能精通这两种环境。此外，这些差异排除了平台之间的任何代码复用。
+
+
+  正如我们将在本章中看到的，JavaFX 8 通过让两个平台共享同一个应用程序，正在填补平台间代码复用的空白。
+
+
+  在本章结束时，你将掌握以下技能：
+
+
+  *   安装和配置 iOS 环境工具和软件
+
+  *   创建 iOS JavaFX 8 应用程序
+
+  *   模拟和调试 JavaFX 移动应用程序
+
+  *   在 iOS 移动设备上打包和部署应用程序
+
+
+  '
+- '# 使用 RoboVM 在 iOS 上运行 JavaFX
+
+
+  **RoboVM** 是连接 Java 和 Objective-C 的桥梁。使用它，开发要在 iOS 设备上运行的 JavaFX 8 应用程序变得很容易，因为
+  **RoboVM** 项目的最终目标是在不牺牲开发者体验或应用用户体验的情况下解决这个问题。
+
+
+  正如我们在上一章关于 Android 的内容中所看到的，使用 *JavaFXPorts* 生成 APK 是一项相对容易的任务，因为 Android 基于 Java
+  和 **Dalvik 虚拟机**。
+
+
+  相反，iOS 没有用于 Java 的虚拟机，并且不允许动态加载原生库。
+
+
+  因此需要另一种方法。RoboVM 开源项目试图通过使用*提前*编译器将 Java 字节码转换为原生 ARM 或 x86 机器码，从而在 Java 和 Objective-C
+  之间建立一座桥梁，为 Java 开发者弥合这一差距。
+
+
+  ## 特性
+
+
+  让我们来了解一下 RoboVM 的特性：
+
+
+  *   将 Java 和其他 JVM 语言（如 Scala、Clojure 和 Groovy）引入 iOS 设备
+
+  *   提前将 Java 字节码转换为机器码，以便直接在 CPU 上快速执行，没有任何开销
+
+  *   主要目标是 iOS 和 ARM 处理器（32 位和 64 位），但也支持在 x86 CPU（32 位和 64 位）上运行的 Mac OS X 和 Linux
+
+  *   不对开发者可访问的 Java 平台功能施加任何限制，例如反射或文件 I/O
+
+  *   支持标准 JAR 文件，让开发者能够复用庞大的第三方 Java 库生态系统
+
+  *   通过 Java 到 Objective-C 的桥接提供对完整原生 iOS API 的访问，从而能够开发具有真正原生 UI 和完全硬件访问权限的应用
+
+  *   与最流行的工具集成，如 NetBeans、Eclipse、Intellij IDEA、Maven 和 Gradle
+
+  *   已为 App Store 做好准备，商店中已有数百个应用
+
+
+
+
+  ## 局限性
+
+
+  主要由于 iOS 平台的限制，使用 RoboVM 时存在一些局限性：
+
+
+  *   不支持在运行时加载自定义字节码。构成应用的所有类文件必须在开发机器上编译时可用。
+
+  *   桌面或服务器上常用的 Java 原生接口技术通常从动态库加载原生代码，但 Apple 不允许在 iOS 应用中附带自定义动态库。RoboVM 支持一种基于静态库的
+  JNI 变体。
+
+  *   另一个重大局限是 RoboVM 是一个正在开发中的 alpha 阶段项目，尚不建议用于生产环境。
+
+
+  ### 注意
+
+
+  RoboVM 完全支持反射。
+
+
+  ## 工作原理
+
+
+  如第 4 章 *为 Android 开发 JavaFX 应用程序* 所述，自 2015 年 2 月起，RoboVM 和 JavaFXPorts 背后的公司达成了一项协议，现在一个名为
+  `jfxmobile-plugin` 的单一插件允许我们从同一代码库为三个平台（桌面、Android 和 iOS）构建应用程序。
+
+
+  JavaFXMobile 插件为你的 Java 应用添加了许多任务，使你能够创建可提交至 Apple Store 的 .ipa 包。
+
+
+  Android 主要使用 Java 作为主要开发语言，因此很容易将你的 JavaFX 8 代码与之合并。在 iOS 上，内部情况则完全不同——但使用了类似的 Gradle
+  命令。
+
+
+  该插件将下载并安装 RoboVM 编译器，并使用 RoboVM 编译器命令在 `build/javafxports/ios` 目录中创建 iOS 应用程序。
+
+
+  '
+- "# 入门指南\n\n在本节中，你将学习如何使用 `JavaFXMobile` 插件安装 RoboVM 编译器，并通过重用我们之前在第 4 章 *为 Android\
+  \ 开发 JavaFX 应用程序* 中为 Android 平台开发的同一应用（Phone Dial 版本 1.0）来确保工具链正常工作。\n\n## 前提条件\n\
+  \n为了使用 RoboVM 编译器构建 iOS 应用，需要以下工具：\n\n*   Oracle 的 Java SE JDK 8 update 45。请参考第\
+  \ 1 章 *JavaFX 8 入门* 中的 *安装 Java SE 8 JDK* 部分。\n*   需要 Gradle 2.4 或更高版本才能使用 `jfxmobile`\
+  \ 插件构建应用程序。请参考第 4 章 *为 Android 开发 JavaFX 应用程序* 中的 *安装 Gradle 2.4* 部分。\n*   一台运行\
+  \ **Mac OS X** 10.9 或更高版本的 Mac。\n*   来自 Mac App Store 的 Xcode 6.x ([`itunes.apple.com/us/app/xcode/id497799835?mt=12`](https://itunes.apple.com/us/app/xcode/id497799835?mt=12))。\n\
+  \n### 提示\n\n首次安装 **Xcode** 时，以及每次更新到新版本时，都必须打开一次以同意 Xcode 条款。\n\n## 为 iOS 准备项目\n\
+  \n我们将重用之前在第 4 章 *为 Android 开发 JavaFX 应用程序* 中为 Android 平台开发的项目，因为针对 iOS 时，代码、项目结构或\
+  \ Gradle 构建脚本没有区别。\n\n它们共享相同的属性和特性，但使用不同的 Gradle 命令来服务于 iOS 开发，并且 Gradle 构建脚本针对\
+  \ RoboVM 编译器做了微小改动。\n\n因此，我们将通过同一个应用看到 **WORA** *一次编写，到处运行* 的强大之处。\n\n### 项目结构\n\
+  \n基于第 4 章 *为 Android 开发 JavaFX 应用程序* 中 Android 示例的相同项目结构，我们 iOS 应用的项目结构应如下图所示：\n\
+  \n![项目结构](img/B03998_05_01.jpg)\n\n### 应用程序\n\n我们将重用第 4 章 *为 Android 开发 JavaFX 应用程序*\
+  \ 中的同一个应用：Phone DialPad 版本 2.0 JavaFX 8 应用程序：\n\n![应用程序](img/B03998_05_02.jpg)\n\
+  \n如你所见，重用同一代码库是一个非常强大且有用的特性，尤其是当你同时针对 iOS 和 Android 等多个移动平台进行开发时。\n\n#### 与底层 iOS\
+  \ API 的互操作性\n\n为了像我们在 Android 上所做的那样，从我们的应用中实现原生调用默认 iOS 电话拨号器的相同功能，我们必须为 iOS 提供原生解决方案，如下面的\
+  \ `IosPlatform` 实现所示：\n\n```\nimport org.robovm.apple.foundation.NSURL;\nimport\
+  \ org.robovm.apple.uikit.UIApplication;\nimport packt.taman.jfx8.ch4.Platform;\n\
+  \npublic class IosPlatform implements Platform {\n\n  @Override\n  public void callNumber(String\
+  \ number) {\n    if (!number.equals(\"\")) {\n      NSURL nsURL = new NSURL(\"telprompt://\"\
+  \ + number);\n      UIApplication.getSharedApplication().openURL(nsURL);\n    }\n\
+  \  }\n}\n```\n\n### Gradle 构建文件\n\n我们将使用第 4 章 *为 Android 开发 JavaFX 应用程序* 中使用的相同\
+  \ Gradle 构建脚本文件，但做了一处微小改动，在脚本末尾添加了以下几行：\n\n```\njfxmobile {\n  ios {\n    forceLinkClasses\
+  \ = [ 'packt.taman.jfx8.ch4.**.*' ]\n  }\n  android {\n    manifest = 'lib/android/AndroidManifest.xml'\
+  \ \n  }\n}\n```\n\n安装和使用 `robovm` 编译器的所有工作都由 `jfxmobile` 插件完成。\n\n这些行的目的是告诉 RoboVM\
+  \ 编译器需要在运行时加载的主应用类的位置，因为编译器默认情况下无法看到它。\n\n`forceLinkClasses` 属性确保这些类在 RoboVM 编译期间被链接进来。\n\
+  \n#### 构建应用程序\n\n在添加了为 iOS 构建脚本所需的配置集之后，是时候构建应用程序以将其部署到不同的 iOS 目标设备上了。为此，我们需要运行以下命令：\n\
+  \n```\n$ gradle build\n```\n\n我们应该会看到以下输出：\n\n```\nBUILD SUCCESSFUL\n\nTotal time:\
+  \ 44.74 secs\n```\n\n我们已经成功构建了应用程序；接下来，我们需要生成 .`ipa` 文件，并且在生产环境中，你必须通过将其部署到尽可能多的\
+  \ iOS 版本上进行测试。\n\n#### 生成 iOS .ipa 包文件\n\n为了为我们的 JavaFX 8 应用程序生成最终的 .ipa iOS 包（这对于最终分发到任何设备或\
+  \ AppStore 是必需的），你需要运行以下 `gradle` 命令：\n\n```\ngradle ios \n```\n\n这将在 `build/javafxports/ios`\
+  \ 目录中生成 .`ipa` 文件。\n\n\n\n### 部署应用程序\n\n在开发过程中，我们需要在 iOS 模拟器上检查应用程序的图形界面和最终原型，并在不同设备上衡量应用的性能和功能。这些步骤非常有用，尤其对于测试人员而言。\n\
+  \n接下来，我们将看到在模拟器或真实设备上运行应用程序是多么简单的事情。\n\n#### 部署到模拟器\n\n在模拟器上，你可以直接运行以下命令来检查应用程序是否正常运行：\n\
+  \n```\n$ gradle launchIPhoneSimulator \n```\n\n该命令将打包并在 *iPhone 模拟器* 中启动应用程序，如下图所示：\n\
+  \n![部署到模拟器](img/B03998_05_03.jpg)\n\n在 iOS 8.3/iPhone 4s 模拟器上运行的 DialPad2 JavaFX\
+  \ 8 应用程序\n\n以下命令将在 iPad 模拟器中启动应用程序：\n\n```\n$ gradle launchIPadSimulator \n```\n\
+  \n#### 部署到 Apple 设备\n\n为了打包 JavaFX 8 应用程序并将其部署到 Apple 设备，只需运行以下命令：\n\n```\n$ gradle\
+  \ launchIOSDevice \n```\n\n该命令将在连接到你的台式机/笔记本电脑的设备上启动 JavaFX 8 应用程序。\n\n然后，一旦应用程序在你的设备上启动，输入任意号码并点击“呼叫”。\n\
+  \niPhone 会请求使用默认拨号器拨号的权限；点击**确定**。默认拨号器将启动并显示该号码，如下图所示：\n\n![部署到 Apple 设备](img/B03998_05_04.jpg)\n\
+  \n默认拨号器\n\n### 注意\n\n要在你的设备上测试和部署应用，你需要拥有 Apple 开发者计划的活跃订阅。请访问 Apple 开发者门户 [`developer.apple.com/register/index.action`](https://developer.apple.com/register/index.action)\
+  \ 进行注册。你还需要为开发配置你的设备。你可以在 Apple 开发者门户中找到关于设备配置的信息，或参考本指南：[`www.bignerdranch.com/we-teach/how-to-prepare/ios-device-provisioning/`](http://www.bignerdranch.com/we-teach/how-to-prepare/ios-device-provisioning/)。\n\
+  \n"
+- '# 总结
+
+
+  本章让我们很好地理解了如何利用 RoboVM 为 **iOS** 开发和定制基于 JavaFX 的应用程序，从而使其能够在 Apple 平台上运行。
+
+
+  你了解了 RoboVM 的功能和局限性，以及它的工作原理；同时，你也掌握了可用于开发的技能。
+
+
+  接着，你学习了如何安装 iOS 开发所需的软件和工具，以及如何启用 Xcode 并结合 *RoboVM* 编译器，在操作系统模拟器上打包和安装基于 Phone
+  Dial JavaFX 8 的应用程序。
+
+
+  我们看到了如何重用已在第 4 章《为 Android 开发 JavaFX 应用程序》中开发的同一应用程序，这证明了 Java 的“一次编写，到处运行”范式是可行的。
+
+
+  最后，我们提供了关于如何在真实设备上运行和部署应用程序的提示。
+
+
+  下一章将打开物联网开发世界的一扇窗；我们将了解如何购买 Raspberry Pi 2 型号，安装并配置 *raspbian-wheezy* 操作系统用于开发，以及如何为嵌入式设备安装
+  Java SE。然后，我们将开发一个 JavaFX 8 应用程序，运行在这张信用卡大小的微型计算机上。
+
+
+  '
+- '# 第 6 章. 在 Raspberry Pi 上运行 JavaFX 应用程序
+
+
+  欢迎来到 **IoT**（**物联网**）世界。毫无疑问，你经常听到这个术语。物联网近来已成为热门话题，而且理由充分。一些估计显示，目前连接的小型设备数量约为
+  90 亿；预计到 2020 年将跃升至 240 亿。虽然预测数字各不相同，但评估结果是一致的：从绝对数量来看，物联网将使以往任何计算模型都相形见绌。
+
+
+  与物联网世界紧密相关的是 Raspberry Pi——一款由 Raspberry Pi 基金会设计的信用卡大小的微型计算机，用于实验和教育。
+
+
+  关于 Raspberry Pi，你需要知道的是，它不过是一台小型计算机。功耗小、体积小、内存小，最重要的是成本低。它的一切都很小，但它仍然是一台计算机，并且使用
+  Linux。
+
+
+  Java 从发明之初就是为物联网而生的。Java 的创建有着清晰的愿景：控制小型设备，如电视机顶盒。随着物联网的爆发，Java 回归了它的本源。
+
+
+  你可能会认为，作为富客户端开发平台的 JavaFX 会错过物联网的盛宴——但事实并非如此！根据 Oracle 技术网络上的 *JavaFX 概述* 页面：
+
+
+  > *“它旨在提供一个轻量级、硬件加速的 Java UI 平台”*
+
+
+  这句话揭示了图形丰富且强大的 JavaFX 的关键：硬件加速；幸运的是，Raspberry Pi 配备了强大的 GPU。
+
+
+  在本章中，我们将学习：
+
+
+  *   购买、准备和配置 Raspberry Pi
+
+  *   为 JavaFX 8 准备 Raspberry Pi
+
+  *   远程连接到 Raspberry Pi
+
+  *   在 Raspberry Pi 上安装和配置 Java SE 8
+
+  *   在 Raspberry Pi 上开发和运行 JavaFX 8 应用程序
+
+  *   将 NetBeans 与 Raspberry Pi 结合使用
+
+
+  兴奋吗？需要找点乐子！没错，让我们直接深入，与我们的 Raspberry Pi 一起玩耍吧。
+
+
+  ### 注意
+
+
+  自 2015 年 1 月发布 JDK 8u33 ARM 版本以来，Oracle 已从 ARM 发行版中移除了 JavaFX Embedded。请参见 [`www.oracle.com/technetwork/java/javase/jdk-8u33-arm-relnotes-2406696.html#CACHGFJC`](http://www.oracle.com/technetwork/java/javase/jdk-8u33-arm-relnotes-2406696.html#CACHGFJC)
+  和 [`jaxenter.com/jdk-arm-without-javafx-end-javafx-embedded-114212.html`](http://jaxenter.com/jdk-arm-without-javafx-end-javafx-embedded-114212.html)。
+
+
+  JavaFX Embedded 的代码已交给开源项目 OpenJFX ([`wiki.openjdk.java.net/display/OpenJFX/Main`](https://wiki.openjdk.java.net/display/OpenJFX/Main))。建议正在寻找
+  JavaFX Embedded 替代方案的开发者积极参与该项目。
+
+
+  在本章中，我们将学习几种克服此问题的方法。
+
+
+  '
+- '# 什么是 Raspberry Pi？
+
+
+  正如我们之前提到的，Raspberry Pi 是一台计算机——一台非常小巧且低成本的计算机。事实上，它大约只有信用卡大小。不要被它的尺寸所迷惑；正如我们所知，好东西往往是小包装。然而，Raspberry
+  Pi 根本没有包装。
+
+
+  它没有外壳，其电路板和芯片完全可见，如下图所示。你可以将 Raspberry Pi 插入数字电视或显示器，并使用 USB 键盘和鼠标进行操作，使用起来非常方便。由于其体积小巧，你可以轻松地将其携带到任何地方。
+
+
+  Raspberry Pi 是一款功能强大的设备，允许所有年龄段的人探索计算，并学习如何使用 Java、JavaFX、Python 和 Scratch 等语言进行编程。此外，它能完成台式计算机能做的所有事情——从浏览互联网、播放高清视频或游戏，到处理电子表格或文字处理软件。
+
+
+  ![什么是 Raspberry Pi？](img/B03998_06_01.jpg)
+
+
+  新款 Raspberry Pi 2 型号 B
+
+
+  ## 你能用它做什么？
+
+
+  Raspberry Pi 让你有机会构建并控制一个能按你意愿工作的设备。例如，你可以部署一个由你编写的程序控制的机械臂。你可以设计并创建自己的角色扮演游戏，或者通过代码创作出精美的计算机艺术或音乐。
+
+
+  此外，Raspberry Pi 基金会的主要目标是让全世界的孩子们在学习编程和理解计算机工作原理的过程中感到乐趣。
+
+
+
+
+  '
+- '# 为什么树莓派是 JavaFX 的完美选择？
+
+
+  那么，是什么让树莓派成为 Java 和 JavaFX 的完美选择呢？答案可以从以下几点中找到：
+
+
+  *   它的运行速度比规格参数所显示的要快。如前所述，树莓派的默认时钟频率为 900 MHz。但凭借其可安全超频至 1 GHz 的 900 MHz 时钟频率和
+  1 GB 内存，这台小型计算机能够运行真正庞大且强大的应用程序。
+
+  *   非常明智的是，树莓派基金会选择了一款支持浮点运算的 CPU（通常称为硬浮点），其性能优于所谓的纯软浮点芯片。适用于树莓派的操作系统充分利用了这一额外的性能和速度优势。
+
+  *   最后，树莓派拥有一个相当强大的图形处理单元（GPU），其快速的 3D 核心能够以 40MBits/s 的 H.264 编码实现蓝光画质播放（[`www.raspberrypi.org/help/faqs/#generalSoCUsed`](https://www.raspberrypi.org/help/faqs/#generalSoCUsed)）。
+
+
+  '
+- '# 应该购买哪个型号？
+
+
+  在撰写本文时，树莓派共有五个型号：A、A+、B、B+，以及自 2015 年 2 月起推出的新型号 Pi 2 Model B。以下是 A+ 和 2 B 两个版本的对比。
+
+
+  | Model A+ | Model 2 B |
+
+  | --- | --- |
+
+  | 售价约 25 美元 | 售价约 35 美元 |
+
+  | 一个 USB 端口 | 四个 USB 端口 |
+
+  | 无以太网接口 | 标准以太网连接 |
+
+  | 256 MB 内存 | 1 GB 内存 |
+
+
+  Model A+ 更便宜，但只有一个 USB 端口且没有以太网连接。这可能不是问题。如果你为 Model A+ 连接一个带电源的 USB 集线器，再使用一个 USB
+  转 WiFi 适配器，就能拥有 Model B+ 的所有网络功能。两个型号之间的一个主要区别是内存大小。Model A+ 有 256 MB 内存，Model B+
+  有 512 MB 内存，而 2 B 有 1 GB 内存。这两个型号的内存均不可升级。
+
+
+  所有树莓派微型计算机都配有一个 SD 存储卡插槽、音频输出插孔、RCA 和 HDMI 视频端口，以及一排通用输入输出引脚。还有两个用于连接显示屏和摄像头的额外接口，但两者都需要高度专业化的硬件。考虑到价格差异很小（通常在
+  10 到 25 美元之间），我建议从 Model 2 B 开始入手。如果你要为（例如）一个教室购买多台，那么 Model A+ 可能就足够了。
+
+
+  你可以从任何在线商店以不超过 100 美元的价格购买一个包含所有入门所需物品的套件，它将包括：
+
+
+  *   新型树莓派 2（RPi2）四核 900 MHz 1GB 内存和 CanaKit WiFi 适配器
+
+  *   优质 6 英尺 HDMI 线缆、GPIO 转面包板接口板、排线、面包板、跳线、GPIO 快速参考卡和电阻色环快速参考卡
+
+  *   8 GB 三星 MicroSD 卡（树莓派基金会推荐的预装 NOOBS 的 MicroSD 卡）、高品质树莓派 2 外壳和散热片
+
+  *   RGB LED、8 个 LED（蓝/红/黄/绿）、15 个电阻、2 个按钮开关和电子元件初学者通用指南
+
+  *   专为树莓派 2 设计的 2.5A USB 电源适配器，带 5 英尺 Micro USB 线缆（UL 认证）
+
+
+  ![应该购买哪个型号？](img/B03998_06_02.jpg)
+
+
+  树莓派 B Model 2 的典型套件组件
+
+
+  ## 购买树莓派
+
+
+  树莓派由英国的树莓派基金会制造。不幸的是，它历来有缺货待发的历史。幸运的是，你可以从多家供应商处购买，其中一些列在 [`www.raspberrypi.org/`](https://www.raspberrypi.org/)
+  的主页上。你也可以从 [`www.amazon.com`](http://www.amazon.com) 购买，尽管价格会稍高一些。价格与你在此处看到的会有所不同。
+
+
+  最后，请查看 [`www.adafruit.com`](http://www.adafruit.com)。他们的价格合理，并且还提供一些你未来项目中会用到的有用配件。在这些商店里，你还可以找到包含树莓派和入门所需组件的入门套件。
+
+
+  ## 相关网站和文档
+
+
+  互联网上有大量关于树莓派的信息。当你研究更高级的主题时，知道在哪里寻找答案会很有帮助。
+
+
+  树莓派基金会的官方网站是 [`www.rasberrypi.org`](http://www.rasberrypi.org)。它列出了购买树莓派微型计算机的渠道。网站上还有各种教程和有用的论坛。
+
+
+  有关在树莓派上运行的 Linux 版本的更多信息，请访问 [`elinux.org/index.php?title=RPi_Hub&redirect=no`](http://elinux.org/index.php?title=RPi_Hub&redirect=no)。那里有关于通用输入输出引脚的信息；Raspbian
+  Wheezy（专为树莓派设计的 Linux 版本）；以及示例项目。你还会找到关于其他嵌入式系统的信息，例如 **Minnow board** 和 **BeagleBoard**。
+
+
+  Neil Black 编写了一份出色的树莓派初学者指南，值得掌声。如果你在设置过程中感到困惑，请访问 [`neil-black.co.uk/the-updated-raspberry-pi-beginners-guide`](http://neil-black.co.uk/the-updated-raspberry-pi-beginners-guide)。
+
+
+  最后，访问 [`www.adafruit.com`](http://www.adafruit.com) 购买树莓派以及电源、电机控制板和实验套件。如果你无法在当地购买零件，这个团队是购买配件和其他组件的绝佳选择。
+
+
+  '
+- "# 为 JavaFX 8 准备树莓派\n\n没有操作系统，你的树莓派将无法工作，操作系统从 SD 卡加载。我们需要一种与之交互的方式，首先安装支持的操作系统，在我们的例子中是\
+  \ Raspbian Wheezy；所有官方支持的树莓派操作系统都已列出，并可从链接 [`www.raspberrypi.org/downloads/`](http://www.raspberrypi.org/downloads/)\
+  \ 下载。\n\n然后，我们将配置树莓派的网络设置，以便远程连接它。最后，我们将检查默认安装的 Java SE 8 版本，并继续检查更新（如果操作系统尚未预装的话）。\n\
+  \n如前所述，最新的更新不包含 JavaFX，因此我们将找到添加它的方法。让我们开始准备 SD 卡以安装 Raspbian Wheezy 操作系统，并使树莓派启动并运行。\n\
+  \n## 创建可启动 SD 卡\n\n现在，我们将准备带有 Raspbian Wheezy 操作系统的 SD 卡，这将使我们能够与树莓派进行交互。这是非常重要的一步。有两种方法可以做到这一点：\n\
+  \n\n\n### 使用 NOOBS\n\nNOOBS 是一款简易的操作系统安装器，其中包含 Raspbian。但精简版并未捆绑 Raspbian。它还提供了一系列可供选择的其他操作系统，这些系统会从互联网下载并安装。\n\
+  \n初学者应从 NOOBS 方法入手，但这需要网速良好的互联网连接来下载首选操作系统。\n\n如果你购买的套件中已包含预装 NOOBS 的 SD 卡，可以直接跳到下一步。或者，如果你需要\
+  \ SD 卡，可以从 Swag 商店订购一张，网址为 [`swag.raspberrypi.org/products/noobs-8gb-sd-card`](http://swag.raspberrypi.org/products/noobs-8gb-sd-card)；你也可以自行下载并将其设置到你的\
+  \ SD 卡上。所有步骤均可在链接 [`www.raspberrypi.org/help/noobs-setup/`](http://www.raspberrypi.org/help/noobs-setup/)\
+  \ 中找到。\n\n**将 Raspbian Wheezy 操作系统烧录到你的 SD 卡：**\n\n这是我最喜欢的设置方式，因为我已下载好操作系统，并会直接将其烧录到我的\
+  \ SD 卡上；以下是在 Mac OS X 上操作的步骤（请确保你有一张有效的 SD 卡，容量为 4/8/16 GB，且为 Class 10 级别）：\n\n\
+  我们需要将 SD 卡格式化为 FAT32 格式。我们可以使用适用于 Windows 或 Mac 的 SD Formatter 4.0 轻松完成此操作，该软件可从\
+  \ SD 协会网站下载，网址为 [`www.sdcard.org/downloads/formatter_4/eula_mac/index.html`](https://www.sdcard.org/downloads/formatter_4/eula_mac/index.html)。\n\
+  \n按照说明安装该软件包：\n\n1.  将你的 SD 卡插入电脑或笔记本电脑的 SD 卡读卡器，并*记下*分配给它的驱动器盘符——例如，在我的电脑上是 `/disk2`。\n\
+  2.  在 **SDFormatter** 中，选择你的 SD 卡的驱动器盘符，进入 **Format Option** 并选择 **Overwrite format**，将其命名为\
+  \ `RaspWheezy`（可选），然后点击 **Format**。根据卡的大小，格式化 SD 卡可能需要一些时间。![使用 NOOBS](img/B03998_06_03.jpg)\n\
+  \n    使用 SDFormatter 应用程序格式化 SD 卡\n\n3.  格式化完成后，关闭 SDFormatter。如果你使用的是 Mac 或 Linux，请在终端中运行以下命令行来检查磁盘盘符和格式类型：\n\
+  \n    ```\n    $ diskutil list\n    ```\n\n    在此例中，SD 卡是 `/dev/disk2`，格式类型为 `DOS_FAT_32`，名称为\
+  \ `RASPWHEEZY`。在 Windows 上，请打开 Windows 资源管理器并检查驱动器。\n\n    ### 注意\n\n    切勿搞错，否则你可能会销毁错误\
+  \ `disk/card/drive` 上的所有数据。\n\n4.  从链接 [`downloads.raspberrypi.org/raspbian_latest`](http://downloads.raspberrypi.org/raspbian_latest)\
+  \ 下载 Raspbian Wheezy 操作系统，解压缩后，你应该会得到 `2015-02-16-raspbian-wheezy.img` 文件。\n5. \
+  \ 在 Mac 或 Linux 的命令行中，卸载磁盘但不要弹出：\n\n    ```\n    $ diskutil unmountDisk /dev/disk2\n\
+  \    ```\n\n6.  然后使用 `dd` 命令行将镜像写入 SD 卡：\n\n    ```\n    $ sudo dd if=/path/to/2015-02-16-raspbian-wheezy.img\
+  \ of=/dev/rdisk2 bs=1m\n    ```\n\n    输入密码后，写入过程开始，你需要等待直到再次看到提示符。这需要几分钟时间。在 Windows\
+  \ 上，你可以使用 Win32DiskImager（可从 [`www.raspberry-projects.com/pi/pi-operating-systems/win32diskimager`](http://www.raspberry-projects.com/pi/pi-operating-systems/win32diskimager)\
+  \ 下载）。\n\n7.  `dd` 命令完成后，弹出卡片：\n\n    ```\n    $ sudo diskutil eject /dev/rdisk2\n\
+  \    ```\n\n    ### 注意\n\n    请注意，`dd` 在出现错误或完成之前不会反馈任何信息；完成后会显示信息，并且磁盘会重新挂载。但是，如果你想查看进度，可以使用\
+  \ *Ctrl* + *T* 快捷键。这会生成 **SIGINFO**，即你 `tty` 的状态参数，并显示有关进程的信息。\n\n恭喜，现在将你的 SD 卡装入\
+  \ Raspberry Pi，并连接合适的显示器以启动它。\n\n## 配置 Raspberry Pi\n\n现在，我们需要为 Pi 的首次启动进行设置，并配置一个静态\
+  \ IP，以便从我们的笔记本电脑远程连接：\n\n1.  装入我们之前准备好的 SD 卡。\n2.  插入键盘、鼠标和显示器线缆。\n3.  将你的 WiFi\
+  \ 适配器插入其中一个 USB 端口。\n4.  现在，将电源线插入你的 Pi。\n5.  你应该会在屏幕上看到一些详细输出，显示 Raspbian 操作系统正在启动。大胆前进，无需畏惧。\n\
+  6.  首次启动时，Raspberry Pi 配置屏幕将会显示，并为你提供一系列可用于配置 Raspberry Pi 的选项。基本上，你需要设置时区和本地化配置。检查\
+  \ CPU 和 GPU 之间的内存分配设置，或启用 SSH。但大多数情况下，你可以直接忽略它们，使用箭头键移动到最后一个选项，然后按回车键。\n7.  如果在配置过程中选择了不喜欢的选项，你可以通过在控制台输入\
+  \ `sudo raspi-config` 来重新启动配置。\n8.  如果 Raspberry Pi 配置正确，你会看到一系列 Linux 启动信息滚动而过，随后出现登录请求。默认用户登录名是\
+  \ `pi`，密码是 `raspberry`。现在，你将看到一个标准的 Linux 提示符。恭喜，你的 Raspberry Pi 已启动并运行。\n9.  Wheezy\
+  \ 带有图形用户界面。只需输入 `sudo startx`，你就会看到一个色彩丰富的用户界面，其中包含游戏、文字处理器和网页浏览器，如下面的截图所示：![配置\
+  \ Raspberry Pi](img/B03998_06_04.jpg)\n\n    Raspberry Pi 桌面\n\nRaspberry Pi 桌面是**轻量级\
+  \ X11 桌面环境**（**LXDE**）。花些时间探索一下。你会发现它非常熟悉，尽管比你的高性能台式电脑稍慢一些。\n\n当你完成 LXDE 的使用后，只需注销，你就会回到\
+  \ Linux 提示符。为了 SD 卡上数据的安全，优雅地关闭你的 Raspberry Pi 非常重要。在拔出电源线之前，请发出关机命令：\n\n```\n$\
+  \ sudo shutdown -h now.\n```\n\n这将确保在所有进程关闭之前，所有内容都已写入 SD 卡。现在，你可以安全地拔出电源线，这就是 Raspberry\
+  \ Pi 开关的全部操作。\n\n恭喜，你已经完成了 Raspberry Pi 的首次使用。\n\n\n\n## 远程连接树莓派\n\n通常情况下，你会使用外设和显示器来连接树莓派，但并非总是如此——在开发阶段，或者当树莓派本身被用作控制家用电器的酷炫服务器时，你需要从电脑、浏览器甚至手机来控制它。\n\
+  \n为树莓派设置固定网络地址并非必需，但强烈建议这样做。这样一来，你就能始终使用相同的地址（或名称，如果你在 hosts 文件中创建了条目）连接到树莓派，从而消除了开发过程中的一个潜在变量。\n\
+  \n同时，最好将树莓派的 IP 地址更新到网络 DHCP 设备/路由器中，这样它就不会尝试将该地址分配给网络上的其他设备。具体操作步骤因交换机/路由器制造商而异。\n\
+  \n我们将在树莓派上安装 VNC 服务器。**虚拟网络计算**（**VNC**）允许你通过网络从一台电脑控制另一台电脑。它提供了一个图形用户界面，包括鼠标和键盘。在我们的场景中，它将使我们无需在树莓派上连接实体键盘和鼠标，就能查看和使用树莓派的图形用户界面。\n\
+  \n目前，这只是一个便利功能，如果你对当前的鼠标、键盘和显示器设置感到满意，可以跳过此部分。当你开始使用需要占用一个或多个 USB 端口的设备时，VNC 将成为必需品。\n\
+  \n设置 VNC 需要五个步骤：\n\n1.  连接到家庭 WiFi 互联网连接。\n2.  在树莓派上安装 VNC。\n3.  设置为开机自启动。\n4. \
+  \ 设置静态 IP 地址。\n5.  使用客户端连接到 VNC。\n\n连接到 WiFi 互联网连接，Raspbian Wheezy 包含一个 WiFi 配置工具。此外，所有在\
+  \ 2012 年 10 月 28 日之后发布的 Raspbian 版本都预装了此工具。\n\n### 注意\n\n设置 WiFi 需要你的路由器正在广播 SSID。请确保你的路由器已设置*广播\
+  \ SSID*！这对于私有 SSID 设置无效。\n\n现在，让我们远程连接到树莓派：\n\n1.  在 Raspbian 桌面上，转到 **菜单** | **首选项**\
+  \ | **WiFi 配置**，如下截图所示：![远程连接树莓派](img/B03998_06_05.jpg)\n\n    选择 WiFi 配置工具\n\n\
+  2.  双击该图标，你将看到以下窗口：![远程连接树莓派](img/B03998_06_06.jpg)\n\n    WiFi 配置工具图形用户界面\n\n3.\
+  \  点击 **扫描** 按钮，将打开第二个窗口。在列表中找到你的无线接入点并双击它。这将打开另一个窗口：![远程连接树莓派](img/B03998_06_07.jpg)\n\
+  \n    接入点列表\n\n4.  在 `PSK` 字段中输入你的密码，然后点击 **添加**。查看第一个窗口时，你应该会看到连接已设置完毕，可供使用。![远程连接树莓派](img/B03998_06_08.jpg)\n\
+  \n    添加接入点的最终状态\n\n你可以使用按钮进行连接或断开连接。在上面的截图中，你可以看到树莓派的 IP 地址显示在窗口底部。\n\n请注意，在终端上设置\
+  \ WiFi 连接有一个手动方法。这需要编辑 `config` 文件并手动添加网络的 SSID 和密码。更多信息，请访问 [`www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md`](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md)。\n\
+  \n恭喜，你的树莓派已连接到互联网。现在让我们安装一个 VNC 服务器。\n\n### 在树莓派上安装 VNC\n\n现在你已经有了互联网连接，可以在树莓派上安装\
+  \ VNC 服务器了。如果你使用的是 Raspbian Wheezy，这很简单。在命令提示符下，输入以下行：\n\n```\n$ sudo apt-get install\
+  \ tightvncserver\n```\n\n你会看到消息：**是否继续？是或否？**\n\n让我们用大写字母 *Y* 回答，然后休息一下。当安装完成时，输入以下命令：\n\
+  \n```\n$ vncserver\n```\n\n系统会要求你创建一个密码，我使用 *raspberry*。它会提示密码长度超过八个字符；继续重新输入 `raspberry`。接下来，系统会询问：**是否要输入一个仅供查看的密码？**\
+  \ 输入 *N* 表示否。\n\n恭喜，你已经在树莓派上运行 VNC 了。\n\n#### 设置 VNC 开机自启动\n\n随着你越来越熟练，你可能并不总是需要\
+  \ VNC，但假设你希望每次启动树莓派时 VNC 都运行：\n\n1.  使用树莓派 **LX 终端** 中的以下命令编辑 `rc.local` 文件：\n\n\
+  \    ```\n    $ sudo nano /etc/rc.local\n    ```\n\n2.  滚动到底部，在 `exit 0` 上方添加以下行：\n\
+  \n    ```\n    su -c \"/usr/bin/tightvncserver -geometry 1280x1024\" pi\n    ```\n\
+  \n3.  保存文件并使用以下命令重启树莓派：\n\n    ```\n    $ sudo shutdown -r now\n    ```\n\n4.  现在，每次启动树莓派时，VNC\
+  \ 都将可用。\n\n### 设置静态 IP 地址\n\n通过 VNC 连接树莓派需要一个静态 IP 地址，即一个不会改变的地址。接下来我将向你展示如何为有线和无线网络获取静态\
+  \ IP：\n\n1.  如果你在家庭网络中，需要找到一个可用的 IP 地址。为此，打开树莓派 LX 终端，输入：\n\n    ```\n    mohamed_taman$\
+  \ ifconfig –a\n    ```\n\n    然后，输入以下命令：\n\n    ```\n    mohamed_taman$ netstat\
+  \ -nr\n    ```\n\n2.  收集以下信息：*当前 IP*（如果你想保留它）、*子网掩码*、*网关*、*目标地址*和*广播地址*。记下这些信息，你很快就会用到！\n\
+  3.  在树莓派上，通过运行以下命令备份 `/etc/network/interfaces`：\n\n    ```\n    $ sudo cp /etc/network/interfaces\
+  \ /etc/network/interfaces.org\n    ```\n\n4.  使用以下命令修改 `interfaces` 文件：\n\n    ```\n\
+  \    $ sudo nano /etc/network/interfaces\n    ```\n\n5.  将 `interfaces` 文件从：![设置静态\
+  \ IP 地址](img/B03998_06_09.jpg)\n\n    编辑前的 interfaces 文件\n\n6.  选择适合你网络的 IP 号码；同时将\
+  \ `wpa-ssid` 改为你的无线网络名称，将 `wpa-psk` 改为无线密码：![设置静态 IP 地址](img/B03998_06_10.jpg)\n\
+  \n    编辑后的 interfaces 文件\n\n7.  保存文件并重启树莓派。这些设置对有线和无线连接都有效。恭喜，你现在可以使用 VNC 客户端连接到你的树莓派了。\n\
+  \n\n\n### 树莓派自动登录\n\n和大多数人一样，你购买树莓派可能是为了搭建家庭或办公室的专属设备。接下来你需要设置树莓派，连接外设，并安装或开发必要的软件。\n\
+  \n项目最终的目标是：通电后，设备能直接展现出你所期待的全部神奇功能。\n\n然而，当树莓派启动到登录提示符并等待你输入用户名和密码时，这种体验就大打折扣了。那么，让我们来实现树莓派的自动登录：\n\
+  \n1.  在树莓派上，打开终端，使用以下命令编辑 `inittab` 文件：\n\n    ```\n    sudo nano /etc/inittab\n\
+  \    ```\n\n2.  通过定位到 `inittab` 中的以下行来禁用 `getty` 程序：\n\n    ```\n    1:2345:respawn:/sbin/getty\
+  \ 115200 tty1\n    ```\n\n3.  在该行开头添加一个 `#` 将其注释掉，如下所示：\n\n    ```\n    #1:2345:respawn:/sbin/getty\
+  \ 115200 tty1\n    ```\n\n4.  在注释行的正下方，向 `inittab` 添加一个登录程序：\n\n    ```\n    1:2345:respawn:/bin/login\
+  \ -f pi tty1 </dev/tty1 >/dev/tty1 2>&1\n    ```\n\n5.  这将使用 `pi` 用户运行登录程序，无需任何身份验证。\n\
+  6.  按 *Ctrl* + *X* 保存并退出，然后按 *Y* 保存文件，最后按 *Enter* 确认文件名。\n\n重启树莓派，它将直接启动到 shell\
+  \ 提示符 `pi@raspberrypi`，而不会提示你输入用户名或密码。\n\n### 使用客户端连接 VNC\n\n在继续之前，让我们确保一切工作正常。为此，你需要一个\
+  \ VNC 客户端。如果你使用的是装有较新版本 Mac OS X 的 Macintosh 电脑，这很简单。\n\n前往 **Finder** | **前往**\
+  \ | **连接服务器**。输入 `vnc://` 以及你分配给树莓派的 IP 地址。在我的例子中，IP 地址是 192.168.2.150，后面跟一个冒号和端口号\
+  \ 5901，如下面的截图所示。完整的 URL 应为 **vnc://192.168.2.150:5901**。\n\n![使用客户端连接 VNC](img/B03998_06_11.jpg)\n\
+  \n连接到树莓派 VNC 服务器。\n\n如图所示，`5901` 是树莓派 VNC 服务器监听的端口号。点击 **连接**。不用担心屏幕共享加密，再次点击 **连接**。然后输入你之前创建的密码（`raspberry`）。如果一切正常，你将看到一个巨大的树莓图标。恭喜你！\n\
+  \n如果你不是 Macintosh 电脑用户，则需要下载一个 VNC 客户端。你可以从 [`realvnc.com/`](http://realvnc.com/)\
+  \ 获取免费查看器。这里有适用于 Windows、iOS、Android 和 Chrome 浏览器的客户端。是的，你可以通过手机控制树莓派。\n\n"
+- "# JavaFX 8 开发前提条件\n\n现在我们已经设置并配置好了用于开发的树莓派，我们需要在开发机器和树莓派上安装相同且正确匹配的 JDK 8 构建版本。这对于在运行\
+  \ JavaFX 8 应用程序时避免库/版本问题非常重要，这也是我们接下来要做的事情。\n\n## 在树莓派上安装 Java SE 8\n\n在撰写本文时，Raspbian\
+  \ Wheezy 系统预装了 JDK 8。要检查，只需在树莓派命令提示符下输入以下命令：\n\n```\npi@raspberrypi ~ $ java –version\n\
+  ```\n\n根据当前安装并可访问的版本，你将看到类似如下的信息：\n\n![在树莓派上安装 Java SE 8](img/B03998_06_12.jpg)\n\
+  \n树莓派上的 Raspbian Wheezy Java 版本\n\n关键信息在第二行：如果它没有显示 1.8.n，你就需要安装 JDK 8。\n\n## 安装\
+  \ Java SE 8\n\n我们之前已经安装过 JDK 8，所有必要的步骤都在第 1 章 *JavaFX 8 入门* 的 *安装 Java SE 8 JDK*\
+  \ 部分中进行了描述。\n\n## 添加 JavaFX\n\n如前所述，Oracle 已停止对 JavaFX Embedded 的支持。如果你安装了 JDK 8u45\
+  \ 或 Raspbian Wheezy 上预装的版本，则没有捆绑 `jfxrt.jar`，因此我们需要提供它才能在树莓派上运行 JavaFX 应用程序。\n\n\
+  一种方法是按照 [`wiki.openjdk.java.net/display/OpenJFX/Cross+Building+for+ARM+Hard+Float`](https://wiki.openjdk.java.net/display/OpenJFX/Cross+Building+for+ARM+Hard+Float)\
+  \ 上的教程，为 ARM 交叉构建 OpenJFX。这适合真正的高级开发者。\n\n更简单的方法是下载一个预构建的发行版，例如托管在 JavaFXPorts 项目上的\
+  \ `armv6hf-sdk.zip`（[`bitbucket.org/javafxports/arm/downloads`](https://bitbucket.org/javafxports/arm/downloads)）。\n\
+  \n下载 `armv6hf-sdk.zip` 后，解压缩它，并添加以下命令行选项，通过扩展机制将外部源附加到 `classpath`：\n\n```\n-Djava.ext.dirs=<path\
+  \ to armv6hf-sdk>/rt/lib/ext\n```\n\n或者，你可以将此 zip 文件中 `rt/lib/ext` 和 `rt/lib/arm`\
+  \ 的内容复制到你的 JVM 文件夹中，从而避免使用扩展机制。\n\n## 为树莓派配置 NetBeans\n\nNetBeans 8 增加了指向远程 JDK\
+  \ 的能力，并用于远程调试和执行你在本地开发机器上编写的程序。它甚至能自动无缝地部署你的应用程序。正如 José Pereda 在他的文章 [`netbeans.dzone.com/articles/nb-8-raspberry-pi-end2end`](http://netbeans.dzone.com/articles/nb-8-raspberry-pi-end2end)\
+  \ 中所记载的，你可以通过以下步骤启用此功能：\n\n1.  在你的机器上启动 NetBeans。\n2.  从菜单栏中选择 **工具**，然后选择 **Java\
+  \ 平台**。点击 **添加平台** 按钮。\n3.  选择 **远程 Java 标准版** 单选按钮，然后点击 **下一步**。\n4.  提供以下条目（如下面的截图示例所示）：\n\
+  \n    **平台名称**：`JavaFX on Raspberry Pi JDK 8`\n\n    **主机**：输入你之前分配给树莓派的静态 IP 地址或主机名\n\
+  \n    **用户名**：`pi`\n\n    **密码**：`raspberry`\n\n    **远程 JRE 路径**：`/usr/lib/jvm/jdk-8-oracle-arm-vfp-hflt/jre`\n\
+  \n    ![为树莓派配置 NetBeans](img/B03998_06_13.jpg)\n\n    为树莓派设置远程平台\n\n5.  点击 **完成**\
+  \ 按钮，等待 NetBeans 建立并配置远程 JDK 连接。\n6.  远程 JDK 就位后，点击 **关闭** 按钮。\n\n现在我们已经完成了设置，你应该拥有一个为树莓派开发\
+  \ JavaFX 8 应用程序的最佳开发环境之一。那么，让我们开始吧！\n\n"
+- "# 开关应用程序\n\n开关应用程序本质上非常简单，但其理念主要分为两个要点：如何在树莓派上运行 JavaFX 8 应用程序，以及如何从树莓派的**通用输入/输出**（**GPIO**）控制外部世界。为此，我们将使用一个名为\
+  \ **Pi4j** 的项目。\n\n思路很简单；我们将创建一个 JavaFX 应用程序，它将作为一个开关控制器，用于控制一个连接到树莓派电路上的 LED。\n\
+  \n以下截图显示了应用程序在开启和关闭状态下的样子：\n\n![开关应用程序](img/B03998_06_14.jpg)\n\n开关应用程序开启状态\n\n\
+  .\n\n![开关应用程序](img/B03998_06_15.jpg)\n\n开关应用程序关闭状态\n\n\n\n## 什么是 Pi4J 库？\n\nPi4J\
+  \ 库（[`pi4j.com`](http://pi4j.com)）是一个旨在为原生库与 Java 之间搭建桥梁的项目，以便全面访问树莓派的功能和控制接口，从而让你能够轻松地在\
+  \ Java 项目中访问 GPIO 引脚。\n\n请访问 [`pi4j.com/pins/model-2b-rev1.html`](http://pi4j.com/pins/model-2b-rev1.html)\
+  \ 查看树莓派 2 代 B 型（J8 排针）的 GPIO 引脚编号。此外，你的套件中的 GPIO 适配器可能附带一份 GPIO 排针快速参考指南。\n\n对于本示例，你需要一些基本的电子元件，例如一个\
+  \ LED、一个电阻和一个面包板。如果你的套件中没有包含这些元件，可以从网上商店购买。\n\n### 电路搭建\n\n现在我们需要搭建电路：在面包板上放置一个\
+  \ LED 并串联一个 220 欧姆的上拉电阻，然后将 LED 的阳极连接到 GPIO 引脚 #1，阴极连接到 GPIO 的 GND 引脚，如下图所示（CanaKit\
+  \ 套件附带了一份常用电子元件的通用组装指南）：\n\n![电路搭建](img/B03998_06_16.jpg)\n\n开关应用电路搭建\n\n## 应用程序\n\
+  \n如前所述，应用程序界面包含两个按钮。**退出我！** 按钮负责关闭 GPIO 控制器并退出应用程序。第二个按钮是一个开关按钮（**开**/**关**），用作开关。它有两种状态：选中时状态为\
+  \ true，未选中时为 false。此外，我们通过编程方式更改其标签，以指示当前受控 LED 的状态。\n\n此外，还有一个圆形图形用于模拟物理 LED 的状态。因此，当开关按钮处于“开”状态时，圆形将填充为红色。“关”状态则将其变为黑色，这是默认状态。\n\
+  \n最后，在应用程序场景的底部，我们添加了一个标签为“Pi 信息”的 `TitledPane`，用于显示一些树莓派信息。\n\n查看 `SwitchUIController.java`\
+  \ 类，你会发现在与 `Pi4J` 库交互之前，我们需要声明一些非常重要的字段：\n\n```\nprivate GpioController gpio;\n\
+  private GpioPinDigitalOutput pin;\n```\n\n第一行代码负责创建一个新的 GPIO 控制器实例，这是在 `initialize()`\
+  \ 方法中通过 `GpioFactory` 完成的，因为它包含一个用于创建 GPIO 控制器的 `createInstance` 方法：\n\n```\ngpio\
+  \ = GpioFactory.getInstance();\n```\n\n### 注意\n\n你的项目应仅实例化一个 GPIO 控制器实例，并且该实例应在整个项目中共享。\n\
+  \n要访问 GPIO 引脚，你必须首先配置（provision）该引脚。配置过程会根据你的使用意图来设置引脚。配置可以自动导出引脚、设置其方向，并为基于中断的事件建立任何边缘检测：\n\
+  \n```\n// 将 GPIO 引脚 #01 配置为输出引脚并开启\npin = gpio.provisionDigitalOutputPin(GPIO_01);\n\
+  ```\n\n这就是配置输出引脚 #1 的方法。你的程序将只能控制那些被配置为输出引脚的引脚状态。输出引脚用于控制继电器、LED 和晶体管。\n\n现在，我们想要做的就是从应用程序中通过开关按钮来控制\
+  \ LED。这是通过注册到开关按钮的 `doOnOff()` 事件函数实现的，如下代码所示：\n\n```\n @FXML\n    private void\
+  \ doOnOff(ActionEvent event) {\n        if (switchTgl.isSelected()) {\n        \
+  \    pin.high();\n            led.setFill(RED);\n            switchTgl.setText(\"\
+  OFF\");\n            System.out.println(\"Switch is On\");\n        } else {\n \
+  \           pin.low();\n            led.setFill(BLACK);\n            switchTgl.setText(\"\
+  ON\");\n            System.out.println(\"Switch is Off\");\n        }\n    }\n```\n\
+  \n`Pi4J` 库提供了许多便捷方法来控制 GPIO 引脚或向其写入状态。在我们的应用程序中，我们使用 `pin.high()` 来点亮 LED，使用 `pin.low()`\
+  \ 来熄灭 LED。\n\n最后，当应用程序退出时，我们必须关闭 GPIO 控制器。Pi4J 项目提供了一种实现，可以在应用程序终止时自动将 GPIO 引脚状态设置为非活动状态。\n\
+  \n这对于确保程序关闭时 GPIO 引脚状态不会保持活动或留下某些活动状态非常有用。我们可以通过之前创建的 GPIO 实例，使用下面这行代码轻松实现这一点：\n\
+  \n```\ngpio.shutdown();\n```\n\n当你按下开关按钮打开 LED 时，你会看到绿色的 LED 亮起。当它关闭时，你会看到 LED 熄灭。\n\
+  \n![应用程序](img/B03998_06_17.jpg)\n\n应用电路——LED 关闭\n\n![应用程序](img/B03998_06_18.jpg)\n\
+  \n应用电路——LED 开启\n\n接下来，让我们配置项目，以便从 NetBeans 直接在树莓派上运行我们的 JavaFX 开关应用程序。\n\n"
+- "# 在树莓派上使用 NetBeans\n\n在讨论了应用程序逻辑并了解了其工作原理之后，接下来是最精彩的部分：构建你的应用程序并使用 NetBeans 在树莓派上运行它。步骤如下：\n\
+  \n1.  在 NetBeans 的 **项目** 选项卡中，右键点击 `Chapter6` 项目，然后选择 **属性**。\n2.  在 **项目属性** 对话框中，从左侧的\
+  \ **类别** 菜单中选择 **运行**。你将看到一个类似于以下截图的对话框：![在树莓派上使用 NetBeans](img/B03998_06_19.jpg)\n\
+  \n    项目属性对话框与运行配置\n\n3.  点击所选 **配置** 右侧的 **新建** 按钮。为 **新建配置** 设置一个名称（`Pi 远程配置`），然后点击\
+  \ **确定** 按钮，如下图所示：![在树莓派上使用 NetBeans](img/B03998_06_20.jpg)\n\n    新建配置\n\n4.  现在，你需要将一个远程\
+  \ JDK 与你的远程配置关联起来。为此，点击标记为 **运行时平台** 的下拉框，然后选择你之前配置的 `JavaFX on Raspberry Pi JDK\
+  \ 8`。别忘了在 **VM 选项** 中添加 `jfxrt.jar` 的路径：![在树莓派上使用 NetBeans](img/B03998_06_21.jpg)\n\
+  \n    远程 Pi JDK 关联\n\n5.  最后一步是构建应用程序并将其部署到树莓派上。为此，请转到 **运行** 菜单，选择 **运行项目**，然后观察\
+  \ NetBeans 的输出窗口/选项卡。如果在运行应用程序时留意树莓派的屏幕，你将看到以下输出信息：\n\n    ```\n    jfx-deployment-script:\n\
+  \    jfx-deployment:\n    jar:\n    Connecting to 192.168.2.150:22\n    cmd : mkdir\
+  \ -p '/home/pi/NetBeansProjects/Chapter6/dist'\n    Connecting to 192.168.2.150:22\n\
+  \    done.\n    profile-rp-calibrate-passwd:\n    Connecting to 192.168.2.150:22\n\
+  \    cmd : cd '/home/pi/NetBeansProjects/Chapter6';\n    '/usr/lib/jvm/jdk-8-oracle-arm-vfp-hflt/jre/bin/java'\
+  \  -Dfile.encoding=UTF-8 -jar /home/pi/NetBeansProjects/Chapter6/dist/Chapter6.jar\n\
+  \    ```\n\n\n\n"
+- '# 总结
+
+
+  在本章中，我们拿了一台只有扑克牌盒大小的信用卡尺寸微型计算机，并将其改造成了一台 JavaFX 开关控制器。在此过程中，你了解了树莓派，学会了如何创建可启动 SD
+  卡、如何为其安装操作系统、如何配置它以获得最佳性能和远程连接能力、如何为其分配固定网络（IP）地址，以及如何从你的开发机连接到树莓派。
+
+
+  我们还重新回顾了如何将 JDK 8/JavaFX 8 安装到树莓派和你的开发机上，并且你学会了如何在开发机上安装和配置 NetBeans，使其能够将树莓派上的
+  JDK 用作远程调试和执行平台。
+
+
+  在开发机和树莓派都准备就绪后，我们讨论了开发一个简单但出色的应用程序所需的原则，该应用程序使用 JavaFX 和一些精选工具/API（包括 Pi4j）从树莓派控制外部世界，并控制
+  GPIO。
+
+
+  最后，你看到了如何通过几次点击，从 NetBeans 将应用程序远程部署到你的树莓派上。
+
+
+  在下一章中，我们将监控一个温度传感器，通过 Arduino 板测量你的血液温度。
+
+
+  '
+- '# 第 7 章 使用 JavaFX 监控和控制 Arduino
+
+
+  **Arduino** 是一个基于简单可编程微控制器板的开源电子工具，可以使用免费的开源 IDE 进行编程。它可以独立运行，也可以连接到计算机，通过从各种开关或传感器获取输入来感知环境，并通过控制各种灯、电机和其他物理输出设备来采取行动。
+
+
+  作为最早的**物联网**（**IoT**）设备之一，它诞生于 2005 年。从物联网概念诞生之初，它就已经存在了。
+
+
+  Arduino 可以独立运行，也可以与计算机上运行的软件（Java、JavaFX、Python 等）进行通信，并且这些板子可以手工组装，也可以购买预组装好的。
+
+
+  事实上，Arduino 简化了使用微控制器的过程。同时，对于教师、学生和感兴趣的业余爱好者来说，它比其他系统更具吸引力，因为它*价格低廉*——一块 Arduino
+  板的价格不到 50 美元。
+
+
+  一个简单、清晰且易于使用的编程环境；开源且可扩展的软件；以及开源且可扩展的硬件——这些特性，以及其他特点，使得 Arduino 支持“自己动手”和“与他人一起动手”的理念，这正是创客运动的定义。
+
+
+  本章将向你展示如何使用 JavaFX 结合 Arduino 板开发一个桌面应用程序，以监控来自真实世界温度传感器的数据，并将其以图表形式呈现，*你的血液到底有多热！*
+
+
+  在本章中，你将：
+
+
+  *   熟悉 Arduino 板及其组件
+
+  *   安装并准备 Arduino 软件、环境、IDE 和驱动程序
+
+  *   开发一个 Arduino 血液计量草图，以控制和监控电路
+
+  *   使用串行通信将 Arduino 数据读取到 JavaFX 应用程序中
+
+  *   使用 JavaFX 图表 API 呈现数据
+
+
+  '
+- "# 什么是 Arduino 板？\n\nArduino Uno 是最著名的 Arduino 板，它是一款基于 **ATmega328** 数据手册（[`www.atmel.com/dyn/resources/prod_documents/doc8161.pdf`](http://www.atmel.com/dyn/resources/prod_documents/doc8161.pdf)）的微控制器板，该芯片是板子的“大脑”。它的尺寸大约为\
+  \ 3 x 2 英寸。它有 14 个数字输入/输出引脚、6 个模拟输入引脚和 32 KB 的闪存。\n\n每块板都包含一个复位按钮。此外，它还包括一个 USB\
+  \ 端口，因此当它连接到计算机时，它既可以作为电源，也可以作为通信工具。如果你没有连接到计算机，你可以使用替代电源，例如一个 9 至 12 伏的交流直流适配器，通过将一个\
+  \ 2.1 毫米中心正极插头插入板子的电源插孔来连接，或者使用一个 9 伏电池组。\n\n数字引脚中，编号旁边带有波浪符号的六个引脚是允许进行**脉冲宽度调制**（**PWM**）的引脚，这是一种在数字输入引脚上控制功率和模拟模拟信号的技术。使用这些引脚的一个原因可能是控制\
+  \ LED 的亮度。\n\nArduino Uno 的官方规格可以在 [`arduino.cc`](http://arduino.cc) 网站上的 [`arduino.cc/en/Main/ArduinoBoardUno`](http://arduino.cc/en/Main/ArduinoBoardUno)\
+  \ 找到。访问 [`www.arduino.cc/en/Main/Products`](http://www.arduino.cc/en/Main/Products)\
+  \ 可以找到关于其他 Arduino 板的信息，例如 **Mega**、**Due** 或 **Yun**，以及后续发布的 **Tre** 和 **Zero**。\n\
+  \n下图展示了 Arduino Uno R3 板：\n\n![什么是 Arduino 板？](img/B03998_07_01.jpg) ![什么是 Arduino\
+  \ 板？](img/B03998_07_02.jpg)\n\n## 你能用它做什么？\n\n你的 Arduino 板可能很小，但不要被它的尺寸所欺骗。它功能强大，并且有很大的扩展空间。它之所以特别强大，是因为它建立在开放的硬件和开放的软件平台之上。我们不会花时间讨论开源；简而言之，这意味着关于硬件和软件的信息是免费提供的，并且很容易找到。\n\
+  \nArduino 可以通过接收输入来感知环境。它也可以控制输出，例如灯、电机、传感器等。\n\n你可以使用开源的 Arduino 编程语言对板上的微控制器进行编程。\n\
+  \n### 相关网站和文档\n\n开源和开放硬件平台的一大优势是，你可以在互联网上找到信息。\n\n开始查找 Arduino 相关信息的一个好地方是官方页面：[`arduino.cc`](http://arduino.cc)\
+  \ 网站上的 [`arduino.cc/en/Guide/HomePage`](http://arduino.cc/en/Guide/HomePage)。随着你技能的增长，你会想要研究更高级的主题，知道在哪里找到答案会很有帮助。\n\
+  \n另一个很棒的网站是 [`adafruit.com`](http://adafruit.com)。这个网站有教程、示例、有用的论坛，以及一个购买所需零件的商店。\n\
+  \n另一个适合孩子们的有趣且实用的应用是将**乐高头脑风暴**传感器和电机与 Arduino 结合起来。我推荐网站 [`wayneandlayne.com`](http://wayneandlayne.com)，因为它是我将乐高和\
+  \ Arduino 集成的灵感和起点。如果你正在寻找零件和项目，这是一个值得访问的好网站。\n\n## 设置你的 Arduino\n\n如果这是你第一次接触 Arduino，我强烈建议你从套件开始，而不是组装所有单独的组件。\n\
+  \n本章中的大部分活动都可以使用 arduino.cc 提供的名为 Arduino 入门套件的套件完成，如下图所示。它包括一个 Arduino Uno R3 和其他组件，以完成大多数预装项目。有关该套件的完整描述，请访问\
+  \ [`store.arduino.cc/product/K000007`](http://store.arduino.cc/product/K000007)。\n\
+  \n![设置你的 Arduino](img/B03998_07_03.jpg)\n\nArduino 入门套件（包含组件、板和项目手册的套件）\n\n\n\n\
+  ### 购买 Arduino\n\n虽然一块 Arduino Uno 板的价格约为 25 美元，但你可以购买包含该板在内的各种套件——从基础的预算包（50 美元）到\
+  \ Arduino 入门套件（65 美元），可在 [`adafruit.com`](http://adafruit.com) 购买；或者从 [`arduino.cc`](http://arduino.cc)\
+  \ 购买入门套件（90 美元）。这些套件包含与预算包相同的组件，但还额外提供了一些用于更高级动手实践的配件。\n\n从 [`arduino.cc`](http://arduino.cc)\
+  \ 购买的入门套件有一个不错的优势：它附带一本指南手册，其中包含 15 个不同技能水平的项目。\n\n如果你是亚马逊用户，通常可以在其网站上找到相同的套件，但价格可能有所不同。\n\
+  \n大多数电路板的核心组件位于相同位置。因此，更高级的电路板会通过增大尺寸来容纳额外的组件。\n\n以下是一些购买组件和书籍的网站：[`arduino.cc`](http://arduino.cc)、[`Adafruit.com`](http://Adafruit.com)、[`makershed.com`](http://makershed.com)、[`sparkfun.com`](http://sparkfun.com)\
+  \ 和 [`Amazon.com`](http://Amazon.com)。\n\n### 你需要的其他组件\n\n除了 Arduino 之外，你还需要一台装有\
+  \ Windows、Mac OS 或 Linux 系统的电脑，并带有 USB 端口，用于将电脑连接到电路板。\n\n对于血氧仪项目，你需要用到 Arduino\
+  \ 入门套件中已包含的一些组件。以下是你应该备好的组件简要清单。\n\n一台带有 USB 端口的电脑、一根 USB 线缆、一块无焊面包板、柔性导线、一个 TMP36\
+  \ 温度传感器、三个 220 欧姆电阻以及三个 LED 灯（黄色、蓝色和红色），如下图所示：\n\n![你需要的其他组件](img/B03998_07_04.jpg)\n\
+  \n血氧仪项目的工具和材料\n\n### Arduino IDE\n\n为了与 Arduino 微控制器交互并为其编程，我们需要下载并安装 Arduino 集成开发环境。\n\
+  \nArduino 软件包含编写代码所需的所有组件：一个文本编辑器，以及一个用于将代码转换为机器语言、上传到电路板并运行代码的编译器。\n\n#### 下载 IDE\n\
+  \n在撰写本文时，Arduino IDE 的版本是 1.6.3，但你可以从链接 [`www.arduino.cc/en/Main/Software`](http://www.arduino.cc/en/Main/Software)\
+  \ 获取最新版本的 Arduino 软件。除了下图中显示的 Arduino 版本外，请点击首选操作系统的链接；就我而言，我选择了 Mac OS X。\n\n在捐赠页面，你可以选择捐赠，或者直接点击\
+  \ **仅下载** 链接开始下载 IDE；就我而言，我选择了 `arduino-1.6.4-macosx.zip`。\n\n下载完成后，解压文件并将 `Arduino.app`\
+  \ 文件复制到 Mac 的应用程序文件夹中，或者将 Arduino 可执行文件链接到一个方便你访问的位置。\n\n下载好 IDE 后，在开始编程之前，你还需要处理一些硬件方面的问题。\n\
+  \n![下载 IDE](img/B03998_07_05.jpg)\n\n下载 Arduino IDE 1.6.4\n\n#### 安装驱动程序\n\n首先，你需要使用\
+  \ USB 线缆将 Arduino 电路板连接到电脑。绿色的电源指示灯（标有 PWR 或 ON）应该会亮起。\n\n##### Windows 设置\n\n让我们在\
+  \ Windows 中设置 Arduino：\n\n1.  插入电路板，等待 Windows 开始其驱动程序安装过程。\n2.  点击 **开始菜单**，打开\
+  \ **控制面板**。\n3.  在 **控制面板** 中，导航到 **系统和安全**。接着，点击 **系统**。系统窗口打开后，选择 **设备管理器**。\n\
+  4.  查看 **端口 (COM 和 LPT)** 下方。你应该会看到一个名为 `Arduino UNO (COMxx)` 的开放端口。如果没有 **COM 和\
+  \ LPT** 部分，请查看 **其他设备** 下的 **未知设备**。\n5.  右键点击 **Arduino UNO (COMxx)** 端口，选择 **更新驱动程序软件**\
+  \ 选项。\n6.  接着选择 **浏览我的电脑以查找驱动程序软件** 选项。\n7.  最后，导航并选择名为 `arduino.inf` 的驱动程序文件，该文件位于\
+  \ Arduino 软件下载目录的 `Drivers` 文件夹中（而不是 `FTDI USB Drivers` 子目录）。\n8.  Windows 将从那里完成驱动程序安装。\n\
+  \n    ### 提示\n\n    如果你使用的是 Windows 8 并且驱动程序未正确安装，请尝试禁用驱动程序签名强制。\n\n##### Mac OS\
+  \ X 和 Linux 设置\n\n对于 Mac OS X 和 Linux 操作系统，无需安装驱动程序。\n\n对于 Mac OS X，当你连接 Arduino\
+  \ 电路板时，应该会在 `/dev/tty.usbmodemXXXX 或 /dev/tty.usbserialXXXX` 下看到它。\n\n在 Linux 上，当你连接\
+  \ Arduino 电路板时，应该会在 `/dev/ttyACMX 或 /dev/ttyUSBX` 下看到它。\n\n#### 探索 IDE 和草图\n\n假设安装成功结束，双击\
+  \ Arduino 应用程序，你应该会看到以下屏幕：\n\n![探索 IDE 和草图](img/B03998_07_06.jpg)\n\nArduino IDE，首次运行，带有一个空草图\n\
+  \n现在你需要做两件重要的事情，以便正确连接并将你的草图上传到 Arduino 电路板。首先，通过导航到 **工具** | **开发板** 来选择你的电路板。然后，通过进入\
+  \ **工具** | **串口** 来选择 Arduino 电路板的串口。\n\n最后的验证步骤是运行一个 Arduino 的 `Hello world`，你可以通过打开\
+  \ LED 闪烁示例草图来实现，路径为 **文件** | **示例** | **1.基础** | **闪烁**。\n\n现在，只需点击环境中的 **上传** 按钮。如果上传成功，状态栏中会出现\
+  \ **上传完成** 的消息。\n\n等待几秒钟，你会看到电路板上的 **RX** 和 **TX** LED 灯闪烁。\n\n如果遇到任何问题，请查看 [`arduino.cc/en/Guide/Troubleshooting`](http://arduino.cc/en/Guide/Troubleshooting)\
+  \ 上的故障排除建议。\n\n恭喜你，你的 Arduino 已经成功运行！\n\n## 血氧仪项目\n\n在这个项目中，我们将使用一个温度传感器来测量你皮肤的温度，然后根据温度指示开始打开（或关闭）LED\
+  \ 灯。\n\n首先，我们将动手操作电路板，并使用前面 *你需要的其他组件* 部分描述的组件来准备项目。然后，我们将编写草图来读取传感器数据，并根据你皮肤温度的数据，打开和关闭\
+  \ LED 灯。\n\n最后，我们将把温度传感器数据输入到我们的 JavaFX 应用程序中，并使用图表 API 显示结果，以指示你皮肤温度的水平。\n\n###\
+  \ 动手搭建电路\n\n现在，我们将动手搭建下图所示的血氧仪电路。首先，将杜邦线连接到 Arduino UNO 和面包板之间。我已经将 TMP36 温度传感器安装在面包板上，传感器的圆角部分背对\
+  \ Arduino。引脚的顺序非常重要！请注意，我们将左侧引脚连接到电源，右侧引脚接地，而提供电压输出的中心引脚连接到电路板上的模拟引脚 A0。截图如下：\n\n\
+  ![动手搭建电路](img/B03998_07_07.jpg)\n\n血氧仪示例的电路布局\n\n最后，我连接了三个 LED 灯和电阻，并将它们连接到 Arduino\
+  \ 数字 PMW~ 引脚排的引脚 4、~3 和 2。\n\n像往常一样，我将面包板的 + 行连接到电源（5V），- 行连接到地（GND）。\n\n### 注意\n\
+  \n请记住，在设置组件时，保持电路板断电。\n\n\n\n#### 草图\n\n在完成电路搭建和配置后，我们需要对微控制器进行编程。这正是草图（sketch）施展魔法的地方：\n\
+  \n```\n/*\n  第 7 章示例\n  项目 - 血液温度计\n\n  本草图是为《JavaFX 8 精髓》一书中的项目编写的\n\n  所需零件：\n\
+  \  1 个 TMP36 温度传感器\n  3 个 红色 LED\n  3 个 220 欧姆电阻\n\n  创建于 2015 年 4 月 5 日\n  作者：Mohamed\
+  \ Mahmoud Taman\n  */\n\n// 传感器所连接引脚的命名常量\nconst int sensorPin = A0;\n// 室温（摄氏度）\n\
+  const float baselineTemp = 25.0;\n\nvoid setup() {\n  // 打开串行连接以显示数值\n  Serial.begin(9600);\n\
+  \  // 将 LED 引脚设置为输出模式\n  // for() 循环节省了一些额外编码\n  for (int pinNumber = 2; pinNumber\
+  \ < 5; pinNumber++) {\n    pinMode(pinNumber, OUTPUT);\n    digitalWrite(pinNumber,\
+  \ LOW);\n  }\n}\n\nvoid loop() {\n  // 读取模拟输入引脚 0 的值\n  // 并将其存储在一个变量中\n  int sensorVal\
+  \ = analogRead(sensorPin);\n\n  // 将 10 位传感器值发送到串行端口\n  Serial.print(\"传感器值: \"\
+  );\n  Serial.print(sensorVal);\n\n  // 将 ADC 读数转换为电压\n  float voltage = (sensorVal\
+  \ / 1024.0) * 5.0;\n\n  // 将电压值发送到串行端口\n  Serial.print(\", 电压: \");\n  Serial.print(voltage);\n\
+  \n  // 将电压转换为摄氏度温度\n  // 传感器每度变化 10 mV\n  // 数据手册显示有 500 mV 的偏移量\n  // ((电压 - 500mV)\
+  \ 乘以 100)\n  Serial.print(\", 摄氏度: \");\n  float temperature = (voltage - .5) *\
+  \ 100;\n  Serial.println(temperature);\n\n  // 如果当前温度低于基准温度\n  // 关闭所有 LED\n  if\
+  \ (temperature < baselineTemp) {\n    digitalWrite(2, LOW);\n    digitalWrite(3,\
+  \ LOW);\n    digitalWrite(4, LOW);\n  } // 如果温度升高 2-4 度，点亮一个 LED\n  else if (temperature\
+  \ >= baselineTemp + 2 && temperature < baselineTemp + 4) {\n    digitalWrite(2,\
+  \ HIGH);\n    digitalWrite(3, LOW);\n    digitalWrite(4, LOW);\n  } // 如果温度升高 4-6\
+  \ 度，点亮第二个 LED\n  else if (temperature >= baselineTemp + 4 && temperature < baselineTemp\
+  \ + 6) {\n    digitalWrite(2, HIGH);\n    digitalWrite(3, HIGH);\n    digitalWrite(4,\
+  \ LOW);\n  } // 如果温度升高超过 6 度，点亮所有 LED\n  else if (temperature >= baselineTemp +\
+  \ 6) {\n    digitalWrite(2, HIGH);\n    digitalWrite(3, HIGH);\n    digitalWrite(4,\
+  \ HIGH);\n  }\n  delay(100);\n}\n```\n\n#### 工作原理\n\n如果你阅读了每一行的注释，就能理解这段代码。在不深入细节的情况下，以下是草图的主要要点。\n\
+  \n每个 Arduino 草图都有两个主要方法：`setup()` 和 `loop()`。第一个方法用于初始化引脚（作为输入或输出）、打开串行端口、设置其速度等。第二个方法在微控制器内重复执行任务。\n\
+  \n在开头，我们有一对有用的常量：一个引用模拟输入，另一个保存基准温度。每当温度比基准温度高出 *2 度*，就会有一个 LED 点亮。\n\n在 `setup()`\
+  \ 方法内部，我们将串行端口初始化为所需的 9600 比特/秒的速度，并使用一个 `for` 循环将一些引脚设置为方向（输出引脚）并关闭它们。\n\n在 `loop()`\
+  \ 方法内部，我们开始读取温度传感器，其电压值介于 0 到 1023 之间，然后使用 `Serial.print()` 将传感器值发送到串行端口，以便任何连接的设备（例如，我们的计算机）都能读取它们。这些模拟读数测量的是室温，或者如果你触摸传感器，则测量的是你的皮肤温度。\n\
+  \n我们需要使用以下公式将模拟传感器读数转换为电压值：\n\n```\nvoltage = (sensorVal / 1024.0) * 5.0\n```\n\n\
+  根据数据手册，我们使用传感器规格通过以下公式将电压转换为温度：\n\n```\ntemperature = (voltage - .5) * 100\n```\n\
+  \n有了实际温度，你可以设置一个 `if else` 语句来点亮 LED。以基准温度为起点，每当温度比基准温度升高 2 度，你就点亮一个 LED。\n\n当你在温度范围内移动时，需要寻找一系列的值。\n\
+  \n**模数转换器**（**ADC**）读取速度非常快（微秒级），建议在 `loop()` 函数末尾添加 1 毫秒的延迟。但由于数据要发送到串行端口，最终设置了\
+  \ 100 毫秒的延迟。\n\n#### 测试、验证并将草图上传到 Arduino\n\n将代码上传到 Arduino 后，点击串行监视器图标，如下图所示：\n\
+  \n![测试、验证并将草图上传到 Arduino](img/B03998_07_08.jpg)\n\nArduino IDE 工具栏图标\n\n你应该会看到一串数值输出，格式如下：\n\
+  \n```\n传感器值: 158, 电压: 0.77, 摄氏度: 27.15\n```\n\n现在，当传感器插在面包板上时，尝试用手指触摸传感器周围，观察串行监视器中的数值变化。\n\
+  \n记下传感器暴露在空气中时的温度。关闭串行监视器，将 `baselineTemp` 常量修改为你刚才观察到的值。再次上传代码并尝试握住传感器；随着温度升高，你应该会看到\
+  \ LED 一个接一个地亮起。\n\n恭喜，你真是个高手！\n\n### 从串行端口读取数据\n\nJava 中没有读取串行端口的标准方法，因为这是一个特定于硬件的任务，打破了\
+  \ Java 跨平台的概念。因此，我们需要一个第三方库来完成这项工作，并且它应该用 Java 编写，以便与我们的应用程序集成。\n\nArduino IDE 使用了第一个用于串行通信的库，称为\
+  \ **RXTX**。该库最初由 Trent Jarvi 开发，并在 LGPL v2.1+ 链接受控接口许可下分发，它随 Arduino IDE 一起分发，直到\
+  \ 1.5.5 beta 版本，用于与开发板通信。然而，它非常慢，现在已被弃用。\n\n新的 **Java 简单串行连接器**（**jSSC**）库由 Alexey\
+  \ Sokolov 开发，并在 GNU Lesser GPL 许可下发布。从 1.5.6 beta 版本开始，Arduino IDE 使用这个新库进行开发板通信，因为它比其前身更快。\n\
+  \n这个库的另一个巨大优势是它作为一个单独的 `jssc.jar` 文件分发，其中包含所有平台的原生接口，以减少在每个平台和操作系统上进行本地安装的麻烦。它在运行时将它们添加到\
+  \ `classpath` 中，如下图所示：\n\n![从串行端口读取数据](img/B03998_07_09.jpg)\n\njSSC 2.8.0 原生库\n\
+  \n你可以从 [`github.com/scream3r/java-simple-serial-connector/releases`](https://github.com/scream3r/java-simple-serial-connector/releases)\
+  \ 下载最新版本。在撰写本文时，jSSC 的版本是 2.8.0。\n\n### JavaFX 血液温度计监控应用\n\n我们将设计一个 JavaFX 8 应用程序，它从温度传感器读取数据，并在折线图中显示这些值。我们还将使用一组模拟开发板\
+  \ LED 的形状来显示开发板上 LED 的状态。为了清晰起见，我们将使用两个类：一个用于串行读取，另一个用于 JavaFX UI 和主应用程序 `BloodMeterFX`\
+  \ 文件，其中包含图表 API。\n\n我们将使用一个包含从串行端口读取的最后一行内容的 `StringProperty` 来绑定这两个类（Serial 和 BloodMeterFX）。通过监听\
+  \ JavaFX 线程中此属性的变化，我们就能知道何时有新读数可以添加到图表中。\n\n完整的项目代码可以从 *Packt Publishing* 网站下载。\n\
+  \n\n\n#### Java 中的串行通信\n\n首先，我们来解释一下 `Serial.java` 类。该类代码大部分取自 *JavaFX 8 入门示例（Apress\
+  \ 出版社）*，但核心读取函数有所改动，如下列代码片段所示：\n\n你需要将 `jSSC.jar` 文件添加到类路径中，可以通过将其放入 Linux 或 Windows\
+  \ 系统的 `<JAVA_HOME>/jre/lib/ext` 目录（Mac 系统则为 `/Library/Java/Extensions`），或者更推荐的做法是，如果你打算分发你的应用程序，可以像上一张截图那样，将其添加到你的项目库中。\n\
+  \n为了能够读取串口，我们需要导入以下 jSSC 类：\n\n```\nimport jssc.SerialPort;\nimport static jssc.SerialPort.*;\n\
+  import jssc.SerialPortException;\nimport jssc.SerialPortList;\n```\n\n为了动态读取端口，如果你不知道要通过该类的构造函数设置的确切端口名称，我们提供了一组端口名称，帮助你选择\
+  \ Arduino 板可能连接的正确端口。\n\n```\nprivate static final List<String> USUAL_PORTS = Arrays.asList(\n\
+  \  \"/dev/tty.usbmodem\", \"/dev/tty.usbserial\", //Mac OS X\n  \"/dev/usbdev\"\
+  , \"/dev/ttyUSB\", \"/dev/ttyACM\", \"/dev/serial\", //Linux\n  \"COM3\", \"COM4\"\
+  , \"COM5\", \"COM6\" //Windows\n);\n\nprivate final String ardPort;\n\npublic Serial()\
+  \ {\n      ardPort = \"\";\n}\n\npublic Serial(String port) {\n      ardPort = port;\n\
+  }\n```\n\n`connect()` 方法会查找一个有效的串口（如果尚未设置连接 Arduino 板的端口）。如果找到，则打开该端口并添加一个监听器。每当\
+  \ Arduino 输出返回一行数据时，该监听器负责从串口获取输入读数。`stringProperty` 会设置为该行内容。我们使用了一个 `StringBuilder`\
+  \ 来存储字符，并在找到 `'\\r\\n'` 时提取行内容。我们在此处使用了 lambda 表达式提供的集合批量操作，以便简化端口列表的查找过程，并根据操作系统返回有效的端口。\n\
+  \n找到的每一行都通过 `set()` 方法设置到 `line` 变量中，以便通过注册到 `line` 变量的变更监听器事件来对图表进行必要的更改，该变量通过\
+  \ `getLine()` 方法暴露。代码如下：\n\n```\npublic boolean connect() {\n  out.println(\"Serial\
+  \ port is openning now...\");\n  Arrays.asList(SerialPortList.getPortNames()).stream()\n\
+  \  .filter(name -> ((!ardPort.isEmpty() && name.equals(ardPort))|| (ardPort.isEmpty()\
+  \ && USUAL_PORTS.stream()\n  .anyMatch(p -> name.startsWith(p)))))\n  .findFirst()\n\
+  \  .ifPresent(name -> {\n  try {\n    serPort = new SerialPort(name);\n      out.println(\"\
+  Connecting to \" + serPort.getPortName());\n      if (serPort.openPort()) {\n  \
+  \      serPort.setParams(BAUDRATE_9600,\n        DATABITS_8,\n        STOPBITS_1,\n\
+  \        PARITY_NONE);\n        serPort.setEventsMask(MASK_RXCHAR);\n        serPort.addEventListener(event\
+  \ -> {\n         if (event.isRXCHAR()) {\n           try {\n             sb.append(serPort.readString(event.getEventValue()));\n\
+  \             String ch = sb.toString();\n             if (ch.endsWith(\"\\r\\n\"\
+  )) {\n               line.set(ch.substring(0, ch.indexOf(\"\\r\\n\")));\n      \
+  \         sb = new StringBuilder();\n             }\n           } catch (SerialPortException\
+  \ e) {\n             out.println(\"SerialEvent error:\" + e.toString());\n     \
+  \      }\n         }\n       });\n     }\n  } catch (SerialPortException ex) {\n\
+  \    out.println(\"ERROR: Port '\" + name + \"': \" + ex.toString());\n  }});\n\
+  \  return serPort != null;\n}\n```\n\n最后，`disconnect()` 方法负责从端口移除监听器并关闭端口连接，以释放应用程序使用的资源。代码如下：\n\
+  \n```\npublic void disconnect() {\n  if (serPort != null) {\n    try {\n      serPort.removeEventListener();\n\
+  \      if (serPort.isOpened()) {\n        serPort.closePort();\n      }\n      }\
+  \ catch (SerialPortException ex) {\n      out.println(\"ERROR closing port exception:\
+  \ \" + ex.toString());\n    }\n    out.println(\"Disconnecting: comm port closed.\"\
+  );\n  }\n}\n```\n\n\n\n#### 应用逻辑与图表 API\n\n我们应用的主要组件是 `LineChart<Number, Number>`\
+  \ 图表类 API，它将用于绘制你的血液温度水平（Y 轴）随时间（X 轴）变化的曲线。\n\n自 JavaFX 2 以来，双轴图表（如折线图、柱状图和面积图）就已可用，它们属于\
+  \ `Node` 类，这使得它们可以像其他节点一样轻松添加到 `Scene` 中。\n\n在我们的应用中，我们将添加以下 `createBloodChart()`\
+  \ 方法，该方法负责创建和准备图表，并将其返回以添加到主应用场景中。\n\n在应用开始时，我们有一些实例变量：一个用于处理 Arduino 连接和读取数据的 `Serial`\
+  \ 对象；一个注册到 `Serial` 线路对象的 `listener`；一个用于跟踪连接状态的 `BooleanProperty`；以及三个分别跟踪所有传感器数据实际值、电压转换值以及最终将电压转换为摄氏温度的浮点属性。代码如下：\n\
+  \n```\nprivate final Serial serial = new Serial();\nprivate ChangeListener<String>\
+  \ listener;\nprivate final BooleanProperty connection = new SimpleBooleanProperty(false);\n\
+  private final FloatProperty bloodTemp = new SimpleFloatProperty(0);\nprivate final\
+  \ FloatProperty volts = new SimpleFloatProperty(0);\nprivate final FloatProperty\
+  \ sensorVal = new SimpleFloatProperty(0);\n```\n\n我们将添加 `LineChart` 来绘制来自温度传感器的温度水平，其中包含一个\
+  \ `Series`，它接收成对的数字以对应每个轴进行绘制；这些数字是 `NumberAxis` 实例。`XYChart.Data` 作为每个点的 *X* 和\
+  \ *Y* 值对添加到系列数据中，以绘制读数。\n\n每当 `Series` 的大小超过 40 个点时，为了内存效率，将移除第一个值。代码如下：\n\n```\n\
+  private LineChart<Number, Number> createBloodChart() {\n  final NumberAxis xAxis\
+  \ = new NumberAxis();\n  xAxis.setLabel(\"温度时间\");\n  xAxis.setAutoRanging(true);\n\
+  \  xAxis.setForceZeroInRange(false);\n  xAxis.setTickLabelFormatter(new StringConverter<Number>()\
+  \ {\n    @Override\n    public String toString(Number t) {\n      return new SimpleDateFormat(\"\
+  HH:mm:ss\").format(new Date(t.longValue()));\n    }\n    @Override\n    public Number\
+  \ fromString(String string) {\n      throw new UnsupportedOperationException(\"\
+  Not supported yet.\");\n    }\n  });\n  final NumberAxis yAxis = new NumberAxis(\"\
+  温度值\", baselineTemp - 10, 40.0, 10);\n  final LineChart<Number, Number> bc = new\
+  \ LineChart<>(xAxis, yAxis);\n  bc.setTitle(\"血液温度 vs 时间\");\n  bc.setLegendVisible(false);\n\
+  \n  Series series = new Series();\n  series.getData().add(new Data(currentTimeMillis(),\
+  \ baselineTemp));\n  bc.getData().add(series);\n\n  listener = (ov, t, t1) -> {\n\
+  \    runLater(() -> {\n      String[] values = t1.split(\",\");\n      if (values.length\
+  \ == 3) {\n        sensorVal.set(parseFloat(values[0].split(\":\")[1].trim()));\n\
+  \        volts.set(parseFloat(values[1].split(\":\")[1].trim()));\n        bloodTemp.set(parseFloat(values[2].split(\"\
+  :\")[1].trim()));\n        series.getData().add(new Data(currentTimeMillis(),\n\
+  \        bloodTemp.getValue()));\n\n        if (series.getData().size() > 40) {\n\
+  \          series.getData().remove(0);\n        }\n      }\n\n    });\n  };\n  serial.getLine().addListener(listener);\n\
+  \n  return bc;\n}\n```\n\n这里最有趣的部分是我们使用 lambda 表达式创建的更改监听器 `listener = (ov, t, t1)\
+  \ -> {}`，它将被注册到我们之前描述的 `Serial` 类的 `line` 对象上。通过这样做，一旦检测到来自 Arduino 的任何输入，我们就能够更改图表数据。\n\
+  \n为此，我们将 *x* 坐标值设置为添加读数时的时间（以毫秒为单位）（在图表上，它将格式化为 *HH:MM:SS*），而 *y* 坐标值则是 Arduino\
+  \ 在字符串 `t1` 中报告的温度水平的浮点测量值。\n\n### 注意\n\n`Platform.runLater()` 的主要用途是将使用传入的 Arduino\
+  \ 输入填充系列数据的任务放入 JavaFX 线程中，但它也为 `Scene` 图形渲染图表提供了所需的时间，如果值添加得太快，则会跳过这些值。\n\n我添加了四个\
+  \ `Circle` 形状，它们将用于根据温度水平模拟电路 LED 的亮灭，一旦通过更改监听器对 `FloatProperty` `bloodTemp` 进行了任何更改。代码如下：\n\
+  \n```\nCircle IndicatorLevel1 = new Circle(26.0, Color.BLACK);\nbloodTemp.addListener((ol,\
+  \ ov, nv) -> {\n  tempLbl.setText(\"摄氏度: \".concat(nv.toString()));\n\n  // 如果当前温度低于基线，则关闭所有\
+  \ LED\n  if (nv.floatValue() < baselineTemp +2) {\n    IndictorLevel1.setFill(Paint.valueOf(\"\
+  Black\"));\n    IndictorLevel2.setFill(Paint.valueOf(\"Black\"));\n    IndictorLevel3.setFill(Paint.valueOf(\"\
+  Black\"));\n  } // 如果温度升高 1-3 度，则打开一个 LED\n  else if (nv.floatValue() >= baselineTemp\
+  \ + 1 && nv.floatValue()< baselineTemp + 3) {\n      IndictorLevel1.setFill(Paint.valueOf(\"\
+  RED\"));\n      IndictorLevel2.setFill(Paint.valueOf(\"Black\"));\n      IndictorLevel3.setFill(Paint.valueOf(\"\
+  Black\"));\n    } // 如果温度升高 3-5 度，则打开第二个 LED\n    else if (nv.floatValue() >= baselineTemp\
+  \ + 4 && nv.floatValue() < baselineTemp + 6) {\n      IndictorLevel1.setFill(Paint.valueOf(\"\
+  RED\"));\n      IndictorLevel2.setFill(Paint.valueOf(\"RED\"));\n      IndictorLevel3.setFill(Paint.valueOf(\"\
+  Black\"));\n    }//如果温度升高超过 6 度，则打开所有 LED\n    else if (nv.floatValue() >= baselineTemp\
+  \ + 6 {\n    IndictorLevel1.setFill(Paint.valueOf(\"RED\"));\n    IndictorLevel2.setFill(Paint.valueOf(\"\
+  RED\"));\n    IndictorLevel3.setFill(Paint.valueOf(\"RED\"));\n  }\n});\n```\n\n\
+  最后，主 UI 由 `loadMainUI()` 方法创建，该方法负责创建整个 UI 并将所有必需的变量绑定到 UI 控件，以便动态地与来自 Arduino 输入的事件进行交互。\n\
+  \n一旦场景根节点（`BorderPane`）对象由 `loadMainUI()` 准备和设置好，我们就创建场景并将其添加到舞台中，以便按如下方式运行我们的应用：\n\
+  \n```\nScene scene = new Scene(loadMainUI(), 660, 510);\nstage.setTitle(\"血液测量仪\
+  \ v1.0\");\nstage.setScene(scene);\nstage.show();\n//连接到 Arduino 端口并开始监听\nconnectArduino();\n\
+  ```\n\n最后，从 `Application` 类继承的重写的 `stop()` 方法将通过关闭 `Serial` 端口连接并从线路对象中移除 `listener`\
+  \ 来处理任何资源释放。代码如下：\n\n```\n@Override\npublic void stop() {\n  System.out.println(\"\
+  串口正在关闭...\");\n  serial.getLine().removeListener(listener);\n  if (connection.get())\
+  \ {\n  serial.disconnect();\n  connection.set(false);\n}}\n```\n\n#### 运行应用\n\n\
+  一切就绪后——包含前面描述的类和已添加的 `jSSC.jar` 库的 JavaFX 项目——在 Arduino 板连接到你的笔记本电脑/PC 时编译并运行你的应用。如果一切正常，你将看到以下截图，其中显示了图表上随时间变化的温度值，这些值将基于你的室温。\n\
+  \n恭喜，你现在正在监控 Arduino 输入，并且可以通过 `jSSC.jar` 库与 Arduino 交互以控制它。\n\n![运行应用](img/B03998_07_10.jpg)\n\
+  \n初始血液测量仪应用读数，温度为 24.71 度\n\n尝试用手指握住传感器并监控图表上的读数。在我的案例中，它达到了 30.57 度。同时，观察工具栏上的指示灯级别和板上的\
+  \ LED。你应该会看到类似于以下截图的内容：\n\n![运行应用](img/B03998_07_11.jpg)\n\n血液测量仪应用读数，温度为 30.57\
+  \ 度\n\n\n\n"
+- '# 总结
+
+
+  在本章中，你了解了结合 Arduino 与 JavaFX 所能实现的功能。你首先学习了 Arduino 的基础知识，包括其不同型号、主要规格、购买渠道以及组件构成。随后，我们探讨了更多可供获取项目灵感的网站。
+
+
+  接着，你了解了如何下载并设置 Arduino IDE 以与 Arduino 进行通信。在学习了如何在 IDE 中加载示例程序后，你亲自动手尝试，使用 Arduino
+  Uno 和温度传感器搭建了一个简单电路，创建了草图，并在 IDE 的串口监视器中读取了温度数值。
+
+
+  然后，你学习了如何使用 Java Simple Serial Connector 库从计算机读取串口数据。
+
+
+  你学会了如何使用 JavaFX 折线图 API 来监控和显示 Arduino 的读数。接着，你看到了一个示例，该示例使用 Arduino 板通过温度传感器测量血液温度水平，并将来自串口的一系列数据绘制成
+  JavaFX 图表。
+
+
+  在下一章中，你将学习如何与计算机进行非接触式交互——无需键盘、鼠标甚至触摸设备等任何输入设备，仅通过手势来控制你的 JavaFX 应用程序。
+
+
+  '
+- '# 第 8 章 使用 JavaFX 开发交互式 Leap Motion 应用
+
+
+  现在，我们来到了本书最激动人心的部分，我们将深入探讨人机交互的全新非接触时代，通过将肢体语言转化为指令来控制周围的物体和计算机。
+
+
+  每天我们都能注意到，输入界面正逐渐减少对鼠标的依赖，而更倾向于非接触式输入。*手势*是当今人类与机器进行自然交流的方式之一。
+
+
+  几十年来，动作控制一直存在于我们对未来的想象中。我们目睹了流行媒体中的超级英雄、疯狂科学家和太空牛仔仅凭挥手就能控制数字体验。
+
+
+  ![使用 JavaFX 开发交互式 Leap Motion 应用](img/B03998_08_1.jpg)
+
+
+  汤姆·克鲁斯通过手势进行运算
+
+
+  我们一直被这些强大、自然且直观的交互方式所吸引——想象着如果自己也能拥有这种能力会是什么样子。例如，*《星际迷航》的全息甲板*和*《少数派报告》的犯罪预判计算机*。你还记得汤姆·克鲁斯在后者中如何通过手势在透明显示屏上进行运算吗？所有这些都散发出一种力量感和掌控感，同时伴随着矛盾的感觉：简单、轻松、直观和人性化。简而言之，这些体验感觉就像魔法一样。
+
+
+  目前市场上有几种设备允许我们仅用身体的部分部位与计算机交互：微软游戏主机 **Xbox** 的许多游戏都使用 **Kinect** 控制器来识别用户的肢体动作。肌电臂环可以检测你肌肉的运动并将其转化为手势，从而让你与计算机交互。Leap
+  Motion 控制器可以识别用户的手和手指，并将动作和手势传输给计算机。
+
+
+  在本章中，你将学习如何使用 **Leap Motion** 设备进行手势识别，这是一款出色的设备，允许采用非接触式方法来开发增强型的 JavaFX 应用程序。
+
+
+  以下是本章将讨论的部分主题：
+
+
+  *   介绍 Leap 控制器，其工作原理以及如何获取
+
+  *   获取并安装 SDK，配置其驱动程序，并验证其是否正常工作
+
+  *   基于 Leap 的应用构建模块基础
+
+  *   开发令人惊叹的非接触式 JavaFX 应用程序
+
+
+  '
+- "# Leap Motion 控制器\n\n这是一款非常小巧的设备，高 13 毫米，宽 30 毫米，深 76 毫米，重 45 克（*最终尺寸：0.5 英寸 x\
+  \ 1.2 英寸 x 3 英寸*）。在你的计算机上运行 Leap Motion 软件后，只需将控制器插入 Mac 或 PC 的 USB 接口即可使用（无需外部电源）。\n\
+  \n它能够检测其上方区域，几乎实时（200-300 fps）捕捉你手部和手指的单独运动，并将手势转化为计算机上运行应用程序中的不同操作。这款售价 79.99 美元、于\
+  \ 2013 年推出的设备被称为 Leap Motion 控制器。\n\n![Leap Motion 控制器](img/B03998_08_2.jpg)\n\n\
+  Leap Motion 尺寸与人类手掌对比\n\n从开发者的角度来看，该设备允许设计仅通过用户*手部*和*手指*的手势和动作就能控制的应用程序，就像在*《少数派报告》*中一样！\n\
+  \n它能感知你自然移动手部的方式，让你以一种全新的方式使用计算机——指向、挥动、伸手、抓取或拾起某物并移动它。你可以做到以前从未想象过的事情。\n\n看看你的手；仅仅一只手就有\
+  \ 29 块骨头、29 个关节、123 条韧带、48 条神经和 30 条动脉。这非常精密和复杂。该控制器已经非常接近完全解析这一切。\n\n实际上，仔细想想，Leap\
+  \ Motion 的魔力在于软件，但该公司在硬件上付出了巨大努力来实现其技术。自 2011 年成立以来，它一直在开发中。其演变过程如下图所示：\n\n![Leap\
+  \ Motion 控制器](img/B03998_08_3.jpg)\n\nLeap Motion 控制器的演变\n\n## 工作原理\n\nLeap Motion\
+  \ 的技术依赖于特殊的接收器硬件和定制软件，能够以 1/100 毫米的精度追踪运动，且无明显延迟。Leap Motion 控制器拥有 *150 度* 的视野，并以\
+  \ 290 fps 的速率追踪单个手部和全部 10 根手指。\n\n该设备的主要硬件由三个红外 LED 和两个单色红外 (IR) 摄像头组成。当 LED 生成红外光的\
+  \ 3D 点阵图案时，摄像头以近 290 fps 的速率扫描反射数据。半径 50 厘米内的所有物体都将被扫描和处理，分辨率为 0.01 毫米。该设备的主要组件如下图所示：\n\
+  \n![工作原理](img/B03998_08_4.jpg)\n\nLeap Motion 控制器硬件层及内部组件\n\n这就是计算机交互的未来——Leap Motion\
+  \ 极其快速和精确的自然用户界面，它以非常精确的方式将所有运动数据发送到计算机。这些数据将在主机上由 Leap Motion 专有软件检测算法进行分析，任何支持\
+  \ Leap 的应用程序都可以直接与之交互，而无需使用任何其他物理输入设备。\n\n### 坐标系\n\n在应用程序中使用 Leap Motion 控制器时，将从控制器接收到的坐标值映射到适当的\
+  \ JavaFX 坐标系是一项基本任务。\n\n从之前的讨论中，你可以观察到该设备能够在超宽的 150 度视野和用于深度的 z 轴范围内检测手部、手指和反光工具。这意味着你可以像在现实世界中一样在\
+  \ 3D 空间中移动你的手。\n\n设备坐标系使用右手笛卡尔坐标系，原点位于设备中心。如下图所示：\n\n![坐标系](img/B03998_08_6.jpg)\n\
+  \n以设备为中心的坐标系\n\n每次设备扫描并将你的手部运动分析为数据时，都会生成一个 Frame 对象，其中包含所有已处理和追踪的数据列表（以实例形式呈现，如手、手指和工具），以及在该帧中发现的一组运动手势（*滑动、点击或画圈*）。\n\
+  \n你可能已经注意到，y 轴的正方向与包括 JavaFX 在内的大多数计算机图形系统中的向下方向相反。\n\n然而，数据是相对于设备位置而非屏幕位置（正如我们习惯的鼠标和触摸事件那样）这一事实，极大地改变了我们需要思考的方式。\n\
+  \n幸运的是，API 提供了几种有用的方法，可以随时确定我们的手和手指指向的位置。\n\n\n\n## 获取设备\n\n受到这项神奇技术的启发，我们需要着手使用该设备进行开发。因此，我们首先需要获取一个。\n\
+  \n该设备可从亚马逊、百思买等众多供应商处购买。当然，你也可以直接从 Leap Motion 商店购买（[`store-world.leapmotion.com`](http://store-world.leapmotion.com)）。\n\
+  \n我是在 2014 年底购买的设备，现在你或许能在某些商店找到特别折扣。\n\n### 包装内容\n\n当你购买 Leap Motion 套装时，至少应包含下图所示的物品：\n\
+  \n![包装内容](img/B03998_08_7.jpg)\n\nLeap Motion 套装内容\n\n在撰写本文时，套装包含：\n\n*   Leap Motion\
+  \ 控制器\n*   两根定制长度的 USB 2.0 数据线\n*   欢迎卡\n*   重要信息指南\n\n## Leap SDK 入门\n\n现在我们已经有了硬件，接下来需要安装软件并开始开发。这非常简单；只需将鼠标指向你常用浏览器的地址栏，输入网址\
+  \ [`developer.leapmotion.com/downloads`](https://developer.leapmotion.com/downloads)，然后按下\
+  \ *Enter* 键即可。\n\n在撰写本文时，最新版本是 SDK 2.2.6.29154。点击你的操作系统图标开始下载支持的版本。或者，直接点击标有 **Download\
+  \ SDK 2.2.6.29154 for OSX**（适用于 Mac OS X）的绿色按钮。这将自动检测你的电脑/笔记本操作系统，并允许你下载适合的 SDK。\n\
+  \n### 安装控制器驱动和软件\n\n安装过程以及让设备准备好进行交互只需几个简单步骤。下载`zip`文件后，解压并运行软件安装程序，一切就绪：\n\n1.\
+  \  下载、解压并运行软件安装程序。\n2.  安装完成后，连接你的 Leap Motion 控制器并打开可视化工具，如下方截图所示：![安装控制器驱动和软件](img/B03998_08_8.jpg)\n\
+  \n    运行可视化工具\n\n3.  SDK 包含一个 `LeapJava.jar` 库以及一系列用于控制器集成的原生库。在系统上集成 `LeapJava.jar`\
+  \ 的一个简单方法是在 Linux 或 Windows 上将该 JAR 文件添加到 `<JAVA_HOME>/jre/lib/ext` 目录（或在 Mac 上添加到\
+  \ `/Library/Java/Extensions` 目录）。\n4.  将原生库（Windows 下的 `LeapJava.dll`、`Leap.dll`\
+  \ 和 `Leapd.dll`；Mac 下的 `libLeapJava.dylib` 和 `libLeap.dylib`；Linux 下的 `libLeapJava.so`\
+  \ 和 `libLeap.so`）复制到 `<JAVA_HOME>/jre/bin` 文件夹。\n5.  或者，你也可以直接将 JAR 文件作为依赖项添加到每个项目中，并通过\
+  \ VM 参数 `-Djava.library.path=<原生库路径>` 加载原生库。\n\n    ### 注意\n\n    SDK 还包含许多基于支持语言的示例，包括\
+  \ `HelloWorld.java` 示例，这是一个非常好的起点，可以帮助你理解如何将控制器与 Java 应用程序集成。\n\n#### 验证是否正常工作\n\
+  \n如果一切正常，任务栏通知区域（Windows）或菜单栏（Mac）上应该会出现一个小的 Leap Motion 图标，并且该图标应为绿色，如上图所示。设备上的\
+  \ LED 指示灯应亮起绿光，并且*朝向您以确保设备方向正确*。\n\n如果你能够交互并在可视化工具打开时看到手指和手的可视化图像，如下方截图所示，那么就可以开始开发了。\n\
+  \n![验证是否正常工作](img/B03998_08_9.jpg)\n\nLeap Motion 诊断可视化工具应用程序\n\n## 支持的语言\n\n在深入探讨我们的应用程序之前，我想提一下，Leap\
+  \ Motion SDK 支持多种语言，包括 Java 以及其他语言，例如用于 Web 的 JavaScript、C#、C++、Python、Unity、Objective-C\
+  \ 和 Unreal 游戏引擎。\n\n"
+- "# Leap JavaFX 应用程序\n\n和你一样，我也迫不及待地想开始开发过程，现在你将学习如何与连接到 Leap Motion 设备的基于 JavaFX\
+  \ 8 3D 的应用程序进行非接触式交互。\n\n鉴于本书尚未介绍 3D API，这是一个很好的机会来简要描述 3D API，并将 Leap Motion v2\
+  \ 骨骼建模（3D 手部）以及一些 3D 交互引入到我们的 JavaFX 应用程序中。\n\nLeap Motion API v2.0 引入了一种新的骨骼跟踪模型，该模型提供有关手部和手指的额外信息，预测未清晰可见的手指和手部的位置，并改进整体跟踪数据。有关\
+  \ API 的更多信息，请访问 [`developer.leapmotion.com/documentation/java/devguide/Intro_Skeleton_API.html?proglang=java`](https://developer.leapmotion.com/documentation/java/devguide/Intro_Skeleton_API.html?proglang=java)。\n\
+  \n我们将构建并展示如何将 Leap Motion v2 的新骨骼模型轻松集成到 JavaFX 3D 场景中。我们将使用 JavaFX 提供的预定义 3D 形状\
+  \ API 来快速创建开箱即用的 3D 对象。这些形状包括我们将在应用程序中使用的长方体、圆柱体和球体。\n\n## JavaFX 3D API 概览\n\n\
+  3D 意味着*三维*或具有*宽度*、*高度*和*深度*（或*长度*）的物体。我们的物理环境是三维的，我们每天都在三维空间中活动。\n\nJavaFX 3D 图形库包含\
+  \ Shape3D API，JavaFX 中有两种类型的 3D 形状：\n\n*   **预定义形状**：这些形状旨在让你更轻松地快速创建开箱即用的 3D 对象。这些形状包括长方体、圆柱体和球体。\n\
+  *   **用户定义形状**：JavaFX Mesh 类层次结构包含 `TriangleMesh` 子类。三角形网格是 3D 布局中最常用的一种网格。\n\n\
+  在我们的应用程序中，我们将使用预定义形状。有关 JavaFX 3D API 及示例的更多信息，请访问 [`docs.oracle.com/javase/8/javafx/graphics-tutorial/javafx-3d-graphics.htm`](http://docs.oracle.com/javase/8/javafx/graphics-tutorial/javafx-3d-graphics.htm)。\n\
+  \n## 更多学习资源\n\n一个丰富的资源是 SDK 附带的 `HelloWorld.java` 示例，它将帮助你在 Leap Motion 控制器和普通 Java\
+  \ 应用程序之间进行开发和集成。\n\n另一个讨论与 Java 集成的资源是 Leap Motion 文档中的 *Java 开发入门* 部分，可访问 [`developer.leapmotion.com/documentation/java/devguide/Leap_Guides.html`](https://developer.leapmotion.com/documentation/java/devguide/Leap_Guides.html)。\n\
+  \n## 基本应用程序结构\n\n在查看了 `HelloWorld.java` 示例和文档示例后，你会注意到以下几点：\n\n*   我们需要一个 `Controller`\
+  \ 对象，用于建立 Leap 设备与应用程序之间的连接。\n*   我们需要一个 `Listener` 子类来处理来自控制器的事件。\n*   在 `onConnect()`\
+  \ 方法中启用手势跟踪。\n*   该类中的主要方法是 `onFrame()`，这是一个 `回调` 方法，当包含运动跟踪数据的新的 `Frame` 对象可用时被调度。该对象包含手部、手指或工具的列表，以及多个表示其位置、方向和运动速度的向量。\n\
+  *   如果启用了手势，我们还将根据对最近帧的分析获得已发现手势的列表。此外，你还可以了解手势的状态，是刚刚开始、正在进行还是已经结束。\n\n\n\n###\
+  \ JavaFX 8 3D 应用程序\n\n我们在此讨论的应用程序是一个复杂的 JavaFX 8 3D 应用程序，它将帮助你理解基于 Leap 的应用程序开发结构，与设备交互以识别*手部位置*，并通过*手势*交互在\
+  \ 3D 环境中为我们的手部建模。\n\n你可以在后面的示例部分找到更多资源，包括使用 JavaFX 开发基于 Leap 的应用程序的更高级概念。\n\n在此应用程序中，我们将以圆柱体和球体的形式检测骨骼、手臂和关节（位置和方向），以便在我们的\
+  \ JavaFX 应用程序 `SubScene` 中为手部进行 3D 建模。然后，我们将检测它们的位置，以模拟我们在 Leap Motion 设备上方的真实手部运动。\n\
+  \n我们还将添加原始 `image`，以便你可以在应用程序背景中看到模型和你的真实手部。\n\n该应用程序由三个类组成：\n\n*   `LeapListener.java`：这个类是一个监听器，它与\
+  \ Leap Motion 控制器线程交互，将所有分析后的数据（手臂、骨骼、手指和关节）传输到 JavaFX 应用程序。\n*   `LeapJavaFX.java`：这个类是一个\
+  \ JavaFX 应用程序线程，它将与 `LeapListener.java` 交互，以便创建 3D 形状（在每一帧上），而无需跟踪之前的形状。这得益于 Observable\
+  \ JavaFX bean 属性的强大功能，它允许从 Leap 线程传输的数据在 JavaFX 线程中渲染。\n*   `Pair.java`：这是一个便捷的小型配对类，用于存储每个关节中连接的两块骨骼。\n\
+  \n那么，让我们开始看看如何实现这一点。\n\n### 提示\n\n你必须通过在 **常规** 选项卡下勾选 **允许图像** 选项来在 Leap Motion\
+  \ 控制面板上启用图像，并确保在 **追踪** 选项卡下禁用 **稳健模式** 选项以获得更高质量的图像。\n\n### 工作原理\n\n首先，我们将解释我们应用程序的主要桥梁，即\
+  \ Leap 事件监听器 `LeapListener.java`。\n\n开发 JavaFX 应用程序时的主要关注点是如何将 JavaFX 线程与其他非 JavaFX\
+  \ 线程混合，在我们的案例中，这个非 JavaFX 线程是以非常高的速率处理事件的 Leap Motion 事件 `Listener` 子类。\n\n为了将这些事件引入\
+  \ JavaFX 线程，我们将在 `LeapListener.java` 类中使用 `BooleanProperty` 对象。由于我们只监听 `doneList`\
+  \ 对象的变化，我们不需要列表本身也是可观察的，因为它们会在任何变化（添加一块骨骼）时触发事件。\n\n这就是为什么它们是普通列表，并且我们只使用一个布尔可观察属性，在创建每个\
+  \ Leap `Frame` 对象中的所有列表后将其设置为 true：\n\n```\nprivate final BooleanProperty doneList=\
+  \ new\nSimpleBooleanProperty(false);\nprivate final List<Bone> bones=new ArrayList<>();\n\
+  private final List<Arm> arms=new ArrayList<>();\nprivate final List<Pair> joints=new\
+  \ ArrayList<>();\nprivate final List<WritableImage> raw =new ArrayList<>();\n```\n\
+  \n为了获取原始图像，我们必须在 `onInit()` 中设置此策略，并且出于隐私原因，用户还必须在 Leap Motion 控制面板中为任何应用程序启用该功能，才能获取原始相机图像。\n\
+  \n```\n@Override\npublic void onInit(Controller controller){\n controller.setPolicy(Controller.PolicyFlag.POLICY_IMAGES);\n\
+  }\n```\n\n（*如你所知，如果你想处理手势，就在这里启用此功能，所以你可以暂时将它们注释掉。*）\n\n让我们继续创建 Frame 方法：\n\n```\n\
+  @Override\npublic void onFrame(Controller controller) {\n  Frame frame = controller.frame();\n\
+  \  doneList.set(false);\n  doneList.set(!bones.isEmpty() || !arms.isEmpty());\n\
+  }\npublic BooleanProperty doneListProperty() {\n  return doneList;\n}\n```\n\n对于每一帧，重置\
+  \ `doneList`，处理数据，最后如果存在骨骼或手臂（如果手没有放在 Leap 上方，帧仍会被处理），则将其设置为 `true`。公开该属性以便在 JavaFX\
+  \ 应用程序中监听。\n\n现在处理帧对象数据。首先，处理图像（这也可以在最后完成）。在每一帧清除列表，然后检索图像（来自左、右相机）。如果你想了解其工作原理，Leap\
+  \ 文档非常有帮助。请访问 [`developer.leapmotion.com/documentation/java/devguide/Leap_Images.html`](https://developer.leapmotion.com/documentation/java/devguide/Leap_Images.html)。\n\
+  \n实际上，这段代码是第一个示例的一部分，添加了 `PixelWriter` 来生成 JavaFX 图像。由于 Leap 提供的是亮像素，我对其进行了取反 *(1-\
+  \ (r|g|b))* 以获得负片图像，使手部更清晰可见。同时，我还将图像从左到右翻转，如下所示：\n\n```\n(newPixels[i*width+(width-j-1)]).raw.clear();\n\
+  ImageList images = frame.images();\nfor(Image image : images){\n  int width = (int)image.width();\n\
+  \  int height = (int)image.height();\n  int[] newPixels = new int[width * height];\n\
+  \  WritablePixelFormat<IntBuffer> pixelFormat = PixelFormat.getIntArgbPreInstance();\n\
+  \  WritableImage wi=new WritableImage(width, height);\n  PixelWriter pw = wi.getPixelWriter();\n\
+  \  //从 Image 对象获取包含图像数据的字节数组\n  byte[] imageData = image.data();\n\n//将图像数据复制到显示对象中\n\
+  \  for(int i = 0; i < height; i++){\n  for(int j = 0; j < width; j++){\n    //转换为无符号数并移位到正确位置\n\
+  \    int r = (imageData[i*width+j] & 0xFF) << 16;\n    int g = (imageData[i*width+j]\
+  \ & 0xFF) << 8;\n    int b = imageData[i*width+j] & 0xFF;\n    // 反转图像\n    newPixels[i*width+(width-j-1)]\
+  \ = 1- (r | g | b);\n  }\n  }\n  pw.setPixels(0, 0, width, height, pixelFormat,\
+  \ newPixels, 0,width);\n  raw.add(wi);\n}\n```\n\n然后清除骨骼、手臂和关节列表，如下代码所示：\n\n```\n\
+  bones.clear();\narms.clear();\njoints.clear();\nif (!frame.hands().isEmpty()) {\n\
+  Screen screen = controller.locatedScreens().get(0);\nif (screen != null && screen.isValid()){\n\
+  ```\n\n\n\n获取骨骼列表；对于找到的每根手指，遍历该手指的骨骼类型（最多 5 种），以避开无名指和中指的掌骨。代码如下：\n\n```\nfor(Finger\
+  \ finger : frame.fingers()){\n  if(finger.isValid()){\n  for(Bone.Type b : Bone.Type.values())\
+  \ {\n    if((!finger.type().equals(Finger.Type.TYPE_RING) &&!finger.type().equals(Finger.Type.TYPE_MIDDLE))\
+  \ ||!b.equals(Bone.Type.TYPE_METACARPAL)){\n          bones.add(finger.bone(b));\n\
+  \      }\n    }\n  }\n}\n```\n\n现在我们将遍历手部列表，获取每只手的手臂并将其添加到手臂列表中，如下所示：\n\n```\nfor(Hand\
+  \ h: frame.hands()){\n  if(h.isValid()){\n  // arm\n  arms.add(h.arm());\n```\n\n\
+  接下来获取手指关节。详细解释如何获取每个关节会有些复杂。基本上，我会找到每只手的手指，识别出除拇指外的四根手指。代码如下：\n\n```\nFingerList\
+  \ fingers = h.fingers();\nFinger index=null, middle=null, ring=null, pinky=null;\n\
+  for(Finger f: fingers){\n  if(f.isFinger() && f.isValid()){\n    switch(f.type()){\n\
+  \    case TYPE_INDEX: index=f; break;\n    case TYPE_MIDDLE: middle=f; break;\n\
+  \    case TYPE_RING: ring=f; break;\n    case TYPE_PINKY: pinky=f; break;\n    }\n\
+  \  }\n}\n```\n\n识别出手指后，我只需定义每对手指之间的关节（前三个关节）以及手腕关节（最后一个）。代码如下：\n\n```\n// joints\n\
+  if(index!=null && middle!=null){\n  Pair p=new Pair(index.bone(Bone.Type.TYPE_METACARPAL).nextJoint(),middle.bone(Bone.Type.TYPE_METACARPAL).nextJoint());\n\
+  \  joints.add(p);\n  }\n  if(middle!=null && ring!=null){\n    Pair p=new Pair(middle.bone(Bone.Type.TYPE_METACARPAL).nextJoint(),\n\
+  \    ring.bone(Bone.Type.TYPE_METACARPAL).nextJoint());\n    joints.add(p);\n  }\n\
+  \  if(ring!=null && pinky!=null){\n    Pair p=new Pair(ring.bone(Bone.Type.TYPE_METACARPAL).nextJoint(),\n\
+  \    pinky.bone(Bone.Type.TYPE_METACARPAL).nextJoint());\n    joints.add(p);\n \
+  \ }\n  if(index!=null && pinky!=null){\n    Pair p=new Pair(index.bone(Bone.Type.TYPE_METACARPAL).prevJoint(),pinky.bone(Bone.Type.TYPE_METACARPAL).prevJoint());\n\
+  \    joints.add(p);\n  }\n```\n\n最后，上述代码返回骨骼集合的一个全新副本，以避免在遍历该列表时出现并发异常。请注意，Leap\
+  \ 的帧率非常高。在性能强劲的计算机上，大约为 5 - 10 毫秒。代码如下：\n\n```\npublic List<Bone> getBones(){\n\
+  \ return bones.stream().collect(Collectors.toList());\n}\n```\n\n这比 JavaFX 的脉冲（60\
+  \ fps，约 16 毫秒）更快，因此在渲染骨骼时列表可能会发生变化。通过这种*克隆*方法，我们避免了任何并发问题。\n\nLeapJavaFX 应用程序的监听器方法如下：\n\
+  \n```\nOverride\n  public void start(Stage primaryStage) {\n    listener = new LeapListener();\n\
+  \    controller = new Controller();\n    controller.addListener(listener);\n```\n\
+  \n初始化 Leap 监听器类和控制器，然后添加监听器：\n\n```\nfinal PerspectiveCamera camera = new PerspectiveCamera();\n\
+  camera.setFieldOfView(60);\ncamera.getTransforms().addAll(new Translate(-320,-480,-100));\n\
+  final PointLight pointLight = new PointLight(Color.ANTIQUEWHITE);\npointLight.setTranslateZ(-500);\n\
+  root.getChildren().addAll(pointLight);\n```\n\n为 3D `subScene` 创建一个透视相机，将其平移到屏幕中间、底部并朝向用户。同时，添加一些点光源。代码如下：\n\
+  \n```\nrawView=new ImageView();\nrawView.setScaleY(2);\n```\n\n为 Leap 图像创建一个 `ImageView`，在关闭鲁棒模式（在\
+  \ Leap 控制面板中取消勾选该选项）时，图像尺寸为 640 x 240，因此我们在 Y 轴上将其放大，以获得更清晰的图像。代码如下：\n\n```\nGroup\
+  \ root3D=new Group();\nroot3D.getChildren().addAll(camera, root);\nSubScene subScene\
+  \ = new SubScene(root3D, 640, 480, true,\nSceneAntialiasing.BALANCED);\nsubScene.setCamera(camera);\n\
+  StackPane pane=new StackPane(rawView,subScene);\nScene scene = new Scene(pane, 640,\
+  \ 480);\n```\n\n创建一个包含相机和内部灯光组的组，作为 `subScene` 的根节点。请注意，为了获得更好的渲染效果，启用了深度缓冲和抗锯齿。相机也被添加到\
+  \ `subScene` 中。\n\n主根节点将是一个 `StackPane`：底层是 `ImageView`，顶层是透明的 `SubScene`。代码如下：\n\
+  \n```\nfinal PhongMaterial materialFinger = new PhongMaterial(Color.BURLYWOOD);\n\
+  final PhongMaterial materialArm = new PhongMaterial(Color.CORNSILK);\n```\n\n为手指和手臂设置材质，并赋予漫反射颜色：\n\
+  \n```\nlistener.doneListProperty().addListener((ov,b,b1)->{\n  if(b1){\n    ...\n\
+  \  }\n});\n```\n\n我们监听 `doneList` 的变化。每当它为 `true` 时（在每一帧之后！），我们就处理 3D 手部的渲染：\n\n\
+  ```\nList<Bone> bones=listener.getBones();\nList<Arm> arms=listener.getArms();\n\
+  List<Pair> joints=listener.getJoints();\nList<WritableImage> images=listener.getRawImages();\n\
+  ```\n\n首先，获取骨骼、手臂和关节集合的全新副本。然后，如果在 JavaFX 线程中存在有效图像，我们就在 `ImageView` 上设置图像，并移除根节点中除灯光外的所有子节点（这样我们就可以重新创建手部骨骼）：\n\
+  \n```\nPlatform.runLater(()->{\n    if(images.size()>0){\n    // left camera\n \
+  \   rawView.setImage(images.get(0));\n  }\n  if(root.getChildren().size()>1){\n\
+  \    // clean old bones\n    root.getChildren().remove(1,root.getChildren().size()-1);\n\
+  }\n```\n\n骨骼 遍历列表并将骨骼添加到场景中。如果集合发生变化，我们在遍历其副本时不会出现任何并发异常。\n\n```\nbones.stream().filter(bone\
+  \ -> bone.isValid() && bone.length()>0).forEach(bone -> {\n```\n\n现在为每根骨骼创建一个圆柱体。这涉及一些计算。如果你想深入了解细节，可以将每根骨骼视为一个具有位置和方向的向量。创建一个垂直圆柱体，其半径是骨骼宽度的一半，高度与骨骼长度相同。然后为其指定材质。代码如下：\n\
+  \n```\nfinal Vector p=bone.center();\n// create bone as a vertical cylinder and\
+  \ locate it at its center position\nCylinder c=new Cylinder(bone.width()/2,bone.length());\n\
+  c.setMaterial(materialFinger);\n```\n\n然后我们计算实际骨骼方向与垂直方向的叉积；这将得到旋转的垂直向量。（符号因坐标系变化而异）。`ang`\
+  \ 对象是这两个向量之间的夹角。可以通过平移至骨骼中心并围绕给定向量旋转 `ang` 角度来应用变换。代码如下：\n\n```\n// translate and\
+  \ rotate the cylinder towards its direction\nfinal Vector v=bone.direction();\n\
+  Vector cross = (new Vector(v.getX(),-v.getY(), v.getZ())).cross(new Vector(0,-1,0));\n\
+  double ang=(new Vector(v.getX(),-v.getY(),-v.getZ())).angleTo(new Vector(0,-1,0));\n\
+  c.getTransforms().addAll(new Translate(p.getX(),-p.getY(),-p.getZ()),new Rotate(-Math.toDegrees(ang),\
+  \ 0, 0, 0, new Point3D(cross.getX(),-cross.getY(),cross.getZ())));\n  // add bone\
+  \ to scene\nroot.getChildren().add(c);\n```\n\n现在在每根骨骼的起点和终点添加球体：\n\n```\n// add\
+  \ sphere at the end of the bone\nSphere s=new Sphere(bone.width()/2f);\ns.setMaterial(materialFinger);\n\
+  s.getTransforms().addAll(new Translate(p.getX(),-p.getY()+bone.length()/2d,-p.getZ()),new\
+  \ Rotate(-Math.toDegrees(ang), 0, -bone.length()/2d, 0, new Point3D(cross.getX(),-cross.getY(),cross.getZ())));\n\
+  \  // add sphere to scene\n  root.getChildren().add(s);\n  // add sphere at the\
+  \ beginning of the bone\n  Sphere s2=new Sphere(bone.width()/2f);\n  s2.setMaterial(materialFinger);\n\
+  \  s2.getTransforms().addAll(new Translate(p.getX(),-p.getY()-bone.length()/2d,-p.getZ()),new\
+  \ Rotate(Math.toDegrees(ang), 0, bone.length()/2d, 0, new Point3D(cross.getX(),-cross.getY(),cross.getZ())));\n\
+  \  // add sphere to scene\n  root.getChildren().add(s2);\n});\n```\n\n\n\n现在来处理关节；我们再次使用圆柱体。两个连接元素之间的距离决定了长度，我们通过获取位置和方向来生成并变换圆柱体。代码如下：\n\
+  \n```\njoints.stream().forEach(joint->{\n  double length=joint.getV0().distanceTo(joint.getV1());\n\
+  \  Cylinder c=new Cylinder(bones.get(0).width()/3,length);\n  c.setMaterial(materialArm);\n\
+  \  final Vector p=joint.getCenter();\n  final Vector v=joint.getDirection();\n \
+  \ Vector cross = (new Vector(v.getX(),-v.getY(), v.getZ())).cross(new Vector(0,-1,0));\n\
+  \  double ang = (new Vector(v.getX(),-v.getY(),-v.getZ())).angleTo(new Vector(0,-1,0));\n\
+  \  c.getTransforms().addAll(new Translate(p.getX(),-p.getY(),-p.getZ()), new Rotate(-Math.toDegrees(ang),\
+  \ 0, 0, 0, new Point3D(cross.getX(),-cross.getY(),cross.getZ())));\n  // 将关节添加到场景中\n\
+  \  root.getChildren().add(c);\n});\n```\n\n最后，我们通过肘部和手腕之间的距离来获取长度。所有这些信息都可以在 API\
+  \ 中找到：[`developer.leapmotion.com/documentation/java/api/Leap.Arm.html`](https://developer.leapmotion.com/documentation/java/api/Leap.Arm.html)。代码如下：\n\
+  \n```\narms.stream().\nfilter(arm->arm.isValid()).\nforEach(arm->{\n  final Vector\
+  \ p=arm.center();\n  // 将手臂创建为圆柱体，并将其定位在中心位置\n  Cylinder c=new Cylinder(arm.width()/2,arm.elbowPosition().\n\
+  \  minus(arm.wristPosition()).magnitude());\n  c.setMaterial(materialArm);\n  //\
+  \ 将圆柱体旋转至其方向\n  final Vector v=arm.direction();\n  Vector cross = (new Vector(v.getX(),-v.getY(),-v.getZ())).cross(new\
+  \ Vector(0,-1,0));\n  double ang=(new Vector(v.getX(),-v.getY(),-v.getZ())).\n \
+  \ angleTo(new Vector(0,-1,0));\n  c.getTransforms().addAll(new Translate(p.getX(),-p.getY(),-p.getZ()),new\
+  \ Rotate(- Math.toDegrees(ang), 0, 0, 0, new Point3D(cross.getX(),- cross.getY(),cross.getZ())));\n\
+  \  // 将手臂添加到场景中\n  root.getChildren().add(c);\n});\n```\n\n### 运行应用程序\n\n恭喜！现在连接你的\
+  \ Leap 控制器（Leap 图标应为绿色）并运行你的应用程序。如果一切正常，你最初应该会看到一个空的应用程序场景，如下面的截图所示：\n\n![运行应用程序](img/B03998_08_10.jpg)\n\
+  \nLeap JavaFX 应用程序的初始运行\n\n移动并挥动你的手，你手部的骨骼模型应该会随着你真实的手在背景中显现，并响应你的真实动作，如下所示：\n\n\
+  ![运行应用程序](img/B03998_08_11.jpg)\n\nLeap JavaFX 应用程序与 Leap 控制器的交互\n\n尝试不同的手臂或手部姿势和位置；你应该会在你的\
+  \ JavaFX 应用程序场景中看到相应的复制效果，如下面的截图所示：\n\n![运行应用程序](img/B03998_08_12.jpg)\n\nLeap JavaFX\
+  \ 应用程序与 Leap 控制器的交互（不同手部姿势）\n\n"
+- '# 更多示例
+
+
+  有关将 JavaFX 与 Leap Motion 设备结合使用的更多示例，请参考在线资源，例如 [`www.parleys.com/share.html#play/525467d6e4b0a43ac12124ad`](http://www.parleys.com/share.html#play/525467d6e4b0a43ac12124ad)
+  或 [`jperedadnr.blogspot.com.es/2013/06/leap-motion-controller-and-javafx-new.html`](http://jperedadnr.blogspot.com.es/2013/06/leap-motion-controller-and-javafx-new.html)。如需与其他编程语言交互，请访问
+  [`developer.leapmotion.com/gallery`](https://developer.leapmotion.com/gallery)。
+
+
+  '
+- '# 总结
+
+
+  在本章中，你了解了令人印象深刻的 Leap Motion 设备，以及使用它来增强 JavaFX 应用程序所产生的绝佳组合效果。
+
+
+  你首先了解了该设备及其工作原理。接着，我们讨论了它的 Java SDK，并探索了一个简单的应用程序，在其中你学习了如何在一个线程中监听和处理来自 Leap 设备的数据，同时在
+  JavaFX 线程中触发事件以在场景图中处理它们。
+
+
+  在下一章中，我将提供专为真正的 JavaFX 专家准备的高级工具和资源。
+
+
+  '
+- "# 附录 A. 成为 JavaFX 专家\n\n你的 JavaFX 8 之旅会止步于此吗？绝对不会！JavaFX 是一个非常庞大的主题，它每天都在发展，从 Oracle\
+  \ 发布的核心版本（包含新特性、功能和稳定性），到许多社区个人和公司创建的第三方库，以填补你可能遇到的任何空白，或者围绕它发明核心中不存在的新功能。\n\n当然，通过本书，我无法涵盖所有\
+  \ JavaFX 8 主题。相反，我试图触及许多 JavaFX 领域的表面，并打开关键主题，以便通过找到你自己的方法并了解如何自行操作，让你的探索之旅更加轻松。\n\
+  \n然而，我们还通过开发传统的 Web 和桌面应用程序讨论了许多其他工具和技术，然后转向了一个更高级且市场需求更大的领域——移动开发。\n\n我们通过了解**物联网**（**IoT**，即信息技术的下一个时代）来探索未来，我们涵盖的主题就越有趣。我们曾在电影中多次看到运动并想象过它，通过使用令人惊叹的\
+  \ Leap Motion v2 小工具开发增强型非接触式 JavaFX 8，我们让梦想成真。\n\n要成为 JavaFX 专家并获得其他经验，还有很多内容本书没有讨论。\n\
+  \n*那么，我们接下来该何去何从？*\n\n现在，既然你已经拥有许多可运行的 JavaFX 8 应用程序，并了解了它在多个平台和硬件上的工作原理，剩下的就取决于你和你的创造力了。\n\
+  \n加入 Facebook、Twitter 上的社区，关注技术专家的博客、JavaFX 博客 [`blogs.oracle.com/javafx/`](http://blogs.oracle.com/javafx/)，并在\
+  \ [`fxexperience.com/`](http://fxexperience.com/) 上查找新闻、演示和见解。最重要的是，要动手实验。\n\n在本章末尾，请务必查看当今在生产环境中使用\
+  \ JavaFX 的许多*框架*、*库*和*项目*。\n\n## 官方文档\n\n*   **JavaFX 文档**：这是一个指向所有 JavaFX 资源、新闻、经验、视频、书籍、API\
+  \ 文档、技术文章和教程的绝佳资源：\n\n    [`www.oracle.com/technetwork/java/javase/documentation/javafx-docs-2159875.html`](http://www.oracle.com/technetwork/java/javase/documentation/javafx-docs-2159875.html)\n\
+  \n*   **Java 平台标准版 (Java SE) 8**：其中的*客户端技术*包含许多涵盖所有 JavaFX 主题的示例：[`docs.oracle.com/javase/8/javase-clienttechnologies.htm`](http://docs.oracle.com/javase/8/javase-clienttechnologies.htm)\n\
+  \n\n\n## JavaFX 示例\n\n学习 JavaFX 8 的最佳资源之一是 Java 开发工具包 8 的示例和演示，其中包含一个 JavaFX 演示文件夹，里面有许多精彩且高级的应用程序，涵盖了所有\
+  \ JavaFX 主题，并附带了可供您自行实验的源代码。\n\n您只需访问以下链接即可下载示例：[`www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html`](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)，然后转到\
+  \ **Java SE Development Kit 8u45 Demos and Samples Downloads** 表格，选中 **Accept License\
+  \ Agreement** 单选按钮，并点击与您操作系统相关的 zip 文件链接，如下图所示：\n\n![JavaFX 示例](img/B03998_09_1.jpg)\n\
+  \n下载 JDK 和 JavaFX 8 演示及示例\n\n`samples` zip 文件包含可运行的预构建示例，以及每个示例的 NetBeans 项目文件。\n\
+  \n解压 zip 文件后，会生成以下目录结构：\n\n```\n--src  (包含每个示例的 NetBeans 项目)\n --<Sample1>\n  --nbproject\n\
+  \  --src\n  --build.xml\n  --manifest.mf\n  --<Sample2>\n  <sample1>.jar(作为独立应用程序运行示例)\n\
+  <sample2>.jar\n```\n\n![JavaFX 示例](img/B03998_09_2.jpg)\n\nJavaFX 示例文件夹内容\n\n任何\
+  \ `sample.jar` 都可以作为独立应用程序运行；双击 JAR 文件，我们将看到四个应用程序：\n\n1.  `Ensemble8.jar`：一个示例应用程序库，展示了大量\
+  \ JavaFX 功能，包括动画、图表和控件。对于每个示例，您可以在所有平台上执行以下操作：\n\n*   查看正在运行的示例并与之交互\n    *   阅读其描述。\n\
+  \n您只能在桌面平台上对每个示例执行以下操作：\n\n*   复制其源代码\n    *   对于某些示例，您可以调整示例组件的属性\n    *   如果您已连接到互联网，还可以点击链接访问相关的\
+  \ API 文档 *Ensemble8 也可以在 JavaFX for ARM（意味着在树莓派上运行）上运行*。![JavaFX 示例](img/B03998_09_3.jpg)\n\
+  \n正在运行的 Ensemble8 应用程序\n\n2.  `MandelbrotSet.jar`：一个示例应用程序，演示了使用 Java 并行 API 进行并行执行的优势。\n\
+  \n该应用程序使用曼德勃罗集算法渲染图像，并提供了在输入参数范围内的直观导航。\n\n更多信息请参见 `MandelbrotSet` 文件夹内的 `index.html`\
+  \ 文件。\n\n![JavaFX 示例](img/B03998_09_4.jpg)\n\n正在运行的 MandelbrotSet 应用程序\n\n3.  `Modena.jar`：一个示例应用程序，演示了使用\
+  \ `Modena` 主题的 UI 组件外观。它让您可以选择对比 `Modena` 和 `Caspian` 主题，并探索这些主题的各个方面。 ![JavaFX\
+  \ 示例](img/B03998_09_5.jpg)\n\n正在运行的 Modena 应用程序\n\n4.  `3DViewer.jar`：3DViewer 是一个示例应用程序，允许用户使用鼠标或触控板导航和检查\
+  \ 3D 场景。3DViewer 支持导入 **OBJ** 和 Maya 文件的部分功能。\n\n对于 Maya 文件，还提供了导入动画的功能。（请注意，对于\
+  \ Maya 文件，在保存为 Maya 文件时，应删除所有对象的构建历史。）3DViewer 还具有将场景内容导出为 Java 或 `FXML` 文件的功能。\n\
+  \n![JavaFX 示例](img/B03998_09_6.jpg)\n\n正在运行的 3DViewer 应用程序\n\n为了亲自尝试代码并实验您可能做出的任何更改，恭喜您，您有机会通过从\
+  \ **NetBeans** 运行上述所有应用程序来实现，具体步骤如下：\n\n5.  在 NetBeans IDE 中，点击工具栏上的 **Open Project**，或点击\
+  \ **File** 菜单并选择 **Open Project**。\n6.  导航到您解压示例的位置，在 `src` 目录中，选择一个项目，然后点击 **Open**。\n\
+  7.  要在 NetBeans IDE 中运行应用程序，请在 **Project** 窗格中，右键点击该项目并选择 **Run**。\n\n## Java SE\
+  \ 8\n\n提醒一下，JavaFX 8 已内置于 Java 8 SDK 中。这意味着您只需下载 Java 8 SDK。Java 8 软件开发工具包及相关信息可从以下位置下载：\n\
+  \n*   Oracle 技术网络上的 Java 8：\n\n    [`oracle.com/java8`](http://oracle.com/java8)\n\
+  \n*   Java 开发工具包：\n\n    [`www.oracle.com/technetwork/java/javase/downloads/index.html`](http://www.oracle.com/technetwork/java/javase/downloads/index.html)\n\
+  \n*   Java 8 有哪些新特性？让我们查看 Java 8 的新功能：\n\n    [`www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html`](http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html)\n\
+  \n*   Java SE 8 新特性之旅：\n\n    [`tamanmohamed.blogspot.com/2014/06/java-se-8-new-features-tour-big-change.html`](http://tamanmohamed.blogspot.com/2014/06/java-se-8-new-features-tour-big-change.html)\n\
+  \n### Java SE 8 API 文档和教程\n\nJava 8 文档和指南位于以下链接：\n\n*   Java SE 8 Javadoc API 文档：\n\
+  \n    [`docs.oracle.com/javase/8`](http://docs.oracle.com/javase/8)\n\n*   JavaFX\
+  \ 8 Javadoc API 文档：\n\n    [`docs.oracle.com/javase/8/javafx/api`](http://docs.oracle.com/javase/8/javafx/api)\n\
+  \n*   Java SE 8 概述文档：\n\n    [`docs.oracle.com/javase/8/docs/index.html`](http://docs.oracle.com/javase/8/docs/index.html)\n\
+  \n*   Java SE 8 教程：\n\n    [`docs.oracle.com/javase/tutorial/tutorialLearningPaths.html`](http://docs.oracle.com/javase/tutorial/tutorialLearningPaths.html)\n\
+  \n### Lambda 项目\n\nJava SE 8 核心新增的语言特性是 lambda 表达式和流 API。以下参考资料是关于 Lambda 项目的路线图、博客和视频：\n\
+  \n*   Lambda 现状，Brian Goetz (Oracle)：\n\n    [`cr.openjdk.java.net/~briangoetz/lambda/lambda-state-final.html`](http://cr.openjdk.java.net/~briangoetz/lambda/lambda-state-final.html)\n\
+  \n*   Java 8 揭秘：Lambda、默认方法和批量数据操作，Anton Arhipov：\n\n    [`zeroturnaround.com/rebellabs/java-8-revealed-lambdas-defaultmethods-and-bulk-data-operations`](http://zeroturnaround.com/rebellabs/java-8-revealed-lambdas-defaultmethods-and-bulk-data-operations)\n\
+  \n*   Java 8 中 Lambda 表达式和流的 10 个示例，Javin Paul：\n\n    [`javarevisited.blogspot.com/2014/02/10-example-of-lambdaexpressions-in-java8.html`](http://javarevisited.blogspot.com/2014/02/10-example-of-lambdaexpressions-in-java8.html)\n\
+  \n*   Java SE 8：Lambda 快速入门，Oracle：\n\n    [`www.oracle.com/webfolder/technetwork/tutorials/obe/java/Lambda-QuickStart/index.html`](http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/Lambda-QuickStart/index.html)\n\
+  \n*   Java 8：闭包、Lambda 表达式解析，Frank Hinkel：\n\n    [`frankhinkel.blogspot.com/2012/11/java-8-closures-lambdaexpressions.html`](http://frankhinkel.blogspot.com/2012/11/java-8-closures-lambdaexpressions.html)\n\
+  \n### Nashorn\n\nJava SE 8 包含一个名为 **Nashorn** 的新脚本引擎，这是一个用于 Java 运行时的全新改进版 JavaScript\
+  \ 引擎。该引擎使开发人员能够使用 JavaScript 语言编写应用程序。\n\n以下链接和参考资料是描述 Nashorn 的文章和博客：\n\n*   Oracle\
+  \ 的 Nashorn：JVM 的下一代 JavaScript 引擎，Julien Ponge：\n\n    [`www.oraclejavamagazine-digital.com/javamagazine_twitter/20140102/?pg=60#pg60`](http://www.oraclejavamagazine-digital.com/javamagazine_twitter/20140102/?pg=60#pg60)\n\
+  \n*   Open JDK 的 Nashorn 站点：\n\n    [`wiki.openjdk.java.net/display/Nashorn/Main`](https://wiki.openjdk.java.net/display/Nashorn/Main)\n\
+  \n*   Nashorn 博客：\n\n    [`blogs.oracle.com/Nashorn`](https://blogs.oracle.com/Nashorn)\n\
+  \n\n\n## JavaFX 属性和绑定\n\n在 JavaFX 节点之间同步值时，属性和绑定至关重要。\n\n以下是关于只读属性、监听器以及 JavaFX\
+  \ Bean 角色的优秀资源：\n\n*   在 JavaFX 中创建只读属性，作者：Michael Heinrichs：\n\n    [`blog.netopyr.com/2012/02/02/creating-read-only-properties-injavafx`](http://blog.netopyr.com/2012/02/02/creating-read-only-properties-injavafx)\n\
+  \n*   未知的 JavaBean，作者：Richard Bair：\n\n    [`weblogs.java.net/blog/rbair/archive/2006/05/the_unknown_jav.html`](https://weblogs.java.net/blog/rbair/archive/2006/05/the_unknown_jav.html)\n\
+  \n*   使用 JavaFX 属性和绑定，作者：Scott Hommel：\n\n    [`docs.oracle.com/javafx/2/binding/jfxpub-binding.htm`](http://docs.oracle.com/javafx/2/binding/jfxpub-binding.htm)\n\
+  \n*   Pro JavaFX 8，（第 4 章，*属性和绑定*），作者：Johan Vos、James Weaver、Weiqi Gao、Stephen Chin\
+  \ 和 Dean Iverson，（Apress，2014 年）：\n\n    [`www.apress.com/9781430265740`](http://www.apress.com/9781430265740)\n\
+  \n*   Open Dolphin：一个 JavaFX MVC 框架（由 Canoo Engineering 的 Dierk Koenig 创立）：\n\n\
+  \    [`open-dolphin.org/dolphin_website/Home.html`](http://open-dolphin.org/dolphin_website/Home.html)\n\
+  \n*   基于约定优于配置和依赖注入的 JavaFX MVP 框架（由 Adam Bien 创立）：\n\n    [`afterburner.adam-bien.com`](http://afterburner.adam-bien.com)\n\
+  \n## JavaFX 社区\n\n你想参与 JavaFX 社区吗？请查看以下链接：\n\n*   Java.net JavaFX 社区网站：\n\n    [`www.java.net/community/javafx`](https://www.java.net/community/javafx)\n\
+  \n*   FXExperience：JavaFX 新闻、演示和见解（@fxexperience）：\n\n    [`fxexperience.com`](http://fxexperience.com)\n\
+  \n*   Nighthacking（@_nighthacking）：由 Stephen Chin 主持。环游世界，了解 Java、JavaFX 和物联网的一切。精彩的现场演讲。\n\
+  \n    [`nighthacking.com`](http://nighthacking.com)\n\n*   Oracle 的 JavaFX 社区门户，涵盖真实世界用例、社区支持、第三方工具和\
+  \ Open JFX：\n\n    [`www.oracle.com/technetwork/java/javase/community/index.html`](http://www.oracle.com/technetwork/java/javase/community/index.html)\n\
+  \n*   JFXtras：一个 JavaFX 自定义控件社区：\n\n    [`jfxtras.org`](http://jfxtras.org)\n\n\
+  *   ControlsFX：另一个自定义控件社区，由 Oracle 的 Jonathan Giles 发起：\n\n    [`fxexperience.com/controlsfx`](http://fxexperience.com/controlsfx)\n\
+  \n*   硅谷 JavaFX 用户组：\n\n    [`www.meetup.com/svjugfx`](http://www.meetup.com/svjugfx)\n\
+  \n*   硅谷 JavaFX 用户组直播流：\n\n    [`www.ustream.tv/channel/silicon-valley-javafx-user-group`](http://www.ustream.tv/channel/silicon-valley-javafx-user-group)\n\
+  \n*   Oracle 关于 JavaFX 的论坛：\n\n    [`community.oracle.com/community/developer/english/java/javafx/javafx_2.0_and_later`](https://community.oracle.com/community/developer/english/java/javafx/javafx_2.0_and_later)\n\
+  \n## Java SE / JavaFX 书籍与杂志\n\n以下链接是与新的 Java SE 8 和 JavaFX 8 平台相关的新书标题：\n\n*   一本精彩的书，*JavaFX\
+  \ 8：通过示例入门，第二版*，作者：Carl Dea、Mark Heckler、Gerrit Grunwald、José Pereda 和 Sean M. Phillips（Apress，2014\
+  \ 年。ISBN：978-1-4302-6460-6）\n\n    [`www.apress.com/9781430264606`](http://www.apress.com/9781430264606)\n\
+  \n*   Pro JavaFX 8，作者：Johan Vos、James Weaver、Weiqi Gao、Stephen Chin 和 Dean Iverson（Apress，2014\
+  \ 年。ISBN：978-1-4302-6574-0）\n\n    [`www.apress.com/9781430265740`](http://www.apress.com/9781430265740)\n\
+  \n*   Java 8 秘籍，作者：Josh Juneau（Apress，2014 年。ISBN：978-1-4302-6827-7）\n\n    [`www.apress.com/9781430268277`](http://www.apress.com/9781430268277)\n\
+  \n*   在 NetBeans 平台上进行 JavaFX 富客户端编程，作者：Paul Anderson 和 Gail Anderson（Addison-Wesley\
+  \ Professional，2014 年。ISBN：978-0321927712）：\n\n    [`blogs.oracle.com/geertjan/entry/new_book_javafx_rich_client`](https://blogs.oracle.com/geertjan/entry/new_book_javafx_rich_client)\n\
+  \n    [`www.amazon.com/JavaFX-Client-Programming-NetBeans-Platform/dp/0321927710`](http://www.amazon.com/JavaFX-Client-Programming-NetBeans-Platform/dp/0321927710)\n\
+  \n*   精通 JavaFX 8 控件，作者：Hendrik Ebbers（Oracle Press，2014 年。ISBN：9780071833776）：\n\
+  \n    [`mhprofessional.com/product.php?isbn=0071833773`](http://mhprofessional.com/product.php?isbn=0071833773)\n\
+  \n    [`www.guigarage.com/javafx-book`](http://www.guigarage.com/javafx-book)\n\n\
+  *   JavaFX 快速入门指南，作者：J.F. DiMarzio（Oracle Press，2014 年。ISBN：978-0071808965）：\n\n\
+  \    [`www.mhprofessional.com/product.php?isbn=0071808965`](http://www.mhprofessional.com/product.php?isbn=0071808965)\n\
+  \n*   Java SE 8 极速入门，作者：Cay S. Horstmann（Addison-Wesley，2014 年。ISBN 978-0321927767）\n\
+  \n    [`www.addison-wesley.de/9780321927767.html`](http://www.addison-wesley.de/9780321927767.html)\n\
+  \n*   精通 Lambda 表达式，作者：Maurice Naftalin（Oracle Press，2014 年。ISBN：007-1829628）：\n\
+  \n    [`www.mhprofessional.com/product.php?isbn=0071829628`](http://www.mhprofessional.com/product.php?isbn=0071829628)\n\
+  \n*   Oracle 的 Java 杂志：\n\n    [`www.oracle.com/technetwork/java/javamagazine/index.html`](http://www.oracle.com/technetwork/java/javamagazine/index.html)\n\
+  \n> *感谢您付出的时间，希望您喜欢阅读本书，就像我喜欢为您撰写它一样。谢谢。*\n\n"
+- "# 索引\n\n## A\n\n*   模数转换器 (ADC) / 工作原理\n*   Android SDK\n    *   关于 / Android SDK\n\
+  \    *   安装 / Android SDK\n    *   网址 / Android SDK\n*   Android SDK 管理器\n    *\
+  \   网址 / Android SDK\n*   Arduino\n    *   设置 / 设置你的 Arduino\n    *   购买 / 购买 Arduino\n\
+  \    *   必备条件 / 你将需要的其他组件\n*   Arduino 板\n    *   关于 / 什么是 Arduino 板？\n    *   Due\
+  \ / 什么是 Arduino 板？\n    *   Mega / 什么是 Arduino 板？\n    *   Yun / 什么是 Arduino 板？\n\
+  \    *   Tre / 什么是 Arduino 板？\n    *   Zero / 什么是 Arduino 板？\n    *   特性 / 你能用它做什么？\n\
+  \    *   文档 / 相关网站和文档\n    *   在线参考 / 相关网站和文档\n*   Arduino IDE\n    *   关于 / Arduino\
+  \ IDE\n    *   下载 / 下载 IDE\n    *   安装驱动程序 / 安装驱动程序\n    *   探索 / 探索 IDE 和草图\n \
+  \   *   草图 / 探索 IDE 和草图\n    *   故障排除建议网址 / 探索 IDE 和草图\n*   Arduino Uno\n    * \
+  \  参考 / 什么是 Arduino 板？\n*   Arduino Uno R3 板 / 什么是 Arduino 板？\n*   ATmega328 数据手册\n\
+  \    *   参考 / 什么是 Arduino 板？\n\n\n\n## B\n\n*   Beagle board / 相关网站和文档\n*   血糖仪项目\n\
+  \    *   关于 / 血糖仪项目\n    *   电路，调试 / 调试电路\n    *   数据，从串口读取 / 从串口读取数据\n    *   JavaFX\
+  \ 血糖仪监控应用 / JavaFX 血糖仪监控应用\n*   可启动 SD 卡\n    *   创建 / 创建可启动 SD 卡\n*   内置 UI 控件\
+  \ / JavaFX 特性\n\n## C\n\n*   Canvas API / JavaFX 特性\n*   电路，血糖仪项目\n    *   调试 /\
+  \ 调试电路\n    *   草图 / 草图\n    *   工作原理 / 工作原理\n    *   草图，测试 / 测试、验证并将草图上传到 Arduino\n\
+  \    *   草图，验证 / 测试、验证并将草图上传到 Arduino\n    *   草图，上传到 Arduino / 测试、验证并将草图上传到 Arduino\n\
+  *   复杂 UI / 构建 UI 原型\n*   ControlsFX\n    *   URL / 下载与启动\n*   CSS / JavaFX 特性\n\
+  *   CSS 主题\n    *   应用 / 应用 CSS 主题\n*   自定义 UI\n    *   开发 / 开发自定义 UI\n    *   登录对话框自定义\
+  \ UI / 登录对话框自定义 UI\n\n## D\n\n*   3D 图形特性 / JavaFX 特性\n*   3DViewer.jar\n    * \
+  \  关于 / JavaFX 示例\n*   Dalvik VM / 使用 RoboVM 在 iOS 上运行 JavaFX\n*   DataFX\n    *\
+  \   URL / 下载与启动\n*   开发者选项 / 部署应用\n*   驱动安装，Arduino IDE\n    *   关于 / 安装驱动\n   \
+  \ *   Windows 设置 / Windows 设置\n    *   Mac OS X 设置 / Mac OS X 与 Linux 设置\n    *\
+  \   Linux 设置 / Mac OS X 与 Linux 设置\n\n## E\n\n*   Ensemble8.jar\n    *   关于 / JavaFX\
+  \ 示例\n\n## F\n\n*   F3（形式追随功能）/ JavaFX 历史\n*   FXML / JavaFX 特性\n    *   关于 / FXML\n\
+  \    *   加载到 JavaFX 应用 / 将 FXML 加载到 JavaFX 应用\n*   FXyz\n    *   URL / 下载与启动\n\n\
+  ## G\n\n*   通用输入输出（GPIO）\n    *   关于 / 开关应用\n*   Glass 窗口工具包\n    *   关于 / Glass\
+  \ 窗口工具包\n*   Gluon\n    *   URL / 下载与启动, 为何将 JavaFX 移植到移动环境？\n*   Google 群组\n  \
+  \  *   参考 / 谁在维护它？\n*   Gradle\n    *   关于 / Gradle\n    *   URL / Gradle\n*   Gradle\
+  \ 构建脚本文件\n    *   关于 / Gradle 构建文件\n    *   应用，构建 / 构建应用\n    *   .ipa iOS 包，生成\
+  \ / 生成 iOS .ipa 包文件\n*   图形系统\n    *   关于 / 图形系统\n\n## H\n\n*   硬件加速图形管线 / JavaFX\
+  \ 特性\n*   Hello World JavaFX 风格应用\n    *   创建 / 创建“Hello World”JavaFX 风格应用\n   \
+  \ *   使用 Netbeans IDE / 使用 Netbeans IDE\n    *   工作原理 / 工作原理\n*   高性能媒体引擎 / JavaFX\
+  \ 特性\n\n## I\n\n*   .ipa 包 / 工作原理\n\n## J\n\n\n\n*   JAR 文件 / 工作原理\n*   Java API\
+  \ / JavaFX 特性\n*   Java 开发工具包 (JDK) / 入门指南\n*   JavaFX\n    *   目标 / JavaFX 目标\n\
+  \    *   入门流程 / 入门指南\n    *   历史 / JavaFX 历史\n    *   特性 / JavaFX 特性\n    *   所需软件，安装\
+  \ / 安装所需软件\n    *   移植，到移动端 / 为何将 JavaFX 移植到移动环境？\n    *   资源 / 资源与参考\n    *   参考\
+  \ / 资源与参考\n    *   官方文档 / 官方文档\n    *   示例 / JavaFX 示例\n    *   属性 / JavaFX 属性与绑定\n\
+  \    *   绑定 / JavaFX 属性与绑定\n    *   社区 / JavaFX 社区\n    *   书籍与杂志 / Java SE / JavaFX\
+  \ 书籍与杂志\n*   javafx.scene API\n    *   关于 / 场景图\n    *   节点 / 场景图\n    *   效果 /\
+  \ 场景图\n    *   状态 / 场景图\n*   JavaFX 3D API\n    *   预定义形状 / JavaFX 3D API 概览\n \
+  \   *   用户定义形状 / JavaFX 3D API 概览\n    *   示例 / JavaFX 3D API 概览\n*   JavaFX 8\n\
+  \    *   可用性 / JavaFX 8 何时可用？\n    *   特性 / JavaFX 8 新特性\n    *   操作系统 / 安装所需软件\n\
+  *   JavaFX 8 3D 应用程序\n    *   关于 / JavaFX 8 3D 应用程序\n    *   LeapListener.java 类\
+  \ / JavaFX 8 3D 应用程序\n    *   LeapJavaFX.java 类 / JavaFX 8 3D 应用程序\n    *   Pair.java\
+  \ 类 / JavaFX 8 3D 应用程序\n    *   工作原理 / 工作原理\n    *   运行 / 运行应用程序\n*   JavaFX 8 架构\n\
+  \    *   关于 / JavaFX 8 架构快速回顾\n    *   URL / JavaFX 8 架构快速回顾\n    *   场景图 / 场景图\n\
+  \    *   Java 公共 API / JavaFX 特性的 Java 公共 API\n    *   图形系统 / 图形系统\n    *   Glass\
+  \ 窗口工具包 / Glass 窗口工具包\n    *   JavaFX 线程 / JavaFX 线程\n    *   媒体 / 媒体与图像\n    *\
+  \   图像 / 媒体与图像\n    *   Web 组件 / Web 组件\n    *   布局组件 / 布局组件\n    *   JavaFX 控件\
+  \ / JavaFX 控件\n*   JavaFX 8 CSS\n    *   参考 / 使用 CSS 开发和设计应用程序 UI\n*   JavaFX 8\
+  \ 开发\n    *   前提条件 / JavaFX 8 开发前提条件\n*   JavaFX 8 WebView 类\n    *   实现 / WebView\n\
+  *   JavaFX 应用程序，适用于 Android\n    *   开发 / 入门指南\n    *   前提软件，准备 / 准备并安装前提软件\n  \
+  \  *   前提软件，安装 / 准备并安装前提软件\n    *   项目结构 / 项目结构\n    *   Gradle 项目，构建 / 使用 Gradle\n\
+  \    *   默认 Gradle 构建文件 / 使用 Gradle\n    *   关于 / 应用程序\n    *   用户界面，使用 CSS 开发 /\
+  \ 使用 CSS 开发和设计应用程序 UI\n    *   用户界面，使用 CSS 设计样式 / 使用 CSS 开发和设计应用程序 UI\n    *   逻辑，添加\
+  \ / 添加一些逻辑\n    *   准备，用于移动设备 / 使项目为移动设备做好准备\n    *   互操作性，与底层 Android API / 与底层\
+  \ Android API 的互操作性\n    *   构建 / 构建应用程序\n    *   .apk Android 包，构建 / 构建最终的 .apk\
+  \ Android 包\n    *   部署 / 部署应用程序\n    *   部署，在基于 Android 的设备上 / 在基于 Android 的设备上部署\n\
+  \    *   部署，在 Google Play 商店上 / 在 Google Play 商店上部署\n    *   .apk，签名 / 签署 APK\n\
+  \    *   测试提示 / 测试提示\n*   JavaFX 血糖仪监测应用程序\n    *   关于 / JavaFX 血糖仪监测应用程序\n    *\
+  \   串行通信 / Java 中的串行通信\n    *   应用程序逻辑 / 应用程序逻辑与图表 API\n    *   图表 API / 应用程序逻辑与图表\
+  \ API\n    *   运行 / 运行应用程序\n*   JavaFX 层叠样式表 (CSS)\n    *   关于 / CSS\n*   JavaFX\
+  \ 控件\n    *   关于 / JavaFX 控件\n*   JavaFX 文档\n    *   关于 / 官方文档\n*   JavaFX FXML\
+  \ 应用程序\n    *   开始 / 构建 UI 原型\n*   JavaFX 在 Web 上\n    *   关于 / JavaFX 在 Web 上\n\
+  \    *   WebEngine / WebEngine\n    *   WebView / WebView\n*   JavaFXPorts\n   \
+  \ *   URL / 为何将 JavaFX 移植到移动环境？\n*   JavaFXPorts，适用于 Android\n    *   工作原理 / 工作原理\n\
+  \    *   维护 / 谁在维护它？\n*   JavaFX 线程\n    *   关于 / JavaFX 线程\n    *   JavaFX 应用程序线程\
+  \ / JavaFX 线程\n    *   Prism 渲染线程 / JavaFX 线程\n    *   媒体线程 / JavaFX 线程\n    * \
+  \  脉冲 / JavaFX 线程\n*   Java 公共 API\n    *   关于 / JavaFX 特性的 Java 公共 API\n*   Java\
+  \ 运行时环境 (JRE) / 为何将 JavaFX 移植到移动环境？\n*   Java SE 8\n    *   URL / JavaFX 历史\n  \
+  \  *   API / JavaFX 8 何时可用？\n    *   关于 / 官方文档, Java SE 8\n    *   API 文档 / Java\
+  \ SE 8 API 文档与教程\n    *   教程 / Java SE 8 API 文档与教程\n    *   Lambda 项目 / Lambda 项目\n\
+  \    *   Nashorn / Nashorn\n*   Java SE 8 (JDK8 u45) / Java SE 8 JDK8 u45\n*   Java\
+  \ SE 8 特性\n    *   关于 / Java SE 8 特性\n    *   Lambda 表达式 / Lambda 表达式\n    *   语法，Lambda\
+  \ 表达式 / 语法\n    *   函数式接口 / 函数式接口\n*   Java SE 8 JDK\n    *   安装 / 安装 Java SE 8\
+  \ JDK\n    *   下载链接 / 安装 Java SE 8 JDK\n    *   环境变量，设置 / 设置环境变量\n    *   JAVA_HOME\
+  \ 变量 / 设置环境变量\n    *   PATH 变量 / 设置环境变量\n*   Java SE 8u45 JDK\n    *   下载链接 / 安装所需软件\n\
+  *   Java SE 运行时环境 (JRE) / JavaFX 8 何时可用？\n*   Java 简单串行连接器 (jSSC) 库 / 从串口读取数据\n\
+  *   Java 虚拟机 (JVM) / 为何将 JavaFX 移植到移动环境？\n*   Java Web Start\n    *   关于 / Java\
+  \ Web Start\n    *   参考 / Java Web Start\n*   JDK / 为何将 JavaFX 移植到移动环境？\n*   JNLP\
+  \ (Java 网络启动协议) 文件\n    *   关于 / Java Web Start\n\n\n\n## L\n\n*   Lambda 表达式 /\
+  \ 工作原理\n*   Lambdas / JavaFX 历史\n*   布局 API\n    *   关于 / 布局组件\n    *   BorderPane\
+  \ / 布局组件\n    *   HBox / 布局组件\n    *   VBox / 布局组件\n    *   StackPane / 布局组件\n \
+  \   *   GridPane / 布局组件\n    *   FlowPane / 布局组件\n    *   TilePane / 布局组件\n    *\
+  \   AnchorPane / 布局组件\n*   Leap 文档\n    *   参考 / 工作原理\n*   Leap JavaFX 应用程序\n  \
+  \  *   关于 / Leap JavaFX 应用程序\n    *   JavaFX 3D API / JavaFX 3D API 概览\n    *  \
+  \ 学习资源 / 更多学习资源\n    *   结构 / 基本应用程序结构\n    *   示例 / 更多示例\n*   Leap Motion 控制器\n\
+  \    *   关于 / Leap Motion 控制器\n    *   工作原理 / 工作原理\n    *   坐标系 / 坐标系\n    *   获取设备\
+  \ / 获取设备\n    *   包装内容 / 包装内容\n    *   Leap SDK / Leap SDK 入门\n    *   安装控制器驱动和软件\
+  \ / 安装控制器驱动和软件\n    *   验证 / 验证是否正常工作\n    *   支持的语言 / 支持的语言\n*   Lego Mindstorm\
+  \ 传感器 / 相关网站和文档\n*   轻量级 X11 桌面环境 (LXDE) / 配置 Raspberry Pi\n*   LodgON\n    *  \
+  \ URL / 谁在维护它？\n*   登录对话框自定义 UI\n    *   关于 / 登录对话框自定义 UI\n    *   结构 / 登录对话框自定义\
+  \ UI 的结构\n    *   编码 / 编写登录对话框自定义 UI 代码\n\n## M\n\n*   主线程 / 工作原理\n*   MandelbrotSet.jar\n\
+  \    *   关于 / JavaFX 示例\n*   Minnow 板 / 相关网站和文档\n*   Raspberry Pi 型号\n    *   关于\
+  \ / 你应该购买哪个型号？\n*   Modena.jar\n    *   关于 / JavaFX 示例\n*   多点触控支持 / JavaFX 特性\n\
+  \n## N\n\n*   Nashorn\n    *   关于 / Nashorn\n    *   参考 / Nashorn\n*   NetBeans\n\
+  \    *   与 Pi 一起使用 / 将 NetBeans 与 Pi 一起使用\n    *   关于 / JavaFX 示例\n*   NetBeans\
+  \ 8.0.2\n    *   下载链接 / 安装所需软件\n*   NetBeans IDE\n    *   安装 / 安装 NetBeans IDE\n\
+  *   NetBeans 集成开发环境 (IDE) / 入门\n*   节点 / 场景图\n*   NOOBS\n    *   关于 / 使用 NOOBS\n\
+  \    *   使用 / 使用 NOOBS\n*   笔记应用程序\n    *   开发 / 开发笔记应用程序\n    *   构建 UI 原型 / 构建\
+  \ UI 原型\n    *   添加交互 / 让应用程序活起来——添加交互\n    *   使用属性同步强大的应用程序变更 / 使用属性同步强大的应用程序变更\n\
+  \    *   过滤 TableView 数据列表 / 过滤 TableView 数据列表\n    *   为桌面分发部署 / 为桌面分发部署应用程序\n\
+  \    *   为 Web 分发部署 / 为 Web 分发部署应用程序\n*   笔记桌面应用程序\n    *   关于 / 作为桌面应用程序的笔记\n*\
+  \   笔记 Web 应用程序\n    *   关于 / 作为 Web 应用程序的笔记\n    *   为 Web 运行 / 为 Web 运行应用程序\n\n\
+  ## O\n\n*   OBJ\n    *   关于 / JavaFX 示例\n*   Objective C / 工作原理\n*   OpenJFX\n \
+  \   *   关于 / JavaFX 目标\n    *   URL / JavaFX 目标\n\n## P\n\n*   Pi4J 库\n    *   关于\
+  \ / 开关应用程序, 什么是 Pi4J 库？\n    *   URL / 什么是 Pi4J 库？\n    *   电路设置 / 电路设置\n*   JavaFX\
+  \ 8 开发前提条件\n    *   关于 / JavaFX 8 开发前提条件\n    *   在 Raspberry Pi 上安装 Java SE 8 /\
+  \ 在 Raspberry Pi 上安装 Java SE 8\n    *   安装 Java SE 8 / 安装 Java SE 8\n    *   添加\
+  \ JavaFX / 添加 JavaFX\n    *   配置 NetBeans / 为 Raspberry Pi 配置 NetBeans\n*   Android\
+  \ 版 JavaFX 应用程序的前提工具\n    *   Java SE 8 (JDK8 u45) / Java SE 8 JDK8 u45\n    * \
+  \  Gradle / Gradle\n    *   Android SDK / Android SDK\n*   Prism / 快速回顾 JavaFX 8\
+  \ 架构\n    *   关于 / 图形系统\n*   项目\n    *   为 Android 准备 / 为 Android 准备项目\n*   脉冲宽度调制\
+  \ (PWM)\n    *   关于 / 什么是 Arduino 板？\n\n## Q\n\n*   Quantum Toolkit\n    *   关于\
+  \ / 图形系统\n\n\n\n## R\n\n*   Raspberry Pi（树莓派）\n    *   关于 / 什么是树莓派？\n    *   特性\
+  \ / 你能用它做什么？, 为什么树莓派是 JavaFX 的完美选择？\n    *   型号 / 你应该购买哪个型号？\n    *   购买 / 购买树莓派\n\
+  \    *   参考资料 / 相关网站和文档\n    *   文档 / 相关网站和文档\n*   树莓派，为 JavaFX 8 做准备\n    *   关于\
+  \ / 为 JavaFX 8 准备树莓派\n    *   创建可启动 SD 卡 / 创建可启动 SD 卡\n    *   使用 NOOBS 创建可启动 SD\
+  \ 卡 / 使用 NOOBS\n    *   配置树莓派 / 配置树莓派\n    *   远程连接树莓派 / 远程连接树莓派\n*   远程连接，树莓派\n\
+  \    *   安装 VNC / 在树莓派上安装 VNC\n    *   设置静态 IP 地址 / 设置静态 IP 地址\n    *   自动登录 / 树莓派自动登录\n\
+  \    *   使用客户端连接 VNC / 使用客户端连接 VNC\n*   RoboVM\n    *   关于 / 为什么将 JavaFX 移植到移动环境？\n\
+  \    *   网址 / 为什么将 JavaFX 移植到移动环境？\n    *   用于在 iOS 上运行 JavaFX / 使用 RoboVM 在 iOS\
+  \ 上运行 JavaFX\n    *   特性 / 特性\n    *   限制 / 限制\n    *   工作原理 / 工作原理\n*   RoboVM\
+  \ 编译器\n    *   安装 / 入门指南\n    *   前提条件 / 前提条件\n*   RoboVM 项目\n    *   关于 / 使用 RoboVM\
+  \ 在 iOS 上运行 JavaFX\n    *   为 iOS 准备 / 为 iOS 准备项目\n    *   项目结构 / 项目结构\n    *  \
+  \ 应用程序 / 应用程序\n    *   与底层 iOS API 的互操作性 / 与底层 iOS API 的互操作性\n    *   Gradle 构建脚本文件\
+  \ / Gradle 构建文件\n    *   部署应用程序 / 部署应用程序\n    *   部署到模拟器 / 部署到模拟器\n    *   部署到 Apple\
+  \ 设备 / 部署到 Apple 设备\n*   RXTX / 从串口读取数据\n\n## S\n\n*   Scene Builder（场景构建器） / JavaFX\
+  \ 特性\n    *   关于 / 场景构建器\n    *   下载 / 下载与启动\n    *   启动 / 下载与启动\n*   场景图 / 场景图\n\
+  *   自包含部署模型 / JavaFX 特性\n*   SIGINFO / 使用 NOOBS\n*   单一抽象方法（SAM） / 函数式接口\n*   Swing\
+  \ / JavaFX 特性\n*   Swing 应用程序 / 工作原理\n*   开关应用程序\n    *   关于 / 开关应用程序, 应用程序\n  \
+  \  *   Pi4J 库 / 什么是 Pi4J 库？\n*   SWT 互操作性 / JavaFX 特性\n\n## T\n\n*   主题化\n    *\
+  \   关于 / 主题化\n\n## V\n\n*   虚拟网络计算（VNC） / 远程连接树莓派\n    *   设置 / 远程连接树莓派\n    * \
+  \  在树莓派上安装 / 在树莓派上安装 VNC\n    *   设置为开机启动 / 设置 VNC 开机启动\n\n## W\n\n*   WebEngine（网页引擎）\n\
+  \    *   关于 / 网页引擎\n*   WebEngine API / 网页引擎\n*   WebView（网页视图） / JavaFX 特性\n  \
+  \  *   关于 / 网页视图\n    *   引擎实战 / 网页视图与引擎实战\n*   WORA / 为 iOS 准备项目\n*   一次编写，随处运行（WORA）\
+  \ / 为什么将 JavaFX 移植到移动环境？\n\n## X\n\n*   Xcode 6.x\n    *   网址 / 前提条件\n"

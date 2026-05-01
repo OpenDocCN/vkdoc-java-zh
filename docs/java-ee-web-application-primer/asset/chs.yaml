@@ -1,0 +1,2593 @@
+- '
+
+
+
+  ![](img/A978-1-4842-3195-1_CoverFigure.jpg)
+
+
+  ![A978-1-4842-3195-1_CoverFigure.jpg](img/A978-1-4842-3195-1_CoverFigure.jpg)戴夫·沃尔夫
+  与 A. J. 亨利 Java EE Web 应用入门：使用 JSP、Servlet、JavaScript、Bootstrap 和 Oracle 构建 Bullhorn
+  消息应用
+
+
+  ![A458483_1_En_BookFrontmatter_Figa_HTML.png](img/A458483_1_En_BookFrontmatter_Figa_HTML.png)
+
+
+  本书作者引用的任何源代码或其他补充材料，读者均可通过本书在产品页面 [www.​apress.​com/​9781484231944](http://www.apress.com/9781484231944)
+  上提供的 GitHub 链接获取。如需更详细信息，请访问 [`​www.​apress.​com/​source-code`](http://www.apress.com/source-code)。ISBN
+  978-1-4842-3194-4e-ISBN 978-1-4842-3195-1 [`doi.org/10.1007/978-1-4842-3195-1`](https://doi.org/10.1007/978-1-4842-3195-1)
+  美国国会图书馆控制号：2017962002 © 戴夫·沃尔夫、A.J. 亨利 2017 本作品受版权保护。出版商保留所有权利，涉及材料的全部或部分内容，特别是翻译权、重印权、插图复用权、朗诵权、广播权、缩微胶片复制权或任何其他物理形式的复制权，以及信息存储与检索、电子改编、计算机软件或目前已知或未来开发的类似或不同方法的传输权。本书中可能出现商标名称、标识和图像。对于商标名称、标识或图像的每次出现，我们并非都使用商标符号，而是仅以编辑方式使用这些名称、标识和图像，以维护商标所有者的利益，无意侵犯商标权。本出版物中使用的商品名称、商标、服务标志及类似术语，即使未被明确标识，也不应被视为对其是否受专有权利保护的立场表达。尽管本书中的建议和信息在出版时被认为是真实准确的，但作者、编辑和出版商均不对可能出现的任何错误或遗漏承担法律责任。出版商对本书所含内容不作任何明示或暗示的担保。本书采用无酸纸印刷。由
+  Springer Science+Business Media New York 向全球图书贸易发行，地址：233 Spring Street, 6th Floor,
+  New York, NY 10013。电话：1-800-SPRINGER，传真：(201) 348-4505，电子邮件：orders-ny@springer-sbm.com，或访问
+  www.springeronline.com。Apress Media, LLC 是一家加利福尼亚有限责任公司，其唯一成员（所有者）是 Springer Science
+  + Business Media Finance Inc (SSBM Finance Inc)。SSBM Finance Inc 是一家特拉华州公司。献给那些自学成才的人。引言
+
+
+  您是否是一位 Java 开发者，想知道如何创建企业级应用？您是否觉得不同的组件令人不知所措或困惑，不知道它们如何组合在一起？我们在此为您提供帮助。如果您能先让一个示例应用运行起来，并利用这些知识继续您的
+  Java 之旅，那会怎样？
+
+
+  本书及其附带的代码将向您展示创建网站的一种方法。这不是唯一的方法。它可能不是适用于所有应用的最佳方法。但这是一种能向您介绍 Java 企业级应用开发不同组件的方法。而且这是一个很好的入门方法。
+
+
+  在《Java EE Web 应用入门》中，您将学习 Java EE 应用开发的基础知识。您将看到各个部分是如何连接的。您将获得一个完整、可运行应用的 Java
+  代码。
+
+
+  ## 软件
+
+
+  我们的学生参加我们的课程，是为了学习如何为大型公司编程。我们发现这些技能是招聘我们学生的公司最常要求的。我们选择使用 Java 8、Oracle 12c 和 Eclipse
+  来开发应用。同样，我们选择使用 JPA（Java 持久化 API）而不是 Hibernate。我们选择 JSTL（Java 标准标签库）而非其他可用选项。再次强调，这些技术教授核心技能，同时不会向学生隐藏所有实现细节。我们的应用旨在教学。我们提供完整的源代码。仅仅通过审查和修改源代码，您就能学到很多东西。本书回答了您在处理源代码后可能遇到的问题，而源代码则有助于解释本书中的概念是如何实现的。
+
+
+  ## 如何使用本书
+
+
+  我们根据教授 Java 训练营和其他编程课程的经验撰写了本书。我们课程的目标是帮助人们学习能在工作中使用的技能。企业更看重结果而非理论，我们将这一原则应用于我们的应用。本书回答了我们许多学生在刚开始接触
+  Web 应用开发时遇到的问题。
+
+
+  ## 我们学生取得的成就
+
+
+  > “我记得当我脑海中的灯泡开始亮起，屏幕上的乱码开始变得有意义时。开始赶上我那些令人印象深刻的同学们，那是最奇妙的感觉。” ——维基，现为一家财富 100 强公司的项目经理
+  “我经历了四年的计算机科学大学教育，我可以诚实地说，参加这门课程给了我丰富的经验，而这些经验我在学校期间只是浅尝辄止。我毕业时确实带着技术学位和项目经验，但与讲师戴夫和阿尔顿一起做一个又一个项目，确实将我先前学到的理论和实践牢牢巩固。更重要的是，我填补了大学期间因错失机会而留下的许多空白。”
+  ——弗朗西斯，现为一家财富 100 强公司的分析师
+
+
+  如果您已准备好开始并开发您的第一个 Java 企业级 Web 应用，我们感谢您选择我们的书来开启您的旅程。要知道，您将面临挑战和挫折。您并不孤单。我们发现，当我们的学生努力克服这些困难时，他们学到的软件开发知识比我们能在书中教授的要多得多。您来对地方了。不要再等待了。是时候进入第
+  1 章了！
+
+
+
+
+  目录 第 1 章：入门 1 Oracle 虚拟机 2 第 2 章：什么是数据库？ 5 参照完整性 6 空值 6 主键、外键和索引 7 连接表 7 规范化 8 结构化查询语言
+  (SQL) 8 使用 Oracle 数据库 9 如何打开和使用 SQL Developer 10 第 3 章：安装和运行 Eclipse 11 第 4 章：Bullhorn
+  网站概览 15 Bullhorn 的组件 15 每个页面长什么样？ 17 编辑个人资料 21 第 5 章：什么是 MVC？ 23 Bullhorn 中的模型、视图、控制器和服务
+  24 第 6 章：创建 Web 应用程序 27 第 7 章：DAO/仓库 31 实现 Java 持久化 (JPA) 34 Persistence.xml 文件
+  36 JPA 实体 38 第 8 章：服务层 43 创建 DbUtilities 类 43 创建 DbUser 类 44 创建 DbPost 类 51 第 9
+  章：控制器 57 什么是 Servlet？ 57 将表单数据传入 Servlet 59 将数据发送到下一页 59 Servlet 如何找到下一页 60 如何在输出页面上设置值
+  60 注销按钮如何工作 61 登录 Servlet 代码 61 新闻动态 Servlet 代码 64 PostServ Servlet 代码 67 个人资料 Servlet
+  代码 69 AddUser Servlet 代码 74 第 10 章：表示层/视图 77 第 11 章：使用 HTML 设计网页 79 第 12 章：HTML5
+  标签 81 常用标签说明 82 HTML 表格 85 一个基本的 HTML5 和 JSP 文档 86 JSP 标准标签库 (JSTL) 87 你能用 JSTL
+  做什么？ 89 防止跨站脚本攻击 89 遍历集合 89 设置值 90 测试条件 90 固定次数重复内容 91 测试条件并选择替代方案 91 判断字符串是否为空
+  92 格式化日期 92 如何显示表单数据 93 创建 HTML 登录表单 93 创建页面以显示表单输出 95 如何允许用户在网页间导航 96 重用 JSP 代码
+  96 自定义错误页面 97 第 13 章：Web 的无状态特性 101 传递数据的过程 102 第 14 章：用户和会话 105 向会话中添加对象 107 从会话中读取值
+  108 第 15 章：如何为 Bullhorn 创建数据库表 109 第 16 章：使用 JavaScript 让网页动起来 111 使用 JavaScript
+  验证表单 112 显示文本框中的字符数 114 第 17 章：层叠样式表 (CSS) 115 Span 和 Div 标签 116 第 18 章：让页面在所有屏幕尺寸上正常工作
+  119 使用 BootStrap 120 第 19 章：使用 Gravatar 在帖子中显示用户头像 123 使用 Java 计算 MD5 哈希值 124 第
+  20 章：表示层/视图 127 登录页面代码 127 主页代码 129 新闻动态页面代码 130 个人资料页面代码 132 添加用户页面代码 134 支持页面代码
+  135 错误页面代码 136 导航栏包含文件 136 BootStrap 包含文件 139 Bootstrap 样式页面 140 页脚包含文件 140 索引 141
+  关于作者和技术审阅者 关于作者 关于技术审阅者
+
+
+  '
+- '# 1. 入门
+
+
+  VirtualBox 允许你在物理计算机中创建虚拟计算机，使你能够在一个系统上运行多台计算机。设置 VirtualBox 只需很少的步骤。安装完成后，你就可以导入现有的虚拟计算机并开始使用该系统。
+
+
+  像安装你下载过的任何其他软件一样，点击并运行文件来安装 VirtualBox。如果你使用的是 Windows，请双击安装文件并按照提示进行安装。如果你使用的是
+  Mac，请打开你下载的 DMG 文件，并将 VirtualBox 文件拖到你的“应用程序”文件夹中。在安装过程中，将所有选项保留为默认设置。
+
+
+  启动 VirtualBox 程序。VirtualBox 允许你管理各种虚拟机并轻松创建新的虚拟机。你可以直接从安装程序运行 VirtualBox，也可以从桌面图标启动它。
+
+
+  注意
+
+
+  从 Oracle 网站下载 VirtualBox：
+
+
+  [`http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html`](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html)
+
+
+
+
+  ## Oracle 虚拟机
+
+
+  本着偷懒——我是说高效——的原则，我们使用了一个预构建的 Oracle 虚拟机（VM）镜像来开发网站。Oracle 免费提供此虚拟机下载（需注册）。如前所述，该虚拟机需要在你的计算机上安装开源软件
+  VirtualBox。虚拟机中托管了最新版本的 Oracle 数据库（12c 版），还包含了 SQL Developer 甚至 Java 1.8。你只需要自行安装
+  Eclipse，我们将在后续章节中介绍。
+
+
+  提示
+
+
+  从 Oracle 网站 [`http://www.oracle.com/technetwork/database/enterprise-edition/databaseappdev-vm-161299.html`](http://www.oracle.com/technetwork/database/enterprise-edition/databaseappdev-vm-161299.html)
+  下载 Oracle 数据库应用开发者虚拟机。下载前必须接受软件条款。
+
+
+  准备好 Oracle 虚拟机文件后，在菜单栏中选择“文件 ➤ 导入虚拟电脑”。点击“打开虚拟电脑”按钮选择 Oracle 虚拟机文件，导航至扩展名为 `.ova`
+  的文件。选择该文件后，VirtualBox 会弹出一个显示设置的对话框，你可以在此点击“导入”按钮。下一个窗口将显示当前虚拟设备的配置。
+
+
+  点击“导入”后，VirtualBox 会复制磁盘镜像，并按照对话框中描述的设置创建虚拟机。你将在 VirtualBox 管理器（VirtualBox Manager）的虚拟机列表中看到
+  Oracle 虚拟机。VirtualBox 管理器是打开 VirtualBox 时显示的第一个界面。选择你的虚拟机，点击“启动”，等待加载完成，然后你就可以像使用独立计算机一样操作该虚拟机了。
+
+
+  注意
+
+
+  如果你不使用 Oracle 虚拟机，也可以在 Windows 系统上完成本书中的所有内容。
+
+
+  你可以从 [`http://www.oracle.com/technetwork/database/enterprise-edition/downloads/database12c-win64-download-2297732.html`](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/database12c-win64-download-2297732.html)
+  下载并安装适用于 Windows 的 Oracle 数据库 12c 版。
+
+
+  你还需要安装 SQL Developer，可在 [`http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html`](http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html)
+  找到。
+
+
+  最后，你需要从 [`http://www.eclipse.org/downloads`](http://www.eclipse.org/downloads) 安装
+  Eclipse Oxygen。
+
+
+  '
+- '# 2. 什么是数据库？
+
+
+  数据库是一个以安全、高效的方式永久存储数据以供检索的地方。数据库允许我们创建数据并永久保存，允许我们检索之前创建的数据、更新现有数据或删除现有数据。
+
+
+  事务将 SQL 语句分组，使它们作为一个整体应用于数据库。如果某条语句因故失败，则所有语句都会从数据库中撤销。事务确保了数据完整性。事务将 Oracle 这类数据库管理系统与文件系统区分开来。
+
+
+  确保数据有效性的数据库事务属性包括：原子性、一致性、隔离性和持久性。
+
+
+  *   **原子性** 指的是在每个数据库事务中，要么所有信息都被保存，要么所有信息都不被保存。
+
+  *   **一致性** 确保事务要么正确执行，要么数据集恢复到事务执行前的状态。
+
+  *   **隔离性** 指的是数据库将尚未提交的事务与正在工作的数据库清晰分离的能力。
+
+  *   **持久性** 指的是系统保存已提交数据的方式，即使在发生故障和系统重启的情况下，数据也能以其正确的状态可用。
+
+
+  数据库将数据存储在集合中，这些集合通常被视为表。数据库表中的一行代表一条记录，包含相关的属性，这些属性称为字段。字段由表中的列表示。
+
+
+  ## 参照完整性
+
+
+  你的数据库管理系统（DBMS）支持参照完整性。参照完整性的目标是避免出现“孤立”数据。当你在表中删除或更新数据时，可能会产生孤立数据；例如，数据库中有一条没有匹配用户的帖子。这种情况不应发生，通常是导入格式错误的数据或无意中删除了用户所致。像
+  Oracle 这样的数据库管理系统可以通过拒绝会导致孤立数据的更改来强制实施参照完整性，从而防止这种情况。
+
+
+  ## 空值
+
+
+  有时，某行中的某一列没有值。在这种情况下，该列存储一个 NULL 值。你可以将其视为一个表示数据缺失的标志。NULL 不同于数值零或长度为零的字符串。它两者都不是。它什么都不是，因为该记录的这一列没有存储任何值。事实证明，NULL
+  非常有用。你可以在包含 NULL 的记录中搜索字段，并知道这些字段是没有值的。
+
+
+  ## 主键、外键和索引
+
+
+  数据库是非常强大的工具，允许我们以惊人的速度搜索和排序数据。数据库机制的一个基本要素是每条记录都应该是唯一的。为了使每条记录唯一，要么使用每个记录都唯一的现有字段，要么为每个记录添加一个包含唯一编号的字段。
+
+
+  你的 DBMS 可以为每条记录生成一个唯一编号。每条记录的唯一编号成为其主键。该字段将该记录与表中的任何其他记录区分开来。
+
+
+  当第二个表包含与第一个表相关的数据时，第二个表可以使用主键字段来引用原始表。
+
+
+  在另一个表中用作引用的主键称为外键。外键定义了一个表（子表）到另一个表（父表）的引用。
+
+
+  为了更高效地访问某一列的数据，数据库会创建一个称为索引的对象。索引为被索引列中的每个值包含一个条目，从而实现对行的快速访问。就像纸质书中的索引一样，数据库可以在索引中查找请求的值，并快速定位其在表中的对应行。
+
+
+  ## 连接表
+
+
+  关系是将数据连接到不同表的一种手段。这有助于避免表中的数据冗余。你可以将数据划分到不同的表中——只输入一次——然后通过建立关系从其他表中引用它。
+
+
+  有三种类型的关系，如下所示：
+
+
+  *   **一对一关系**：第一个表中的每条记录在第二个表中只有一条匹配的记录。这通常发生在当一个表中的信息被分割到多个表中时。这种情况并不常见。
+
+  *   **一对多关系**：第一个表中的每条记录与第二个表中的多条记录匹配。例如，一个用户可以有多篇帖子。
+
+  *   **多对多关系**：第一个表中的每条记录在第二个表中可以有多个对应记录，同时第二个表中的每条记录在第一个表中也可以有多个对应记录。
+
+
+  ## 规范化
+
+
+  在规范化的数据结构中，每个表包含关于单个实体的信息，并且每条信息只存储在一个地方。
+
+
+  规范化是在数据库中高效组织数据的过程。这是通过组织关系数据库的列（字段或属性）和表来最小化数据冗余来实现的。
+
+
+  规范化过程的目标是消除冗余数据并确保数据依赖关系合理。
+
+
+
+
+  ## 结构化查询语言（SQL）
+
+
+  数据库拥有自己的编程语言，即 SQL（结构化查询语言）。SQL 是一种非过程化语言，用于提供数据库访问。所有数据库操作都通过 SQL 执行。Java 可以使用
+  SQL 与数据库管理系统进行通信。这是通过 JDBC API 实现的，它允许你的应用程序根据各种条件指定要检索哪些记录。例如，你可以选择在特定日期之间创建的记录，或者仅更新满足给定条件的记录。SQL
+  还可用于创建数据库对象，例如用户表和已保存的查询（即所谓的视图）。视图本身不包含任何数据，它只是存储的查询，使用它可以简化数据访问。
+
+
+  SQL（发音为字母 S-Q-L 或 sequel）是一种专门的数据库语言，由非常接近英语的语句组成。SQL 只有一个目的：与数据库通信。我们与数据库通信以添加、更新或删除数据。我们还与数据库通信以创建和修改表及其他数据库对象。
+
+
+  几乎所有主要的数据库管理系统都支持 SQL。学习 SQL 将使你能够与几乎任何你遇到的数据库进行交互。SQL 易于学习。其语句由描述性的英语单词组成。SQL 功能强大。巧妙地使用语言元素可以让你执行复杂的数据库操作。SQL
+  是由 ANSI（美国国家标准学会）管理的标准。除了 SQL 的标准实现之外，大多数供应商还实现了自己的专有扩展。你用于 Oracle 的 SQL 版本可能与你用于访问其他数据库的版本不同。
+
+
+  ## 使用 Oracle 数据库
+
+
+  就像你使用 IDE（集成开发环境）来处理 Java 程序一样，你也可以使用 IDE 来处理 Oracle 数据库。这个 IDE 叫做 SQL Developer。虚拟机中已经安装了
+  SQL Developer 的副本。
+
+
+  ## 如何打开和使用 SQL Developer
+
+
+  要在虚拟机中打开 SQL Developer，只需点击桌面上的图标即可。
+
+
+  提示
+
+
+  Oracle 在其技术网络网站上提供了使用 SQL Developer 的分步说明。如果你使用虚拟机，那么所有内容都已为你安装好。请访问 [`http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/sqldev/r40/sqldev4.0_GS/sqldev4.0_GS.html`](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/sqldev/r40/sqldev4.0_GS/sqldev4.0_GS.html)
+  。
+
+
+  '
+- '# 3. 安装和运行 Eclipse
+
+
+  你的虚拟机包含创建 Bullhorn 所需的所有软件——Oracle Database 12c、SQL Developer 和 Java 1.8——但它不包含
+  Eclipse IDE。你需要自行下载并安装。幸运的是，安装过程非常简单。
+
+
+  在虚拟机上安装 Eclipse
+
+
+  要在虚拟机上安装 Eclipse，你需要打开 Firefox 并下载 Eclipse 归档文件。然后，你需要从归档文件中提取文件。接下来，你需要运行归档文件中包含的安装程序。最后，打开
+  Eclipse。
+
+
+  1.  从虚拟机中，打开 Firefox 网页浏览器。你可以通过点击“应用程序”菜单并选择 Firefox 网页浏览器的图标来打开 Firefox。
+
+  2.  接下来，访问 [`http://www.eclipse.org/downloads`](http://www.eclipse.org/downloads)
+  。
+
+  3.  点击橙色按钮下载 Eclipse。你将安装最新版本，名为 Oxygen。
+
+  4.  你将被重定向到另一个带有橙色“下载”按钮的页面。也点击这个按钮。
+
+  5.  当此窗口显示时，选择使用归档管理器打开的选项。归档管理器是用于提取文件的程序。
+
+  6.  系统会提示你选择一个文件夹，用于放置提取的文件。浏览到主文件夹并选择“提取”。
+
+  7.  勾选打开文件夹以查看文件的选项。看到提取的文件后，查找名为 `eclipse-install` 的文件。
+
+  8.  选择安装用于 Java EE 的 Eclipse 的选项。
+
+  9.  你的文件夹应为 `/home/oracle/eclipse/jee-oxygen`。
+
+  10.  点击“启动”。
+
+  11.  接受默认工作空间。你的项目文件将保存在此处。
+
+
+  你已成功安装 Eclipse Oxygen。
+
+
+  如何更改 Tomcat 中的端口
+
+
+  默认情况下，Tomcat 配置为监听以下端口号：8005、8080 和 8009。我们最感兴趣的端口是 8080，因为它用于 HTTP 访问。当你在 Eclipse
+  中使用 Tomcat 运行 Web 应用程序时，URL 将变为 `http://localhost:8080/ApplicationName`。但是，有时这些端口会被计算机上运行的其他软件占用。幸运的是，Eclipse
+  可以轻松更改端口号。
+
+
+  1.  在你的 Web 项目中，在“服务器”视图中，双击服务器名称。
+
+  2.  这将打开 Tomcat 的配置页面，如下所示：
+
+  3.  请注意，端口号显示在右侧的表格中。点击进行编辑；例如：
+
+  4.  将 HTTP 的端口号从 8080 更改为 9000 后，你应该按 `Ctrl + S` 保存更改并重新启动服务器。
+
+
+  你的应用程序现在应该可以无冲突地运行。如果确实遇到冲突，说明你选择了另一个已被使用的端口。使用不同的端口号重复此过程。最好选择 1025 到 65535 范围内的端口。你可以搜索“知名端口号”来查找许多解释此原理的文章。
+
+
+  '
+- '# 4. Bullhorn 网站概览
+
+
+  图 4-1 中的图表说明了网站的组成方式。仅显示了核心组件。你可以根据需要添加额外的页面和类。
+
+
+  ![A458483_1_En_4_Fig1_HTML.gif](img/A458483_1_En_4_Fig1_HTML.gif)
+
+
+  图 4-1
+
+
+  构成 Bullhorn 的组件
+
+
+  ## Bullhorn 的组件
+
+
+  *   Servlet Java 类，用于扩展 Web 服务器，为浏览器和数据库或其他 Servlet 提供接口。
+
+  *   JPA 类 Java 持久化 API 类，用于在 Servlet 和数据库之间进行通信。
+
+  *   请求对象 表示在浏览器和 Servlet 之间发送的信息。这些信息可能包括 Servlet 用于允许访问网站的电子邮件地址和密码。
+
+  *   会话 是 Web 服务器在用户访问网站时保留数据的方法或途径。
+
+  *   用户对象 用户信息存储在一个类中，该类将存储在会话中，并且当前用户的所有页面都可以访问。
+
+  *   JSP（Java 服务器页面） 包含 HTML 和来自 JSP 标准标签库的标签的网页，用于添加功能。由于它们包含代码，因此可以为每个用户的请求动态渲染。JSP
+  标准标签库允许每个人查看自己版本的页面。
+
+  *   HTML（超文本标记语言）页面。HTML 是一种标记文本文件的系统，用于控制网页上的字体、颜色和图像。
+
+
+  提示
+
+
+  为了避免 HTML 过于复杂，请使用 CSS（层叠样式表）和 JavaScript 来控制内容的呈现，并让 HTML 控制布局。
+
+
+  Bullhorn 应用程序包含用于登录、主页、新闻推送和用户个人资料的网页。用户从登录页面开始。一旦用户点击“登录”按钮，请求（来自登录表单的数据）将被发送到登录
+  Servlet。
+
+
+  登录 Servlet 将根据数据库验证用户。有效的用户将被存储在会话中，这是网站在页面视图之间记住数据的方式。无效的用户将无法通过登录页面，直到他们输入正确的用户名和密码组合。
+
+
+  我们将创建其他对象（类）来验证数据或支持图中所示的类和页面。
+
+
+
+
+  ## 每个页面的外观是怎样的？
+
+
+  登录页面将包含文本框，用户可在其中输入电子邮件和密码。这些信息将在登录 servlet 中进行验证。如果与数据库中的信息匹配，用户将被重定向到其主页。如果不匹配，系统将提示用户重新登录。未在网站上注册的用户可以通过点击“加入”链接来注册登录。见图
+  4-2。
+
+
+  ![A458483_1_En_4_Fig2_HTML.jpg](img/A458483_1_En_4_Fig2_HTML.jpg)
+
+
+  图 4-2
+
+
+  登录页面包含用于输入电子邮件和密码的文本框，以及一个用于登录应用程序的按钮
+
+
+  主页将允许每个用户创建新帖子。每个帖子限制为 141 个字符，因此主页会强制执行此限制（见图 4-3）。用户登录后，所有页面顶部都会显示一个导航栏，允许用户导航到不同页面、查看或编辑其个人资料，以及搜索包含特定单词的帖子。
+
+
+  ![A458483_1_En_4_Fig3_HTML.jpg](img/A458483_1_En_4_Fig3_HTML.jpg)
+
+
+  图 4-3
+
+
+  主页包含一个用于向数据库提交帖子的表单。该表单包含一个文本框以及用于提交帖子或清除表单的按钮。
+
+
+  每个页面都包含相同的导航栏，允许用户在应用程序中移动。导航栏包含徽标、主页和动态消息页面的链接，以及一个搜索框。它还显示已登录用户的姓名。用户还可以从各种用户选项中进行选择，这些选项以下拉列表的形式实现。这些选项包括注销、查看或编辑个人资料以及提交反馈。见图
+  4-4。
+
+
+  ![A458483_1_En_4_Fig4_HTML.jpg](img/A458483_1_En_4_Fig4_HTML.jpg)
+
+
+  图 4-4
+
+
+  Bullhorn 中的导航栏显示在每个页面的顶部
+
+
+  导航栏中的“动态消息”链接会将用户带到动态消息页面，该页面显示所有用户的所有帖子。每个用户的电子邮件地址都是一个链接，点击后会显示该用户的个人资料信息。点击导航栏中的“搜索”也会显示动态消息，但会进行过滤，只显示包含搜索文本框中输入内容的帖子。见图
+  4-5。
+
+
+  ![A458483_1_En_4_Fig5_HTML.jpg](img/A458483_1_En_4_Fig5_HTML.jpg)
+
+
+  图 4-5
+
+
+  动态消息页面显示数据库中的任何帖子
+
+
+  用户的个人资料是只读的。它显示用户的电子邮件、座右铭、注册日期以及头像（如果有）。用户可以通过在动态消息页面上点击其他用户的用户名来查看他们的个人资料。见图 4-6。
+
+
+  ![A458483_1_En_4_Fig6_HTML.jpg](img/A458483_1_En_4_Fig6_HTML.jpg)
+
+
+  图 4-6
+
+
+  以只读视图显示的用户个人资料页面
+
+
+  ## 编辑个人资料
+
+
+  如果用户查看自己的个人资料，则可以对其进行编辑。见图 4-7。
+
+
+  ![A458483_1_En_4_Fig7_HTML.jpg](img/A458483_1_En_4_Fig7_HTML.jpg)
+
+
+  图 4-7
+
+
+  已登录用户的个人资料页面显示有文本框和一个按钮，以便用户进行更改
+
+
+  支持页面显示的内容不多，只有一些文字让您知道它的存在。我们可以修改此页面，使其包含一个文本框，用于发送电子邮件或向数据库添加记录。然后，支持人员可以定期检查新消息。见图
+  4-8。
+
+
+  ![A458483_1_En_4_Fig8_HTML.jpg](img/A458483_1_En_4_Fig8_HTML.jpg)
+
+
+  图 4-8
+
+
+  支持页面可以允许用户向网站管理员提交请求
+
+
+  '
+- '# 5. 什么是 MVC？
+
+
+  模型-视图-控制器（MVC）模式是一种用于创建数据驱动型 Web 应用程序的软件设计模式。设计模式是一种解决常见软件设计挑战的通用方案。虽然不是一个完成的设计，但您可以将设计模式视为一个模板或一组最佳实践。
+
+
+  遵循 MVC 模式意味着您打算将表示层（视图）、业务逻辑（控制器）和数据库层（模型）分开。对某一层所做的更改对其他层的影响将最小。
+
+
+  MVC 的真正好处并非在编写代码时体现，而是在维护代码时体现。代码是独立的单元，可以在无需记住整个应用程序的情况下进行维护。
+
+
+  围绕 MVC 组建团队更容易。这种设计有利于在不同人员或团队之间进行分工。想象一下，有一个负责出色视图的视图团队，一个了解所有数据的模型团队，以及一个理解应用程序流程和业务规则的控制器团队。每个团队都可以同时处理自己负责的应用程序部分，而无需考虑其他团队。这允许更快速的应用程序开发。
+
+
+  MVC 的另一个巨大优势是代码复用。在模型和控制器中实现的应用程序逻辑会被每个不同的视图复用。
+
+
+  ## Bullhorn 中的模型、视图、控制器和服务
+
+
+  当您想到模型时，请想到数据库。通常，模型是首先构建的。模型必须存储数据。模型可能包含与数据库通信的类。Bullhorn 中的模型由 Oracle 数据库和实体类表示，这些实体类代表
+  Oracle 中的表。
+
+
+  一旦创建了数据模型以及作为模型一部分的任何类，就可以继续处理服务。服务是与模型交互的所有代码。
+
+
+  接下来，继续处理控制器。控制器是 Web 应用程序的一部分，它在服务与视图之间移动数据。控制器还决定接下来调用哪个页面或 servlet。在 Bullhorn
+  中，servlet 恰好也是控制器。情况并非总是如此。控制器仅仅是控制特定于应用程序逻辑的代码。由于这是一个 Web 应用程序，servlet 负责从视图获取数据并决定接下来显示哪个
+  JSP。如果您有包含该功能的 Java 类，它们将成为控制器的一部分。
+
+
+  用户实际看到的应用程序部分称为视图。它向用户呈现数据并从用户处获取数据，然后通过服务和控制器将数据传递回模型。Bullhorn 中的视图由使用 Bootstrap、CSS（层叠样式表）、JavaScript
+  和图像的 JSP（Java 服务器页面）组成。视图的所有部分协同工作，以创建在用户浏览器中显示的页面。见图 5-1。
+
+
+  ![A458483_1_En_5_Fig1_HTML.jpg](img/A458483_1_En_5_Fig1_HTML.jpg)
+
+
+  图 5-1
+
+
+  Bullhorn 的组件在逻辑上被划分为称为模型、视图、控制器和服务的层
+
+
+  提示
+
+
+  在每个层中执行验证。数据可能通过您在最初开发时未曾预料到的方式进入您的应用程序，而不仅仅是通过浏览器。例如，您可能需要将信息导入数据库。或者，您以后可能会编写一个直接与服务层交互的
+  Web 服务。
+
+
+
+
+  '
+- "# 6. 创建 Web 应用程序\n\n我们将把 Bullhorn 应用程序创建为一个动态 Web 项目，这样我们就可以使用 HTML、JSP、Servlet\
+  \ 以及 JPA 连接数据库来开发它。如果你已经理解所有这些概念，现在就可以停止阅读了。如果你还不太明白，那么这些内容将在后续章节中逐步解释。\n\n我们的动态\
+  \ Web 应用程序不仅包含静态 HTML 页面，还包含动态的 Java Server Pages（JSP）和 Servlet。我们能够在应用程序的不同部分之间传递数据。\n\
+  \n数据库实际上是一个独立的软件，你的 Web 应用程序将与之通信。在许多系统中，数据库甚至完全位于另一台计算机上。JSP 会将信息发送给 Servlet。Servlet\
+  \ 通过服务层将信息发送到数据库（并从数据库获取信息）。然后 Servlet 将结果返回给 JSP。\n\n注意\n\n可以直接从 JSP 向数据库发送信息。也可以在两个\
+  \ JSP 之间传递信息。但我们不会这样做。我们会在每一次通信之间都加入一个 Servlet。这样我们就可以在 Servlet 中用一些 Java 代码拦截每条消息，从而轻松地验证、评估和重定向每条被拦截的消息。\n\
+  \n## 使用 Eclipse 创建动态 Web 项目\n\nEclipse 为各种类型的项目预配置了模板。我发现动态 Web 项目最为实用。创建一个这样的项目只需几个简单的步骤。\n\
+  \n1.  在 Eclipse 中选择 `File` ➤ `New` ➤ `Dynamic Web Project`。为项目命名，例如 `SampleDynamicWebProject`，如步骤\
+  \ 2 所示。\n2.  选择目标运行时为 Tomcat v.8.0 或更高版本。在继续之前，系统可能会提示你安装 Tomcat。\n\n    ![A458483_1_En_6_Figa_HTML.jpg](img/A458483_1_En_6_Figa_HTML.jpg)\n\
+  \n3.  点击 Finish。\n4.  如果系统提示，选择“Yes”以关联 Java EE 透视图。\n5.  一旦你的项目包含了一些网页，你可以在 Project\
+  \ Explorer 中选择该页面，然后右键点击并选择 `Run As` ➤ `Run on Server` 来启动它们。你的应用程序将在 Eclipse 中启动。\n\
+  \n    ![A458483_1_En_6_Fig1_HTML.jpg](img/A458483_1_En_6_Fig1_HTML.jpg)\n\n    图\
+  \ 6-1\n\n    Eclipse 中动态 Web 项目的文件夹结构\n\n动态 Web 项目会生成用于组织 Java 代码的文件夹（见图 6-1）。最重要的是\
+  \ Java 源文件夹和 Web 内容文件夹。Java Servlet 和类应放置在 Java Resources 下的 `src` 文件夹中。JSP 文件属于\
+  \ `WebContent` 文件夹。JSP 文件不能放在 `WEB-INF` 中，否则你的应用程序将无法访问它们。将 `WEB-INF` 下的 `lib` 文件夹用于\
+  \ JAR（Java 归档）文件。当我们将数据库添加到项目中时，我们会用到 JAR 文件。\n\n提示\n\nBullhorn 的 JAR（Java 归档）文件可以在\
+  \ `WebContent/WEB-INF/lib` 中找到。对于你选择开发的任何动态 Web 应用程序，你都应该将 Bullhorn 中的所有 JAR 文件复制到\
+  \ `/WEB-INF/lib` 目录中。\n\n"
+- '# 7. DAO/仓库
+
+
+  Bullhorn 需要两个表，分别用于用户和帖子。我们将在 Oracle 中创建这些表，并分别命名为 `Bhuser` 和 `Bhpost`。用户表需要以下字段：用户名、用户邮箱、密码、座右铭和注册日期。帖子表将包含帖子文本、发帖日期以及创建该帖子的用户
+  ID 字段。每个表还将包含一个 ID 字段，用于唯一标识每条记录。我们可以通过运行脚本来指示 SQL Developer 构建这些表。只需在新的 SQL 工作表中输入清单
+  7-1 中的文本即可。
+
+
+  ```
+
+  CREATE TABLE BHUSER
+
+  ("BHUSERID" NUMBER GENERATED BY DEFAULT ON NULL AS IDENTITY MINVALUE 1 MAXVALUE
+  9999999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER NOCYCLE,
+
+  "USERNAME" VARCHAR2(50 BYTE) NOT NULL,
+
+  "USERPASSWORD" VARCHAR2(50 BYTE),
+
+  "MOTTO" VARCHAR2(100 BYTE) NOT NULL,
+
+  "USEREMAIL" VARCHAR2(100 BYTE) NOT NULL,
+
+  "JOINDATE" DATE NOT NULL,
+
+  PRIMARY KEY ("BHUSERID")
+
+  ) ;
+
+  清单 7-1
+
+  Bhuser 表的数据定义
+
+  ```
+
+
+  现在我们有了存储用户的地方，可以再添加一个表来存储帖子。创建 `Bhpost` 表的 SQL 如清单 7-2 所示。你需要在 SQL Developer 的 SQL
+  工作表中输入这些内容。许多开发人员使用同一个 SQL 工作表，将每个表一个接一个地输入。一旦 SQL 输入到工作表中，选中这些语句，然后同时按下 Ctrl 和
+  Enter 键。首先创建 `Bhuser` 表，因为 `Bhpost` 表包含一个外键，代表 `Bhuser` 表中的 `BhuserId`。
+
+
+  ```
+
+  CREATE TABLE BHPOST
+
+  ("POSTID" NUMBER GENERATED BY DEFAULT ON NULL AS IDENTITY MINVALUE 1 MAXVALUE 9999999999999999999999999999
+  INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER NOCYCLE,
+
+  "POSTDATE" DATE NOT NULL,
+
+  "POSTTEXT" VARCHAR2(141 BYTE) NOT NULL,
+
+  "BHUSERID" NUMBER NOT NULL,
+
+  PRIMARY KEY ("POSTID")
+
+  );
+
+  清单 7-2
+
+  创建 Bhpost 表的 SQL
+
+  ```
+
+
+  接下来，你可能希望输入一些测试数据。清单 7-3 和 7-4 展示了一些可以运行的语句。将 SQL 输入到 SQL Developer 中，选中这些语句，然后按
+  Ctrl + Enter。
+
+
+  ```
+
+  Insert into BHUSER (USERNAME,USERPASSWORD,MOTTO,USEREMAIL,JOINDATE) values (''user
+  1'',''password'',''motto for user 1'',''user1@domain.com'',to_date(''18-JUN-16'',''DD-MON-RR''));
+
+  Insert into BHUSER (USERNAME,USERPASSWORD,MOTTO,USEREMAIL,JOINDATE) values (''user
+  2'',''password'',''motto for user 2'',''user2@domain.com'',to_date(''22-JUL-15'',''DD-MON-RR''));
+
+  Insert into BHUSER (USERNAME,USERPASSWORD,MOTTO,USEREMAIL,JOINDATE) values (''user
+  3'',''password'',''motto for user 3'',''user3@domain.com'',to_date(''31-DEC-16'',''DD-MON-RR''));
+
+  Insert into BHUSER (USERNAME,USERPASSWORD,MOTTO,USEREMAIL,JOINDATE) values (''user
+  4'',''password'',''motto for user 4'',''user4@domain.com'',to_date(''22-JAN-17'',''DD-MON-RR''));
+
+  -- commit saves the data to the database
+
+  commit;
+
+  清单 7-3
+
+  为 Bhuser 表输入测试数据的 SQL 语句
+
+  ```
+
+
+  ```
+
+  Insert into BHPOST (POSTDATE,POSTTEXT,BHUSERID) values (to_date(''18-JUN-17'',''DD-MON-RR''),''This
+  is a test post'',1);
+
+  Insert into BHPOST (POSTDATE,POSTTEXT,BHUSERID) values (to_date(''21-AUG-17'',''DD-MON-RR''),''Bullhorn
+  is a fun program!'',2);
+
+  Insert into BHPOST (POSTDATE,POSTTEXT,BHUSERID) values (to_date(''30-JUL-17'',''DD-MON-RR''),''Hello,
+  I am posting something'',2);
+
+  -- commit saves the data to the database
+
+  commit;
+
+  清单 7-4
+
+  为 Bhpost 表输入测试数据的 SQL 语句
+
+  ```
+
+
+  如果你需要重新创建这些表，只需在 SQL 工作表中运行以下两行来删除它们（清单 7-5）。
+
+
+  ```
+
+  DROP TABLE BHPOST;
+
+  DROP TABLE BHUSER;
+
+  清单 7-5
+
+  删除现有表和数据的 SQL 语句
+
+  ```
+
+
+  现在你已经在 Oracle 中创建了表并输入了一些测试数据，是时候回到 Eclipse 并将你的项目连接到数据库了。我们将使用 Java 持久化 API（JPA）来实现这一点。
+
+
+
+
+  ## 实现 Java 持久化（JPA）
+
+
+  Java 持久化 API（JPA）是一套标准，规定了 Java 如何使用实体（也称为 POJO，即普通 Java 对象）连接数据库。每个实体代表数据库表中的一行。JPA
+  将数据库对象视为 Java 对象。我们的程序只需与实体交互，而实体则负责与数据库交互。
+
+
+  有时，我们会有一个包含来自其他表数据的表。例如，Bullhorn 表中的一条帖子会包含一个用户 ID，用于标识提交该帖子的用户。使用 JPA，该 ID 会被替换为完整的
+  `User` 对象，从而允许你从 `Post` 实体访问关于该用户的所有数据。
+
+
+  JPA 允许你运用面向对象编程技能来处理数据库。此外，它还能让你的程序以统一的方式看待所有数据库。JPA 是一种对象关系映射规范。它负责处理连接数据库的细节。你只需为现有数据库设置各种参数的值，其余工作由
+  JPA 完成。Eclipse JPA 工具会检查表，并为每个表创建一个类。类名基于表名。我们将使用 Eclipse JPA 工具来创建类及其 getter 和
+  setter 方法。类的字段映射到表的字段。每个类代表数据库中的一个表。类的实例代表表中的一条记录（即一行）。Eclipse JPA 工具会处理序列和标识键，也会处理表关系。当你的表包含指向数据库中另一个表的外键时，你的类将包含一个代表该外键所对应表的对象实例。例如，`Posts`
+  表中的 `userID` 列会变成嵌入在 `Posts` 类中的一个 `User` 对象。
+
+
+  使用 JPA 的一个优势是，我们可以在不更改 Java 代码的情况下更换数据库。数据库信息存储在一个 XML 文件中，无需重新编译应用程序即可编辑该文件。你可以先用
+  MySQL 编写应用程序，随着应用规模增长，再迁移到 Oracle，而无需对应用程序代码做任何更改。
+
+
+  JPA 中的查询使用一种名为 JPQL（Java 持久化查询语言）的语言编写。这种语言对所有数据库都是相同的。
+
+
+  要实现 JPA，我们需要配置一个名为 `persistence.xml` 的文件。该文件必须位于 Java 源代码文件夹下的 `META-INF` 文件夹中。Eclipse
+  使用该配置来生成实体类。之后，我们将为应用程序创建辅助类。
+
+
+  第一步是将三个 JAR 文件复制到项目的 `WEB-INF\lib` 文件夹中。本项目所需的 JAR 文件包含在代码下载包中。你也可以在 Bullhorn 应用程序的
+  `WEB-INF\lib` 文件夹中找到它们。这些 JAR 文件分别是 `eclipselink.jar`、`javax.persistence_2.1.0.v201304241213.jar`
+  和 `ojdbc6.jar`。
+
+
+  ![A458483_1_En_7_Figa_HTML.jpg](img/A458483_1_En_7_Figa_HTML.jpg)
+
+
+  注意
+
+
+  请将以下 JAR 文件放置在 `WEB-INF\lib` 文件夹中：`eclipselink.jar`、`javax.persistence_2.1.0.v201304241213.jar`
+  和 `ojdbc6.jar`。放置在其他位置可能无法正常工作。你也可以同时包含在 Bullhorn 中找到的其他 JAR 文件，我们稍后会用到它们。
+
+
+  ## Persistence.xml 文件
+
+
+  要配置 JPA，我们需要创建 `persistence.xml` 文件。在 Eclipse 中，有多种方法可以创建此类文件，但我们将把它创建在名为 `META-INF`
+  的 `src` 目录下。JPA 规范要求必须使用这个特定位置。该文件可以是任何文本文件，你需要按照表 7-1 中所示的值进行填写。不想手动输入全部内容？你可以从本书附带的下载包中复制该文件。需要更改的值已在表中详细列出。你可能需要按所示内容进行修改。
+
+
+  表 7-1
+
+
+  Bullhorn 的 persistence.xml 文件元素设置
+
+
+  | XML 标签名 | 推荐值 |
+
+  | --- | --- |
+
+  | Persistence Unit Name | Bullhorn |
+
+  | Transaction Type | RESOURCE_LOCAL |
+
+  | Provider | org.eclipse.persistence.jpa.PersistenceProvider |
+
+  | Class | 为数据库中的每个表列出一次。因此应有两个 class 元素：model.Bhuser 和 model.Bhpost |
+
+  | Exclude Unlisted Classes | False |
+
+  | Java.persistence.jdbc.url | `jdbc:oracle:thin:@localhost:1521:ora1` |
+
+  | javax.persistence.jdbc.user | system |
+
+  | javax.persistence.jdbc.password | password |
+
+  | javax.persistence.jdbc.driver | `oracle.jdbc.OracleDriver` |
+
+
+  清单 7-6 展示了完整的 `persistence.xml` 文件。
+
+
+  ```
+
+
+  org.eclipse.persistence.jpa.PersistenceProvider
+
+
+  model.Bhpost
+
+  model.Bhuser
+
+
+  False
+
+
+  清单 7-6
+
+  详细说明所有 JPA 设置的 persistence.xml 文件示例
+
+  ```
+
+
+  请记住
+
+
+  `persistence.xml` 文件必须位于 `src` 目录下的 `META-INF` 目录中。这是强制要求的位置。
+
+
+  一旦设置好 `persistence.xml` 文件，你就可以让 Eclipse 根据数据库中的表自动生成实体了。为此，右键单击项目名称，选择“新建”，然后导航到“JPA”菜单下的“从表生成
+  JPA 实体”。弹出的对话框将使用 `persistence.xml` 文件中的信息连接到数据库，并为每个表生成一个 Java 类。你的程序将使用这些 Java
+  类（以及 `persistence.xml` 文件）来查找、添加、编辑和删除数据库中的记录。
+
+
+
+
+  ## JPA 实体类
+
+
+  ```
+
+  package model;
+
+  import java.io.Serializable;
+
+  import javax.persistence.*;
+
+  import java.util.Date;
+
+  import java.util.List;
+
+  @Entity
+
+  @NamedQuery(name="Bhuser.findAll", query="SELECT b FROM Bhuser b")
+
+  public class Bhuser implements Serializable {
+
+  private static final long serialVersionUID = 1L;
+
+  @Id
+
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+  private long bhuserid;
+
+  @Temporal(TemporalType.DATE)
+
+  private Date joindate;
+
+  private String motto;
+
+  private String useremail;
+
+  private String username;
+
+  private String userpassword;
+
+  //bi-directional many-to-one association to Bhpost
+
+  @OneToMany(mappedBy="bhuser")
+
+  private List bhposts;
+
+  public Bhuser() {
+
+  }
+
+  public long getBhuserid() {
+
+  return this.bhuserid;
+
+  }
+
+  public void setBhuserid(long bhuserid) {
+
+  this.bhuserid = bhuserid;
+
+  }
+
+  public Date getJoindate() {
+
+  return this.joindate;
+
+  }
+
+  public void setJoindate(Date joindate) {
+
+  this.joindate = joindate;
+
+  }
+
+  public String getMotto() {
+
+  return this.motto;
+
+  }
+
+  public void setMotto(String motto) {
+
+  this.motto = motto;
+
+  }
+
+  public String getUseremail() {
+
+  return this.useremail;
+
+  }
+
+  public void setUseremail(String useremail) {
+
+  this.useremail = useremail;
+
+  }
+
+  public String getUsername() {
+
+  return this.username;
+
+  }
+
+  public void setUsername(String username) {
+
+  this.username = username;
+
+  }
+
+  public String getUserpassword() {
+
+  return this.userpassword;
+
+  }
+
+  public void setUserpassword(String userpassword) {
+
+  this.userpassword = userpassword;
+
+  }
+
+  public List getBhposts() {
+
+  return this.bhposts;
+
+  }
+
+  public void setBhposts(List bhposts) {
+
+  this.bhposts = bhposts;
+
+  }
+
+  public Bhpost addBhpost(Bhpost bhpost) {
+
+  getBhposts().add(bhpost);
+
+  bhpost.setBhuser(this);
+
+  return bhpost;
+
+  }
+
+  public Bhpost removeBhpost(Bhpost bhpost) {
+
+  getBhposts().remove(bhpost);
+
+  bhpost.setBhuser(null);
+
+  return bhpost;
+
+  }
+
+  }
+
+  package model;
+
+  import java.io.Serializable;
+
+  import javax.persistence.*;
+
+  import java.math.BigDecimal;
+
+  import java.util.Date;
+
+  @Entity
+
+  @NamedQuery(name="Bhpost.findAll",
+
+  query="SELECT b FROM Bhpost b")
+
+  public class Bhpost implements Serializable {
+
+  private static final long serialVersionUID = 1L;
+
+  @Id
+
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+  private long postid;
+
+  @Temporal(TemporalType.DATE)
+
+  private Date postdate;
+
+  private String posttext;
+
+  //bi-directional many-to-one association to Bhuser
+
+  @ManyToOne
+
+  @JoinColumn(name="BHUSERID")
+
+  private Bhuser bhuser;
+
+  public Bhpost() {
+
+  }
+
+  public long getPostid() {
+
+  return this.postid;
+
+  }
+
+  public void setPostid(long postid) {
+
+  this.postid = postid;
+
+  }
+
+  public Date getPostdate() {
+
+  return this.postdate;
+
+  }
+
+  public void setPostdate(Date postdate) {
+
+  this.postdate = postdate;
+
+  }
+
+  public String getPosttext() {
+
+  return this.posttext;
+
+  }
+
+  public void setPosttext(String posttext) {
+
+  this.posttext = posttext;
+
+  }
+
+  public Bhuser getBhuser() {
+
+  return this.bhuser;
+
+  }
+
+  public void setBhuser(Bhuser bhuser) {
+
+  this.bhuser = bhuser;
+
+  }
+
+  }
+
+  ```
+
+
+  '
+- '# 8. 服务层
+
+
+  您的应用程序将通过服务层与 DAO 进行交互。
+
+
+  ## 创建 DbUtilities 类
+
+
+  每次应用程序连接数据库时，都会执行相同的代码。通过创建一个包含可复用方法的类，您可以根据需要调用这些方法，从而提高应用程序的效率。创建一个名为 `DbUtilities`
+  的类。这将使您在需要读取或写入数据库时，能够简化对实体管理器的调用。该类将是静态的（无需实例化）。它将包含一个方法 `getFactory()`，该方法将返回
+  `persistence.xml` 中标识的 `EntityManagerFactory` 实例。请参见清单 8-1。
+
+
+  ```
+
+  //DbUtil.java
+
+  package service;
+
+  import javax.persistence.EntityManager;
+
+  import javax.persistence.Persistence;
+
+  public class DbUtil {
+
+  public static EntityManager getEntityManager(String s) {
+
+  return Persistence.createEntityManagerFactory(s).createEntityManager();
+
+  }
+
+  }
+
+  //End of DbUtil.java
+
+  清单 8-1
+
+  DbUtilities 类的代码清单
+
+  ```
+
+
+  ## 创建 DbUser 类
+
+
+  `DbUser` 类包含用于操作用户的方法。`DbPost` 包含用于操作帖子的方法。这两个类非常相似，因此此处仅展示 `DbUser` 中的部分方法。
+
+
+
+
+  ```
+
+  //DbUser.java
+
+  package service;
+
+  import javax.persistence.EntityManager;
+
+  import javax.persistence.EntityTransaction;
+
+  import javax.persistence.NoResultException;
+
+  import javax.persistence.TypedQuery;
+
+  import service.util.MD5Util;
+
+  import model.Bhuser;
+
+  /**
+
+  * @author djw
+
+  * DbUser 类包含用于操作 Bhuser 的辅助方法
+
+  *
+
+  */
+
+  public class DbUser {
+
+  /**
+
+  * 从数据库中获取一个 Bhuser
+
+  * @param userID - 数据库中的主键。类型必须为 long
+
+  * @return Bhuser
+
+  */
+
+  public static Bhuser getUser(long userID)
+
+  {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  Bhuser user = em.find(Bhuser.class, userID);
+
+  return user;
+
+  }
+
+  public static void insert(Bhuser bhUser) {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  EntityTransaction trans = em.getTransaction();
+
+  try {
+
+  trans.begin();
+
+  em.persist(bhUser);
+
+  trans.commit();
+
+  } catch (Exception e) {
+
+  e.printStackTrace();
+
+  trans.rollback();
+
+  } finally {
+
+  em.close();
+
+  }
+
+  }
+
+  /**
+
+  * 根据邮箱和尺寸获取 Gravatar URL
+
+  * 根据 Gravatar 的要求，邮箱将使用 MD5 哈希算法进行哈希处理，并作为 URL 的一部分返回
+
+  * URL 还将包含 s=xx 属性，用于请求特定尺寸的 Gravatar 头像。
+
+  * 参考：http://www.gravatar.com
+
+  * @param email - 你想要获取 Gravatar 头像的用户的邮箱
+
+  * @param size - 表示要返回的图像的像素高度。高度和宽度相同。
+
+  * @return - Gravatar URL。你可以在浏览器中测试它。
+
+  */
+
+  public static String getGravatarURL(String email, Integer size){
+
+  StringBuilder url = new StringBuilder();
+
+  url.append("http://www.gravatar.com/avatar/");
+
+  url.append(MD5Util.md5Hex(email));
+
+  url.append("?s=" + size.toString());
+
+  return url.toString();
+
+  }
+
+  /**
+
+  * 更新 Bhuser 中的数据
+
+  * 向该方法传递一个已设置好所有值的 Bhuser，此方法将使用这些值更新数据库。
+
+  * 此方法实际上不返回任何内容，但会给你一种更新已完成的美好感觉。如果无法完成，它也不会告诉你。听起来未来需要添加一些功能。嗯。
+
+  * @param bhUser
+
+  */
+
+  public static void update(Bhuser bhUser) {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  EntityTransaction trans = em.getTransaction();
+
+  try {
+
+  trans.begin();
+
+  em.merge(bhUser);
+
+  trans.commit();
+
+  } catch (Exception e) {
+
+  System.out.println(e);
+
+  trans.rollback();
+
+  } finally {
+
+  em.close();
+
+  }
+
+  }
+
+  /**
+
+  * 从数据库中移除一个 Bhuser。
+
+  * 不确定你为什么要从数据库中删除一个 Bhuser，但这个方法可以为你做到。此方法不会显式删除用户的帖子，但很可能你已经设置了数据库的级联删除，这将会处理这个问题。不提供任何反馈。
+
+  * @param bhUser - 你永远不想再看到的 Bhuser
+
+  */
+
+  public static void delete(Bhuser bhUser) {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  EntityTransaction trans = em.getTransaction();
+
+  try {
+
+  trans.begin();
+
+  em.remove(em.merge(bhUser));
+
+  trans.commit();
+
+  } catch (Exception e) {
+
+  System.out.println(e);
+
+  trans.rollback();
+
+  } finally {
+
+  em.close();
+
+  }
+
+  }
+
+  /**
+
+  * 根据用户的邮箱地址获取用户。
+
+  * 当用户登录时你获得了邮箱，但你真正需要的是用户及其所有相关信息。此方法将找到与该邮箱匹配的用户。数据库应确保你不能有两个具有相同邮箱的用户。否则，结果将无法预料。
+
+  * @param email
+
+  * @return 具有该唯一邮箱地址的 Bhuser
+
+  */
+
+  public static Bhuser getUserByEmail(String email)
+
+  {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  String qString = "Select u from Bhuser u "
+
+  + "where u.useremail=:useremail";
+
+  TypedQuery q = em.createQuery(qString, Bhuser.class);
+
+  q.setParameter("useremail", email);
+
+  Bhuser user = null;
+
+  try {
+
+  System.out.println("正在获取单个用户");
+
+  user = q.getSingleResult();
+
+  System.out.println(user.getUsername());
+
+  }catch (NoResultException e){
+
+  System.out.println(e);
+
+  }finally{
+
+  em.close();
+
+  }
+
+  return user;
+
+  }
+
+  /**
+
+  * 这个用户是否有效？此方法会为你提供答案。
+
+  * 检查数据库并统计具有此用户名和密码的用户数量。如果返回 0，则说明数据库中不存在该用户名或密码。如果返回 1，则说明找到了具有该用户名和密码的用户。如果返回
+  >1，则说明你需要修复数据库。
+
+  * @param userEmail 和 userPassword
+
+  * @return true 或 false，表示用户存在或不存在
+
+  */
+
+  public static boolean isValidUser(String userEmail,String userPassword)
+
+  {
+
+  EntityManager em =
+
+  DbUtil.getEntityManager("Bullhorn");
+
+  String qString = "Select count(b.bhuserid) from Bhuser b "
+
+  + "where b.useremail = :useremail and b.userpassword = :userpass";
+
+  TypedQuery q = em.createQuery(qString,Long.class);
+
+  boolean result = false;
+
+  q.setParameter("useremail", userEmail);
+
+  q.setParameter("userpass", userPassword);
+
+  try{
+
+  long userId = q.getSingleResult();
+
+  if (userId > 0)
+
+  {
+
+  result = true;
+
+  }
+
+  }catch (Exception e){
+
+  result = false;
+
+  }
+
+  finally{
+
+  em.close();
+
+  }
+
+  return result;
+
+  }
+
+  }
+
+  //DbUser.java 结束
+
+  ```
+
+
+  ## 创建 DbPost 类
+
+
+  ```
+
+  //DbPost.java
+
+  package service;
+
+  import java.util.List;
+
+  import javax.persistence.EntityManager;
+
+  import javax.persistence.EntityTransaction;
+
+  import javax.persistence.TypedQuery;
+
+  import model.Bhpost;
+
+  public class DbPost {
+
+  public static void insert(Bhpost bhPost) {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  EntityTransaction trans = em.getTransaction();
+
+  try {
+
+  trans.begin();
+
+  em.persist(bhPost);
+
+  trans.commit();
+
+  } catch (Exception e) {
+
+  System.out.println(e.getMessage());
+
+  trans.rollback();
+
+  } finally {
+
+  em.close();
+
+  }
+
+  }
+
+  public static void update(Bhpost bhPost) {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  EntityTransaction trans = em.getTransaction();
+
+  try {
+
+  trans.begin();
+
+  em.merge(bhPost);
+
+  trans.commit();
+
+  } catch (Exception e) {
+
+  trans.rollback();
+
+  } finally {
+
+  em.close();
+
+  }
+
+  }
+
+  public static void delete(Bhpost bhPost) {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  EntityTransaction trans = em.getTransaction();
+
+  try {
+
+  trans.begin();
+
+  em.remove(em.merge(bhPost));
+
+  trans.commit();
+
+  } catch (Exception e) {
+
+  System.out.println(e);
+
+  trans.rollback();
+
+  } finally {
+
+  em.close();
+
+  }
+
+  }
+
+  public static List bhPost (){
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  String qString = "select b from Bhpost b";
+
+  List posts = null;
+
+  try{
+
+  TypedQuery query = em.createQuery(qString,Bhpost.class);
+
+  posts = query.getResultList();
+
+  }catch (Exception e){
+
+  e.printStackTrace();
+
+  }
+
+  finally{
+
+  em.close();
+
+  }
+
+  return posts;
+
+  }
+
+  public static List postsofUser(long userid)
+
+  {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  List userposts = null;
+
+  String qString = "select b from Bhpost b where b.bhuser.bhuserid = :userid";
+
+  try{
+
+  TypedQuery query = em.createQuery(qString,Bhpost.class);
+
+  query.setParameter("userid", userid);
+
+  userposts = query.getResultList();
+
+  }catch (Exception e){
+
+  e.printStackTrace();
+
+  }
+
+  finally{
+
+  em.close();
+
+  }
+
+  return userposts;
+
+  }
+
+  public static List postsofUser(String useremail)
+
+  {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  List userposts = null;
+
+  String qString = "select b from Bhpost b "
+
+  + "where b.bhuser.useremail = :useremail";
+
+  try{
+
+  TypedQuery query = em.createQuery(qString,Bhpost.class);
+
+  query.setParameter("useremail", useremail);
+
+  userposts = query.getResultList();
+
+  }catch (Exception e){
+
+  e.printStackTrace();
+
+  }
+
+  finally{
+
+  em.close();
+
+  }
+
+  return userposts;
+
+  }
+
+  public static List searchPosts (String search)
+
+  {
+
+  EntityManager em = DbUtil.getEntityManager("Bullhorn");
+
+  List searchposts = null;
+
+  String qString = "select b from Bhpost b "
+
+  + "where b.posttext like :search";
+
+  try{
+
+  TypedQuery query = em.createQuery(qString,Bhpost.class);
+
+  query.setParameter("search", "%" + search + "%");
+
+  searchposts = query.getResultList();
+
+  }catch (Exception e){
+
+  e.printStackTrace();
+
+  }finally{
+
+  em.close();
+
+  }return searchposts;
+
+  }
+
+  }
+
+  //DbPost.java 结束
+
+  ```
+
+
+
+
+  '
+- "# 9. 控制器\n\n我们应用程序中的控制器层包含处理特定业务逻辑的代码。这包括从网页接收数据、将数据发送到服务层的类，以及根据情况将用户引导至下一个 Servlet\
+  \ 或 JSP 等职责。控制器不直接访问数据库。控制器会确定需要执行的操作，然后在服务层或表示层找到合适的类，并调用该类来完成工作。在我们的应用程序中，控制器的大部分代码都位于\
+  \ Java Servlet 中。\n\n## 什么是 Servlet？\n\nServlet 是响应传入 HTTP 请求的 Java 类。当您浏览某个 URL\
+  \ 或提交表单时，浏览器会发送该请求。Servlet 位于 Web 服务器（Tomcat）内，并监听请求。然后，它们会立即启动并处理请求。可以想象成“接线员正在待命！”当您创建一个\
+  \ Servlet 时，实际上是在扩展 Servlet 容器（Tomcat）的功能。可以将 Tomcat 视为一个 Web 服务器，它除了处理 HTML 之外，还知道如何处理\
+  \ Servlet 和 JSP 文件。\n\n您的 Servlet 的 URL（网址）看起来会像 `http://localhost:8080/webTest/SimpleServlet`，其中\
+  \ `localhost` 是代表您计算机的名称，`8080` 是端口号，`webTest` 是应用程序（或项目）名称，而 `SimpleServlet` 是\
+  \ Servlet 的 `@WebServlet` 注解中指定的 Servlet URL。\n\n清单 9-1 中的 Servlet 代码展示了一个可以在 `@WebServlet`\
+  \ 属性中指定的 `SimpleServlet` URL 下找到的 Servlet。它不包含处理请求的代码，仅展示结构。一个 Servlet 包含两个方法：`doGet`\
+  \ 和 `doPost`。每个方法对应表单的 get 或 post 方法。当表单提交时，如果您仅使用表单值来获取只读数据（例如另一个网页），则应将表单标签的 method\
+  \ 属性设置为 `GET`。如果 Web 表单使用 `GET`，数据会在 URL 中传输。您可以在 URL 中 `?` 符号后面看到参数及其值。这允许用户复制并粘贴链接，从而再次获得相同的结果。\n\
+  \n当向服务器提交数据以录入数据库时，您应该使用 `POST` 方法。`POST` 不使用 URL 来提交数据。参数和值会通过一个数据包传输到服务器。这有几个优点，包括表单及其提交的数据无法被添加书签。使用\
+  \ `POST` 还允许表单提交更大量的数据。\n\n```\n@WebServlet(\"/SimpleServlet\")\npublic class SimpleServlet\n\
+  extends HttpServlet {\nprotected void doGet(\nHttpServletRequest request,    HttpServletResponse\
+  \ response)\nthrows ServletException, IOException {\n//处理 GET 请求的代码写在这里\n}\nprotected\
+  \ void doPost(\nHttpServletRequest request,    HttpServletResponse response)\nthrows\
+  \ ServletException, IOException {\n//处理 POST 请求的代码写在这里\n}\n}\n清单 9-1\n一个简单的 Web\
+  \ Servlet（不含导入语句）\n```\n\n## 将表单数据传入 Servlet\n\n当用户点击提交按钮时，表单中的数据会通过请求对象发送到 Servlet。Web\
+  \ 服务器负责处理此事。Servlet 容器（Tomcat）将使请求对象对您的 Servlet 可用。您名为 `userName` 的输入将包含用户键入的名称。Servlet\
+  \ 可以使用以下代码读取该名称：\n\n```\n//使用请求中的值设置一个变量\nString userEmail = request.getParameter(\"\
+  userEmail\");\n```\n\n## 将数据发送到下一个页面\n\n您可以将任何数据（包括诸如 `ArrayLists` 之类的对象）添加到请求或会话中。这些数据将对\
+  \ Servlet 调用的下一个页面可用。请注意，来自传入请求的请求包不会保留在作用域内，因此有必要将数据放回一个新的请求包中。\n\n```\n//将值放回\
+  \ Servlet 的请求中\nrequest.setAttribute(\"userEmail\", userEmail);\n```\n\n现在，Servlet\
+  \ 已将数据保存在名为 `userEmail` 的变量中。您现在只是在编写 Java 代码，因此可以按您认为合适的方式处理它。我们将使用 `userEmail`\
+  \ 和 `userPassword` 变量来保存数据，然后验证它们是否符合我们的预期。起初，我们只会创建一个方法来验证已知的值。之后，我们将使用数据库来存储有效数据，并创建\
+  \ Java 代码来查询数据库以检查结果。\n\n一旦 Servlet 验证了用户，他们将被重定向到主页。如果他们输入了无效密码，他们将被重定向回登录页面。\n\
+  \n## Servlet 如何找到下一个页面\n\n在 Servlet 验证并处理完所有传入数据后，您需要指示它将用户带到下一个页面。\n\nServlet 的\
+  \ `doPost` 或 `doGet` 方法中的最后一行将处理此操作。当 Servlet 执行到这行代码时，它会将用户发送到正确的页面。\n\n```\n//根据\
+  \ nextURL 变量的值重定向到下一个页面\nString nextURL = \"home.jsp\";\ngetServletContext().getRequestDispatcher(nextURL)\n\
+  .forward(request,response);\n```\n\n## 如何在输出页面上设置值\n\n创建一个名为 `home.jsp` 的 JSP 页面。将以下代码添加到您的页面，以便它能够读取来自\
+  \ Servlet 的参数值。符号 `${userEmail}` 将从请求包中读取参数。您在 Servlet 中设置了该参数。\n\n```\n\n我的表单结果\n\
+  \n使用 GET 方法读取表单数据\n\n名字: ${firstName} \n姓氏: ${lastName} \n\n```\n\n## 注销按钮如何工作\n\
+  \n当用户想要注销时，您只需结束他们的会话即可。这使得注销变得简单。大多数用户不会点击注销按钮。对于他们来说，会话会在达到会话超时时结束。您可以设置会话超时属性，或者使用默认的\
+  \ 20 分钟。\n\n创建一个表单，该表单将向您的登录 Servlet 传递一个名为 `action`、值为 `logout` 的参数。要传递该参数，您将创建一个隐藏输入，并为其指定名称和\
+  \ ID 为 `action`，值为 `logout`。\n\n表单的 action 将是登录 Servlet 的名称。当 Servlet 接收到该参数时，它将使会话失效，并将用户重定向到登录页面。用于结束会话的\
+  \ Java 代码是 `session.invalidate();`。\n\n\n\n## 登录 Servlet 代码\n\n```\n//LoginServlet.java\n\
+  package controller;\n/*\n* 登录 servlet 处理 login.jsp。该 servlet 只有一个任务，\n* 即验证用户并将其添加到会话中，以便所有页面都能访问该用户。\n\
+  * 如果用户无效，则登录 servlet 将重定向回登录页面。\n*/\nimport java.io.IOException;\nimport javax.servlet.ServletException;\n\
+  import javax.servlet.annotation.WebServlet;\nimport javax.servlet.http.HttpServlet;\n\
+  import javax.servlet.http.HttpServletRequest;\nimport javax.servlet.http.HttpServletResponse;\n\
+  import javax.servlet.http.HttpSession;\nimport service.DbUser;\nimport model.Bhuser;\n\
+  @WebServlet(\"/LoginServlet\")\npublic class LoginServlet extends HttpServlet {\n\
+  private static final long serialVersionUID = 1L;\npublic LoginServlet() {\nsuper();\n\
+  }\nprotected void doPost(HttpServletRequest request, HttpServletResponse response)\
+  \ throws ServletException, IOException {\n//此页面不需要用户登录\nString useremail = request.getParameter(\"\
+  email\");\nString userpassword = request.getParameter(\"password\");\nString action\
+  \ = request.getParameter(\"action\");\n//String remember = request.getParameter(\"\
+  remember\");\nString nextURL = \"/error.jsp\";\n//获取会话实例，以便我们可以向其设置属性\n//JSP 和 NavBar\
+  \ 将从会话中读取数据\n//会话是在原本无状态的 Web 应用中维护状态的主要方式之一\nHttpSession session = request.getSession();\n\
+  //创建用户实例并将其放入会话中\n//仅当用户有效时才将用户添加到会话中。\n//用户的存在用于确定谁拥有该站点，并将用于连接数据库\nif (action.equals(\"\
+  logout\")){\nsession.invalidate();\nnextURL = \"/login.jsp\";\n}else{\nif (DbUser.isValidUser(useremail,userpassword)){\n\
+  Bhuser user = DbUser.getUserByEmail(useremail);\nsession.setAttribute(\"user\",\
+  \ user);\nint gravatarImageWidth = 30;\nString gravatarURL =\nDbUser.getGravatarURL(useremail,\
+  \ gravatarImageWidth);\nsession.setAttribute(\"gravatarURL\", gravatarURL);\nnextURL\
+  \ = \"/home.jsp\";\n}else{\nnextURL = \"/login.jsp\";\n}\n}\n//根据 nextURL 变量的值重定向到下一页\n\
+  getServletContext().getRequestDispatcher(nextURL).forward(request,response);\n}\n\
+  }\n//LoginServlet.java 结束\n列表 9-2\n登录 Servlet 的代码\n```\n\n## 新闻动态 Servlet 代码\n\n\
+  ```\n//Newsfeed.java\npackage controller;\nimport java.io.IOException;\nimport java.util.List;\n\
+  import javax.servlet.ServletException;\nimport javax.servlet.annotation.WebServlet;\n\
+  import javax.servlet.http.HttpServlet;\nimport javax.servlet.http.HttpServletRequest;\n\
+  import javax.servlet.http.HttpServletResponse;\nimport javax.servlet.http.HttpSession;\n\
+  import model.Bhpost;\nimport service.DbPost;\n@WebServlet(\"/Newsfeed\")\npublic\
+  \ class Newsfeed extends HttpServlet {\nprivate static final long serialVersionUID\
+  \ = 1L;\npublic Newsfeed() {\nsuper();\n}\nprotected void doGet(HttpServletRequest\
+  \ request, HttpServletResponse response) throws ServletException, IOException {\n\
+  //用户可以通过 GET 请求访问此 servlet，因此在此处处理\n//对于 GET 请求，参数是 URL 的一部分。\n//我们已经在 doPost 中处理了所有内容，因此只需调用它即可。\n\
+  doPost(request,response);\n}\nprotected void doPost(HttpServletRequest request,\
+  \ HttpServletResponse response) throws ServletException, IOException {\nlong filterByUserID\
+  \ = 0;\nString searchtext = \"\";\n//设置下一页的值。它应在下面的代码中更改。\nString nextURL = \"/error.jsp\"\
+  ;\n//从会话中获取用户。\n//如果用户不存在，则将它们发送回登录页面。\n//同时销毁会话。\nHttpSession session = request.getSession();\n\
+  if (session.getAttribute(\"user\")==null){\nnextURL = \"/login.jsp\";\nsession.invalidate();\n\
+  response.sendRedirect(request.getContextPath() + nextURL);\nreturn;//返回以防止错误\n}\n\
+  //根据参数获取帖子；如果没有参数，则获取所有帖子\nList posts = null;\nif (request.getParameter(\"userid\"\
+  )!=null\n&& !request.getParameter(\"userid\").isEmpty()){\nfilterByUserID = Integer.parseInt(request.getParameter(\"\
+  userid\"));\nposts = DbPost.postsofUser(filterByUserID);\n}else if (request.getParameter(\"\
+  searchtext\")!=null\n&& !request.getParameter(\"searchtext\").isEmpty()){\nsearchtext\
+  \ = request.getParameter(\"searchtext\").toString();\nposts = DbPost.searchPosts(searchtext);\n\
+  }else{\nposts = DbPost.bhPost();\n}\n//将帖子添加到请求中\nrequest.setAttribute(\"posts\"\
+  , posts);\n//在 newsfeed.jsp 中显示帖子\nnextURL = \"/newsfeed.jsp\";\n//根据 nextURL 变量的值重定向到下一页\n\
+  getServletContext().getRequestDispatcher(nextURL).forward(request,response);\n}\n\
+  }\n//Newsfeed.java 结束\n列表 9-3\n新闻动态 Servlet 的代码\n```\n\n## PostServ Servlet 代码\n\
+  \n```\n//PostServ.java\npackage controller;\nimport java.io.IOException;\nimport\
+  \ javax.servlet.ServletException;\nimport javax.servlet.annotation.WebServlet;\n\
+  import javax.servlet.http.HttpServlet;\nimport javax.servlet.http.HttpServletRequest;\n\
+  import javax.servlet.http.HttpServletResponse;\nimport javax.servlet.http.HttpSession;\n\
+  import java.util.Calendar;\nimport java.util.Date;\nimport model.Bhpost;\nimport\
+  \ model.Bhuser;\nimport service.DbPost;\n@WebServlet(\"/PostServ\")\npublic class\
+  \ PostServ extends HttpServlet {\nprivate static final long serialVersionUID = 1L;\n\
+  public PostServ() {\nsuper();\n}\nprotected void doPost(HttpServletRequest request,\n\
+  HttpServletResponse response)\nthrows ServletException, IOException {\nString posttext\
+  \ = request.getParameter(\"posttext\");\nString nextURL = \"/error.jsp\";\n//从会话中获取用户。如果用户不存在，则\n\
+  //结束会话并将他们发送回登录页面。\nHttpSession session = request.getSession();\nif (session.getAttribute(\"\
+  user\")==null){\nnextURL = \"/login.jsp\";\nsession.invalidate();\n} else {\n//从会话中获取用户\n\
+  Bhuser bhuser = (Bhuser)session.getAttribute(\"user\");\n//插入帖子\nBhpost bhPost =\
+  \ new Bhpost();\nbhPost.setBhuser(bhuser);\nDate postdate = Calendar.getInstance().getTime();//今天的日期\n\
+  bhPost.setPostdate(postdate);\nbhPost.setPosttext(posttext);\nDbPost.insert(bhPost);\n\
+  nextURL = \"/Newsfeed\";//转到新闻动态 servlet 以显示所有帖子\n}\n//nextURL 的值将是 newsfeed、login\
+  \ 或 error\ngetServletContext().getRequestDispatcher(nextURL)\n.forward(request,\
+  \ response);\n}\n}\n//PostServ.java 结束\n列表 9-4\nPostServ Servlet 的代码\n```\n\n\n\n\
+  ## 个人资料 Servlet 代码\n\n```\n//ProfileServlet.java\npackage controller;\nimport java.io.IOException;\n\
+  import javax.servlet.ServletException;\nimport javax.servlet.annotation.WebServlet;\n\
+  import javax.servlet.http.HttpServlet;\nimport javax.servlet.http.HttpServletRequest;\n\
+  import javax.servlet.http.HttpServletResponse;\nimport javax.servlet.http.HttpSession;\n\
+  import java.text.SimpleDateFormat;\nimport service.DbUser;\nimport model.Bhuser;\n\
+  @WebServlet(\"/ProfileServlet\")\npublic class ProfileServlet extends HttpServlet\
+  \ {\nprivate static final long serialVersionUID = 1L;\npublic ProfileServlet() {\n\
+  super();\n}\nprotected void doGet(HttpServletRequest request, HttpServletResponse\
+  \ response) throws ServletException, IOException {\ndoPost(request,response);\n\
+  }\nprotected void doPost(HttpServletRequest request, HttpServletResponse response)\
+  \ throws ServletException, IOException {\n/*\n* 简化逻辑，使其始终需要两个参数：userid 和 action\n\
+  * action 的值为 view 或 edit。如果是 edit，则会话中用户的 userID 必须与要编辑的个人资料的 userID 相同\n* 因为只能编辑自己的资料。\n\
+  * 所有访问此页面的 URL 都必须包含这两个参数，否则会报错。\n*/\nHttpSession session = request.getSession();\n\
+  String nextURL = \"/error.jsp\";\nlong userid = 0;\nString action = \"\";\nBhuser\
+  \ profileUser = null;\nBhuser loggedInUser = null;\n//从会话中获取用户。如果用户不存在，则将其重定向到登录页面。\n\
+  //同时销毁会话。\nif (session.getAttribute(\"user\")==null){\nnextURL = \"/login.jsp\"\
+  ;\nsession.invalidate();\nresponse.sendRedirect(request.getContextPath() + nextURL);\n\
+  return;//提前返回以防止错误\n}\ntry{\nuserid = Long.parseLong(request.getParameter(\"userid\"\
+  ));\naction = request.getParameter(\"action\");\n//如果 action 等于 updateprofile，则更新请求变量中的用户资料\n\
+  if (request.getParameter(\"action\").equals(\"updateprofile\")){\nlong uid = Long.parseLong(request.getParameter(\"\
+  userid\"));\nString userEmail = request.getParameter(\"useremail\");\nString userMotto\
+  \ = request.getParameter(\"usermotto\");\nBhuser updateUser = DbUser.getUser(uid);\n\
+  updateUser.setMotto(userMotto);\nupdateUser.setUseremail(userEmail);\nDbUser.update(updateUser);\n\
+  }\n//根据参数获取用户\nprofileUser = DbUser.getUser(userid);\n//从会话中获取当前用户\nloggedInUser\
+  \ = (Bhuser) session.getAttribute(\"user\");\nif (profileUser.getBhuserid()==loggedInUser.getBhuserid()){\n\
+  //以表单形式显示个人资料\n//会话变量 editProfile 用于 JSP 以编辑模式显示个人资料\nsession.setAttribute(\"editProfile\"\
+  , true);\n}else{\n//以只读模式显示个人资料\n//会话变量 editProfile 用于 JSP 以只读模式显示个人资料\nsession.setAttribute(\"\
+  editProfile\", false);\n}\n//在属性中填充数据\nint imgSize = 120;\nSimpleDateFormat sdf\
+  \ = new SimpleDateFormat(\"MMM d, yyyy\");\nString joindate = sdf.format(profileUser.getJoindate());\n\
+  request.setAttribute(\"userid\", profileUser.getBhuserid());\nrequest.setAttribute(\"\
+  userimage\",\nDbUser.getGravatarURL(profileUser.getUseremail(), imgSize));\nrequest.setAttribute(\"\
+  username\", profileUser.getUsername());\nrequest.setAttribute(\"useremail\", profileUser.getUseremail());\n\
+  request.setAttribute(\"usermotto\", profileUser.getMotto());\nrequest.setAttribute(\"\
+  userjoindate\", joindate);\nnextURL = \"/profile.jsp\";\n}catch(Exception e){\n\
+  //打印异常，以便在测试应用程序时查看\n//在生产环境中，不建议打印到控制台，因为这会消耗资源且不可见\nSystem.out.println(e);\n}\n\
+  //根据 nextURL 变量的值重定向到下一页\ngetServletContext().getRequestDispatcher(nextURL)\n.forward(request,response);\n\
+  }\n}\n//ProfileServlet.java\n清单 9-5\n个人资料 Servlet 的代码\n```\n\n## 添加用户 Servlet 代码\n\
+  \n```\n//AddUser.java\npackage controller;\nimport java.io.IOException;\nimport\
+  \ java.util.Calendar;\nimport java.util.Date;\nimport javax.servlet.ServletException;\n\
+  import javax.servlet.annotation.WebServlet;\nimport javax.servlet.http.HttpServlet;\n\
+  import javax.servlet.http.HttpServletRequest;\nimport javax.servlet.http.HttpServletResponse;\n\
+  import javax.servlet.http.HttpSession;\nimport model.Bhuser;\nimport service.DbUser;\n\
+  @WebServlet(\"/AddUser\")\npublic class AddUser extends HttpServlet {\nprivate static\
+  \ final long serialVersionUID = 1L;\npublic AddUser() {\nsuper();\n}\nprotected\
+  \ void doPost(HttpServletRequest request,\nHttpServletResponse response) throws\
+  \ ServletException, IOException {\nHttpSession session = request.getSession();\n\
+  //此页面不需要用户登录\nString userName = request.getParameter(\"userName\");\nString userEmail\
+  \ = request.getParameter(\"userEmail\");\nString userPassword = request.getParameter(\"\
+  userPassword\");\nString userMotto = request.getParameter(\"userMotto\");\nString\
+  \ nextURL = \"/error.jsp\";\n//检查用户是否已存在（通过邮箱）\nBhuser user = DbUser.getUserByEmail(userEmail);\n\
+  //如果用户不存在，则创建并添加用户\nif (user == null){\nuser = new Bhuser();\nuser.setUsername(userName);\n\
+  user.setUseremail(userEmail);\nuser.setUserpassword(userPassword);\nDate joindate\
+  \ = Calendar.getInstance().getTime();\nuser.setJoindate(joindate);\nuser.setMotto(userMotto);\n\
+  DbUser.insert(user);\nnextURL = \"/home.jsp\";\n}else{\nString message = \"您已拥有一个账户\
+  \ - \";\nrequest.setAttribute(\"message\", message);\nnextURL = \"/login.jsp\";\n\
+  }\n//将用户添加到会话中\nsession.setAttribute(\"user\", user);\n//根据 nextURL 变量的值重定向到下一页\n\
+  getServletContext().getRequestDispatcher(nextURL)\n.forward(request,response);\n\
+  }\n}\n// AddUser.java 结束\n清单 9-6\n添加用户 Servlet 的代码\n```\n\n"
+- '# 10. 表示层/视图
+
+
+  用户通过他们的网页浏览器与您的应用程序进行交互。网页浏览器的作用是显示 HTML、JavaScript 和图像。每个网页文档都包含我们称之为头部（head）和主体（body）的两个部分。
+
+
+  头部包含标题标签（title tag）、链接标签（link tag）和脚本标签（script tag）。链接标签和脚本标签分别允许页面包含用于样式表和 JavaScript
+  的外部文件。我们的应用程序将包含指向 Bootstrap 样式表和 JavaScript 的链接。
+
+
+  文档的主体包含更多信息。主体是浏览器中可见内容的存放位置。这包括表单、显示给用户的文本、链接和图像。主体中的所有内容都将使用标签进行标记，这些标签决定了内容将如何渲染。
+
+
+  您可以在网页中包含注释，这些注释不会显示给用户。它们有助于您记录页面布局。
+
+
+  '
+- '# 11. 使用 HTML 设计网页
+
+
+  HTML（超文本标记语言）是一种用于创建网页文档（网页）的标记语言。浏览器的主要功能是从网络服务器接收 HTML 格式的网页并进行显示。浏览器会应用由 HTML
+  标签和 CSS 属性值指定的所有字体、样式和布局。这些内容可以通过使用 JavaScript（浏览器的编程语言）进行进一步操作。
+
+
+  文档对象模型（DOM）是您 HTML 文档的一种树形结构表示。DOM 将每个节点视为代表文档一部分的对象。这些对象可以通过 JavaScript 以编程方式进行操作，从而使您的页面能够与用户交互。
+
+
+  以下是您需要了解的关于 HTML 的全部内容：
+
+
+  *   HTML 文档由称为标签的元素组成。
+
+  *   网页文档中 HTML 元素的集合称为 DOM（文档对象模型）。
+
+  *   标签用于标识文档内容和结构。
+
+  *   标签通常包含为元素提供参数的属性。
+
+  *   包含内容和标签的 HTML 文档由浏览器渲染，以显示网页的格式化版本。
+
+  *   HTML 的最新版本称为 HTML5。
+
+
+
+
+  '
+- "# 12. HTML5 标签\n\n标签是通过将标签名称放入尖括号中来创建的，例如：`<tag>`。括号中的单词（此处为 tag）就是标签名称。标签包含一个开始标签和一个结束标签。开始标签仅包含尖括号中的标签名称。结束标签则在标签名称前加上一个正斜杠。例如：`<table></table>`。如果标签不包含任何数据，则开始标签和结束标签可以合并，例如\
+  \ `<br/>`。\n\n标签可以包含属性，这些属性提供关于标签的更多信息。HTML5 属性使用名称-值对创建，通常放在标签名称旁边。在本章中，我们将讨论属性，然后介绍一些用于开发\
+  \ Bullhorn 的标签。\n\n名称-值对由一组文本字符串表示，其中 `name=\"value\"`，通常用逗号、分号、空格或换行符分隔。HTML5 属性写在元素的标签内，并用空格分隔。参见清单\
+  \ 12-1。\n\n```\n清单 12-1\n来自 HTML 表单的输入标签示例\n```\n\n在这段代码中，属性是 `type`、`id`、`name`\
+  \ 和 `value`，它们的值始终跟在等号后面的引号内。属性提供了关于元素的额外信息。例如，我们现在知道，前面的 input 元素是一个文本框，由 `name`/`id`\
+  \ 标识为 `email`，并包含默认值 `user@domain.com`。`id` 属性是元素的唯一标识符。`id` 被 CSS 和 JavaScript\
+  \ 使用。`name` 属性为元素指定一个名称。我们在 servlet 中检索元素的值时使用该名称。对表单控件（例如 `<input>`）使用 name 属性。`Name`\
+  \ 是在表单提交时发生的 `POST` 或 `GET` 调用中使用的标识符。使用 `id` 属性通过 CSS 或 JavaScript 来标识特定的 HTML\
+  \ 元素。可以通过 `name` 查找元素，但使用 `id` 更简单。\n\n## 常用标签说明\n\n*   `<!DOCTYPE html>` 将文档标识为\
+  \ HTML5 文档。这确保了不同浏览器会以相同方式解析该文档。\n*   `<head></head>` HTML 文档头部部分的所有数据都被视为元数据，即关于数据的数据。此部分的信息通常不会直接显示。相反，诸如\
+  \ style 之类的元素会影响文档中其他元素的外观。头部部分中的某些项目可能被搜索引擎等程序用于了解有关页面的更多信息，以供参考。\n*   `<title></title>`\
+  \ 属于文档的头部部分，设置显示在浏览器标签页中的标题。\n*   `<body></body>` 整个文档主体都包含在这两个标签内。\n*   `<h1></h1>`\
+  \ 包含在这些标签内的任何文本通常显示为大的粗体字体标题，但实际格式取决于浏览器。有六个标题标签，从 h1（最大）到 h6（最小）。\n*   `<p></p>`\
+  \ 段落标签内的任何内容都被视为一个段落。你可以向段落标签添加诸如 style 之类的属性，以控制哪些样式影响段落标签内的文本。\n*   `<img></img>`\
+  \ 图像标签用于显示图像。它有两个你需要使用的属性：`src` 和 `alt`。`src` 属性包含图像文件的路径。该路径可以是文件名或 URL。`alt` 属性包含当图像不显示或无法看到时要显示的替代文本。屏幕阅读器也用它来描述图像。一个完整的图像标签看起来像这样：`<img\
+  \ src=\"path/to/filename.png\" alt=\"我的猫的图片\"/>`\n\nHTML 表单允许用户向 Web 服务器提交数据。表单中的数据将在请求数据包中发送到\
+  \ servlet。Servlet 将接收数据，并可以使用它来查询数据库或选择另一个页面发送给用户。参见清单 12-2。请注意，每个标签都有一个结束标签（或包含\
+  \ `/>` 以表示它是自闭合的）。\n\n*   `<form></form>` `form` 标签包含用户输入表单的所有元素，该表单从用户获取数据并将其发送到\
+  \ servlet。`form` 标签包含两个必需的属性：`method` 和 `action`。`method` 属性可以是 `\"get\"` 或 `\"\
+  post\"`，它决定了数据如何发送到 servlet。`action` 属性包含处理表单数据的 servlet 的 URL。\n*   `<input></input>`\
+  \ 表单的目的是从用户获取输入并显示将要发送到服务器的数据。从用户获取输入的方式是使用 `input` 标签。它将在网页上创建一个文本框。当点击提交按钮时，`input`\
+  \ 标签的内容将被发送到 servlet。Submit 本身就是一个 input。当 `type` 属性设置为 `\"submit\"` 时，`input` 标签就变成了一个提交按钮。\n\
+  \n```\n创建新帖子 (141 字符):\n\n清单 12-2\nHTML 表单示例\n```\n\n一些 input 标签示例：\n\n*   `<input\
+  \ id=\"email\" name=\"email\" type=\"text\" value=\"\"/>` 一个显示为文本框并收集用户电子邮件地址的 input\
+  \ 标签\n*   `<input type=\"submit\" value=\"提交\" id=\"submit\"/>` 一个显示为按钮并在点击时调用表单\
+  \ action 的 input 标签\n*   `<input type=\"reset\" value=\"清除\"/>` 一个显示为带有“清除”标签的按钮，并导致表单所有输入框被清空的\
+  \ input 标签\n*   `<textarea></textarea>` 一个包含多行的输入：`<textarea name=\"posttext\" id=\"\
+  posttext\" rows=\"2\" maxlength=\"141\"></textarea>`\n\n## HTML 表格\n\n表格以 `<table>`\
+  \ 开始，以 `</table>` 结束。\n\n每个表格由表格行组成，表格行以 `<tr>` 开始，以 `</tr>` 结束。\n\n每行由表格数据单元格组成，单元格以\
+  \ `<td>` 开始，以 `</td>` 结束。\n\n表格的第一行可以用作标题行。在这种情况下，将第一行的 `<td>` 标签改为 `<th>`。你可以更改标题行的样式，使其看起来与其他表格行不同。\n\
+  \n`<caption>...</caption>` 用于定义或描述表格的内容。标题是可选的。要向表格添加标题，请在开始表格标签之后添加 caption 元素，并将标题文本放在元素内部。标题通常显示在表格边框之外，位于顶部。标题的确切外观和位置取决于\
+  \ CSS 样式。参见清单 12-3 和图 12-1。\n\n![A458483_1_En_12_Fig1_HTML.jpg](img/A458483_1_En_12_Fig1_HTML.jpg)\n\
+  \n图 12-1\n\n由上述代码生成的表格\n\n```\n公式和结果\n公式结果\n1 + 12\n3 * 515\n\n清单 12-3\n最小 HTML\
+  \ 表格示例\n```\n\n## 基本的 HTML5 和 JSP 文档\n\nJSP（JavaServer Pages）页面是一个动态 HTML 页面。它同时包含\
+  \ HTML 和 JSP 标签。内容可以根据用户正在查看的数据而变化。\n\nJSP 仍然是一个文本文档。它也像 HTML 文档一样包含 HTML 标签。但不仅如此。JSP\
+  \ 可以接收并显示由 servlet 发送的数据。现在你可以为每个用户个性化你的网站，而 HTML 页面则为每个用户显示相同的内容。JSTL 允许你在 JSP\
+  \ 页面中嵌入逻辑，而无需直接使用 Java 代码。使用标准化标签不仅更安全，而且使代码更易于维护，并将 Java 代码与用户界面分离。此模板将保存为扩展名为\
+  \ .jsp 的文本文档。参见清单 12-4。\n\n```\n\n在此处插入标题\n\n这是一个示例标题\n这是一个副标题\n这是段落文本\n\n清单 12-4\n\
+  基本 HTML/JSP 页面的结构\n```\n\n\n\n## JSP 标准标签库 (JSTL)\n\nJSP 标准标签库 (JSTL) 是一组实用标签，您可以将其添加到\
+  \ JSP 页面中。这些标签为许多 JSP 应用程序提供了通用功能。JSTL 支持常见的结构性任务，例如迭代和条件判断。它还支持在页面中正确转义 HTML 或\
+  \ XML 代码，从而防止标签被解析并可能执行恶意代码。\n\nEL（表达式语言）是 JSTL 的一个子集，它使得在 JSP 中轻松使用 Java 类（称为 bean）成为可能。表达式语言语法简洁，允许您访问对象的嵌套属性。例如，一个\
+  \ `post` 对象包含一个用户。表达式语言允许您的 JSP 使用 `${user.username}` 这种简洁的语法来访问用户的 `getUsername()`\
+  \ 方法。表达式语言还可以使用 `${message}` 这样的语法来检索从 Servlet 设置的标量变量的值。\n\n要在 JSP 中包含 JSTL，请将以下代码清单（清单\
+  \ 12-5）中所示的指令添加到页面顶部。确切位置并不重要，但放在 `<html>` 标签上方是一个好位置。JSTL 由多个库组成，这些库为循环、if/else\
+  \ 语句以及格式化数字、日期和时间等任务添加了功能。由于我们知道要在 JSP 中包含循环和 if/else 功能，并且还要格式化日期，因此我们将同时包含核心库和格式化库。请参见清单\
+  \ 12-5。\n\n```\n\n清单 12-5\n应包含在页面 <html> 标签上方的 JSTL 指令。C 前缀包含来自核心库的标签。FMT 前缀包含来自格式化库的标签。\n\
+  ```\n\n## 如何在 JSP 中使用 JSTL 标签\n\n1.  将本书附带的以下两个 Java 归档 (jar) 文件复制到动态 Web 应用程序的\
+  \ `WEB-INF/lib` 文件夹中。\n    1.  `taglibs-standard-impl-1.2.5.jar`  \n    2.  `javax.servlet.jsp.jstl-api-1.2.1.jar`\
+  \   \n2.  添加以下指令，将 JSTL 的核心库和格式化库包含到页面顶部： \n\n现在，您可以使用接下来讨论的任何 JSTL 标签了。\n\n## 使用\
+  \ JSTL 可以做什么？\n\n### 防止跨站脚本攻击\n\n跨站脚本 (XSS) 是一种计算机安全漏洞，当恶意用户通过网页上的文本框向您的网站输入脚本或其他代码时就会发生。JSTL\
+  \ `core out` 标签可以防止跨站脚本攻击。`c:out` 会转义用户的任何输入，使其不再可执行。如果用户在您网站的文本框中输入了恶意的 JavaScript，该\
+  \ JavaScript 将被执行并可能危及数据安全。JSTL 的 `c:out` 标签可以降低这种风险。\n\n### 遍历集合\n\nJSTL `forEach`\
+  \ 标签提供了一种遍历集合中项目的机制。该集合可以在 Servlet 中设置，JSP 中的 JSTL 代码将遍历它，并重复执行 `forEach` 开始和结束标签之间的代码。这两个标签之间的任何\
+  \ HTML 也会为集合中的每个项目重复显示。您可以在 `newsfeed.jsp` 页面中看到 `forEach` 标签的示例。另请参见清单 12-6。\n\n\
+  ```\n\n清单 12-6\nJSTL forEach 标签允许您遍历帖子集合\n```\n\n### 设置值\n\n清单 12-7 中的代码展示了如何设置一个名为\
+  \ `number` 的变量的值。然后，您可以在页面后续部分甚至会话中引用该变量。如果只想在当前页面引用该变量，请将作用域设置为 `\"request\"`。如果要在应用程序的其他页面引用该变量，请将作用域设置为\
+  \ `\"session\"`（仅适用于单个用户）或 `\"application\"`（适用于所有用户）。然后，您可以在页面或应用程序的后续部分使用 `c:out`\
+  \ 标签来使用该变量。在此示例中，我们只是将值设置为某个随机值，比如 10。\n\n```\n\n清单 12-7\n使用 JSTL 核心库的 set 标签\n\
+  ```\n\n### 测试条件\n\nJSTL 允许您根据条件包含或排除代码。在清单 12-8 的示例中，名为 `number` 的变量的值决定了 JSTL `if`\
+  \ 标签之间的内容是否显示。\n\n```\n\nif 标签之间的任何内容\n在条件为真时显示\n\n清单 12-8\nJSTL 允许您根据条件显示或隐藏代码\n\
+  ```\n\n### 重复内容固定次数\n\nJSTL 核心库的 `forEach` 标签会将内容重复固定的次数。内容是指您在 `forEach` 开始和结束标签之间指定的任何内容。内容将根据\
+  \ `begin` 和 `end` 属性指定的次数（包含边界值）重复显示。在清单 12-9 的代码中，数字 5 6 7 8 9 10 将显示在浏览器中。\n\n\
+  ```\n\n清单 12-9\nJSTL 允许您将内容重复固定次数\n```\n\n### 测试条件并选择替代方案\n\nJSTL 没有与 `if` 语句配套的\
+  \ `else` 子句。但是，当 JSTL 核心库的 `when` 和 `otherwise` 标签放在 JSTL 核心库的 `choose` 标签内部时，它们的作用类似于\
+  \ if-else 语句。您可以使用任意数量的 `when` 标签，但只能有一个 `otherwise` 标签。请参见清单 12-10。\n\n```\n\n\
+  清单 12-10\nJSTL 的 choose、when 和 otherwise 标签允许您模拟 if/else 条件\n```\n\n### 判断字符串是否为空或\
+  \ null\n\nJSTL 允许您的代码测试一个值并判断该值是否为 null 或空。如清单 12-11 中的代码所示，您传入变量，该变量可以在 Servlet\
+  \ 中设置，也可以来自您正在遍历的集合。然后，如果字符串为 null 或空，`c:if` 语句之间的代码将执行。如果 `c:if` 标签之间有 HTML 代码，那么当条件为真时，它将在浏览器中显示。您可以通过在\
+  \ `empty` 前面加上 `not` 来否定该条件。\n\n```\nvar1 为空或 null。\n\n清单 12-11\n测试变量是否为 null 或空\n\
+  ```\n\n### 格式化日期\n\nJSTL 允许您以指定的格式显示日期。我们在 Bullhorn 中显示帖子日期时使用了这个功能。我们只想将日期显示为年份，后跟月份缩写，然后是日期。日期的值应该是一个\
+  \ `Date` 对象，即 `java.util.Date`。如果您的日期是一个 `String` 对象，那么您应该先转换它。JSTL `formatDate`\
+  \ 标签将根据指定的模式格式化日期。请参见清单 12-12。\n\n```\n清单 12-12\n使用 JSTL 格式化库来格式化日期\n```\n\n## 如何显示表单数据\n\
+  \nJava Web 应用程序通常包含表单，用于收集用户输入并将其传递给 Servlet 进行处理。然后，Servlet 可以与数据库通信并对数据执行某些操作。一旦\
+  \ Servlet 处理完数据，它会将包含表单结果的新网页发送到浏览器。所有这些都在服务器上瞬间完成，用户是看不到的。\n\n\n\n### 创建 HTML 登录表单\n\
+  \nHTML 表单允许用户向你的 Servlet 提交数据。\n\n我们希望用户能够使用他们的电子邮件和密码登录。因此，我们需要创建一个包含 HTML 登录表单的网页。\n\
+  \n该表单应包含两个文本框——一个用于用户名，一个用于密码。表单需要一个提交按钮。文本框和按钮必须包含在声明表单的标签内，这样它们才会被提交到 `form` 标签的\
+  \ `action` 属性所指定的登录 Servlet 的 URL。\n\n所有属性值必须用引号括起来，格式为 `attribute=\"value\"`。这些值将被\
+  \ Web 服务器用来决定如何处理表单。\n\n在我们创建 Servlet 之前，表单是无法工作的。Servlet 是一个可以运行 Java 代码并处理我们表单的容器。它将接收来自输入字段的值。然后，我们可以编写\
+  \ Java 代码来处理这些输入。\n\n```\n\nLogin\n\nEmail Address:\n\nPassword:\n\n```\n\n生成的网页表单如图\
+  \ 12-2 所示。\n\n![A458483_1_En_12_Fig2_HTML.jpg](img/A458483_1_En_12_Fig2_HTML.jpg)\n\
+  \n图 12-2\n\n如果你点击提交按钮，表单数据将被发送到一个名为 LoginServlet.java 的 Servlet，该 Servlet 的代码顶部包含一个设置为\
+  \ 'loginServlet' 的 @WebServlet 注解。\n\n请确保将表单的 `action` 属性设置为与你的 Servlet 的 @WebServlet\
+  \ 注解相匹配。\n\n### 创建页面以显示表单的输出\n\n接下来，我们将创建一个 JSP 来显示表单的输出。表单会将其数据发送给 Servlet，然后 Servlet\
+  \ 会将数据发送给输出 JSP。虽然可以绕过 Servlet，但没有任何充分的理由这样做，因为任何重要的应用程序都会使用 Servlet 来执行一些处理。用于显示输出的页面将被简单地命名为\
+  \ `output.jsp`。参见清单 12-13。由于 body 中没有 HTML 代码，该页面不会显示任何内容。\n\n```\n\nPage\n\nListing\
+  \ 12-13\nA Simple JSP Page, output.jsp\n```\n\n### 如何允许用户在网页之间导航\n\n链接几乎出现在所有网页中。链接允许用户点击从一个页面跳转到另一个页面。HTML\
+  \ 链接被称为超链接。它们使用 `<a>` 标签定义：\n\n```\n_link text_\n```\n\n超链接是可以点击以跳转到另一个文档的文本或图像。例如：\n\
+  \n```\nVisit Some Site\n```\n\n本地链接（指向同一网站的链接）使用相对 URL（不带 `http://www` `.`...）指定：\n\
+  \n```\nMy other page\n```\n\n## 重用 JSP 代码\n\n编写代码很有趣。重复编写相同的代码则……很重复。而且无趣。Java Server\
+  \ Pages 允许你通过创建包含文件来重用代码。包含文件就是一个你包含在现有页面中的 JSP 或 JSP（或 HTML）片段。在一个页面中包含某些代码片段的好处是，你可以在其他页面中包含相同的片段，从而节省你重写相同代码的宝贵时间。Bullhorn\
+  \ 的导航栏代码位于每个页面的顶部，就在 body 开始标签的下方。我可以将该代码复制到每个页面。然后，如果我选择修改它，我可以打开每个页面并修改每个页面。更好的方法是将导航栏的代码放在一个\
+  \ JSP 文件中，并在我希望导航栏出现的位置添加一个 `include` 标签（参见清单 12-14 到 12-16）。现在，我只需要在一个地方更改或更新导航栏。太好了！\n\
+  \n```\nListing 12-14\nThe include Directive That Goes in Every Page to Include the\
+  \ navbar on Bullhorn\n```\n\n```\n\nListing 12-15\nThe First Two Lines of navbar.jsp\
+  \ (you can view the entire file in the source code that accompanies this book)\n\
+  ```\n\n```\n\nListing 12-16\nThe Last Three Lines of navbar.jsp (you can view the\
+  \ entire file in the source code that accompanies this book)\n```\n\n## 自定义错误页面\n\
+  \n在开发应用程序时，你可能不想实现自定义错误页面。Tomcat 的错误页面正是你所需要的，它在一个地方包含了你可能想要的所有信息。\n\n一旦你准备好部署应用程序，默认的错误页面就缺乏……打磨……并且可能是不专业应用程序的标志。\n\
+  \n你希望应用程序能够处理的错误有两种：HTML 错误和 Java 异常。\n\n你需要处理的主要 HTML 错误是 404 错误（页面未找到）和 500 错误（服务器错误）。\n\
+  \n至于 Java 异常，我们可以构建一个通用页面来处理所有异常。\n\n如何添加自定义错误页面\n\n处理自定义错误最简单的方法是在 `web.xml` 文件中添加条目。默认情况下，`web.xml`\
+  \ 文件是不可用的，因此要添加它，你需要执行以下操作：\n\n1.  右键单击你的动态 Web 项目。  \n2.  选择 Java EE 工具 ➤ 生成部署描述符存根。\
+  \  \n3.  双击 `WebContent/WEB-INF` 中的 `web.xml` 文件。  \n4.  在 `</web-app>` 之前添加一行，并插入以下内容：\n\
+  \n    ```\n\n    /error_404.jsp\n\n    ```\n\n5.  然后，创建一个带有适当消息的相应 JSP。  \n\n如果你运行应用程序并尝试导航到一个不存在的页面，你现在应该会看到新的自定义错误页面。\n\
+  \n要创建你自己的、用于处理所有 Java 异常的漂亮页面，请将以下内容添加到你的 `web.xml` 文件中：\n\n```\n/error_java.jsp\n\
+  \n```\n\n然后，在你的 `error_java.jsp` 中放入类似以下内容：\n\n```\nError\nSorry, Java has thrown\
+  \ an exception.\nTo continue, click the Back button.\nDetails\nType: ${pageContext.exception[\"\
+  class\"]}\nMessage: ${pageContext.exception.message}\n```\n\n"
+- '# 13. Web 的无状态特性
+
+
+  Web 应用程序不维护状态。它没有记忆。对 Web 服务器的每个请求都是一个独立的事件。每个请求都不知道之前的请求。当你发送用户名和密码时，Web 服务器将其视为一个独立的事件。它不会跟踪你正在登录什么。信息只是被发送到服务器。
+
+
+  当你提交表单时，关于如何处理表单数据的所有信息都必须与表单一起发送。为什么？因为每个请求都是一个独立的事务。
+
+
+  在现实生活中，这就像你去银行，每问一个问题就换一个柜员。而且柜员之间互不交谈——只和你交谈。每个柜员都想看你的身份证、检查你的余额，并做其他柜员已经做过的所有事情。为了让这种情况更容易处理，你可以保留每个事务的运行日志，每个柜员都可以用它来验证已经完成的操作。
+
+
+  那么，Web 应用程序如何维护状态呢？答案是使用会话变量或传递来自先前事务的称为参数的信息。参数通过 URL 或作为请求的一部分发送到服务器的其他信息，在客户端（Web
+  浏览器）和服务器之间传递。这被称为请求包；我们在讨论 Servlet 时已经提到过这一点。
+
+
+  会话变量存在于 Web 服务器的内存中。每个请求都包含一个会话 ID。会话 ID 将该请求与该用户的会话数据关联起来。会话 ID 在请求之间自动传递。你不需要做任何事情。它始终存在。
+
+
+  由于每个用户有一个会话，你可以在每个用户的会话中存储变量。这是内存中的一个空间，在用户使用网站时保存数据。由于 Java 始终知道会话 ID，因此它可以访问会话中的任何数据。
+
+
+  所以，是请求包和会话将整个房间联系在一起。而你以为是地毯！（不好笑？再看一遍《谋杀绿脚趾》）。会话使得服务器能够轻松地将一个请求与另一个请求连接起来。
+
+
+
+
+  ## 数据传递过程
+
+
+  以下列表总结了数据从 Web 表单通过 Servlet 发送到 JSP 所遵循的步骤：
+
+
+  1.  表单传递请求。
+
+  2.  Servlet 接收请求。
+
+  3.  Servlet 使用 `request.getParameter()` 处理请求。
+
+  4.  Servlet 根据请求中的数据生成响应。
+
+  5.  Servlet 在将发送到 JSP 的对象中构建响应。
+
+  6.  JSP 包含一个属性 `${user}`。
+
+  7.  Servlet 设置属性 `request.setAttribute("user",myUser);`。
+
+  8.  Servlet 通过调用 `getServletContext().getRequestDispatcher(url).forward(request,
+  response);` 将 JSP 发送回原始浏览器。
+
+
+  '
+- '# 14. 用户与会话
+
+
+  用户首先通过登录页面访问您的网站。用户的电子邮件和密码会在登录 Servlet 中与数据库进行验证。一个电子邮件与正确密码匹配的用户被认为是有效用户。该有效用户会从数据库中检索出来，并存储在
+  `User` 对象中。回想一下，`User` 对象是通过“JPA 从表生成实体”选项生成的。
+
+
+  存储在会话中的 `User` 对象可以轻松地被您网站中的每个 Servlet 或 JSP 访问。登录 Servlet 验证了用户并将其发送到下一个页面，但下一个页面对此用户一无所知。我们将用户放入会话中，这样下一个页面以及我们应用程序中的其他页面就可以访问会话，从而访问该用户。参见清单
+  14-1。
+
+
+  ```
+
+  @Entity
+
+  @NamedQuery(name="Bhuser.findAll",
+
+  query="SELECT b FROM Bhuser b")
+
+  public class Bhuser
+
+  implements Serializable {
+
+  @Id
+
+  @GeneratedValue(
+
+  strategy=GenerationType.IDENTITY)
+
+  private long bhuserid;
+
+  @Temporal(TemporalType.DATE)
+
+  private Date joindate;
+
+  private String motto;
+
+  private String useremail;
+
+  private String username;
+
+  private String userpassword;
+
+  清单 14-1
+
+  用户类的私有成员变量与用户表对应
+
+  ```
+
+
+  每个用户可以创建多个帖子。数据库中的每个帖子都包含指向该用户的用户 ID。用户表通过将所有帖子放在一个列表中来跟踪这些帖子。因此，`User` 对象包含该用户所有帖子的列表，而不仅仅是
+  `PostId`。参见清单 14-2。
+
+
+  ```
+
+  @OneToMany(mappedBy="bhuser")
+
+  private List bhposts;
+
+  清单 14-2
+
+  帖子的私有成员变量与帖子表对应。用户包含帖子，因此帖子被实现为一个列表。
+
+  ```
+
+
+  `user` 类是一个 POJO——普通 Java 对象。它为每个私有成员变量提供了 getter 和 setter 方法。用户 ID 的 getter 和 setter
+  方法如清单 14-3 所示。命名约定是：始终使用单词 `get` 或 `set`，后跟首字母大写的私有成员变量名。稍后您会看到，当我们在 JSP 页面中访问该变量时，可以省略
+  `get` 或 `set` 单词，JSP 仍然能找到正确的值。您无需编写此行为——它是 Java 标准标签库的一部分。
+
+
+  ```
+
+  public long getBhuserid() {
+
+  return this.bhuserid;
+
+  }
+
+  public void setBhuserid(long bhuserid) {
+
+  this.bhuserid = bhuserid;
+
+  }
+
+  清单 14-3
+
+  用户类的 Getter 和 Setter 方法
+
+  ```
+
+
+  会话允许每个页面显示用户的姓名、电子邮件和 Gravatar 头像。Java Servlet 提供了一个名为 `HttpSession` 的变量，我们用它来跨多个页面请求识别用户。会话在最后一次使用后（默认情况下）会持续二十分钟。
+
+
+  您的程序通过调用 `HttpServletRequest` 的 `getSession()` 方法来获取对 `HttpSession` 对象的引用。该请求存储在一个名为
+  `request` 的变量中，并由 Servlet 容器 Tomcat 管理。参见清单 14-4。
+
+
+  ```
+
+  javax.servlet.http.HttpSession session =
+
+  request.getSession();
+
+  清单 14-4
+
+  添加这行代码后，应用程序中的任何 Servlet 都可以访问存储在会话中的对象。
+
+  ```
+
+
+  将会话视为应用程序所有 Servlet 和 JSP 共享的内存。它的工作方式类似于 Windows 剪贴板。一个 Servlet 将数据放入会话，另一个 JSP
+  可以访问它的副本。
+
+
+  ## 向会话中添加对象
+
+
+  存储在会话中的对象可以被应用程序中的不同页面访问。一旦验证用户身份，就在登录 Servlet 中将对象添加到会话中。然后，该对象就可以在应用程序的其他页面上使用了。参见清单
+  14-5。
+
+
+  ```
+
+  User user = new User();
+
+  user.setUserName("Larry");
+
+  user.setEmail("larry12345@domain.com");
+
+  //将用户添加到会话中
+
+  session.setAttribute("user", user);
+
+  清单 14-5
+
+  向会话中添加用户。此代码可在登录 Servlet 中找到。
+
+  ```
+
+
+  ### 从会话中读取值
+
+
+  用户作为对象存储在会话中。当您从会话中检索用户时，需要将其强制转换为 `User` 对象并赋值给一个变量，以便您可以对其进行操作。参见清单 14-6。
+
+
+  ```
+
+  User user = (User) session.getAttribute("user");
+
+  //现在我们可以从类中获取值
+
+  String username = user.getUserName();
+
+  String email = user.getEmail();
+
+  清单 14-6
+
+  从会话中检索值
+
+  ```
+
+
+  '
+- '# 15. 如何为 Bullhorn 创建数据库表
+
+
+  创建数据库表的脚本包含在 Bullhorn 的源代码中。我通常建议将 SQL 脚本保存在项目内一个名为 SQL Scripts 的文件夹中，这样您可以轻松地在其他系统上重建数据库。
+
+
+  要在数据库中创建表，您需要编写表名，后跟字段名和数据类型，如清单 15-1 所示。代码清单中的 `POSTID` 和 `BHUSERID` 字段由数据库生成。
+
+
+  您可以通过运行 Bullhorn 的 SQL Scripts 文件夹中的脚本来创建表。将代码复制到 SQL Developer 中，然后按 F5 运行脚本。
+
+
+  ```
+
+  CREATE TABLE BHPOST
+
+  (    POSTID NUMBER
+
+  GENERATED BY DEFAULT ON NULL AS IDENTITY,
+
+  POSTDATE DATE DEFAULT NULL,
+
+  POSTTEXT VARCHAR2(141 BYTE) DEFAULT NULL,
+
+  BHUSERID NUMBER DEFAULT NULL
+
+  ) ;
+
+  CREATE TABLE BHUSER
+
+  (    BHUSERID NUMBER
+
+  GENERATED BY DEFAULT ON NULL AS IDENTITY,
+
+  USERNAME VARCHAR2(50 BYTE),
+
+  USERPASSWORD VARCHAR2(50 BYTE),
+
+  MOTTO VARCHAR2(100 BYTE) DEFAULT NULL,
+
+  USEREMAIL VARCHAR2(100 BYTE),
+
+  JOINDATE DATE DEFAULT NULL
+
+  );
+
+  清单 15-1
+
+  创建 BHPOST 和 BHUSER 表的代码
+
+  ```
+
+
+
+
+  '
+- '# 16. 使用 JavaScript 让网页动起来
+
+
+  JavaScript 是浏览器的语言。它是一种面向对象的编程语言。虽然 JavaScript 看起来很像 Java（因为两者都基于 C 和 C++），但它们之间毫无关联。JavaScript
+  通常用于以编程方式与 HTML 页面交互，这是通过操作 DOM（文档对象模型）来实现的。所有主流浏览器都支持 JavaScript。
+
+
+  将 JavaScript 包含在网页中，只需将脚本放在 `<script>` 和 `</script>` 标签之间即可。你可以将脚本标签放在 `<head>`
+  部分或页面底部。如果将 JavaScript 放在页面顶部或 `<head>` 标签之间，用户可能会看到几秒钟的空白页面。不过，一旦页面加载完成，所有功能从第一秒起就能完全正常运行。如果将
+  JavaScript 放在页面底部，页面加载速度会显得更快，但 JavaScript 需要等到页面（和脚本）完全加载后才会运行。JavaScript 也可以保存在一个文本文件中（这种情况下不需要脚本标签），并在页面的
+  `<head>` 部分引用它。这样你就可以在多个页面上复用同一个 JavaScript。从维护角度来看，使用链接文件更好，因为所有 JavaScript 都位于一个位置，便于更新。
+
+
+  由于许多开发者觉得 JavaScript 使用起来有挑战性，多年来开发了各种库来简化 JavaScript 的常规任务。jQuery（[`http://www.jquery.com`](http://www.jquery.com)）适用于所有支持
+  JavaScript 的浏览器，并使 JavaScript 的使用更加一致。jQuery 在 Bootstrap 中被广泛使用。我们稍后会介绍 Bootstrap；它让使用
+  jQuery、HTML 和 CSS 变得更加有趣。
+
+
+  注意
+
+
+  操作 DOM 是 JavaScript 最强大的用途之一。通过 DOM，你可以遍历并修改整个页面，从简单地添加一个元素到重新排列页面上的多个区域。DOM 将文档分解成一个节点树。
+
+
+  ## 使用 JavaScript 验证表单
+
+
+  清单 16-1 中的表单用于向 Bullhorn 提交帖子。在用户尝试提交之前，应对帖子进行验证。JavaScript 允许我们在浏览器端进行验证。清单中展示了用于验证表单的
+  JavaScript 方法，其中包含一个方法 `validate()`。JavaScript 应放在页面底部的 `<script>...</script>` 标签之间，紧邻结束的
+  `</body>` 标签之前。将脚本放在它所引用的元素之后，可以确保在执行脚本之前，这些元素已被 DOM 创建。`validate` 方法会查找 ID 为 `posttext`
+  的元素，如果该文本框的长度为 0（空帖子），则返回 false。返回 false 将阻止表单提交。
+
+
+  ```
+
+  function validate() {
+
+  valid = true;
+
+  if ($(''#posttext'').val().length==0){
+
+  alert("你不能提交空帖子。");
+
+  valid = false;
+
+  }
+
+  return valid;
+
+  }
+
+  清单 16-1
+
+  一个用于验证表单的 JavaScript 函数，可以放在网页底部的脚本标签之间，紧邻结束的 body 标签之前
+
+  ```
+
+
+  将使用上述验证脚本的 HTML 表单放在网页的 `<body>...</body>` 标签内，并位于 JavaScript 之前。当点击提交按钮时，该表单会调用脚本。如果
+  `validate` 方法返回 false，则表单不会被提交。参见清单 16-2。`form` 标签的 `onsubmit` 属性会调用 JavaScript
+  函数来验证表单。
+
+
+  ```
+
+  创建新帖子（141 字符）：
+
+
+  清单 16-2
+
+  用于提交帖子的表单
+
+  ```
+
+
+  ### 显示文本框中的字符数
+
+
+  我们还可以使用 JavaScript 来统计剩余字符数，并在用户输入时动态更新网页。这是 JavaScript 强大功能的一个绝佳示例。它展示了 JavaScript
+  可以在浏览器端操作网页。这个 JavaScript 函数会在文档就绪时加载。文档在完全渲染并且所有 DOM 已从 Web 服务器下载到浏览器后即视为就绪。然后该函数会被创建。此函数会将
+  ID 为 `textarea_feedback` 的元素的 HTML 属性设置为“剩余 XX 字符”，其中 XX 是从最大长度 141 中减去后的剩余字符数。在
+  `document.ready` 中，ID 为 `posttext` 的元素的 `keyup` 事件被修改，以包含另一个函数，该函数统计剩余字符数并将其显示在
+  `textarea_feedback` 元素中。参见清单 16-3。
+
+
+  ```
+
+  $(document).ready(function() {
+
+  var text_max = 141;
+
+  $(''#textarea_feedback'').html
+
+  (text_max + '' 字符剩余'');
+
+  $(''#posttext'').keyup(function() {
+
+  var text_length = $(''#posttext'').val().length;
+
+  var text_remaining = text_max - text_length;
+
+  $(''#textarea_feedback'').html(text_remaining + ''
+
+  字符剩余'');
+
+  });
+
+  });
+
+  清单 16-3
+
+  返回文本框中剩余字符数的 JavaScript
+
+  ```
+
+
+  '
+- '# 17. 层叠样式表 (CSS)
+
+
+  层叠样式表 (CSS) 允许你指定 Web 应用程序的视觉样式和呈现方式。CSS 允许你将样式与结构分离。这意味着在处理页面时，你需要查看的代码更少。样式与结构和内容的分离也提高了可维护性。层叠样式表是一组可编程规则，用于定义网页如何显示内容。CSS
+  描述的样式包括颜色、字体、布局以及文档的其他呈现方面，包括针对不同设备和屏幕尺寸的显示变化。一个 CSS 文件可以描述适用于多个文档的通用样式。
+
+
+  通常，HTML 文件中的一个元素会有一个可以应用于它的 CSS 样式规则“层叠”。样式根据定义的位置进行层叠。如果你在多个位置定义了样式，则应用最后一个定义。你可以将
+  CSS 放在文档的 `<head>...</head>` 标签之间、外部样式表中（在你的服务器或其他服务器上），或者作为页面元素的样式属性。
+
+
+  通常建议使用外部样式表。要将外部样式表链接到你的文档，请在文档的 `<head>...</head>` 标签之间添加一个指向样式表的链接。将样式定义与 HTML
+  内容分开可以减少重复，并使你的网站更易于维护。
+
+
+  创建样式表时，你需要按名称、类或 ID 为每个元素创建规则。这些值被设置为元素的属性。浏览器在渲染页面时会应用 CSS 规则。每个规则有两个部分：一个选择器和一组用大括号括起来的一个或多个声明。每个声明由一个属性名和值对组成。一个规则中可以有多个声明。参见清单
+  17-1，其中展示了一个示例 CSS 规则，该规则将应用于文档中的所有 `span` 标签。此规则可以放在网页的 `<head>` 部分的 `<style>...</style>`
+  标签之间，或者放在一个单独的文件中。
+
+
+  ```
+
+  span {
+
+  font-weight: bold;
+
+  color: yellow;
+
+  background-color: black;
+
+  }
+
+  清单 17-1
+
+  示例 CSS 规则
+
+  ```
+
+
+  如果你希望将 CSS 规则放在一个单独的文件中，只需在网页的 `<head>` 部分添加一个指向该文件的链接即可。参见清单 17-2。
+
+
+  ```
+
+  清单 17-2
+
+  指向样式表的示例链接
+
+  ```
+
+
+
+
+  ## Span 与 Div 标签
+
+
+  `Span` 和 `div` 是用于定义文档各部分内容的容器标签。使用 `span` 和 `div` 可以为 JSP 或 HTML 页面的某个区域应用样式。将页面划分为页眉、正文和页脚等部分后，页面会更有条理。
+
+
+  `<div>` 标签用于将 HTML 页面划分为多个区块，因此可以封装各种元素。`<span>` 标签用于对文档中的内联元素进行分组。`<div>` 和 `<span>`
+  标签本身不会带来任何视觉变化。当每个标签包含 `style`、`class` 或 `id` 属性时，这些标签提供了一种控制文档部分内容样式的方式。ID 和 class
+  的区别在于，ID 用于标识单个元素，而 class 可用于标识多个元素。当你希望对多个元素应用同一样式时，请将样式指定为 class，因为只能有一个元素拥有特定值的
+  ID 属性，但多个元素可以在其 class 属性中共享相同的值。`<span>` 和 `<div>` 标签没有必需的属性。最常用的属性如下：
+
+
+  *   `style` 指定一个样式，该样式应用于直到对应 `结束` 标签为止的所有内容和元素。
+
+  *   `class` 指定一个 CSS 类，该类应用于直到 `结束` 标签为止的所有内容和元素。class 属性的值是在样式表文件中指定的 CSS 类。在样式表中，类名前面有一个点号。
+
+  *   `id` 用于标识标签，以便你可以使用 jQuery 或 JavaScript 选择它。任何元素的 `id` 属性都必须是唯一的。在样式表中，ID 名称前面有一个
+  `#` 井号。
+
+
+  ```
+
+  这段文本将被高亮显示
+
+
+  这段文本将显示为红色
+
+  清单 17-3
+
+  将应用样式表中样式的示例 HTML 代码
+
+  ```
+
+
+  ```
+
+  .highlight {
+
+  background-color: yellow;
+
+  }
+
+  #intro {
+
+  color: red;
+
+  }
+
+  清单 17-4
+
+  示例样式表，可以放置在 JSP 页面 head 部分的 <style> 标签之间，也可以放在单独的文件中，并在 head 部分添加链接
+
+  ```
+
+
+  '
+- '# 18. 让页面在所有屏幕尺寸上正常工作
+
+
+  响应式网页设计（RWD）指的是一种开发 Web 应用程序的方法，使其在从台式电脑到手机的任何尺寸屏幕上都能良好显示。电脑、手机或平板电脑的屏幕由像素组成。电脑常见的屏幕分辨率为
+  1366 × 768。这意味着屏幕宽 1366 像素，高 768 像素。屏幕分辨率决定了文本和图像的显示清晰度。在更高分辨率下，项目显示得更清晰。它们也会显得更小，从而可以在屏幕上容纳更多内容。在平板电脑上查看时，屏幕可能只有
+  1024 像素宽。手机可能只有 480 像素宽。创建一个能在不同设备上良好显示的网页，被称为使你的网页具有响应性。过去，开发人员实际上会为不同设备创建多个网站。
+
+
+  BootStrap（[`http://getbootstrap.com`](http://getbootstrap.com)）是一个用于开发响应式 Web 应用程序的库。它允许你快速开发应用程序界面，而无需花费大量时间学习
+  HTML、CSS 或 JavaScript。BootStrap 需要 jQuery 才能运行。你可以通过将以下内容添加到项目中来使用 BootStrap：
+
+
+  BootStrap 通过内容分发网络（CDN）提供其代码。这意味着最新版本的 BootStrap 存储在分布在世界各地的服务器上。你的页面可以通过在页面的 `HEAD`
+  部分包含指向 BootStrap CDN 的链接来获取最新版本。
+
+
+  ## 使用 BootStrap
+
+
+  像你这样的开发人员负责编写代码。设计师负责让界面看起来美观。但并非每个项目都有设计师。有时这份工作也落在你头上。恭喜你！
+
+
+  你有一个秘密武器。BootStrap 是用于在 Web 上开发响应式移动优先项目的最流行的 HTML、CSS 和 JS 框架。BootStrap 是一个库。它使用
+  HTML、CSS 和 JavaScript。它包含用于排版、表单、按钮、导航和其他界面组件的设计模板。
+
+
+  BootStrap 允许你创建响应式网页。响应式网页会根据不同设备调整其布局。如果没有响应式设计，你将不得不为不同设备开发不同的页面。BootStrap 解决了这个问题，结束了这种混乱局面。它基于一个
+  1170 像素宽、12 列的布局。你可以在 HTML 标签中为不同设备（和分辨率）设置属性。清单 18-1 展示了一个三列布局的示例，该布局将放在页面的 body
+  部分。你可以使用 `div` 标签轻松添加更多列。将你的内容放在 `body` 元素中。
+
+
+  ```
+
+
+  Hello, world!
+
+
+  清单 18-1
+
+  BootStrap 入门模板
+
+  ```
+
+
+
+
+  '
+- "# 19. 使用 Gravatar 在帖子中显示用户头像\n\n头像（Avatar）是人们在网络上用于代表自己身份的图片。Gravatar 是一项提供全球唯一头像的免费服务。Gravatar\
+  \ 允许用户使用其电子邮件地址注册一个账户。然后，用户可以上传一张图片与其 Gravatar 账户关联。当用户在某个使用 Gravatar 的网站上使用相同的电子邮件地址时，该网站会通过一个基于电子邮件地址哈希值生成的图片\
+  \ URL，从 Gravatar 获取用户的头像。包括 Bullhorn 在内的网站可以自由使用 Gravatar 来显示用户的图片。Bullhorn 在帖子旁边和个人资料页面上显示该图片。\n\
+  \n```\n\n要控制图片大小，请在 URL 后附加 `?s=150`，其中 150 是 URL 返回的正方形图片的高度或宽度（以像素为单位）。's' 的值范围可以从\
+  \ 1 到 2048。较小的值看起来效果更好。\n\n如果用户没有设置 Gravatar，则会显示一张默认图片：\n\n[`https://www.gravatar.com/avatar/unknownhash`](https://www.gravatar.com/avatar/unknownhash)\n\
+  \n![A458483_1_En_19_Figa_HTML.jpg](img/A458483_1_En_19_Figa_HTML.jpg)\n\n使用 Java\
+  \ 计算 MD5 哈希值\n\nMD5 哈希是一种加密文本的方式，使得通过查看文本无法识别其内容。MD5 的价值在于，相同的电子邮件地址总是会生成相同的 MD5\
+  \ 哈希值。\n\nGravatar URL 由用户电子邮件地址的 MD5 哈希值构成。你可以使用 Gravatar 网站提供的代码来创建电子邮件地址的 MD5\
+  \ 哈希值。该代码已在 Bullhorn 的 `MD5Util.java` 类中实现。给定用户的电子邮件地址，该代码将返回一个包含 MD5 哈希值的字符串。¹\n\
+  \nBullhorn 中的 `DbUser` 类包含一个生成 Gravatar URL 的方法。该方法接受两个参数：电子邮件和图片大小。然后，该方法返回正确的\
+  \ URL，该 URL 可在整个 Bullhorn 站点的图片标签中使用。参见清单 19-1。\n\n```\npublic static String getGravatarURL(String\
+  \ email, Integer size){\nStringBuilder url = new StringBuilder();\nurl.append(\"\
+  http://www.gravatar.com/avatar/\");\nurl.append(MD5Util.md5Hex(email));\nurl.append(\"\
+  ?s=\" + size.toString());\nreturn url.toString();\n}\n清单 19-1\n基于用户电子邮件地址生成 Gravatar\
+  \ URL 的方法\n```\n\n脚注\n\nBullhorn 中 MD5 类的源代码源自 [`http://en.gravatar.com/site/implement/images/java`](http://en.gravatar.com/site/implement/images/java)\
+  \ 上找到的代码。\n\n20. 表示层/视图\n\n表示层，也称为视图，是最终用户看待你的应用程序的视角。他们看不到所有的 Java 代码。他们只看到浏览器显示的内容。视图主要由\
+  \ HTML、JavaScript 和图片组成。在本节中，我们将研究构成视图的不同 JSP 文件。JSP 文件包含其他代码，例如 JSTL，但最终结果是它们成为发送到用户浏览器的\
+  \ HTML 文件。\n\n首先，用户浏览到站点的 `login.jsp` 页面 URL。你的开发环境的 URL 将是 `http://localhost:8080/Bullhorn/login.jsp`。\n\
+  \n注意\n\n要在 Eclipse 中启动你的应用程序，在登录页面上，只需右键单击登录页面，然后选择“在服务器上运行”选项。你的站点将在 Eclipse 环境内的浏览器中打开。\n\
+  \n登录页面的代码\n\n```\n\n登录\n\n${message}请登录\n电子邮件地址\n\n密码\n\n登录\n\n加入\n\n```\n\n主页的代码\n\
+  \n```\n\nBullhorn\n\n这是主页\n\n创建新帖子 (141 字符):\n\n$(document).ready(function() {\n\
+  var text_max = 141;\n$('#textarea_feedback').html(text_max + ' characters remaining');\n\
+  $('#posttext').keyup(function() {\nvar text_length = $('#posttext').val().length;\n\
+  var text_remaining = text_max - text_length;\n$('#textarea_feedback').html(text_remaining\
+  \ + ' characters remaining');\n});\n});\nfunction validate(form) {\nvalid = true;\n\
+  if ($('#posttext').val().length==0){\nalert(\"You may not submit an empty post.\"\
+  );\nvalid = false;\n}\nreturn valid;\n}\n\n```\n\n动态消息页面的代码\n\n```\n\nBullHorn\n\
+  \n这是动态消息页面\n\n用户帖子日期\n\n\">\n\n```\n\n个人资料页面的代码\n\n```\n\nBullHorn\n\n/>&nbsp;&nbsp;个人资料\
+  \ \n电子邮件: \n座右铭: \n加入日期:\n\n&nbsp;&nbsp;编辑 ${username} 的个人资料\n\n电子邮件: \n座右铭: \n\
+  加入日期:\n\n```\n\n添加用户页面的代码\n\n```\n\nBullHorn\n\n添加新用户\n姓名: \n电子邮件: \n密码: \n座右铭:\
+  \ \n加入日期: -->\n\n```\n\n支持页面的代码\n\n```\n\nBullHorn\n\n这是支持页面\n\n```\n\n错误页面的代码\n\
+  \n```\n\nBullHorn\n\n出了点问题...\n\n```\n\n导航栏包含文件\n\n```\n\n切换导航\n\n&nbsp;Bullhorn\n\
+  \n首页(当前)\n动态消息\n\n提交\n\n&nbsp;${user.username}\n\n用户选项\n\n登出-->\n\n登出\n\n显示我的帖子\n\
+  编辑个人资料\n\n反馈\n\n```\n\nBootStrap 包含文件\n\nBootStrap 包含文件包含 BootStrap 文件的链接。这些链接来自\
+  \ BootStrap 网站。他们使用名为 MaxCDN 的内容分发服务来托管他们的文件。你无需下载任何东西。只需包含来自 BootStrap 网站的链接，你的应用程序就会通过互联网获取该文件。\n\
+  \nBootStrap 包含文件还包含一些样式表的链接，这些样式表可以在你的 Bullhorn 应用程序的 styles 文件夹中找到。styles 文件夹位于\
+  \ WebContent 文件夹之下。\n\nBootstrap 样式页面\n\nBullhorn 站点包含一些从 [`https://bootswatch.com/`](https://bootswatch.com/)\
+  \ 下载的样式表。该站点包含免费可下载的 BootStrap 主题，你可以将其包含在你的项目中。只需浏览他们的收藏并将其包含在你的站点中。然后，从每个网页，你需要包含一个指向你想要使用的主题的链接。这是在\
+  \ BootStrap 包含文件中完成的。\n\n页脚包含文件\n\n```\n\n&nbsp;Bullhorn&nbsp;&nbsp;&copy; 2016\n\
+  \n```\n\n索引\n\nA\n\nAddUser servlet 代码\n\n美国国家标准学会 (ANSI)\n\n属性\n\naction\n\nalt\n\
+  \nmethod\n\nname\n\nsrc\n\ntype\n\n头像\n\nB\n\nBhpost 表\n\n用于创建的 SQL\n\nSQL 语句\n\n\
+  BHPOST 表\n\nBhuser 表\n\n数据定义\n\n删除表\n\n输入数据\n\nSQL 语句\n\nBootStrap\n\n包含文件\n\n入门模板\n\
+  \n样式页面\n\n使用\n\nBullhorn\n\n应用程序\n\nDbUser 类\n\nBullhorn 组件\n\nHTML\n\nJPA 类\n\n\
+  JSP\n\n请求对象\n\nservlets\n\n会话\n\n用户对象\n\nBullhorn 站点\n\n组件\n\n参见 Bullhorn 组件\n\n\
+  个人资料编辑\n\nC\n\n层叠样式表 (CSS)\n\n规则\n\nspan 和 div 标签\n\n代码\n\n内容分发网络 (CDN)\n\n控制器\n\
+  \n跨站脚本攻击 (XSS)\n\nD\n\n数据库\n\n字段\n\n外键\n\n索引\n\n层\n\n打开 SQL 开发者\n\n主键\n\n关系类型\n\n\
+  多对多\n\n一对多\n\n一对一\n\n使用 Oracle 数据库\n\n数据库管理系统 (DBMS)\n\n数据库表\n\nBullhorn\n\n源代码\n\
+  \n数据库事务\n\n原子性\n\n一致性\n\n持久性\n\n隔离性\n\n数据完整性\n\nDbPost 类\n\nDbUser 类\n\nDbUtilities\
+  \ 类\n\n文档对象模型 (DOM)\n\n动态 Web 项目\n\nE\n\nEclipse\n\nIDE\n\n安装\n\nF\n\n页脚包含文件\n\n\
+  G\n\nGravatar\n\n用户的电子邮件地址\n\nH\n\nHTML5\n\n超链接\n\n超文本标记语言 (HTML)\n\n创建 Web 文档\n\
+  \n错误\n\n标签\n\n网页\n\nI\n\n集成开发环境 (IDE)\n\nJ, K\n\nJava 归档 (JAR) 文件\n\nJava 异常\n\n\
+  Java 持久化 API (JPA)\n\neclipselink\n\nEclipse 工具\n\n实体\n\nJPQL\n\nMETA-INF\n\nPOJO\n\
+  \nJava 持久化查询语言 (JPQL)\n\nJavaScript\n\n用于 Bootstrap\n\n脚本标签\n\n验证表单\n\n提交帖子\n\n\
+  文本框，字符\n\nJava 服务器页面 (JSP)\n\nJQuery\n\nJSP 标准标签库 (JSTL)\n\nL\n\n链接\n\n登录 servlet\n\
+  \n登出按钮\n\nM\n\nMD5\n\n模型\n\n模型-视图-控制器 (MVC)\n\n优点\n\n与 Bullhorn 服务\n\n团队建设\n\nN\n\
+  \n导航栏包含文件\n\n导航栏\n\n动态消息 servlet 代码\n\n规范化\n\n空值\n\nO\n\n面向对象编程语言\n\nOracle 数据库\n\
+  \nOracle 虚拟机，Virtualbox 管理器\n\nP, Q\n\n参数\n\n传递数据过程\n\n持久化.xml 文件\n\n\n\n普通老式 Java\
+  \ 对象（POJO）\n\nPostServ Servlet 代码\n\n表示层\n\n添加用户页面\n\n错误页面\n\n首页\n\n新闻动态页面\n\n个人资料页面\n\
+  \n支持页面\n\nProfile Servlet 代码\n\nR\n\n参照完整性\n\n请求数据包\n\n响应式网页设计（RWD）\n\nS\n\n服务\n\
+  \n服务层\n\n服务层创建\n\nDbPost 类\n\nDbUser 类\n\nDbUtilities 类\n\nServlet\n\n代码\n\nAddUser\
+  \ Servlet\n\nlogin Servlet\n\nNews Feed Servlet\n\nPostServ Servlet\n\nProfile Servlet\n\
+  \n查找下一页\n\n表单数据\n\nJava 类\n\n将数据发送到下一页\n\n在输出页面上设置值\n\nTomcat\n\nURL\n\nWeb\n\n\
+  软件设计模式\n\nSQL Developer\n\nSQL 脚本\n\n结构化查询语言（SQL）\n\nT\n\n标签\n\n尖括号\n\n属性\n\nid\n\
+  \n表单\n\n头部\n\n标题\n\n图像\n\n输入\n\n段落\n\n表格\n\n标题\n\nTomcat\n\nU\n\nURL\n\n用户与会话\n\n\
+  添加对象\n\n用户类的 getter 和 setter 方法\n\nHttpSession\n\n对象\n\n私有成员变量\n\n检索值\n\nV\n\n视图\n\
+  \nVirtualbox\n\n虚拟机（VM）\n\nW、X、Y、Z\n\nWeb 管理员\n\nWeb 应用程序\n\nWeb 浏览器\n\nWeb 服务器\n\
+  \n网站\n\n```\n"

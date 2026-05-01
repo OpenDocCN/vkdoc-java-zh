@@ -1,0 +1,2852 @@
+- '
+
+
+  ![](img/A978-1-4842-2487-8_CoverFigure.jpg)
+
+
+  ![A978-1-4842-2487-8_CoverFigure.jpg](img/A978-1-4842-2487-8_CoverFigure.jpg)Michael
+  Müller 著《Java Lambda 表达式与并行流》
+
+
+  ![A435427_1_En_BookFrontmatter_Figa_HTML.png](img/A435427_1_En_BookFrontmatter_Figa_HTML.png)
+
+
+  作者在本文中引用的任何源代码或其他补充材料，读者可在 [`www.apress.com`](http://www.apress.com) 获取。有关如何查找本书源代码的详细信息，请访问
+  [`www.apress.com/source-code/`](http://www.apress.com/source-code/) 。读者也可在 SpringerLink
+  上各章的“补充材料”部分访问源代码。ISBN 978-1-4842-2486-1 e-ISBN 978-1-4842-2487-8 DOI 10.1007/978-1-4842-2487-8
+  美国国会图书馆控制号：2016960327 © Michael Müller 2016 本作品受版权保护。出版商保留所有权利，无论是全部还是部分材料，具体包括翻译、重印、重用插图、朗诵、广播、微缩胶片复制或以任何其他物理方式复制，以及信息存储与检索的传输、电子改编、计算机软件，或现在已知或未来开发的任何类似或不同方法。本书中可能出现商标名称、标识和图像。我们不会在每次出现商标名称、标识或图像时都使用商标符号，而是仅以编辑方式使用这些名称、标识和图像，以维护商标所有者的利益，且无意侵犯商标权。本出版物中使用的商品名称、商标、服务标志和类似术语，即使未明确标识，也不应被视为对其是否受专有权利保护的立场表达。尽管本书中的建议和信息在出版时被认为是真实准确的，但作者、编辑和出版商均不对可能出现的任何错误或遗漏承担法律责任。出版商对本书所含材料不作任何明示或暗示的保证。本书采用无酸纸印刷。全球图书贸易由
+  Springer Science+Business Media New York 发行，地址：233 Spring Street, 6th Floor, New
+  York, NY 10013。电话：1-800-SPRINGER，传真：(201) 348-4505，电子邮件：orders-ny@springer-sbm.com，或访问
+  www.springeronline.com。Apress Media, LLC 是一家加利福尼亚有限责任公司，其唯一成员（所有者）是 Springer Science
+  + Business Media Finance Inc (SSBM Finance Inc)。SSBM Finance Inc 是一家特拉华州公司。献给我的妻子克劳迪娅和我的孩子们：感谢你们在我夜间写作和其他长时间工作期间的耐心。我爱你们。献给许多在会议上与我交谈的人以及我演讲的听众：感谢你们富有信息量和有趣的对话。由此，我认识到
+  Java Lambda 表达式和流对你们来说是多么重要，以及存在多大的信息需求。没有你们，这本书就不会写成。献给你，我亲爱的读者：感谢你对本书的兴趣。我希望我写了一本易于理解且有价值的书，能帮助你取得成功。前言
+
+
+  每当我在会议和圆桌活动中谈论 Java Lambda 表达式和流时，都会引起与会者的浓厚兴趣和热烈讨论。通常，不熟悉的语法形式即使对经验丰富的程序员来说（或者尤其对他们？）也是一个重大障碍。然而，一旦开发者掌握了语法，他或她通常就不想再回到前
+  Lambda 风格了。
+
+
+  意识到新语法对许多开发者来说是一个障碍，我决定以可作参考的形式分享我的经验和见解。这本简明书籍旨在帮助你克服学习曲线，掌握 Lambda 表达式和流的新世界。
+
+
+  遵循 Leanpub 的座右铭“尽早出版，经常出版”，我以早期但完整的状态出版了前一版本。由 Apress 出版的这一版本包含了关于如何创建自己的并行收集器的额外信息。
+
+
+  希望你喜欢阅读，并在 Java Lambda 表达式和并行流方面取得持续成功。
+
+
+  Michael Müller 目录 第 1 章：引言 1 第 2 章：数据 5 第 3 章：首次分析——从朴素到灵活 7 第 4 章：Lambda 表达式 13
+  第 5 章：默认方法 19 第 6 章：Optional 25 第 7 章：初识流 29 第 8 章：stream()、Stream 和 Spliterator
+  35 第 9 章：并行流 41 第 10 章：收集器与并发 47 第 11 章：GroupingCollector 61 附录 A：创建演示数据的程序 69 索引
+  85 关于作者和技术审阅者 关于作者 关于技术审阅者
+
+
+  '
+- '# 1. 引言
+
+
+  电子补充材料 本章的在线版本 (doi:[10.​1007/​978-1-4842-2487-8_​1](http://dx.doi.org/10.1007/978-1-4842-2487-8_1))
+  包含补充材料，仅供授权用户使用。
+
+
+  ## Lambda 表达式与（并行）流
+
+
+  Java 8 中引入的一些新特性，例如新的日期和时间 API（应用程序编程接口），对于经验丰富的 Java 开发者来说感觉相当熟悉，可以立即使用。但一些最重要的增强功能，包括
+  Lambda 表达式和流，要求开发者学习一些新概念。特别是 Lambda 语句引入了一种对面向对象程序员来说相当不寻常的语法。这些语言结构只有使用过函数式编程语言或类似
+  Microsoft 的 Linq（语言集成查询）等增强功能的开发者才熟悉。这种特殊的语法需要一些时间来适应，有些开发者甚至可能在初看时感到些许畏惧。然而，这些增强功能极其强大，花时间理解它们如何帮助你编写不仅简洁，而且编写速度更快、可重用性更高的代码，绝对是值得的。
+
+
+  在本书中，我将从解释 Lambda 表达式开始；展示如何将它们与流一起使用；最后，讨论如何将 Lambda 表达式和流结合起来实现有效的并行处理。
+
+
+  以下任务将像一条金线贯穿全书：
+
+
+  ## 挑战
+
+
+  *   根据不同的标准分析大量数据
+
+  *   在不显式使用线程管理、同步、Executor 或 ForkJoin 的情况下并行化此任务
+
+
+  ## 解决方案
+
+
+  使用 parallelStream() 代替 stream()！
+
+
+
+
+  ## 初步解释
+
+
+  你可能会问：“`stream()` 和 `parallelStream()` 方法到底是什么？”这里先做一个快速概述；更详细的描述将在后续章节中给出。
+
+
+  你可以将 Stream 想象成一个连续的数据流，类似于 `InputStream`。数据可能来自不同的数据源，例如集合、文件、生成器或其他来源。不过，这个流的内容不仅仅是字节或字符；相反，流会发出任意对象（见图
+  1-1）。
+
+
+  ![A435427_1_En_1_Fig1_HTML.jpg](img/A435427_1_En_1_Fig1_HTML.jpg)
+
+
+  图 1-1.
+
+
+  Stream（quelle 是德语中“源”的意思）
+
+
+  在从源到目标的旅程中，对象可能会被过滤、更改、转换、收集或以其他方式处理。至于如何以及通过何种方式实现，我将在后面描述。
+
+
+  `ParallelStream` 可以想象成同一类型对象的并行流。这些对象在源处被分割成不同的流（见图 1-2）。稍后，我将讨论这种分割任务的细节。
+
+
+  ![A435427_1_En_1_Fig2_HTML.jpg](img/A435427_1_En_1_Fig2_HTML.jpg)
+
+
+  图 1-2.
+
+
+  并行流
+
+
+  为了实现挑战的解决方案，我将使用 Java 的一些新语言特性，包括：
+
+
+  *   Lambda 表达式
+
+  *   函数式接口
+
+  *   默认方法
+
+  *   Optional
+
+  *   Stream
+
+  *   对 Stream 的操作
+
+
+  '
+- '# 2. 数据
+
+
+  回到挑战。
+
+
+  我将分析大量买卖各种产品的人员数据。此任务的数据结构设计简单：一个人有名字、姓氏、年龄和性别。买家也可能是卖家。销售和购买记录存储在列表中。该列表中的每个元素通过其商品编号、销售数量和单价来表示一个产品。由于各种折扣，单价可能会因交易而异。下图（图
+  2-1）可视化了 Person 类。
+
+
+  ![A435427_1_En_2_Fig1_HTML.jpg](img/A435427_1_En_2_Fig1_HTML.jpg)
+
+
+  图 2-1.
+
+
+  Person 类
+
+
+  在附录中，你将找到一个用于创建示例数据的简单程序。
+
+
+  '
+- '# 3. 初步分析——从朴素到灵活
+
+
+  在本节中，我将针对各种过滤需求开发传统的解决方案。我避免使用 Lambda 或 Stream，以便此处展示的技术可以与第 4 章中开发的解决方案进行比较。
+
+
+  ## 固定过滤
+
+
+  第一个任务是列出所有年龄小于 20 岁的客户。这很容易做到；我们只需要一个带有过滤条件的循环来选择年轻客户，以及一个目标列表来收集他们（见清单 3-1）。
+
+
+  ```
+
+  1   private List getPersonsLessThan20Years(List persons){
+
+  2     List result = new ArrayList();
+
+  3     for (Person person : persons) {
+
+  4       if (person.getAge() < 20) {
+
+  5         result.add(person);
+
+  6       }
+
+  7     }
+
+  8     return result;
+
+  9   }
+
+  清单 3-1.
+
+  选择并收集年龄小于 20 岁人员的简单实现
+
+  ```
+
+
+  ## 简单参数化
+
+
+  下一个需求是收集年龄在 30 到 40 岁之间的人群。当然，我们意识到将来可能需要查询不同的年龄段；因此，最好将方法参数化，而不是硬编码条件（见清单 3-2）。
+
+
+  ```
+
+  1   private List getPersonsByAgeRange(
+
+  2                                   List persons,
+
+  3                                   int from,
+
+  4                                   int to) {
+
+  5   List result = new ArrayList();
+
+  6     for (Person person : persons) {
+
+  7       if (person.getAge() >= from && person.getAge() <= to) {
+
+  8         result.add(person);
+
+  9       }
+
+  10     }
+
+  11     return result;
+
+  12   }
+
+  清单 3-2.
+
+  选择指定年龄段所有人员的参数化实现
+
+  ```
+
+
+  在这里，开发者引入了一些灵活性。然而，此方法仍然只能选择指定年龄段的人员。如果需要额外的条件，例如查询性别，此方法就无能为力了。新手程序员可能会尝试通过为性别、卖家、状态等添加额外参数来解决问题（见清单
+  3-3）。
+
+
+  ```
+
+  1   private List getPersonsByDiverseCriteria(
+
+  2                                     List persons,
+
+  3                                     int ageFrom,
+
+  4                                     int ageTo,
+
+  5                                     Gender gender,
+
+  6                                     boolean isCustomer,
+
+  7                                     boolean isVendor) {
+
+  8     [循环省略]
+
+  9   }
+
+  清单 3-3.
+
+  使用（过多）参数重载方法
+
+  ```
+
+
+  资深开发者可能会对这种天真的代码摇头；他们的经验告诉他们，总有一天你将无法进行分析，因为你至少还需要一个参数。
+
+
+  ## 行为参数化
+
+
+  迈向更好解决方案的下一个演进步骤是，将条件或过滤器创建为一个独立的对象，并将其传递给现在更通用的方法。这允许使用不同的行为或不同的算法对方法进行参数化，这让我们想起了策略模式。
+
+
+  对于我们的任务，此行为将实现一个接口，该接口包含一个根据指定条件选择人员的测试。让我们将此接口称为 `Condition`（见清单 3-4）。
+
+
+  ```
+
+  1   public interface Condition {
+
+  2     boolean test(T t);
+
+  3   }
+
+  清单 3-4.
+
+  接口 Condition
+
+  ```
+
+
+  现在，我们的方法（循环）只需要两个参数：人员列表和条件（清单 3-5）。
+
+
+  ```
+
+  1   private List getPersonsByCondition(List persons, \
+
+
+  3                         Condition condition){
+
+  4     List result = new ArrayList();
+
+  5     for (Person person : persons) {
+
+  6       if (condition.test(person)) {
+
+  7         result.add(person);
+
+  8       }
+
+  9     }
+
+  10     return result;
+
+  11   }
+
+  清单 3-5.
+
+  由于可注入的条件而实现的灵活过滤
+
+  ```
+
+
+  条件被抽离出来，并通过参数注入。因此，当我们需要不同的过滤器时，无需更改方法的实现。现在，让我们重构我们的第一个分析，以获取所有年龄小于 20 岁的人（见清单
+  3-6）。
+
+
+  ```
+
+  1   class YoungerThanCondition implements Condition{
+
+  2     private final int _age;
+
+  3     YoungerThanCondition(int age){
+
+  4       _age = age;
+
+  5     }
+
+
+  7     @Override
+
+  8     public boolean test(Person person) {
+
+  9       return person.getAge() < _age;
+
+  10     }
+
+  11   }
+
+  清单 3-6.
+
+  根据接口 Condition 实现 Condition
+
+  ```
+
+
+  现在，调用我们的循环并注入过滤器的代码看起来更加简洁明了（清单 3-7）。
+
+
+  ```
+
+  1   persons = getPersonsByCondition(persons, new YoungerThanCondition(20));
+
+  清单 3-7.
+
+  使用过滤器调用循环
+
+  ```
+
+
+  遵循面向对象范式，我们将条件作为对象传递给方法。现在，如果我们需要其他过滤条件，我们只需创建不同的过滤器类作为 `Condition` 接口的实现。用于收集感兴趣人员的循环保持不变。
+
+
+
+
+  ## 匿名类
+
+
+  然而，为每个不同的条件创建一个单独的类仍然显得过于笨重。问题在于：“如果我们只需要在某个地方使用这个条件，能否就在需要它的地方创建这个类？”这正是匿名类发挥作用的地方（参见代码清单
+  3-8）。
+
+
+  ```
+
+  1   persons = getPersonsByCondition(persons, new Condition(){
+
+  2         @Override
+
+  3         public boolean test(Person person) {
+
+  4           return person.getAge() < 20;
+
+  5         }
+
+  6       });
+
+  代码清单 3-8.
+
+  使用匿名类进行参数化
+
+  ```
+
+
+  由于匿名类仅在需要它的地方创建，因此无法复用。将年龄作为参数传递没有意义；我们只需将其直接写入条件中。
+
+
+  与功能完备的过滤器类相比，匿名类要简短得多。但是，我们不是传递一个简短的类名作为参数，而是必须重写 `test` 方法并编写几行代码。匿名类比功能完备的类更短，但将代码移到了参数中；这似乎并不理想。顺便说一句——很多程序员不喜欢匿名类。
+
+
+  '
+- '# 4. Lambda 表达式
+
+
+  在介绍了所有这些传统方法之后，是时候转向 Lambda 表达式了，它已被引入 Java 8。
+
+
+  提醒一下，`Condition` 接口的 `test()` 方法期望接收一个 `Person` 对象并检查一个条件。
+
+
+  让我们把这个条件称为一个函数。你还记得学校里的数学吗？许多学生必须学习函数和诸如 `x -> f(x)` 这样的表达式。这意味着一个值 x 将被映射到 x 的函数。在我们当前的任务中，一个
+  `Person` 对象将被映射到 `Person` 的函数（`Condition`）。而 Java 的 Lambda 语法恰恰让你想起这一点。对于我们的具体分析，这将如代码清单
+  4-1 所示。
+
+
+  ```
+
+  1   person -> person.getAge() < 20
+
+  代码清单 4-1.
+
+  年龄条件的 Lambda 表达式
+
+  ```
+
+
+  现在，你可以在需要条件接口的地方使用这个表达式（参见代码清单 4-2）。
+
+
+  ```
+
+  1   persons = getPersonsByCondition(
+
+  2                       persons,
+
+  3                       person -> person.getAge() < 20);
+
+  代码清单 4-2.
+
+  使用 Lambda 表达式收集人员
+
+  ```
+
+
+  这是简洁明了的代码，易于阅读和理解——一旦你熟悉了这种语法。即使（或者尤其是？）对于资深开发人员来说，这种不寻常的语法通常也是最大的障碍。
+
+
+  我预测，一旦程序员习惯了它，他或她通常就不想再失去它了。
+
+
+  最终，我们可以轻松地为我们分析中的条件进行替换。代码清单 4-3 中的示例展示了如何选择所有女性人员。
+
+
+  ```
+
+  1   persons = getPersonsByCondition(
+
+  2   persons,
+
+  3   person -> person.getGender() == Gender.Female);
+
+  代码清单 4-3.
+
+  仅通过一个 Lambda 表达式更改过滤器
+
+  ```
+
+
+  ## 函数式接口
+
+
+  Lambda 表达式可以在期望函数式接口的地方使用。如果一个接口精确定义了一个抽象方法，我们就称其为函数式接口。Lambda 表达式会重写这个方法。
+
+
+  Java 8 包含了一些预定义的函数式接口（例如，参见图 4-1）。因此，像我们之前定义 `Condition` 那样的额外定义就不再需要了。在我们的例子中，我们可以使用预定义的接口
+  `Predicate`，它用于检查此类条件。Java 8 中可用的函数式接口列表可以在 [Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)
+  上阅读。¹
+
+
+  ![A435427_1_En_4_Fig1_HTML.jpg](img/A435427_1_En_4_Fig1_HTML.jpg)
+
+
+  图 4-1.
+
+  预定义的函数式接口
+
+
+  这些函数式接口通常使用 `@FunctionalInterface` 注解进行标注。这是一个信息性注解，可能被 IDE（集成开发环境）或编译器使用，编译器能够检查此类接口的要求。然而，对于
+  Lambda 表达式的使用，这个接口并不是必需的。
+
+
+  Java 8 定义的函数式接口大多包含其他有用的具体方法。在接口中实现方法是 Java 8 的一个新特性。这些所谓的默认方法是诸如新的 Stream API 等扩展的前提条件，我将在后面进行描述。
+
+
+  ## Lambda 表示法
+
+
+  由于需要实现的接口，编译器能够确定预期参数的数量和数据类型。参数的名称无关紧要，可以由程序员自由选择——就像你为自己编写的方法的参数所做的那样。如果有至少两个参数，或者你希望（或需要）声明类型，那么参数需要用括号括起来——就像方法的参数一样。如果只有一个参数且没有声明类型，则可以省略括号。因此，这些表示法是等价的（参见代码清单
+  4-4）。
+
+
+  ```
+
+  1   persons = getPersonsByCondition(persons, person -> person.getAge() < 20);
+
+  2   persons = getPersonsByCondition(persons, (Person p) -> p.getAge() < 20);
+
+  3   persons = getPersonsByCondition(persons, p -> p.getAge() < 20);
+
+  代码清单 4-4.
+
+  Lambda 表达式的不同表示法
+
+  ```
+
+
+  详细来说，一个 Lambda 表达式由参数列表、Lambda 运算符 “–>”（减号 + 大于号）和一个语句组成。通常，这个语句可以是一个块语句，由多个子语句构成。
+
+
+  ```
+
+  (参数列表) -> 语句
+
+  ```
+
+
+  以下是简要提及的最重要的规则：类型 + 名称，如同方法参数一样放在括号内 `(int x, int y) -> x * y;`
+
+
+  可以明确确定的类型可以省略。
+
+
+  ```
+
+  (x, y) -> x * y;
+
+  ```
+
+
+  空参数列表也是可能的，并且需要一对括号。
+
+
+  ```
+
+  () -> getVendorCount(persons)
+
+  ```
+
+
+  如果只有一个参数且没有类型声明，则可以省略括号。
+
+
+  ```
+
+  x -> x * x;
+
+  ```
+
+
+  作为特殊表示法，Lambda 表达式可以被所谓的方法引用或对象引用替代。
+
+
+  *   `类名::方法名`
+
+  *   `对象::方法名`
+
+
+  让我们看看 `Person` 类。它包含一个布尔方法 `isVendor()`。如果在条件中需要用到它，那么 Lambda 表达式将是
+
+
+  ```
+
+  p -> p.isVendor()
+
+  ```
+
+
+  使用方法引用也会改变代码。
+
+
+  ```
+
+  Person::isVendor
+
+  ```
+
+
+  注意省略了括号。使用方法引用有时可以使表示法更简洁。我在这里提到它是为了完整性。在本书的后续部分，我很少使用它，并且不再进一步解释。有关此问题的详细信息，例如，可以在
+  [Java 教程](https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html)
+  中找到。²
+
+
+
+
+  ## 惰性求值
+
+
+  你可以将 lambda 表达式视为一种函数引用。该函数并非在你将其赋值给变量时执行，而是在对变量求值时才会执行。这种惰性求值可用于实现环绕调用。例如，我们可以将求值过程推入一个测量执行时间的方法中。
+
+
+  在以下代码片段中，`getVendorCount` 会立即执行。
+
+
+  ```
+
+  int personCount = getVendorCount(persons);
+
+  ```
+
+
+  使用 lambda 表达式，可以轻松地将 `getVendorCount` 作为函数传递给另一个方法。
+
+
+  ```
+
+  int personCount = invokeMethod(() -> getVendorCount(persons));
+
+  ```
+
+
+  关键在于，`getVendorCount` 在此处不会执行。它将在测量方法内部，当调用 `method.get()` 时才执行（清单 4-5）。
+
+
+  ```
+
+  1    private static  T invokeMethod(Supplier method) {
+
+  2     long start = System.nanoTime();
+
+  3     T result = method.get();
+
+  4     long elapsedTime = System.nanoTime() - start;
+
+  5     System.out.println("Elapsed time: " + elapsedTime/1000000);
+
+  6     return result;
+
+  7   }
+
+  清单 4-5.
+
+  用于调用方法的测量函数
+
+  ```
+
+
+  ## 总结
+
+
+  通过使用 lambda 表达式，我们成功地为数据实现了一个灵活的过滤函数。
+
+
+  然而，目前我们只能更改过滤条件。如果我们需要使用不同类型的求值方式，例如，计算某物品的数量和总价，我们仍然需要调整方法。此时，流接口就派上了用场，它允许你无需使用循环，并且可以链式调用其他执行步骤，例如转换或归约。要理解
+  Java 如何通过此接口得到增强，我们首先需要介绍一些其他新的 Java 特性。其中一项增强是创建默认方法的机会。我将在第 5 章中展示这一点。
+
+
+  脚注 1
+
+
+  [`​docs.​oracle.​com/​javase/​8/​docs/​api/​java/​util/​function/​package-summary.​html`](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)
+
+
+    2
+
+
+  [`​docs.​oracle.​com/​javase/​tutorial/​java/​javaOO/​methodreferences​.​html`](https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html)
+
+
+  '
+- '# 5. 默认方法
+
+
+  ## 问题
+
+
+  接口可以被视为提供者与使用者之间的一种契约。因此，它不能被单方面撤销或更改。如果你针对某个接口开发软件，就必须依赖该接口的功能。如果提供者（例如，框架开发者）更改了接口，你的软件可能无法再使用新版本。幸运的话，你编译好的程序可能仍能与新版本协同工作。这种情况发生在更改保持了**二进制兼容性**时。但下次你需要编译程序时，编译器通常会报告错误：编译器强制要求实现接口的所有方法。由于更改后的接口不保持**源代码兼容性**，你需要调整你的程序。
+
+
+  那么，如何在不破坏源代码和二进制兼容性的前提下增强接口呢？
+
+
+  ## 解决方案——Java 之道
+
+
+  Java 语言的开发者通过引入**默认方法**解决了这个问题。这些是接口内部的具体方法实现，声明为 `default`。如果现有部分没有更改，那么所有实现该接口的类都可以直接使用通过默认方法增强后的接口：无需更改这些实现类！
+
+
+  由于默认方法是一个立即可用的方法，因此无需实现它，并且增强后的接口保持了源代码和二进制兼容性。从 Java 8 开始，你的类既可以使用父类的方法，也可以使用接口的方法。因此，Java
+  虚拟机现在拥有了一种**多重继承**或**混入**机制。
+
+
+  那么，多重继承的（众所周知的）问题呢？或者，如果你的类或其父类已经拥有一个同名且签名相同的方法，会发生什么？
+
+
+  Java 8 有一套定义明确的规则来防止问题，如下所述。为简化起见，我们在讨论同名且签名相同的方法时，将其称为“同名方法”。
+
+
+  *   如果增强后的接口的（抽象）方法签名保持不变，则该接口将保持源代码和二进制兼容性
+
+  *   接口可以通过具体方法进行增强，这些方法可用于继承
+
+  *   如果实现类包含一个同名方法，则此方法具有优先权
+
+  *   接口提供者能够增强接口
+
+  *   库用户无法增强已实现的库（仅提供者可以增强）
+
+  *   这与其他语言的扩展方法形成对比，后者由用户来增强现有类
+
+  *   对于同名方法的实现，有明确定义的规则来选择正确的方法
+
+  *   在接口中定义的字段（“成员”变量）是隐式 `final` 的
+
+  *   尽管有这些限制，默认方法仍具有巨大潜力
+
+  *   最好的例子不仅是 Java 8 集合中的 `stream()` 和 `parallelStream()` 方法
+
+
+
+
+  ## 选择默认方法的规则
+
+
+  Java 8 定义了一些规则，用于确定在方法同名时使用哪个方法。如果无法确定，编译器将报告错误。
+
+
+  顾名思义，默认方法仅当实现类中没有提供具体实现时才作为默认方法使用。如果类要实现的多个接口中存在同名方法，编译器会选择与该类“最接近”的方法。无论这些接口是否相互派生或彼此独立，这一规则都适用。
+
+
+  以下示例将对此进行说明（参见清单 5-1 至 5-3）。
+
+
+  ```
+
+  1   public interface InterfaceA {
+
+  2     default void print (){
+
+  3       System.out.println("InterfaceA");
+
+  4     }
+
+  5   }
+
+  清单 5-1.
+
+  包含默认方法的接口
+
+  ```
+
+
+  ```
+
+  1   public class InterfaceImplementor implements InterfaceA{}
+
+  清单 5-2.
+
+  实现类（无额外功能）
+
+  ```
+
+
+  ```
+
+  1   public class InterfaceDemo {
+
+  2       public static void main(String[] args) {
+
+  3         new InterfaceImplementor().print();
+
+  4       }
+
+  5   }
+
+  清单 5-3.
+
+  类的调用
+
+  ```
+
+
+  ![A435427_1_En_5_Figa_HTML.jpg](img/A435427_1_En_5_Figa_HTML.jpg) 使用这三个文件创建一个 Java
+  项目，以理解其运行模式。
+
+
+  正如你所料，这个简单的小示例只会输出 `InterfaceA`。接下来，我们将添加另一个包含同名方法的接口（参见清单 5-4）。
+
+
+  ```
+
+  1   public interface InterfaceB {
+
+  2     default void print (){
+
+  3       System.out.println("InterfaceB");
+
+  4     }
+
+  5   }
+
+  清单 5-4.
+
+  包含同名默认方法的 InterfaceB
+
+  ```
+
+
+  最后但同样重要的是，类 `InterfaceImplementor` 需要实现这个额外的接口（清单 5-5）。
+
+
+  ```
+
+  1   public class InterfaceImplementor implements InterfaceA, InterfaceB{}
+
+  清单 5-5.
+
+  实现类（无额外功能）
+
+  ```
+
+
+  现代 IDE 会提示错误（参见图 5-1）。
+
+
+  ![A435427_1_En_5_Fig1_HTML.jpg](img/A435427_1_En_5_Fig1_HTML.jpg)
+
+
+  图 5-1.
+
+
+  NetBeans 提示用法错误
+
+
+  无论哪种情况，编译器都会告诉你无法编译此程序。如果对这些接口建立继承关系，会发生什么？
+
+
+  在前面的例子中，可以从 `InterfaceA` 和/或 `InterfaceB` 继承。只要在实现类中使用了两个不同的接口，且它们具有不同的同名默认方法，编译器就会报错。
+
+
+  如果接口继承自一个包含此类默认方法的公共接口，情况会略有不同。创建两个都继承自 `InterfaceA` 的接口，其中一个将重写默认方法。为简洁起见，这三个文件合并为一个清单（清单
+  5-6）。
+
+
+  ```
+
+  1   public interface InterfaceA11 {
+
+  2     default void print (){
+
+  3       System.out.println("InterfaceA11");
+
+  4     }
+
+  5   }
+
+
+  7   public interface InterfaceA12 {}
+
+
+  9   public class InterfaceImplementor implements InterfaceA11, InterfaceA12{}
+
+  清单 5-6.
+
+  默认方法的继承
+
+  ```
+
+
+  如果运行此程序，它将输出 InterfaceA11。`InterfaceA11` 的 `print` 方法位于继承层次结构的最底层，因此它与实现类“最接近”。如果你实现来自不同层次级别的接口，情况同样如此。
+
+
+  ```
+
+  public class InterfaceImplementor implements InterfaceA, InterfaceA11{}
+
+  ```
+
+
+  这也会调用 `InterfaceA11` 中的 `print` 方法。
+
+
+  如果你想在同一层级上编程并使用两个同名方法，例如，也在 `InterfaceA12` 中开发一个 `print` 方法，编译器将无法确定选择哪个方法，并报告错误。
+
+
+  ## 总结
+
+
+  默认方法使得在不破坏兼容性的前提下增强现有接口成为可能。从这个意义上说，它们为 `stream()` 等新特性奠定了基础，我将在后面介绍这些特性。在此之前，我必须讨论另一个增强功能：`Optional`
+  类。
+
+
+  请在网上阅读更多关于默认方法的描述，例如在 [Oracle](https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html)
+  网站上。¹
+
+
+  脚注 1
+
+
+  [`https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html`](https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html)
+
+
+  '
+- '# 6. Optional
+
+
+  首先，我们来看另一个在使用新流时发挥作用的类族：`Optional`。
+
+
+  如你所知，如果在 Java 中声明但未初始化一个对象，其值为 `null`。如果尝试访问值为 `null` 的对象的方法，将会得到空指针异常。遗憾的是，我们无法在任何时候都避免空值。至少我们需要某种东西来表示对象的缺失。为了避免空指针异常，你需要在软件中的许多地方检查各种变量是否为空值（参见清单
+  6-1）。
+
+
+  ```
+
+  1   String name;
+
+  2   [...]
+
+  3   if (name != null) {...}
+
+  清单 6-1.
+
+  检查非空值
+
+  ```
+
+
+  Java 8 引入了 `Optional` 类，它封装了一个可选对象，并提供了检查内容的方法（清单 6-2）。
+
+
+  ```
+
+  1   Optional name;
+
+  2   [...]
+
+  3   if (name.isPresent()){...}
+
+  清单 6-2.
+
+  检查是否存在
+
+  ```
+
+
+  乍一看，这似乎是用一种麻烦代替了另一种麻烦。检查的数量仍然相同，只是从检查空值变成了检查是否存在。而且还需要一个额外的类。那么，额外的好处在哪里呢？
+
+
+  `Optional` 类提供的功能远不止简单的存在性测试。首先，你可以告诉这个类在封装的对象不存在时抛出哪个异常。用你选择的异常（附带详细消息）替换愚蠢的空指针异常，在出错时是一个巨大的优势。另一方面，`Optional`
+  提供了一些方法来获取值。
+
+
+  要访问封装的对象，可以使用 `get()` 方法。而使用 `orElse()` 方法，你可以指定一个替代值，当值不存在时使用。这可以防止你遇到任何“无值异常”，并允许你以更少的检查来开发软件。
+
+
+  你可以在 [API 文档](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
+  中找到关于 `Optional` 的更多详细信息。¹
+
+
+  在本章开头，我提到了一个类族。`Optional` 是一个直接派生自 `Object` 的单一类。除此之外，还有 `OptionalDouble`、`OptionalInt`、`OptionalLong`
+  这些类，它们也直接派生自 `Object`。这些类的行为与 `Optional` 类似。因此，这个类族既不是通过继承自公共父类来定义，也不是通过实现公共接口来定义。这些类只是以类似的方式编程，并实现了相近的行为。
+
+
+  它们的方法略有不同。例如，要获取一个 Optional Double 的值，方法不是 `get()` 而是 `getAsDouble()`——我们将在第 7 章学习
+  Streams 时用到它。
+
+
+  脚注 1
+
+
+  [`https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html`](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
+
+
+
+
+  '
+- '# 7. 初识流
+
+
+  好的，回到数据分析上来。
+
+
+  假设两个现有的过滤器无法合并成一个复杂的条件，而必须依次应用。或者我们需要单独的步骤来转换数据，等等，等等……
+
+
+  一般来说，数据将以链式方式处理。每个操作接收一些数据，执行某种操作，并产生一个中间结果，该结果作为下一个任务的输入。这种过程被称为流水线处理（见图 7-1）。
+
+
+  ![A435427_1_En_7_Fig1_HTML.jpg](img/A435427_1_En_7_Fig1_HTML.jpg)
+
+
+  图 7-1.
+
+
+  经典处理链
+
+
+  使用流时，操作的工作方式有所不同。链中的所有转换都是“即时”执行的。从开发者的角度来看，链的起点有一个数据输入，终点有一个输出，但没有显式的中间结果（图 7-2）。
+
+
+  ![A435427_1_En_7_Fig2_HTML.jpg](img/A435427_1_En_7_Fig2_HTML.jpg)
+
+
+  图 7-2.
+
+
+  流处理
+
+
+  开发者需要创建一个数据源，然后依次添加处理步骤，直到最后一个步骤。这个所谓的终端操作会创建结果。只有当最终操作被调用时，数据流才会开始。
+
+
+  其诀窍在于一个内部迭代器，它负责发射数据。因此，程序员无需创建循环（循环本质上就是外部迭代器）。开发者只需告诉系统如何处理数据。以前的循环现在看起来像一个串行过程——并且以后可以轻松地并行化。
+
+
+  ## 示例
+
+
+  为了初步了解流的工作原理，我们来看几个用例。即使你现在不能完全理解也没关系——稍后我会详细讨论（见清单 7-1）。
+
+
+  ```
+
+  1   List youngFemales = persons.stream()
+
+  2   .filter(p -> p.getAge() < 20)
+
+  3   .filter(Person::isFemale)
+
+  4   .collect(Collectors.toList());
+
+  清单 7-1.
+
+  列出所有年龄小于 20 岁的女性
+
+  ```
+
+
+  代码 `person.stream()` 使用内部迭代器将所有数据作为流发射。第 2 行和第 3 行（清单 7-1）充当两个链式过滤器；在最后一行，结果数据被收集到一个列表中。我稍后会讨论
+  `collect()` 和 `Collectors`。
+
+
+  ```
+
+  1   double averageAge = persons.stream()
+
+  2               .filter(p -> p.getAge() < 20 && p.isFemale())
+
+  3               .mapToInt(Person::getAge)
+
+  4               .average()
+
+  5               .getAsDouble();
+
+  清单 7-2.
+
+  所有小于 20 岁女性的平均年龄
+
+  ```
+
+
+  在清单 7-2 中，我们首先过滤出与清单 7-1 相同的人群。为了稍微变化一下，条件被实现为一个组合条件。由于这对性能没有明显影响，第一种变体可能更可取，特别是因为可以在运行时动态地组合各个处理步骤。
+
+
+  在清单 7-2 的第 3 行，我们有一个映射，它接收流中的一个对象（Person）并产生一个不同的对象：流将继续处理该人的年龄。接下来，我们计算其平均值。在处理链的末端，我们将从
+  `Double` 类型获取结果，并将其赋值给左侧的变量（第 1 行的 averageAge）。
+
+
+  ```
+
+  1   long totalSelling = persons
+
+  2           .stream()
+
+  3           .filter(Person::isVendor)
+
+  4           .mapToLong(p -> p.getSelling().values()
+
+  5                   .stream()
+
+  6                   .mapToLong(ArticleInfo::getQuantity)
+
+  7                   .sum())
+
+  8           .sum();
+
+  清单 7-3.
+
+  销售总量
+
+  ```
+
+
+  提醒一下，所有数据都以人员列表的形式提供。其中一些人被标记为销售商。对于每个销售商，所有销售记录都存储在一个列表中。
+
+
+  在清单 7-3 中，计算了销售总量。使用传统方法，你需要实现两个循环：一个循环遍历人员，内部循环遍历销售记录。
+
+
+  使用流，它也是通过两个循环实现的，但这些循环对开发者是隐藏的。代码读起来像一个串行过程：获取所有人员，确定销售商，为每个销售商计算数量（第 4-7 行），然后计算最终总和。这清晰简洁——但可能不太熟悉。不过，一旦你掌握了
+  lambda 语法和内部迭代器，它就变得易于阅读。如果没有 lambda 和流，你能让代码更简短吗？
+
+
+  如果你不喜欢重复调用 sum 函数，我们可以用另一种方式实现计算。可以展平“流的流”。为此，Java 提供了 `flatMap`，或者在这个具体解决方案中，提供了
+  `flatMapToLong`（清单 7-4）。
+
+
+  ```
+
+  1   long totalSelling = persons
+
+  2           .stream()
+
+  3           .filter(Person::isVendor)
+
+  4           .flatMapToLong(p -> p.getSelling().values().stream()
+
+  5           .mapToLong(ArticleInfo::getQuantity))
+
+  6           .sum();
+
+  清单 7-4.
+
+  使用展平流计算销售总量
+
+  ```
+
+
+  如示例所示，流接口附带了一个流畅的 API。你可以通过点符号组合所有方法。因此，处理过程看起来更具声明性：你描述了对数据要进行的操作。对于处理过程，我们需要区分中间操作和终端操作。
+
+
+  中间操作是在流内部处理的操作。例如 `filter`、`map` 或 `sorted`。它们接收一个流并发射一个流。
+
+
+  终端操作会关闭流。此类操作的示例包括 `collect`、`reduce` 和 `sum`。可以理解，只能有一个终端操作。
+
+
+  直到终端操作被调用时，处理过程才会开始。因此，流实现了惰性求值的概念。
+
+
+  我们可以利用这种行为将中间步骤赋值给一个变量，并动态构建链。以下代码说明了这一概念；`someCondition()` 和 `someOtherCondition()`
+  是任何条件的占位符。
+
+
+  想象一个用户界面，用户在其中选择一些组合框、复选框和其他元素，这些元素用于构建处理过程。在实际应用中，你会遇到从简单到复杂的构建器（清单 7-5）。
+
+
+  ```
+
+  1   Stream stream = persons.stream();
+
+  2   if (someCondition()){
+
+  3     stream = stream.filter(Person::isFemale);
+
+  4   }
+
+  5   if (someOtherCondition()){
+
+  6     stream = stream.filter(p -> p.getAge() < 20);
+
+  7   }
+
+  8   double averageAge = stream
+
+  9           .filter(p -> p.getAge() < 20 && p.isFemale())
+
+  10           .mapToInt(Person::getAge)
+
+  11           .average()
+
+  12           .getAsDouble();
+
+  清单 7-5.
+
+  处理链的动态构建
+
+  ```
+
+
+  ## 并行处理
+
+
+  ![A435427_1_En_7_Figa_HTML.jpg](img/A435427_1_En_7_Figa_HTML.jpg)并行化
+
+
+  使用最后一个示例（或任何其他示例），将 `stream()` 替换为 `parallelStream()`。在多核机器上测量顺序变体和并行变体所需的时间。
+
+
+  为了计时，你可以使用第 4 章中引入的 `invokeMethod` 方法（见清单 7-6）。
+
+
+  ```
+
+  1   Supplier totalSelling = () ->
+
+  2            persons.stream()
+
+  3           .filter(Person::isVendor)
+
+  4           .flatMapToLong(p -> p.getSelling().values().stream()
+
+  5           .mapToLong(ArticleInfo::getQuantity))
+
+  6           .sum();
+
+  7   System.out.println("total: " + invokeMethod(totalSelling));
+
+  清单 7-6.
+
+  测量时间
+
+  ```
+
+
+  正如本书开头“解决方案”部分（第 1 章）所述，通过使用 `parallelStream()` 代替 `stream()` 来实现并行处理确实是可能的。尽管这看起来相当简单，但你必须考虑一些辅助条件。我将在后面进一步探讨。
+
+
+
+
+  ## 摘要
+
+
+  通过默认方法 `stream()`，Java 8 在不破坏兼容性的前提下，增强了集合框架及其他接口的功能。它为你提供了一种表面上顺序化的编程方式，来解决那些底层需要循环的问题。最重要的是，你可以通过将此方法替换为
+  `parallelStream()` 来实现并行化。
+
+
+  在本章中，流主要通过简洁的示例进行了重点介绍。在初步了解之后，是时候深入探讨一些细节了。我将特别关注 `Stream` 和 `Spliterator` 这两个接口。
+
+
+  '
+- '# 8. stream()、Stream 与 Spliterator
+
+
+  到目前为止，你已经对如何使用 `stream()` 和 `parallelStream()` 有了初步印象。我们想深入幕后，进一步研究这些方法。
+
+
+  ![A435427_1_En_8_Figa_HTML.jpg](img/A435427_1_En_8_Figa_HTML.jpg)研究 Java 中的实现。了解如何在你的
+  IDE 中显示 Java 源代码。以 [NetBeans](http://netbeans.org/) 为例，¹ 只需打开前面的某个示例，将光标放在 `stream()`
+  上。使用组合键 {Ctrl+B} 即可调用 `goto` 源代码。
+
+
+  `stream()` 和 `parallelStream()` 是 `Collection` 接口的默认方法（参见 8-1）。
+
+
+  ```
+
+  1   default Stream stream() {
+
+  2     return StreamSupport.stream(spliterator(), false);
+
+  3   }
+
+
+  5   default Stream parallelStream() {
+
+  6     return StreamSupport.stream(spliterator(), true);
+
+  7   }
+
+  Listing 8-1.
+
+  接口 Collection 的摘录
+
+  ```
+
+
+  如你所见，这两个方法非常相似。两者都调用了 `StreamSupport.stream()`。唯一的区别在于第二个参数。这个布尔类型的参数 `parallel`
+  可以是 `false` 或 `true`。因此，这就清楚了为什么在许多情况下你可以互换使用这两个方法。
+
+
+  这两个方法都返回一个流，该流由接口 `Stream` 定义。并且它们使用了一个所谓的 Spliterator，通过 `spliterator()` 调用。我将在接下来的段落中讨论这两者。
+
+
+  ## Stream
+
+
+  接口 `Stream` 定义了许多返回流的方法。它们不是获取整个输入来生成一个完整的流，而是一个元素一个元素地生成。举个例子，我们来看一下 `filter` 的签名：
+
+
+  ```
+
+  Stream filter(Predicate predicate);
+
+  ```
+
+
+  这会根据过滤条件生成一个流。值得注意的是，`filter` 接收一个类型为 T²（或其超类）的元素，该元素是流的一个元素。如前所述，`Predicate` 是一个函数式接口。因此，可以使用
+  lambda 表达式来实现该谓词。由于类型在流中是已知的，lambda 表达式无需声明类型。请参见前面关于 lambda 表达式规则的段落。
+
+
+  正如 `filter` 所示，`Stream` 定义了中间操作的工作方式。输出元素的类型可能与输入不同（例如 `map`）。映射操作的输出是一个对象流，其类型可能与输入不同。例如，我们可以将一个人映射为其年龄或姓名。
+
+
+  对于某些数据类型，定义了专门的流。例如，有 Long 或 Double 流，它们支持额外的数学运算。并且在 `Stream` 内部，定义了一些中间操作来转换为这种专门的流。在前面的示例中，我们使用了
+  `.mapToLong(...))`，它对预定义的流类型执行了这样的映射。
+
+
+  ```
+
+  LongStream mapToLong(ToLongFunction mapper);
+
+  ```
+
+
+  `LongStream` 并非派生自 `Stream`，但两者都派生自 `BaseStream`。
+
+
+  除了中间操作，Stream 接口还提供了终端操作以及流的生成。
+
+
+  终端操作不仅仅是简单或复杂的“结果”，例如 `min`、`max`、`collect`（用于收集数据，例如到列表中），还包括为每个元素显式调用一个方法。
+
+
+  ```
+
+  void forEach(Consumer action);
+
+  ```
+
+
+  通过 `forEach`，内部迭代器被提供给一个实现了 `Consumer` 接口的方法。这也是另一个函数式接口。
+
+
+  让我们来看看终端操作。例如，`min` 操作通常返回数值流的最小值。如果流不包含任何值会发生什么？结果必须为空。为了避免空结果，所有这类操作都会生成一个预期类型的可选值。这个结果的类型不是
+  `T`，而是 `Optional<T>`。
+
+
+  要描述 `Stream` 提供的所有方法，将远远超出这本简明书籍的范围。其目的是让你很好地理解这些原理。建议阅读 [API 文档](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)，³
+  该文档可通过脚注 3 中的 URL 获取（在撰写本文时有效）。
+
+
+  ## Spliterator
+
+
+  `Spliterator` 负责将对象流拆分成更小的部分。其名称是“拆分迭代器”的缩写。这就是前面多次提到的内部迭代器。除了迭代之外，拆分功能使你能够将流的部分提供给不同的线程。
+
+
+  你可以将 spliterator 用于顺序处理以及并行处理。Java 8 附带了一个默认实现（参见 8-2）。
+
+
+  ```
+
+  1   @Override
+
+  2   default Spliterator spliterator() {
+
+  3       return Spliterators.spliterator(this, 0);
+
+  4   }
+
+  Listing 8-2.
+
+  默认方法 Spliterator
+
+  ```
+
+
+  对于特殊用例，可以创建你自己的 spliterator。虽然在大多数情况下，现有的实现已经足够，但理解基本概念非常有用。
+
+
+  接口 `Spliterator` 定义了两个重要的方法。
+
+
+  ```
+
+  boolean tryAdvance(Consumer action);
+
+  ```
+
+
+  上述代码尝试为下一个元素执行一个操作——如果存在的话。如果成功推进，此方法返回 `true`，而 `false` 表示没有元素（即流的末尾）。这与常见的迭代器概念有显著区别：使用迭代器时，你首先必须检查是否至少还有一个元素存在。如果
+  `hasNext()` 返回 `true`，你可以通过 `next()` 获取它。
+
+
+  `tryAdvance` 有一个配套方法，用于遍历剩余元素。第二个重要的方法如下。
+
+
+  ```
+
+  Spliterator trySplit();
+
+  ```
+
+
+  这尝试以有意义的方式拆分数据。如果底层数据结构的大小是已知的，例如，数据保存在数组中，那么 `trySplit` 会将其拆分为两个（几乎）大小相等的部分：`trySplit`
+  返回一个额外的 spliterator，如果需要，该 spliterator 可以再次拆分数据。通过这种方式，整个数据集将被拆分成大量较小的数据集，这些数据集可能可以并行处理。
+
+
+  如果数据量未知，例如，因为你从文件读取数据或通过某个数据通道在线接收数据，那么拆分将根据其他标准执行。例如，一个文件可以在每 1,024 行之后进行拆分。
+
+
+  尽管 `tryAdvance` 和 `trySplit` 是理解 spliterator 行为的最重要方法，但此接口还提供了更多的方法和字段。如果需要，你可以在
+  [API 文档](https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html) 中阅读相关内容。⁴
+
+
+
+
+  ## 摘要
+
+
+  接口 `Stream` 定义了多种方法来处理流中的数据。中间操作会执行一个动作并生成另一个流。这使得你可以通过点号表示法（流畅 API）来链式处理步骤。
+
+
+  `Spliterator` 是内部的迭代器，它能够将数据分割成更小的块。这使得这些块能够被并行处理。有时你需要考虑一些约束条件才能成功实现并行化。我将在第 9
+  章讨论这一点。
+
+
+  脚注 1
+
+
+  [`http://netbeans.org`](http://netbeans.org)
+
+
+    2
+
+
+  如果你不了解泛型的通用类型表示法，可以上网查阅，例如，参考 [维基百科：de.wikipedia.org/wiki/Generische_Programmierung_in_Java](https://de.wikipedia.org/wiki/Generische_Programmierung_in_Java)
+  或 Oracle 的 [Java 教程](https://docs.oracle.com/javase/tutorial/java/generics/methods.html)：[docs.oracle.com/javase/tutorial/java/generics/methods.html](https://docs.oracle.com/javase/tutorial/java/generics/methods.html)。
+
+
+    3
+
+
+  [`https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
+
+
+    4
+
+
+  [`https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html`](https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html)
+
+
+  '
+- "# 9. 并行流\n\n如果通过使用 `parallelStream` 能够正确地并行处理数据，你需要考虑一些辅助条件。如果不遵守这些条件，Java 要么会禁止并行执行，要么你可能会得到意想不到的结果。\n\
+  \n*   使用无状态的 lambda 表达式。状态意味着你在某处（例如，在一个变量中）保存了一个值。现在，如果 lambda 表达式的未来执行依赖于这个值，那么并行执行的行为可能会变得不确定。结果可能变得不可预测。幸运的话，编译器会阻止并行化。否则，你会对结果感到困惑。\n\
+  *   不要改变流所基于的数据。例如，如果你在遍历集合时添加或删除元素，在顺序处理时可能还能工作。这样的代码是不健康的，并且常常会导致异常。对于并行流，你不能使用这种糟糕的代码：你总是会得到一个异常。\n\
+  *   避免副作用。这是函数式编程的主要原则。当提供相同的参数时，一个函数总是返回相同的结果。应该避免像改变一个作用域更广的变量这样的副作用。如果你正在使用流，并且想使用一个作用域更广的变量，只有当这些变量像\
+  \ final 变量一样被使用时，编译器才会接受。像 NetBeans 这样的现代 IDE 会给你建议：从 lambda 表达式引用的变量必须是 final 的，或者实际上是\
+  \ final 的。\n*   处理必须与顺序无关。因为在并行处理的情况下，顺序是不确定的，所以结果不依赖于处理顺序是至关重要的。或者你需要强制进行有序处理。这会产生一些开销，可能会消耗你通过并行化节省的时间。一个依赖于特定顺序的计算问题可以通过下面的例子来研究。看似相同的计算以三种不同的方式实现。为了重现稳定或变化的结果，每个变体都被多次调用。\n\
+  \n```\n1   long[] result = new long[1];\n\n3   for (int i = 0; i < 5; i++) {\n4\
+  \     result[0] = 0;\n5     LongStream.range(0, 1000)\n6       .forEach(n -> result[0]\
+  \ = (result[0] + n) * n);\n7     System.out.println(\"serial: \" + result[0]);\n\
+  8   }\n\n10   for (int i = 0; i < 5; i++) {\n11     result[0] = 0;\n12     LongStream.range(0,\
+  \ 1000).parallel()\n13       .forEach(n -> result[0] = (result[0] + n) * n);\n14\
+  \     System.out.println(\"parallel: \" + result[0]);\n15   }\n\n17   for (int i\
+  \ = 0; i < 5; i++) {\n18     result[0] = 0;\n19     LongStream.range(0, 1000).parallel()\n\
+  20       .forEachOrdered(n -> result[0] = (result[0] + n) * n);\n21     System.out.println(\"\
+  parallel ordered: \" + result[0]);\n22   }\n清单 9-1.\n顺序、并行和有序并行处理\n```\n\n该流通过 `range`\
+  \ 生成为一个 `LongStream`。这会在所需范围内提供数字。`Collection` 接口中没有 `parallelStream`，但你可以通过 `parallel()`\
+  \ 切换到并行处理。\n\n顺序变体以及有序并行变体总是报告结果为 3003755479748501215，而无序并行版本会产生不同的结果。\n\n`result[0]\
+  \ = (result[0] + n) * n)` 的计算依赖于顺序。很明显，如果 n 的位置是 0，那么下一个中间结果将是 0（如果最后处理，最终结果也是 0）。因为零会在任何时候被使用，你无法预测结果。如果你进一步研究数学，就会发现对于任何其他值，它也依赖于顺序。\n\
+  \n为了简单演示，这三个演示都使用了副作用。所有中间结果都将存储在一个外部变量中。由于这必须是实际上是 final 的，我们使用了一个小技巧：我们使用了一个数组，而不是一个\
+  \ `long`。\n\n在生产应用中，永远不要使用这种小技巧！这是一个干净的变体。\n\n```\n1   long reduce = LongStream.range(0,\
+  \ 1000).reduce(0, (a, c) -> (a + c) * c);\n```\n\n对于那些不熟悉 lambda 的人来说，这看起来非常奇怪，而那个“脏”的解决方案似乎更容易理解。这就是我为什么用它来做演示。永远不要害怕干净的解决方案。使用\
+  \ lambda 一小段时间后，这种编程方式就相当容易了。\n\n这里是对终端 `reduce` 操作的简短解释。第一个参数用于初始化一个累加器。第二个操作是一个二元函数，它接收累加器\
+  \ (a) 和流的当前对象 (c)。此操作的结果将替换累加器的先前值，并可用于流的下一个对象。\n\n*   通过使用 `Collect` 并考虑 `Concurrent`\n\
+  \n```\n    1    Map<Integer, List<Person>> ageMap = persons\n    2      .stream()\n\
+  \    3     .collect(Collectors.groupingBy(Person::getAge));\n\n5    ConcurrentMap<Integer,\
+  \ List<Person>> ageMapPar = persons\n    6      .parallelStream()\n    7     .collect(Collectors.groupingByConcurrent(Person::getAge));\n\
+  \    ```\n\n*   收集结构（此处：`ConcurrentMap`）可能具有 `Collector.Character` 和 `Collector.Characteristics.UNORDERED`\
+  \ 特性。\n\n## 摘要\n\n尽管使用流进行并行编程无需显式线程处理，并且通常无需同步，但你仍然需要考虑一些约束条件才能获得正确的结果。接下来，我们将结合\
+  \ Java 并发性来研究 `collect` 方法。\n\n\n\n"
+- "# 10. 收集器与并发\n\n到目前为止，我们一直在使用 `collect()` 方法，但尚未深入解释。这个重载方法要么接受一个收集器（Collector），就像我们之前所做的那样（例如\
+  \ `.collect(Collectors.toList())` 或 `.collect(Collectors.groupingByConcurrent(Person::getAge))`）；要么你可以传入三个参数，分别对应供应器（supplier）、累加器（accumulator）和组合器（combiner）。先别困惑，我很快就会解释这些概念。\n\
+  \n顾名思义，`collect` 的主要目的是收集数据。这是通过修改可变数据结构来实现的。与此相反，`reduce()` 方法则适用于不可变数据结构。\n\n\
+  现在，是时候编写我们自己的收集器了。为简单起见，我们创建一个收集器来对数字流进行求和。这些数字由一个简单的数字生成器生成（代码清单 10-1）。\n\n```\n\
+  1   public static List createNumbers() {\n2     List numbers = new ArrayList();\n\
+  3     Random random = new Random();\n4     int max = 1000000 + random.nextInt(1000000);\n\
+  5     for (int i = 0; i < max; i++) {\n6       numbers.add((long)random.nextInt(100));\n\
+  7     }\n8     return numbers;\n9   }\n代码清单 10-1.\n数字生成器\n```\n\n但首先，我们快速了解一下 Java\
+  \ 并发。尽管 `parallelStreams()` 避免了所有手动线程处理，但了解一些基础知识有助于理解如何编写一个能够成功并行执行的收集器。\n\n##\
+  \ Java 并发\n\n我们需要讨论两个术语：“并发”和“并行”。在继续之前，我们必须先定义这两个术语，因为我们既要讨论 Java 并发，又要讨论并行流。\n\
+  \n对于并发，程序的多个部分将在不同的线程中执行，以并发方式而非串行方式运行。这并不一定意味着这些线程同时运行。回想一下过去每台计算机只有一个单核 CPU（中央处理器）的时代：为了保持用户界面（UI）流畅，最佳实践是将\
+  \ UI 处理放在一个线程中，而将耗时的计算放在另一个线程中。这两个线程交替获得少量的 CPU 时间片。在现代多核 CPU 上，这些线程可以并行运行。\n\n\
+  另一方面，在并行中，多个并行运行的线程会同时对不同的数据执行相同的计算。并行流实现了并行性。请看下图（图 10-1）：并行流包含相同类型的不同数据。每个中间操作只定义一次，并按照垂直对齐所示的方式并行执行。\n\
+  \n![A435427_1_En_10_Fig1_HTML.jpg](img/A435427_1_En_10_Fig1_HTML.jpg)\n\n图 10-1.\n\
+  \n带有中间操作的并行流\n\n人们可能将并行视为并发的一种特殊情况，或者将其视为不同的概念。在本书中，我们不会深入讨论这个问题。无论如何，要使用 Java 实现并行，我们在技术上需要并发。\n\
+  \n![A435427_1_En_10_Figa_HTML.jpg](img/A435427_1_En_10_Figa_HTML.jpg) 进程与线程\n\n\
+  在本书中，我们只涉及线程，它们是程序的独立单元，运行在同一个进程中。进程提供了一个完全独立的环境，拥有自己的内存，而线程则运行在共享环境中，特别是共享它们的内存。如果多个线程使用同一个类，这一事实就变得很重要。\n\
+  \n更详细的解释请参考 [Java 教程](https://docs.oracle.com/javase/tutorial/essential/concurrency/procthread.html)。¹\n\
+  \nJava 从一开始就被设计为支持多线程。`Thread` 类自 JDK（Java 开发工具包）1.0 起就已成为 Java 的一部分。\n\n让我们看看如何定义并启动第二个线程（代码清单\
+  \ 10-2）。\n\n```\n1   public static void main(String[] args) {\n2     Thread thread\
+  \ = new MyThread();\n3     thread.start();\n4     System.out.println(\"Message from\
+  \ Main\");\n5   }\n\n7   private static class MyThread extends Thread {\n8     @Override\n\
+  9     public void run() {\n10       System.out.println(\"Message from MyThread\"\
+  );\n11     }\n12   }\n代码清单 10-2.\nThread 的简单用法\n```\n\n我们只需定义一个继承自 `Thread` 的类，并重写\
+  \ `run()` 方法。在主程序中，我们创建线程的一个新实例，并调用 `start()`。在幕后，`start` 向操作系统请求一个新线程，并在这个新线程中执行\
+  \ `run` 方法。\n\n但有一个问题。通常，你希望通过继承一个技术类（而非 `Thread`）来构建类结构。幸运的是，Java 提供了另一种创建线程的方式。我们需要实现\
+  \ `Runnable` 接口。而这正是 `Thread` 类内部所做的（代码清单 10-3）。\n\n```\n1   public static void\
+  \ main(String[] args) {\n2     Thread thread = new Thread(new MyRunnable());\n3\
+  \     thread.start();\n4     System.out.println(\"Message from Main\");\n5   }\n\
+  \n7   private static class MyRunnable implements Runnable {\n8     @Override\n9\
+  \     public void run() {\n10       System.out.println(\"Message from MyRunnable\"\
+  );\n11     }\n12   }\n代码清单 10-3.\n使用 Runnable 的线程\n```\n\n现在，通过传入我们类的一个对象来创建一个新线程。其他一切保持不变。\n\
+  \n\n\n掌握了这些知识后，我们想利用线程来执行求和任务。我们创建了一个名为 `SummingUnit` 的类，它负责执行计算（清单 10-4）。\n\n```\n\
+  1   public class SummingUnit {\n2     public SummingUnit(){\n3       System.out.println(\"\
+  ctor SummingUnit\");\n4     }\n\n6     private long _sum = 0;\n\n8     public long\
+  \ getSum() {\n9       return _sum;\n10     }\n\n12     public void sum(long value)\
+  \ {\n13       _sum += value;\n14     }\n\n16     public void combine(SummingUnit\
+  \ other) {\n17       _sum += other._sum;\n18     }\n\n20   }\n清单 10-4.\nSummingUnit\n\
+  ```\n\n该类内部使用一个字段来累加传递给 `sum()` 方法的值。通过一个简单的 getter 方法来读取总和。`combine()` 方法最初并未使用，我们稍后会用到它。还记得\
+  \ `collect` 的 combiner 参数吗？\n\n为了演示，一个新线程将处理我们一半的数字，而另一半则由“主”线程处理。为了实现这个目标，我创建了\
+  \ `SumTask`，它接收用于前半部分和后半部分的相应参数。该类的一个实例由新线程调用，另一个实例则直接调用。为了同步这两个线程，主线程通过 `thread.join`\
+  \ 等待，直到生成的线程完成（清单 10-5）。\n\n```\n1   public static void main(String[] args) throws\
+  \ InterruptedException {\n2     List numbers = Utils.createNumbers();\n3     int\
+  \ size = numbers.size();\n4     SummingUnit summingUnit = new SummingUnit();\n\n\
+  6     Thread thread = new Thread(new SumTask(numbers, 0,\n7             size / 2,\
+  \ summingUnit));\n8     thread.start();\n\n10     SumTask sumTask = new SumTask(numbers,\
+  \ size / 2,\n11             size, summingUnit);\n12     sumTask.run();\n13     thread.join();\
+  \ // 等待线程完成\n\n15     System.out.println(\"Sum: \" + summingUnit.getSum());\n16\
+  \   }\n\n19   private static class SumTask implements Runnable {\n\n21     private\
+  \ final List _numbers;\n22     private final int _start;\n23     private final int\
+  \ _end;\n24     private final SummingUnit _summingUnit;\n\n26     public SumTask(List\
+  \ numbers,\n27                             int start,\n28                      \
+  \       int end,\n29                             SummingUnit summingUnit) {\n30\
+  \       _numbers = numbers;\n31       _start = start;\n32       _end = end;\n33\
+  \       _summingUnit = summingUnit;\n34     }\n\n36     @Override\n37     public\
+  \ void run() {\n38       for (int i = _start; i < _end; i++) {\n39         _summingUnit.sum(_numbers.get(i));\n\
+  40       }\n41     }\n42   }\n清单 10-5.\n并行求和——结果出乎意料\n```\n\n然而，如果你多次运行这个程序，即使你等待第二个线程完成，也会得到不同的结果。发生了什么？\n\
+  \n请注意 `sum()` 方法。\n\n```\nsum += val;\n```\n\n乍一看，这似乎是一个单一操作。但实际上，这只是语法糖，我们可以重写这条语句。\n\
+  \n```\nsum = sum + val;\n```\n\n在我们常见的硬件结构中，不可能在一个变量内部完成加法操作。实际上，计算机必须将 `sum` 的值加载到寄存器中，加上\
+  \ `val`，然后将结果写回变量。因此，这行代码可以用伪代码重写如下。\n\n```\n1   register.load(sum)\n2   register.add(val)\n\
+  3   register.write(sum)\n```\n\n如你所见，这是一个非原子性的操作序列。在这两个操作之间，CPU 可能会执行其他操作。\n\n假设\
+  \ `sum` 的值为 0。我们有两个线程，每个线程都添加一个值。线程 1 可能加 5，而线程 2 加 3。以下序列产生了预期的结果：\n\n| 操作 | 结果\
+  \ |\n| --- | --- |\n| 线程 1 register1.load(sum) | register1 = 0 |\n| 线程 1 register1.add(5)\
+  \ | register1 = 5 |\n| 线程 1 register1.write(sum) | sum = 5 |\n| 线程 2 register2.load(sum)\
+  \ | register2 = 5 |\n| 线程 2 register2.add(3) | register2 = 8 |\n| 线程 2 register2.write(sum)\
+  \ | sum = 8 |\n\n但由于两个线程独立运行，我们无法确定执行顺序。在另一次运行时，语句可能按以下顺序执行：\n\n| 操作 | 结果 |\n| ---\
+  \ | --- |\n| 线程 1 register1.load(sum) | register1 = 0 |\n| 线程 1 register1.add(5)\
+  \ | register1 = 5 |\n| 线程 2 register2.load(sum) | register2 = 0（此时 sum 仍然是 0！） |\n\
+  | 线程 1 register1.write(sum) | sum = 5 |\n| 线程 2 register2.add(3) | register2 = 3\
+  \ |\n| 线程 2 register2.write(sum) | sum = 3 |\n\n我们看到的是一个典型的竞态条件。结果取决于哪个线程在争夺共享变量的竞赛中领先。`sum()`\
+  \ 方法成为了代码中的一个临界区。这样的区域必须受到保护，例如通过锁。或者你可以使用 Java 的 `synchronized` 限定符。\n\n```\npublic\
+  \ synchronized void sum(long val)\n```\n\n现在这个方法将自动受到保护。一次只允许一个线程运行此方法，而其他线程则被迫等待。所有对\
+  \ `sum()` 的调用都变成了串行，这破坏了并行性。这不能算是一个合适的解决方案。\n\nVolatile\n\n你可能听说过在多线程环境中变量的 `volatile`\
+  \ 限定符，并猜测这将是一个不错的选择。遗憾的是，这并没有帮助。`Volatile` 仅保证在写入之后的任何读取都将获取最后写入的值。看看第一个线程序列，特别是\
+  \ `Thread 2 register2.load(sum)`。`sum` 在前一步刚刚被写入。之前的值是 0。如果读取访问查询的是缓存，会发生什么？尽管刚刚将\
+  \ 5 写入了变量，但 Java 可能读取到之前的 0。`Volatile` 由于其保证避免了这个问题，但也仅此而已。因此，`volatile` 没有帮助（除非我们可能还有其他错误）。\n\
+  \n更多信息，请阅读关于 [Java 内存模型](https://www.cs.umd.edu/%7Epugh/java/memoryModel/jsr-133-faq.html)\
+  \ 的内容。²\n\n对于我们这个问题，最好的解决方案可能是避免临界区。为了避免共享变量，我们只需为每个线程创建一个单独的 `SummingUnit`。每个线程将解决我们问题的一部分——计算一个小计。最后，我们必须将它们全部合并。\n\
+  \n以下是并行求和的示例——每个线程使用一个单独的 `SummingUnit`：\n\n```\n1   public static void main(String[]\
+  \ args) throws InterruptedException {\n2     List numbers = Utils.createNumbers();\n\
+  3     int size = numbers.size();\n4     SummingUnit summingUnit = new SummingUnit();\n\
+  5     SummingUnit summingUnit2 = new SummingUnit();\n\n7     Thread thread = new\
+  \ Thread(new SumTask(numbers, 0,\n8             size / 2, summingUnit));\n9    \
+  \ thread.start();\n\n11     SumTask sumTask = new SumTask(numbers, size / 2,\n12\
+  \             size, summingUnit2);\n13     sumTask.run();\n14     thread.join();\
+  \ // 等待线程完成\n\n16     summingUnit.combine(summingUnit2);\n17     System.out.println(\"\
+  Sum: \" + summingUnit.getSum());\n18   }\n```\n\n在前述代码的第 5 行，创建了第二个 `SummingUnit`，它在第\
+  \ 12 行被使用。然后（第 16 行），合并了小计。由于每个线程都使用自己的对象，我们可以避免任何同步。\n\n\n\n## 收集\n\n在简要了解了 Java\
+  \ 并发机制之后，我们将回到并行流和 `collect()` 方法。之前提到的那个接受三个参数的重载方法定义如下：\n\n```\n1    R collect(Supplier\
+  \ supplier,\n2                 BiConsumer accumulator,\n3                 BiConsumer\
+  \ combiner);\n```\n\n第一个参数接受一个函数，该函数提供类型为 R 的新结果容器。我们使用 `SummingUnit` 作为 R 的类型。\n\
+  \n累加器参数是一个函数，它接受一个结果容器 R（即 `SummingUnit`）和一个类型为 T 的流对象。在我们的示例中，这个对象是其中一个数字。\n\n\
+  最后一个参数接受一个函数，Java 会向该函数传入两个结果容器。此函数执行合并操作。\n\n综合以上所有内容，我们在 collect 方法中使用 `SummingUnit`（清单\
+  \ 10-6）。\n\n```\n1   System.out.println(\"total: \" +\n2     numbers.parallelStream().collect(\n\
+  3       () -> new SummingUnit(),     // supplier\n4       (summingUnit, value) ->\n\
+  5         summingUnit.sum(value),    // accumulator\n6       (summingUnit, other)\
+  \ ->\n7         summingUnit.combine(other) // combiner\n8     ).getSum()\n9   );\n\
+  清单 10-6.\n在 Collect 中使用 SummingUnit\n```\n\n现在，如果你运行这个程序，可能会发现应用打印出了几个“ctor SummingUnit”实例。请记住，我们在\
+  \ SummingUnit 的构造函数中打印了这条信息。这表明 Java 调用了多个线程来执行工作。实际上，Java 使用了 fork/join 框架来调度线程。该框架的原则是判断任务是否足够小以串行执行。如果任务较大，则会将问题分解（最好分成两个大小相似的部分），然后两个部分会在不同的线程中处理。因此，这个算法是递归应用的。\n\
+  \n如果你对 fork/join 框架的更多细节感兴趣，请参考 [Java 教程](https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html)。³\n\
+  \n如前所述，你可以自由选择 lambda 参数的名称。其作用域非常狭窄。因此，通常选择简短的名称。\n\n```\n1   .collect(() -> new\
+  \ SummingUnit(),\n2   (s, v) -> s.sum(v), (s, o) -> s.combine(o))\n```\n\n或者，我们可以使用方法引用。\n\
+  \n```\n1   .collect(SummingUnit::new, SummingUnit::sum, SummingUnit::combine)\n\
+  ```\n\n正如前面的示例所示，收集数据相当容易。通常，并行运行如此简单的任务并不值得，但将所学知识迁移到你技术领域中更复杂的任务应该没有问题。特别是运行时间较长的任务能从并行中获益。\n\
+  \n除了向 `collect()` 方法传递一组函数外，我们还可以编写一个 Collector，并将其传递给 `collect()`。以下是该重载方法的签名：\n\
+  \n```\n1    R collect(Collector collector);\n```\n\nCollector 是一个我们需要实现的接口。我们创建一个类\
+  \ `SummingCollector`，它将总和作为最终结果返回。\n\n```\n1   System.out.println(\"total: \" +\n\
+  2             numbers.parallelStream().collect(new SummingCollector()));\n```\n\n\
+  Collector 接口强制我们重写一些返回函数的方方法。使用 lambda，定义可以作为参数传递的函数非常容易。除了（惊喜！）supplier、accumulator\
+  \ 和 combiner 之外，我们还需要重写 finisher。finisher 接受最后一个剩余的结果容器进行进一步处理。我们的 collector 将返回最终的总和。\n\
+  \n为了重用我们已经开发的大部分代码，SummingCollector 会在内部将大部分任务委托给 SummingUnit。\n\n我们需要重写的最后一个方法返回一组特征（清单\
+  \ 10-7）。\n\n```\n1   public class SummingCollector\n2                 implements\
+  \ Collector{\n3     @Override\n4     public Supplier supplier() {\n5       return\
+  \ () -> new SummingUnit();\n6     }\n\n8   @Override\n9   public BiConsumer accumulator()\
+  \ {\n10     return (s, v) -> s.sum(v);\n11   }\n\n13   @Override\n14   public BinaryOperator\
+  \ combiner() {\n15     return (left, right) -> {left.combine(right); return left;};\n\
+  16   }\n\n18   @Override\n19   public Function finisher() {\n20     return s ->\
+  \ s.getSum();\n21   }\n\n23   @Override\n24   public Set characteristics() {\n25\
+  \     return EnumSet.of(Characteristics.UNORDERED);\n26     // 不要添加 \", Characteristics.CONCURRENT\"\
+  !\n27   }\n清单 10-7.\nSummingCollector\n```\n\n我们使用三个类型 `<T, A, R>` 对 Collector 接口进行参数化，如签名所示。这里\
+  \ T 是 Long（一个数字），A 被替换为 SummingUnit，最终的结果类型 R 也是 Long：即最终的总和。\n\n因为我们没有返回 CONCURRENT\
+  \ 特征，所以每个线程都会调用 supplier 函数。你可以通过观察对象构造期间的输出来查看这一点。\n\n如果我们提供了 CONCURRENT 特征，Java\
+  \ 会假定 supplier 已启用多线程支持。它将只创建一个 SummingUnit，由所有线程共享。猜猜看，结果会因运行而异，因为我们有一个存在竞态条件的临界区。\n\
+  \n## 总结\n\n在本章中，我们讨论了收集器的原理。示例展示了如何实现一个收集器。流的并行版本使用起来非常简单，并且隐藏了所有关于线程、锁定、同步的繁琐细节。但是，对\
+  \ Java 并发特性以及竞态条件等典型问题稍有了解，有助于编写正确的收集器。\n\n## 最终思考\n\n尽管这个示例对于讨论并行性的某些方面非常有用，但由于以下几个原因，它并非一个现实世界的示例：\n\
+  \n1.  没有必要实现一个求和函数，因为 Java 提供了一个现成的\n\n    ```\n    numbers.parallelStream().mapToLong(i\
+  \ -> i).sum();\n    ```\n\n    Java 内部使用一个“肮脏”的技巧来实现求和，即使用一个数组来保存简单的值。  \n2.  除了收集数据，我们也可以简单地归约数据。\n\
+  \n    ```\n    numbers.parallelStream().reduce(0L, (a, c) -> a + c);\n    ```\n\n\
+  \    reduce 函数在每次加法时都会创建一个新对象。它从零开始。然后它接受两个参数：累加器和当前对象。它返回两者的和，该和作为一个新对象存储到累加器中。因为没有共享对象，所以没有共享状态，也没有竞态条件等。\n\
+  \n但有时我们确实需要一个收集器，例如，如果我们想将对象收集到集合或映射中。这将在下一章中展示。\n\n脚注 1\n\n[`https://docs.oracle.com/javase/tutorial/essential/concurrency/procthread.html`](https://docs.oracle.com/javase/tutorial/essential/concurrency/procthread.html)\n\
+  \n  2\n\n[`https://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html`](https://www.cs.umd.edu/%7Epugh/java/memoryModel/jsr-133-faq.html)\n\
+  \n  3\n\n[`https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html`](https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html)\n\
+  \n\n\n"
+- '# 11. 分组收集器
+
+
+  假设我们要计算按年龄分组的人的平均支出。我们希望创建一个收集器，返回一个 `Map<Integer, Double>`，其中 Integer 代表年龄组，Double
+  代表平均支出。
+
+
+  为了验证这个收集器，我们使用一个简单的输出：
+
+
+  ```
+
+  1   [. . .]
+
+
+  3   [省略：按之前所示创建 persons]
+
+
+  5   printResults(persons.getPersons().parallelStream()
+
+  6     .collect(new GroupAverageCollector()));
+
+
+  8   [. . .]
+
+
+  10   private static void printResults(Map results) {
+
+  11     System.out.println("");
+
+  12     for (int group : results.keySet()) {
+
+  13       System.out.println("Group: " + group + ";  avg: " + results.get(group));
+
+  14     }
+
+  15   }
+
+  清单 11-1.
+
+  准备输出
+
+  ```
+
+
+  回想一下本书开头介绍的数据结构。所有人员都包含一个购买列表。价格内部以“分”为单位存储，以避免浮点运算。为了使收集器保持精简，我们使用一个辅助类来累加“分”和人数，并计算平均值
+  = sum(分) / 100 / 人数。
+
+
+  ```
+
+  1   public class AverageBuilder {
+
+
+  3     private int _count;
+
+  4     private long _cents;
+
+
+  6     public int getCount() {
+
+  7       return _count;
+
+  8     }
+
+
+  10    public long getCents() {
+
+  11      return _cents;
+
+  12    }
+
+
+  14    public void add(long cents) {
+
+  15      _count++;
+
+  16      _cents += cents;
+
+  17    }
+
+
+  19    public void add(AverageBuilder other) {
+
+  20      _count += other.getCount();
+
+  21      _cents += other.getCents();
+
+  22    }
+
+
+  24    public double getAverage() {
+
+  25      return _cents / 100D / _count;
+
+  26    }
+
+  27   }
+
+  清单 11-2.
+
+  用于计算平均值的辅助类
+
+  ```
+
+
+  这个类包含两个 `add` 方法：一个用于添加一个人的支出，另一个用于合并两个 `AverageBuilder`。
+
+
+  在第 10 章中，我们从 `SummingUnit` 开始，它在收集器中被重用。本章使用的收集器并非基于这样的现有类。相反，它包含了用于累加、合并和完成转换的函数：
+
+
+  ```
+
+  1   public class GroupAverageCollector implements
+
+  2       Collector, Map> {
+
+
+  4     @Override
+
+  5     public Supplier> supplier() {
+
+  6       return () -> new HashMap();
+
+  7     }
+
+
+  9     @Override
+
+  10    public BiConsumer, Person> accumulator() {
+
+  11      return (m, p) -> add(m, p);
+
+  12    }
+
+
+  14    @Override
+
+  15    public BinaryOperator> combiner() {
+
+  16      return (left, right) -> {
+
+  17        combine(left, right);
+
+  18        return left;
+
+  19      };
+
+  20    }
+
+
+  22    @Override
+
+  23    public Function, Map> finisher() {
+
+  24      return m -> finish(m);
+
+  25    }
+
+
+  27    @Override
+
+  28    public Set characteristics() {
+
+  29      return EnumSet.of(Characteristics.UNORDERED);
+
+  30      // 没有 Characteristics.CONCURRENT!
+
+  31    }
+
+
+  33    private static void add(Map map, Person person) {
+
+  34      int group = person.getAge() / 10;
+
+  35      if (!map.containsKey(group)) {
+
+  36        map.put(group, new AverageBuilder());
+
+  37      }
+
+  38      long cents = person.getBuying().values()
+
+  39              .stream().mapToLong(a -> a.getAmount().getCents()).sum();
+
+  40      map.get(group).add(cents);
+
+  41    }
+
+
+  43    private static void combine(Map left,
+
+  44            Map right) {
+
+  45      for (int group : right.keySet()) {
+
+  46        if (!left.containsKey(group)) {
+
+  47          left.put(group, right.get(group));
+
+  48        } else {
+
+  49          left.get(group).add(right.get(group));
+
+  50        }
+
+  51      }
+
+  52    }
+
+
+  54    private static Map finish(Map map) {
+
+  55      Map result = new HashMap();
+
+  56      for (int group : map.keySet()) {
+
+  57        result.put(group, map.get(group).getAverage());
+
+  58      }
+
+  59      return result;
+
+  60    }
+
+
+  62 }
+
+  清单 11-3.
+
+  实现 accumulator、combiner 和 finisher 的 GroupAverageCollector
+
+  ```
+
+
+  第 2 行。此收集器接收 `Person` 类型的对象。它将值累加到 `Map<Integer, AverageBuilder>` 中，并返回 `Map<Integer,
+  Double>`。
+
+
+  第 6 行。`supplier` 为每个线程生成一个新的 `HashMap`，因为没有设置 `Characteristics.CONCURRENT`。
+
+
+  第 11 行。请记住，`accumulator`、`combiner` 和 `finisher` 不返回值，而是返回指向在此收集器中作为静态函数（方法）实现的函数的指针。
+
+
+  第 3 行。在此示例中，年龄组简单地通过整数除法计算。
+
+
+  第 39 行。所有购买记录都存储在一个列表中。我们使用流来累加“分”。
+
+
+  `combine` 函数将两个映射合并为一个，而 `finish` 函数将中间结果转换为所需的输出格式。作为 Java 开发人员，您应该能够理解所有这些函数。
+
+
+  由于我们没有使用 `Characteristics.CONCURRENT`，流框架会为每个线程创建一个新的映射。尽管是并行处理，但这些函数的实现方式与过去简单的顺序编程时代相同。
+
+
+  如果我们使用 `Characteristics.CONCURRENT` 会发生什么？在继续阅读之前，请思考一下这个问题。希望您能认识到所有的影响。
+
+
+  （花点时间思考一下）
+
+
+  如前所述，框架只会调用一次 `supplier`。它创建一个映射，供所有线程使用。首先，`HashMap` 不是线程安全的。这可以通过将其替换为 `ConcurrentHashMap`
+  轻松解决。但是，如果您运行该程序，将会得到不确定的结果。
+
+
+  `add` 方法是一个临界区。它可能随时被中断。并且它包含一个共享状态。这两者都可能导致如第 10 章所述的错误值。一个简单的解决方案是使 `add` 同步：
+
+
+  ```
+
+  1   private static synchronized void add(Map map, Person person) {...}
+
+  清单 11-4.
+
+  通过 synchronized 保护的临界区
+
+  ```
+
+
+  由于同步会降低性能，这通常不是一个好的选择。
+
+
+  ## 总结
+
+
+  在本章中，我讨论了一个真正“收集”数据的收集器。根据收集器的设计和特性，可以避免特殊的多线程处理。因此，无需显式同步、锁定等即可实现并行编程。但是，为了创建适合并行处理环境的类似顺序的程序，了解多线程陷阱的基础知识是必要的。
+
+
+  ## 最后的话
+
+
+  这本精简书籍的目的是向您展示 Java Lambda 和并行流的原理。它没有解释每一个细节，例如每个中间或终端操作。掌握了其原理后，通过查阅 API 文档来理解这些操作应该没有问题。一个很好的起点是
+  `java.util.stream` 包的文档（ [`https://docs.oracle.com/javase/8/docs/api/index.html?java/util/stream/package-summary.html`](https://docs.oracle.com/javase/8/docs/api/index.html?java/util/stream/package-summary.html)
+  ）。
+
+
+  开始您的旅程的最后一个提示：学习使用流的一个好方法是交互式地进行。Java 9 附带了一个交互式 shell，非常适合此目的。在撰写本文时，Java 9 已作为早期访问版本提供（
+  [`https://jdk9.java.net`](https://jdk9.java.net) ）。我不定期地撰写关于这个 shell 的博客（ [`http://blog.mueller-bruehl.de`](http://blog.mueller-bruehl.de)
+  ）。到目前为止的主要文章是“使用 jshell 进行交互式 Java 编程”（ [`http://blog.mueller-bruehl.de/netbeans/interactive-java-with-jshell`](http://blog.mueller-bruehl.de/netbeans/interactive-java-with-jshell)
+  ）。
+
+
+  现在是时候让您自己去探索 Lambda 和流的精彩世界了。我希望这本书对您来说相当有趣、易于理解且有价值。请让我知道！
+
+
+
+
+  ## 附录 A：创建演示数据的程序
+
+
+  要执行本书中提到的分析，你需要一些演示数据。这些数据是通过一个程序创建的，该程序将在后续页面中展示。此软件的开发初衷是快速生成数据，而非用于教学目的。因此，其设计比具有教学价值的程序更为简化。
+
+
+  ### 基础数据
+
+
+  该程序需要一些基础信息来创建数据。这些数据存储在四个 CSV（逗号分隔值）文件中（列表 A-1 至 A-4）。
+
+
+  ```
+
+  1   Andersson
+
+  2   Angelopoulos
+
+  3   Athanasiadis
+
+  4   Bakker
+
+  5   Bauer
+
+  6   Beck
+
+  7   Becker
+
+  8   Bernard
+
+  9   Bianchi
+
+  10   Borg
+
+  11   [...]演示数据 Surnames.csv
+
+  列表 A-1.
+
+  Surnames.csv
+
+  ```
+
+
+  ```
+
+  1   Aadhya
+
+  2   Aisha
+
+  3   Aline
+
+  4   Amelia
+
+  5   Ananya
+
+  6   Anette
+
+  7   Anika
+
+  8   Anja
+
+  9   Antje
+
+  10   Ashraqat
+
+  11   [...]
+
+  列表 A-2.
+
+  GivenNamesFemale.csv
+
+  ```
+
+
+  ```
+
+  1   Adam
+
+  2   Ahmet
+
+  3   Ali
+
+  4   Andreas
+
+  5   Aron
+
+  6   Ben
+
+  7   Bilal
+
+  8   Bram
+
+  9   Charlie
+
+  10   Christoph
+
+  11   [...]
+
+  列表 A-3.
+
+  GivenNamesMale.csv
+
+  ```
+
+
+  ```
+
+  1   CarSmall;15000;1;5
+
+  2   CarBig;80000;1;3
+
+  3   Bred;2.5;5;1000
+
+  4   Water;0.3;10;1000
+
+  5   Shirt;20;3;100
+
+  6   Butter;3;5;250
+
+  7   Milk;0.7;5;500
+
+  8   Book;30;5;80
+
+  9   Beer;1.5;10;600
+
+  10   Potatoes;1.90;10;900
+
+  11   [...]演示数据 Articles.csv
+
+  列表 A-4.
+
+  Articles.csv
+
+  ```
+
+
+  前三个文件仅包含姓名，而文章文件则需要稍作解释。每篇文章由四列组成：
+
+
+  *   名称
+
+  *   价格
+
+  *   单次购买最大数量
+
+  *   购买概率
+
+
+  这些（虚构的）数据用于模拟一种“真实”的购买行为。例如，汽车的价格远高于牛奶。另一方面，人们通常更频繁地购买牛奶，且购买量更大。
+
+
+  ### 文章
+
+
+  文件 `Articles.csv` 的每一行都将传递给 `Article` 类的构造函数。该行将被拆分为四个值，并分配给内部属性。除此之外，每篇文章都由一个文章编号定义，该编号在数据创建时分配。与生产环境中的软件不同，我们假设所有数据都是正确的。因此，此演示未实现任何检查。
+
+
+  ![A435427_1_En_BookBackmatter_Figa_HTML.jpg](img/A435427_1_En_BookBackmatter_Figa_HTML.jpg)
+  为简洁起见，以下类中省略了 `package` 和 `import` 指令（列表 A-5）。所需的导入将由现代 IDE 自动添加。例如，使用 NetBeans，你可以通过按
+  {Ctrl+Shift+I} 来执行此任务。
+
+
+  ```
+
+  1   public class Article {
+
+
+  3     private final int _articleNo;
+
+  4     private String _name;
+
+  5     private Money _price;
+
+  6     private int _maxSell;
+
+  7     private int _probability;
+
+
+  9     public Article(String articleData, int articleNo) {
+
+  10       _articleNo = articleNo;
+
+  11       try {
+
+  12         String[] parts = articleData.split(";");
+
+  13         _name = parts[0];
+
+  14         _price = new Money(parts[1]);
+
+  15         _maxSell = Integer.parseInt(parts[2]);
+
+  16         _probability = Integer.parseInt(parts[3]);
+
+  17       } catch (NumberFormatException e) {
+
+  18         System.out.println(e.getMessage());
+
+  19         throw e;
+
+  20       }
+
+  21     }
+
+
+  23     public String getName() {
+
+  24       return _name;
+
+  25     }
+
+
+  27     public void setName(String name) {
+
+  28       _name = name;
+
+  29     }
+
+
+  31     public Money getPrice() {
+
+  32       return _price;
+
+  33     }
+
+
+  35     public void setPrice(Money price) {
+
+  36       _price = price;
+
+  37     }
+
+
+  39     public int getMaxSells() {
+
+  40       return _maxSell;
+
+  41     }
+
+
+  43     public void setMaxSell(int maxSell) {
+
+  44       _maxSell = maxSellArticle.java;
+
+  45     }
+
+
+  47     public int getProbability() {
+
+  48       return _probability;
+
+  49     }
+
+
+  51     public void setProbability(int probability) {
+
+  52       _probability = probability;
+
+  53     }
+
+
+  55   }
+
+  列表 A-5.
+
+  Article.java
+
+  ```
+
+
+  在列表 A-5 的第 5 行，变量 `_price` 被声明为 `Money` 类型。此类将在下文展示。除此之外，该类主要由 getter 和 setter 方法组成。
+
+
+  如果文章被购买或出售，其数量和价格信息将被存储。价格不能通过数量乘以单价得出，因为价格可能因折扣而改变。
+
+
+  此信息存储在 ArticleInfo 中（列表 A-6）。
+
+
+  ```
+
+  1   public class ArticleInfo {
+
+  2     private final int _articleNo;
+
+  3     private long _quantity;
+
+  4     private Money _amount;
+
+
+  6     public ArticleInfo (int articleNo){
+
+  7       _articleNo = articleNo;
+
+  8       _amount = new Money();
+
+  9     }
+
+  10     public int getArticleNo() {
+
+  11       return _articleNo;
+
+  12     }
+
+
+  14     public long getQuantity() {
+
+  15       return _quantity;
+
+  16     }
+
+
+  18     public void setQuantity(long quantity) {
+
+  19       _quantity = quantity;
+
+  20     }
+
+
+  22     public Money getAmount() {
+
+  23       return _amount;
+
+  24     }
+
+
+  26     public void setAmount(Money amount) {
+
+  27       _amount = amountArticleInfo.java;
+
+  28     }
+
+
+  30     public void addQuantity (long quantity){
+
+  31       _quantity += quantity;
+
+  32     }
+
+  33     public void addPrice(long cents){
+
+  34       _amount.add(cents);
+
+  35     }
+
+  36   }
+
+  列表 A-6.
+
+  ArticleInfo.java
+
+  ```
+
+
+
+
+  ### 人员
+
+
+  在 `Person` 类中，不仅存储了姓名和年龄，还存储了购买记录——以及（如果是供应商）销售记录（清单 A-7）。对于后者，使用了 `ConcurrentHashMap`（而不是简单的
+  `HashMap`）。这是实现并行化的一个小前提（参见正文中的描述）。
+
+
+  ```
+
+  1   public class Person {
+
+
+  3     private String _givenName;
+
+  4     private String _surname;
+
+  5     private Gender _gender;
+
+  6     private int _age;
+
+  7     private Map _selling = new ConcurrentHashMap();
+
+  8     private Map _buying = new ConcurrentHashMap();
+
+  9     private int _discount;
+
+
+  11     public String getGivenName() {
+
+  12       return _givenName;
+
+  13     }
+
+
+  15     public void setGivenName(String givenName) {
+
+  16       _givenName = givenName;
+
+  17     }
+
+
+  19     public String getSurname() {
+
+  20       return _surname;
+
+  21     }
+
+
+  23     public void setSurname(String surname) {
+
+  24       _surname = surname;
+
+  25     }
+
+
+  27     public Gender getGender() {
+
+  28       return _gender;
+
+  29     }
+
+
+  31     public void setGender(Gender gender) {
+
+  32       _gender = genderPerson.java;
+
+  33     }
+
+
+  35     public boolean isFemale(){
+
+  36       return _gender == Gender.Female;
+
+  37     }
+
+
+  39     public int getAge() {
+
+  40       return _age;
+
+  41     }
+
+
+  43     public void setAge(int age) {
+
+  44       _age = age;
+
+  45     }
+
+
+  47     public boolean isVendor() {
+
+  48       return _selling.size() > 0;
+
+  49     }
+
+
+  51     public int getDiscount() {
+
+  52       return _discount;
+
+  53     }
+
+
+  55     public void setDiscount(int discount) {
+
+  56       _discount = discount;
+
+  57     }
+
+
+  59     public Map getSelling() {
+
+  60       return _sellingPerson.java;
+
+  61     }
+
+
+  63     public void setSelling(Map selling) {
+
+  64       _selling = selling;
+
+  65     }
+
+
+  67     public Map getBuying() {
+
+  68       return _buying;
+
+  69     }
+
+
+  71     public void setBuying(Map buying) {
+
+  72       _buying = buying;
+
+  73     }
+
+
+  75   }
+
+  清单 A-7.
+
+  Person.java
+
+  ```
+
+
+  所有这些人员都保存在 `Persons` 类的一个实例中。该类还包含一些用于创建所有人员的特性（清单 A-8）。
+
+
+  ```
+
+  1   public class Persons {
+
+
+  3     private final static int PersonCount = 50000;
+
+  4     private final Random _random = new SecureRandom();
+
+  5     private final static Persons _instance = new Persons();
+
+  6     private final List _persons = new ArrayList();
+
+
+  8     public List getPersons() {
+
+  9       return _persons;
+
+  10     }
+
+
+  12     private final List _sellers = new ArrayList();
+
+
+  14     private Persons() {
+
+  15       for (int i = 0; i  surNames = DataProvider.getInstance().getSurNames();
+
+  35       person.setSurname(surNames.get(_random.nextInt(surNames.size())));
+
+  36       Map givenNameInfos = DataProvider.getInstance()
+
+  37           .getGivenNames();
+
+  38       List givenNames = givenNameInfos.keySet()
+
+  39               .stream().collect(Collectors.toList());
+
+  40       person.setGivenName(givenNames.get(_random.nextInt(givenNames.size())));
+
+  41       person.setGender(givenNameInfos.get(person.getGivenName()));
+
+  42       person.setAge(15 + _random.nextInt(80));
+
+  43       if (_random.nextInt(100) == 0) {
+
+  44         makeVendor(person);
+
+  45       }
+
+  46       return person;
+
+  47     }
+
+
+  49     private void makeVendor(Person person) {
+
+  50       person.setDiscount(_random.nextInt(5) * 5);
+
+  51       Map selling = person.getSelling()Persons.java;
+
+
+  53       for (int i = 0; i  selling = seller.getSelling();
+
+  72       Map buying = buyer.getBuying();
+
+  73       Object[] articleNumbers = selling.keySet().toArray();
+
+  74       int index = _random.nextInt(articleNumbers.length);
+
+  75       int articleNo = (int) articleNumbers[index];
+
+  76       Article article = DataProvider.getInstance()
+
+  77               .getArticles().get(articleNo);
+
+
+  79       if (_random.nextInt(1000) < article.getProbability()
+
+  80                                  + seller.getDiscount() / 5)Persons.java {
+
+  81         int quantity = 1 + _random.nextInt(article.getMaxSells());
+
+  82         long price = quantity * article.getPrice().getCents()
+
+  83                       * (100 - seller.getDiscount()) / 100;
+
+  84         ArticleInfo infoSelling = selling.get(articleNo);
+
+  85         infoSelling.setQuantity(infoSelling.getQuantity() + quantity);
+
+  86         infoSelling.getAmount().add(price);
+
+  87         ArticleInfo infoBuying = buying.containsKey(articleNo)
+
+  88                 ? buying.get(articleNo)
+
+  89                 : new ArticleInfo(articleNo);
+
+  90         infoBuying.addQuantity(quantity);
+
+  91         infoBuying.addPrice(price)Persons.java;
+
+  92         buying.put(articleNo, infoBuying);
+
+  93       }
+
+  94     }
+
+  95   }
+
+  清单 A-8.
+
+  Persons.java
+
+  ```
+
+
+
+
+  ### 其他类
+
+
+  ```
+
+  1   public enum Gender {
+
+  2     Male,
+
+  3     Female;
+
+  4   }
+
+  代码清单 A-9.
+
+  Gender.java
+
+  ```
+
+
+  金额由欧元和分（美元和分……）组成。浮点数或双精度浮点数在表示此类精确数据时存在问题，且对于我们的需求来说过于繁琐。为了演示 Lambda 表达式和流，我们创建了一个简单的
+  `Money` 类，该类内部使用分来存储所有金额（参见代码清单 A-10）。因此，它可以利用整数（更精确的 long 值）进行计算。
+
+
+  ```
+
+  1   public class Money {
+
+
+  3     private long _cents;
+
+
+  5     Money() {
+
+  6       _cents = 0;
+
+  7     }
+
+
+  9     Money(String value) {
+
+  10       setValue(value);
+
+  11     }
+
+
+  13     public long getCents() {
+
+  14       return _cents;
+
+  15     }
+
+
+  17     public void setCents(long cents) {
+
+  18       _cents = cents;
+
+  19     }
+
+
+  21     public String getValue() {
+
+  22       return _cents / 100 + "." + _cents % 100;
+
+  23     }
+
+
+  25     public void setValue(String value) {
+
+  26       int pos = value.indexOf(".");
+
+  27       if (pos == -1) {
+
+  28         _cents = 100 * Long.parseLong(value);
+
+  29       } else {
+
+  30         _cents = 100 * Long.parseLong(value.substring(0, pos));
+
+  31         String decimals = value.substring(pos + 1) + "00";
+
+  32         _cents += Long.parseLong(decimals.substring(0, 2));
+
+  33       }
+
+  34     }
+
+
+  36     public void add (long cents){
+
+  37       _cents += centsMoney.java;
+
+  38     }
+
+  39   }
+
+  代码清单 A-10.
+
+  Money.java
+
+  ```
+
+
+  `DataProvider` 用于从四个文件中读取示例数据（代码清单 A-11）。
+
+
+  ```
+
+  1   public class DataProvider {
+
+
+  3     private static final DataProvider _instance = new DataProvider();
+
+  4     private List _surNames = new ArrayList();
+
+  5     private final Map _givenNames = new HashMap();
+
+  6     private final Map _articles = new HashMap();
+
+
+  8     public static DataProvider getInstance() {
+
+  9       return _instance;
+
+  10     }
+
+
+  12     private DataProvider() {
+
+  13       init();
+
+  14     }
+
+
+  16     public List getSurNames() {
+
+  17       return _surNames;
+
+  18     }
+
+
+  20     public Map getGivenNames() {
+
+  21       return _givenNames;
+
+  22     }
+
+
+  24     public Map getArticles() {
+
+  25       return _articles;
+
+  26     }
+
+
+  28     private void init() {
+
+  29       try {
+
+  30         _surNames = readFile("Surnames.csv");
+
+  31         readFile("GivenNamesFemale.csv").stream()
+
+  32                   .forEach(n -> _givenNames.put(n, Gender.Female));
+
+  33         readFile("GivenNamesMale.csv").stream()
+
+  34                   .forEach(n -> _givenNames.put(n, Gender.Male));
+
+  35         int articleNo = 0;
+
+  36         for (String line : readFile("Articles.csv")) {
+
+  37           if (!line.trim().isEmpty()) {
+
+  38             articleNo++;
+
+  39             Article article = new Article(line, articleNo);
+
+  40             _articles.put(articleNo, article);
+
+  41           }
+
+  42         };
+
+  43       } catch (IOException ex) {
+
+  44         Logger.getLogger(DataProvider.class.getName())
+
+  45                 .log(Level.SEVERE, null, ex);
+
+  46       }
+
+  47     }DataProvider.java
+
+
+  49     private List readFile(String fileName) throws IOException {
+
+  50       List lines = new ArrayList();
+
+  51       try (InputStream is = getClass().getResourceAsStream(fileName);
+
+  52               BufferedReader reader = new BufferedReader(new InputStreamReader\
+
+  53   (is));) {
+
+  54         String line;
+
+  55         while ((line = reader.readLine()) != null) {
+
+  56           lines.add(line);
+
+  57         }
+
+  58       }
+
+  59       return linesDataProvider.java;
+
+  60     }
+
+  61   }
+
+  代码清单 A-11.
+
+  DataProvider.java
+
+  ```
+
+
+  ### 演示程序
+
+
+  以下 main 方法展示了如何调用数据生成并执行分析（参见代码清单 A-12）。你可以使用此框架来执行你自己的 Lambda 表达式和流实验。
+
+
+  ```
+
+  1   public class StreamsDemo {
+
+
+  3     public static void main(String[] args) {
+
+  4       System.out.println("started");
+
+  5       Persons persons = Persons.getInstance();
+
+  6       System.out.println("created " + persons.getPersons().size()
+
+  7                           + " persons.");
+
+
+  9       showAverage(persons.getPersons());
+
+
+  11       [... many other show cases ...]
+
+  12     }
+
+
+  14     private static void showAverage(List persons) {
+
+  15       double averageAge = persons.stream()
+
+  16               .filter(p -> p.getAge() < 20 && p.isFemale())
+
+  17               .mapToInt(Person::getAge)
+
+  18               .average()
+
+  19               .getAsDouble();
+
+  20       System.out.println("averageAge: " + averageAge);
+
+  21     }
+
+  22   }
+
+  代码清单 A-12.
+
+  StreamsDemo.java
+
+  ```
+
+
+  此演示的源代码可在 [webdevelopment-java.​info](http://webdevelopment-java.info) 获取。¹
+
+
+  索引 A 匿名类 API 文档 ArticleInfo.java Article.java Articles.csv AverageBuilders B 行为参数化
+  C 中央处理器 (CPU) 类 Money collect() 方法 特性 CONCURRENT 函数 lambda 参数 重载 SummingCollector
+  SummingUnit 技术领域 类型 Collector 与并发 Java 并发 数字生成器 ConcurrentHashMap ctor SummingUnit
+  D, E 数据 销售与购买 结构 DataProvider.java 数据转换 默认方法 二进制兼容性 “同名”方法 接口 Java 虚拟机 规则 演示数据 Articles.csv
+  列 CSV 逗号 GivenNamesFemale.csv GivenNamesMale.csv Surnames.csv F 过滤 函数式接口 G get()
+  getAsDouble() GroupingCollector 平均支出 特性 数据结构 函数 交互式 shell Java 开发者 输出 Person 人员计数
+  共享状态 流框架 流 同步 H HashMap hasNext() I 整数 J, K Java 并发 计算 类 combine() CPU 执行顺序 中间操作
+  Java 的 限定符 并行流 并行求和 参数 序列 语法糖 技术类 用法 线程 Java 开发工具包 (JDK) Java lambda 表达式 L Lambda
+  表达式 条件 接口 执行时间 女性人员 Java 8 测量 方法 Lambdas 表达式 表示法 Lambdas 与 (并行) 流 语言集成查询 M .mapToLong(…))
+  方法 get() Money.java N 空值 O Optional 类 OptionalDouble OptionalInt OptionalLong Optional<T>
+  orElse() P, Q parallel() 并行处理 并行编程 并行流 二元函数 计算 演示 元素 函数式编程 lambda 表达式。 处理 编程 顺序变体
+  参数化 Person.java person.stream() 流水线 R reduce() 方法 run() 方法 S someCondition() someOther-Condition()
+  Spliterator hasNext() 实现 next()。 线程 tryAdvance trySplit start() 方法 stream() 流 lambda
+  表达式 mapToLong(…)) 流处理 辅助条件 计算 收集到列表 具体解决方案 显式中间结果 中间操作 内部迭代器 映射 处理链 单个处理步骤 中间与终端操作。
+  传统方法 变体 供应商 StreamsDemo.java StreamSupport.stream SummingUnit T, U 目标列表 V, W, X,
+  Y, Z 变量 _price 脚注 1
+
+
+  [`http://webdevelopment-java.info`](http://webdevelopment-java.info)
+
+  '
