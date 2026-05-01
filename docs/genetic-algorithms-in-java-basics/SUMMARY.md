@@ -1,0 +1,8 @@
++   [Java 遗传算法基础](README.md)
++   [为什么选择遗传算法？](genetic-algorithms-in-java-basics_0.md)
++   [引言](genetic-algorithms-in-java-basics_1.md)
++   [基础遗传算法的实现](genetic-algorithms-in-java-basics_2.md)
++   [机器人控制器](genetic-algorithms-in-java-basics_3.md)
++   [旅行商问题](genetic-algorithms-in-java-basics_4.md)
++   [课程排课](genetic-algorithms-in-java-basics_5.md)
++   [优化](genetic-algorithms-in-java-basics_6.md)

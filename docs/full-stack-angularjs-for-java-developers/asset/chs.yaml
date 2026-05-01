@@ -1,0 +1,3433 @@
+- "\n\n![](img/A978-1-4842-3198-2_CoverFigure.jpg)\n\n![A978-1-4842-3198-2_CoverFigure.jpg](img/A978-1-4842-3198-2_CoverFigure.jpg)**拉维·坎特·索尼**\
+  \ 著《面向 Java 开发者的全栈 AngularJS》——使用 AngularJS 与 Spring RESTful 从零构建功能完备的 Web 应用\n\n\
+  ![A436970_1_En_BookFrontmatter_Figa_HTML.png](img/A436970_1_En_BookFrontmatter_Figa_HTML.png)\n\
+  \n本书作者引用的任何源代码或其他补充材料，读者均可通过本书产品页面在 GitHub 上获取，网址为 [`www.apress.com/978-1-4842-3197-5`](http://www.apress.com/978-1-4842-3197-5)。如需更详细信息，请访问\
+  \ [`www.apress.com/source-code`](http://www.apress.com/source-code)。ISBN 978-1-4842-3197-5\
+  \  \n电子版 ISBN 978-1-4842-3198-2  \n[`doi.org/10.1007/978-1-4842-3198-2`](https://doi.org/10.1007/978-1-4842-3198-2)\
+  \  \n美国国会图书馆控制号：2017962309  \n© 拉维·坎特·索尼 2017  \n本作品受版权保护。出版商保留所有权利，无论涉及全部或部分材料，具体包括翻译、重印、插图复用、朗诵、广播、微缩胶片或其他任何物理形式的复制、传输或信息存储与检索、电子改编、计算机软件，或目前已知或未来开发的任何类似或不同方法。本书中可能出现商标名称、徽标和图像。对于每个出现的商标名称、徽标或图像，我们仅以编辑方式使用，并旨在维护商标所有者的权益，无意侵犯商标。本书中使用的商品名称、商标、服务标志及类似术语，即使未明确标识，也不应被视为对其是否受专有权利保护的立场表达。尽管本书中的建议和信息在出版时被认为是真实准确的，但作者、编辑和出版商均不对可能存在的任何错误或遗漏承担法律责任。出版商对本书所含材料不作任何明示或暗示的担保。\
+  \  \n本书采用无酸纸印刷  \n由 Springer Science+Business Media New York 向全球图书贸易发行，地址：233 Spring\
+  \ Street, 6th Floor, New York, NY 10013。电话：1-800-SPRINGER，传真：(201) 348-4505，电子邮件：orders-ny@springer-sbm.com，或访问\
+  \ www.springeronline.com。  \nApress Media, LLC 是一家加利福尼亚有限责任公司，其唯一成员（所有者）是 Springer\
+  \ Science + Business Media Finance Inc (SSBM Finance Inc)。SSBM Finance Inc 是一家特拉华州公司。\
+  \  \n献给我的父亲斯里·拉斯·比哈里·普拉萨德 与 我的母亲斯姆特·马诺玛·德维  \n我爱你们，爸爸和妈妈。没有你们真挚的爱和最温暖的支持，本书的完成将不可能实现。\
+  \  \n献给我美丽而挚爱的妻子索尼娅·辛格夫人  \n没有你，我将一无是处。你总是给予安慰和鼓励，从不抱怨或干涉，无所索取，忍受一切。我爱你，我的甜心，索尼娅。\
+  \  \n致谢\n\n撰写一本技术书籍需要深不可测的研究、审阅、支持，以及在我全职工作之余最宝贵的时间。在此感谢所有帮助我完成本书的人：\n\n首先，我要感谢女神“玛阿·塔拉·钱迪”赐予我如此之多。\n\
+  \n没有家人的爱、坚定支持和理解，这本书将始终只是一个虚拟的构想。我深深感谢我的家人——我的母亲斯姆特·马诺玛·德维和我的父亲斯里·拉斯·比哈里·普拉萨德，我的舅舅苏雷什·索尼和纳雷什·卡什亚普，我的岳父斯里·贾伊·纳拉扬·辛格和岳母斯姆特·普拉米拉·德维——感谢他们在本书写作期间给予的爱与支持。\n\
+  \n我特别感谢一位在我生命中始终如磐石般稳定的人，他的慈爱精神至今支撑着我——我的叔叔斯里·阿伦·库马尔·索尼，他给予我巨大的激励，使我在生活中取得所有成功；同时特别感谢我的婶婶斯姆特·兰朱·德维。\n\
+  \n我还要感谢我挚爱的妻子索尼娅·辛格夫人，在我父母之后，让我生活变得美好的人就是你。\n\n同样感谢我最亲爱的兄弟沙希·康德和斯里·康德，以及我最可爱的妹妹纳姆拉塔·索尼——她一直爱着我。还要感谢我的表亲科马尔、楚尔比利、布尔楚利、里希和米图。\n\
+  \n并感谢索拉布·库马尔·辛格和萍琪·辛格。\n\n我最深切的感激和赞赏献给我最亲爱的朋友，阿瓦尼什·库马尔，印度行政服务官员——安达曼和尼科巴群岛尼科巴地区的地区行政长官；他期望并鼓励我将知识付诸文字，以启迪他人。还要感谢我最亲爱的朋友阿洛克·库马尔——思科公司软件工程师四级；以及纳根德拉·库马尔——Facebook\
+  \ 公司工程主管，他们给予我积极的想法，如同燃料般推动我前行。\n\n我要感谢 Apress 出版团队，感谢他们的帮助和极致的专业精神。特别感谢开发编辑劳拉·贝伦德森和协调编辑普拉奇·梅塔，她们的知识横跨令人惊叹的领域，没有她们，这本书将不可能完成。\n\
+  \n我衷心感谢 Apress 委托的审稿人，感谢他们宝贵的意见。\n\n最后但同样重要的是，我感谢每一位在本书写作过程中以各种方式支持我的人。\n\n欢迎阅读《面向\
+  \ Java 开发者的全栈 AngularJS》。\n\n——拉维·坎特·索尼\n\n\n目录 第 1 章：全栈 Web 开发全景图 1 什么是全栈开发者？ 1\
+  \ 全栈 Web 开发 3 现代 Web 应用架构 4 前端 vs. 后端 6 前端框架 7 AngularJS 作为前端框架 7 Twitter Bootstrap\
+  \ 10 后端框架 10 Spring Boot 作为后端框架 10 小结 27 第 2 章：为你的应用创建 RESTful 层 29 REST 简介 29 HTTP\
+  \ 方法与 CRUD 操作 29 HTTP 状态码 30 构建 RESTful 服务：用户注册系统 30 用户注册系统介绍 30 识别 REST 端点 31 JSON\
+  \ 格式 31 创建用户注册系统应用 32 嵌入式数据库：H2 33 领域实现：用户 33 仓库实现：UserJpaRepository 34 构建 RESTful\
+  \ API 35 处理 RESTful API 中的错误 43 用户注册系统错误处理 43 验证请求体 47 小结 60 第 3 章：搭建 AngularJS：创建你的单页应用\
+  \ 61 AngularJS 作为前端框架介绍 61 AngularJS 基本组件 62 AngularJS 生命周期 62 AngularJS 架构概念 63\
+  \ 搭建开发环境 66 将 AngularJS 添加到 Spring Boot 66 将 Twitter Bootstrap 添加到 Spring Boot 69\
+  \ 开发你的单页应用 69 引导应用 70 依赖注入 70 AngularJS 路由 71 AngularJS 模板 71 在单页应用中实现模型、视图和控制器\
+  \ 72 在 STS 中运行 Spring Boot 应用 86 小结 92 第 4 章：使用 Spring Security 保护你的 RESTful API\
+  \ 93 Spring Security 介绍 93 认证与授权 93 基本认证介绍 94 BasicAuthenticationFilter 94 在 RESTful\
+  \ 服务上启用 Spring Security 94 什么是 Spring Boot Security Starter？ 95 使用 Spring Security\
+  \ 依赖更新 pom.xml 文件 95 覆盖 Spring Security 默认配置 98 自定义用户认证 100 使用内存定义进行认证自定义 101 针对关系型数据库进行认证自定义\
+  \ 107 小结 113 第 5 章：使用 AngularJS 消费受保护的 RESTful 服务 115 在 Spring Security 中启用基本认证\
+  \ 115 在 AngularJS 中为每个请求发送授权头 117 在 AngularJS 中添加 HTTP 拦截器 117 更新 app.js 119 更新\
+  \ index.html 119 运行应用 120 登录页面 122 更新 index.html：添加导航到欢迎页面 123 更新 app.js：添加导航到 Angular\
+  \ 应用 124 创建 login.html：登录表单 125 更新 controller.js 以处理登录和注销认证流程 127 更新后端代码 129 运行应用\
+  \ 131 小结 133 第 6 章：构建 RESTful 客户端并测试 RESTful 服务 135 使用 RestTemplate 构建 REST 客户端\
+  \ 135 RestTemplate 135 RestTemplate 操作 136 RestTemplate Exchange API 143 使用 RestTemplate\
+  \ 进行基本认证 144 使用 Spring 测试框架测试 RESTful 服务 145 什么是测试？ 145 使用 JUnit4 进行测试 146 敏捷软件测试\
+  \ 149 单元测试 150 集成测试 151 测试 Spring Boot 应用 152 Maven 依赖 152 Spring 测试中的注解 152 REST\
+  \ 控制器单元测试 154 使用 Spring MVC 测试框架测试 Web 层 156 小结 160 第 7 章：使用 Spring Boot Actuator\
+  \ 进行应用监控 161 Spring Boot Actuator 介绍 162 启用 Actuator 模块 162 Actuator 端点 163 /info\
+  \ 164 /env 165 /metrics 165 /trace 167 /health 168 自定义 Actuator 端点 168 可自定义的属性 169\
+  \ 自定义健康指标 170 定义新端点 172 通过 HTTP 进行管理 173 自定义服务器端口 173 访问敏感端点 174 小结 174 附录 A：访问\
+  \ REST API 的工具 175 API 测试 175 API 测试工具 175 Postman 175 索引 185 关于作者与技术审校者 关于作者 关于技术审校者\n\
+  \n\n\n"
+- "# 1. 全栈 Web 开发的宏观图景\n\n全栈 Web 开发让你能够探索最佳的工具和框架，同时让你的应用程序在设计、可扩展性、健壮性和安全性等不同方面都变得稳固可靠。\n\
+  \n在本章中，我将概述全栈 Web 开发的宏观图景，并讨论现代应用程序的架构，以打破“开发孤立的桌面和移动应用是一种好方法”这一迷思。我将讨论作为前端框架的 AngularJS\
+  \ 和作为后端框架的 Spring Boot。我还将展示如何将 Spring Boot 设置为开发环境。然后，你将开发你的第一个 Spring Boot 应用程序并运行它。最后，你将使用\
+  \ Spring Boot Actuator 监控你的 Spring Boot 应用程序。\n\n## 什么是全栈开发者？\n\n每当有人告诉你他们是全栈开发者时，你可能会问的第一个问题是：“你是哪种全栈开发者？”\
+  \ 问题是，如今当你从事 Web 开发时，你必须使用大量的工具。技术栈已经变得比以前更庞大了。\n\n如今的公司更倾向于雇佣那些足够灵活、能够处理各种事务的工程师，而不是那些只精通单一技术的人。最终目标是，你将能够编写\
+  \ Java 代码、使用 Angular、编写数据库脚本、编写 CSS 等等。事实上，几年前，说自己是全栈开发者很容易，但今天，你必须同时处理 Java、AngularJS、Bootstrap、CSS、数据库脚本以及多种数据库，而且你还需要了解内容交付、部署以及如何发布到\
+  \ Amazon Web Services 集群。不用说，同时管理所有这些事情是很复杂的。我甚至还没有提到设计 UI 和创建移动应用等领域。所以，当你说自己是全栈开发者时，需要了解的东西非常多。\n\
+  \n全栈开发者是对所有这些主题都略知一二，还是精通所有？很多时候，全栈开发者被认为是“万金油”，但样样不精。因此，最好明确自己是哪种类型的全栈开发者。\n\n\
+  成为一名全栈开发者意味着你基本上需要成为一个连接者。所以，即使你只擅长某一套技能，你也可以准备好你的工作成果以便交付，这样另一个人就能在另一端接手他们的工作，并知道如何接收它。这就是全栈开发者非常有价值的地方。\n\
+  \n但是，找到一位优秀的全栈开发者的几率极低。问题是，初创公司总是需要一位能够关注所有方面的全栈开发者，而初创公司总是急于不惜重金雇佣全栈开发者。\n\n行业中全栈开发者的定义是：一位精通从客户端编码（如\
+  \ HTML、CSS 和 AngularJS）到服务器端（如 Java 和 Spring Boot）所有方面，并且对各种数据库（包括 RDBMS 和 NoSQL\
+  \ 数据库系统）都有经验的工程师。因此，一个全栈 Web 开发者应该对客户端和服务器端技术都有良好的实践经验，如图 1-1 所示。\n\n![A436970_1_En_1_Fig1_HTML.jpg](img/A436970_1_En_1_Fig1_HTML.jpg)\n\
+  \n图 1-1.\n\n客户端和服务器端技术\n\n全栈开发者负责确保系统的每个部分都能平稳运行。开发者应具备以下方面的专业知识：\n\n*   设计用户界面\n\
+  *   在服务器端开发业务逻辑和服务层\n*   处理关系型和非关系型数据库\n*   处理 API 交互\n*   通过编程方式使用身份验证和授权来保护应用程序\n\
+  *   确保质量保证\n*   理解业务需求和客户需求\n\n除此之外，全栈开发者还必须知道如何进行基本的服务器管理，在必要时承担服务器管理员或 DevOps\
+  \ 的角色。\n\n*   通过命令或终端连接到云服务器，并访问诸如 `putty` 之类的工具\n*   管理用户和组的集合与子集\n*   在指定的服务器环境中进行基本的\
+  \ Shell 脚本编写\n*   理解 Apache 和 Nginx 服务器程序\n*   管理防火墙和权限\n*   安装、更新和管理服务器端软件、包和库\n\
+  \n此外，随着云基础设施的发展，全栈开发者应该了解平台即服务（PaaS）和软件即服务（SaaS）模型、Amazon Web Services 以及 IBM Bluemix。\n\
+  \n本节内容全是关于成为一名全栈 Web 开发者。让我们在下一节深入探讨全栈开发的宏观图景。\n\n## 全栈 Web 开发\n\n技术栈是构成应用程序的工具和组件的组合。在\
+  \ Web 应用程序中，组件可以位于前端（HTML、CSS、JavaScript/jQuery）或后端（服务器操作、逻辑层和数据库）。请注意，由于数据库即服务（DaaS）的出现，如今数据库可以放在一个单独的部分，而不是服务器端操作中。\n\
+  \n全栈 Web 开发意味着能够自如地处理前端和后端技术。简单来说，全栈开发涵盖了使用 HTML/CSS、JavaScript/jQuery 以及诸如 AngularJS\
+  \ 和 Bootstrap 等框架进行的客户端开发。\n\n对于服务器端开发，它涵盖了诸如 Java 等编程语言、诸如 Spring Boot 等框架、诸如 PostgreSQL\
+  \ 或 Oracle 或任何其他数据库，以及介于两者之间的所有内容。\n\n客户端和服务器端之间的通信通过 RESTful API 和 HTTP 进行，如图 1-2\
+  \ 所示。让我们在下一节讨论现代 Web 应用程序的架构。\n\n![A436970_1_En_1_Fig2_HTML.jpg](img/A436970_1_En_1_Fig2_HTML.jpg)\n\
+  \n图 1-2.\n\n客户端与服务器之间的通信\n\n\n\n## 现代 Web 应用的架构\n\n在 Web 早期，并不存在 Web 应用。我们只有充满静态内容和图片的网站。这种方式有利有弊。\n\
+  \n以下是一些优点：\n\n*   服务器端的计算开销非常低。\n*   由于数据是静态的，且对众多 ISP 和服务提供商来说不会改变，因此内容本身具有很高的可缓存性。\n\
+  \n以下是一些缺点：\n\n*   更新内容很困难。\n*   没有个性化，所有用户获得的体验相同。\n*   与当今的应用相比，用户界面通常很差。\n\nCGI\
+  \ 通过使用脚本语言实现动态内容创建，引发了一场革命。其缺点是计算开销相对较高，并且要求你成为 HTML 和服务器端脚本语言的专家。\n\n随后，JavaScript\
+  \ 出现了，它首次使页面具备了动态能力。它主要用于非常基础的脚本编写，例如验证表单或显示弹窗广告。它增强了可用性，并减少了因基础验证而导致的与服务器的往返通信。缺点是你必须将业务逻辑实现两次：一次在客户端，一次在服务器端。因此，我们提出了现代\
+  \ Web 应用的架构。\n\n在本节中，我将讨论现代应用的架构，以打破“开发独立的桌面和移动应用是正确方向”这一迷思。现代 Web 应用专注于构建分布式后端基础设施，通过\
+  \ RESTful API 在 Web 上提供内容并服务于前端客户端，如图 1-3 中 Web 应用的分层架构所示。\n\n![A436970_1_En_1_Fig3_HTML.jpg](img/A436970_1_En_1_Fig3_HTML.jpg)\n\
+  \n图 1-3.\n\n现代 Web 应用的分层架构\n\n当你想要与页面上的多个组件交互，而这些组件又包含许多中间组件时，让所有中间组件都实现服务器端渲染会变得很困难。与传统的服务器端架构相比，这里的主要思想是将服务器构建为一组无状态、可复用的\
+  \ REST 服务。从模型-视图-控制器（MVC）的角度来看，控制器已从后端移除并移到了客户端。因此，现在客户端能够使用 MVC 架构。客户端拥有一个独立的视图层，包含所有展示逻辑。它还有独立的前端服务层和控制器层。\n\
+  \n在应用初始启动时，只有 JSON 数据通过 RESTful API 在客户端和服务器之间传输。整个业务逻辑将暴露为 REST 端点，供 Angular 服务消费。这样做的好处是，当你的\
+  \ Web 应用有对应的移动应用时，你可以直接消费这些 RESTful 服务，而无需为移动应用在服务器端编写任何额外的代码。\n\nREST 代表表述性状态转移，它是一种架构风格，是对具体事物的一种抽象。它是当今\
+  \ Web 运作的架构。你将在第 2 章中更详细地学习 RESTful API，届时你将为自己的应用创建 RESTful 层。\n\n## 前端 vs. 后端\n\
+  \n当你开发一个 Web 应用时，你主要将开发过程分为两部分：前端和后端。当你谈论 Web 应用或移动应用时，基本上关注的是前端开发。当你使用任何 Web 应用或浏览器时，你输入地址，网站会打开包含文本、图片、表单和不同交互元素等多个元素的页面。图\
+  \ 1-4 展示了前端和后端的物理视图。\n\n![A436970_1_En_1_Fig4_HTML.jpg](img/A436970_1_En_1_Fig4_HTML.jpg)\n\
+  \n图 1-4.\n\n前端和后端的物理视图\n\n如果你使用移动应用，你会看到不同的元素、列表视图等。这些应用会出现在客户端。因此，无论你使用的是笔记本电脑、移动设备，还是浏览器或移动应用，你都会接触到完整应用的客户端部分。\n\
+  \n所有用户数据都存储在数据库中。所有业务逻辑和安全数据都存储在服务器上。服务器接收来自 Web 应用或移动应用的请求，处理这些请求，从数据库或文件服务器中获取必要的信息，并将其发送回前端应用。所以，基本上，后端存储信息，前端展示信息。\n\
+  \n设计师和开发者通常使用框架来构建网站和应用的雏形，因为从头开始构建应用或网站需要花费大量时间。\n\n软件框架被定义为：一组预定义的可复用模块，可以实现这些模块以更好、更快地完成指定任务。因此，一个软件框架总是包含库、编译器以及多个\
+  \ API，用于开发特定的企业级 Web 应用。一个优秀的全栈开发者应该知道哪个框架最适合他们那套应用的实现。\n\n以下是一些流行的软件框架：\n\n*  \
+  \ AngularJS（用于 UI/前端开发）\n*   Ionic（用于混合移动应用原型设计和开发）\n*   Pure MVC 框架（应用开发框架）\n*\
+  \   Selenium（Web 测试框架）\n\n在计算机编程中，软件框架是一种抽象，其中提供通用功能的软件可以通过额外的用户编写代码进行选择性更改，从而提供特定于应用的软件。\n\
+  \n## 前端框架\n\n前端涉及用户看到的一切，包括设计以及 HTML 和 CSS 等语言。前端代码的主要目的是与用户交互，并以定义良好的样式呈现数据。\n\n\
+  在构建前端应用时，有非常多令人惊叹的 JavaScript 库可供使用。有时，选择一个单一的项目可能会有点棘手。前端就是让 Web 应用看起来和用起来都“性感”的所有东西。这些前端内容包括\
+  \ HTML、CSS 和 JavaScript。在本书中，你将使用 AngularJS 作为前端开发框架。我将在本章后面更详细地介绍 AngularJS。\n\n\
+  ### AngularJS 作为前端框架\n\nAngularJS 是一个用 JavaScript 编写的库，用于 Web 应用开发。它解决了单页应用（SPA）的挑战。一个\
+  \ AngularJS Web 应用遵循 MVC 设计模式，从而开发出可扩展、可维护、可测试且标准化的 Web 应用。AngularJS 的数据绑定和依赖注入使其成为任何服务器技术的理想搭档，因为它消除了许多你原本必须编写的代码，并且这一切都发生在浏览器内部。\n\
+  \n#### AngularJS 版本\n\nAngularJS 通常被称为 Angular.js，有时也称为 AngularJS 1.x。AngularJS\
+  \ 是一个基于 JavaScript 的开源前端 Web 应用开发框架，主要由 Google 维护。\n\n现在，Angular 4.0.0 已经可用，并且对于大多数应用来说，它与\
+  \ 2.x.x 版本向后兼容。这个新版本包含一些新特性，例如将动画包从核心中分离出来，放入其自己的包中，以及改进了支持`if/else`风格的`ngIf`等。\n\
+  \n\n\n#### AngularJS 架构概念\n\n现在，你将了解 AngularJS 的架构概念。当一个 HTML 文档被加载到浏览器并由浏览器解析时，会发生以下过程：\n\
+  \n1.  AngularJS JavaScript 文件被加载，并创建 Angular 全局对象。注册控制器函数的 JavaScript 文件被执行。\n2.\
+  \  AngularJS 扫描 HTML 以查找 AngularJS 应用和视图，并找到与视图对应的控制器函数。\n3.  AngularJS 执行控制器函数，并使用由控制器填充的模型中的数据更新视图。\n\
+  4.  AngularJS 监听浏览器事件，例如按钮点击、鼠标移动、输入字段变化等。如果这些事件中的任何一个发生，AngularJS 将相应地更新视图。\n\n\
+  图 1-5 展示了 AngularJS 的工作流程图。\n\n![A436970_1_En_1_Fig5_HTML.jpg](img/A436970_1_En_1_Fig5_HTML.jpg)\n\
+  \n图 1-5.\n\nAngularJS 工作流程图\n\nAngularJS 包含模块，这些模块充当不同类型应用的容器，例如视图、控制器、指令、服务等。模块指定了应用如何被引导启动。然后，你还有一个配置组件。\n\
+  \n路由用于将 URL 链接到控制器和视图。视图用于处理复杂的事件。它使用 `ng-view` 指令。控制器控制 AngularJS 应用的数据，这些数据由常规的\
+  \ JavaScript 对象组成。AngularJS 定义了一个 `ng-controller` 指令，该指令通过使用控制器函数来创建新的控制器对象。\n\n\
+  AngularJS 带有几个内置服务，例如 `$http`、`$route`、`$window`、`$location` 等。作用域由引用模型的对象组成。它们在连接控制器与视图方面扮演着重要角色。我们将在第\
+  \ 3 章中更详细地讨论这些内容。\n\n##### MVC 架构\n\nAngularJS 使用 MVC 架构来创建 Web 应用。MVC 架构是一种编程方法论，旨在将应用拆分为三个核心组件：模型、视图和控制器。这三个组件组合起来构成你的应用。图\
+  \ 1-6 展示了模型-视图-控制器架构。\n\n![A436970_1_En_1_Fig6_HTML.jpg](img/A436970_1_En_1_Fig6_HTML.jpg)\n\
+  \n图 1-6.\n\nAngularJS 中的 MVC 架构\n\n当用户通过浏览器发送 HTTP 请求时，该请求由控制器接收。控制器处理该请求，并将其发送给模型以提供相应的数据。作为响应，模型将结果数据数组再次返回给控制器。控制器再次将数据处理成所需格式，并将其发送给视图。视图通过\
+  \ UI 内容呈现数据，并将其发送给控制器。最后，控制器将 HTTP 响应发送回浏览器。\n\n*   AngularJS 视图用于在 Web 浏览器中向用户生成信息的输出表示，例如图表或示意图。AngularJS\
+  \ 通过拉取为应用定义的所有模板，在文档对象模型（DOM）中构建视图。因此，开发人员在此的工作主要是使用 HTML 和 CSS 来创建模板。\n*   AngularJS\
+  \ 模型包含用于存储应用模型的 `$scope` 对象，因此无需像其他 JavaScript 客户端框架那样创建 JavaScript 模型类。作用域附加到 DOM\
+  \ 上，这有助于大大简化 JavaScript 问题。\n*   AngularJS 控制器是定义特定于某个视图的所有业务逻辑的地方。控制器将模型和视图结合在一起。\n\
+  \n### Twitter Bootstrap\n\nTwitter Bootstrap 是一个前端框架，旨在使响应式设计变得更加容易。Bootstrap CSS\
+  \ 框架可用于设置网站内容的样式。你可以创建自己的 CSS 样式来使网站看起来很棒，但 Bootstrap 提供了一套不错的 CSS 样式，让你能够设计出外观非常出色的内容布局。在使用\
+  \ AngularJS 时，并非必须使用 Bootstrap，并且 AngularJS 和 Bootstrap 之间没有内在关系，因为它们是不同的软件包。\n\n\
+  要使用 Bootstrap CSS 框架中的 CSS，你可以在开发 Spring Boot 应用时，在 `pom.xml` 中定义一个依赖项，这样它就会被自动下载到库文件夹中。此外，你也可以从\
+  \ [`https://getbootstrap.com/`](https://getbootstrap.com/) 下载 Bootstrap 归档文件，其中也包含\
+  \ CSS 和 JavaScript 文件。\n\n## 后端框架\n\n任何应用的后端代码都可以被视为该应用的大脑。后端代码是使用服务器端语言和数据库构建的，并且对用户不可见。前端代码与最终用户实时交互，而浏览器中网站上显示的任何内容，都是因为在服务器上执行了查询，后端代码与服务器交互，将用户可用的数据返回给前端。\n\
+  \n开发人员使用 Java 等服务器端代码构建应用的后端代码，这些代码与数据库连接以保存或更新数据，并以前端代码的形式将其返回给最终用户。这种后端代码结构有助于开发人员开发应用，以实现在现代互联网世界中进行在线购物、社交互动、查找实时信息以及执行更多操作。\n\
+  \n有许多可用的框架和库可以使后端编码更简单、性能更快。本书中将全程使用的最流行的一个是 Spring 框架。Spring 框架一直因在企业应用中构建后端功能而广受欢迎，而有了\
+  \ Spring Boot，开发人员的工作从未如此轻松。\n\n### Spring Boot 作为后端框架\n\n为什么选择 Spring Boot？有很多用于开发\
+  \ Web 应用的框架，Spring Boot 只是其中之一。如果你想快速构建某些东西，Spring Boot 可以作为 Web 应用开发框架的首选。\n\n\
+  > 使用 Spring Boot 就像与 Spring 开发者进行结对编程。 —— Josh Long @starbuxman\n\nPivotal 团队设计了一个名为\
+  \ Spring Boot 的新轻量级框架，旨在以最小的麻烦简化独立、基于 Spring 且可用于生产环境的应用和服务的引导和开发，让你可以“直接运行”。\n\n\
+  \n\n#### Spring Framework 的问题与 Spring Boot 的优势\n\n我们先来了解 Spring Framework 的一些问题。2006\
+  \ 年时，Spring Framework 主要关注依赖注入。后来它不断发展，演变成一个完整的应用框架，可用于构建企业级 Java 应用程序。它通过提供模板来简化企业应用的构建，从而处理了大部分业务逻辑，例如事务处理。\n\
+  \nSpring Framework 还拥有一个配置模块，Spring 在此处理许多常见问题，例如处理 HTTP 请求、连接数据库等，这使得开发者能够专注于业务服务。开发者开发业务服务，并使用\
+  \ Spring 提供的注解来标注类，从而让 Spring 知晓这些服务。Spring 还提供基础设施支持，例如连接 RDBMS 数据库或 MongoDB 数据库。\n\
+  \n然而，在带来这些功能的同时，Spring 也带来了一些问题，例如它是一个庞大的框架，包含多个设置和配置步骤。此外，还有多个构建和部署步骤。\n\n为了解决这些问题，Spring\
+  \ Boot 应运而生。Spring Boot 将这些步骤抽象化，使开发者能够再次专注于业务逻辑。Spring Boot 的主要目标是通过承担配置基于 Spring\
+  \ 的应用的大部分工作，来解决 Spring Framework 中配置的复杂性；大多数情况下，无需 XML 或代码配置。\n\nSpring Boot 提供的另一个有趣特性是“无\
+  \ WAR，仅 JAR”。因此，你无需生成 WAR 文件再上传到 Tomcat 服务器；你可以创建自托管的 Web 应用程序，并将其作为 Java JAR 应用程序执行，这使得部署变得极其简单直接。\n\
+  \nSpring Boot 具有“约定优于配置”的特性，这意味着它提供了合理的默认值。你可以使用这些常用值快速构建应用程序。Spring Boot 会根据其类路径上的库自动配置所需的类。\n\
+  \n假设你的应用程序需要与数据库交互。如果类路径上有 Spring Data 库，那么 Spring Data 会自动设置与数据库的连接以及数据源类。由于 Tomcat\
+  \ 是一个流行的 Web 容器，默认情况下，Spring Boot Web 应用程序会使用内嵌的 Tomcat 容器。\n\n使用 Spring Boot，你可以独立地暴露诸如\
+  \ REST 服务之类的组件，这与微服务架构中提出的理念一致，这样在维护任何组件时，你无需重新部署整个系统。\n\n#### Spring Boot 的主要目标\n\
+  \n以下是 Spring Boot 的主要目标：\n\n*   以最少的麻烦提供生产就绪的应用程序和服务，任何人都可以“直接运行”。\n*   坚持“约定优于配置”，即为开发者做出某些决策，并支持企业应用常见的一系列非功能性特性（内嵌服务器、安全性、健康检查、指标和外部化配置）。\n\
+  *   支持约定优于配置，完全避免 XML 配置，并避免注解配置。\n*   允许开发者根据自己的喜好自定义 Spring Boot 应用程序。\n\n####\
+  \ 开发你的第一个 Spring Boot 应用程序\n\n在本节中，你将逐步开发你的第一个 Spring Boot 应用程序。如果你已经熟悉此过程，可以跳到末尾查看所有内容如何整合在一起。启动新项目有多种不同的选项。更多详情，请参考\
+  \ [`https://spring.io/`](https://spring.io/) 。\n\n##### 系统要求\n\nSpring Boot 2.0.0.M2\
+  \ 需要 Java 8。因此，首先需要的是 Java 8 SDK。如果你已经在系统中设置了 JDK，那么在开始之前，你应该检查系统上安装的 Java 当前版本。\n\
+  \n```\n$ java -version\njava version \"1.8.0_101\"\nJava(TM) SE Runtime Environment\
+  \ (build 1.8.0_101-b13)\nJava HotSpot(TM) 64-Bit Server VM (build 25.101-b13, mixed\
+  \ mode)\n```\n\nSpring 团队提供了以下三种方法来使用“约定优于配置”的方式创建 Spring Boot 应用程序：\n\n*   使用 Spring\
+  \ Boot CLI 工具\n*   使用 Spring STS IDE\n*   使用 Spring Initializr ( [`http://start.spring.io/`](http://start.spring.io/)\
+  \ )\n\n开发者可以使用 Spring Boot CLI、Spring STS IDE 或 Spring Initializr 网站来开发 Spring Boot\
+  \ Groovy 应用程序。他们可以使用 Spring STS IDE 或 Spring Initializr 网站来开发 Spring Boot Java 应用程序。\n\
+  \n##### 使用 Spring Boot CLI\n\nSpring Boot 有一个命令行界面，允许开发者创建 Spring Boot 应用程序。本书不会涉及此主题；有关信息，你可以参考\
+  \ [`http://docs.spring.io/spring-boot/docs/2.0.0.M2/reference/htmlsingle/#getting-started-installing-the-cli`](http://docs.spring.io/spring-boot/docs/2.0.0.M2/reference/htmlsingle/#getting-started-installing-the-cli)\
+  \ 。\n\n##### 使用 Spring Initializr\n\n要从零开始启动一个新的 Spring Boot 项目，你可以通过 Spring Boot\
+  \ 提供的名为 Spring Initializr 的 Web 服务创建一个新项目：[`http://start.spring.io/`](http://start.spring.io/)\
+  \ 。通过输入所需信息并选择一组所需的选项（依赖项），你可以下载一个构建文件项目或一个压缩文件项目，其中包含根目录下的标准 Maven 或 Gradle 项目。\n\
+  \n这让你可以通过选择选项并下载来引导一个应用程序。你可以选择项目类型，例如 Maven 或 Gradle，并且可以选择 Spring Boot 的版本。此外，你还可以选择项目元数据，如图\
+  \ 1-7 所示。\n\n![A436970_1_En_1_Fig7_HTML.jpg](img/A436970_1_En_1_Fig7_HTML.jpg)\n\
+  \n图 1-7.\n\nSpring Initializr\n\n本书中你将开发一个 Maven 项目。\n\n图 1-7 中的屏幕截图有点长，因此被截断了。表\
+  \ 1-1 显示了此示例的所有设置。\n\n表 1-1.\n\n项目相关详情\n\n| 字段 | 值 |\n| --- | --- |\n| Group | com.apress.ravi.chapter\
+  \ 1 |\n| Artifact | HelloSpringBoot |\n| Name | HelloSpringBoot |\n| Description\
+  \ | Hello Spring Boot 应用程序 |\n| Package Name | com.apress.ravi.chapter 1 |\n| Packaging\
+  \ | Jar |\n| Java Version | 1.8 |\n| Language | Java |\n| Project dependencies |\
+  \ Web |\n| Generate a | Maven Project |\n\nSpring Boot 允许开发者创建可执行的 JAR，这些 JAR 可以使用\
+  \ `java -jar` 启动，或者采用更传统的 WAR 部署方式。你可以根据需求获取所选依赖项的列表。为了创建 HelloSpringBoot 应用程序，我选择了一个\
+  \ Web 依赖项，它支持使用 Tomcat 和 Spring MVC 进行全栈 Web 开发，如图 1-8 所示。\n\n![A436970_1_En_1_Fig8_HTML.jpg](img/A436970_1_En_1_Fig8_HTML.jpg)\n\
+  \n图 1-8.\n\nSpring Initializr 中的 Web 依赖项\n\n点击“Generate Project”按钮下载 `HelloSpringBoot.zip`\
+  \ 文件。你可以将 Maven 项目（解压后）直接导入 Spring Source Tool (STS)，并从中开始工作。\n\n本书将全程使用 STS 作为\
+  \ IDE。如果你尚未安装 STS，请访问 [`https://spring.io/tools/sts/all`](https://spring.io/tools/sts/all)\
+  \ 并为你的操作系统下载一份副本。要安装它，只需解压下载的存档文件。完成后，继续启动 STS。\n\n创建 Spring Boot 项目的另一个选项是使用向导，方法是选择\
+  \ File ➤ New ➤ Spring Starter Project。\n\n\n\n##### 使用 Spring Tool Suite\n\nSpring\
+  \ Tool Suite 是一个开箱即用的最新 Eclipse 发行版，并预装了 Spring IDE 组件。使用 Spring Starter Project\
+  \ 向导可以创建一个基本的 Spring Boot 应用程序（图 1-9）。\n\n![A436970_1_En_1_Fig9_HTML.jpg](img/A436970_1_En_1_Fig9_HTML.jpg)\n\
+  \n图 1-9.\n\n创建 Spring Boot 应用程序的向导\n\nSpring Boot 提供了所谓的启动器（starters），你需要提供项目相关的详细信息，如图\
+  \ 1-10 所示。\n\n![A436970_1_En_1_Fig10_HTML.jpg](img/A436970_1_En_1_Fig10_HTML.jpg)\n\
+  \n图 1-10.\n\nSpring 启动器项目\n\nSpring Boot 中的启动器是一组类路径依赖项，它们可以自动配置应用程序，让你无需进行任何配置即可开发应用。在本章中，你将选择\
+  \ Web 依赖项，因为你将构建一个简单的 `HelloSpringBoot` RESTful 服务，如图 1-11 所示。\n\n![A436970_1_En_1_Fig11_HTML.jpg](img/A436970_1_En_1_Fig11_HTML.jpg)\n\
+  \n图 1-11.\n\n在 Spring 启动器中选择 Web 依赖项\n\n点击“完成”按钮将生成一个工作空间，你可以在其中创建新的包、类和静态文件（位于\
+  \ resources 目录下）。项目的最终结构将如图 1-12 所示。\n\n![A436970_1_En_1_Fig12_HTML.jpg](img/A436970_1_En_1_Fig12_HTML.jpg)\n\
+  \n图 1-12.\n\n项目结构\n\n让我们在下一节中浏览代码。\n\n#### 代码概览\n\n让我们详细浏览代码。你将查看 `pom.xml` 和 Java\
+  \ 文件中的代码。先从 `pom.xml` 开始。\n\n##### 查看 pom.xml\n\n在创建 Spring Boot 应用程序时，你在启动器对话框中选择的所有依赖项都会出现在\
+  \ `pom.xml` 中，如代码清单 1-1 所示。`pom.xml` 文件是用于构建项目的配方。\n\n```\n\n4.0.0\ncom.apress.ravi.chapter1\n\
+  HelloSpringBoot\n0.0.1-SNAPSHOT\njar\nHelloSpringBoot\nHello Spring Boot application\n\
+  \norg.springframework.boot\nspring-boot-starter-parent\n1.5.4.RELEASE\n\nUTF-8\n\
+  UTF-8\n1.8\n\norg.springframework.boot\nspring-boot-starter-web\n\norg.springframework.boot\n\
+  spring-boot-starter-test\ntest\n\norg.springframework.boot\nspring-boot-maven-plugin\n\
+  \n代码清单 1-1.\npom.xml\n```\n\n关于代码清单 1-1，请注意以下几点：\n\n*   `<parent>` 元素指定了 Spring\
+  \ Boot 的父 POM，其中包含通用组件的定义。\n*   `spring-boot-starter-web` 的 `<dependency>` 元素告诉\
+  \ Spring Boot 该应用程序是一个 Web 应用程序，并让 Spring Boot 据此形成其“观点”。\n\n在进一步深入之前，让我们先理解 Spring\
+  \ Boot 的“观点”。你需要了解 Spring Boot 如何使用像 `spring-boot-starter-web` 这样的启动器来形成其配置观点。HelloSpringBoot\
+  \ 应用程序使用 `spring-boot-starter-web` 作为 Spring Boot 的 Web 应用程序启动器。基于此启动器，Spring Boot\
+  \ 形成了以下观点：\n\n*   使用 Spring MVC 作为 REST 框架\n*   使用 Apache Jackson 进行 JSON 绑定\n*\
+  \   使用 Tomcat 作为嵌入式 Web 服务器容器\n*   使用 Hibernate 进行对象关系映射\n\n在 Spring Boot 对你打算构建的应用程序类型形成观点后，它会根据\
+  \ POM 内容和为 HelloSpringBoot 应用程序指定的启动器，提供一组 Maven 依赖项。图 1-13 显示了 Spring Boot 在 STS\
+  \ 中设置的部分 Maven 依赖项。\n\n![A436970_1_En_1_Fig13_HTML.jpg](img/A436970_1_En_1_Fig13_HTML.jpg)\n\
+  \n图 1-13.\n\n在 STS 中设置的 Maven 依赖项\n\n你可以在图 1-13 中看到，Tomcat 是默认的嵌入式 Web 服务器容器。假设你想使用\
+  \ Jetty 代替 Tomcat；你只需要更改 POM 中的 `<dependencies>` 部分，如代码清单 1-2 所示。\n\n```\norg.springframework.boot\n\
+  spring-boot-starter-web\n\norg.springframework.boot\nspring-boot-starter-tomcat\n\
+  \norg.springframework.boot\nspring-boot-starter-jetty\n\n代码清单 1-2.\n包含 Tomcat 和\
+  \ Jetty 依赖项的 pom.xml\n```\n\n你可以在图 1-14 中看到，Tomcat 的 Maven 依赖项已被替换为 Jetty 的依赖项。\n\
+  \n![A436970_1_En_1_Fig14_HTML.jpg](img/A436970_1_En_1_Fig14_HTML.jpg)\n\n图 1-14.\n\
+  \n更新后的 Maven 依赖项\n\n##### 编写代码\n\n要启动一个 Spring Boot 应用程序，你可以从一个 `main()` 方法开始。大多数情况下，你只需委托给\
+  \ `static SpringApplication.run` 方法，如代码清单 1-3 所示。\n\n```\npackage com.apress.ravi.chapter1;\n\
+  import org.springframework.boot.SpringApplication;\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\n\
+  import org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\
+  /**\n* @author RaviKantSoni\n*/\n@SpringBootApplication\n@RestController\npublic\
+  \ class HelloSpringBootApplication {\npublic static void main(String[] args) {\n\
+  SpringApplication.run(HelloSpringBootApplication.class, args);\n}\n@RequestMapping(\"\
+  /hello\")\npublic String greeting(){\nreturn \"Hello World!\";\n}\n}\n代码清单 1-3.\n\
+  com.apress.ravi.chapter1.HelloSpringBootApplication.java\n```\n\n让我们逐步了解重要的部分。\n\
+  \n###### @SpringBootApplication 注解\n\n`HelloSpringBootApplication` 类的第一个注解是 `@SpringBootApplication`。`@SpringBootApplication`\
+  \ 注解是 Spring Boot 1.2.0 中引入的一个便捷注解，它包含了以下注解：\n\n*   `@Configuration`：被 `@Configuration`\
+  \ 注解标记的类可以被 Spring 容器用作 bean 定义的来源，这并非 Spring Boot 特有。该类可能包含一个或多个通过 `@Bean` 注解方法声明的\
+  \ Spring bean。\n*   `@EnableAutoConfiguration`：此注解是 Spring Boot 项目的一部分，它告诉 Spring\
+  \ Boot 开始使用类路径定义或设置来添加 bean。自动配置会智能地猜测并配置你很可能在应用程序中运行的 bean，从而简化开发者的工作。\n    * \
+  \  例如，假设你的类路径上有 `tomcat-embedded.jar`，那么你可能需要一个 `TomcatEmbeddedServletContainerFactory`\
+  \ bean 来配置 Tomcat 服务器。因此，这将被自动搜索和配置，无需任何手动的 XML 配置。\n    *   通常，对于 Spring MVC 应用程序，你会添加\
+  \ `@EnableWebMvc` 注解，该注解将应用程序标记为 Web 应用程序并激活关键功能，例如设置 `DispatcherServlet`，但 Spring\
+  \ Boot 在类路径上发现 `spring-webmvc` 时会自动添加此注解。类似地，`@EnableTransactionManagement` 注解也会被自动添加，从而启用声明式事务管理。\n\
+  *   `@ComponentScan`：此注解告诉 Spring 查找特定的包，以扫描带注解的组件、配置和服务。\n\n###### @RestController\
+  \ 和 @RequestMapping 注解\n\n`HelloSpringBootApplication` 类的第一个注解是 `@RestController`，这是一个构造型注解。`@RequestMapping`\
+  \ 注解提供了“路由”信息，并告诉 Spring 任何路径为 `/hello` 的 HTTP 请求都应映射到 `greeting` 方法。\n\n`@RestController`\
+  \ 和 `@RequestMapping` 注解来自 Spring MVC（这些注解并非 Spring Boot 特有）。\n\n\n\n###### 主要方法\n\
+  \n`HelloSpringBootApplication` 类的主要部分是 main 方法。使用 Spring Boot 开发的 Spring 应用程序包含\
+  \ main 方法，该方法调用 Spring Boot 的 `SpringApplication.run()` 方法来启动应用程序，如之前的代码所示。包含 main\
+  \ 方法的类被称为主类，并使用 `@SpringBootApplication` 注解进行标记。\n\n##### 在 STS 中运行 Spring Boot\
+  \ 应用程序\n\n使用 Spring Starter Project 向导创建的 Spring Boot 应用程序有两种形式：WAR 和 JAR。该向导允许您在其打包选项中选择\
+  \ WAR 或 JAR。\n\n> 正如 Josh Long 在 Spring IO 的一次演讲中所说：“Make JAR, not WAR。” — [`https://twitter.com/springcentral/status/598910532008062976`](https://twitter.com/springcentral/status/598910532008062976)\n\
+  \nSpring Boot 更倾向于 JAR 而非 WAR，它允许您轻松创建独立的 JAR 打包项目，这些项目在生成的工件内部嵌入了 Web 服务器（Apache\
+  \ Tomcat 是默认的 Web 服务器），这有助于开发人员减少设置本地或远程 Tomcat 服务器、WAR 打包和部署的开销。\n\n要在本地运行 Spring\
+  \ Boot 应用程序，您不需要 STS 中的任何特殊工具。您只需通过选择“Run As ➤ Java Application”来运行它，无论是从标准的 Eclipse\
+  \ Java 调试工具还是从 STS 中。\n\n与 IDE 相比，使用 STS 的好处在于它提供了一个专用的启动器，该启动器执行与 IDE 相同的操作，但在此之上添加了一些有用的附加功能。因此，让我们使用\
+  \ STS 来运行 Spring Boot 应用程序，如图 1-15 所示。\n\n右键单击项目 `fullstackdeveloper`，然后选择“Run As\
+  \ ➤ Spring Boot App”。\n\n![A436970_1_En_1_Fig15_HTML.jpg](img/A436970_1_En_1_Fig15_HTML.jpg)\n\
+  \n图 1-15.\n\nSTS 中运行应用程序的向导\n\nSpring Boot 应用程序启动时，控制台会输出一些信息，如图 1-16 所示。\n\n![A436970_1_En_1_Fig16_HTML.jpg](img/A436970_1_En_1_Fig16_HTML.jpg)\n\
+  \n图 1-16.\n\n控制台输出\n\n如果应用程序启动成功，Spring Boot 控制台输出的最后一行将包含“Started HelloSpringBootApplication”字样。\n\
+  \n恭喜！您已成功使用 Spring Boot 设置并运行了应用程序。现在是时候在浏览器中访问 `http://localhost:8080/hello` 来查看网页了，如图\
+  \ 1-17 所示。\n\n![A436970_1_En_1_Fig17_HTML.jpg](img/A436970_1_En_1_Fig17_HTML.jpg)\n\
+  \n图 1-17.\n\n从浏览器访问 REST 端点\n\n#### 启动器\n\n启动器是一组方便的依赖描述符，您可以将其包含在应用程序中。它们包含了许多让您的项目快速启动和运行所需的依赖项。启动器\
+  \ POM 是可以添加到应用程序 Maven 中的依赖描述符。\n\n简单来说，如果您正在开发一个使用 Spring MVC 处理 HTTP 请求的项目，您只需包含\
+  \ `spring-boot-starter-web`，它将导入 Spring MVC 应用程序所需的所有依赖项，例如 `view-resolver`、`tomcat`\
+  \ 等。这减轻了为框架配置所有必需依赖项的负担。\n\n您可以参考 [`http://docs.spring.io/spring-boot/docs/2.0.0.M2/reference/htmlsingle/#using-boot-starter`](http://docs.spring.io/spring-boot/docs/2.0.0.M2/reference/htmlsingle/#using-boot-starter)\
+  \ 获取完整的启动器列表。\n\n#### Spring Boot Actuator：生产就绪特性\n\nSpring Boot 拥有一系列特性，让您可以在生产环境或部署后的任何环境中监控您的\
+  \ Spring Boot 应用程序。例如，您可以获取日志、执行线程转储、查看指标、分析垃圾回收以及显示在 `BeanFactory` 中配置的 Bean。这些信息可以通过\
+  \ HTTP 或 JMX 暴露，甚至可以通过 SSH 记录到进程中。\n\n##### 启用 Actuator\n\nActuator HTTP 端点仅适用于\
+  \ Spring MVC。这是一个无需编写控制器即可添加到应用程序的新端点。Actuator 的定义是一个生产就绪的特性，用于帮助您监控和管理应用程序。\n\n\
+  启用生产就绪特性的最简单方法是从 Spring 启动器添加 `spring-boot-actuator` 模块依赖 `spring-boot-starter-actuator`，如图\
+  \ 1-18 所示。\n\n![A436970_1_En_1_Fig18_HTML.jpg](img/A436970_1_En_1_Fig18_HTML.jpg)\n\
+  \n图 1-18.\n\nSpring Initializr 中的 Actuator 依赖\n\n要将 actuator 添加到基于 Maven 的项目中，请在\
+  \ `pom.xml` 中添加以下 `starter` 依赖：\n\n```\norg.springframework.boot\nspring-boot-starter-actuator\n\
+  \n```\n\n##### 运行应用程序\n\n一旦您运行 Spring Boot 应用程序，actuator 端点将记录在控制台中，如图 1-19 所示。\n\
+  \n![A436970_1_En_1_Fig19_HTML.jpg](img/A436970_1_En_1_Fig19_HTML.jpg)\n\n图 1-19.\n\
+  \n控制台日志中的 Actuator 端点\n\n##### 使用 Actuator 端点\n\nSpring Boot 包含许多 actuator 端点，允许您监控并与\
+  \ Spring Boot 应用程序交互。大多数端点是敏感的，并非完全公开，而少数端点如 `/health` 和 `/info` 则不是。\n\n以下是 Spring\
+  \ Boot 开箱即用提供的一些常见端点：\n\n*   `/health` 显示正在运行的 Boot 应用程序的健康信息。默认情况下，它不敏感。\n*   `/Info`\
+  \ 显示任意的应用程序信息。默认情况下，它不敏感。\n*   `/metrics` 显示正在运行的 Boot 应用程序的指标信息。默认情况下，它是敏感的。\n\n\
+  ##### 自定义管理服务器端口\n\n如果您的 Spring Boot 应用程序在您自己的数据中心内运行，那么您可能更倾向于使用默认的 HTTP 端口 8080\
+  \ 来暴露端点。但对于基于云的部署，使用默认的 HTTP 端口 8080 来暴露管理端点是一个明智的选择。可以使用 `management.port` 属性来更改\
+  \ HTTP 端口。\n\n您可以使用 `src\\main\\resources\\application.properties` 文件为 `management.port`\
+  \ 属性分配端口号 8081：`management.port=8081`。\n\n##### 获取健康信息\n\n`/health` 端点可用于检查正在运行的\
+  \ Spring Boot 应用程序的健康/状态。它返回一个包含大量矩阵的 JSON 文件。在浏览器中访问 `http://localhost:8081/health`\
+  \ 将得到如图 1-20 所示的结果。\n\n![A436970_1_En_1_Fig20_HTML.jpg](img/A436970_1_En_1_Fig20_HTML.jpg)\n\
+  \n图 1-20.\n\n访问 /health 端点\n\n以下健康信息显示给未经授权的 HTTP 访问：\n\n```\n{\n\"status\":\"UP\"\
+  \n}\n```\n\n在第 7 章中，我将更详细地讨论 Spring Boot actuator，以便您理解这个返回的 JSON 数据代表什么。\n\n##\
+  \ 总结\n\n在本章中，您了解了什么是全栈开发人员以及全栈 Web 开发涉及的内容。您还学习了现代 Web 应用程序的架构。您了解了 AngularJS 作为前端框架和\
+  \ Spring Boot 作为后端框架的概况。您开发了第一个 Spring Boot 应用程序。最后，您学习了如何使用 actuator 监控您的 Spring\
+  \ Boot 应用程序。在下一章中，您将使用 Spring Boot 创建一个 RESTful 应用程序来执行 CRUD 操作。\n\n\n\n"
+- "# 2. 为应用程序创建 RESTful 层\n\n在上一章中，你了解了全栈 Web 开发的宏观视图，还学习了 Spring Boot 的基础知识，并使用 Spring\
+  \ Boot 创建了一个 HelloWorld REST 应用程序。在本章中，你将学习以下内容：\n\n*   REST\n*   构建 RESTful 服务\n\
+  *   在 RESTful API 中处理错误\n\n现在，是时候使用 Spring Boot 开发一个更复杂的 RESTful 应用程序了。要开发任何 RESTful\
+  \ 服务，你必须首先理解 RESTful API 并知道如何实现它们。因此，我将首先介绍 REST 和 RESTful API 的概念，然后带你逐步了解开发 RESTful\
+  \ API 的代码。\n\n这应该足以让你开始探索 RESTful API 设计和实现的各种可能性。让我们从 REST 的介绍开始。\n\n## REST 简介\n\
+  \n表述性状态转移（REST）是一种架构风格，描述了一个系统如何与另一个系统通信或共享状态。REST 的基本概念是资源，即任何可以被访问或操作的事物。这些状态需要使用通用格式（如\
+  \ XML 或 JSON）来表示。对于 Web 应用程序，通常使用 HTTP 来支持 RESTful 架构。换句话说，REST 用于创建暴露 HTTP API\
+  \ 的 Web 应用程序。\n\n### HTTP 方法与 CRUD 操作\n\n标准的 HTTP 方法，如 `GET`、`POST`、`PUT` 和 `DELETE`，用于访问和操作\
+  \ REST Web 资源。CRUD 操作有四个基本的持久化功能：创建、读取、更新和删除。表 2-1 展示了 CRUD 操作与四个 HTTP 动词的映射关系。\n\
+  \n表 2-1.\n\nCRUD 操作到 HTTP 动词的映射\n\n| CRUD 操作 | HTTP 方法 | 描述 |\n| --- | --- | ---\
+  \ |\n| 创建 | `POST` | 执行创建操作 |\n| 读取 | `GET` | 执行读取操作 |\n| 更新 | `PUT` | 执行更新操作 |\n\
+  | 删除 | `DELETE` | 执行删除操作 |\n\n### HTTP 状态码\n\n有意义的 HTTP 状态码有助于客户端使用你的 RESTful API。表\
+  \ 2-2 列出了一些在调用 RESTful API 时可能作为服务器响应返回的 HTTP 状态码元素。\n\n表 2-2.\n\nHTTP 状态码\n\n|\
+  \ 代码 | 消息 | 描述 |\n| --- | --- | --- |\n| 200 | `OK` | 请求已成功（这是成功 HTTP 请求的标准响应）。\
+  \ |\n| 201 | `Created` | 请求已完成，并成功创建了一个新资源。 |\n| 204 | `Not Content` | 请求已成功处理，但未返回任何内容。\
+  \ |\n| 400 | `Bad Request` | 由于语法错误，请求无法完成。 |\n| 401 | `Unauthorized` | 请求需要用户授权。\
+  \ |\n| 403 | `Forbidden` | 服务器拒绝完成请求。 |\n| 404 | `Not Found` | 找不到请求的资源。 |\n| 409\
+  \ | `Conflict` | 由于资源冲突，请求无法完成。 |\n\n请参考附录 A 了解一些可用于访问 RESTful 应用程序以测试 RESTful API\
+  \ 的工具。在本书中，我将使用 Chrome 的 Postman 作为 REST 客户端。\n\n## 构建 RESTful 服务：UserRegistrationSystem\n\
+  \n在本章中，你将构建一个名为 UserRegistrationSystem 的 RESTful 应用程序，该程序提供用于用户注册的 REST 端点。在本书中，我将此应用程序称为基础应用程序。\n\
+  \n### 介绍 UserRegistrationSystem\n\nUserRegistrationSystem 可以理解为一个软件即服务（SaaS）提供商，它允许用户执行\
+  \ CRUD 操作，例如创建新用户、获取所有用户列表、获取单个用户、更新用户和删除用户。\n\nUserRegistrationSystem 将由一个 REST\
+  \ API 层和一个存储库层构成，并有一个贯穿这两层的领域层，从而实现关注点分离。REST API 层负责处理客户端请求、验证客户端输入、与存储库层（或服务层）交互以及生成响应。\n\
+  \n领域层包含具有业务数据的领域对象。存储库层与数据库交互并支持 CRUD 操作。你将通过理解以下需求来开始开发你的 RESTful 服务：\n\n*   消费者通过创建新用户来注册自己。\n\
+  *   可以获取用户列表。\n*   可以获取单个用户的详细信息。\n*   用户详细信息可以在以后更新。\n*   可以在需要时删除用户。\n\n### 识别\
+  \ REST 端点\n\nURI 端点用于标识 REST 资源。你为 UserRegistrationSystem REST API 端点选择的名称应对消费者具有明确定义的含义。要为服务设计端点，你应该遵循软件行业中广泛使用的一些最佳实践和约定。\n\
+  \n*   为 RESTful API 使用基础 URI 以提供入口点。\n*   使用复数名词命名资源端点。\n*   使用 URI 层次结构来表示相关资源。\n\
+  \nUserRegistrationSystem 应用程序将有一个 `User` 资源。可以使用 `GET`、`POST`、`PUT` 和 `DELETE` HTTP\
+  \ 方法来访问此 `User` 资源。表 2-3 列出了你将为此应用程序创建的 REST 端点。\n\n表 2-3.\n\n用户注册的 REST 端点\n\n\
+  | HTTP 方法 | REST 端点 | 描述 |\n| --- | --- | --- |\n| `GET` | `/api/user/` | 返回用户列表\
+  \ |\n| `GET` | `/api/user/{id}` | 返回给定 `user {id}` 的用户详细信息 |\n| `POST` | `/api/user/`\
+  \ | 从 `POST` 数据创建新用户 |\n| `PUT` | `/api/user/{id}` | 更新给定 `User {id}` 的详细信息 |\n\
+  | `DELETE` | `/api/user` | 删除给定 `user {id}` 的用户 |\n\n下一步是定义资源表示和表示格式。REST 通常支持多种格式，例如\
+  \ HTML、JSON 和 XML。在本章及本书的其余部分，JSON 将是 API 操作的首选格式。\n\n### JSON 格式\n\nJavaScript\
+  \ 对象表示法（JSON）是一种在客户端和服务器之间存储和交换数据的语法。JSON 对象是一种键值数据格式，其中每个键值对由一个用双引号括起来的键、后跟一个冒号（`:`）、再后跟一个值组成。JSON\
+  \ 对象用花括号（`{}`）括起来，每个键值之间用逗号（`,`）分隔。清单 2-1 显示了一个 `User` JSON 对象的示例。\n\n```\n{\n\"\
+  id\": 1,\n\"name\":\"Ravi Kant Soni\",\n\"address\":\"Lashkariganj, Sasaram, Rohtas,\
+  \ Bihar, pin-821115\",\n\"email\":\"ravikantsoni.author@gmail.com\"\n}\n清单 2-1.\n\
+  User JSON 对象\n```\n\n如你所见，`User` 资源具有名称、地址和电子邮件作为键，而 `id` 属性则唯一标识该用户。\n\n### 创建\
+  \ UserRegistrationSystem 应用程序\n\n你将通过使用 Spring Initializr 生成一个 Spring Boot 应用程序来创建\
+  \ UserRegistrationSystem，如图 2-1 所示。选择 Web、JPA 和 H2 作为依赖项。默认情况下，Spring Boot 应用程序在端口\
+  \ 8080 上运行。\n\n![A436970_1_En_2_Fig1_HTML.jpg](img/A436970_1_En_2_Fig1_HTML.jpg)\n\
+  \n图 2-1.\n\n使用 Spring Initializr 创建 UserRegistrationSystem\n\n\n\n### 嵌入式数据库：H2\n\
+  \nH2 是一个用 Java 编写的开源轻量级关系数据库管理系统。H2 数据库可以轻松嵌入到任何基于 Java 的应用程序中，并且可以方便地配置为内存数据库运行。H2\
+  \ 数据库不能用于生产环境开发，因为数据不会持久化到磁盘上。因此，该数据库主要用于开发和测试。H2 数据库支持 SQL 和 JDBC API，并具有强大的安全特性。\n\
+  \n在 UserRegistrationSystem 应用程序中，你将使用 H2 来持久化数据。要在 Spring Boot 应用程序中使用 H2，你需要在 `pom.xml`\
+  \ 文件中包含一个构建依赖项。\n\n当将 H2 用作内存数据库时，你无需提供任何数据库连接 URL 或用户名和密码。在部署和应用程序关闭期间，数据库的启动和停止将由\
+  \ Spring Boot 负责处理。清单 2-2 显示了 UserRegistrationSystem 的 `pom.xml` 文件中 H2 的依赖信息。\n\
+  \n```\ncom.h2database\nh2\nruntime\n\n清单 2-2.\npom.xml 中的 H2 依赖项\n```\n\n### 领域实现：用户\n\
+  \n图 2-2 展示了表示 UserRegistrationSystem 应用程序中 `Users` 领域对象的 UML 类图。\n\n![A436970_1_En_2_Fig2_HTML.jpg](img/A436970_1_En_2_Fig2_HTML.jpg)\n\
+  \n图 2-2.\n\n用户领域对象\n\n在 UserRegistrationSystem 项目中，你将在 `src/main/java` 文件夹下的 `com.apress.ravi.dto`\
+  \ 子包内创建一个名为 `UserDTO` 的数据传输对象（DTO）类，该类对应于 `Users` 领域的 `Object`。\n\nDTO 对象仅包含数据和访问修饰符，不含逻辑；它用于在应用程序的不同层之间传输数据，以实现关注点分离。你可以使用\
+  \ Java 持久化 API（JPA）注解来标注此类，这使得 `Users` 类能够使用 JPA 技术轻松地进行持久化和检索。对 JPA 的正式概述超出了本书的范围。清单\
+  \ 2-3 给出了 `UserDTO` 实体类的实现。\n\n```\npackage com.apress.ravi.dto;\nimport javax.persistence.Column;\n\
+  import javax.persistence.Entity;\nimport javax.persistence.GeneratedValue;\nimport\
+  \ javax.persistence.Id;\n@Entity\n@Table(name=\"Users\")\npublic class UserDTO {\n\
+  @Id\n@GeneratedValue\n@Column(name = \"USER_ID\")\nprivate Long id;\n@Column(name\
+  \ = \"NAME\")\nprivate String name;\n@Column(name = \"ADDRESS\")\nprivate String\
+  \ address;\n@Column(name = \"EMAIL\")\nprivate String email;\n// Getter 和 Setter\
+  \ 方法\n}\n清单 2-3.\nUsersDTO 实体类\n```\n\n这里，`UserDTO` 类有四个属性，分别名为 `id`、`name`、`address`\
+  \ 和 `email`。`UserDTO` 使用了 `@Entity` 注解，使其成为一个 JPA 实体。该实体类使用了 `@Table` 注解来定义表名为 `Users`。\n\
+  \n`UserDTO` 的 `id` 属性使用了 `@Id` 注解，使其成为主键。`id` 属性使用了 `@GeneratedValue` 注解，表示 `id`\
+  \ 值应自动生成。`id` 属性还使用了 `@Column` 注解，以指定字段或属性将要映射到的列的详细信息。其他三个属性（`name`、`address` 和\
+  \ `email`）都使用了 `@Column` 注解。我在此省略了 getter 和 setter 方法，但在实际代码中，每个属性都应有对应的 getter\
+  \ 和 setter。\n\n下一步是提供仓库或 DAO 实现。\n\n### 仓库实现：UserJpaRepository\n\n仓库或 DAO 抽象并封装了对数据源的所有访问。仓库包含一个管理数据源连接的接口，并提供一组用于检索、操作、删除和持久化数据的方法。最佳实践是为每个领域对象配备一个仓库。\n\
+  \n为了消除编写任何仓库实现的需要，Spring Data 项目提供了 `JpaRepository` 接口，该接口在运行时自动生成其实现。清单 2-4 显示了支持\
+  \ `JpaRepository` 所需在 Maven `pom.xml` 中的依赖信息。\n\n```\norg.springframework.boot\n\
+  spring-boot-starter-data-jpa\n\n清单 2-4.\npom.xml 中的 JPA 依赖项\n```\n\n你将通过扩展 Spring\
+  \ Data JPA 子项目的 `org.springframework.data.jpa.repository.JpaRepository` 接口来创建一个仓库接口，以将\
+  \ `UserDTO` 领域对象持久化到关系数据库中。\n\n你首先在 UserRegistrationSystem 应用程序的 `src/main/java`\
+  \ 文件夹下创建 `com.apress.ravi.repository` 包，从而开始仓库的实现。同时，你可以创建一个 `UserJpaRepository`\
+  \ 接口，如清单 2-5 所示。\n\n```\npackage com.apress.ravi.repository;\nimport org.springframework.data.jpa.repository.JpaRepository;\n\
+  import org.springframework.stereotype.Repository;\nimport com.apress.ravi.dto.UsersDTO;\n\
+  @Repository\npublic interface UserJpaRepository extends JpaRepository {\nUsersDTO\
+  \ findByName(String name);\n}\n清单 2-5.\ncom.apress.ravi.repository.UserJpaRepository.java\
+  \ 接口\n```\n\n如清单 2-5 所示，`UserJpaRepository` 接口扩展了 Spring Data 的 `JpaRepository`，后者将其可操作的领域对象类型和\
+  \ `UserDTO` 领域对象标识符字段的类型（即 `UserDTO` 和 `Long`）作为其泛型参数 `T` 和 `ID`。`UserJpaRepository`\
+  \ 继承了 `JpaRepository` 所有用于处理 `UserDTO` 持久化的 CRUD 方法。\n\nSpring Data JPA 允许开发者仅通过声明方法签名来定义其他查询方法。如前面的代码所示，你定义了一个名为\
+  \ `findByName` 的自定义查找方法，该方法基本上创建了一个形式为 `select u from UserDTO u` 的 JPA 查询，其中 `u.name`\
+  \ 等于 `:name`。\n\nSpring Data JPA 的好处在于开发者无需编写仓库接口的实现。当你运行应用程序时，Spring Data JPA 会在运行时创建实现。现在，让我们创建\
+  \ REST 控制器类并实现 REST 端点。\n\n\n\n### 构建 RESTful API\n\n在开始实现 RESTful API 之前，你需要了解一些基本的\
+  \ Spring 元素，这些元素将用于在 Spring 中实现 RESTful API。\n\n*   `@RestController`：这是一个构造型注解，它本身被\
+  \ [`@Controller`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/stereotype/Controller.html#annotation%20in%20org.springframework.stereotype)\
+  \ 和 [`@ResponseBody`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseBody.html#annotation%20in%20org.springframework.web.bind.annotation)\
+  \ 注解，从而免去了在每个方法上添加 `@ResponseBody` 注解的需要。此注解用于定义 API 端点。该注解让 Spring 将结果渲染回调用者。要在\
+  \ Spring 中构建 RESTful Web 服务，请使用 `@RestController` 注解创建一个控制器类来处理 HTTP 请求。\n\n   \
+  \ ```\n    @Target(value=TYPE)\n    @Retention(value=RUNTIME)\n    @Documented\n\
+  \    @Controller\n    @ResponseBody\n    public @interface RestController\n    ```\n\
+  \n*   `@RequestMapping`：此注解用于提供路由信息。Spring 中的 HTTP 请求会被映射到相应的处理方法。此注解可以应用于类级别，将\
+  \ HTTP 请求映射到控制器类，也可以应用于方法级别，将 HTTP 请求映射到控制器处理方法。\n\n    ```\n    @Target(value={METHOD,TYPE})\n\
+  \    @Retention(value=RUNTIME)\n    @Documented\n    public @interface RequestMapping\n\
+  \    ```\n\n*   `ResponseEntity`：此类扩展了 `HttpEntity`，用于在控制器方法中向响应添加 HTTP 状态。它可以包含\
+  \ HTTP 状态码、标头和响应体。\n\n    ```\n    public class ResponseEntity\n    extends HttpEntity\n\
+  \    ```\n\n*   `@RequestBody`：此注解用于将方法参数绑定到传入 HTTP 请求的请求体。Spring 将使用 [`HttpMessageConverter`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/http/converter/HttpMessageConverter.html#interface%20in%20org.springframework.http.converter)\
+  \ 根据请求的内容类型将 Web 请求的请求体转换为领域对象。可以应用 `@valid` 注解来执行自动验证，这是可选的。\n\n    ```\n    @Target(value=PARAMETER)\n\
+  \    @Retention(value=RUNTIME)\n    @Documented\n    public @interface RequestBody\n\
+  \    ```\n\n*   `@ResponseBody`：此注解用于将注解方法的返回值绑定到传出的 HTTP 响应体。Spring 将使用 `HttpMessageConverter`\
+  \ 根据请求 HTTP 标头的内容类型将返回值转换为 HTTP 响应体（通常返回 JSON 或 XML 等数据格式）。\n\n    ```\n    @Target(value={TYPE,METHOD})\n\
+  \    @Retention(value=RUNTIME)\n    @Documented\n    public @interface ResponseBody\n\
+  \    ```\n\n*   `@PathVariable`：此注解用于将方法参数绑定到 URI 模板变量（即 `{}` 中的变量）。\n\n    ```\n\
+  \    @Target(value=PARAMETER)\n    @Retention(value=RUNTIME)\n    @Documented\n\
+  \    public @interface PathVariable\n    ```\n\n*   `MediaType`：这是 `MimeType` 的子类。在使用\
+  \ `@RequestMapping` 注解时，你还可以指定控制器方法要生成或消费的 `MediaType`。\n\n    ```\n    public class\
+  \ MediaType\n    extends MimeType\n    implements Serializable\n    ```\n\n####\
+  \ 创建 RESTful 控制器：UserRegistrationRestController\n\n你将创建一个 Spring MVC 控制器并实现 REST\
+  \ API 端点。让我们在 `src/main/java` 文件夹下的 `com.apress.ravi.Rest` 包中创建 `UserRegistrationRestController`\
+  \ 类。该控制器类提供了所有必要的端点来检索和操作用户。清单 2-6 展示了 `UserRegistrationRestController` 类所需的代码更改。\n\
+  \n```\npackage com.apress.ravi.Rest;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\
+  import org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.web.bind.annotation.RequestMapping;\n\
+  import org.springframework.web.bind.annotation.RestController;\nimport com.apress.ravi.repository.UserJpaRepository;\n\
+  @RestController\n@RequestMapping(\"/api/user\")\npublic class UserRegistrationRestController\
+  \ {\npublic static final Logger logger =\nLoggerFactory.getLogger(UserRegistrationRestController.class);\n\
+  private UserJpaRepository userJpaRepository;\n@Autowired\npublic void setUserJpaRepository(UserJpaRepository\
+  \ userJpaRepository) {\nthis.userJpaRepository = userJpaRepository;\n}\n}\n清单 2-6.\n\
+  UserRegistrationRestController 类\n```\n\n在清单 2-6 中，你使用 `@RestController` 注解标注了 `UserRegistrationRestController`\
+  \ 类，并定义了一个新的 `@RequestMapping` 将 URI `/api/user` 映射到整个类，这意味着在 `/api/user` URI 上接收到的\
+  \ HTTP 请求由 `UserRegistrationRestController` 类处理。你使用了 `@Autowired` 注解将 `autowireUserJpaRepository`\
+  \ 自动装配到 RESTful 控制器。\n\n让我们在控制器类中定义不同的端点来访问和操作 `UserDTO`。你将使用新的注解 `@GetMapping`、`@PostMapping`、`@PutMapping`\
+  \ 和 `@DeleteMapping`，而不是标准的 `@RequestMapping`，这些注解自 Spring MVC 4.3 起可用，并且是定义 REST\
+  \ 端点的标准方式。这些新注解充当了 `@RequestMapping` 的包装器，简化了常见 HTTP 方法的映射。\n\n#### @GetMapping：检索所有用户\n\
+  \n这是一个组合注解，是 `@RequestMapping(value=\"/\", method = RequestMethod.GET)` 的快捷方式。对\
+  \ `/api/user/` 端点的 `GET` 请求返回 UserRegistrationSystem 应用程序中可用的用户列表。清单 2-7 展示了实现此功能所需的代码。\n\
+  \n```\n@GetMapping(\"/\")\npublic ResponseEntity> listAllUsers() {\nList users =\
+  \ userJpaRepository.findAll();\nreturn new ResponseEntity>(users, HttpStatus.OK);\n\
+  }\n清单 2-7.\n用于检索所有用户的 GET 动词实现\n```\n\n`listAllUsers` 方法返回包含 HTTP 响应的 `ResponseEntity`。此方法使用\
+  \ `UserJpaRepository` 读取所有用户。然后，你通过调用其构造函数创建了一个 `ResponseEntity` 实例，该构造函数接受两个参数：`UserDTO`\
+  \ 是成为响应体一部分的数据，而 `HttpStatus.OK` 状态值是成为响应状态码的数据。\n\n让我们通过从 STS 将 UserRegistrationSystem\
+  \ 应用程序作为 Spring Boot 应用程序运行并启动 Postman 应用程序来测试第一个端点。输入 URL `http://localhost:8080/api/user/`\
+  \ 并点击发送，如图 2-3 所示。\n\n![A436970_1_En_2_Fig3_HTML.jpg](img/A436970_1_En_2_Fig3_HTML.jpg)\n\
+  \n图 2-3.\n\n用于检索所有用户的 GET 动词实现\n\n由于尚未创建任何用户，这将导致一个空集合。因此，下一个任务是通过实现 `POST` 动词功能向\
+  \ UserRegistrationSystem 添加一个用户。\n\n\n\n#### @PostMapping：创建新用户\n\n`@PostMapping`\
+  \ 注解是一个组合注解，是 `@RequestMapping(value=\"/\", method=RequestMethod.POST)` 的快捷方式。对\
+  \ `/api/user/` 端点的 `POST` 请求会使用请求的正文体创建一个新用户。清单 2-8 展示了实现 `POST` 动词功能所需的代码。\n\n\
+  ```\n@PostMapping(value = \"/\", consumes = MediaType.APPLICATION_JSON_VALUE)\n\
+  public ResponseEntity createUser(@RequestBody final UsersDTO user) {\nuserJpaRepository.save(user);\n\
+  return new ResponseEntity(user, HttpStatus.CREATED);\n}\n清单 2-8.\n创建新用户的 POST 动词实现\n\
+  ```\n\n`createUser` 方法接受一个类型为 `UsersDTO` 的参数，该参数带有 `@RequestBody` 注解，这要求 Spring\
+  \ 将整个请求体转换为 `UserDTO` 的实例。\n\n你使用 `consumes = MediaType.APPLICATION_JSON_VALUE`\
+  \ 配置了内容协商，这表明该方法仅接受来自请求体的 JSON 数据。`produces` 和 `consumes` 属性用于[缩小映射类型](http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-consumes)。你可以省略此配置，因为\
+  \ `@RequestBody` 会使用 `HttpMessageConverters` 来确定要使用的正确转换器，并将 HTTP 请求的正文转换为领域对象。Spring\
+  \ BOOT 中的消息转换器支持 JSON 和 XML 资源表示形式。\n\n在方法内部，你将 `UserDTO` 的持久化操作委托给了 `userJpaRepository`\
+  \ 的 save 方法。然后，你创建了一个新的 `ResponseEntity`，其中包含已创建的用户（`UserDTO`）和 HTTP 状态码 `HttpStatus.CREATED`（201），并将其返回。\n\
+  \n要测试这个新添加的端点，请启动 UserRegistrationSystem 应用程序。如果 UserRegistrationSystem 应用程序已在运行，则需要终止进程并重新启动。启动\
+  \ Postman 并选择请求类型为 POST。点击 Body 并选择 raw；然后从下拉菜单中选择 JSON (application/json) 作为 Content-Type\
+  \ 标头。输入一些信息并点击 Send。清单 2-9 展示了请求体中使用的 JSON。\n\n```\n{\n\"name\":\"Ravi Kant Soni\"\
+  ,\n\"address\":\"Lashkariganj, Sasaram, Rohtas, Bihar, pin-821115\",\n\"email\"\
+  :\"ravikantsoni.author@gmail.com\"\n}\n清单 2-9.\n用于创建新用户的请求体 JSON\n\n请求完成后，你将看到一条\
+  \ 201 `Created` 消息，如图 2-4 所示。\n\n![A436970_1_En_2_Fig4_HTML.jpg](img/A436970_1_En_2_Fig4_HTML.jpg)\n\
+  \n图 2-4.\n创建新用户的 POST 动词实现\n\n#### @GetMapping (\"/ {id}\")：检索单个用户\n\n下一步是实现一个用于访问单个用户的端点。清单\
+  \ 2-10 展示了所需的代码。\n\n```\n@GetMapping(\"/{id}\")\npublic ResponseEntity getUserById(@PathVariable(\"\
+  id\") final Long id) {\nUsersDTO user = userJpaRepository.findById(id);\nreturn\
+  \ new ResponseEntity(user, HttpStatus.OK);\n}\n清单 2-10.\n检索单个用户的 GET 动词实现\n\n如清单\
+  \ 2-10 所示，你使用 `@GetMapping(\"/{id}\")` 注解标注了 `getUserById` 方法。URI 中的占位符 `{id}` 与\
+  \ `@PathVariable` 注解一起，允许 Spring 提取 `id` 参数值。在方法内部，你使用了 `UserJpaRepository` 的 `findById`\
+  \ 方法来读取 `UserDTO` 对象，并将其作为 `ResponseEntity` 的一部分连同 HTTP 状态码 `HttpStatus.OK`（200）一起返回。\n\
+  \n要测试此功能，请启动 Postman 并重新启动 UserRegistrationSystem 应用程序。输入 URL `http://localhost:8080/api/user/1`\
+  \ 并点击 Send，如图 2-5 所示。\n\n![A436970_1_En_2_Fig5_HTML.jpg](img/A436970_1_En_2_Fig5_HTML.jpg)\n\
+  \n图 2-5.\n检索单个用户\n\n类似地，你可以实现用于执行更新和删除功能的端点。\n\n#### @PutMapping：更新用户\n\n此注解是一个组合注解，是\
+  \ `@RequestMapping(method = RequestMethod.PUT)` 的快捷方式。它要求将包含的实体视为请求 URI 上现有资源的修改版本。清单\
+  \ 2-11 展示了所需的代码。\n\n```\n@PutMapping(value = \"/{id}\", consumes = MediaType.APPLICATION_JSON_VALUE)\n\
+  public ResponseEntity updateUser(\n@PathVariable(\"id\") final Long id, @RequestBody\
+  \ UsersDTO user) {\n// 根据 id 获取用户并设置为 UserDTO 类型的 currentUser 对象\nUsersDTO currentUser\
+  \ = userJpaRepository.findById(id);\n// 使用 user 对象数据更新 currentUser 对象数据\ncurrentUser.setName(user.getName());\n\
+  currentUser.setAddress(user.getAddress());\ncurrentUser.setEmail(user.getEmail());\n\
+  // 保存 currentUser 对象\nuserJpaRepository.saveAndFlush(currentUser);\n// 返回 ResponseEntity\
+  \ 对象\nreturn new ResponseEntity(currentUser, HttpStatus.OK);\n}\n清单 2-11.\n更新用户的\
+  \ PUT 动词实现\n\n在清单 2-11 中，你通过将 `pathvariable` 中的 `id` 作为参数传递给 `UserJpaRepository`\
+  \ 的 `findById` 方法，检索到了现有的 `UserDTO` 对象作为 `currentUser`。然后，你根据 `requestbody` 中的用户信息更新了\
+  \ `currentUser` 的属性数据。\n\n你还调用了 `UserJpaRepository` 的 `saveAndFlush` 方法，并传入 `currentUser`，该方法会保存\
+  \ `UserDTO` 并立即刷新更改。最后，你返回了 `ResponseEntity`，其中包含 `currentUser` 作为响应体，以及 `HttpStatus.OK`\
+  \ 作为 HTTP 状态码。\n\n让我们通过启动 Postman 并重新启动应用程序来测试此端点，如图 2-6 所示。\n\n![A436970_1_En_2_Fig6_HTML.jpg](img/A436970_1_En_2_Fig6_HTML.jpg)\n\
+  \n图 2-6.\n更新用户的 PUT 动词实现\n\n现在，让我们实现删除功能，以从 UserRegistrationSystem 应用程序中删除现有用户。\n\
+  \n#### @DeleteMapping：删除用户\n\n这是一个组合注解，是 `@RequestMapping(method = RequestMethod.DELETE)`\
+  \ 的快捷方式。它要求应用程序删除由 `Request-URI` 标识的资源。清单 2-12 展示了实现此功能所需的代码。\n\n```\n@DeleteMapping(\"\
+  /{id}\")\npublic ResponseEntity deleteUser(@PathVariable(\"id\") final Long id)\
+  \ {\nuserJpaRepository.delete(id);\nreturn new ResponseEntity(HttpStatus.NO_CONTENT);\n\
+  }\n清单 2-12.\n删除用户的 DELETE 动词实现\n\n在清单 2-12 中，方法内部你调用了 `UserJpaRepository` 的 delete\
+  \ 方法，并传入 `pathvariable` 中的 `id` 作为参数。然后，你返回了带有 HTTP 状态码 `HttpStatus.NO_CONTENT`（204）的\
+  \ `ResponseEntity`。\n\n重新启动 UserRegistrationSystem 应用程序并启动 Postman 来测试此功能，如图 2-7\
+  \ 所示。\n\n![A436970_1_En_2_Fig7_HTML.jpg](img/A436970_1_En_2_Fig7_HTML.jpg)\n\n图\
+  \ 2-7.\n删除用户的 DELETE 动词实现\n\n到目前为止，你已经了解了如何实现用于执行 CRUD 操作的 RESTful API。接下来，你将学习\
+  \ RESTful API 中的错误处理。\n\n## 处理 RESTful API 中的错误\n\n尽管开发人员会注意处理错误，但以合适的格式设计错误响应仍然很重要，这能让使用\
+  \ RESTful API 的客户端理解问题，并帮助其正确使用 API。错误处理是 RESTful API 开发中最重要的问题之一。在现实世界中，RESTful\
+  \ API 在各种场景下被使用，很难预测 API 被使用的所有场景。\n\n\n\n### UserRegistrationSystem 错误处理\n\n考虑\
+  \ UserRegistrationSystem 应用程序中的一个场景：客户端尝试获取系统中不存在的用户信息。图 2-8 展示了针对 ID 为 50 的不存在用户发送的\
+  \ Postman `GET` 请求。\n\n![A436970_1_En_2_Fig8_HTML.jpg](img/A436970_1_En_2_Fig8_HTML.jpg)\n\
+  \n图 2-8.\n\n针对 ID 为 50 的不存在用户发送的 GET 请求\n\n如图 2-8 所示，RESTful API 返回了空响应体，因为对于不存在的用户\
+  \ ID 50，`UserJpaRepository` 的 `findOne` 方法向 `UserRegistrationRestController` 返回了\
+  \ `null`。RESTful API 返回了 HTTP 状态码 200 `OK`，而不是应该指示请求用户不存在的状态码 404。\n\n为了实现此行为，你需要在\
+  \ `com.apress.ravi.Rest.UserRegistrationRestController` 的 `getUserById` 方法中验证用户\
+  \ `id` 属性。对于不存在的用户，返回包含 `CustomErrorType` 和状态码 `HttpStatus.NOT_FOUND` (404) 的 `ResponseEntity`。清单\
+  \ 2-13 展示了处理错误所需的代码更新。\n\n```\n@GetMapping(\"/{id}\")\npublic ResponseEntity getUserById(@PathVariable(\"\
+  id\") final Long id) {\nUsersDTO user = userJpaRepository.findById(id);\nif (user\
+  \ == null) {\nreturn new ResponseEntity(\nnew CustomErrorType(\"User with id \"\n\
+  + id + \" not found\"), HttpStatus.NOT_FOUND);\n}\nreturn new ResponseEntity(user,\
+  \ HttpStatus.OK);\n}\n清单 2-13.\n针对不存在用户的错误处理\n```\n\n在清单 2-13 中，你通过在其构造函数中传递自定义错误消息（“User\
+  \ with id 50 not found”）创建了一个 `CustomErrorType` 类的实例。\n\n#### 自定义错误响应\n\n现在，让我们在\
+  \ `src/main/java` 下的 `com.apress.ravi.Exception` 包中创建 `CustomErrorType` 类。清单 2-14\
+  \ 展示了 `CustomErrorType` 类所需的代码实现。\n\n```\npackage com.apress.ravi.Exception;\nimport\
+  \ com.apress.ravi.dto.UsersDTO;\npublic class CustomErrorType extends UsersDTO {\n\
+  private String errorMessage;\npublic CustomErrorType(final String errorMessage){\n\
+  this.errorMessage = errorMessage;\n}\n@Override\npublic String getErrorMessage()\
+  \ {\nreturn errorMessage;\n}\n}\n清单 2-14.\nCustomErrorType 类\n```\n\n在清单 2-14 中，`CustomErrorType`\
+  \ 类将 `errorMessage` 声明为成员变量，并提供了相应的 getter 方法。此 `errorMessage` 在该类的构造函数中被初始化。\n\n\
+  在 UserRegistrationSystem 应用程序中进行此修改后，重新启动应用程序并启动 Postman，为 ID 为 50 的用户发送 `GET` 请求。`UserRegistrationRestController`\
+  \ 返回正确状态码和错误消息的结果如图 2-9 所示。\n\n![A436970_1_En_2_Fig9_HTML.jpg](img/A436970_1_En_2_Fig9_HTML.jpg)\n\
+  \n图 2-9.\n\n针对不存在用户的错误消息和状态码\n\n在 UserRegistrationSystem 应用程序中，对于涉及 HTTP 方法（如 `GET`、`PUT`\
+  \ 和 `DELETE`）的 CRUD 操作的其他方法，也需要执行相同的用户 ID 验证，以返回正确的状态码和消息。清单 2-15 展示了更新后的 `UserRegistrationRestController`\
+  \ 类，其中包含了修改后的 `listAllUsers`、`getUserById`、`createUser`、`updateUser` 和 `deleteUser`\
+  \ 方法。\n\n```\n// method to get list of users\n@GetMapping(\"/\")\npublic ResponseEntity>\
+  \ listAllUsers() {\nList users = userJpaRepository.findAll();\nif (users.isEmpty())\
+  \ {\nreturn new ResponseEntity>(HttpStatus.NO_CONTENT);\n}\nreturn new ResponseEntity>(users,\
+  \ HttpStatus.OK);\n}\n// method to get user by id\n@GetMapping(\"/{id}\")\npublic\
+  \ ResponseEntity getUserById(@PathVariable(\"id\") final Long id) {\nUsersDTO user\
+  \ = userJpaRepository.findById(id);\nif (user == null) {\nreturn new ResponseEntity(\n\
+  new CustomErrorType(\"User with id \"\n+ id + \" not found\"), HttpStatus.NOT_FOUND);\n\
+  }\nreturn new ResponseEntity(user, HttpStatus.OK);\n}\n// method to create an user\n\
+  @PostMapping(value = \"/\", consumes = MediaType.APPLICATION_JSON_VALUE)\npublic\
+  \ ResponseEntity createUser(@RequestBody final UsersDTO user) {\nif (userJpaRepository.findByName(user.getName())\
+  \ != null) {\nreturn new ResponseEntity(new CustomErrorType(\n\"Unable to create\
+  \ new user. A User with name \"\n+ user.getName() + \" already exist.\"),HttpStatus.CONFLICT);\n\
+  }\nuserJpaRepository.save(user);\nreturn new ResponseEntity(user, HttpStatus.CREATED);\n\
+  }\n// method to update an existing user\n@PutMapping(value = \"/{id}\", consumes\
+  \ = MediaType.APPLICATION_JSON_VALUE)\npublic ResponseEntity updateUser(\n@PathVariable(\"\
+  id\") final Long id, @RequestBody UsersDTO user) {\nUsersDTO currentUser = userJpaRepository.findById(id);\n\
+  if (currentUser == null) {\nreturn new ResponseEntity(\nnew CustomErrorType(\"Unable\
+  \ to upate. User with id \"\n+ id + \" not found.\"), HttpStatus.NOT_FOUND);\n}\n\
+  currentUser.setName(user.getName());\ncurrentUser.setAddress(user.getAddress());\n\
+  currentUser.setEmail(user.getEmail());\nuserJpaRepository.saveAndFlush(currentUser);\n\
+  return new ResponseEntity(currentUser, HttpStatus.OK);\n}\n// delete an existing\
+  \ user\n@DeleteMapping(\"/{id}\")\npublic ResponseEntity deleteUser(@PathVariable(\"\
+  id\") final Long id) {\nUsersDTO user = userJpaRepository.findById(id);\nif (user\
+  \ == null) {\nreturn new ResponseEntity(\nnew CustomErrorType(\"Unable to delete.\
+  \ User with id \"\n+ id + \" not found.\"), HttpStatus.NOT_FOUND);\n}\nuserJpaRepository.delete(id);\n\
+  return new ResponseEntity(\nnew CustomErrorType(\"Deleted User with id \"\n+ id\
+  \ + \".\"), HttpStatus.NO_CONTENT);\n}\n清单 2-15.\n更新后的 UserRegistrationRestController\
+  \ 类\n```\n\n### 验证请求体\n\n当需要验证包含 JSON 数据的请求体（针对某些复杂对象）时，你需要做更多工作。考虑一个场景：客户端发起一个新用户创建请求，但请求体中缺少数据，例如请求体不包含地址。\n\
+  \nSpring MVC 支持使用 JSR-303 Bean 验证约束进行输入验证。\n\n\n\n#### 添加 Bean 验证注解\n\n清单 2-16 展示了\
+  \ `UsersDTO` 实体类中的更新内容。你使用 `@NotNull` 和 `@Email` 等验证约束来注解 `UsersDTO` 对象的属性。你可以使用\
+  \ Hibernate Validator，这是一个流行的 JSR 303 和 JSR 349 实现框架。\n\n```\npackage com.apress.ravi.dto;\n\
+  import javax.persistence.Column;\nimport javax.persistence.Entity;\nimport javax.persistence.GeneratedValue;\n\
+  import javax.persistence.Id;\nimport org.hibernate.validator.constraints.Email;\n\
+  import org.hibernate.validator.constraints.Length;\nimport org.hibernate.validator.constraints.NotEmpty;\n\
+  @Entity\npublic class UsersDTO {\n@Id\n@GeneratedValue\n@Column(name = \"USER_ID\"\
+  )\nprivate Long id;\n@NotEmpty\n@Length(max = 50)\n@Column(name = \"NAME\")\nprivate\
+  \ String name;\n@NotEmpty\n@Length(max = 150)\n@Column(name = \"ADDRESS\")\nprivate\
+  \ String address;\n@Email\n@NotEmpty\n@Length(max = 80)\n@Column(name = \"EMAIL\"\
+  )\nprivate String email;\n// Getter & Setter method\n}\n清单 2-16.\n使用 JSR 303 注解的\
+  \ UsersDTO 类\n```\n\n如清单 2-16 所示，你已对 `UsersDTO` 类进行了注解，为 UserRegistrationSystem\
+  \ 应用程序添加了输入验证功能。表 2-4 展示了 Bean 验证 API 提供的一些验证约束。\n\n表 2-4.\n\nBean 验证 API 提供的验证约束\n\
+  \n| 约束 | 描述 |\n| --- | --- |\n| `NotNull` | 被注解的成员变量不能为 null。 |\n| `NotEmpty` |\
+  \ 被注解的成员变量（字符串、集合、映射或数组）不能为 null 或空。 |\n| `Size` | 被注解的成员变量（字符串、集合、映射或数组）的大小必须在指定边界之间（包含边界）。\
+  \ |\n| `Length` | 执行更新操作。 |\n| `Email` | 被注解的成员变量（字符串）必须是一个格式正确的有效电子邮件地址。 |\n| `Min`\
+  \ | 被注解的成员变量（`BigDecimal`、`BigInteger`、`Byte`、`Short`、`int`、`long` 及其包装类）必须是一个数值，其值必须大于或等于指定的最小值。\
+  \ |\n| `Max` | 被注解的成员变量（`BigDecimal`、`BigInteger`、`Byte`、`Short`、`int`、`long` 及其包装类）必须是一个数值，其值必须小于或等于指定的最小值。\
+  \ |\n\n由于你希望确保每个用户都有姓名、地址和电子邮件，因此你使用 `@NotEmpty` 注解对这些字段进行了标注，这确保了输入字符串不为 null 且长度大于零。你还使用\
+  \ `@Length` 注解和最大值对这些字段进行了标注，以确保 `String` 长度不超过此最大长度值。电子邮件字段使用 `@Email` 注解进行标注，以验证输入字符串是否为有效的电子邮件地址。\n\
+  \n下一步是在 `UserRegistrationRestController` 类的 `createUser` 方法的 `UsersDTO` 参数上添加 `@Valid`\
+  \ 注解。\n\n#### UserRegistrationRestController 方法参数中 @RequestBody 上的 @Valid\n\n在 `UserRegistrationRestController`\
+  \ 端点的 `createUser` 方法的 `UsersDTO` 参数上添加 `@Valid` 注解，如清单 2-17 所示。\n\n```\n@PostMapping(value\
+  \ = \"/\", consumes = MediaType.APPLICATION_JSON_VALUE)\npublic ResponseEntity createUser(\n\
+  @Valid @RequestBody final UsersDTO user) {\nlogger.info(\"Creating User : {}\",\
+  \ user);\nif (userJpaRepository.findByName(user.getName()) != null) {\nlogger.error(\"\
+  Unable to create. A User with name {} already exist\",\nuser.getName());\nreturn\
+  \ new ResponseEntity(\nnew CustomErrorType(\n\"Unable to create new user. A User\
+  \ with name \"\n+ user.getName() + \" already exist.\"),                       \
+  \                          HttpStatus.CONFLICT);\n}\nuserJpaRepository.save(user);\n\
+  return new ResponseEntity(user, HttpStatus.CREATED);\n}\n清单 2-17.\n使用 @Valid 注解的\
+  \ UserRegistrationRestController\n```\n\n如清单 2-17 所示，`@Valid` 注解将指示 Spring 在将传入的\
+  \ `POST` 参数与对象绑定后执行请求数据验证。\n\n`@RequestBody` 方法参数可以使用 `@Valid` 进行注解，以调用自动验证，类似于对\
+  \ `@ModelAttribute` 方法参数的支持。由此产生的 `MethodArgumentNotValidException` 会在 `DefaultHandlerExceptionResolver`\
+  \ 中处理，并导致返回 400 响应码。\n\n来源\n\n参见 [`http://docs.spring.io/spring/docs/3.2.18.RELEASE/spring-framework-reference/htmlsingle/#new-in-3.1-mvc-valid-requestbody`](http://docs.spring.io/spring/docs/3.2.18.RELEASE/spring-framework-reference/htmlsingle/#new-in-3.1-mvc-valid-requestbody)\
+  \ 。\n\n通过使用 `@Valid` 注解，Spring 将验证委托给已注册的验证器。在运行 UserRegistrationSystem 应用程序并发送缺少地址的\
+  \ Postman 请求时，如图 2-10 所示，错误代码 HTTP 状态 400（`Bad Request`）表示操作失败。\n\n![A436970_1_En_2_Fig10_HTML.jpg](img/A436970_1_En_2_Fig10_HTML.jpg)\n\
+  \n图 2-10.\n\n缺少地址导致 MethodArgumentNotValidException\n\n重复发送缺少问题的 Postman 请求，如你在\
+  \ [图 5-7](https://www.safaribooksonline.com/library/view/spring-rest/9781484208236/9781484208243_Ch05.xhtml#Fig7)\
+  \ 中所做的那样，你将看到操作失败并显示以下信息，如 [图 5-8](https://www.safaribooksonline.com/library/view/spring-rest/9781484208236/9781484208243_Ch05.xhtml#Fig8)\
+  \ 所示：\n\n*   状态：400\n*   错误：Bad request\n*   异常：`org.springframework.web.bind.MethodArgumentNotValidException`\n\
+  \n从这个错误响应中，你可以了解到 Spring MVC 验证了输入数据，并在未找到必需的地址字段时抛出了 `MethodArgumentNotValidException`\
+  \ 异常。\n\n尽管 Spring Boot 返回的错误消息有所帮助，但对于使用 RESTful API 的客户端来说，信息量还不够大。因此，你应该提供更具信息量的错误消息，如下面\
+  \ JSON 格式所示：\n\n```\n{\n\"error_title\" : \"\",\n\"error_status\" : \"\",\n\"error_detail\"\
+  \ : \"\",\n\"error_timestamp\" : \"\",\n\"error_path\" : \"\",\n\"error_developerMessage\"\
+  \": \"\",\n\"errors\": {\n\"field1\" : [ {\n\"field\" : \"\"\n\"message\" : \"\"\
+  \n\"type\" : \"\"\n},\n\"field2\" : [ {\n\"field\" : \"\"\n\"message\" : \"\"\n\"\
+  type\" : \"\"\n}\n}\n}\n```\n\n为了表示这种用于错误消息的 JSON 格式，你需要拦截 `MethodArgumentNotValidException`\
+  \ 并返回适当的错误消息。在设计 UserRegistrationSystem 错误响应时，你提出了一个错误对象，它可以包含一个无序的键值错误实例集合，其中 `key`\
+  \ 包含字段名称，`values` 包含字段的错误信息（包括字段、消息和类型），如前面的 JSON 数据所示。\n\n牢记前面的 JSON 错误消息设计，让我们创建类来返回一个包含适当\
+  \ JSON 格式错误消息的实例。\n\n\n\n#### ValidationError 与更新后的 ErrorDetail 类\n\n为了在 UserRegistrationSystem\
+  \ 应用程序中添加之前的验证错误功能，你需要创建两个类。\n\n*   `com.apress.ravi.Exception.FieldValidationError`\n\
+  *   `com.apress.ravi.Exception.FieldValidationErrorDetails`\n\n清单 2-18 展示了 `FieldValidationError`\
+  \ 类。\n\n```\nimport java.awt.TrayIcon.MessageType;\npublic class FieldValidationError\
+  \ {\nprivate String filed;\nprivate String message;\nprivate MessageType type;\n\
+  // Getter & Setter\n}\nListing 2-18.\nFieldValidationError Class\n```\n\n`FieldValidationError`\
+  \ 类有三个属性：字段（`String`）、消息（`String`）和消息类型（`MessageType`）。\n\n`MessageType` 是一个枚举，包含可能的消息类型，如清单\
+  \ 2-19 所示。\n\n```\npublic enum MessageType {\nSUCCESS, INFO, WARNING, ERROR\n}\n\
+  Listing 2-19.\nEnumeration MessageType\n```\n\n`FieldValidationErrorDetails` 类的实例将被创建，用于生成预期的错误\
+  \ JSON 格式的错误响应，如清单 2-20 所示。\n\n```\npackage com.apress.ravi.Exception;\nimport java.util.HashMap;\n\
+  import java.util.List;\nimport java.util.Map;\npublic class FieldValidationErrorDetails\
+  \ {\nprivate String error_title;\nprivate int error_status;\nprivate String error_detail;\n\
+  private long error_timeStamp;\nprivate String error_path;\nprivate String error_developer_Message;\n\
+  private Map<String, List<FieldValidationError>> errors =\nnew HashMap<String, List<FieldValidationError>>();\n\
+  // Getter & Setter\n}\nListing 2-20.\nFieldValidationErrorDetails Class\n```\n\n\
+  `FieldValidationErrorDetails` 类中的 `errors` 字段被定义为一个 `Map`，它接受 `String` 实例作为键，`FieldValidationError`\
+  \ 实例的列表作为值。\n\n下一步是创建一个类来拦截并处理 `MethodArgumentNotValidException` 异常。\n\n#### 使用\
+  \ @ControllerAdvice 注解处理异常\n\n`@ControllerAdvice` 注解用于为使用 `@ExceptionHandler` 注解标注的异常处理方法定义一个全局异常处理器。\n\
+  \n使用 `@ControllerAdvice` 注解标注的类将适用于应用程序中的所有控制器。因此，该应用程序中任何控制器类抛出的任何异常都将由这个被注解的类处理，该类中有一个使用\
+  \ `@ExceptionHandler` 注解标注的方法。只有当任何控制器类抛出的异常与配置的 `Exception` 类匹配时，此方法才会被执行。\n\n\
+  那么，让我们在 `src/main/java` 文件夹下的 `com.apress.ravi.Exception` 包中创建控制器通知类 `RestValidationHandler`，该类用于拦截异常，如清单\
+  \ 2-21 所示。\n\n```\npackage com.apress.ravi.Exception;\nimport java.awt.TrayIcon.MessageType;\n\
+  import java.util.ArrayList;\nimport java.util.Date;\nimport java.util.List;\nimport\
+  \ javax.servlet.http.HttpServletRequest;\nimport org.springframework.http.HttpStatus;\n\
+  import org.springframework.http.ResponseEntity;\nimport org.springframework.validation.BindingResult;\n\
+  import org.springframework.validation.FieldError;\nimport org.springframework.web.bind.MethodArgumentNotValidException;\n\
+  import org.springframework.web.bind.annotation.ControllerAdvice;\nimport org.springframework.web.bind.annotation.ExceptionHandler;\n\
+  import org.springframework.web.bind.annotation.ResponseStatus;\n@ControllerAdvice\n\
+  public class RestValidationHandler {\n// method to handle validation error\n@ExceptionHandler(MethodArgumentNotValidException.class)\n\
+  @ResponseStatus(HttpStatus.BAD_REQUEST)\npublic ResponseEntity<FieldValidationErrorDetails>\
+  \ handleValidationError(\nMethodArgumentNotValidException mNotValidException,\n\
+  HttpServletRequest request) {\nFieldValidationErrorDetails fErrorDetails =\nnew\
+  \ FieldValidationErrorDetails();\nfErrorDetails.setError_timeStamp(new Date().getTime());\n\
+  fErrorDetails.setError_status(HttpStatus.BAD_REQUEST.value());\nfErrorDetails.setError_title(\"\
+  Field Validation Error\");\nfErrorDetails.setError_detail(\"Inut Field Validation\
+  \ Failed\");\nfErrorDetails.setError_developer_Message(\nmNotValidException.getClass().getName());\n\
+  fErrorDetails.setError_path(request.getRequestURI());\nBindingResult result = mNotValidException.getBindingResult();\n\
+  List<FieldError> fieldErrors = result.getFieldErrors();\nfor (FieldError error :\
+  \ fieldErrors) {\nFieldValidationError fError = processFieldError(error);\nList<FieldValidationError>\
+  \ fValidationErrorsList =\nfErrorDetails.getErrors().get(error.getField());\nif\
+  \ (fValidationErrorsList == null) {\nfValidationErrorsList =\nnew ArrayList<FieldValidationError>();\n\
+  }\nfValidationErrorsList.add(fError);\nfErrorDetails.getErrors().put(\nerror.getField(),\
+  \ fValidationErrorsList);\n}\nreturn new ResponseEntity<FieldValidationErrorDetails>(\n\
+  fErrorDetails, HttpStatus.BAD_REQUEST);\n}\n// method to process field error\nprivate\
+  \ FieldValidationError processFieldError(final FieldError error) {\nFieldValidationError\
+  \ fieldValidationError =\nnew FieldValidationError();\nif (error != null) {\nfieldValidationError.setFiled(error.getField());\n\
+  fieldValidationError.setType(MessageType.ERROR);\nfieldValidationError.setMessage(error.getDefaultMessage());\n\
+  }\nreturn fieldValidationError;\n}\n}\nListing 2-21.\nController Advice Class to\
+  \ handleValidationError\n```\n\n如清单 2-21 所示，`RestValidationHandler` 使用了来自 `org.springframework.web.bind.annotation`\
+  \ 包的 `@ControllerAdvice` 注解。该类定义了一个名为 `handleValidationError` 的全局异常处理方法，该方法带有 `@ExceptionHandler(MethodArgumentNotValidException.class)`\
+  \ 注解，用于拦截由 UserRegistrationSystem 应用程序中任何控制器类抛出的 `MethodArgumentNotValidException`\
+  \ 类型的异常。\n\n`handlerValidationError` 方法的实现首先创建了一个 `FieldValidationErrorDetails`\
+  \ 实例，并通过调用不同字段的 setter 方法为其填充适当的信息。然后，你使用传入的异常参数 `mNotValidException` 来获取字段错误列表，并遍历该列表以获取错误信息。接着，你为每个字段错误创建一个\
+  \ `FieldValidationError` 实例，并用代码和错误信息填充它。\n\n有了这个实现，让我们重启 UserRegistrationSystem\
+  \ 应用程序，并从 Postman 提交一个缺少地址的用户。这个缺少地址的 `POST` 数据请求将导致返回状态码 400 以及自定义的错误响应，如图 2-11\
+  \ 所示。\n\n![A436970_1_En_2_Fig11_HTML.jpg](img/A436970_1_En_2_Fig11_HTML.jpg)\n\n\
+  图 2-11.\n\n创建缺少地址的用户时返回的自定义错误消息\n\n#### 外部化错误消息\n\n到目前为止，你在输入数据验证方面取得了良好进展，客户端能够收到描述性的错误消息，这有助于客户端在消费\
+  \ API 时排查问题并从这些错误中恢复。\n\n尽管你在上一节中看到的错误消息是描述性的，但 API 开发者可以通过从外部的 `messages.properties`\
+  \ 文件中提取此消息，使其更具描述性。这种 properties 文件方法允许 API 开发者轻松地替换消息，而无需修改代码。它还支持国际化/本地化。\n\n\
+  下一步是读取 properties 文件，以便在创建 `ValidationError` 实例时可以使用该文件中的属性。为了实现该功能，你必须在应用程序配置类中配置\
+  \ `ReloadableResourceBundleMessageSource`。\n\n\n\n##### 创建 ReloadableResourceBundleMessageSource\
+  \ Bean：messageSource\n\n现在，我们在 `src/main/java` 文件夹下 `com.apress.ravi` 包内的 `UserRegistrationConfiguration`\
+  \ 类中创建一个 `ReloadableResourceBundleMessageSource` bean。清单 2-22 展示了必要的代码修改。\n\n```\n\
+  package com.apress.ravi;\nimport org.springframework.context.annotation.Bean;\n\
+  import org.springframework.context.annotation.Configuration;\nimport org.springframework.context.support.ReloadableResourceBundleMessageSource;\n\
+  @Configuration\npublic class UserRegistrationConfiguration {\n@Bean(name = \"messageSource\"\
+  )\npublic ReloadableResourceBundleMessageSource messageSource() {\nReloadableResourceBundleMessageSource\
+  \ messageBundle =\nnew ReloadableResourceBundleMessageSource();\nmessageBundle.setBasename(\"\
+  classpath:messages/messages\");\nmessageBundle.setDefaultEncoding(\"UTF-8\");\n\
+  return messageBundle;\n}\n}\n清单 2-22.\nReloadableResourceBundleMessageSource Bean\n\
+  ```\n\n在清单 2-22 中，你使用 `@Configuration` 注解标注了 `UserRegistrationConfiguration` 类。Bean\
+  \ 的名称通过 `@Bean(name = \"messageSource\")` 定义为 `messageSource`。\n\n`@Configuration`\
+  \ 注解是一个元注解，表明该配置类可以包含一个或多个 `@Bean` 方法，用于生成可由 Spring 容器管理的 Bean 定义。这个 Bean 将允许你在不重启应用程序的情况下修改消息的属性文件。\n\
+  \n`messageSource` 方法配置了一个 `ReloadableResourceBundleMessageSource`，以支持从属性文件中读取消息。`ReloadableResourceBundleMessageSource`\
+  \ Bean 是一种 `MessageSource`，它加载消息的属性文件，并从属性文件中解析消息键。\n\n要设置基础名称，`setBaseName` 方法接受一个参数\
+  \ `classpath:messages/messages`（即属性文件的路径）。你设置了消息源文件的默认编码为 UTF-8。Spring 将在 `src/main/resources/messages`\
+  \ 文件夹中查找名为 `messages.properties` 的属性文件。\n\n##### 创建属性文件\n\n现在，在 `src/main/resources/messages`\
+  \ 文件夹下创建一个 `messages.properties` 文件，并添加以下消息：\n\n```\nerror.name.empty=姓名字段为必填项\n\
+  error.name.length=姓名应限制在 50 个字符以内\nerror.address.empty=地址字段为必填项\nerror.address.length=地址应限制在\
+  \ 150 个字符以内\nerror.email.empty=邮箱字段为必填项\nerror.email.email=邮箱格式应正确\nerror.email.length=邮箱应限制在\
+  \ 80 个字符以内\n```\n\n这些消息遵循每个消息键的特定模式，如下所示：\n\n```\nerror.字段名.验证类型\n```\n\n##### 使用\
+  \ message 属性的 Bean 验证注解\n\n现在，我们使用带有 `message` 属性的 JSR-303 注解进行 Bean 验证。`message`\
+  \ 属性用于设置当注解定义的约束未满足时显示的自定义错误消息。清单 2-23 展示了必要的代码修改。\n\n这个 `message` 属性将通过上一节定义的 `ReloadableResourceBundleMessageSource`\
+  \ Bean，从 `messages.properties` 文件中获取匹配消息键的消息值。\n\n```\npackage com.apress.ravi.dto;\n\
+  import javax.persistence.Column;\nimport javax.persistence.Entity;\nimport javax.persistence.GeneratedValue;\n\
+  import javax.persistence.Id;\nimport org.hibernate.validator.constraints.Email;\n\
+  import org.hibernate.validator.constraints.Length;\nimport org.hibernate.validator.constraints.NotEmpty;\n\
+  @Entity\npublic class UsersDTO {\n@Id\n@GeneratedValue\n@Column(name = \"USER_ID\"\
+  )\nprivate Long id;\n@NotEmpty(message = \"error.name.empty\")\n@Length(max = 50,\
+  \ message = \"error.name.length\")\n@Column(name = \"NAME\")\nprivate String name;\n\
+  @NotEmpty(message = \"error.address.empty\")\n@Length(max = 150, message = \"error.address.length\"\
+  )\n@Column(name = \"ADDRESS\")\nprivate String address;\n@Email(message = \"error.email.email\"\
+  )\n@NotEmpty(message = \"error.email.empty\")\n@Length(max = 80, message = \"error.email.length\"\
+  )\n@Column(name = \"EMAIL\")\nprivate String email;\n// Getter & Setter 方法\n}\n\
+  清单 2-23.\n使用 message 属性的 Bean 验证注解\n```\n\n到目前为止，你已经创建了 `ReloadableResourceBundleMessageSource`\
+  \ Bean，在 `messages.properties` 文件中定义了消息，并使用带有 `message` 属性的 Bean 验证注解标注了实体类。\n\n\
+  下一步是从属性文件中读取消息，并在创建 `FieldValidationErrorinstance` 时使用它们。\n\n\n\n##### 从属性文件读取消息\n\
+  \n要读取属性文件，请在`RestValidationHandler`类的构造函数中通过`@Autowired`注解注入`MessageSource`参数。清单\
+  \ 2-24 展示了`RestValidationHandler`类中`handleValidationError`方法的更新后源代码。\n\n```\npackage\
+  \ com.apress.ravi.Exception;\nimport java.awt.TrayIcon.MessageType;\nimport java.util.ArrayList;\n\
+  import java.util.Date;\nimport java.util.List;\nimport javax.servlet.http.HttpServletRequest;\n\
+  import org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.context.MessageSource;\n\
+  import org.springframework.http.HttpStatus;\nimport org.springframework.http.ResponseEntity;\n\
+  import org.springframework.validation.BindingResult;\nimport org.springframework.validation.FieldError;\n\
+  import org.springframework.web.bind.MethodArgumentNotValidException;\nimport org.springframework.web.bind.annotation.ControllerAdvice;\n\
+  import org.springframework.web.bind.annotation.ExceptionHandler;\nimport org.springframework.web.bind.annotation.ResponseStatus;\n\
+  @ControllerAdvice\npublic class RestValidationHandler {\nprivate MessageSource messageSource;\n\
+  @Autowired\npublic RestValidationHandler(MessageSource messageSource) {\nthis.messageSource\
+  \ = messageSource;\n}\n// 处理验证错误的方法\n@ExceptionHandler(MethodArgumentNotValidException.class)\n\
+  @ResponseStatus(HttpStatus.BAD_REQUEST)\npublic ResponseEntity handleValidationError(\n\
+  MethodArgumentNotValidException mNotValidException,\nHttpServletRequest request)\
+  \ {\nFieldValidationErrorDetails fErrorDetails =\nnew FieldValidationErrorDetails();\n\
+  fErrorDetails.setError_timeStamp(new Date().getTime());\nfErrorDetails.setError_status(HttpStatus.BAD_REQUEST.value());\n\
+  fErrorDetails.setError_title(\"字段验证错误\");\nfErrorDetails.setError_detail(\"输入字段验证失败\"\
+  );\nfErrorDetails.setError_developer_Message(\nmNotValidException.getClass().getName());\n\
+  fErrorDetails.setError_path(request.getRequestURI());\nBindingResult result = mNotValidException.getBindingResult();\n\
+  List fieldErrors = result.getFieldErrors();\nfor (FieldError error : fieldErrors)\
+  \ {\nFieldValidationError fError = processFieldError(error);\nList fValidationErrorsList\
+  \ =\nfErrorDetails.getErrors().get(error.getField());\nif (fValidationErrorsList\
+  \ == null) {\nfValidationErrorsList =\nnew ArrayList();\n}\nfValidationErrorsList.add(fError);\n\
+  fErrorDetails.getErrors().put(\nerror.getField(), fValidationErrorsList);\n}\nreturn\
+  \ new ResponseEntity(\nfErrorDetails, HttpStatus.BAD_REQUEST);\n}\n// 处理字段错误的方法\n\
+  private FieldValidationError processFieldError(final FieldError error) {\nFieldValidationError\
+  \ fieldValidationError =\nnew FieldValidationError();\nif (error != null) {\nLocale\
+  \ currentLocale = LocaleContextHolder.getLocale();\nString msg = messageSource.getMessage(\n\
+  error.getDefaultMessage(), null, currentLocale);\nfieldValidationError.setFiled(error.getField());\n\
+  fieldValidationError.setType(MessageType.ERROR);\nfieldValidationError.setMessage(msg);\n\
+  }\nreturn fieldValidationError;\n}\n}\n清单 2-24.\n从消息属性文件读取消息\n```\n\n在清单 2-24 中，你使用了`MessageSource`的`getMessage`方法，根据`currentLocale`从属性文件中检索消息。\n\
+  \n要测试这些更改，请重启 UserRegistrationSystem 应用程序并启动 Postman，提交一个缺少地址且电子邮件格式不正确的用户，如图 2-12\
+  \ 所示。这将导致从属性文件中返回新的验证错误消息。\n\n![A436970_1_En_2_Fig12_HTML.jpg](img/A436970_1_En_2_Fig12_HTML.jpg)\n\
+  \n图 2-12.\n\n创建一个缺少地址且电子邮件格式不正确的用户\n\n## 本章小结\n\n在本章中，你学习了如何为 UserRegistrationSystem\
+  \ 应用程序创建 RESTful 服务。现在你了解了 HTTP 方法和状态码。你创建了不同的端点来执行 CRUD 操作。你处理了 RESTful API 中的错误，并定义了自定义错误响应。你还使用`Validation`注解验证了请求输入，并将错误消息外部化。\n\
+  \n在下一章中，你将使用 AngularJS 开发一个单页应用程序来消费 RESTful API。\n\n"
+- "# 3. 设置 AngularJS：创建你的单页应用程序\n\n在上一章中，你学习了如何为 UserRegistrationSystem 应用程序创建 RESTful\
+  \ 服务。现在你了解了 HTTP 方法和状态码。你创建了不同的端点来执行 CRUD 操作。你处理了 REST API 中的错误，并定义了自定义错误响应。你还使用`Validation`注解验证了请求输入，并将错误消息外部化。\n\
+  \n前端涉及用户看到的所有内容，包括设计以及 HTML 和 CSS 等语言。前端代码的主要目的是与用户交互，并以定义良好的样式呈现数据。在构建前端应用程序时，有许多出色的\
+  \ JavaScript 库可供使用。\n\nAngularJS 是一个开源 JavaScript 框架，为创建 Web 应用程序提供了结构化方法。它是一个构建在轻量级\
+  \ jQuery 之上的 JavaScript 库。它强制使用结构清晰、整洁的模型-视图-控制器（MVC）框架。由于这种清晰且结构化的方法，AngularJS\
+  \ 是 Spring Boot 客户端库的完美解决方案。\n\n在本章中，我将介绍 MVC 和 AngularJS 框架及其主要组件，以便你能够为使用 Spring\
+  \ Boot 开发的 UserRegistrationSystem 应用程序开发前端。\n\n我将从 AngularJS 及其生命周期介绍开始。然后你将了解 AngularJS\
+  \ 组件以及如何在应用程序中实现它们。此外，你将消费在第 2 章中开发的 REST API，以开发你的单页应用程序（SPA）。在本章中，你将学习以下内容：\n\n\
+  *   如何使用 AngularJS 作为前端框架\n*   如何开发单页应用程序来消费 REST API\n\n在本章中，你将学习如何将 AngularJS\
+  \ 框架集成到你的 Spring Boot UserRegistrationSystem 应用程序中，以开发单页应用程序。如果你想深入了解 AngularJS，请参考[`https://angularjs.org/`](https://angularjs.org/)。\n\
+  \n## 介绍 AngularJS 作为前端框架\n\nAngularJS 是一个用 JavaScript 编写的 Web 应用程序开发库，由 Google 维护。它是一个开源\
+  \ JavaScript 框架，解决了单页应用程序（SPA）的挑战。AngularJS Web 应用程序遵循 MVC 设计模式，从而开发出可扩展、可维护、可测试且标准化的\
+  \ Web 应用程序。AngularJS 的数据绑定和依赖注入使其成为任何服务器技术的理想合作伙伴，因为它消除了许多否则你必须编写的代码，并且这一切都在浏览器中完成。\n\
+  \n\n\n### AngularJS 基本组件\n\nAngularJS 允许开发者基于 MVC 模型构建结构化的应用程序，这些应用健壮且易于维护。在实现 AngularJS\
+  \ 之前，熟悉其各个组件非常重要。\n\n*   **模块**：这是 AngularJS 的组件之一。模块本质上是一个容器，包含服务、控制器、过滤器、指令等。AngularJS\
+  \ 中的每个模块都有自己独立的文件夹结构，用于存放控制器、指令等。AngularJS 中的每个视图页面都有一个模块。\n*   **作用域**：AngularJS\
+  \ 中的作用域只是用于填充网页视图的数据的 JavaScript 表示。这些数据可以来自任何源，例如数据库或远程 Web 服务器。\n*   **视图**：AngularJS\
+  \ 中带有模板和指令的视图是构建呈现给用户的 HTML 视图的其他组件。\n*   **表达式**：在 HTML 模板中添加表达式的能力是 AngularJS\
+  \ 的一大特性。表达式基本上与作用域相关联。表达式有助于将应用程序数据绑定到 HTML。\n*   **控制器**：控制器是 MVC 框架的一个组件。控制器将包含您的核心业务逻辑。它在\
+  \ AngularJS 中的主要作用是使用作用域将数据暴露给视图页面。\n*   **数据绑定**：AngularJS 的一个重要特性是数据绑定。这是将数据从模型链接到视图，反之亦然的过程。AngularJS\
+  \ 支持双向数据绑定。\n    *   当网页上的数据发生变化时，模型会更新。\n    *   当模型中的数据发生变化时，视图页面会自动更新。模型代表数据，视图则展示数据。\n\
+  *   **服务**：AngularJS 中的服务是单例对象，为 Web 应用程序提供功能。\n*   **依赖注入**：DI 是在运行时注入依赖项的过程（即，使依赖组件能够在已初始化代码的组件内被访问）。它用于消费服务。例如，如果一个模块需要通过\
+  \ HTTP 请求访问资源，那么可以将 HTTP 服务注入到该模块中，以使该功能在模块代码中可用。\n\n### AngularJS 生命周期\n\n现在您已经了解了\
+  \ AngularJS 应用程序中涉及的不同组件，我将介绍 AngularJS 生命周期中发生的事情，该周期包含三个阶段：引导阶段、编译阶段和运行时阶段。AngularJS\
+  \ 的这些阶段发生在网页在客户端浏览器中加载时。为了设计和实现使用 AngularJS 开发的应用程序中的代码，理解 AngularJS 的生命周期非常重要。\n\
+  \n#### 引导阶段\n\n引导阶段是 AngularJS 生命周期的第一阶段，发生在 AngularJS JavaScript 库被下载到客户端浏览器时。一旦\
+  \ JavaScript 库被下载，AngularJS 会初始化其自身的组件，并初始化 `ng-app` 指令所指向的应用程序模块。此阶段中的静态 DOM 被加载到浏览器中。\n\
+  \n#### 编译阶段\n\nHTML 编译阶段是 AngularJS 生命周期的第二阶段。在此阶段，加载的静态 DOM 会被动态 DOM 替换，以表示 AngularJS\
+  \ 视图。然后，这些 DOM 会链接到来自 AngularJS 内置库或自定义指令代码的相应 JavaScript 函数。\n\n#### 运行时数据绑定阶段\n\
+  \n这是 AngularJS 生命周期的最后阶段，只要用户不重新加载或导航离开网页，该阶段就会持续存在。在此阶段，对作用域所做的任何更改都会反映在视图中，反之亦然。\n\
+  \n### AngularJS 架构概念\n\n现在您将了解 AngularJS 的架构概念。当一个 HTML 文档被加载到浏览器并由浏览器评估时，首先会加载\
+  \ AngularJS JavaScript 文件，创建 Angular 全局对象，并执行您注册控制器函数的 JavaScript 代码。然后，AngularJS\
+  \ 会扫描 HTML 以查找 AngularJS 应用程序和视图，并找到与视图对应的控制器函数。接着，AngularJS 执行控制器函数，并使用由控制器填充的模型中的数据更新视图。\n\
+  \n接下来，AngularJS 会监听浏览器事件，例如，按钮点击、鼠标移动、输入字段更改等。如果发生任何这些事件，AngularJS 将相应地更新视图。图 3-1\
+  \ 展示了 AngularJS 的工作流程图。\n\n![A436970_1_En_3_Fig1_HTML.jpg](img/A436970_1_En_3_Fig1_HTML.jpg)\n\
+  \n图 3-1.\n\nAngularJS 工作流程图\n\nAngularJS 包含一个模块，该模块充当不同类型应用程序（如视图、控制器、指令、服务等）的容器。模块指定了应用程序如何被引导。然后，您有一个配置组件。路由用于将\
+  \ URL 链接到控制器和视图。视图用于处理复杂的事件。它使用 `ng-view` 指令。此外，您还有一个控制器，它控制 AngularJS 应用程序的数据，并由常规的\
+  \ JavaScript 对象组成。AngularJS 定义了一个 `ng-controller` 指令，该指令通过使用控制器函数来创建新的控制器对象。AngularJS\
+  \ 带有几个内置服务，例如 `$http`、`$route`、`$window`、`$location` 等。作用域指的是引用模型的对象。它们在连接控制器与视图方面扮演着重要角色。\n\
+  \n#### MVC 架构\n\nAngularJS 使用 MVC 架构来创建 Web 应用程序。MVC 架构是一种编程方法论，旨在将应用程序拆分为三个核心组件：模型、视图和控制器。这三个组件组合起来形成您的应用程序。图\
+  \ 3-2 展示了模型-视图-控制器架构。\n\n![A436970_1_En_3_Fig2_HTML.jpg](img/A436970_1_En_3_Fig2_HTML.jpg)\n\
+  \n图 3-2.\n\nAngularJS 中的 MVC 架构\n\n当用户通过浏览器发送 HTTP 请求时，该请求由控制器接收。控制器处理该请求，并将请求发送给模型以提供适当的数据。作为响应，模型将结果数据数组再次提供给控制器。控制器再次将数据处理为所需格式，并将其发送给视图。视图通过\
+  \ UI 内容表示数据，并将其发送给控制器。最后，控制器将 HTTP 响应发送回浏览器。\n\n*   AngularJS 视图用于在 Web 浏览器中向用户生成信息的输出表示，例如图表或示意图。AngularJS\
+  \ 通过拉取为应用程序定义的所有模板，在 DOM 中构建视图。因此，开发人员在这里的工作主要是使用 HTML 和 CSS 来创建模板。\n*   AngularJS\
+  \ 模型包含用于存储应用程序模型的 `$scope` 对象，因此无需像其他 JavaScript 客户端框架那样创建 JavaScript 模型类。作用域附加到\
+  \ DOM，有助于大大简化 JavaScript 问题。\n*   AngularJS 控制器是您定义特定于某个视图的所有业务逻辑的地方。控制器将模型和视图联系在一起。\n\
+  \n## 设置您的开发环境\n\n在本节中，您将设置您的开发环境。\n\n### 将 AngularJS 添加到 Spring Boot\n\n让我们通过将 AngularJS\
+  \ 添加到您在第 2 章的 UserRegistrationSystem 应用程序中开发的 Spring Boot 应用程序来设置开发环境。您可以通过三种方式实现此目的。\n\
+  \n*   从 Google CDN 包含 Angular 脚本\n*   下载并在本地托管 Angular 文件\n*   在 Spring Boot 应用程序的\
+  \ `pom.xml` 中提供 AngularJS 的依赖信息\n\n以下各节将涵盖所有三种方式。\n\n\n\n#### 从 Google CDN 引入 Angular\
+  \ 脚本\n\n以下介绍如何从 Google CDN 引入 Angular 脚本。\n\n要快速上手 AngularJS，请将 HTML 的 `<script>`\
+  \ 标签指向一个 Google CDN URL。Angular 脚本 URL 有两种类型，一种用于生产环境，一种用于开发环境。\n\n*   `angular.min.js`：这是压缩版本，应在生产环境中使用。\n\
+  *   `angular.js`：这是未压缩、人类可读的版本，应在 Web 开发中使用。\n\n清单 3-1 展示了将代码指向 Google CDN 服务器上\
+  \ Angular 脚本的压缩版本 1.5.6 的示例。\n\n```\n\nAngular Application\n\n清单 3-1.\nH2 pom.xml\
+  \ 依赖\n```\n\n#### 下载并在本地托管 Angular 文件\n\n引入 Angular 脚本的另一种方法是下载并在本地托管 Angular 文件。\n\
+  \n希望离线使用 Angular 或希望在自己的服务器上托管 Angular 文件的开发者可以选择此方式。导航至 [`https://code.angularjs.org/`](https://code.angularjs.org/)\
+  \ ，从 Angular 版本列表中选择并下载所需版本。或者，您可以从 [`https://angularjs.org/`](https://angularjs.org/)\
+  \ 下载 Angular 的最新稳定版本。图 3-3 显示了带有下载链接的 AngularJS 页面。\n\n![A436970_1_En_3_Fig3_HTML.jpg](img/A436970_1_En_3_Fig3_HTML.jpg)\n\
+  \n图 3-3.\n\nAngularJS 页面\n\n点击“Download AngularJS”会弹出一个下载 AngularJS 的弹窗，如图 3-4 所示。\n\
+  \n![A436970_1_En_3_Fig4_HTML.jpg](img/A436970_1_En_3_Fig4_HTML.jpg)\n\n图 3-4.\n\n\
+  下载 AngularJS 的弹窗\n\n#### 在 pom.xml 中提供依赖信息\n\n除了手动下载 AngularJS 库，您还可以在开发 Spring\
+  \ Boot 应用时，在 `pom.xml` 中为 AngularJS 提供依赖信息，这样 AngularJS 将会被自动下载到库中。清单 3-2 展示了 AngularJS\
+  \ 和 Bootstrap CSS 的依赖信息。\n\n```\norg.webjars\nangularjs\n1.4.9\nruntime\n\norg.webjars\n\
+  bootstrap\n3.3.6\nruntime\n\n清单 3-2.\n在 pom.xml 中添加 AngularJS 和 Bootstrap 的依赖\n\
+  ```\n\n### 将 Twitter Bootstrap 添加到 Spring Boot\n\nTwitter Bootstrap 是一个前端框架，旨在让响应式设计变得更加容易。Bootstrap\
+  \ CSS 框架可用于设置网站内容的样式。您可以创建自己的 CSS 样式来让网站看起来很棒，但 Bootstrap 提供了一套优秀的 CSS 样式，能让您设计出外观极佳的内容布局。在使用\
+  \ AngularJS 时，并非必须使用 Bootstrap，AngularJS 和 Bootstrap 之间也没有内在联系，因为它们是两个不同的包。\n\n\
+  要使用 Bootstrap CSS 框架中的 CSS，您可以在开发 Spring Boot 应用时，在 `pom.xml` 中定义一个依赖，如清单 3-2 所示，这样它就会被自动下载到库文件夹中。此外，也可以从\
+  \ [`https://getbootstrap.com/`](https://getbootstrap.com/) 下载 Bootstrap 归档文件，其中也包含了\
+  \ CSS 和 JavaScript 文件。\n\n### 开发单页应用\n\n单页应用是指只有一个入口 HTML 页面（可能是 `index.html`）的应用；所有应用内容都动态地添加和移除到这个页面中。在运行时，基于某些事件，附加到标签上的现有内容会被移除，然后动态内容会被附加到同一个标签上。\n\
+  \n单页应用的入口点可以在一个包含 `<div ng-view></div>` 标签的 `index.html` 中看到，如清单 3-3 所示，所有动态内容都被插入到\
+  \ `index.html` 中。因此，用户无需等待加载新页面，新内容会在极短的时间内动态显示出来。\n\n```\n\n...\n\n...\n\n...\n\
+  \n清单 3-3.\n开发 HTML 页面：单页应用的入口点\n```\n\n在清单 3-3 中，您在开发 HTML 页面时使用了以下良好实践：\n\n*  \
+  \ 将 `<script>` 标签放在页面底部，以提高应用加载速度，因为 Angular 脚本的加载不会影响 HTML 的加载。\n*   将 `ng-app`\
+  \ 放在应用的根元素上，通常放在 `<html>` 标签上，如果您希望 Angular 自动引导您的应用。\n\n### 引导应用\n\n引导 AngularJS\
+  \ 是指通过向 HTML 中的某个元素添加 `ng-app` 来初始化或启动 Angular 应用的过程，如清单 3-4 所示，这发生在应用首次启动时。\n\n\
+  ```\n...\n\n清单 3-4.\n通过在 HTML 页面中添加 ng-app 来引导 AngularJS\n```\n\n这也被称为自动初始化。因此，当\
+  \ AngularJS 在分析 `index.html` 文件后找到 `ng-app` 指令时，它会加载相关的模块，然后编译 DOM。\n\nAngularJS\
+  \ 应用 `UserRegistrationSystem` 在 `app.js` 中被定义为 AngularJS 模块（`angular.module`），`app.js`\
+  \ 是应用的入口点。\n\n```\nvar app = angular.module('userregistrationsystem', ['ngRoute',\
+  \ 'ngResource']);\n```\n\n`app.js` 文件中的变量 `app` 可以命名为任何名称。\n\n### 依赖注入\n\n依赖注入是一种设计模式，用于在应用中定义依赖关系，将其作为配置的一部分，而不是在组件内部硬编码。DI\
+  \ 帮助您避免手动创建应用依赖，并使得在需要时可以更改它们。AngularJS 在应用首次启动时使用 DI 来加载模块依赖。\n\nDI 的好处如下：\n\n\
+  *   它将创建依赖的过程与使用依赖的过程分离开来。\n*   使用者会感觉创建依赖的过程是由其他人处理的；用户只需关心如何使用依赖。\n*   它提供了在需要时更改依赖的功能。\n\
+  *   它使应用更易于测试。\n\n如您所见，`app.js` 中定义了两个依赖，供 `userregistrationsystem` 在启动时使用，如下所示：\n\
+  \n```\nvar app = angular.module('userregistrationsystem', ['ngRoute', 'ngResource']);\n\
+  ```\n\n上述代码中的两个依赖是在模块定义的一个数组中定义的。\n\n*   `ngRoute`：第一个依赖是 AngularJS 的 `ngRoute`\
+  \ 模块，它为应用提供路由功能。`ngRoute` 模块用于将 URL 深度链接到控制器和视图（HTML 片段）。\n*   `ngResource`：第二个依赖是\
+  \ AngularJS 的 `ngResource` 模块，它提供与 RESTful 服务的交互支持。\n\n\n\n### AngularJS 路由\n\n\
+  AngularJS 路由通过 `$routeProvider` API 进行配置。路由依赖于 `ngRoute` 模块，这就是为什么在模块定义中，其依赖项被定义在一个数组里。\n\
+  \n清单 3-5 展示了 `app.js` 中的代码。你将在 AngularJS 应用中定义四个路由。\n\n*   第一个是 `/list-all-users`。\n\
+  *   第二个是 `/register-new-user`。\n*   第三个是 `/update-user/:id`。\n*   第四个与前三个不同。\n\n\
+  ```\napp.config(function($routeProvider) {\n$routeProvider\n.when('/list-all-users',\
+  \ {\ntemplateUrl : '/template/listuser.html',\ncontroller : 'listUserController'\n\
+  }).when('/register-new-user',{\ntemplateUrl : '/template/userregistration.html',\n\
+  controller : 'registerUserController'\n}).when('/update-user/:id',{\ntemplateUrl\
+  \ : '/template/userupdation.html' ,\ncontroller : 'usersDetailsController'\n}).otherwise({\n\
+  redirectTo : '/home',\ntemplateUrl : '/template/home.html',\n});\n});\n清单 3-5.\n\
+  在 AngularJS 应用中定义路由\n```\n\n清单 3-5 中定义的四个路由直接映射到应用中定义的 URL。\n\n当用户点击应用中指定为 `http://localhost:8080/#/list-all-users`\
+  \ 的链接时，将遵循 `/list-all-users` 路由，并显示与 `/list-all-users` URL 关联的内容。\n\n类似地，当用户点击链接\
+  \ `http://localhost:8080/#/register-new-user` 时，将遵循 `/register-new-user` 路由，并显示与\
+  \ `/register-new-user` URL 关联的内容。\n\n当用户点击链接 `http://localhost:8080/#/update-user/{id`\
+  \ `}` 时，将遵循 `/update-user/:id` 路由，并显示与 `/update-user/:id` URL 关联的内容。\n\n此外，如果用户访问除这三个之外的任何\
+  \ URL，将遵循 `/home` 路由，并显示与 `/home` URL 关联的内容。\n\n### AngularJS 模板\n\nAngularJS 模板，也称为\
+  \ HTML 片段，是绑定到 `index.html` 文件中 `<div ng-view></div>` 标签的 HTML 代码。如果你查看 `app.js`\
+  \ 文件中的代码，可以看到为不同的路由定义了不同的 `templateUrl` 值，如清单 3-6 所示。\n\n```\n$routeProvider\n.when('/list-all-users',\
+  \ {\ntemplateUrl : '/template/listuser.html',\ncontroller : 'listUserController'\n\
+  }).when('/register-new-user',{\ntemplateUrl : '/template/userregistration.html',\n\
+  controller : 'registerUserController'\n}).when('/update-user/:id',{\ntemplateUrl\
+  \ : '/template/userupdation.html' ,\ncontroller : 'usersDetailsController'\n}).otherwise({\n\
+  redirectTo : '/home',\ntemplateUrl : '/template/home.html',\n});\n清单 3-6.\n为路由定义\
+  \ templateUrl\n```\n\n如清单 3-6 所示，你定义了四个不同的片段或模板。`listuser.html`、`userregistration.html`、`userupdation.html`\
+  \ 和 `home.html` 页面是四个不同的片段或模板，它们包含 HTML 代码和 AngularJS 内置的模板语言，用于在模板中显示动态数据。\n\n\
+  ### 在单页应用中实现模型、视图和控制器\n\n默认情况下，Spring Boot 会自动从 `ServletContext` 的根目录或以下目录提供静态内容：\n\
+  \n*   `classpath:/META-INF/resources/`\n*   `classpath:/resources/`\n*   `classpath:/static/`\n\
+  *   `classpath:/public/`\n\n在你的项目中，你将在 `classpath:/resources/` 目录下创建静态内容。最终的目录结构将如图\
+  \ 3-5 所示。\n\n![A436970_1_En_3_Fig5_HTML.jpg](img/A436970_1_En_3_Fig5_HTML.jpg)\n\
+  \n图 3-5.\nUserRegistrationSystem 应用中 SPA 的目录结构\n\n现在，让我们在你的 AngularJS 应用中实现模型、视图和控制器。\n\
+  \n#### 创建主页/应用页面\n\n单页应用的核心是静态页面 `index.html`，如清单 3-7 所示，因此让我们在 `src/main/resources/static`（或\
+  \ `src/main/resources/public`）目录中创建它。这个 `index.html` 页面将包含一些前端代码，用于在网页上显示链接，这些链接将由\
+  \ AngularJS 处理。这个 `src/main/resources/static/index.html` 页面还包含一些 `<script>` 标签，其中包含了所有必要的\
+  \ AngularJS 文件。\n\n```\n\n全栈开发\n\n用户注册系统\n\n首页\n\n注册新用户\n\n列出所有用户\n\n清单 3-7.\nsrc/main/resources/static/index.html\n\
+  ```\n\n这个 `index.html` 页面将显示三个链接：首页、注册新用户和列出所有用户。\n\n让我们更详细地查看前面的代码。AngularJS 库启用了几个自定义属性，用于标准\
+  \ HTML 标签。\n\n*   `index.html` 页面中的 `<html>` 标签具有 `ng-app=\"userregistrationsystem\"\
+  ` 属性，这告诉你要定义一个 JavaScript 模块，Angular 会将其识别为一个名为 `userregistrationsystem` 的应用。\n\
+  *   所有 CSS 类都来自 (Twitter) Bootstrap，以使页面看起来更美观。\n*   Angular JS 和 (Twitter) Bootstrap\
+  \ 被包含在 `<body>` 标签的底部，如前面的代码所示，这样浏览器可以在处理之前先处理整个 HTML。\n*   你还包含了一个单独的 `app.js`，你将在其中定义应用的行为。\n\
+  \n#### 创建视图页面\n\n让我们在 `src/main/resources/static` 目录下的模板文件夹中创建四个视图页面。\n\n*   首页页面：`src/main/resources/template/home.html`\n\
+  *   注册新用户页面：`src/main/resources/template/userregistration.html`\n*   用户列表页面：`src/main/resources/template/listuser.html`\n\
+  *   更新现有用户页面：`src/main/resources/template/userupdation.html`\n\n##### 首页页面\n\n清单\
+  \ 3-8 展示了 `home.html` 视图页面的代码。此页面创建在 `src/main/resources/template` 文件夹内。\n\n```\n\
+  \n欢迎使用用户注册系统\n\n请点击\n注册新用户\n来注册新用户。\n\n请点击\n列出所有用户\n来获取所有用户。\n\n清单 3-8.\nsrc/main/resources/template/home.html\n\
+  ```\n\n在 `home.html` 页面中，你只是向用户显示一条（静态）欢迎消息，如图 3-6 所示。\n\n![A436970_1_En_3_Fig6_HTML.jpg](img/A436970_1_En_3_Fig6_HTML.jpg)\n\
+  \n图 3-6.\n首页页面\n\n\n\n##### 注册新用户页面\n\n清单 3-9 展示了 `userregistration.html` 视图页面的代码。该页面创建在\
+  \ `src/main/resources/template` 文件夹内。\n\n```\n\n{{errorMessage}}\n\n注册新用户\n请确保用户名的唯一性\n\
+  \n姓名\n\n地址\n\n电子邮件\n\n重置表单\n\n清单 3-9.\nsrc/main/resources/template/userregistration.html\n\
+  ```\n\n在 `userregistration.html` 页面（如上述代码所示）中，`errorMessage` 使用花括号标记，即 `{{errorMessage}}`。这些花括号稍后将由\
+  \ AngularJS 使用 `app.js` 文件中定义的控制器填充。\n\n您还创建了用于输入姓名、地址和电子邮件的输入框。一旦用户输入详细信息并点击“注册用户”按钮，用户详细信息将保存到数据库中。\n\
+  \n您有一个“重置表单”按钮，该按钮会将输入框重置为空值。图 3-7 展示了浏览器中“注册新用户”页面的视图。\n\n![A436970_1_En_3_Fig7_HTML.jpg](img/A436970_1_En_3_Fig7_HTML.jpg)\n\
+  \n图 3-7.\n\n注册新用户页面\n\n当用户通过输入正确的详细信息和唯一的用户名成功完成用户注册后，如图 3-8 所示，用户将被导航至“列出所有用户”页面。\n\
+  \n![A436970_1_En_3_Fig8_HTML.jpg](img/A436970_1_En_3_Fig8_HTML.jpg)\n\n图 3-8.\n\n\
+  使用用户详细信息注册新用户\n\n如果输入的用户名不唯一，并且数据库中已存在匹配该名称的用户，则浏览器中会显示一条警告错误消息，如图 3-9 所示。\n\n![A436970_1_En_3_Fig9_HTML.jpg](img/A436970_1_En_3_Fig9_HTML.jpg)\n\
+  \n图 3-9.\n\n用户名重复时的错误消息\n\n##### 用户列表\n\n清单 3-10 展示了 `listuser.html` 视图页面的代码。该页面创建在\
+  \ `src/main/resources/template` 文件夹内。此页面将显示 UserRegistrationSystem 应用程序中所有用户的列表。\n\
+  \n```\n\n用户列表 \n\n姓名\n电子邮件\n地址\n编辑\n删除\n\n{{user.name}}\n{{user.email}}\n{{user.address}}\n\
+  \n编辑\n\n删除\n\n清单 3-10.\nsrc/main/resources/template/listuser.html\n```\n\n在 `listuser.html`\
+  \ 页面（如上述代码所示）中，`user.name`、`user.email` 和 `user.address` 使用花括号标记：`{{user.name}}`、`{{user.email}}`\
+  \ 和 `{{user.address}}`。这些花括号稍后将由 AngularJS 使用 `app.js` 文件中定义的控制器填充。\n\n此页面以表格形式显示所有用户的列表，包含姓名、电子邮件和地址列，并包含“编辑”和“删除”按钮。图\
+  \ 3-10 展示了浏览器中 `listuser.html` 页面的视图。\n\n![A436970_1_En_3_Fig10_HTML.jpg](img/A436970_1_En_3_Fig10_HTML.jpg)\n\
+  \n图 3-10.\n\n用户列表\n\n点击“删除”按钮将从用户表中删除特定用户。点击“编辑”按钮将重定向至“更新现有用户”页面。\n\n##### 更新现有用户\n\
+  \n清单 3-11 展示了 `userupdation.html` 视图页面的代码。该页面创建在 `src/main/resources/template` 文件夹内。此页面允许您更新\
+  \ UserRegistrationSystem 应用程序中的现有用户。\n\n```\n\n{{errorMessage}}\n\n更新现有用户\n请确保用户名的唯一性\n\
+  \n姓名\n\n地址\n\n电子邮件\n\n重置表单                                          \n\n清单 3-11.\n\
+  src/main/resources/template/userupdation.html\n```\n\n图 3-11 展示了在图 3-10 的“用户列表”表格中点击“编辑”按钮时，浏览器中\
+  \ `userupdation.html` 页面的视图。\n\n![A436970_1_En_3_Fig11_HTML.jpg](img/A436970_1_En_3_Fig11_HTML.jpg)\n\
+  \n图 3-11.\n\n更新用户\n\n一旦您更新了用户详细信息（包括用户名）并点击“更新用户”按钮，您将导航至“用户列表”视图。\n\n至此，视图页面部分已准备就绪。接下来，您将在\
+  \ `js` 文件夹内的 `app.js` 文件中为您的单页应用程序创建 UserRegistrationSystem 应用程序。\n\n#### 创建 AngularJS\
+  \ 应用程序\n\n让我们在 `src/main/resources/static/js/app.js` 文件中创建一个名为 `app` 的 AngularJS\
+  \ 应用程序，该文件定义了应用程序模块的配置和路由。为了处理像 `/home` 这样的请求，需要一个名为 `ngRoute` 的 AngularJS 模块。要使用\
+  \ `ngRoute` 并将其注入到您的应用程序中，您可以使用 `angular.module` 将 `ngRoute` 模块添加到您的应用中，如清单 3-12\
+  \ 所示。\n\n```\nvar app = angular.module('userregistrationsystem', ['ngRoute', 'ngResource']);\n\
+  app.config(function($routeProvider) {\n$routeProvider.when('/list-all-users', {\n\
+  templateUrl : '/template/listuser.html',\ncontroller : 'listUserController'\n}).when('/register-new-user',{\n\
+  templateUrl : '/template/userregistration.html',\ncontroller : 'registerUserController'\n\
+  }).when('/update-user/:id',{\ntemplateUrl : '/template/userupdation.html' ,\ncontroller\
+  \ : 'usersDetailsController'\n}).otherwise({\nredirectTo : '/home',\ntemplateUrl\
+  \ : '/template/home.html',\n});\n});\n清单 3-12.\nsrc/main/resources/static/js/app.js\n\
+  ```\n\n然后，在 `app.config` 中，每个路由都映射到一个模板和控制器（可选）。\n\n*   当导航到 URL `/list-all-users`\
+  \ 时，将调用控制器 `listUserController`。\n*   当导航到 URL `/register-new-user` 时，将调用控制器 `registerUserController`。\n\
+  *   当导航到 URL `/update-user/:id` 时，将调用控制器 `usersDetailsController`。\n\n在本节中，您已在 `app.js`\
+  \ 文件中创建了 `app` 应用程序。在下一节中，我们将创建三个不同的控制器，分别命名为 `listUserController`、`registerUserController`\
+  \ 和 `usersDetailsController`。\n\n\n\n#### 创建 AngularJS 控制器\n\n在 `src/main/resources/static/js`\
+  \ 文件夹中定义的 `controller.js` 文件包含了 AngularJS 控制器的实现。\n\n让我们创建一个名为 `registerUserController`\
+  \ 的 AngularJS 控制器模块，它将使用 Spring REST 服务来执行 `POST` HTTP 调用。这里，在 `$scope` 中设置了一个 `errorMessage`，用于显示在“注册新用户”页面上从\
+  \ `POST` 调用返回的错误信息。当 `POST` 调用成功时，它将重定向到 `list-all-users`。请参见清单 3-13。\n\n```\napp.controller('registerUserController',\
+  \ function($scope, $http, $location,\n$route) {\n$scope.submitUserForm = function()\
+  \ {\n$http({\nmethod : 'POST',\nurl : 'http://localhost:8080/api/user/',\ndata :\
+  \ $scope.user,\n}).then(function(response) {\n$location.path(\"/list-all-users\"\
+  );\n$route.reload();\n}, function(errResponse) {\n$scope.errorMessage = errResponse.data.errorMessage;\n\
+  });\n}\n$scope.resetForm = function() {\n$scope.user = null;\n};\n});\n清单 3-13.\n\
+  src/main/resources/static/js.controller.js 中的 registerUserController\n```\n\n类似地，你定义了\
+  \ `listUserController` 和 `usersDetailsController` 来使用第 2 章中开发的 REST API。清单 3-14\
+  \ 展示了 `listUserController`，清单 3-15 展示了 `usersDetailsController`。\n\n```\napp.controller('listUserController',\
+  \ function($scope, $http, $location, $route) {\n$http({\nmethod : 'GET',\nurl :\
+  \ 'http://localhost:8080/api/user/'\n}).then(function(response) {\n$scope.users\
+  \ = response.data;\n});\n$scope.editUser = function(userId) {\n$location.path(\"\
+  /update-user/\" + userId);\n}\n$scope.deleteUser = function(userId) {\n$http({\n\
+  method : 'DELETE',\nurl : 'http://localhost:8080/api/user/' + userId\n})\n.then(\n\
+  function(response) {\n$location.path(\"/list-all-users\");\n$route.reload();\n});\n\
+  }\n});\n清单 3-14.\nsrc/main/resources/static/js.controller.js 中的 listUserController\n\
+  ```\n\n```\napp.controller('usersDetailsController',function($scope, $http, $location,\
+  \ $routeParams, $route) {\n$scope.userId = $routeParams.id;\n$http({\nmethod : 'GET',\n\
+  url : 'http://localhost:8080/api/user/' + $scope.userId\n}).then(function(response)\
+  \ {\n$scope.user = response.data;\n});\n$scope.submitUserForm = function() {\n$http({\n\
+  method : 'POST',\nurl : 'http://localhost:8080/api/user/',\ndata : $scope.user,\n\
+  })\n.then(\nfunction(response) {\n$location.path(\"/list-all-users\");\n$route.reload();\n\
+  },\nfunction(errResponse) {\n$scope.errorMessage = \"Error while updating User -\
+  \ Error Message: '\"\n+ errResponse.data.errorMessage;\n});\n}\n});\n清单 3-15.\n\
+  src/main/resources/static/js.controller.js 中的 usersDetailsController\n```\n\n让我们理解一下\
+  \ `controller.js` 文件中定义的代码。`controller.js` 中的控制器模块只是一个函数，它根据应用程序的需求接受不同的参数。\n\n\
+  *   `$scope`：`$scope` 用于为该控制器负责的 UI 元素设置动态内容。`$scope` 的概念在 AngularJS 中很重要，因为它可以被视为连接模板、模型和控制器的粘合剂。AngularJS\
+  \ 通过命名约定支持依赖注入。AngularJS 使用这个 `$scope` 来保持模型和视图分离但同步。视图中所做的任何更改都会反映在模型中，模型中所做的任何更改也会反映在视图中。\n\
+  *   `$http`：`$http` 服务是 AngularJS 提供的核心功能，用于使用 REST 服务。\n\n### 在 STS 中运行 Spring\
+  \ Boot 应用程序\n\n图 3-12 展示了你的 UserRegistrationSystem 应用程序的最终目录结构。\n\n![A436970_1_En_3_Fig12_HTML.jpg](img/A436970_1_En_3_Fig12_HTML.jpg)\n\
+  \n图 3-12.\n\nUserRegistrationSystem 应用程序的目录结构\n\n让我们在 STS 中运行你的 UserRegistrationSystem\
+  \ 应用程序。恭喜！你已经成功使用 Spring Boot 和 AngularJS 设置并运行了单页应用程序。现在是时候在浏览器中访问 URL，查看图 3-13\
+  \ 所示的网页了。\n\n![A436970_1_En_3_Fig13_HTML.jpg](img/A436970_1_En_3_Fig13_HTML.jpg)\n\
+  \n图 3-13.\n\n`http://localhost:8080/#/home`\n\n默认情况下，网页将重定向到你在 `app.js` 中配置的主页（`http://localhost:8080/#/home`）。点击主页上的“列出所有用户”按钮将重定向到\
+  \ `http://localhost:8080/#/list-all-users`，如图 3-14 所示。\n\n![A436970_1_En_3_Fig14_HTML.jpg](img/A436970_1_En_3_Fig14_HTML.jpg)\n\
+  \n图 3-14.\n\n`http://localhost:8080/#/list-all-users`\n\n目前此列表为空；尚未有用户注册到 UserRegistrationSystem\
+  \ 应用程序。让我们点击“注册新用户”按钮来注册一个新用户。点击此按钮后，它将重定向到 `http://localhost:8080/#/register-new-user`，如图\
+  \ 3-15 所示。\n\n![A436970_1_En_3_Fig15_HTML.jpg](img/A436970_1_En_3_Fig15_HTML.jpg)\n\
+  \n图 3-15.\n\n`http://localhost:8080/#/register-new-user`\n\n“注册新用户”页面包含一个输入框，你需要在此输入姓名、地址和电子邮件，如图\
+  \ 3-16 所示。\n\n![A436970_1_En_3_Fig16_HTML.jpg](img/A436970_1_En_3_Fig16_HTML.jpg)\n\
+  \n图 3-16.\n\n包含用户详细信息的“注册新用户”页面\n\n输入用户详细信息并点击“注册用户”按钮后，你将重定向到位于 `http://localhost:8080/#/list-all-users`\
+  \ 的“用户列表”页面，在那里你可以看到所有已注册用户的列表，如图 3-17 所示。\n\n![A436970_1_En_3_Fig17_HTML.jpg](img/A436970_1_En_3_Fig17_HTML.jpg)\n\
+  \n图 3-17.\n\n`http://localhost:8080/#/list-all-users`\n\n“用户列表”页面上的用户表包含“姓名”、“电子邮件”和“地址”列以及“编辑”和“删除”按钮。点击“编辑”将允许你编辑特定用户的详细信息，如图\
+  \ 3-18 所示。\n\n![A436970_1_En_3_Fig18_HTML.jpg](img/A436970_1_En_3_Fig18_HTML.jpg)\n\
+  \n图 3-18.\n\n`http://localhost:8080/#/update-user` /1\n\n如果你尝试使用现有的用户名注册新用户，则页面上将显示一条错误消息，如图\
+  \ 3-19 所示。\n\n![A436970_1_En_3_Fig19_HTML.jpg](img/A436970_1_En_3_Fig19_HTML.jpg)\n\
+  \n图 3-19.\n\n显示用户已存在的错误消息\n\n## 总结\n\n在本章中，你了解了单页应用程序的概念。你学习了 AngularJS 的生命周期，并看到了不同的阶段，例如引导阶段、编译阶段和运行时数据绑定阶段。然后你学习了\
+  \ AngularJS 架构概念和 MVC 架构。你通过将 AngularJS 添加到你在第 2 章中开发的 Spring Boot 应用程序中，设置了 AngularJS\
+  \ 开发环境。你使用了 Bootstrap 进行 CSS 设计。你了解了 AngularJS 的不同组件，并在应用程序中实现了模型、视图和控制器。然后你创建了不同的视图页面来使用你的\
+  \ REST API。\n\n在下一章中，你将实现 Spring Security 来保护你使用 Spring Boot 开发的 RESTful API。保护基于\
+  \ Web 的应用程序与保护 RESTful API 不同，因为在基于 Web 的应用程序中，需要从登录页面进行人工交互以传递用户凭据。在 RESTful API\
+  \ 中，交互可以是机器对机器，或者来自用不同语言开发的不同应用程序。\n\n\n\n"
+- '# 4. 使用 Spring Security 保护你的 RESTful API
+
+
+  在本章中，你将保护你的 REST API，使得只有经过身份验证和授权的用户才能调用 REST API 并执行不同的 CRUD 操作。你将使用 Spring Security
+  来保护你的 RESTful 服务。首先，我将介绍 Spring Security 并解释所需的 Maven 依赖项。然后，你将学习如何在 UserRegistrationSystem
+  应用程序中实现 Spring Security 来保护你的 REST API。你还将了解用于设置用户凭据及其角色的内存和数据库配置。
+
+
+  ## 介绍 Spring Security
+
+
+  安全是指保护资源免受未经身份验证和未授权用户的访问，并允许特定（经过身份验证和授权）用户访问这些受保护资源的过程。安全不同于防火墙、入侵检测、JVM 安全或其他任何东西。Spring
+  Security 主要面向基于 Spring 的应用程序。
+
+
+  Spring Security 框架最初以 Acegi Security 框架起步，后来被 Spring 采纳为一个子项目。它已成为保护使用 Spring 框架开发的应用程序的事实标准。Spring
+  Security 在 HTTP 请求方法的调用级别支持身份验证和授权。
+
+
+  ### 身份验证与授权
+
+
+  身份验证和授权是 Spring Security 提供的两个主要操作（参见图 4-1）。
+
+
+  ![A436970_1_En_4_Fig1_HTML.jpg](img/A436970_1_En_4_Fig1_HTML.jpg)
+
+
+  图 4-1.
+
+
+  身份验证与授权
+
+
+  身份验证是验证用户是否为其所声称身份的过程。身份验证通过识别和核实来完成。
+
+
+  授权是允许经过身份验证的用户访问资源的过程。换句话说，它为经过身份验证的用户提供访问控制。让我们来看一个 UserRegistrationSystem 应用程序中的示例：用户
+  `USER` 可以执行用户注册、更新用户详情以及获取用户列表，而只有用户 `ADMIN` 拥有删除用户的额外权限。授予客户端的访问权限将决定该应用程序的访问规则。
+
+
+  Spring Security 支持基于 URL 的安全性，并通过过滤器实现。Spring Security 还支持方法级安全性，只有授权用户才能调用授予他们的特定方法。
+
+
+  ### 介绍基本认证
+
+
+  传统的身份验证方法，例如使用登录页面和会话标识，都依赖于需要人工交互的基于 Web 的客户端。当涉及到与 REST 客户端（甚至可能不是基于 Web 的应用程序）通信时，你需要考虑基本认证提供的解决方案。
+
+
+  基本认证是一种标准的 HTTP 标头（`Authorization`），它在每个请求中发送 Base64 编码的凭据。Base64 并未以任何方式进行加密或哈希处理；换句话说，用户名和密码以明文格式编码。
+
+
+  凭据字符串包含格式为 `username:password` 的用户名和密码。清单 4-1 展示了用于准备该标头的算法。
+
+
+  ```
+
+  String plain_Client_Credentials="user:password";
+
+  String base64_ClientCredentials =
+
+  new String(Base64.encodeBase64(plain_Client_Credentials.getBytes()));
+
+  HttpHeaders headers = getHeaders();
+
+  headers.add("Authorization", "Basic " + base64_ClientCredentials);
+
+  清单 4-1.
+
+  准备 HTTP 标头的代码
+
+  ```
+
+
+  清单 4-1 生成了标头 `Authorization : Basic dXNlcjpwYXNzd29yZA==`，该标头将随每个 HTTP 请求一起发送。
+
+
+  基本认证是保护 RESTful API 的最简单技术之一，因为它不需要 Cookie、会话标识符，甚至不需要登录页面。
+
+
+  ### BasicAuthenticationFilter
+
+
+  `BasicAuthenticationFilter` 对象负责处理任何包含 HTTP 请求标头 `Authorization` 且认证方案为基本认证以及 Base64
+  编码的 `username:password` 令牌的 HTTP 请求。
+
+
+  如果身份验证成功，Spring 中的 `BasicAuthenticationFilter` 负责将结果（`Authentication` 对象）放入 `SecurityContextHolder`
+  中。
+
+
+  ## 在 RESTful 服务上启用 Spring Security
+
+
+  在本节中，你将了解名为 Security 的 Spring Boot 启动器，然后你将使用它来保护你的 RESTful API。
+
+
+  ### 什么是 Spring Boot Security 启动器？
+
+
+  Spring Boot 的目标是简化应用程序开发。与 Spring Boot 的每个其他特性一样，通过添加匹配的启动器 POM，名为 Security 的 Spring
+  Boot 启动器会为开发者创建基本配置设置，包括 HTTP 基本认证和一个 `AuthenticationManager` bean，该 bean 在基于 Spring
+  Boot 构建应用程序时带有一个内存中的默认用户。
+
+
+  现在，你将在你的 UserRegistrationSystem 应用程序中配置 Spring Security。要将 Spring Security 添加到你的
+  Spring Boot 应用程序，你需要在 Maven 的 `pom.xml` 文件中添加 Spring Security 依赖项。
+
+
+
+
+  ### 使用 Spring Security 依赖更新 pom.xml 文件
+
+
+  清单 4-2 展示了需要在 UserRegistrationSystem 应用的 `pom.xml` 中添加的 Spring Security 依赖，该依赖将处理所有与
+  Spring Security 相关的必要依赖。
+
+
+  ```
+
+  org.springframework.boot
+
+  spring-boot-starter-security
+
+
+  清单 4-2.
+
+  Spring Security 依赖
+
+  ```
+
+
+  图 4-2 展示了在 UserRegistrationSystem Spring Boot 应用的 Maven 依赖中添加的依赖项。
+
+
+  ![A436970_1_En_4_Fig2_HTML.jpg](img/A436970_1_En_4_Fig2_HTML.jpg)
+
+
+  图 4-2.
+
+
+  Spring Security 依赖
+
+
+  一旦将 Spring Security 依赖添加到 Maven 的 `pom.xml` 文件中，你的整个应用（除公共静态资源，如 CSS 文件、JavaScript
+  文件等之外的所有资源）都将通过 HTTP 基本认证得到保护，并且会为你的应用创建一个包含内存默认用户的 `AuthenticationManager` Bean。
+
+
+  默认用户名为 `user`，当你将 UserRegistrationSystem 应用作为 Spring Boot 应用运行时，密码会生成在 STS IDE 的控制台日志中。启动
+  Spring Boot 应用后，你将在日志中看到生成的默认用户密码，如下所示：
+
+
+  ```
+
+  Using default security password: 72baa813-dab9-47bf-8329-78987485785b
+
+  ```
+
+
+  图 4-3 展示了 STS 控制台中的日志，你可以在此看到 Spring Boot 应用的默认安全密码。
+
+
+  ![A436970_1_En_4_Fig3_HTML.jpg](img/A436970_1_En_4_Fig3_HTML.jpg)
+
+
+  图 4-3.
+
+
+  日志中生成的默认安全密码
+
+
+  此处生成的密码是随机的，每次启动 Spring Boot 应用时都会改变，而用户名则始终相同（此处为 `user`）。
+
+
+  添加 Spring Security 依赖后启动 Spring Boot 应用时，控制台会打印日志，如图 4-4 所示。
+
+
+  ![A436970_1_En_4_Fig4_HTML.jpg](img/A436970_1_En_4_Fig4_HTML.jpg)
+
+
+  图 4-4.
+
+
+  带有映射过滤器信息的日志
+
+
+  让我们来理解自动配置背后发生的魔法。`Mapping filter: ''springSecurityFilterChain'' to: [/*]` 部分表明，默认情况下
+  Spring Security 已对应用中的所有 URL 启用。
+
+
+  让我们通过启动 Postman 并尝试调用一个 REST API 来测试你的应用：访问 `http://localhost:8080/api/user/` 以获取
+  UserRegistrationSystem 中的用户列表。一旦访问此 URL，你将收到状态码为 401 且错误信息为 `Unauthorized` 的响应，表明认证失败，如清单
+  4-3 所示。
+
+
+  ```
+
+  {
+
+  "timestamp": 1503461733809,
+
+  "status": 401,
+
+  "error": "Unauthorized",
+
+  "message": "Full authentication is required to access this resource",
+
+  "path": "/api/user/"
+
+  }
+
+  清单 4-3.
+
+  未授权错误 JSON 响应
+
+  ```
+
+
+  图 4-5 展示了 Postman 中状态码为 401、错误信息为 `Unauthorized` 的未授权错误消息。
+
+
+  ![A436970_1_En_4_Fig5_HTML.jpg](img/A436970_1_En_4_Fig5_HTML.jpg)
+
+
+  图 4-5.
+
+
+  未授权错误消息
+
+
+  当你尝试从浏览器访问相同的 URL 时，会弹出一个提示“需要身份验证”的对话框，如图 4-6 所示。
+
+
+  ![A436970_1_En_4_Fig6_HTML.jpg](img/A436970_1_En_4_Fig6_HTML.jpg)
+
+
+  图 4-6.
+
+
+  浏览器中弹出的身份验证要求
+
+
+  你必须在请求中提供用户名和密码才能获得授权。因此，你需要从 STS 控制台复制生成的默认用户密码，然后提供用户名 `user` 和该密码，以便在访问 RESTful
+  API 时对用户进行身份验证。
+
+
+  启动 Postman，点击“Authorization”选项卡，然后将类型设置为“Basic Auth”。提供用户名和密码，点击“Update Request”，这样请求头中就会获得授权值。最后，访问
+  `http://localhost:8080/api/user/`，如图 4-7 所示。由于 UserRegistrationSystem 应用中的用户列表为空，响应将显示一个空列表。
+
+
+  ![A436970_1_En_4_Fig7_HTML.jpg](img/A436970_1_En_4_Fig7_HTML.jpg)
+
+
+  图 4-7.
+
+
+  从 Postman 传递用户凭据
+
+
+  每次重启应用时都从日志中复制密码，这几乎不切实际。你可以通过在 `application.properties` 文件中设置一些属性来自定义此默认凭据，接下来你将学习如何操作。
+
+
+  ### 覆盖 Spring Security 默认值
+
+
+  通过之前的设置，每次重启 Spring Boot 应用时，你都必须查找生成的默认用户密码，然后复制并粘贴该密码以在访问 RESTful API 时对用户进行身份验证，这几乎不切实际。
+
+
+  Spring Boot 允许开发者通过在 `application.properties` 文件中指定安全属性来轻松覆盖安全默认值（用户名、密码和角色），该文件位于
+  UserRegistrationSystem 应用的 `src\main\resources\` 文件夹中，如图 4-8 所示。
+
+
+  ![A436970_1_En_4_Fig8_HTML.jpg](img/A436970_1_En_4_Fig8_HTML.jpg)
+
+
+  图 4-8.
+
+
+  在 application.properties 文件中覆盖安全属性
+
+
+  重启 UserRegistrationSystem 应用并观察 STS 控制台中的日志，如图 4-6 所示。你可以清楚地看到，这次 Spring Boot 应用没有生成任何默认用户密码。
+
+
+  让我们通过启动 Postman 并传递用户凭据来测试这一点，如清单 4-4 所示。
+
+
+  ```
+
+  security.user.name = user
+
+  security.user.password = password
+
+  security.user.role = ADMIN
+
+  清单 4-4.
+
+  安全属性
+
+
+  在从 Postman 传递请求头中的用户凭据时，你可以点击 Postman 中的“Update Request”来更新 HTTP 请求头中的授权值，如图 4-9
+  所示。
+
+
+  ![A436970_1_En_4_Fig9_HTML.jpg](img/A436970_1_En_4_Fig9_HTML.jpg)
+
+
+  图 4-9.
+
+
+  使用新配置的用户名和密码调用受保护的 REST API
+
+
+  到目前为止，你已看到仅通过添加 `spring-boot-starter-security` 依赖就发生了许多神奇的事情。
+
+
+  在实际用例中，你需要配置多个具有不同凭据和角色的用户来访问你的应用。此外，还需要自定义有权访问 REST API 的用户。为了实现这一点，你需要引入一些 Java
+  配置。
+
+
+  ## 自定义用户身份验证
+
+
+  用户在获准访问受保护资源之前，需要先进行身份验证和授权。在 Spring Security 中，身份验证提供者负责对用户进行身份验证，验证成功后，用户才能访问系统中的受保护资源。
+
+
+  Spring Security 支持多种用户身份验证方式，例如使用内存定义进行用户身份验证，以及针对存储用户详细信息的用户存储库（关系数据库）进行身份验证。让我们通过配置这些用户和角色来自定义用户身份验证：
+
+
+  *   你将拥有两个角色：`USER` 和 `ADMIN`。
+
+  *   你将创建一个 `USER` 角色，凭据为 `user`/`password`。
+
+  *   你还将创建一个 `ADMIN` 角色，凭据为 `admin`/`password`。
+
+
+  在你的 UserRegistrationSystem 应用中，你将向特定用户角色提供对不同 REST 端点的访问权限，如表 4-1 所示。
+
+
+  表 4-1.
+
+
+  API 与用户角色的映射
+
+
+  | 用户角色 | HTTP 方法 | API 端点 |
+
+  | --- | --- | --- |
+
+  | `USER` | `GET` | `/api/user/` |
+
+  | `USER` | `POST` | `/api/user/` |
+
+  | `USER` | `PUT` | `/api/user/{id}` |
+
+  | `ADMIN` | `DELETE` | `/api/user/{id}` |
+
+
+
+
+  ### 使用内存定义进行身份验证自定义
+
+
+  如果您的应用程序只有少数用户，您可以在 Spring 配置文件中定义他们的详细信息，而不是从某个持久化引擎中提取用户信息，这样用户详细信息就会加载到应用程序的内存中。让我们创建一个
+  `SpringSecurityConfiguration_InMemory.java` 文件，如代码清单 4-5 所示。
+
+
+  ```
+
+  import org.springframework.beans.factory.annotation.Autowired;
+
+  import org.springframework.context.annotation.Configuration;
+
+  import org.springframework.http.HttpMethod;
+
+  import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
+  import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+
+  import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
+  import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+  @Configuration
+
+  @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+
+  public class SpringSecurityConfiguration_InMemory extends WebSecurityConfigurerAdapter
+  {
+
+  @Autowired
+
+  protected void configureGlobal(AuthenticationManagerBuilder auth)
+
+  throws Exception {                auth.inMemoryAuthentication().withUser("user").password("password")
+
+  .roles("USER");                auth.inMemoryAuthentication().withUser("admin").password("password")
+
+  .roles("USER", "ADMIN");
+
+  }
+
+  @Override
+
+  protected void configure(HttpSecurity http) throws Exception {
+
+  http
+
+  .httpBasic().and()
+
+  .authorizeRequests()
+
+  .antMatchers(HttpMethod.GET, "/api/user/")
+
+  .hasRole("USER")
+
+  .antMatchers(HttpMethod.POST, "/api/user/")
+
+  .hasRole("USER")
+
+  .antMatchers(HttpMethod.PUT, "/api/user/**")                          .hasRole("USER")
+
+  .antMatchers(HttpMethod.DELETE, "/api/user/**")
+
+  .hasRole("ADMIN")
+
+  .and()
+
+  .csrf()
+
+  .disable();
+
+  }
+
+  }
+
+  代码清单 4-5.
+
+  在内存中自定义用户身份验证
+
+  ```
+
+
+  在上一个代码片段中，您创建了一个名为 `SpringSecurityConfiguration_InMemory` 的类，并使用 `@Configuration`
+  注解标记了该类，这是一个 Spring 注解，使该类成为一个配置类。您让该类继承了 `WebSecurityConfigurerAdapter` 类，这允许您配置
+  Spring Security 并覆盖应用程序的默认方法。
+
+
+  您通过创建两个用户（`user` 和 `admin`）及其角色（`USER` 和 `ADMIN`）和密码来配置身份验证。`admin` 用户同时拥有 `USER`
+  和 `ADMIN` 角色，而 `user` 用户只有 `USER` 角色。为了配置内存身份验证，您使用了 `configureGlobal` 方法。您使用 `@Autowired`
+  注解标记了此方法。此方法有一个 `AuthenticationManagerBuilder` 类型的参数。
+
+
+  接下来，您覆盖了第二个方法 `configure`，它接受参数 `HttpSecurity`。在 `configure` 方法中，您通过将角色映射到 URL 来配置授权。您使用了
+  HTTP 基本身份验证来验证每个请求。在此 `configure` 方法内部，您使用了 `anyMatchers` 方法将 URL 模式和 `HttpMethod`
+  映射到特定角色；例如，任何匹配 `/api/user/**` 并执行 `DELETE` 操作的 URL 都应具有 `ADMIN` 角色，其余操作可以具有 `USER`
+  角色。您还禁用了跨站请求伪造，以限制任何最终用户执行非预期的操作。
+
+
+  #### 运行 UserRegistrationSystem 应用程序
+
+
+  一旦您重新启动 UserRegistrationSystem 应用程序，您就可以通过启动 Postman 并使用用户凭据调用 API 来测试新实现的代码。
+
+
+  如图 4-10 所示，启动 Postman 在您的 UserRegistrationSystem 应用程序中注册一个新用户。在 Postman 中，选择 HTTP
+  `POST` 方法并输入 URL `http://localhost:8080/api/user/`。点击 Authorization 选项卡，并为 Basic
+  Auth 选择 TYPE。输入用户名 `user` 和密码 `password`，然后点击 Update Request 按钮，这将使用 `Authorization`
+  值更新 HTTP 标头。然后在请求体中提供 JSON 数据（如您在第 2 章中所见），最后点击 Send 按钮。
+
+
+  ![A436970_1_En_4_Fig10_HTML.jpg](img/A436970_1_En_4_Fig10_HTML.jpg)
+
+
+  图 4-10.
+
+  通过传递用户凭据创建新用户
+
+
+  如果一切顺利，这将在您的 UserRegistrationSystem 应用程序中注册一个新用户。
+
+
+  您可以调用另一个端点来获取用户列表。输入用户凭据为 `user`/`password`，如图 4-11 所示。
+
+
+  ![A436970_1_En_4_Fig11_HTML.jpg](img/A436970_1_En_4_Fig11_HTML.jpg)
+
+
+  图 4-11.
+
+  传递用户凭据后获取用户列表
+
+
+  类似地，您可以通过调用另一个端点并传递用户凭据 `user`/`password` 来更新用户详细信息，如图 4-12 所示。
+
+
+  ![A436970_1_En_4_Fig12_HTML.jpg](img/A436970_1_En_4_Fig12_HTML.jpg)
+
+
+  图 4-12.
+
+  通过传递用户凭据更新用户详细信息
+
+
+  因此，您现在已使用用户凭据 `user`/`password` 在您的 Spring Boot 应用程序中执行了创建、读取和更新操作。您也可以使用 `admin`
+  用户的凭据 `admin`/`password` 执行这些操作，因为前面的端点可以被 `USER` 和 `ADMIN` 两种角色访问。
+
+
+  现在，如果您尝试使用 `USER` 角色，通过传递凭据 `user`/`password` 来调用应用程序中的另一个端点执行删除操作，会发生什么？由于您已将此操作限制为除
+  `ADMIN` 之外的所有其他用户角色，它应该会抛出错误消息“Access is denied”，状态码为 403 `Forbidden`，如图 4-13 所示。
+
+
+  ![A436970_1_En_4_Fig13_HTML.jpg](img/A436970_1_En_4_Fig13_HTML.jpg)
+
+
+  图 4-13.
+
+  对未经授权的用户拒绝访问。
+
+
+  让我们通过传递 `admin` 凭据来调用此 API 以执行删除操作，如图 4-14 所示。
+
+
+  ![A436970_1_En_4_Fig14_HTML.jpg](img/A436970_1_En_4_Fig14_HTML.jpg)
+
+
+  图 4-14.
+
+  使用 ADMIN 角色执行删除操作
+
+
+  由于您使用了 `ADMIN` 的凭据来调用此端点，操作成功，并且由于此操作从 UserRegistrationSystem 中删除了一个用户，响应返回了一个空列表。
+
+
+  到目前为止，您已经使用内存定义执行了身份验证自定义。接下来，让我们通过针对数据库进行身份验证自定义，将这一实践提升到新的水平。
+
+
+
+
+  ### 针对关系型数据库的身份验证自定义
+
+
+  尽管你已经使用内存身份验证自定义了 Spring Security，但你希望针对数据库进行身份验证来自定义安全行为，以便使用应用程序的用户，而不是 Spring
+  Boot 的通用用户。让我们通过创建和更新用户，为你的 UserRegistrationSystem 应用程序设置针对数据库进行身份验证自定义所需的基础设施。
+
+
+  首先，创建一个 `UserInfo` 领域对象，如清单 4-6 所示。这个实体类代表一个 UserRegistrationSystem 用户。`UserInfo`
+  实体类包含诸如 ID（`userid`）、用户名、密码、`isEnabled` 和角色等属性。你使用 JPA 和 Hibernate 注解来标注这个类。
+
+
+  ```
+
+  package com.apress.ravi.dto;
+
+  import javax.persistence.Column;
+
+  import javax.persistence.Entity;
+
+  import javax.persistence.GeneratedValue;
+
+  import javax.persistence.Id;
+
+  import javax.persistence.Table;
+
+  import org.hibernate.validator.constraints.NotEmpty;
+
+  @Entity
+
+  @Table(name = "users")
+
+  public class UserInfo {
+
+  @Id
+
+  @GeneratedValue
+
+  @Column(name = "userid")
+
+  private Long id;
+
+  @Column(name = "username")
+
+  @NotEmpty
+
+  private String username;
+
+  @Column(name = "password")
+
+  @NotEmpty
+
+  private String password;
+
+  @Column(name = "enabled")
+
+  private boolean isEnabled;
+
+  @Column(name = "role")
+
+  private String role;
+
+  public String getUsername() {
+
+  return username;
+
+  }
+
+  public void setUsername(String username) {
+
+  this.username = username;
+
+  }
+
+  public String getPassword() {
+
+  return password;
+
+  }
+
+  public void setPassword(String password) {
+
+  this.password = password;
+
+  }
+
+  public boolean isEnabled() {
+
+  return isEnabled;
+
+  }
+
+  public void setEnabled(boolean isEnabled) {
+
+  this.isEnabled = isEnabled;
+
+  }
+
+  public String getRole() {
+
+  return role;
+
+  }
+
+  public void setRole(String role) {
+
+  this.role = role;
+
+  }
+
+  }
+
+  清单 4-6.
+
+  UserInfo 类
+
+  ```
+
+
+  由于你将把 UserRegistrationSystem 的用户存储在数据库中，因此需要一个 `UserInfoJpaRepository` 接口来对 `UserInfo`
+  实体执行 CRUD 操作。清单 4-7 展示了扩展了 `JpaRepository` 的 `UserInfoJpaRepository` 接口。除了 `JpaRepository`
+  提供的默认方法外，`UserInfoJpaRepository` 接口还包含一个名为 `findByUsername` 的自定义查找方法，该方法以用户名作为参数。Spring
+  Data JPA 将提供一个运行时实现，允许 `findByUsername` 方法根据传入的用户名参数返回一个用户。
+
+
+  ```
+
+  package com.apress.ravi.repository;
+
+  import org.springframework.data.jpa.repository.JpaRepository;
+
+  import org.springframework.stereotype.Repository;
+
+  import com.apress.ravi.dto.UserInfo;
+
+  @Repository
+
+  public interface UserInfoJpaRepository extends JpaRepository {
+
+  public UserInfo findByUsername(String username);
+
+  }
+
+  清单 4-7.
+
+  UserInfoJpaRepository 接口
+
+
+  为简单起见，我生成了一些测试用户，如清单 4-8 所示。我在 UserRegistrationSystem 项目的 `src\main\resources` 文件夹中创建了一个
+  `import.sql` 文件，并将这些 SQL 语句复制到了该文件的末尾。当应用程序启动时，Hibernate 将用这些测试用户更新 `users` 表，并使它们可供应用程序使用。
+
+
+  ```
+
+  INSERT INTO users (username, password, enabled, role) VALUES (''user'', ''password'',
+  true, ''USER'');
+
+  INSERT INTO users (username, password, enabled, role) VALUES (''admin'', ''password'',
+  true, ''ADMIN'');
+
+  INSERT INTO users (username, password, enabled, role) VALUES (''ravi'', ''password'',
+  true, ''USER'');
+
+  清单 4-8.
+
+  import.sql 文件中的测试用户数据
+
+  ```
+
+
+  请注意，生成的测试用户的密码是明文，因此不需要对密码进行加密。
+
+
+  #### UserDetailsService 实现
+
+
+  在 Spring Security 中，`UserDetailsService` 用于从后端（例如数据库）返回用户信息，该信息会在身份验证过程中与提交的用户凭据进行比较。清单
+  4-9 展示了你的 UserRegistrationSystem 应用程序的 `UserDetailsService` 实现。
+
+
+  ```
+
+  package com.apress.ravi.Service;
+
+  import java.util.ArrayList;
+
+  import java.util.Collection;
+
+  import java.util.List;
+
+  import org.springframework.beans.factory.annotation.Autowired;
+
+  import org.springframework.security.core.GrantedAuthority;
+
+  import org.springframework.security.core.authority.AuthorityUtils;
+
+  import org.springframework.security.core.userdetails.UserDetails;
+
+  import org.springframework.security.core.userdetails.UserDetailsService;
+
+  import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+  import org.springframework.stereotype.Service;
+
+  import com.apress.ravi.dto.UserInfo;
+
+  import com.apress.ravi.repository.UserInfoJpaRepository;
+
+  @Service
+
+  public class UserInfoDetailsService implements UserDetailsService {
+
+  @Autowired
+
+  private UserInfoJpaRepository userInfoJpaRepository;
+
+  @Override
+
+  public UserDetails loadUserByUsername(String username)
+
+  throws UsernameNotFoundException {
+
+  UserInfo user = userInfoJpaRepository.findByUsername(username);
+
+  if (user == null) {
+
+  throw new UsernameNotFoundException(
+
+  "Opps! user not found with user-name: " + username);
+
+  }
+
+  return new org.springframework.security.core.userdetails.User(
+
+  user.getUsername(), user.getPassword(),
+
+  getAuthorities(user));
+
+  }
+
+  private Collection getAuthorities(UserInfo user) {
+
+  List authorities = new ArrayList();
+
+  authorities = AuthorityUtils.createAuthorityList(user.getRole());
+
+  return authorities;
+
+  }
+
+  }
+
+  清单 4-9.
+
+  UserRegistrationSystem 的 UserDetailsService 实现
+
+  ```
+
+
+  `UserInfoDetailsService` 类自动装配了 `UserInfoJpaRepository`，以便从数据库中检索 `UserInfo` 详细信息。该类重写了
+  `loadUserByUsername` 方法，该方法返回一个 `UserDetails` 类型的实例。此方法首先检查从数据库检索到的用户是否为空，如果为空，则抛出一个带有适当消息的
+  `UsernameNotFoundException` 异常。如果检索到的用户不为空，则此方法创建一个 `org.springframework.security.core.userdetails.User`
+  实例，并使用从数据库返回的用户数据填充它。
+
+
+
+
+  #### 自定义 Spring Security 并保护 URI
+
+
+  现在，你将通过创建一个带有 `@Configuration` 和 `@EnableWebSecurity` 注解的 `SpringSecurityConfiguration_Database`
+  配置类，来自定义 Spring Security 的默认行为并保护一个 URI。该配置类继承了 `org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter`
+  类，该类提供了一个辅助方法来配置 Spring Security。清单 4-10 展示了包含 UserRegistrationSystem 应用程序 Spring
+  Security 配置的 `SpringSecurityConfiguration` 数据库。
+
+
+  ```
+
+  package com.apress.ravi.Security;
+
+  import org.springframework.beans.factory.annotation.Autowired;
+
+  import org.springframework.context.annotation.Configuration;
+
+  import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
+  import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+
+  import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
+  import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+  import org.springframework.security.config.http.SessionCreationPolicy;
+
+  import com.apress.ravi.Service.UserInfoDetailsService;
+
+  @Configuration
+
+  @EnableWebSecurity
+
+  public class SpringSecurityConfiguration_Database
+
+  extends WebSecurityConfigurerAdapter {
+
+  @Autowired
+
+  private UserInfoDetailsService userInfoDetailsService;
+
+  @Override
+
+  protected void configure(
+
+  AuthenticationManagerBuilder authenticationManagerBuilder)
+
+  throws Exception {
+
+  authenticationManagerBuilder
+
+  .userDetailsService(userInfoDetailsService);
+
+  }
+
+  @Override
+
+  protected void configure(HttpSecurity http) throws Exception {
+
+  http.sessionManagement()
+
+  .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+  .and()
+
+  .authorizeRequests()
+
+  .antMatchers("/api/user/**")
+
+  .authenticated()
+
+  .and()
+
+  .httpBasic()
+
+  .realmName("User Registration System")
+
+  .and()
+
+  .csrf()
+
+  .disable();
+
+  }
+
+  }
+
+  清单 4-10.
+
+  UserRegistrationSystem 的安全配置
+
+  ```
+
+
+  `SpringSecurityConfiguration_Database` 配置类自动装配了 `UserInfoDetailsService` bean。该配置类重写了
+  `WebSecurityConfigurerAdapter` 的 `configure` 方法，该方法以 `AuthenticationManagerBuilder`
+  作为参数。`AuthenticationManagerBuilder` 是一个辅助类，它实现了构建器模式，并提供了一种组装 `AuthenticationManager`
+  的方法。你在此方法中使用了 `AuthenticationManagerBuilder` 来添加 `UserInfoDetailsService` 实例。
+
+
+  此外，你还在 `SpringSecurityConfiguration` 数据库配置类中重写了 `WebSecurityConfigurerAdapter` 的另一个
+  `configure` 方法，该方法有助于配置 HTTP 基本认证以使用 UserRegistrationSystem 用户。此配置保护所有端点，并要求进行身份验证才能访问资源。该方法以
+  `HttpSecurity` 作为参数，允许你指定哪些 URI 应该被保护或不受保护。该方法的实现首先请求 Spring Security 不要创建 HTTP
+  会话，也不要将已登录用户的 `SecurityContext` 值存储在会话中，这是通过使用 `SessionCreationPolicy.STATELESS`
+  创建策略实现的。然后，你使用了 `antMatchers` 来提供一个 Ant 风格的 URI 表达式，你希望 Spring Security 使用 `authenticated`
+  方法来保护该表达式，该方法允许经过身份验证的用户访问相应的端点。最后，你启用了 HTTP 基本认证，并将领域名称设置为 User Registration System。
+
+
+  此外，为了简单起见，你禁用了 HTTP 方法的 CSRF。CSRF 是一种安全漏洞，恶意网站会强制用户在当前已认证的另一个网站上执行非预期的命令。默认情况下，Spring
+  Security 会启用 CSRF 保护，并且强烈建议在用户通过浏览器提交请求时使用。对于非浏览器客户端使用的服务（REST），可以禁用 CSRF。
+
+
+  #### 方法级安全
+
+
+  方法级安全是保护 URI 访问的另一种方式。有时需要确保只有具有管理员权限（拥有 `admin` 角色）的用户才能删除 UserRegistrationSystem
+  中的注册用户，这可以通过对方法实施细粒度的安全控制来实现。你将在 `deleteUser` 方法上应用 Spring Security 的方法级安全。
+
+
+  要启用 Spring 的方法级安全，请使用 `org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity`
+  注解来标注 `SpringSecurityConfiguration_Database` 配置类，如清单 4-11 所示。
+
+
+  ```
+
+  package com.apress.ravi.Security;
+
+  import org.springframework.beans.factory.annotation.Autowired;
+
+  import org.springframework.context.annotation.Configuration;
+
+  import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
+  import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+
+  import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+
+  import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
+  import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+  import org.springframework.security.config.http.SessionCreationPolicy;
+
+  import com.apress.ravi.chapter2.Service.UserInfoDetailsService;
+
+  @Configuration
+
+  @EnableWebSecurity
+
+  @EnableGlobalMethodSecurity(prePostEnabled = true)
+
+  public class SpringSecurityConfiguration_Database
+
+  extends WebSecurityConfigurerAdapter {
+
+  //...code
+
+  }
+
+  清单 4-11.
+
+  添加 EnableGlobalMethodSecurity 注解
+
+  ```
+
+
+  Spring Security 支持丰富的方法级授权注解以及类级授权注解。你在 `EnableGlobalMethodSecurity` 中将 `prePostEnabled`
+  标志设置为 `true`，这将启用 Spring Security 注解来执行方法调用前后的授权检查。因此，使用 `@PreAuthorize` 注解来标注 `UserRegistrationRestController`
+  的 `deleteUser` 方法，如清单 4-12 所示。
+
+
+  ```
+
+  import org.springframework.security.access.prepost.PreAuthorize;
+
+  @DeleteMapping("/{id}")
+
+  @PreAuthorize("hasAuthority(''ADMIN'')")
+
+  public ResponseEntity deleteUser(@PathVariable("id") final Long id) {
+
+  //...code
+
+  }
+
+  清单 4-12.
+
+  添加 PreAuthorize 注解
+
+  ```
+
+
+  `@PreAuthorize` 注解仅允许授权用户调用 `deleteUser` 方法。`hasAuthority` 检查登录用户是否拥有 `ADMIN` 权限，并让
+  Spring Security 做出决定。
+
+
+  重新启动 UserRegistrationSystem 应用程序，并启动 Postman 对端点 `http://localhost:8080/api/user/1`
+  执行 `DELETE` 操作。将 Postman 中的授权类型设置为 Basic Auth，并输入用户名为 `user`、密码为 `password` 的凭据，该用户拥有
+  `USER` 角色。由于 `user` 没有管理权限，将返回一条未经授权的响应，消息为“Access is denied”，如图 4-15 所示。
+
+
+  ![A436970_1_En_4_Fig15_HTML.jpg](img/A436970_1_En_4_Fig15_HTML.jpg)
+
+
+  图 4-15.
+
+
+  未经授权的删除响应
+
+
+  ## 总结
+
+
+  在本章中，你了解了 Spring Security 以及身份验证和授权的概念。你通过实现基本认证，在 RESTful 服务上启用了 Spring Security。然后，你使用内存数据库和针对数据库的方式自定义了身份验证。在下一章中，你将探索如何使用
+  AngularJS 消费受保护的 RESTful API。
+
+
+
+
+  '
+- '# 5. 使用 AngularJS 消费安全的 RESTful 服务
+
+
+  在第 2 章中，你使用 Spring Boot 创建了一个名为 UserRegistrationSystem 的 REST 应用程序，并执行了 CRUD 操作。在第
+  3 章中，你使用 AngularJS 创建了一个单页应用（SPA）并消费了 REST 端点。在第 4 章中，你使用 Spring Security 保护了你的
+  REST 端点。
+
+
+  在本章中，我将向你展示 Spring Boot、Spring Security 和 AngularJS 如何协同工作，以提供愉快且安全的用户体验。你将使用 AngularJS
+  消费安全的 RESTful 服务。首先，你将在 AngularJS 中为每个请求发送一个授权标头。然后，你将创建一个登录页面，并更新 Spring Security
+  配置以支持登录和注销的认证流程。
+
+
+  ## 在 Spring Security 中启用基本认证
+
+
+  在第 4 章中，你仅通过使用 Spring Boot Starter Security 依赖更新 Maven `pom.xml` 文件，并添加带有内存认证配置的
+  Spring Security 配置文件，就使用基本认证保护了 UserRegistrationSystem 应用程序的 REST 端点，如清单 5-1 所示。
+
+
+  ```
+
+  @Configuration
+
+  @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+
+  public class SpringSecurityConfiguration_InMemory
+
+  extends WebSecurityConfigurerAdapter {
+
+  @Autowired
+
+  protected void configureGlobal(AuthenticationManagerBuilder auth)
+
+  throws Exception {
+
+  auth.inMemoryAuthentication()
+
+  .withUser("admin").password("password")
+
+  .roles("USER", "ADMIN");
+
+  }
+
+  @Override
+
+  protected void configure(HttpSecurity http) throws Exception {
+
+  http
+
+  .httpBasic()
+
+  .realmName("User Registration System")
+
+  .and()
+
+  .authorizeRequests()
+
+  .antMatchers(HttpMethod.GET, "/api/user/")
+
+  .hasRole("USER")
+
+  .antMatchers(HttpMethod.POST, "/api/user/")
+
+  .hasRole("USER")
+
+  .antMatchers(HttpMethod.PUT, "/api/user/**")
+
+  .hasRole("USER")
+
+  .antMatchers(HttpMethod.DELETE, "/api/user/**")
+
+  .hasRole("ADMIN")
+
+  .and()
+
+  .csrf()
+
+  .disable();
+
+  }
+
+  }
+
+  清单 5-1.
+
+  内存认证配置
+
+  ```
+
+
+  在第 3 章中，你将 UserRegistrationSystem 开发为一个使用 AngularJS 消费 REST 端点的 SPA。有了 Spring Security
+  配置，现在当你尝试使用 URL `http://localhost:8080/#/list-all-users` 在浏览器中访问你的页面时，会出现一个“需要身份验证”的弹出窗口，你需要输入在安全配置文件中配置的用户名和密码才能访问
+  `/list-all-users` 页面，如图 5-1 所示。
+
+
+  ![A436970_1_En_5_Fig1_HTML.jpg](img/A436970_1_En_5_Fig1_HTML.jpg)
+
+
+  图 5-1.
+
+
+  在浏览器中访问页面需要身份验证
+
+
+  问题在于，每次你打开浏览器并访问网页时，浏览器都会弹出一个要求输入用户名和密码的窗口。你可以通过在 AngularJS 中为每个请求发送一个授权标头来解决此问题。
+
+
+  ## 在 AngularJS 中为每个请求发送授权标头
+
+
+  [基本认证](https://en.wikipedia.org/wiki/Basic_access_authentication)允许客户端在每个 HTTP 请求中使用授权标头发送其
+  Base64 编码的凭据。这意味着每个请求都独立于其他请求，服务器不会为客户端维护任何状态信息。
+
+
+  由于你必须为每个请求发送一个认证标头，因此使用 HTTP 拦截器来处理它比在所有 `''http` 方法中手动指定认证标头更好。
+
+
+  ### 在 AngularJS 中添加 HTTP 拦截器
+
+
+  当请求/响应通过 HTTP 调用进行通信，并且你想要注入一些自定义逻辑时，HTTP 拦截器就派上用场了。HTTP 拦截器始终执行自定义逻辑，用于认证、授权、管理会话状态、日志记录、修改响应、重写
+  URL、处理错误、缓存、添加自定义标头、在请求/响应中添加时间戳，以及在 HTTP 调用前后加密和解密请求和响应信息，如图 5-2 所示。
+
+
+  ![A436970_1_En_5_Fig2_HTML.jpg](img/A436970_1_En_5_Fig2_HTML.jpg)
+
+
+  图 5-2.
+
+
+  HTTP 拦截器
+
+
+  AngularJS 支持四种 HTTP 拦截器：`request`、`response`、`requestError` 和 `responseError`。
+
+
+  *   `request` 拦截器在 `''http` 将请求发送到服务器之前被调用。请求函数将配置对象作为输入参数，并在向该对象添加、修改或删除数据后返回一个配置对象。
+
+  *   `response` 拦截器在 `''http` 从服务器接收响应后被调用。响应函数将响应对象作为参数，并在返回响应对象之前修改响应数据或添加一组新值，调用另一个模块或服务调用。
+
+  *   当请求拦截器抛出任何错误时，会调用 `requestError` 拦截器。
+
+  *   当对服务器的任何调用失败，并且应用程序需要根据不同的 HTTP 状态码触发某些操作时，会调用 `responseError` 拦截器。
+
+
+  让我们在 UserRegistrationSystem 应用程序中实现 HTTP 拦截器。
+
+
+  #### authInterceptor.js
+
+
+  在 `authInterceptor.js` 文件中创建一个名为 `AuthInterceptor` 的拦截器，如清单 5-2 所示。
+
+
+  ```
+
+  app.factory(''AuthInterceptor'', [ function() {
+
+  return {
+
+  ''request'' : function(config) {
+
+  config.headers = config.headers || {};
+
+  var encodedString = btoa("admin:password");
+
+  config.headers.Authorization = ''Basic '' + encodedString;
+
+  return config;
+
+  }
+
+  };
+
+  } ]);
+
+  清单 5-2.
+
+  带有请求函数的 HTTP 拦截器
+
+  ```
+
+
+  在清单 5-1 中，你配置了用户名为 `admin`、密码为 `password` 的安全认证凭据。此外，你调用了 `btoa()` 函数来从用户凭据中获取 Base64
+  编码的字符串。
+
+
+  你调用了一个请求拦截器函数，该函数将配置对象作为参数。你使用基本认证数据更新了 `config.headers.Authorization`，并返回了这个更新后的配置对象。这足以启用基本认证。你只需要将
+  `AuthInterceptor` 拦截器注册到 AngularJS 应用程序中。
+
+
+  ### 更新 app.js
+
+
+  要将 `AuthInterceptor` 拦截器注册到 AngularJS 应用程序，你需要更新 `app.js` 文件，如清单 5-3 所示。
+
+
+  ```
+
+  var app = angular.module(''userregistrationsystem'', [ ''ngRoute'', ''ngResource''
+  ]);
+
+  app.config(function(''routeProvider) {
+
+  ''routeProvider.when(''/list-all-users'', {
+
+  templateUrl : ''/template/listuser.html'',
+
+  controller : ''listUserController''
+
+  }).when(''/register-new-user'',{
+
+  templateUrl : ''/template/userregistration.html'',
+
+  controller : ''registerUserController''
+
+  }).when(''/update-user/:id'',{
+
+  templateUrl : ''/template/userupdation.html'',
+
+  controller : ''usersDetailsController''
+
+  }).otherwise({
+
+  redirectTo : ''/home'',
+
+  templateUrl : ''/template/home.html'',
+
+  });
+
+  });
+
+  app.config([''''httpProvider'', function(''httpProvider) {
+
+  ''httpProvider.interceptors.push(''AuthInterceptor'');
+
+  }]);
+
+  清单 5-3.
+
+  通过更新 app.js 在应用程序中注册拦截器
+
+  ```
+
+
+  在清单 5-3 中，你通过使用 push 方法将 `AuthInterceptor` 拦截器（拦截器是服务工厂）添加到 `''httpProvider.interceptors`
+  数组中，从而将其注册到 `''httpProvider`。这个服务工厂被调用并返回拦截器。
+
+
+
+
+  ### 更新 index.html
+
+
+  现在需要更新 `index.html` 文件，将 `authInterceptor.js` 文件引入到应用程序中，如代码清单 5-4 所示。
+
+
+  ```
+
+
+  全栈开发
+
+
+  用户注册系统
+
+
+  首页
+
+
+  注册新用户
+
+
+  列出所有用户
+
+
+  代码清单 5-4.
+
+  更新 index.html 文件
+
+  ```
+
+
+  ### 运行应用程序
+
+
+  让我们重新启动 UserRegistrationSystem 应用程序，并在浏览器中访问 URL `http://localhost:8080/#/list-all-users`。`list-all-users`
+  页面将在浏览器中显示，而不会弹出任何身份验证对话框，如图 5-3 所示。
+
+
+  ![A436970_1_En_5_Fig3_HTML.jpg](img/A436970_1_En_5_Fig3_HTML.jpg)
+
+
+  图 5-3.
+
+
+  在浏览器中显示的 list-all-users 页面
+
+
+  #### 携带基本认证头部的 HTTP 请求：在开发者工具中验证
+
+
+  您可以验证在请求 URL `http://localhost:8080/#/list-all-users` 时，基本认证头部发送的 HTTP 请求。在浏览器中打开开发者工具（此处为
+  Chrome 浏览器），选择“网络”选项卡，然后点击“标头”选项卡，以监控包含授权数据的请求标头，如图 5-4 所示。
+
+
+  ![A436970_1_En_5_Fig4_HTML.jpg](img/A436970_1_En_5_Fig4_HTML.jpg)
+
+
+  图 5-4.
+
+
+  在开发者工具中监控基本认证头部
+
+
+  到目前为止，您已成功使用拦截器在每个请求中发送了授权头部，并且能够使用受保护的 REST 端点。您在 AngularJS 拦截器中配置了一个用户来执行基本认证。当有多个具有不同角色的用户时，就会出现问题。为了解决这个问题，您需要一个登录页面，在访问任何资源之前，可以输入用户名和密码进行身份验证和授权，并且网页上还需要一个“注销”按钮。
+
+
+  在下一节中，您将创建一个登录页面，并执行登录和注销的身份验证过程。您将在 UserRegistrationSystem 应用程序中使用基于表单的身份验证，这将比
+  HTTP 基本认证提供更大的灵活性。
+
+
+  ## 登录页面
+
+
+  在本节中，您将使用 AngularJS 通过登录表单对用户进行身份验证，并获取受保护的资源以在 UI 中渲染 JSON 数据。此登录表单让用户对是否进行身份验证拥有一定的控制权。
+
+
+  ### 更新 index.html：添加导航到欢迎页面
+
+
+  正如您在第 3 章中所见，`index.html` 是单页应用的核心，到目前为止您已经拥有一个非常基础的版本。您需要提供更多导航功能，例如登录和注销功能。因此，让我们修改现有的
+  `src/main/resources/static/index.html` 文件，如代码清单 5-5 所示。
+
+
+  ```
+
+
+  全栈开发
+
+
+  用户注册系统
+
+
+  登录
+
+
+  登录以进入首页
+
+
+  首页
+
+
+  注册新用户
+
+
+  列出所有用户
+
+
+  注销
+
+
+  代码清单 5-5.
+
+  更新 src/main/resources/static/index.html
+
+  ```
+
+
+  如代码清单 5-5 所示，更新后的 `index.html` 与原始版本没有太大区别。您添加了一个新的 `div`，其中包含一个用于登录的锚点标签。并且您添加了一个用于注销的锚点标签。您使用了
+  AngularJS 的 `ng-show` 来根据 `authenticated` 的值隐藏/显示页面上的元素。
+
+
+  ### 更新 app.js：为 Angular 应用程序添加导航
+
+
+  您现在需要更新 UserRegistrationSystem 应用程序（位于 `src/main/resources/static/js/app.js`），以添加用于登录和注销的新导航功能，如代码清单
+  5-6 所示。
+
+
+  ```
+
+  var app = angular.module(''userregistrationsystem'', [ ''ngRoute'', ''ngResource''
+  ]);
+
+  app.config(function(''routeProvider, ''locationProvider) {
+
+  ''routeProvider
+
+  .when(''/'', {
+
+  templateUrl : ''/template/home.html'',
+
+  controller : ''homeController''
+
+  })
+
+  .when(''/list-all-users'', {
+
+  templateUrl : ''/template/listuser.html'',
+
+  controller : ''listUserController''
+
+  })
+
+  .when(''/register-new-user'',{
+
+  templateUrl : ''/template/userregistration.html'',
+
+  controller : ''registerUserController''
+
+  })
+
+  .when(''/update-user/:id'',{
+
+  templateUrl : ''/template/userupdation.html'',
+
+  controller : ''usersDetailsController''
+
+  })
+
+  .when(''/login'',{
+
+  templateUrl : ''/login/login.html'',
+
+  controller : ''loginController''
+
+  })
+
+  .when(''/logout'',{
+
+  templateUrl : ''/login/login.html'',
+
+  controller : ''logoutController''
+
+  })
+
+  .otherwise({
+
+  redirectTo : ''/login''
+
+  });
+
+  });
+
+  app.config([''''httpProvider'', function(''httpProvider) {
+
+  ''httpProvider.defaults.headers.common["X-Requested-With"] = ''XMLHttpRequest'';
+
+  }]);
+
+  代码清单 5-6.
+
+  更新 src/main/resources/static/js/app.js
+
+  ```
+
+
+  在代码清单 5-4 中，您为路径 `/` 添加了 `homeController` 控制器。您还设置了新的路径，例如 `/login` 和 `/logout`，以及它们的
+  `templateUrl` 和 `controller`。
+
+
+  自定义的 `X-Requested-With` 行是浏览器客户端发送的传统标头。Spring Security 会对此做出响应，不在 401 响应中发送 `WWW-Authenticate`
+  标头，因此浏览器不会打开身份验证弹出对话框，这在您的 UserRegistrationSystem 应用程序中是期望的行为，因为您希望控制身份验证过程。
+
+
+  ### 创建 login.html：登录表单
+
+
+  让我们创建一个登录表单，该表单位于 `src/main/resources/static/login/login.html`，如代码清单 5-7 所示。
+
+
+  ```
+
+
+  登录页面
+
+  输入用户名和密码
+
+
+  登录时出现问题。请重试。
+
+
+  用户名
+
+
+  密码
+
+
+  重置表单
+
+
+  代码清单 5-7.
+
+  src/main/resources/static/login/login.html
+
+  ```
+
+
+  如代码清单 5-5 所示，这是一个简单且标准的登录表单；它包含两个用于输入用户名和密码的字段，以及两个按钮，分别用于登录（通过 `ng-submit` 提交表单）和重置表单，如图
+  5-5 所示。
+
+
+  ![A436970_1_En_5_Fig5_HTML.jpg](img/A436970_1_En_5_Fig5_HTML.jpg)
+
+
+  图 5-5.
+
+
+  带有输入框和按钮的登录表单
+
+
+  登录表单控件使用 `ng-model` 在 HTML（`login.html`）和 Angular 控制器（`controller.js`）之间传递数据，在此示例中，您使用一个
+  credentials 对象来保存用户名和密码。您还添加了代码，以便在 Angular 模型包含 `loginerror` 值时显示错误消息，如图 5-6 所示。
+
+
+  ![A436970_1_En_5_Fig6_HTML.jpg](img/A436970_1_En_5_Fig6_HTML.jpg)
+
+
+  图 5-6.
+
+
+  带有错误消息的登录页面
+
+
+  根据在应用程序（如 `app.js`）中定义的路由，您已经定义了一个需要与 `loginController` 关联的登录表单，因此让我们更新您的 `controller.js`
+  文件。
+
+
+
+
+  ### 更新 controller.js 以支持登录和注销认证流程
+
+
+  为了支持登录和注销认证流程，你需要添加更多功能。你需要新增三个控制器：`homeController`、`loginController` 和 `logoutController`。将它们添加到现有
+  UserRegistrationSystem 应用程序的 `src/main/resources/static/js/controller.js` 文件中，如代码清单
+  5-8 所示。
+
+
+  ```
+
+  app.controller(''homeController'', function(''rootScope, ''scope,
+
+  ''http, ''location, ''route){
+
+  if (''rootScope.authenticated) {
+
+  ''location.path("/");
+
+  ''scope.loginerror = false;
+
+  } else {
+
+  ''location.path("/login");
+
+  ''scope.loginerror = true;
+
+  }
+
+  });
+
+  app.controller(''loginController'', function(''rootScope, ''scope,
+
+  ''http, ''location, ''route){
+
+  ''scope.credentials = {};
+
+  ''scope.resetForm = function() {
+
+  ''scope.credentials = null;
+
+  }
+
+  var authenticate = function(credentials, callback) {
+
+  var headers = ''scope.credentials ? {
+
+  authorization : "Basic "
+
+  + btoa(''scope.credentials.username + ":"
+
+  + ''scope.credentials.password)
+
+  } : {};
+
+  ''http.get(''user'', {
+
+  headers : headers
+
+  }).then(function(response) {
+
+  if (response.data.name) {
+
+  ''rootScope.authenticated = true;
+
+  } else {
+
+  ''rootScope.authenticated = false;
+
+  }
+
+  callback && callback();
+
+  }, function() {
+
+  ''rootScope.authenticated = false;
+
+  callback && callback();
+
+  });
+
+  }
+
+  authenticate();
+
+  ''scope.loginUser = function() {
+
+  authenticate(''scope.credentials, function() {
+
+  if (''rootScope.authenticated) {
+
+  ''location.path("/");
+
+  ''scope.loginerror = false;
+
+  } else {
+
+  ''location.path("/login");
+
+  ''scope.loginerror = true;
+
+  }
+
+  });
+
+  };
+
+  });
+
+  app.controller(''logoutController'', function(''rootScope, ''scope,
+
+  ''http, ''location, ''route){
+
+  ''http.post(''logout'', {}).finally(function() {
+
+  ''rootScope.authenticated = false;
+
+  ''location.path("/");
+
+  });
+
+  });
+
+  代码清单 5-8.
+
+  src/main/resources/static/js/controller.js
+
+  ```
+
+
+  如代码清单 5-8 所示，你创建了名为 `homeController`、`loginController` 和 `logoutController` 的新控制器。`homeController`
+  控制器检查 `''rootScope` 中的 `authenticated` 是否为 true，然后将 `''location.path` 设置为 `/` 并将
+  `''scope` 中的 `loginerror` 设置为 false，否则将 `''location.path` 设置为 `/login` 并将 `''scope`
+  中的 `loginerror` 设置为 `true`。
+
+
+  `loginController` 控制器将在登录页面加载时执行。该控制器首先初始化 credentials 对象，然后定义以下函数：`resetForm()`
+  方法（将用户名和密码的输入框重置为空值）、`authenticate()` 函数（一个本地辅助函数，用于从后端加载 `user` 资源）以及表单中需要的 `loginUser()`
+  函数。
+
+
+  当控制器加载时，会调用本地辅助函数 `authenticate()` 来检查用户是否已经通过认证。你需要这个函数只是为了进行远程调用，因为实际的认证是由服务器完成的。该函数还设置了一个名为
+  `authenticated` 的应用程序级标志，你在 `index.html` 页面中使用它来显示/隐藏元素，并控制页面的哪些部分被渲染。你使用 [`''rootScope`](https://docs.angularjs.org/api/ng/service/''rootScope)
+  实现了这个应用程序级标志，因为它方便且易于理解，并且你需要在不同控制器之间共享 authenticated 标志。
+
+
+  这个 `authenticate()` 方法向名为 `/user` 的相对资源发起一个 `GET` 调用。当从 `loginUser()` 函数调用时，`authenticate()`
+  函数会在请求头中添加 Base64 编码的凭据，这样服务器就会进行认证并返回一个 cookie。`loginUser()` 函数在获取认证结果后，也会相应地设置本地的
+  `''scope.loginerror` 标志，该标志用于控制登录页面中错误消息的显示。
+
+
+  如果用户已通过认证，你会在每个网页上显示一个“注销”按钮。点击“注销”按钮将执行 `logoutController`。`logoutController` 控制器向
+  `/logout` 发送一个 HTTP `POST` 请求，你无需在服务器端实现该端点，因为 Spring Security 已经为你添加了它。为了对 Spring
+  Security 提供的注销流程的默认行为进行更多控制，你可以在 `Memory.java` 中使用 `HttpSecurity` 回调的 `inSpringSecurityConfiguration`
+  方法，例如在注销后执行一些业务逻辑。
+
+
+  ### 更新后端代码
+
+
+  你还需要更新后端代码，以支持 UserRegistrationSystem 应用程序中的登录和注销认证流程。
+
+
+  #### 创建新的 RESTful 端点以获取当前已认证用户
+
+
+  如代码清单 5-8 所示，`authenticate()` 函数向 `/user` 资源发起一个 `GET` 请求以获取当前已认证用户。因此，为了服务 `authenticate()`
+  函数，你需要在 UserRegistrationSystem 应用程序中添加一个新的 REST 端点。让我们在 `src/main/java` 文件夹下的 `com.apress.ravi.Rest`
+  包中创建 `ServiceAuthenticate.java` 类，如代码清单 5-9 所示。
+
+
+  ```
+
+  package com.apress.ravi.Rest;
+
+  import java.security.Principal;
+
+  import org.springframework.web.bind.annotation.RequestMapping;
+
+  import org.springframework.web.bind.annotation.RestController;
+
+  @RestController
+
+  public class ServiceAuthenticate {
+
+  @RequestMapping("/user")
+
+  public Principal user(Principal user) {
+
+  return user;
+
+  }
+
+  }
+
+  代码清单 5-9.
+
+  com.apress.ravi.Rest.ServiceAuthenticate.java
+
+  ```
+
+
+  如果 `/user` 资源可访问，它将返回已认证的用户。
+
+
+
+
+  #### 更新 Spring Security 配置以处理登录请求
+
+
+  你还需要更新现有的 Spring Security 配置文件 `com.apress.ravi.Security.SpringSecurityConfiguration_InMemory.java`，如清单
+  5-10 所示。
+
+
+  ```
+
+  package com.apress.ravi.Security;
+
+  import org.springframework.beans.factory.annotation.Autowired;
+
+  import org.springframework.boot.autoconfigure.security.SecurityProperties;
+
+  import org.springframework.context.annotation.Configuration;
+
+  import org.springframework.core.annotation.Order;
+
+  import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
+  import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+
+  import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+  import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+  @Configuration
+
+  @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+
+  public class SpringSecurityConfiguration_InMemory
+
+  extends WebSecurityConfigurerAdapter {
+
+  @Autowired
+
+  protected void configureGlobal(AuthenticationManagerBuilder auth)
+
+  throws Exception {
+
+  auth.inMemoryAuthentication().
+
+  withUser("user").password("password")
+
+  .roles("USER");
+
+  auth.inMemoryAuthentication()
+
+  .withUser("admin").password("password")
+
+  .roles("USER", "ADMIN");
+
+  }
+
+  @Override
+
+  protected void configure(HttpSecurity http) throws Exception {
+
+  http
+
+  .httpBasic()
+
+  .realmName("User Registration System")
+
+  .and()
+
+  .authorizeRequests()
+
+  .antMatchers("/login/login.html", "/template/home.html", "/").permitAll()
+
+  .anyRequest().authenticated()
+
+  .and()
+
+  .csrf()
+
+  .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+  }
+
+  }
+
+  清单 5-10.
+
+  SpringSecurityConfiguration_InMemory.java
+
+  ```
+
+
+  在清单 5-10 中，你更新了现有的 `configure` 方法来处理登录请求。你允许匿名访问静态资源，例如 `/login/login.html`、`/template/home.html`
+  和 `/`，因为这些 HTML 资源需要可供匿名用户使用。
+
+
+  Spring Security 提供了一个特殊的 `CsrfTokenRepository` 来发送 cookie。当你从一个干净的浏览器（Ctrl+F5 或
+  Chrome 的隐身模式）开始时，对服务器的第一个请求没有 cookie，但服务器会为 `JSESSIONID`（常规的 `HttpSession`）和 `X-XSRF-TOKEN`
+  发回 `Set-Cookie`，这些是你在清单 5-10 中设置的 CRSF cookie。后续的请求将包含这些 cookie，它们非常重要：没有它们，Spring
+  Security 应用程序将无法工作，并且它们提供了一些非常基本的安全功能（身份验证和 CSRF 保护）。当你注销时，cookie 的值会改变。Spring Security
+  期望在名为 `X-CSRF` 的标头中发送令牌。从加载主页的初始请求开始，CSRF 令牌的值在服务器端的 `HttpRequest` 属性中可用。Angular
+  基于 cookie 内置了对 [CSRF](https://docs.angularjs.org/api/ng/service/''http)（它称之为 XSRF）的支持。Angular
+  希望 cookie 名称为 `XSRF-TOKEN`，而 Spring Security 最好的部分是它默认将其作为请求属性提供。
+
+
+  ### 运行应用程序
+
+
+  让我们重新启动你的 UserRegistrationSystem 应用程序来测试这些功能。打开浏览器并访问 `http://localhost:8080/`，你的应用程序将重定向到链接
+  `http://localhost:8080/#/login` 以提供登录页面，如图 5-7 所示。
+
+
+  ![A436970_1_En_5_Fig7_HTML.jpg](img/A436970_1_En_5_Fig7_HTML.jpg)
+
+
+  图 5-7.
+
+
+  导航到登录页面
+
+
+  成功登录后，输入用户名和密码并单击“登录”按钮，你将重定向到主页，如图 5-8 所示。
+
+
+  ![A436970_1_En_5_Fig8_HTML.jpg](img/A436970_1_En_5_Fig8_HTML.jpg)
+
+
+  图 5-8.
+
+
+  登录应用程序后导航到主页
+
+
+  一旦你登录到应用程序，你可以直接从同一个浏览器调用端点。让我们在你成功登录应用程序的同一个浏览器中打开一个新标签页，并访问 `http://localhost:8080/api/user/`，如图
+  5-9 所示。
+
+
+  ![A436970_1_En_5_Fig9_HTML.jpg](img/A436970_1_En_5_Fig9_HTML.jpg)
+
+
+  图 5-9.
+
+
+  从浏览器调用端点
+
+
+  一旦你从网页（成功登录后的登录页面除外）单击“注销”按钮，你将重定向到登录页面。要验证你是否已成功从应用程序注销，请尝试通过访问 `http://localhost:8080/api/user/`
+  从同一个浏览器调用端点。系统将提示你弹出一个窗口，如图 5-10 所示。
+
+
+  ![A436970_1_En_5_Fig10_HTML.jpg](img/A436970_1_En_5_Fig10_HTML.jpg)
+
+
+  图 5-10.
+
+
+  用户注销并尝试调用端点时打开的身份验证弹出窗口
+
+
+  ## 本章小结
+
+
+  在本章中，你成功地使用 AngularJS 消费了一个安全的 RESTful 服务。你首先在 Spring Security 中启用了基本身份验证。然后，你在每个请求中发送了一个授权标头。最后，你创建了一个登录页面来执行登录/注销身份验证过程。
+
+
+  在下一章中，你将构建一个 RESTful 客户端并测试 RESTful 服务。
+
+
+  '
+- "# 6. 构建 RESTful 客户端并测试 RESTful 服务\n\n在第 2 章中，你使用 Spring Boot 构建了 RESTful 服务。你在\
+  \ UserRegistrationSystem 应用程序中创建了不同的端点来执行 CRUD 操作。你已经使用过 Postman（来自 Chrome）来查看所有\
+  \ HTTP 方法的实际运行情况。\n\n在本章中，你将使用 `RestTemplate` 构建一个消费 REST 服务的 REST 客户端。然后，你将使用 Spring\
+  \ Test 框架为你的 UserRegistrationSystem 应用程序中的 REST 服务执行单元测试和端到端测试。\n\n使用 `RestTemplate`，你可以从不同的应用程序调用任何\
+  \ REST API。让我们使用 `RestTemplate` 构建你的 REST 客户端来访问 REST API。\n\n## 使用 RestTemplate\
+  \ 构建 REST 客户端\n\n构建一个消费 REST 服务的 REST 客户端涉及构建请求和消费包含 JSON 数据的响应。Spring 提供了实用程序类和模板来简化\
+  \ REST 服务的消费。\n\n### RestTemplate\n\nSpring 中的 `org.springframework.web.client.RestTemplate`\
+  \ 用于构建一个消费 REST 服务的 REST 客户端。Spring 中的核心类是 `RestTemplate`，客户端可以使用它进行同步调用来消费 RESTful\
+  \ 服务。`RestTemplate` 是线程安全的。`RestTemplate` 基于模板方法设计模式。\n\n`RestTemplate` 是 `spring-web.jar`\
+  \ 文件的一部分。因此，当你构建一个独立的 REST 客户端时，需要在 Maven 的 `pom.xml` 文件中添加 `spring-web` 依赖项，如清单\
+  \ 6-1 所示。\n\n```\n\norg.springframework.boot\nspring-boot-starter-web\n\n清单 6-1.\n\
+  包含 spring-web 依赖项的 Maven pom.xml 文件\n```\n\n\n\n#### RestTemplate 方法\n\n在使用 `RestTemplate`\
+  \ 时，客户端只需提供 URL 和参数（如果有），然后从响应中提取结果。`RestTemplate` 自身负责处理 HTTP 连接。`RestTemplate`\
+  \ 类继承了 `RestOperations` 接口，该接口指定了一组基本的 RESTful 操作，因此 `RestTemplate` 支持所有主要的 HTTP\
+  \ 方法，即 `GET`、`POST`、`PUT`、`DELETE`、`OPTIONS`、`HEAD` 以及其他用于消费 RESTful 服务的 HTTP 方法。表\
+  \ 6-1 列出了 `RestTemplate` 为每种 HTTP 方法提供的方法。\n\n表 6-1.\n\n用于 HTTP 操作的 RestTemplate\
+  \ 方法\n\n| HTTP 方法 | Spring RestTemplate 方法 |\n| --- | --- |\n| `GET` | `getForObject(java.lang.String,\
+  \ java.lang.Class<T>, java.lang.Object...)` [`getForEntity(java.lang.String, java.lang.Class<T>,\
+  \ java.lang.Object...`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#getForEntity-java.lang.String-java.lang.Class-java.lang.Object%E2%80%A6-)\
+  \ `)` |\n| `POST` | [`postForLocation(java.lang.String, java.lang.Object, java.lang.Object...`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#postForLocation-java.lang.String-java.lang.Object-java.lang.Object%E2%80%A6-)\
+  \ `)` [`postForObject(java.lang.String, java.lang.Object, java.lang.Class<T>, java.lang.Object...`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#postForObject-java.lang.String-java.lang.Object-java.lang.Class-java.lang.Object%E2%80%A6-)\
+  \ `)` `postForEntity(postForObject(java.lang.String, java.lang.Object, java.lang.Class<T>,\
+  \ java.lang.Object...)` |\n| `PUT` | [`put(java.lang.String, java.lang.Object, java.lang.Object...`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#put-java.lang.String-java.lang.Object-java.lang.Object%E2%80%A6-)\
+  \ `)` |\n| `DELETE` | [`delete(java.lang.String, java.lang.Object...`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#delete-java.lang.String-java.lang.Object%E2%80%A6-)\
+  \ `)` |\n| `HEAD` | [`headForHeaders(java.lang.String, java.lang.Object...`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#headForHeaders-java.lang.String-java.lang.Object%E2%80%A6-)\
+  \ `)` |\n| `OPTIONS` | [`optionsForAllow(java.lang.String, java.lang.Object...`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#optionsForAllow-java.lang.String-java.lang.Object%E2%80%A6-)\
+  \ `)` |\n| `any` | [`exchange(java.lang.String, org.springframework.http.HttpMethod,\
+  \ org.springframework.http.HttpEntity<?>, java.lang.Class<T>, java.lang.Object...`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#exchange-java.lang.String-org.springframework.http.HttpMethod-org.springframework.http.HttpEntity-java.lang.Class-java.lang.Object%E2%80%A6-)\
+  \ `)` |\n\n`RestTemplate` 中的方法名称表明了相应 HTTP 方法在对应方法内部的实现方式以及将要返回的内容。例如，`getForEntity`\
+  \ 方法将对服务器执行 HTTP `GET` 操作，并将 HTTP 响应转换为指定类型，然后将此实体返回给客户端。类似地，`postForObject` 方法将通过把给定对象转换为\
+  \ HTTP 请求来对服务器执行 HTTP `POST` 操作，并通过将 HTTP 响应转换为给定类型的对象来返回响应。\n\n接下来，我们使用 `RestTemplate`\
+  \ 的方法来消费第 2 章开发的 UserRegistrationSystem 应用程序中的 REST API。\n\n### RestTemplate 操作\n\
+  \n你将使用 `RestTemplate` 来执行 HTTP 方法的操作。让我们从一个简单的 `GET` 请求示例开始，使用 `getForEntity` 方法来获取纯\
+  \ JSON。\n\n#### 带参数的 HTTP GET 请求以检索用户\n\n你可以使用 `RestTemplate` 中的 `getForObject`\
+  \ 或 `getForEntity` 方法来发起 HTTP `GET` 请求。这里，我们将使用 `getForObject` 方法进行 `GET` 请求。Spring\
+  \ `RestTemplate` 提供了三个重载版本的 `getForObject` 方法，如表 6-2 所示。\n\n表 6-2.\n\n重载的 getForObject\
+  \ 方法\n\n| # | 重载的 getForObject 方法 |\n| --- | --- |\n| 1 | `@Override` `public <T>\
+  \ T getForObject(String url, Class<T> responseType, Object... uriVariables) throws\
+  \ RestClientException {` `RequestCallback requestCallback =` `acceptHeaderRequestCallback(responseType);`\
+  \ `HttpMessageConverterExtractor<T> responseExtractor =` `new HttpMessageConverterExtractor<T>(responseType,`\
+  \ `getMessageConverters(), logger);` `return execute(url, HttpMethod.GET, requestCallback,`\
+  \ `responseExtractor, uriVariables);` `}` |\n| 2 | `@Override` `public <T> T getForObject(String\
+  \ url, Class<T> responseType, Map<String, ?> uriVariables) throws RestClientException\
+  \ {` `RequestCallback requestCallback =` `acceptHeaderRequestCallback(responseType);`\
+  \ `HttpMessageConverterExtractor<T> responseExtractor =` `new HttpMessageConverterExtractor<T>(responseType,`\
+  \ `getMessageConverters(), logger);` `return execute(url, HttpMethod.GET, requestCallback,`\
+  \ `responseExtractor, uriVariables);` `}` |\n| 3 | `@Override` `public <T> T getForObject(URI\
+  \ url, Class<T> responseType) throws RestClientException {` `RequestCallback requestCallback\
+  \ =` `acceptHeaderRequestCallback(responseType);` `HttpMessageConverterExtractor<T>\
+  \ responseExtractor =` `new HttpMessageConverterExtractor<T>(responseType,` `getMessageConverters(),\
+  \ logger);` `return execute(url, HttpMethod.GET, requestCallback,` `responseExtractor);`\
+  \ `}` |\n\n前两个重载方法包含一个作为 `String` 的 URI 模板、一个返回值类型和一个 URI 变量作为方法参数。第三个重载方法接受两个参数，即完整形成的\
+  \ URI 和返回值类型。\n\n让我们在 `src/main/java` 文件夹下的 `com.apress.ravi.chapter` `6` `.client`\
+  \ 包中创建一个 `UserRegistrationClient` 类，如清单 6-2 所示。你将消费第 2 章为你的 UserRegistrationSystem\
+  \ 应用程序开发的 `getUserById` REST API 端点。\n\n```\npackage com.apress.ravi.chapter6.client;\n\
+  import org.springframework.web.client.RestTemplate;\nimport com.apress.ravi.chapter2.dto.UsersDTO;\n\
+  public class UserRegistrationClient {\nprivate static RestTemplate restTemplate\
+  \ = new RestTemplate();\nprivate static final String USER_REGISTRATION_BASE_URL\
+  \ =\n\"http://localhost:8080/api/user/\";\npublic UsersDTO getUserById(final Long\
+  \ userId) {\nreturn restTemplate.getForObject(\nUSER_REGISTRATION_BASE_URL + \"\
+  /{id}\",\nUsersDTO.class, userId);\n}\n}\n清单 6-2.\nUserRegistrationClient 和 getForObject\
+  \ 的使用\n```\n\n在清单 6-2 中，你在类级别创建了一个 `RestTemplate` 实例，因为 `RestTemplate` 是线程安全的。你创建了一个值为\
+  \ `http://localhost:8080/api/user/` 的类成员 `USER_REGISTRATION_BASE_URL`。\n\n你创建了一个\
+  \ `getUserById` 方法来调用 `RestTemplate` 的 `getForObject` 方法，以消费来自 URL `USER_REGISTRATION_BASE_URL\
+  \ + \"/{id}\"` 的 REST API。你指定了 `UsersDTO` 作为第二个参数，以便 `RestTemplate` 使用 `HttpMessageConverter`\
+  \ 将来自服务器的 HTTP 响应内容转换为 `UserDTO` 实例。\n\n可以通过在 `UserRegistrationClient` 类中创建一个 main\
+  \ 方法来测试 `getUserById` 方法，如清单 6-3 所示。\n\n\n\n```\npublic static void main(String[]\
+  \ args) {\nUserRegistrationClient userRegistrationClient =\nnew UserRegistrationClient();\n\
+  UsersDTO user =\nuserRegistrationClient.getUserById(1L);\nSystem.out.println(\"\
+  User-ID\" + user.getId()\n+ \" User-Name\" + user.getName());\n}\n代码清单 6-3.\nUserRegistrationClient\
+  \ 类中的 Main 方法\n```\n\n请注意，在运行 main 方法之前，你需要确保 UserRegistrationSystem 应用程序已启动并正在运行。\n\
+  \n获取所有用户会稍微复杂一些，因为将 `UsersDTO[]` 类作为返回值类型提供给 `getForObject` 会得到一个 `UsersDTO` 实例的数组，如代码清单\
+  \ 6-4 所示。\n\n```\npublic UsersDTO[] getAllUsers() {\nreturn restTemplate.getForObject(\n\
+  USER_REGISTRATION_BASE_URL,\nUsersDTO[].class);\n}\n代码清单 6-4.\n获取所有用户\n```\n\n####\
+  \ 使用 JSON 数据的 HTTP POST 请求创建用户\n\n你可以使用 `RestTemplate` 中的 `postForLocation`、`postForEntity`\
+  \ 或 `postForObject` 方法来发起 HTTP `POST` 请求。这里，你将使用 `postForObject` 方法进行 `POST` 请求。Spring\
+  \ `RestTemplate` 提供了三个重载版本的 `postForObject` 方法，如表 6-3 所示。\n\n表 6-3.\n\n重载的 postForObject\
+  \ 方法\n\n| # | 重载的 postForObject 方法 |\n| --- | --- |\n| 1 | `@Override` `public <T>\
+  \ T postForObject(String url, Object request,Class<T> responseType, Object... uriVariables)\
+  \ throws RestClientException {` `RequestCallback requestCallback =` `httpEntityCallback(request,\
+  \ responseType);` `HttpMessageConverterExtractor<T> responseExtractor =` `new HttpMessageConverterExtractor<T>(`\
+  \ `responseType,` `getMessageConverters(),` `logger);` `return execute(url, HttpMethod.POST,\
+  \ requestCallback,` `responseExtractor, uriVariables);` `}` |\n| 2 | `@Override`\
+  \ `public <T> T postForObject(String url, Object request, Class<T>responseType,Map<String,?>uriVariables)throws\
+  \ RestClientException{` `RequestCallback requestCallback =` `httpEntityCallback(request,\
+  \ responseType);` `HttpMessageConverterExtractor<T> responseExtractor =` `new HttpMessageConverterExtractor<T>(`\
+  \ `responseType,` `getMessageConverters(),` `logger);` `return execute(url, HttpMethod.POST,\
+  \ requestCallback,` `responseExtractor, uriVariables);` `}` |\n| 3 | `@Override`\
+  \ `public <T> T postForObject(URI url, Object request,` `Class<T> responseType)\
+  \ throws RestClientException {` `RequestCallback requestCallback =` `httpEntityCallback(request,\
+  \ responseType);` `HttpMessageConverterExtractor<T> responseExtractor =` `new HttpMessageConverterExtractor<T>(`\
+  \ `responseType,` `getMessageConverters());` `return execute(url, HttpMethod.POST,\
+  \ requestCallback,` `responseExtractor);` `}` |\n\n前两个重载方法包含一个 `String` 类型的 URI\
+  \ 模板，以及请求对象、返回值类型和 URI 变量作为方法参数。第三个重载方法接受三个参数：一个完整的 URI、一个请求对象和一个返回值类型。\n\n你将使用\
+  \ `RestTemplate` 的 `postForObject` 方法对资源 `http://localhost:8080/api/user/` 执行 `POST`\
+  \ 操作。`RestTemplate` 的 `postForObject` 方法对给定的 URI 和对象执行 HTTP `POST` 操作，然后根据 `responseType`\
+  \ 将响应转换为一种表示形式。代码清单 6-5 展示了 `createUser` 方法，该方法使用 `POST` 对象方法创建一个新用户。\n\n```\npublic\
+  \ UsersDTO createUser(final UsersDTO user) {\nreturn restTemplate.postForObject(\n\
+  USER_REGISTRATION_BASE_URL,\nuser,\nUsersDTO.class);\n}\n代码清单 6-5.\n创建新用户\n```\n\
+  \n在代码清单 6-5 中，你创建了一个 `createUser` 方法，其参数类型为 `UsersDTO`，用于调用 `RestTemplate` 的 `postForObject`\
+  \ 方法，以使用来自 URL `USER_REGISTRATION_BASE_URL` 的 REST API。你将参数值作为第二个参数传递给了 `postForObject`\
+  \ 方法。你指定 `UsersDTO` 作为第三个参数，以便 `RestTemplate` 使用 `HttpMessageConverter` 将来自服务器的\
+  \ HTTP 响应内容转换为 `UserDTO` 实例。\n\n可以通过更新 `UserRegistrationClient` 类中的 main 方法来测试 `createUser`\
+  \ 方法，如代码清单 6-6 所示。\n\n```\npublic static void main(String[] args) {\nUserRegistrationClient\
+  \ userRegistrationClient =\nnew UserRegistrationClient();\nUsersDTO user = new UsersDTO();\n\
+  user.setName(\"Soniya Singh\");\nuser.setAddress(\"JP Nagar; Bangalore; India\"\
+  );\nuser.setEmail(\"test@test.com\");\nUsersDTO newUser = userRegistrationClient.createUser(user);\n\
+  System.out.println(newUser.getId());\n}\n代码清单 6-6.\nUserRegistrationClient 类中的 Main\
+  \ 方法\n```\n\n#### 使用带参数的 HTTP PUT 请求更新用户\n\n你将使用 `RestTemplate` 中的 `put` 方法来执行 HTTP\
+  \ `PUT` 操作。Spring `RestTemplate` 提供了三个重载版本的 `put` 方法，如表 6-4 所示。\n\n表 6-4.\n\n重载的\
+  \ put 方法\n\n| # | 重载的 put 方法 |\n| --- | --- |\n| 1 | `@Override` `public void put(String\
+  \ url, Object request,` `Object... uriVariables) throws RestClientException {` `RequestCallback\
+  \ requestCallback =` `httpEntityCallback(request);` `execute(url, HttpMethod.PUT,\
+  \ requestCallback,` `null, uriVariables);` `}` |\n| 2 | `@Override` `public void\
+  \ put(String url, Object request,` `Map<String, ?> uriVariables) throws RestClientException\
+  \ {` `RequestCallback requestCallback =` `httpEntityCallback(request);` `execute(url,\
+  \ HttpMethod.PUT, requestCallback,` `null, uriVariables);` `}` |\n| 3 | `@Override`\
+  \ `public void put(URI url, Object request) throws RestClientException {` `RequestCallback\
+  \ requestCallback =` `httpEntityCallback(request);` `execute(url, HttpMethod.PUT,\
+  \ requestCallback, null);` `}` |\n\n前两个重载方法包含一个 `String` 类型的 URI 模板，以及一个请求对象和 URI\
+  \ 变量作为方法参数。第三个重载方法接受两个参数：一个完整的 URI 和一个请求对象。`put` 方法的返回类型是 `void`。代码清单 6-7 展示了 `updateUser`\
+  \ 方法，该方法将更新 `UserDTO` 实例。`put` 方法不会返回任何响应。\n\n```\npublic void updateUser(final\
+  \ Long userId, final UsersDTO user) {\nrestTemplate.put(\nUSER_REGISTRATION_BASE_URL\
+  \ + \"/{id}\",\nuser,\nuserId);\n}\n代码清单 6-7.\n更新现有用户\n```\n\n要测试 `updateUser`，请使用代码清单\
+  \ 6-8 中所示的代码更新 main 方法。\n\n```\npublic static void main(String[] args) {\nUserRegistrationClient\
+  \ userRegistrationClient =\nnew UserRegistrationClient();\nUsersDTO user = userRegistrationClient.getUserById(1L);\n\
+  System.out.println(\"old user name: \" + user.getName());\nuser.setName(\"Ravi Kant\
+  \ Soni\");\nuserRegistrationClient.updateUser(1L, user);\nSystem.out.println(\"\
+  updated user name: \" + user.getName());\n}\n代码清单 6-8.\n更新后的 Main 方法\n```\n\n\n\n\
+  #### 使用带参数的 HTTP DELETE 方法删除用户\n\n`RestTemplate` 提供了三个重载的 `delete` 方法来支持 HTTP `DELETE`\
+  \ 方法，如表 6-5 所示。\n\n表 6-5.\n\n重载的 DELETE 方法\n\n| # | 重载的 delete 方法 |\n| --- | ---\
+  \ |\n| 1 | `@Override` `public void delete(String url, Object... uriVariables)`\
+  \ `throws RestClientException {` `execute(url, HttpMethod.DELETE, null, null, uriVariables);`\
+  \ `}` |\n| 2 | `@Override` `public void delete(String url, Map<String, ?> uriVariables)`\
+  \ `throws RestClientException {` `execute(url, HttpMethod.DELETE, null, null, uriVariables);`\
+  \ `}` |\n| 3 | `@Override` `public void delete(URI url) throws RestClientException\
+  \ {` `execute(url, HttpMethod.DELETE, null, null);` `}` |\n\n前两个重载方法将 URI 模板作为 `String`\
+  \ 类型参数，并将 URI 变量作为方法参数。第三个重载方法只接受一个参数，即一个完整的 URI。`delete` 方法的返回类型是 `void`。\n\n清单\
+  \ 6-9 展示了 `deleteUser` 方法，该方法将删除 `UserDTO` 实例。`delete` 方法不会返回任何响应。\n\n```\npublic\
+  \ void deleteUser(final Long userId) {\nrestTemplate.delete(\nUSER_REGISTRATION_BASE_URL\
+  \ + \"/{id}\",\nuserId);\n}\nListing 6-9.\n删除一个用户\n```\n\n要测试这个新功能，请更新 `main` 方法，如清单\
+  \ 6-10 所示。\n\n```\npublic static void main(String[] args) {\nUserRegistrationClient\
+  \ userRegistrationClient =\nnew UserRegistrationClient();\nSystem.out.println(\"\
+  Old Users List: \" +\nuserRegistrationClient.getAllUsers().length);\nuserRegistrationClient.deleteUser(1L);\n\
+  System.out.println(\"New Users List: \" +\nuserRegistrationClient.getAllUsers().length);\n\
+  }\nListing 6-10.\n更新后的 Main 方法\n```\n\n### RestTemplate 的 Exchange API\n\n现在，让我们了解\
+  \ `RestTemplate` 的 exchange API，以便以更通用的方式执行 HTTP 操作，如清单 6-11 所示。\n\n```\npublic\
+  \ ResponseEntity getUserByIdUsingExchangeAPI(final Long userId) {\nHttpEntity httpEntity\
+  \ = new HttpEntity(new UsersDTO());\nreturn restTemplate.exchange(USER_REGISTRATION_BASE_URL\
+  \ + \"/{id}\",\nHttpMethod.GET, httpEntity, UsersDTO.class,        userId);\n}\n\
+  Listing 6-11.\n用于获取用户的 Exchange API\n```\n\n如清单 6-11 所示，`RestTemplate` 的 exchange\
+  \ 方法根据传递给该方法的 `responseType` 参数泛化了返回类型，并返回类型为 `UserDTO` 的 `ResponseEntity` 实例。\n\
+  \n要测试此功能，请更新 `main` 方法，如清单 6-12 所示。\n\n```\npublic static void main(String[] args)\
+  \ {\nUserRegistrationClient userRegistrationClient =\nnew UserRegistrationClient();\n\
+  ResponseEntity responseEntity =\nuserRegistrationClient.getUserByIdUsingExchangeAPI(1L);\n\
+  UsersDTO user = responseEntity.getBody();\nSystem.out.println(user.getName());\n\
+  }\nListing 6-12.\n更新后的 Main 方法\n```\n\n如清单 6-12 所示，`ResponseEntity` 的 `getBody`\
+  \ 方法返回 `UsersDTO`。\n\n### 使用 RestTemplate 进行基本认证\n\n到目前为止，您已经成功为您的 UserRegistrationSystem\
+  \ 应用程序创建了一个 REST 客户端。\n\n在第 4 章中，您保护了您的 REST API，并且任何通信都需要基本认证。如果没有认证，程序将抛出一个状态码为\
+  \ 401 的 `HttpClientErrorException` 异常。\n\n要与安全的 API 交互，您需要以编程方式对用户凭据进行 Base64 编码，并通过在编码值前加上\
+  \ `Basic` 前缀来构造授权请求头。您将在 `com.apress.ravi.chapter` `6` `.client` 包下创建一个名为 `UserRegistrationClientBasicAuth`\
+  \ 的类，如清单 6-13 所示。\n\n```\npackage com.apress.ravi.chapter6.client;\nimport org.apache.tomcat.util.codec.binary.Base64;\n\
+  import org.springframework.http.HttpEntity;\nimport org.springframework.http.HttpHeaders;\n\
+  import org.springframework.http.HttpMethod;\nimport org.springframework.web.client.RestTemplate;\n\
+  public class UserRegistrationClientBasicAuth {\nprivate static final String securityUserName\
+  \ = \"admin\";\nprivate static final String securityUserPassword = \"password\"\
+  ;\nprivate static final String USER_REGISTRATION_BASE_URL =\n\"http://localhost:8080/api/user/\"\
+  ;\nprivate static RestTemplate restTemplate = new RestTemplate();\npublic void deleteUserById(Long\
+  \ userId) {\nString userCredential =\nsecurityUserName + \":\" + securityUserPassword;\n\
+  byte[] base64UserCredentialData =\nBase64.encodeBase64(userCredential.getBytes());\n\
+  HttpHeaders authenticationHeaders = new HttpHeaders();\nauthenticationHeaders.set(\"\
+  Authorization\",\n\"Basic \" + new String(base64UserCredentialData));\nHttpEntity\
+  \ httpEntity =\nnew HttpEntity(authenticationHeaders);\nrestTemplate.exchange(USER_REGISTRATION_BASE_URL\
+  \ + \"/{id}\",\nHttpMethod.DELETE, httpEntity, Void.class, userId);\n}\n}\nListing\
+  \ 6-13.\n带有基本认证的 UserRegistrationClient\n```\n\n在清单 6-13 中，您连接了 `securityUserName`\
+  \ 和 `securityUserPassword`，然后对该用户凭据进行 Base64 编码，并通过在此编码值前加上 `Basic` 前缀来创建 `authenticationHeaders`。您还通过将\
+  \ `authenticationHeaders` 传递给其构造函数，创建了一个类型为 `Void` 的 `HttpEntity` 实例。最后，您调用了 `RestTemplate`\
+  \ 的 exchange 方法，以执行一个 `responseType` 为 `Void` 的 HTTP `DELETE` 操作。\n\n## 使用 Spring\
+  \ 测试框架测试 RESTful 服务\n\n在本节中，您将对第 2 章中开发的 RESTful 服务执行单元测试和端到端测试。您将关注两种测试风格：单元测试和集成测试。单元测试用于验证隔离的代码单元。集成测试用于关注先前测试过的代码/单元之间的交互。\n\
+  \n### 什么是测试？\n\n测试是软件开发生命周期中的关键部分；它是确保软件质量和性能的过程，没有它，软件开发就无法完成。\n\n单元测试意味着独立或单独地测试应用程序的每个组件，而集成测试则有助于确保系统中的多个组件协同工作。\n\
+  \n一个好的实践是在单独的源文件夹（例如 `src/test/java`）或单独的项目中创建单元测试。应该测试什么是一个热门话题，有些开发者认为代码中的每条语句都应该被测试。\n\
+  \n您可以自动或手动进行测试。自动化测试的好处是它可以在软件开发生命周期的不同阶段连续且重复地运行，当您遵循敏捷开发流程时，强烈推荐这样做。由于 Spring\
+  \ 框架本质上是敏捷的，它支持这种流程。\n\n让我们讨论一个流行的 Java 测试框架 JUnit，以及使用它进行测试的基本技术。\n\n### 使用 JUnit4\
+  \ 进行测试\n\nJUnit4 ( [`http://junit.org/`](http://junit.org/) ) 是 Java 平台上流行的单元测试框架。它提供了\
+  \ `@Test` 注解来标记需要测试的方法。`Test` 类中的测试方法需要使用 `@org.junit.Test` 注解进行标记。JUnit 框架提供了不同的注解和断言方法来执行单元测试。\n\
+  \n\n\n#### JUnit 4 注解\n\n表 6-6 列出了 JUnit 框架提供的注解。\n\n表 6-6.\n\nJUnit 框架中的注解\n\n\
+  | 注解 | 导入 | 描述 |\n| --- | --- | --- |\n| `@Test` | `org.junit.Test` | 使用 `@Test`\
+  \ 注解标记公共 `void` 方法，以识别并运行测试用例。 |\n| `@Before` | `org.junit.Before` | 使用 `@Before`\
+  \ 注解标记公共 `void` 方法，该方法需要在所在类中的每个测试方法之前执行。此方法可用于设置环境变量。 |\n| `@After` | `org.junit.After`\
+  \ | 使用 `@After` 注解标记公共 `void` 方法，该方法需要在所在类中的每个测试方法之后执行。此方法可用于清理测试环境或释放资源。 |\n| `@BeforeClass`\
+  \ | `org.junit.BeforeClass` | 使用 `@BeforeClass` 注解标记公共静态 `void` 方法，该方法仅需在整个测试类执行之前运行一次。\
+  \ |\n| `@AfterClass` | `org.junit.AfterClass` | 使用 `@AfterClass` 注解标记公共静态 `void`\
+  \ 方法，该方法仅需在整个测试类执行之后运行一次。此方法可用于执行一些清理活动。 |\n| `@Ignore` | `org.junit.Ignore` | 使用\
+  \ `@Ignore` 注解标记方法，该方法不应被执行。 |\n\n#### JUnit 4 断言方法\n\nJUnit 框架提供了 `org.junit.Assert`\
+  \ 类，其中包含一组断言方法，可用于编写单元测试以测试特定条件。这些方法将预期值与实际值进行比较，以验证测试结果。表 6-7 列出了 JUnit 4 提供的一些断言方法。\n\
+  \n表 6-7.\n\nJUnit 框架中的断言方法\n\n| 断言方法 | 描述 |\n| --- | --- |\n| `assertTrue(boolean\
+  \ expected, boolean actual)` | 此方法检查布尔条件是否为真。 |\n| `assertFalse(boolean condition)`\
+  \ | `assertFalse` 方法检查布尔条件是否为假。 |\n| `assertEquals(boolean expected, expected, actual)`\
+  \ | `assertEquals` 使用 `equals()` 方法比较任意两个对象是否相等。 |\n| `assertEquals(boolean expected,\
+  \ expected, actual, tolerance)` | `assertEquals` 方法比较 float 或 double 值，tolerance\
+  \ 定义了必须相同的小数位数。 |\n| `assertNull(Object object)` | `assertNull` 测试给定对象是否为 null。\
+  \ |\n| `assertNotNull(Object object)` | `assertNotNull` 测试给定对象是否不为 null。 |\n| `assertSame(Object\
+  \ object1,Object object2)` | `assertSame` 方法测试两个对象是否引用同一个对象。 |\n| `assertNotSame(Object\
+  \ object1,Object object2)` | `assertNotSame` 方法测试两个对象是否不引用同一个对象。 |\n\n#### 示例：实现\
+  \ JUnit 4\n\n让我们开发一个简单的应用程序来对两个数进行加法运算，如清单 6-14 所示。\n\n```\npackage com.apress.ravi.chapter6.SpringTesting;\n\
+  public class SimpleCalculator {\npublic long addOperation(int x, int y) {\nreturn\
+  \ x + y;\n}\n}\n清单 6-14.\n执行加法运算的简单计算器\n```\n\n请注意，需要将 JUnit4 JAR 添加到应用程序的 `CLASSPATH`\
+  \ 中，才能编译和运行为 JUnit 4 创建的测试用例。\n\n现在，你将使用 JUnit 4 测试 `SimpleCalculator` 类中的简单 `addOperation`\
+  \ 方法。STS IDE 支持通过向导创建 JUnit 测试。你将创建测试类 `SimpleCalculatorTests`，如清单 6-15 所示。\n\n\
+  ```\npackage com.apress.ravi.chapter6.SpringTesting;\nimport static org.junit.Assert.assertEquals;\n\
+  import org.junit.After;\nimport org.junit.Before;\nimport org.junit.Test;\npublic\
+  \ class SimpleCalculatorTests {\nprivate SimpleCalculator simpleCalculator;\n@Before\n\
+  public void setup() {\nsimpleCalculator = new SimpleCalculator();\n}\n@Test\npublic\
+  \ void verifyAdd() {\nlong sum = simpleCalculator.addOperation(2, 1);\nassertEquals(3,\
+  \ sum);\n}\n@After\npublic void teardown() {\nsimpleCalculator = null;\n}\n}\n清单\
+  \ 6-15.\n测试加法操作方法\n```\n\n在清单 6-15 中，`setup` 方法使用 `@Before` 注解进行标记，以执行实例成员变量的初始化，并指示\
+  \ JUnit 在 `SimpleCalculatorTests` 类中任何测试方法执行之前运行此 setup 方法。`teardown` 方法使用 `@After`\
+  \ 注解进行标记，并指示 JUnit 在 `SimpleCalculatorTests` 类中任何测试方法执行之后运行 teardown 方法以执行清理。\n\n\
+  `verifyAdd` 方法使用 `@Test` 注解进行标记，以将 `verifyAdd` 标识为 JUnit 测试方法。`verifyAdd` 方法包含确保你的生产代码按预期工作的代码。\n\
+  \n现在，通过右键单击测试类并选择“RUN AS JUnit test”来运行你的测试用例。JUnit 视图有助于验证测试的成功或失败。成功通过 JUnit 测试后，结果视图将显示一个绿色条，如图\
+  \ 6-1 所示。\n\n![A436970_1_En_6_Fig1_HTML.jpg](img/A436970_1_En_6_Fig1_HTML.jpg)\n\
+  \n图 6-1.\n\n绿色条表示测试成功通过\n\n当 JUnit 测试失败时，结果视图将显示一个红色条，如图 6-2 所示。\n\n![A436970_1_En_6_Fig2_HTML.jpg](img/A436970_1_En_6_Fig2_HTML.jpg)\n\
+  \n图 6-2.\n\n红色条表示测试失败\n\n```\n@Test\npublic void verifyAdd() {\nlong sum = simpleCalculator.addOperation(2,\
+  \ 1);\nassertEquals(2, sum);\n}\n```\n\n## 敏捷软件测试\n\n在软件开发领域，敏捷指的是一种项目管理方法，团队在应用程序新模块的开发过程中，专注于协作、灵活性、简单性和响应性等原则。当使用敏捷软件方法论时，团队以称为冲刺的较小单元交付项目或分配的工作，并与包括利益相关者在内的跨职能团队持续协作。这种特定的方法论本质上是增量式和迭代式的，侧重于有效交付分配的工作。\n\
+  \n敏捷软件测试是指在敏捷工作流背景下，对软件进行任何错误和性能问题测试的实践。它包括单元测试和集成测试。以下部分将帮助你理解单元测试和集成测试的目标。\n\n\
+  ### 单元测试\n\n单元测试是指测试代码中的单个功能/方法。单元测试由软件开发人员编写，用于测试其代码中的基本功能片段并防止错误。\n\n“被测类”这一概念指的是，每当你编写任何单元测试用例时，你都会针对一个正在被测试的类创建一个测试类，并且你必须为该类编写单元测试用例，如图\
+  \ 6-3 所示。\n\n![A436970_1_En_6_Fig3_HTML.jpg](img/A436970_1_En_6_Fig3_HTML.jpg)\n\
+  \n图 6-3.\n\n被测类及其依赖项\n\n让我们举一个例子，你有两个名为 `UserRegistrationService` 和 `UserRegistrationDAO`\
+  \ 的类，用于通过与数据库交互来执行 CRUD 操作。`UserRegistrationService` 类需要 `UserRegistrationDAO` 对象来从数据库加载用户列表。这个\
+  \ `UserRegistrationDAO` 对象是一个真实对象，因此在测试你的 `UserRegistrationService` 类时，你需要有一个与数据库有效连接的\
+  \ `UserRegistrationDAO` 对象。你还必须在数据库中插入一个用户用于测试。设置数据库连接、向数据库插入用户，然后测试 `UserRegistrationService`\
+  \ 类可能工作量很大。\n\n\n\n#### 使用模拟对象对依赖类进行单元测试\n\n你可以通过创建一个伪造的 `UserRegistrationDAO` 实例来减少工作量，该实例将返回预期的用户列表，并将其传递给\
+  \ `UserRegistrationService`。这个伪造的 `UserRegistrationDAO` 不会与数据库建立连接。这个伪造的 `UserRegistrationDAO`\
+  \ 对象被称为模拟对象，它是 `realUserRegistrationDAO` 对象的替代品。这将简化对 `UserRegistrationService`\
+  \ 类的测试。图 6-4 展示了如何为被测类模拟一个依赖项。\n\n![A436970_1_En_6_Fig4_HTML.jpg](img/A436970_1_En_6_Fig4_HTML.jpg)\n\
+  \n图 6-4.\n被测类中的模拟依赖对象\n\n##### Mockito 框架\n\nMockito 框架是一个用于创建和配置模拟对象的开源模拟框架。\n\n\
+  再次说明，模拟对象是一个模仿真实对象的假对象，而创建假对象的过程称为模拟。Java 中有多个可用于模拟的库，例如 EasyMock 和 Mockito。\n\n\
+  要使用 Mockito，你需要在应用程序上下文中拥有 Mockito JAR 以及 JUnit。Mockito 支持如下列出的字段级注解：\n\n*   `@Mock`：此注解用于为被注解的字段创建一个模拟对象。\n\
+  *   `@Spy`：此注解为其注解的真实对象字段创建一个间谍，当监视或存根其特定方法时，这可以被称为部分模拟。\n*   `@RunWith(MockitoJUnitRunner.class)`：使用\
+  \ `@Mock` 注解和 `@Spy` 注解创建模拟对象需要将 `@RunWith(MockitoJUnitRunner.class)` 注解应用于你的测试类。当\
+  \ `MockitoJUnitRunner` 执行单元测试时，所有被注解的字段都将创建模拟和间谍对象。\n\n请参考 [`http://mockito.org/`](http://mockito.org/)\
+  \ 获取关于 Mockito 框架的更多详细信息。\n\n### 集成测试\n\n在集成测试中，各个模块被组合在一起，并作为一个整体进行逻辑测试。软件开发阶段的集成测试发生在单元测试之后。\n\
+  \n## 测试 Spring Boot 应用程序\n\nSpring 框架中的 `spring-test` 模块通过提供丰富的注解集、工具类和模拟对象，允许开发人员执行单元测试和集成测试。让我们通过使用所需的依赖项更新\
+  \ Maven `pom.xml` 文件来设置环境。\n\n### Maven 依赖\n\nSpring Boot 提供了名为 `spring-boot-starter-test`\
+  \ 的启动器 POM，它会自动将 `spring-test` 模块添加到 Spring Boot 应用程序中。清单 6-16 展示了 `pom.xml` 中的依赖项。\n\
+  \n```\norg.springframework.boot\nspring-boot-starter-test\ntest\n\n清单 6-16.\npom.xml\
+  \ 中的依赖项\n```\n\n这个启动器 POM 将 JUnit（Java 应用程序单元测试的事实标准）、AssertJ（一个断言库）、Mockito（一个\
+  \ Java 模拟框架）以及 [Spring Test](http://docs.spring.io/spring/docs/4.3.10.RELEASE/spring-framework-reference/htmlsingle/#integration-testing%23_top)\
+  \ 和 Spring Boot Test（用于 Spring Boot 应用程序的工具和集成测试支持）引入到你的应用程序中，如图 6-5 所示。\n\n![A436970_1_En_6_Fig5_HTML.jpg](img/A436970_1_En_6_Fig5_HTML.jpg)\n\
+  \n图 6-5.\n类路径中的 JAR\n\n### Spring 测试中的注解\n\nSpring 框架提供了不同的注解，开发人员可以使用它们来执行单元测试和集成测试。\n\
+  \n让我们检查典型的测试用例，以理解 `spring-test` 模块和 Spring 框架提供的注解。清单 6-17 展示了一个使用 Spring Boot\
+  \ Test 构建的 Spring Test 示例。\n\n```\npackage com.apress.ravi.chapter6.UserRegistrationSystem;\n\
+  import org.junit.After;\nimport org.junit.Before;\nimport org.junit.Test;\nimport\
+  \ org.junit.runner.RunWith;\nimport org.springframework.boot.test.context.SpringBootTest;\n\
+  import org.springframework.test.context.junit4.SpringRunner;\n@RunWith(SpringRunner.class)\n\
+  @SpringBootTest(classes = UserRegistrationSystemApplication.class,\nwebEnvironment\
+  \ = WebEnvironment.RANDOM_PORT)\npublic class UserRegistrationSystemApplicationTests\
+  \ {\n@Before\npublic void setup() {\n}\n@Test\npublic void testFunction() {\n}\n\
+  @After\npublic void teardown() {\n}\n}\n清单 6-17.\n使用 Spring Boot Test 进行单元测试\n```\n\
+  \n清单 6-17 包含三个方法：`setup`、`testFunction` 和 `teardown`。每个方法都使用了 JUnit 注解进行标注。\n\n\
+  *   `@RunWith(SpringRunner.class)`：`@RunWith(SpringRunner.class)` 注解指示 JUnit 使用\
+  \ `SpringJUnit4ClassRunner` 类来运行测试用例。`SpringRunner` 类扩展了 `SpringJUnit4ClassRunner`\
+  \ 类。`@RunWith` 注解是一个 JUnit 注解；它执行被 `@RunWith` 注解标注的类中的测试，或者执行扩展了另一个被 `@RunWith`\
+  \ 注解标注的类中的测试。这意味着被注解的测试类不会由 JUnit 框架中的内置 API 执行。相反，它将使用 `SpringJUnit4ClassRunner`\
+  \ 在 `SpringApplicationContext` 环境中运行测试用例。\n*   `@SpringBootTest`：Spring Boot 提供了\
+  \ `@SpringBootTest` 注解，用于在 Spring Boot 的支持下启动；当你需要 Spring Boot 特性时，它是标准 Spring Test\
+  \ 的 `@ContextConfiguration` 注解的替代方案。`@ContextConfiguration` 注解用于为测试类测试应用程序上下文。它会缓存\
+  \ `ApplicationContext` 并将其放入静态内存中，持续整个测试或测试套件的时间，并且整个测试在同一个 JVM 中执行，因为 `ApplicationContext`\
+  \ 存储在静态内存中。\n*   `webEnvironment`：`@SpringBootTest` 的 `webEnvironment` 属性为测试配置 Web\
+  \ 环境。它允许开发人员使用模拟的 Servlet 环境或运行在 `DEFINED_PORT` 或 `RANDOM_PORT` 上的真实 HTTP 服务器进行测试。\n\
+  *   `classes`：你可以使用 `@SpringBootTest` 的 `classes` 属性来加载特定的配置。默认情况下，它会搜索 `@SpringBootApplication`\
+  \ 类来加载 `@Configuration`。\n\n\n\n### REST 控制器单元测试\n\nSpring 框架中的控制反转（IoC）通过提供依赖注入简化了单元测试。通过允许开发者隔离测试代码，可以轻松地使用预期行为来模拟依赖关系。\n\
+  \n测试 Spring MVC 控制器的传统方法遵循这一概念。清单 6-18 展示了 `UserRegistrationRestController` 类中 `listAllUsers`\
+  \ 方法的单元测试。\n\n```\npackage com.apress.ravi.chapter6.UserRegistrationSystem;\nimport\
+  \ java.util.ArrayList;\nimport java.util.List;\nimport static org.mockito.Mockito.when;\n\
+  import org.junit.After;\nimport org.junit.Assert;\nimport org.junit.Before;\nimport\
+  \ org.junit.Test;\nimport org.junit.runner.RunWith;\nimport org.mockito.Mock;\n\
+  import org.mockito.Spy;\nimport org.springframework.boot.test.context.SpringBootTest;\n\
+  import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;\nimport\
+  \ org.springframework.http.HttpStatus;\nimport org.springframework.http.ResponseEntity;\n\
+  import org.springframework.test.context.junit4.SpringRunner;\nimport org.springframework.test.util.ReflectionTestUtils;\n\
+  import com.apress.ravi.chapter2.UserRegistrationSystemApplication;\nimport com.apress.ravi.chapter2.Rest.UserRegistrationRestController;\n\
+  import com.apress.ravi.chapter2.dto.UsersDTO;\nimport com.apress.ravi.chapter2.repository.UserJpaRepository;\n\
+  @RunWith(SpringRunner.class)\n@SpringBootTest(classes = UserRegistrationSystemApplication.class,\n\
+  webEnvironment = WebEnvironment.RANDOM_PORT)\npublic class UserRegistrationRestControllerTest{\n\
+  @Spy\nprivate UserRegistrationRestController userRegistrationRestController;\n@Mock\n\
+  private UserJpaRepository userJpaRepository;\n@Before\npublic void setup() {\nuserRegistrationRestController\
+  \ = new UserRegistrationRestController();\nReflectionTestUtils.setField(userRegistrationRestController,\n\
+  \"userJpaRepository\", userJpaRepository);\n}\n@Test\npublic void testListAllUsers()\
+  \ {\nList userList = new ArrayList();\nuserList.add(new UsersDTO());\nwhen(this.userJpaRepository.findAll()).thenReturn(userList);\n\
+  ResponseEntity> responseEntity =\nthis.userRegistrationRestController.listAllUsers();\n\
+  Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());\nAssert.assertEquals(1,\
+  \ responseEntity.getBody().size());\n}\n@After\npublic void teardown() {\nuserRegistrationRestController\
+  \ = null;\n}\n}\n清单 6-18.\nREST 控制器单元测试\n```\n\n在清单 6-18 中，你在 `src/test/java` 文件夹下的\
+  \ `com.apress.ravi.chapter` `6` `.UserRegistrationSystem` 包中创建了一个 `UserRegistrationRestControllerTest`\
+  \ 测试类。你使用 `@RunWith(SpringRunner.class)` 注解标记了该类，该注解支持模拟依赖的 `Object`，以及 `@SpringBootTest`\
+  \ (`classes = UserRegistrationSystemApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)`\
+  \ 注解。`webEnvironment=RANDOM_PORT` 部分会以随机端口启动服务器（有助于避免测试环境中的端口冲突）。\n\n`UserRegistrationRestControllerTest`\
+  \ 类使用 Mockito 的 `@Spy` 注解来监视 `UserRegistrationRestController`。该测试类使用 `@Mock` 注解来模拟\
+  \ `UserRegistrationRestController` 的唯一依赖：`UserJpaRepository`。\n\n在 setup 方法中，你创建了一个\
+  \ `UserRegistrationRestController` 实例，并通过调用 Spring 的 `ReflectionTestUtils` 工具类的\
+  \ `setField` 方法，将模拟的 `UserJpaRepository` 注入其中。你使用 `@Before` 注解标记了 setup 方法。\n\n\
+  在 `testListAllUsers` 方法中，你使用了 Mockito 的 `when` 和 `thenReturn` 方法来设置 `UserJpaRepository`\
+  \ 模拟对象的行为。你还指定了当调用 `UserJpaRepository` 的 `findAll` 方法时，应返回一个用户列表。最后，你调用了 `listAllUsers`\
+  \ 方法并断言了控制器的返回值。\n\n在 teardown 方法中，你将 `UserRegistrationRestController` 赋值为 null，并使用\
+  \ `@After` 注解标记了该方法。\n\n当你以 JUnit 测试方式运行该测试类时，可以在 JUnit 视图中查看结果，如图 6-6 所示。\n\n![A436970_1_En_6_Fig6_HTML.jpg](img/A436970_1_En_6_Fig6_HTML.jpg)\n\
+  \n图 6-6.\n\nJUnit 视图\n\n如图 6-6 所示，`UserRegistrationRestControllerTest` 被视为一个 POJO，因此并未测试控制器的请求映射验证。因此，在下一节中，你将使用\
+  \ Spring MVC 测试框架，该框架允许你将控制器作为 MVC 控制器进行测试。这样，`DispatcherServlet` 将拦截请求并生成响应，其方式与在实际启动\
+  \ Web 服务器时在 Web 容器中运行相同。\n\n### 使用 Spring MVC 测试框架测试 Web 层\n\n在本节中，你将使用 `@WebMvcTest`\
+  \ 注解进行测试，该注解可与 `@RunWith(SpringRunner.class)` 结合用于典型的 Spring MVC 测试，并且当测试仅关注 Spring\
+  \ MVC 组件时可以使用。使用 `@WebMvcTest` 注解的测试类将自动配置 `MockMvc`（包括对 HtmlUnit WebClient 和 Selenium\
+  \ WebDriver 的支持）。\n\n通常，`@WebMvcTest` 与 `@MockBean` 结合使用，以创建 `@Controller` Bean\
+  \ 所需的任何协作者。要开始使用 Spring MVC 测试框架，你需要熟悉 `MockMVC`。\n\n\n\n#### MockMvc\n\n`MockMvc`\
+  \ 类是 Spring MVC 测试框架的核心类。`org.springframework.test.web.servlet.MockMvc` 类可用于为使用\
+  \ Spring MVC 框架开发的应用程序编写测试。`MockMvc` 类可用于执行 HTTP 请求。\n\n`MockMvc` 模拟了整个 Spring 基础设施，并通过\
+  \ `org.springframework.test.web.servlet.MockMvcBuilder` 接口的实现来创建，这使得 Spring MVC\
+  \ 测试框架大量使用了构建器模式。\n\n`MockMvc` 类包含 `perform` 方法，该方法可通过传递相对路径来运行测试用例。之后，可以使用 `Expect`\
+  \ 方法来验证控制器内的不同组件。\n\n`andExpect (status().OK())` 行可用于验证 200 状态码。类似地，还可以执行 `contentType`\
+  \ 验证、XPath 验证、数据验证模型、URL 验证等。\n\n让我们在 `src/test/java` 文件夹下的 `com.apress.ravi.chapter`\
+  \ `6` `.UserRegistrationSystem` 包中创建 `UserRegistrationControllerTest` 类，如代码清单 6-19\
+  \ 所示，以演示如何测试 `UserRegistrationRestController` 的 `getUserById` 方法。你还需要模拟控制器所需的依赖项。\n\
+  \n```\npackage com.apress.ravi.chapter6.UserRegistrationSystem;\nimport static org.hamcrest.Matchers.is;\n\
+  import static org.mockito.Mockito.when;\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;\n\
+  import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;\n\
+  import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;\n\
+  import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;\n\
+  import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;\n\
+  import java.nio.charset.Charset;\nimport org.junit.Before;\nimport org.junit.Test;\n\
+  import org.junit.runner.RunWith;\nimport org.springframework.beans.factory.annotation.Autowired;\n\
+  import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;\nimport\
+  \ org.springframework.boot.test.mock.mockito.MockBean;\nimport org.springframework.http.MediaType;\n\
+  import org.springframework.test.context.ContextConfiguration;\nimport org.springframework.test.context.junit4.SpringRunner;\n\
+  import org.springframework.test.web.servlet.MockMvc;\nimport com.apress.ravi.chapter2.UserRegistrationSystemApplication;\n\
+  import com.apress.ravi.chapter2.Rest.UserRegistrationRestController;\nimport com.apress.ravi.chapter2.dto.UsersDTO;\n\
+  import com.apress.ravi.chapter2.repository.UserJpaRepository;;\n@RunWith(SpringRunner.class)\n\
+  @WebMvcTest(controllers = UserRegistrationRestController.class)\n@ContextConfiguration(classes\
+  \ = UserRegistrationSystemApplication.class)\npublic class UserRegistrationControllerTest\
+  \ {\n@Autowired\nprivate MockMvc mockMvc;\n@MockBean\nprivate UserJpaRepository\
+  \ userJpaRepositoryMock;\nprivate MediaType contentType;\nprivate UsersDTO user;\n\
+  @Before\npublic void setup() {\ncontentType = new MediaType(MediaType.APPLICATION_JSON.getType(),\n\
+  MediaType.APPLICATION_JSON.getSubtype(),\nCharset.forName(\"utf8\"));\nuser = new\
+  \ UsersDTO();\nuser.setName(\"Ravi Kant Soni\");\nuser.setAddress(\"JP Nagar; Bangalore;\
+  \ India\");\nuser.setEmail(\"ravikantsoni.author@gmail.com\");\n}\n@Test\npublic\
+  \ void shouldReturnSuccessMessage() throws Exception {\nwhen(this.userJpaRepositoryMock.findById(1L)).thenReturn(user);\n\
+  this.mockMvc.perform(get(\"/api/user/1\"))\n.andExpect(status().isOk())\n.andExpect(content().contentType(contentType))\n\
+  .andExpect(jsonPath(\"'.name\", is(\"Ravi Kant Soni\")))\n.andExpect(jsonPath(\"\
+  '.address\",\nis(\"JP Nagar; Bangalore; India\")))\n.andExpect(jsonPath(\"'.email\"\
+  ,\nis(\"ravikantsoni.author@gmail.com\")))\n.andDo(print());\n}\n}\n代码清单 6-19.\n\
+  使用 Spring MVC 测试测试 Web 层\n```\n\n让我们详细看看代码清单 6-19。在其中，你测试了 `UserRegistrationRestController`\
+  \ 的 `getUserById` 方法的行为。\n\n*   @RunWith、@WebMvcTest 和 @ContextConfiguration：你使用了\
+  \ `@ContextConfiguration` 注解来查找主配置类。`@WebMvcTest` 注解用于测试 Web 层。因此，Spring Boot 将只实例化\
+  \ Web 层，而不是整个上下文。\n*   @Autowired MockMvc：你自动装配了 `MockMvc`，而不是手动构建它。因此，Spring 将创建并配置\
+  \ `MockMvc`，并在运行时注入它。`@Autowired MockMvc` 与 `@WebMvcTest(controllers=UserRegistrationRestControlle.class`)\
+  \ 结合使用，提供了一个完全配置好的 `MockMvc` 实例。使用 `MockMvc`，你向 `UserRegistrationRestController`\
+  \ 发送了模拟 HTTP 请求，并测试了 `UserRegistrationRestController` 在不运行于服务器内时的行为。\n*   @MockBean：你使用\
+  \ `@MockBean` 注解标注了 `UserJpaRepository`，以创建并注入一个 `UserJpaRepository` 的模拟对象。\n* \
+  \  @Before：你使用 `@Before` 注解标注了 setup 方法。你创建并初始化了在 `@Test` 方法中使用的 `MediaType`（`contentType`）和\
+  \ `UserDTO`（`user`）领域对象。\n*   @Test：你使用 `@Test` 注解标注了 `shouldReturnSuccessMessage`\
+  \ 方法。你使用了 Mockito 来对 `UserJpaRepository` 模拟对象的 `findById` 方法进行桩化，使其返回已初始化的 `UserDTO`\
+  \ 实例。你使用了 `MockMvcRequestBuilders` 类的 `get` 方法来创建一个 `GET` 请求。`MockMvcRequestBuilders`\
+  \ 还提供了其他方法，如 `post`、`put` 和 `delete`，用于创建相应的 HTTP 请求。你调用了 `MockMvc` 的 `perform`\
+  \ 方法来向 `\"/api/user/{id}\"` 发起一个 `GET` 请求，并使用 `Expect` 方法来对响应进行断言：\n    *   响应中的\
+  \ HTTP 状态码为 200。\n    *   响应内容中的 `contentType`。\n    *   用户属性的值（name、address、e-mail）与你用于初始化\
+  \ `UserDTO` 的值一致。你在 `jsonPath` 方法中使用了 `JsonPath` 表达式来对响应体编写断言。简而言之，JSON 的 `JsonPath`\
+  \ 等同于 XML 的 `xPath`。\n\n最后，你使用了 `andDo(print())` 来在控制台获取以下输出：\n\n```\nMockHttpServletRequest:\n\
+  HTTP Method = GET\nRequest URI = /api/user/1\nParameters = {}\nHeaders = {}\nHandler:\n\
+  Type = com.apress.ravi.chapter2.Rest.UserRegistrationRestController\nMethod = public\
+  \ org.springframework.http.ResponseEntity com.apress.ravi.chapter2.Rest.UserRegistrationRestCont\n\
+  roller.getUserById(java.lang.Long)\nAsync:\nAsync started = false\nAsync result\
+  \ = null\nResolved Exception:\nType = null\nModelAndView:\nView name = null\nView\
+  \ = null\nModel = null\nFlashMap:\nAttributes = null\nMockHttpServletResponse:\n\
+  Status = 200\nError message = null\nHeaders = {Content-Type=[application/json;charset=UTF-8]}\n\
+  Content type = application/json;charset=UTF-8\nBody = {\"id\":null,\"name\":\"Ravi\
+  \ Kant Soni\",\"address\":\"JP Nagar; Bang\nalore; India\",\"email\":\"ravikantsoni.author@gmail.com\"\
+  }\nForwarded URL = null\nRedirected URL = null\nCookies = []\n```\n\n当你运行测试时，测试结果的\
+  \ JUnit 视图如图 6-7 所示。\n\n![A436970_1_En_6_Fig7_HTML.jpg](img/A436970_1_En_6_Fig7_HTML.jpg)\n\
+  \n图 6-7.\n测试的 JUnit 视图\n\n\n\n## 本章小结\n\n在本章中，你使用 `RestTemplate` 创建了一个 REST 客户端，并利用它对资源执行了\
+  \ `GET`、`POST`、`PUT` 和 `DELETE` 等客户端操作。你了解了用于消费 REST API 的不同 `RestTemplate` 方法和操作。你还使用\
+  \ `RestTemplate` 实现了基本身份验证。\n\n接着，你转向使用 Spring 测试框架测试 RESTful 服务。我介绍了单元测试和集成测试。你了解了\
+  \ JUnit4 框架中的不同注解和断言方法。然后，你学习了模拟框架和模拟对象。最后，你使用测试框架和 Spring MVC 测试框架测试了 REST 服务。\n\
+  \n在下一章中，你将学习如何在生产环境中管理和监控你的 Spring Boot 应用。\n\n"
+- "# 7. 使用 Spring Boot Actuator 进行应用监控\n\n应用监控可确保运行在服务器上的应用按预期工作。在第 2 章中，你使用 Spring\
+  \ Boot 开发了 RESTful 服务。此外，当你的 Spring Boot 应用部署到生产环境时，Spring Boot 还支持额外的功能来监控和管理它。\n\
+  \n例如，假设一位开发者刚刚完成了他的应用并将更改推送到了仓库。接着，这位开发者找到运维团队，请他们部署这个应用。作为回应，运维团队向开发者索要运行手册（即操作指南），其中包含部署说明、发生异常时需要执行的操作等。运维团队还需要了解应用的配置细节。经验丰富的开发者甚至会分享有关外部属性及其在服务器上位置的信息，运维团队将据此使用可接受的值来配置外部属性。到目前为止，一切顺利。\n\
+  \n运维团队最后的问题是：“你们如何监控这个应用？” 哎呀，这在业务需求中并未提及。于是，开发者开始思考各种方案，比如向经理申请更多资金来开发一个监控工具，但这可能行不通。\n\
+  \nSpring 框架是构建复杂企业应用最流行的框架之一。这些应用过去常常在许多服务器上运行，服务于多个领域和环境，例如本地构建环境、测试环境、QA 环境，有时还有用户验收测试环境，然后才会部署到生产环境。每个环境都有不同的配置，例如在本地环境中，开发者可能使用开源数据库，而在生产环境中，数据库可能是\
+  \ Oracle。此外，本地环境可能使用 ActiveMQ 进行消息传递，而生产环境可能使用 IBM 消息源。企业需求（如持续构建等）需要处理很多问题。这不像你只需创建一个\
+  \ `.war` 文件然后放到服务器上那么简单。在本章中，你将使用本地环境进行部署。\n\n通过使用 HTTP 端点，你可以在生产环境中管理已部署的应用。Spring\
+  \ Boot 拥有一系列功能，让你在部署应用后，能够在生产环境或任何环境中监控你的 Spring Boot 应用。\n\n在 Spring Boot 中，你可以通过多种方式监控和管理你的\
+  \ Spring Boot 应用，例如 HTTP、JVM 和 SSH。在本章中，你将了解如何使用 Spring Boot 的 Actuator 模块来监控你的应用。本章将概述\
+  \ DevOps 如何使用 Spring Boot。DevOps 是开发者和运维团队的结合。\n\n## 介绍 Spring Boot Actuator\n\n\
+  [Spring Boot Actuator](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready)\
+  \ 是 Spring Boot 的一个子项目。Spring Boot 中的 Actuator 模块使得在你的 Spring Boot 应用中使用生产就绪功能成为可能。Actuator\
+  \ 暴露了各种端点，用于监控你正在运行的应用的指标和统计数据。使用 Actuator，你可以监控健康状态、查看指标、收集日志、执行线程转储、了解垃圾回收、查看环境变量，以及查看来自\
+  \ `BeanFactory` 的 Bean。此外，你可以使用它来监控你的应用，以进行任何生产支持和相关事务，例如监控进程、检查健康状态、检查进程是否在运行、检查数据库连接是否正常，以及检查相关指标，如\
+  \ JVM 中的堆大小或可用空间。所有这些都由 Actuator 处理。\n\nSpring Boot 提供了可以暴露一些 REST 端点的库，以便不同的监控工具可以使用这些\
+  \ REST 端点从 REST 端点获取数据。你可以使用 `<host>:port/<endpoint>` 访问所有这些端点。例如，如果你想监控应用的运行状况，你需要访问\
+  \ `http://localhost:8080/health`。\n\n### 启用 Actuator 模块\n\n要启用 Actuator 模块，请在浏览器中访问\
+  \ [`http://start.spring.io/`](http://start.spring.io/)。Spring Initializr 站点上的“运维”部分包含一系列依赖项，例如\
+  \ Actuator、Actuator Docs 和 Remote Shell，如图 7-1 所示。\n\n![A436970_1_En_7_Fig1_HTML.jpg](img/A436970_1_En_7_Fig1_HTML.jpg)\n\
+  \n图 7-1.\n\nSpring Initializr 中的 Spring Boot Starter 依赖项\n\n让我们在你的 UserRegistrationSystem\
+  \ 应用的 Maven `pom.xml` 文件中手动添加 `spring-boot-starter-actuator` 依赖项，如清单 7-1 所示。\n\n\
+  ```\norg.springframework.boot\nspring-boot-starter-actuator\n\n清单 7-1.\nActuator\
+  \ 依赖项\n```\n\n只需在你的 `pom.xml` 文件中添加 `spring-boot-starter-actuator` 依赖项，Actuator\
+  \ 模块就会在你的 Spring Boot 应用中启用，并且健康检查、指标和其他功能将自动应用于你的应用。\n\n## Actuator 端点\n\nActuator\
+  \ 端点允许开发者监控正在运行的 Spring Boot 应用，并且还允许开发者与 Spring Boot 应用进行交互。Spring Boot 提供了许多内置端点，例如一个健康端点，它提供有关你正在运行的\
+  \ Spring Boot 应用的基本健康信息，并且该端点将映射到 `/health`。你也可以添加自己的端点。\n\n默认情况下，Spring Boot Actuator\
+  \ 是安全的，因此并非任何人都可以访问这些端点。你可以通过在 `application.properties` 文件中设置属性来禁用这些安全功能，如下所示：\n\
+  \n```\nmanagement.security.enabled=false\n```\n\n然而，由于这些 Actuator 端点会暴露环境变量和指标信息，你最好还是让它们保持安全状态。\n\
+  \n让我们启动 UserRegistrationSystem 应用，并探索 Spring Boot 开箱即用的最常见端点。图 7-2 显示了 STS 控制台中的端点。\n\
+  \n![A436970_1_En_7_Fig2_HTML.jpg](img/A436970_1_En_7_Fig2_HTML.jpg)\n\n图 7-2.\n\n\
+  控制台中的端点\n\n如图 7-2 所示，STS 控制台中出现了不同的端点。默认情况下，你有 `/info`、`/health`、`/beans`、`/dump`、`/env`\
+  \ 等端点。所有这些端点都是由 Actuator 提供的 REST 端点。让我们探索其中几个 REST 端点，以便在接下来的章节中获取数据。\n\n\n\n###\
+  \ /info\n\n此端点显示关于 Spring Boot 应用程序的任意信息。图 7-3 展示了浏览器中的 `/info` 端点。\n\n![A436970_1_En_7_Fig3_HTML.jpg](img/A436970_1_En_7_Fig3_HTML.jpg)\n\
+  \n图 7-3.\n\n浏览器中的 /info 端点不显示任何内容\n\n如图 7-3 所示，默认情况下 `/info` 端点不显示任何内容。不过，你可以覆盖这些信息。尽管如此，`/info`\
+  \ 端点显示的是非敏感数据。\n\n### /env\n\n`/env` 端点返回你在 JVM 内配置的所有敏感信息，例如 `{\"local.server.port\"\
+  :8080}`。换句话说，它显示你的应用程序正在运行的端口，并显示系统属性，例如 JDK 和 Java 版本（`jre1.8.0_101\\\\bin`）、你的项目正在运行的目录信息（`user.dir`）、库路径（`java.library.path`）、时区（`user.timezone\"\
+  :\"Asia/Calcutta\"`）等等。它还显示属性信息以及你添加属性的属性文件名，例如 `[classpath:/application.properties]\"\
+  :{\"management.security.enabled\":\"false\"}`。图 7-4 展示了浏览器中 `/env` 数据的裁剪图像。\n\n\
+  ![A436970_1_En_7_Fig4_HTML.jpg](img/A436970_1_En_7_Fig4_HTML.jpg)\n\n图 7-4.\n\n\
+  浏览器中的 /env 数据\n\n### /metrics\n\n此端点显示来自操作系统、JVM 以及应用级别的指标信息，例如内存堆、处理器、线程、类加载器和线程池。\n\
+  \n它显示当前运行应用程序的指标信息。默认情况下它是敏感的。指标信息返回以下数据，如图 7-5 所示：\n\n![A436970_1_En_7_Fig5_HTML.jpg](img/A436970_1_En_7_Fig5_HTML.jpg)\n\
+  \n图 7-5.\n\n/metrics 端点\n\n```\n{\n\"mem\":295288,\n\"mem.free\":177815,\n\"processors\"\
+  :4,\n\"instance.uptime\":620849,\n\"uptime\":632125,\n\"systemload.average\":-1.0,\n\
+  \"heap.committed\":225792,\n\"heap.init\":65536,\n\"heap.used\":47976,\n\"heap\"\
+  :905216,\n\"nonheap.committed\":71360,\n\"nonheap.init\":2496,\n\"nonheap.used\"\
+  :69497,\n\"nonheap\":0,\n\"threads.peak\":20,\n\"threads.daemon\":18,\n\"threads.totalStarted\"\
+  :26,\n\"threads\":20,\n\"classes\":9559,\n\"classes.loaded\":9559,\n\"classes.unloaded\"\
+  :0,\n\"gc.ps_scavenge.count\":12,\n\"gc.ps_scavenge.time\":169,\n\"gc.ps_marksweep.count\"\
+  :2,\n\"gc.ps_marksweep.time\":219,\n\"httpsessions.max\":-1,\"httpsessions.active\"\
+  :0,\n\"datasource.primary.active\":0,\n\"datasource.primary.usage\":0.0,\n\"gauge.response.userregistrationsystemhealth\"\
+  :214.0,\n\"gauge.response.info\":37.0,\n\"counter.status.200.info\":1,\n\"counter.status.200.userregistrationsystemhealth\"\
+  :1\n}\n```\n\n如图 7-5 所示，你可以使用 `/metrics` 端点查看指标信息。此端点显示 `heap.used` 详情、`nonheap.used`\
+  \ 详情、可用内存量（`mem.free`）、正在使用的处理器数量、实例运行时间信息、线程数等等。\n\n### /trace\n\n此端点通过显示人们正在访问的\
+  \ REST 端点列表，来展示已发出的跟踪信息请求。例如，在图 7-6 中，你可以看到我访问了 `/metrics`、`/env` 和 `/info`。这显示了针对这些特定端点最后几次被命中的请求。`/trace`\
+  \ 端点还显示人们正在访问的不同 REST 端点。如果你访问 `/trace`，你可以看到人们通过特定 REST 服务最后访问的请求。\n\n![A436970_1_En_7_Fig6_HTML.jpg](img/A436970_1_En_7_Fig6_HTML.jpg)\n\
+  \n图 7-6.\n\n/trace 端点\n\n### /health\n\n此端点可用于检查正在运行的 Spring Boot 应用程序的健康状况或状态。它帮助开发者在生产环境宕机时监控软件的健康状况和跟踪状态。通过\
+  \ HTTP 访问时显示的默认信息如下：\n\n```\n{\n\"status\":\"UP\",\n\"diskSpace\":{\"status\":\"\
+  UP\",\n\"total\":142753132544,\n\"free\":97978245120,\n\"threshold\":10485760\n\
+  },\n\"db\":{\"status\":\"UP\",\"database\":\"H2\",\"hello\":1}\n}\n```\n\n这显示了正在运行的应用程序的磁盘空间。`/health`\
+  \ 端点还显示服务器健康状况，并提供服务器是否正常运行的信息。如果存在任何数据库连接，它会自动显示数据库连接。因此，如果你自动装配了任何数据库连接，比如 H2\
+  \ 数据库，它会自动显示在这里。默认情况下，此端点不敏感。图 7-7 展示了浏览器中的该端点。\n\n![A436970_1_En_7_Fig7_HTML.jpg](img/A436970_1_En_7_Fig7_HTML.jpg)\n\
+  \n图 7-7.\n\n/health 端点\n\n你可以在 [`http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-endpoints`](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-endpoints)\
+  \ 找到现有 Actuator 端点的完整列表。\n\n## 自定义 Actuator 端点\n\n你可以通过 Spring 属性文件（`application.properties`）使用以下格式来自定义\
+  \ Actuator 端点：\n\n```\nendpoints.[端点名称].[要自定义的属性]\n```\n\n### 可自定义的属性\n\n有三个属性可用于自定义\
+  \ Actuator 端点。\n\n*   `id`：通过此属性，端点将通过 HTTP 被访问。\n*   `enabled`：此属性提供对端点的访问控制。如果设置为\
+  \ `true`，则可以访问此端点；否则，无法访问。\n*   `sensitive`：此属性为端点提供安全层。如果设置为 `true`，则所需的授权会通过 HTTP\
+  \ 显示关键信息。\n\n例如，你可以通过在 `application.properties` 文件中添加以下属性来自定义 `/health` 端点的 `id`、`sensitive`\
+  \ 和 `enabled` 属性：\n\n```\nendpoints.health.id=userregistrationsystemhealth\nendpoints.health.enabled=true\n\
+  endpoints.health.sensitive=false\n```\n\n一旦你启动应用程序，`/userregistrationsystemhealth`\
+  \ 将出现在控制台中，如图 7-8 所示。\n\n![A436970_1_En_7_Fig8_HTML.jpg](img/A436970_1_En_7_Fig8_HTML.jpg)\n\
+  \n图 7-8.\n\n控制台中的 /userregistrationsystemhealth 端点\n\n前缀 `endpoints` 用于标识在你的应用程序中正在配置的端点。你可以使用\
+  \ `/userregistrationsystemhealth` 访问这个自定义的 `/health` 端点，如图 7-9 所示。\n\n![A436970_1_En_7_Fig9_HTML.jpg](img/A436970_1_En_7_Fig9_HTML.jpg)\n\
+  \n图 7-9.\n\n自定义的健康端点\n\n`/health` 端点提供从所有实现了 `HealthIndicator` 接口并在你的应用程序上下文中配置的\
+  \ Bean 收集的健康信息。由于某些信息本质上是敏感的，你可以配置 `endpoints.health.sensitive=false` 来暴露其他信息，例如磁盘空间和数据源，如图\
+  \ 7-10 所示。\n\n类似地，你可以通过在 `application.properties` 文件中添加以下属性来自定义 `/info` 端点显示的数据：\n\
+  \n```\ninfo.app.name=用户注册系统应用程序\ninfo.app.description=此 Spring Boot 应用程序是为学习而创建的\n\
+  info.app.version=1.0.0\n```\n\n以下输出将出现在浏览器中，如图 7-9 所示。\n\n![A436970_1_En_7_Fig10_HTML.jpg](img/A436970_1_En_7_Fig10_HTML.jpg)\n\
+  \n图 7-10.\n\n自定义的 /info 端点\n\n```\n{\n\"app\":\n{\n\"description\":\"此 Spring Boot\
+  \ 应用程序是为学习而创建的\",\n\"name\":\"用户注册系统应用程序\",\n\"version\":\"1.0.0\"\n}\n}\n```\n\n\
+  \n\n### 自定义健康指标\n\n您也可以通过实现 `HealthIndicator` 接口并重写未实现的方法来定义自己的自定义健康指标。该自定义健康指标会收集特定于应用程序的任何类型的自定义健康数据，并将其提供给\
+  \ `/health` 端点。清单 7-2 展示了实现 `HealthIndicator` 接口的 `CustomHealthIndicator` 类。\n\n\
+  ```\nimport org.springframework.boot.actuate.health.Health;\nimport org.springframework.boot.actuate.health.HealthIndicator;\n\
+  import org.springframework.stereotype.Component;\n@Component\npublic class CustomHealthIndicator\
+  \ implements HealthIndicator {\n@Override\npublic Health health() {\nint errorCode\
+  \ = check();\nif (errorCode == 0) {\nreturn Health\n.up()\n.withDetail(\"Status\"\
+  , \"UP\")\n.withDetail(\"Error Code\", errorCode)\n.withDetail(\"Description\",\n\
+  \"Your Custom Health indicator point is UP\")\n.build();\n}\nreturn Health.up().build();\n\
+  }\npublic int check() {\nreturn 0;\n}\n}\n清单 7-2.\nCustomHealthIndicator 类\n```\n\
+  \n浏览器中将显示以下输出，如图 7-11 所示。\n\n![A436970_1_En_7_Fig11_HTML.jpg](img/A436970_1_En_7_Fig11_HTML.jpg)\n\
+  \n图 7-11.\n\n/health 端点\n\n```\n{\n\"status\":\"UP\",\n\"custom\":{\n\"status\"\
+  :\"UP\",\n\"Status\":\"UP\",\n\"Error Code\":0,\n\"Description\":\"Your Custom Health\
+  \ indicator point is UP\"\n},\n\"diskSpace\":{\n\"status\":\"UP\",\n\"total\":142753132544,\n\
+  \"free\":97823797248,\n\"threshold\":10485760\n},\n\"db\":{\n\"status\":\"UP\",\n\
+  \"database\":\"H2\",\n\"hello\":1\n}\n}\n```\n\n## 定义新端点\n\n尽管 Spring Boot Actuator\
+  \ 提供了端点，但您也可以定义除现有 Actuator 端点之外的新端点。让我们通过创建 `MyCustomEndpoint` 类并实现 `Endpoint<List<String>>`\
+  \ 接口来创建一个新端点，如清单 7-3 所示。\n\n```\nimport java.util.ArrayList;\nimport java.util.List;\n\
+  import org.springframework.boot.actuate.endpoint.Endpoint;\nimport org.springframework.stereotype.Component;\n\
+  @Component\npublic class MyCustomEndpoint implements Endpoint> {\n@Override\npublic\
+  \ String getId() {\nreturn \"myCustomEndpoint\";\n}\n@Override\npublic List invoke()\
+  \ {\nList customMessages = new ArrayList();\ncustomMessages.add(\"This is custom\
+  \ message 1\");\ncustomMessages.add(\"This is custom message 2\");\nreturn customMessages;\n\
+  }\n@Override\npublic boolean isEnabled() {\nreturn true;\n}\n@Override\npublic boolean\
+  \ isSensitive() {\nreturn true;\n}\n}\n清单 7-3.\nMyCustomEndpoint 类\n```\n\n让我们运行\
+  \ Spring Boot 应用程序。控制台日志将包含 `/myCustomEndpoint` 端点，如图 7-12 所示。\n\n![A436970_1_En_7_Fig12_HTML.jpg](img/A436970_1_En_7_Fig12_HTML.jpg)\n\
+  \n图 7-12.\n\n控制台中的新端点\n\n您可以使用其 `id` 值在 `/myCustomEndpoint` 访问这个新端点。输出将显示在浏览器中，如图\
+  \ 7-13 所示。\n\n![A436970_1_En_7_Fig13_HTML.jpg](img/A436970_1_En_7_Fig13_HTML.jpg)\n\
+  \n图 7-13.\n\n/myCustomEndpoint 端点\n\n## 通过 HTTP 进行管理\n\n在本节中，您将通过 HTTP 管理 Actuator\
+  \ 端点。\n\n### 自定义服务器端口\n\n出于安全目的，您可以自定义服务器端口，通过非标准端口暴露 Actuator 端点。您可以使用 `management.port`\
+  \ 属性进行配置。\n\n您还可以使用 `management.address` 属性更改地址，以限制端点可以从网络上的哪些位置访问。\n\n让我们更改 `application.properties`\
+  \ 文件中的以下属性：\n\n```\nmanagement.port=8081\nmanagement.address=127.0.0.1\n```\n\n\
+  当您重新启动 Spring Boot 应用程序并使用自定义的地址和端口号访问 `/health` 端点时，将返回输出，如图 7-14 所示。\n\n![A436970_1_En_7_Fig14_HTML.jpg](img/A436970_1_En_7_Fig14_HTML.jpg)\n\
+  \n图 7-14.\n\n自定义端口号和地址\n\n### 访问敏感端点\n\n当使用 Spring Security 保护 Spring Boot 应用程序时，您可以通过在\
+  \ `application.properties` 文件中定义默认安全属性（如用户名、密码和角色）来保护这些端点，如下代码所示：\n\n```\nmanagement.security.enabled=true\n\
+  security.user.name=admin\nsecurity.user.password=password\nsecurity.user.role=ADMIN\n\
+  ```\n\n当您尝试访问受保护的端点（例如默认情况下敏感的 `/info`）时，将弹出一个窗口提示输入凭据，如图 7-15 所示。\n\n![A436970_1_En_7_Fig15_HTML.jpg](img/A436970_1_En_7_Fig15_HTML.jpg)\n\
+  \n图 7-15.\n\n访问受保护的端点\n\n## 总结\n\n在本章中，您了解了 Spring Boot Actuator，以及如何通过在 Maven `pom.xml`\
+  \ 文件中添加依赖项来启用 Actuator。然后，您了解了一些 Actuator 端点。之后，您自定义了这些现有的 Spring Boot Actuator\
+  \ 端点并定义了新的端点。最后，您自定义了服务器端口。\n\n## 附录 A：访问 REST API 的工具\n\n当您需要在敏捷开发环境中工作时，您需要能够快速测试您的\
+  \ API。在本附录中，您将了解开源 REST API 测试。\n\n针对 REST API 服务的 GUI 测试速度较慢，对于希望从最新构建中快速获得代码结果的开发者来说，这是一个糟糕的选择。API\
+  \ 测试被认为是开发者的更好选择，因为它往往比 GUI 测试更快且更可靠。\n\n## API 测试\n\n应用程序编程接口（API）测试涉及绕过使用 GUI/网页的用户交互，通过进行\
+  \ API 调用直接与应用程序内的服务进行通信。\n\nAPI 测试允许开发者测试“无头”技术，例如 RESTful Web 服务。在无头测试中，GUI（或头部）被绕过；请求直接发送到应用程序的服务，服务接收响应以验证结果。\n\
+  \n## API 测试工具\n\n您需要找到一个工具来进行 REST API 测试。互联网上有许多 API 测试工具可用；例如，Selenium 是一个基于浏览器的测试工具。在本书中，您将使用\
+  \ Postman。\n\n让我们探索 Postman API 测试工具。\n\n\n\n### Postman\n\nPostman 是一款 REST 客户端，最初是作为\
+  \ Chrome 浏览器插件而开发的，用于发起 HTTP 请求。Postman 可用于向 REST 服务发送 HTTP 请求，并从服务器获取响应。\n\n你可以通过链接\
+  \ [`https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop`](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop)\
+  \ 从 Chrome 网上应用店下载 Postman，如图 A-1 所示。\n\n![A436970_1_En_BookBackmatter_Fig1_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig1_HTML.jpg)\n\
+  \n图 A-1.\n\n将 Postman 添加到 Chrome\n\n点击“添加到 Chrome”按钮会弹出一个窗口，如图 A-2 所示。\n\n![A436970_1_En_BookBackmatter_Fig2_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig2_HTML.jpg)\n\
+  \n图 A-2.\n\n添加 Postman 应用的弹出窗口\n\n点击“添加应用”将下载一个 `.crx` 文件。下载成功后，Postman 将被添加到 Chrome\
+  \ 的应用列表中。在 Chrome 浏览器中访问 `chrome://apps/` 即可查看 Chrome 中可用的应用列表。\n\n现在，你可以点击“启动应用”按钮来启动该应用，如图\
+  \ A-3 所示。\n\n![A436970_1_En_BookBackmatter_Fig3_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig3_HTML.jpg)\n\
+  \n图 A-3.\n\n启动应用\n\n启动应用后，你将看到一个显示 Postman 工具的新窗口，如图 A-4 所示。\n\n![A436970_1_En_BookBackmatter_Fig4_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig4_HTML.jpg)\n\
+  \n图 A-4.\n\nPostman 应用\n\nPostman 允许开发者通过用户界面编写 HTTP 请求，并将这些请求发送到服务器。开发者可以查看响应，如图\
+  \ A-5 所示。\n\n![A436970_1_En_BookBackmatter_Fig5_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig5_HTML.jpg)\n\
+  \n图 A-5.\n\n显示响应的 Postman 应用\n\n#### Postman 中的功能\n\n让我们来看看 Postman 中可用的一些功能。\n\n\
+  ##### 请求 URL\n\n“输入请求 URL”框允许用户输入请求 URL。\n\n##### HTTP 方法\n\n“输入请求 URL”框左侧的下拉菜单允许开发者选择其\
+  \ HTTP 方法，例如 `GET`、`POST` 等，如图 A-6 所示。\n\n![A436970_1_En_BookBackmatter_Fig6_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig6_HTML.jpg)\n\
+  \n图 A-6.\n\nHTTP 方法\n\n##### 参数\n\nParams 按钮位于“输入请求 URL”框的右侧。这允许用户设置参数的键和值，这些参数将与调用\
+  \ API 的请求 URL 一起传递，如图 A-7 所示。\n\n![A436970_1_En_BookBackmatter_Fig7_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig7_HTML.jpg)\n\
+  \n图 A-7.\n\nPostman 中的参数\n\n##### 授权\n\n“在此输入请求 URL”框下方有一个“授权”选项卡。点击“授权”会弹出一个下拉菜单，用于选择选项，如“无授权”、“基本授权”等，如图\
+  \ A-8 所示。默认选择是“无授权”。\n\n![A436970_1_En_BookBackmatter_Fig8_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig8_HTML.jpg)\n\
+  \n图 A-8.\n\nPostman 中的授权选项\n\n##### 标头\n\n点击“标头”允许用户输入标头信息，如图 A-9 所示。\n\n![A436970_1_En_BookBackmatter_Fig9_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig9_HTML.jpg)\n\
+  \n图 A-9.\n\nPostman 中的标头\n\n##### 请求体\n\n“请求体”选项卡仅对以下 HTTP 方法可用：`Post`、`Put`、`Patch`、`Delete`、`Link`、`Unlink`、`Lock`\
+  \ 和 `Propfind`。对于其他 HTTP 方法，该选项卡将被禁用。点击“请求体”会显示四个选项：form-data、x-www-form-urlencoded、raw\
+  \ 和 binary。\n\n*   Form-data：选择此项将显示一行带有“键”下拉菜单的内容。\n*   X-www-form-urlencoded：选择此项将在下方显示一行带有“键”和“值”字段的内容。\n\
+  *   Raw：选择此项将显示一个下拉菜单和一个带有编号行的文本框，如图 A-10 所示。下拉菜单包含以下选项：Text、Text (text/plain)、JSON\
+  \ (application/json)、Javascript (application/javascript)、XML (application/xml)、XML\
+  \ (text/xml) 和 HTML (text/html)。\n\n    ![A436970_1_En_BookBackmatter_Fig10_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig10_HTML.jpg)\n\
+  \n    图 A-10.\n\n    Postman 中的请求体选项\n\n##### 发送\n\n使用蓝色的“发送”按钮来发送 HTTP 请求。\n\n\
+  #### 响应消息\n\n点击“发送”按钮后，你将收到来自所请求 API 的响应消息。响应消息可以包含名为“响应体”、“Cookies”、“标头”和“测试”的选项卡，如图\
+  \ A-11 所示。\n\n![A436970_1_En_BookBackmatter_Fig11_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig11_HTML.jpg)\n\
+  \n图 A-11.\n\nPostman 中的响应选项\n\n##### 响应体\n\n响应体可以通过“美化”、“原始”和“预览”选项来显示。“美化”允许开发者从以下选项中选择：JSON、XML、HTML、Text\
+  \ 和 Auto。\n\n##### Cookies\n\n要使用 Cookies，你需要通过链接 [`https://chrome.google.com/webstore/detail/postmaninterceptor/aicmkgpgakddgnaphhhpliifpcfhicfo?hl=en`](https://chrome.google.com/webstore/detail/postmaninterceptor/aicmkgpgakddgnaphhhpliifpcfhicfo?hl=en)\
+  \ 安装 Postman Interceptor 应用。安装好 Interceptor 应用后，按图 A-12 所示启用它。\n\n![A436970_1_En_BookBackmatter_Fig12_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig12_HTML.jpg)\n\
+  \n图 A-12.\n\n为 Cookies 启用 Interceptor\n\n##### 标头\n\n这将显示以行格式接收到的标头。\n\n##### 测试\n\
+  \n此功能仅对付费用户可用。\n\n#### 其他功能\n\nPostman 的“历史记录”部分位于窗口左侧，记录了你发起的所有请求，如图 A-13 所示。历史记录会保存\
+  \ HTTP 请求，并允许重新打开它们。\n\n![A436970_1_En_BookBackmatter_Fig13_HTML.jpg](img/A436970_1_En_BookBackmatter_Fig13_HTML.jpg)\n\
+  \n图 A-13.\n\n\n\nPostman 中的历史记录  \n索引 A  \nActuator 端点  \napplication.properties\
+  \ 文件自定义  \n健康指示器  \ninfo 端点  \nMyCustomEndpoint 类  \n属性  \nSpring 属性定义  \n/env \
+  \ \n/health  \nHTTP 敏感端点  \n服务器端口  \n/info  \n/metrics  \n模块  \n监控应用  \nSTS 控制台\
+  \  \n/trace  \n敏捷软件测试  \n集成测试  \n单元测试的目标  \n参见单元测试  \n应用程序编程接口 (API)  \n认证  \nBasicAuthenticationFilter\
+  \  \n定义  \nHTTP 标头  \n内存定义  \n弹出窗口  \n关系型数据库  \n传统方法  \nUserRegistrationSystem 应用\
+  \  \n用户和角色  \n授权  \n访问页面  \nAngularJS  \napp.js 更新  \nauthInterceptor.js  \n标头 \
+  \ \nHTTP 拦截器  \nindex.html 文件  \n应用  \nHTTP 请求  \nlist-all-users 页面  \n定义  \n内存配置\
+  \  \nB  \n后端框架  \n对比前端  \n物理视图  \npom.xml  \nmain 方法  \nMaven 依赖  \n设置  \n观点  \n\
+  输出控制台  \n打包选项  \npom.xml 文件  \n@RestController 注解  \n@RequestMapping 注解  \nREST\
+  \ 端点  \n静态  \nSpringApplication.run 方法  \n@SpringBootApplication 注解  \nSTS 向导  \n\
+  Tomcat 和 Jetty  \n文件  \n更新的依赖  \n生产就绪特性  \n控制台日志  \n启用 Actuator 端点  \n健康信息  \n管理\
+  \  \n服务器端口  \nSpring Initializer  \nSpring Boot 应用  \n优势  \n依赖  \n框架  \n问题  \n目标\
+  \  \nInitializer 项目  \n相关细节  \n项目向导  \nSpring Boot CLI  \nstarter 项目  \n结构  \n系统要求\
+  \  \n工具套件  \nWeb 应用开发  \n启动器  \nC  \n客户端和服务器端技术  \nD  \n数据传输对象 (DTO)  \n依赖注入 (DI)\
+  \  \n文档对象模型 (DOM)  \nE  \n@EnableGlobalMethodSecurity 注解  \n错误消息  \nBean 验证注解  \n\
+  电子邮件模式  \n外部化  \nmessageSource 创建  \nmessages.properties  \n属性文件  \nF, G  \n前端框架\
+  \  \nAngularJS  \n架构概念  \nHTTP 响应  \nMVC 架构  \n版本  \n工作流图  \n架构概念  \n对比后端  \n引导阶段\
+  \  \n编译阶段  \n组件生命周期  \nMVC 架构  \n物理视图  \n运行时  \n数据绑定阶段  \nTwitter Bootstrap  \n\
+  工作流图  \n全栈 Web 开发  \n后端  \n参见后端框架  \n客户端与服务器通信  \n开发运维  \n前端  \n另请参见前端框架  \n后端操作\
+  \  \n现代 Web 应用  \nH  \nhandleValidationError 类  \nHTML 部分视图  \nI  \n集成测试  \n控制反转\
+  \ (IoC)  \nJ, K  \nJava 持久化 API (JPA)  \nJavaScript 对象表示法 (JSON)  \nL  \n登录页面  \n\
+  应用  \n方法  \n认证过程 (controller.js)  \n后端代码  \n配置文件  \n处理登录请求  \nRESTful 端点  \n错误消息\
+  \  \n主页  \n输入框和按钮  \n登录表单 (login.html)  \n导航页面 (app.js)  \n欢迎页面 (index.html)  \n\
+  M, N, O  \nMediaType 方法  \nMethodArgumentNotValidException 方法  \n方法级安全  \nMockMvc\
+  \ 类  \ngetUserById 方法  \nJUnit 视图  \n测试框架  \n输出结果  \nWeb 层测试  \n模型-视图-控制器 (MVC)\
+  \  \nAngularJS 应用  \n架构  \n控制器  \n目录  \n目录结构  \n框架  \n主页/应用页面  \nlistUserController\
+  \  \nregisterUserController  \nusersDetailsController  \n视图页面  \n错误消息  \n主页  \n\
+  listuser.html  \n注册新用户页面  \n模板文件夹  \n更新用户  \nuserregistration.html  \nuserupdation.html\
+  \  \n现代 Web 应用  \n优势  \n劣势  \n动态内容创建  \n分层架构  \n模型-视图-控制器 (MVC)  \n表述性状态转移 (REST)\
+  \  \nP, Q  \n@PathVariable 注解  \nPostman (测试工具)  \n应用创建  \nChrome  \n功能  \n授权  \n\
+  请求体  \n标头  \nHTTP 方法  \n参数  \n请求 URL  \n发送  \n历史记录  \n启动应用  \n弹出窗口  \n响应消息  \n请求体\
+  \  \nCookie  \n标头  \n选项  \n测试  \n响应  \n@PreAuthorize 注解  \nR  \nReloadableResourceBundleMessageSource\
+  \  \n表述性状态转移 (REST)  \n处理错误  \nBean 验证注解  \n@ControllerAdvice 注解  \nCustomErrorType\
+  \ 类  \n错误消息  \n外部错误消息  \n处理错误  \n消息和状态码  \n@Valid 注解  \n验证约束  \nHTTP 方法  \nCRUD\
+  \ 操作  \n状态码  \nRESTful 服务  \n参见 UserRegistrationSystem  \n@RequestBody 注解  \n@RequestMapping\
+  \ 注解  \n@ResponseBody 注解  \n@RestController 注解  \nRESTful 服务  \nREST 客户端  \nRestTemplate\
+  \  \n认证  \nDELETE 方法  \nexchange API  \ngetForObject 类和方法  \nGET 请求方法  \npom.xml\
+  \ 文件  \nPOST 请求  \nPUT 请求 (参数)  \nUserRegistrationClient 类  \nS  \n单页应用 (SPA)  \n\
+  启动应用  \n参见 Spring Boot 应用  \n开发环境  \n自动初始化  \n引导 AngularJS  \n依赖信息  \n依赖注入  \nGoogle\
+  \ CDN 托管 Angular 文件  \nHTML 页面  \n模型、视图和控制器  \npom.xml  \n弹出窗口  \n路由  \nSpring Boot\
+  \ 模板  \nTwitter Bootstrap 前端框架  \n软件即服务 (SaaS)  \nSpring Boot 应用  \nActuator  \n\
+  参见 Actuator 端点  \n注解  \n启动应用  \n目录结构  \n错误消息  \n主页  \n注册用户  \n信息  \n更新用户  \n用户详情\
+  \  \n网页  \nJUnit 视图  \nMaven 依赖  \nMVC 测试框架  \n单元测试  \nSpring Security  \napplication.properties\
+  \ 文件  \n认证  \n参见认证  \n授权  \n参见授权  \nBasicAuthenticationFilter  \n依赖  \n框架  \nHTTP\
+  \ 标头  \n覆盖  \npom.xml 文件  \n错误  \nJSON 响应  \n映射  \n过滤器  \n信息  \n密码  \n弹出窗口  \n未授权错误消息\
+  \  \n用户凭证  \n表单  \n关系型数据库  \nimport.sql 文件  \n方法级安全  \nSpring Security 和安全  \n未授权\
+  \  \n删除响应  \nUserDetailsService 实现  \nUserInfo 类  \nUserInfoJpaRepository 接口  \n\
+  RESTful 服务  \n传统方法  \n用户认证  \nT  \n测试框架 (Spring)  \nJUnit4 注解  \n断言方法  \n实现  \n\
+  红条测试  \nTwitter Bootstrap  \nU, V, W, X, Y, Z  \n单元测试  \n模拟对象  \n字段级注解  \nMockito\
+  \ 框架  \nREST 控制器测试和依赖  \n用户验收测试 (UAT)  \nUserJpaRepository  \nUserRegistrationRestController\
+  \ 方法  \nUserRegistrationSystem 应用  \n创建  \n定义  \nH2 嵌入式数据库  \nJSON 格式  \n仓库实现  \n\
+  仓库层/服务层  \n需求  \nRESTful API 控制器创建  \n@DeleteMapping  \n@GetMapping  \n@GetMapping\
+  \ (“/ {id}”)  \nGET 动词实现  \n@PostMapping  \nPOST 动词实现  \n@PutMapping  \n软件即服务 (SaaS)\
+  \  \nURI 端点标识  \n用户领域实现  \nUserRegistrationSystem 应用  \nADMIN 角色  \n删除操作  \n详情 \
+  \ \n密码  \n创建  \n未授权用户  \n用户凭证\n"

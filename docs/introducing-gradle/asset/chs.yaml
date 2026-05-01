@@ -1,0 +1,5616 @@
+- '
+
+
+  ![](img/A978-1-4842-1031-4_CoverFigure_HTML.jpg)
+
+
+  ![A978-1-4842-1031-4_CoverFigure_HTML.jpg](img/A978-1-4842-1031-4_CoverFigure_HTML.jpg)巴拉吉·瓦里纳桑
+  著 《Gradle 入门指南》
+
+
+  ![A978-1-4842-1031-4_BookFrontmatter_Figa_HTML.png](img/A978-1-4842-1031-4_BookFrontmatter_Figa_HTML.png)
+
+
+  作者在本书中引用的任何源代码或其他补充材料，读者均可从 [`www.apress.com/9781484210321`](http://www.apress.com/9781484210321)
+  获取。有关如何找到本书源代码的详细信息，请访问 [`www.apress.com/source-code/`](http://www.apress.com/source-code/)
+  。读者也可以在 SpringerLink 上各章节的“补充材料”部分访问源代码。ISBN 978-1-4842-1032-1e-ISBN 978-1-4842-1031-4
+  DOI 10.1007/978-1-4842-1031-4 © Apress 2015 《Gradle 入门指南》 总经理：Welmoed Spahr 主编：Steve
+  Anglin 技术审校：Manuel Jordan Elera 编辑委员会：Steve Anglin, Mark Beckner, Louise Corrigan,
+  Jonathan Gennick, Robert Hutchinson, Michelle Lowman, James Markham, Susan McDermott,
+  Matthew Moodie, Jeffrey Pepper, Douglas Pundick, Ben Renow-Clarke, Gwenan Spearing
+  统筹编辑：Mark Powers 文字编辑：Kezia Endsley 排版：SPi Global 索引编制：SPi Global 美术设计：SPi Global
+  有关翻译事宜，请发送电子邮件至 `rights@apress.com`，或访问 [`www.apress.com`](http://www.apress.com/)
+  。Apress 及 friends of ED 图书可批量购买用于学术、企业或促销用途。大多数图书也提供电子书版本和许可证。更多信息，请参考我们的特殊批量销售–电子书许可网页：[`www.apress.com/bulk-sales`](http://www.apress.com/bulk-sales)
+  。本作品受版权保护。出版商保留所有权利，无论涉及材料的全部或部分，特别是翻译权、重印权、插图重用权、朗诵权、广播权、缩微胶片复制权或任何其他物理形式的复制权，以及信息存储与检索、电子改编、计算机软件或现在已知或以后开发的类似或不同方法的传输权。与评论或学术分析相关的简短摘录，或专门为输入计算机系统并执行而提供的材料（仅供购买者独家使用）不受此法律限制。仅可根据出版商所在地现行版权法的规定复制本出版物或其部分内容，且必须始终从
+  Springer 获得使用许可。使用许可可通过 Copyright Clearance Center 的 RightsLink 获取。违反行为将根据相应版权法受到起诉。本书中可能出现商标名称、徽标和图像。我们不以每次出现商标名称、徽标或图像时都使用商标符号，而是仅以编辑方式使用这些名称、徽标和图像，以利于商标所有者，且无意侵犯商标权。本出版物中对商品名称、商标、服务标记及类似术语的使用，即使未明确标识，也不应被视为对其是否受专有权利保护的意见表达。尽管本书中的建议和信息在出版时被认为是真实准确的，但作者、编辑和出版商均不对可能存在的任何错误或遗漏承担法律责任。出版商对本书所含内容不作任何明示或暗示的保证。本书由
+  Springer Science+Business Media New York 在全球图书贸易中发行，地址：233 Spring Street, 6th Floor,
+  New York, NY 10013。电话：1-800-SPRINGER，传真：(201) 348-4505，电子邮件：orders-ny@springer-sbm.com，或访问
+  www.springeronline.com。Apress Media, LLC 是一家加利福尼亚有限责任公司，其唯一成员（所有者）是 Springer Science
+  + Business Media Finance Inc (SSBM Finance Inc)。SSBM Finance Inc 是一家特拉华州公司。引言
+
+
+  《Gradle 入门指南》是一本关于 Gradle 构建自动化工具的快速入门手册。本书首先解释 Gradle 的基本原理，并向您展示如何在本地机器上设置和测试
+  Gradle。它解释了用于创建 Gradle 构建脚本的语言 Groovy 的基础知识。然后深入探讨了依赖管理、项目、任务、生命周期阶段和插件等概念。本书还讨论了
+  Gradle 对多项目的支持以及将构件发布到本地和远程仓库。最后，以对持续集成（CI）的讨论和对 Jenkins 对 Gradle 的支持的回顾作为结尾。
+
+
+  ## 本书结构
+
+
+  第 1 章 从对 Gradle 的温和介绍开始。它讨论了采用 Gradle 的原因，并概述了其两个替代方案：Ant 和 Maven。
+
+
+  第 2 章 重点介绍如何在您的机器上设置 Gradle 并测试安装。它还概述了 Gradle 发行版中包含的不同文件/文件夹，并展示了一个简单的 Gradle
+  构建脚本。
+
+
+  第 3 章 深入探讨 Groovy 语言基础，并回顾构建 Gradle 脚本所需的语言特性。
+
+
+  第 4 章 讨论 Gradle 的两个构建块——项目和任务。您将学习如何创建任务以及在这些任务之间声明依赖关系。您还将回顾 Gradle 构建的生命周期。
+
+
+  第 5 章 深入探讨 Gradle 对 Java 项目的支持。您将了解 `Java` 和 `War` 插件，并使用它们来构建和部署 Java 及 Web 应用程序。本章还深入介绍了
+  Gradle 插件。您还将了解如何构建自定义插件。
+
+
+  第 6 章 详细介绍了依赖管理。您将学习依赖管理背后的原理，并了解 Gradle 对管理这些依赖的支持。您还将了解不同类型的依赖以及如何解决依赖冲突。
+
+
+  第 7 章 回顾 Gradle 多项目构建的复杂性。您将了解两种类型的项目结构——层次结构和扁平结构。您还将学习如何在根项目和子项目构建文件中声明公共行为和特定项目行为。
+
+
+  第 8 章 讨论 Gradle 对发布构件的支持。您将了解用于声明项目产生的构件的归档配置。然后，您将安装 Nexus Maven 仓库管理器并将构件发布到该仓库。您还将了解处理额外构件所需的配置。
+
+
+  第 9 章 回顾持续集成（CI）流程，并探索流行的开源 CI 服务器 Jenkins。您将了解安装 Jenkins 以及配置必要的插件来运行位于 GitHub
+  仓库上的示例项目。
+
+
+  ## 目标读者
+
+
+  《Gradle 入门指南》面向希望快速上手 Gradle 的开发人员和自动化工程师。本书假定读者具备 Java 基础知识。无需具备 Gradle 使用经验。
+
+
+
+
+
+  ## 下载源代码
+
+
+  本书示例的源代码可从 [`www.apress.com/9781484210321`](http://www.apress.com/9781484210321)
+  下载。该源代码也可在 GitHub 上获取，地址为 [`https://github.com/bava/intro-gradle`](https://github.com/bava/intro-gradle)
+  。
+
+
+  下载后，请解压代码并将内容放入 `intro-gradle` 文件夹中。源代码按章节组织。每个文件夹都包含对应章节的构建脚本和项目文件。
+
+
+  ## 问题反馈
+
+
+  我们欢迎读者的反馈。如果您有任何问题或建议，可以通过 `Balaji@inflinx.com` 或 `Sudha@inflinx.com` 联系作者。
+
+
+  致谢
+
+
+  本书的完成离不开许多人的支持，我们想借此机会向他们表示诚挚的感谢。
+
+
+  感谢 Apress 的优秀团队；没有你们，这本书就无法问世。感谢 Mark Powers 的耐心和专注。感谢我们的开发编辑 Chris Nelson 为改进本书所提供的见解和建议。感谢
+  Steve Anglin 的持续支持，以及参与此项目的 Apress 团队其他成员。
+
+
+  衷心感谢我们的技术审校 Manuel Jordan Elera 的辛勤付出和对细节的关注。他宝贵的反馈意见使本书得到了许多改进。
+
+
+  最后，我们要感谢朋友和家人们一直以来的支持与鼓励。
+
+
+
+
+  目录 第 1 章：入门 1 声明式依赖管理 1 声明式构建 2 约定优于配置 2 增量构建 2 Gradle Wrapper 2 插件 3 开源 3 Gradle
+  替代方案 3 Ant + Ivy 3 Maven 4 总结 5 第 2 章：搭建 Gradle 环境 7 安装前提 7 搭建 Java 环境 7 下载 Gradle
+  7 安装 Gradle 8 在 Windows 上安装 8 测试安装 11 在 Mac OS X 上安装 11 设置 Gradle 的 JVM 选项 12 Gradle
+  发行版 13 Hello World Gradle 脚本 13 获取帮助 14 Gradle GUI 15 IDE 支持 15 总结 16 第 3 章：Groovy
+  语言入门 17 安装 Groovy 17 运行 Groovy 18 Groovy 语言基础特性 19 Groovy 语法 19 注释 20 数据类型 20 闭包
+  24 总结 25 第 4 章：理解 Gradle 构建 27 项目 27 任务 29 创建任务 29 任务依赖 31 跳过任务 35 Gradle 任务类型 36
+  构建生命周期 37 总结 39 第 5 章：项目与插件 41 插件介绍 41 Java 项目 42 使用 Java 插件 42 Jar 任务 45 生成 Javadoc
+  46 配置默认布局 48 创建 Web 项目 49 War 任务 51 编写自定义插件 52 创建 Java 插件 52 创建 Groovy 插件 55 创建独立项目插件
+  57 总结 66 第 6 章：依赖管理 67 声明式依赖管理 67 依赖配置 70 处理依赖 71 外部模块依赖 72 文件依赖 75 项目依赖 77 解决依赖冲突
+  78 仓库 80 创建 Uber JAR 82 总结 85 第 7 章：多项目构建 87 多项目结构 87 示例项目 88 扁平布局 90 多项目与单项目构建
+  92 项目配置 93 项目依赖 95 子项目构建文件 96 总结 97 第 8 章：发布构件 99 发布到本地仓库 99 发布到 Maven 仓库 100 安装
+  Nexus 100 构建配置 101 处理额外构件 104 安装到 Gradle 缓存 106 使用文件仓库 107 使用本地 Maven 仓库 107 使用中央仓库
+  108 总结 109 第 9 章：持续集成 111 持续集成流程 111 示例项目 112 安装 Jenkins 113 配置 Jenkins 114 创建构建任务
+  116 运行构建任务 122 归档构件 124 发布测试结果 126 总结 128 索引 129 内容概览 关于作者 xi   关于技术审校 xiii   致谢
+  xv   引言 xvii   第 1 章：入门 1   第 2 章：搭建 Gradle 环境 7   第 3 章：Groovy 语言入门 17   第 4 章：理解
+  Gradle 构建 27   第 5 章：项目与插件 41   第 6 章：依赖管理 67   第 7 章：多项目构建 87   第 8 章：发布构件 99  
+  第 9 章：持续集成 111   索引 129   关于作者与关于技术审校 关于作者 关于技术审校
+
+
+
+
+  '
+- '# 1. 入门指南
+
+
+  电子补充材料 本章的在线版本（doi:[10.​1007/​978-1-4842-1031-4_​1](http://dx.doi.org/10.1007/978-1-4842-1031-4_1)）包含补充材料，仅供授权用户使用。
+
+
+  传统软件开发通常涉及编写代码、编译代码、运行测试以及打包最终部署或分发的归档文件。随着软件项目日益复杂，诸如运行静态代码分析、条件性资源包含以及执行安全扫描等额外步骤，已成为主流构建与部署流程的一部分。构建自动化工具允许你自动化这些步骤，从而有助于使构建过程可重复且可预测。在本书中，我们将讨论并探索
+  Gradle（一款流行的构建自动化工具）的特性。
+
+
+  Gradle（[`http://gradle.org/`](http://gradle.org/)）是 Java 构建项目自动化工具家族的最新成员。它基于 Apache
+  许可证 2.0 开源发布，首个版本（0.7）于 2009 年发布，随后在 2014 年发布了 2.0 版本。在撰写本书时，Gradle 的当前版本为 2.7。Gradle
+  借鉴了 Ant 和 Maven 等其他现有构建工具的经验教训，因此获得了广泛采用。多个知名项目，如 Android、Spring Framework 和 Hibernate，已将其构建系统迁移至
+  Gradle。让我们来看看 Gradle 受欢迎的一些原因。
+
+
+  ## 声明式依赖管理
+
+
+  大多数 Java 项目依赖其他项目和开源框架才能正常运行。手动下载这些依赖项并在项目中使用时跟踪其版本可能非常繁琐。更复杂的是，这些依赖项可能还有自己的依赖项（称为传递依赖项），需要解析并下载。
+
+
+  Gradle 提供了一种便捷的方式来声明项目依赖项。然后它会自动下载这些依赖项（以及传递依赖项），并允许你在项目中使用它们。这极大地简化了项目依赖管理。需要注意的是，你只需告诉
+  Gradle **需要什么**，而无需关心**如何实现**。
+
+
+  ## 声明式构建
+
+
+  Gradle 使用基于 Groovy（[`http://groovy-lang.org/`](http://groovy-lang.org/)）的领域特定语言（DSL——参见[`https://docs.gradle.org/current/dsl/`](https://docs.gradle.org/current/dsl/)）来声明构建。该
+  DSL 提供了一组语言元素，可以轻松组合成简单且意图明确的构建脚本。
+
+
+  ## 约定优于配置
+
+
+  Gradle 为 Java、Groovy、Web、Scala、Android 和 OSGi 项目提供了合理的默认值和约定。例如，Gradle 建议 Java 项目的所有生产源代码位于
+  `src\main\java` 文件夹下。同样，它也对测试代码和资源的位置提出了建议。此外，对于 Java 项目，默认任务会自动配置，用于编译代码、运行测试以及生成
+  JAR 工件。
+
+
+  遵循这些约定可以使构建脚本非常简洁。然而，你并不局限于遵循这些约定。由于 Gradle 的 DSL 基于 Groovy，因此很容易编写 Groovy 代码来调整和偏离这些约定。
+
+
+  ## 增量构建
+
+
+  复杂项目常常会遇到构建速度慢的问题，因为构建工具会尝试“清理”并重新构建所有内容。Gradle 通过提供增量构建来解决这个问题，如果任务的输入和输出都没有变化，则会跳过该任务的执行。例如，`JavaCompile`
+  任务以一组 Java 源文件作为输入，并生成一组类文件。Gradle 利用此信息检查源文件是否已更改，如果未检测到更改，则该任务会被跳过。
+
+
+  ## Gradle Wrapper
+
+
+  Gradle Wrapper 在 Windows 环境中是一个批处理文件（`gradlew.bat`），在 Linux/Mac 环境中是一个 shell 脚本。运行时，包装器脚本会在机器上下载并安装一份全新的
+  Gradle 运行时，然后执行 Gradle 构建。Gradle Wrapper 使得快速搭建新的持续集成（CI）服务器变得容易，这些服务器无需任何额外配置即可运行构建。包装器还使得分发代码和与他人协作变得简单，因为接收者可以轻松地构建它。
+
+
+  ## 插件
+
+
+  Gradle 使得通过插件来增强和自定义其功能变得容易。插件是可分发的组件，封装了可重用的构建和任务逻辑。使用插件，可以支持其他语言、创建新任务、修改现有任务功能，并通过添加新关键字来扩展构建语言。使用
+  Gradle，你可以轻松创建自己的插件，从而能够集成特定于你组织的任务和工作流。
+
+
+  ## 开源
+
+
+  Gradle 是开源的，下载和使用完全免费。它附带丰富的在线文档，并得到活跃社区的支持。此外，Gradle Inc. 为 Gradle 生态系统提供咨询和商业支持。
+
+
+  ## Gradle 的替代方案
+
+
+  在深入探讨 Gradle 之前，先了解一下它的几个替代方案——Ant + Ivy 和 Apache Maven。
+
+
+  ### Ant + Ivy
+
+
+  Apache Ant（[`http://ant.apache.org`](http://ant.apache.org/)）是一款流行的开源脚本化构建工具。它于
+  2000 年发布，是 Java 生态系统中首个“现代”构建工具。该框架基于 Java，并使用可扩展标记语言（XML）进行配置。Ant 的默认配置文件是 `build.xml`
+  文件。
+
+
+  使用 Ant 通常涉及定义任务和目标。顾名思义，Ant 任务是需要完成的一个工作单元。典型任务包括创建目录、运行测试、编译源代码、构建 Web 应用程序归档（WAR）文件等。目标只是一组任务。一个目标可以依赖于其他目标。这种依赖关系允许你对目标执行进行排序。清单
+  1-1 展示了一个简单的 `build.xml` 文件，其中包含一个名为 `compile` 的目标。`compile` 目标包含两个 `echo` 任务和一个
+  `javac` 任务。
+
+
+  **清单 1-1. 示例 Ant build.xml 文件**
+
+
+  `<project name="Sample Build File" default="compile" basedir=".">`
+
+
+       `<target name="compile" description="Compile Source Code">`
+
+
+         `<echo message="Starting Code Compilation"/>`
+
+
+         `<javac srcdir="src" destdir="dist"/>`
+
+
+         `<echo message="Completed Code Compilation"/>`
+
+
+       `</target>`
+
+
+  `</project>`
+
+
+  Ant 不会对你的项目施加任何约定或限制，以其极高的灵活性而闻名。然而，这种灵活性有时会导致 `build.xml` 文件变得复杂、难以理解和维护。
+
+
+  Apache Ivy（[`http://ant.apache.org/ivy/`](http://ant.apache.org/ivy/)）提供了自动化依赖管理，使
+  Ant 的使用更加愉快。使用 Ivy，你可以在名为 `ivy.xml` 的 XML 文件中声明依赖项，如清单 1-2 所示。将 Ivy 与 Ant 集成涉及在
+  `build.xml` 文件中声明新目标以检索和解析依赖项。
+
+
+  **清单 1-2. 示例 Ivy 清单**
+
+
+  `<ivy-module version="2.0">`
+
+
+       `<info organisation="com.apress" module="gswm-ivy" />`
+
+
+       `<dependencies>`
+
+
+         `<dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.0.2"
+  />`
+
+
+       `</dependencies>`
+
+
+  `</ivy-module>`
+
+
+
+
+  ### Maven
+
+
+  Apache Maven 是当前 Java 生态系统中**最流行**的构建自动化/项目管理工具。Maven 于 2004 年发布，旨在解决 Ant 用户面临的诸多问题。它高度遵循“约定优于配置”原则，并为项目引入了标准目录结构。它还引入了声明式依赖管理，并自动从外部仓库下载所需的依赖。
+
+
+  Maven 使用 XML 来提供项目、依赖元数据和构建配置。这些信息在项目根目录下定义的 `pom.xml` 文件中提供。清单 1-3 展示了一个 Java 项目的
+  `pom.xml` 文件示例。
+
+
+  **清单 1-3\. 示例 pom.xml 文件**
+
+
+  `<project ExternalRef"> http://maven.apache.org/POM/4.0.0` `"`
+
+
+  `xmlns:xsi="` [`http://www.w3.org/2001/XMLSchema-instance`](http://www.w3.org/2001/XMLSchema-instance)
+  `"`
+
+
+      `xsi:schemaLocation="` [`http://maven.apache.org/POM/4.0.0`](http://maven.apache.org/POM/4.0.0)
+
+
+  [`http://maven.apache.org/xsd/maven-4.0.0.xsd`](http://maven.apache.org/xsd/maven-4.0.0.xsd)
+  `">`
+
+
+      `<modelVersion>4.0.0</modelVersion>`
+
+
+      `<groupId>com.apress</groupId>`
+
+
+      `<artifactId>test-service</artifactId>`
+
+
+      `<version>1.0.0-SNAPSHOT</version>`
+
+
+      `<dependencies>`
+
+
+          `<dependency>`
+
+
+              `<groupId>junit</groupId>`
+
+
+              `<artifactId>junit</artifactId>`
+
+
+              `<version>3.8.1</version>`
+
+
+              `<scope>test</scope>`
+
+
+          `</dependency>`
+
+
+      `</dependencies>`
+
+
+  `</project>`
+
+
+  在这个 `pom.xml` 文件中，`groupId`、`artifactId` 和 `version` 元素提供了关于正在构建的项目的信息。`dependencies`
+  元素指明了项目所依赖的工件（本例中为 `JUnit`）。
+
+
+  Maven 的“约定优于配置”虽然有用，但有时可能过于僵化，难以偏离约定。Maven 对 XML 的使用表现力不强，并且在声明复杂的构建逻辑时可能限制过多。
+
+
+  注意
+
+
+  要了解更多关于 Maven 的信息，请参考 Balaji Varanasi 和 Sudha Belida 所著的《Introducing Maven》（Apress，2014
+  年）([`http://www.apress.com/9781484208427`](http://www.apress.com/9781484208427)）。
+
+
+  ## 总结
+
+
+  Gradle 极大地简化了构建过程并实现了构建管理的自动化。本章对 Gradle 进行了简要介绍，并阐述了采用它的主要原因。你还了解了 Gradle 的同类工具——Ant
+  + Ivy 和 Maven。
+
+
+  在下一章中，你将学习启动并运行 Gradle 所需的设置。
+
+
+  '
+- '# 2. 设置 Gradle
+
+
+  Gradle 的安装是一个简单直接的过程。本章将解释如何使用 Windows 7 和 Mac 操作系统安装和设置 Gradle。你可以按照类似的过程在其他操作系统上进行操作。除了基本的
+  Gradle 安装和设置外，本章还包括安装前提条件、一个初始示例脚本以及关于 Gradle 帮助和 IDE 支持的信息。
+
+
+  ## 安装前提条件
+
+
+  在开始 Gradle 安装之前，你需要确保已正确安装和配置 Java，然后下载当前版本的 Gradle。
+
+
+  ### 设置 Java
+
+
+  要安装 Java，请从 [`www.oracle.com/technetwork/java/javase/downloads/index.html`](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+  下载 JDK（不仅仅是 Java 运行时环境 [JRE]），并按照该网页上指定的安装说明进行操作。Gradle 需要 JDK 6.0 或更高版本。本书使用 JDK
+  7。（这些说明也适用于 Java 8。）
+
+
+  在机器上安装好 JDK 后，将 `JAVA_HOME` 环境变量指向 JDK 安装目录。例如，如果你将 JDK 安装在 `c:\java\jdk1.7` 下，则
+  `JAVA_HOME` 值应设置为 `c:\java\jdk1.7`。然后修改 `PATH` 环境变量，在其末尾追加 `%JAVA_HOME%\bin`。
+
+
+  如果没有设置 `JAVA_HOME` 变量，你将看到 `"JAVA_HOME not found in your environment"` 构建错误。
+
+
+  ### 下载 Gradle
+
+
+  在开始安装过程之前，请从 Gradle 网站（[`https://gradle.org/gradle-download/`](https://gradle.org/gradle-download/)）下载最新版本的
+  Gradle。在撰写本文时，最新版本是 2.7。下载图 2-1 中所示的 Gradle 2.7 “完整发行版”文件（`gradle-2.7-all.zip`）。
+
+
+  ![A978-1-4842-1031-4_2_Fig1_HTML.jpg](img/A978-1-4842-1031-4_2_Fig1_HTML.jpg)
+
+
+  图 2-1.
+
+
+  Gradle 下载选项
+
+
+  ## 安装 Gradle
+
+
+  本节介绍在 Windows 和 Mac OS X 上安装和测试 Gradle。本节还包括 Gradle 的 JVM 选项以及发行版文件集的概述。
+
+
+  ### 在 Windows 上安装
+
+
+  将下载的发行版解压到计算机上的本地目录。它将创建一个名为 `gradle-2.7-all` 的文件夹。本书假设你将 `gradle-2.7` 文件夹的内容放置在
+  `c:\tools\gradle-2.7` 目录中，如图 2-2 所示。
+
+
+  ![A978-1-4842-1031-4_2_Fig2_HTML.jpg](img/A978-1-4842-1031-4_2_Fig2_HTML.jpg)
+
+
+  图 2-2.
+
+
+  Gradle 安装位置
+
+
+  安装过程的下一步是添加 `GRADLE_HOME` 环境变量，指向 Gradle 安装目录——在我们的例子中是 `c:\tools\gradle-2.7`。启动“开始”菜单，右键单击“计算机”选项。接下来，选择“系统属性”，然后选择“高级系统设置”。这将启动图
+  2-3 所示的窗口。
+
+
+  ![A978-1-4842-1031-4_2_Fig3_HTML.jpg](img/A978-1-4842-1031-4_2_Fig3_HTML.jpg)
+
+
+  图 2-3.
+
+
+  系统属性窗口
+
+
+  单击“环境变量”按钮，然后在“系统变量”下单击“新建”。输入图 2-4 中所示的值，然后单击“确定”。
+
+
+  ![A978-1-4842-1031-4_2_Fig4_HTML.jpg](img/A978-1-4842-1031-4_2_Fig4_HTML.jpg)
+
+
+  图 2-4.
+
+
+  Gradle 主目录系统变量
+
+
+  过程的最后一步是修改 `Path` 环境变量，以便你可以从命令行运行 Gradle 命令。选择 `Path` 变量并单击“编辑”。在 `Path` 值的开头添加
+  `%GRADLE_HOME%\bin`，如图 2-5 所示。单击“确定”。这样就完成了 Gradle 的安装。如果你有任何打开的命令行窗口，请关闭它们并重新打开一个新的命令行窗口。当环境变量被添加或修改时，新值不会自动传播到已打开的命令行窗口。
+
+
+  ![A978-1-4842-1031-4_2_Fig5_HTML.jpg](img/A978-1-4842-1031-4_2_Fig5_HTML.jpg)
+
+
+  图 2-5.
+
+
+  将 Gradle 主目录位置添加到路径变量
+
+
+  ### 测试安装
+
+
+  现在 Gradle 已安装，是时候测试并验证安装了。打开命令提示符并运行以下命令：
+
+
+  `gradle -v`
+
+
+  此命令应输出类似于图 2-6 所示的信息。
+
+
+  ![A978-1-4842-1031-4_2_Fig6_HTML.jpg](img/A978-1-4842-1031-4_2_Fig6_HTML.jpg)
+
+
+  图 2-6.
+
+
+  Gradle 版本命令
+
+
+  `–v` 命令行选项会显示 Gradle 的安装路径以及它正在使用的 Java、Ant 和 Groovy 版本。运行扩展命令 `gradle --version`
+  会得到相同的结果。
+
+
+
+
+  ### 在 Mac OS X 上安装
+
+
+  解压下载的分发包，并将 `gradle-2.7-all` 文件夹的内容移动到 `/Users/<<your_user_name>/tools` 目录下，如图 2-7
+  所示。
+
+
+  ![A978-1-4842-1031-4_2_Fig7_HTML.jpg](img/A978-1-4842-1031-4_2_Fig7_HTML.jpg)
+
+
+  图 2-7.
+
+
+  Mac 上的 Gradle 安装位置
+
+
+  打开终端，使用以下命令编辑位于您主目录下的初始化脚本 `.profile`：
+
+
+  `nano ∼/.profile`
+
+
+  在 `.profile` 文件中，添加以下行：
+
+
+  `export GRADLE_HOME = /Users/<<your_user_name>/tools/gradle-2.7`
+
+
+  `export PATH=$PATH:$GRADLE_HOME/bin`
+
+
+  按 CTRL+O 保存更改。然后按 CTRL+X 退出文件。运行 `gradle -v` 命令以验证安装是否成功。
+
+
+  ### 设置 Gradle 的 JVM 选项
+
+
+  与所有其他 Java 应用程序一样，Gradle 共享由环境变量 `JAVA_OPTS` 设置的相同 JVM 选项。特别是在复杂项目中，您很可能会遇到 `OutOfMemory`
+  错误。例如，当您运行大量 `JUnit` 测试或生成大量报告时，可能会发生这种情况。要解决此错误，请增加 Gradle 使用的 Java 虚拟机 (JVM) 的堆大小。这可以通过创建一个名为
+  `GRADLE_OPTS` 的新环境变量来全局完成。首先，我们建议使用值 `-Xmx512m` 或 `-Xmx1024m`。
+
+
+  ### Gradle 分发包
+
+
+  如您在图 2-2（参见“在 Windows 上安装”）中所见，Gradle 分发包包含多个文件和文件夹。表 2-1 简要总结了这些内容及其用途。
+
+
+  表 2-1.
+
+
+  Gradle 分发包的文件和文件夹
+
+
+  | 文件夹 | 描述 |
+
+  | --- | --- |
+
+  | `bin` | 包含 Gradle 可执行文件 |
+
+  | `docs` | 包含用户指南 (HTML/PDF)、Javadoc、Groovydoc 和 Gradle DSL 参考 |
+
+  | `init.d` | 包含每次构建需要运行的任何脚本 |
+
+  | `lib` | 包含 Gradle 运行所需的依赖项（JAR、插件） |
+
+  | `media` | 包含 Gradle 图标和徽标 |
+
+  | `samples` | 包含复杂构建以及与工具集成的模板和示例 |
+
+  | `src` | 包含 Gradle 的源代码 |
+
+
+  ## Hello World Gradle 脚本
+
+
+  现在您已成功安装 Gradle，可以创建您的第一个 Gradle 脚本了，该脚本不执行任何操作，仅输出文本 `Hello world!!`。执行构建时，Gradle
+  默认会查找名为 `build.gradle` 的构建脚本。首先，创建一个名为 `hello-world` 的文件夹。在该文件夹内，创建 `build.gradle`
+  文件，然后从清单 2-1 复制代码。
+
+
+  清单 2-1\. Hello World 任务
+
+
+  `task helloWorld << {`
+
+
+      `println ''Hello world!!''`
+
+
+  `}`
+
+
+  打开命令提示符，导航到 `hello-world` 目录。然后使用命令 `gradle helloWorld` 执行 `helloWorld` 任务。您应该会看到如下所示的
+  `Hello world!!` 输出：
+
+
+  `C:\apress\chapter` `2` `\hello-world>gradle helloWorld`
+
+
+  `:helloWorld`
+
+
+  `Hello world!!`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  `Total time: 3.594 secs`
+
+
+  清单 2-1 使用 Gradle 的 DSL 来定义 `helloWorld` 任务，并添加一个动作以向控制台打印 `Hello world!!`。您可以使用闭包（花括号
+  `{}` 内的代码）和 Groovy 的 `println` 方法来实现这一点，该方法类似于 Java 的 `System.out.println` 方法。正如您将在第
+  4 章中探讨的那样，Gradle 任务可以包含多个动作。`<<` 是一个快捷操作符，指示要为任务执行的最后一个动作（在本例中为打印到控制台）。
+
+
+  构建输出包括所运行任务的名称和执行时间。可以运行仅输出任务输出的相同构建。这通过使用 `-q` 标志来实现，如下所示：
+
+
+  `C:\apress\chapter` `2` `\hello-world>gradle -q helloWorld`
+
+
+  `Hello world!!`
+
+
+  ## 获取帮助
+
+
+  您可以使用 `–h` 或 `-help` 选项获取 Gradle 命令行选项列表。运行以下命令将产生类似于图 2-8 所示的输出。
+
+
+  ![A978-1-4842-1031-4_2_Fig8_HTML.jpg](img/A978-1-4842-1031-4_2_Fig8_HTML.jpg)
+
+
+  图 2-8.
+
+
+  Gradle 帮助命令
+
+
+  `gradle -help`
+
+
+  ## Gradle GUI
+
+
+  除了提供强大的命令行界面外，Gradle 还附带了一个用于处理构建的图形用户界面。可以使用 `-gui` 选项启动 Gradle 的 GUI。图 2-9 显示了从
+  `hello-world` 文件夹启动的 Gradle GUI：
+
+
+  ![A978-1-4842-1031-4_2_Fig9_HTML.jpg](img/A978-1-4842-1031-4_2_Fig9_HTML.jpg)
+
+
+  图 2-9.
+
+
+  Gradle GUI
+
+
+  `\chapter` `2` `\hello-world>gradle –gui`
+
+
+  “任务树”选项卡显示 `build.gradle` 文件中所有可用的任务。您只需双击任务名称即可在任务树中执行任务。“收藏夹”选项卡允许您存储常用的 Gradle
+  命令。“命令行”选项卡，顾名思义，允许您键入并运行任何您会在命令行界面中运行的 Gradle 命令。“设置”选项卡允许您更改配置选项，例如项目目录和日志级别。
+
+
+  ## IDE 支持
+
+
+  本书使用命令行来创建和构建示例应用程序。如果您有兴趣使用 IDE，好消息是所有现代 IDE 都完全集成了 Gradle。
+
+
+  ## 总结
+
+
+  本章引导您在本地计算机上完成 Gradle 的设置。您还了解了作为 Gradle 分发包一部分的不同文件/文件夹，并查看了一个简单的 Gradle 构建脚本。
+
+
+  在下一章中，您将学习 Groovy 语言的基础知识。
+
+
+  '
+- '# 3. Groovy 语言入门
+
+
+  Gradle 构建脚本是使用 Groovy 编写的。本章涵盖 Groovy 编程语言的基础知识。
+
+
+  Groovy 是一种在 JVM 上运行的动态编程语言。Groovy 语言从设计之初就旨在与 Java 在源代码和二进制级别兼容。这种兼容性允许 Groovy 类扩展
+  Java 类或利用大量的 Java 框架和库。Groovy 的 1.0 版本于 2007 年 1 月发布。下一个主要版本——Groovy 2.0——于 2012
+  年 7 月发布。在撰写本书时，Groovy 的最新版本是 2.4。Groovy 是开源的，并根据 Apache 2.0 许可证分发。
+
+
+  ## 安装 Groovy
+
+
+  Gradle 自带其 Groovy 库，任何现有的 Groovy 安装都将被忽略。为了学习和尝试 Groovy，您需要先安装 Groovy。外部 Groovy
+  安装将使您能够熟悉该语言，而不会弄乱 Gradle 安装。请按照以下步骤安装 Groovy：
+
+
+  从 [`www.groovy-lang.org/download.html`](http://www.groovy-lang.org/download.html)
+  下载 Groovy 二进制文件。   解压 ZIP 文件并将内容放置在您的硬盘上。例如，`C:\tools\groovy-2.4.5`。   创建一个名为 `GROOVY_HOME`
+  的新环境变量，指向解压位置。   将 `GROOVY_HOME\bin` 添加到 `PATH` 环境变量中。例如，在 Windows 机器上，您将添加 `%GROOVY_HOME%\bin`。
+    成功安装 Groovy 后，在命令行上运行 `groovy -v` 或 `groovy -version` 命令以验证安装。图 3-1 显示了成功安装的输出。
+
+
+  ![A978-1-4842-1031-4_3_Fig1_HTML.jpg](img/A978-1-4842-1031-4_3_Fig1_HTML.jpg)
+
+
+  图 3-1.
+
+
+  Groovy 版本命令
+
+
+
+
+  ## 运行 Groovy
+
+
+  Groovy 提供了一个名为 Groovy Shell 或 `groovysh` 的命令行工具。它允许你轻松快速地试验该语言。要启动 `groovysh`，请打开命令提示符/终端并输入
+  `groovysh`。Shell 启动完成后，你就可以开始输入 Groovy 代码并查看其运行效果，如下所示：
+
+
+  `C:\apress\intro-gradle>groovysh`
+
+
+  `Groovy Shell (2.4.5, JVM: 1.7.0_67)`
+
+
+  `Type '':help'' or '':h'' for help.`
+
+
+  `----------------------------------------------------------------------------`
+
+
+  `groovy:000> println ''Hello World''`
+
+
+  `Hello World`
+
+
+  `===> null`
+
+
+  `groovy:000>`
+
+
+  你可以通过运行命令 `:exit` 或 `:quit` 来退出 Groovy shell。你也可以运行 `:help` 命令来列出可用的 shell 命令或获取某个特定命令的详细信息。
+
+
+  Groovy 还提供了 GroovyConsole——一个用于执行 Groovy 代码的基于 GUI 的工具。要启动 GroovyConsole，只需双击 `GROOVY_HOME\bin`
+  目录下的 `groovyConsole.bat`（适用于 Windows）。图 3-2 展示了带有输入区域和输出区域的 GroovyConsole。输入区域是你输入
+  Groovy 代码的地方（例如图 3-2 中显示的 `println ''Hello World''`）。可以通过选择 **脚本** ➤ **运行** 菜单项或从
+  **操作** 菜单中选择 **运行** 来编译和执行 Groovy 代码。执行结果会显示在输出区域中。
+
+
+  ![A978-1-4842-1031-4_3_Fig2_HTML.jpg](img/A978-1-4842-1031-4_3_Fig2_HTML.jpg)
+
+
+  图 3-2.
+
+
+  GroovyConsole 示例
+
+
+  ## 基本 Groovy 语言特性
+
+
+  本节涵盖 Groovy 语法、数据类型（简单类型和集合类型）以及闭包。如果你想了解更多关于 Groovy 语言特性的信息，请参考在线文档 [`www.groovy-lang.org/single-page-documentation.html`](http://www.groovy-lang.org/single-page-documentation.html)。
+
+
+  ### Groovy 语法
+
+
+  Groovy 从 Java 中吸收了大量语法，并增加了简化使其易于使用。其中一个简化是，当一行只包含一条语句时，可以省略行尾的分号。类似地，至少有一个参数的方法可以在没有括号的情况下调用。以下两条语句在
+  Groovy 中都是有效的：
+
+
+  `println ("Hello World");`
+
+
+  `println "Hello World"`
+
+
+  以下是与 Java 相比其他一些值得注意的区别：
+
+
+  *   Groovy 中的方法和类默认是 public 的。
+
+  *   方法中的 `return` 语句是可选的。如果 Groovy 没有找到 `return` 语句，它会返回最后一个被求值的表达式。
+
+  *   受检异常（Checked exceptions）不需要被捕获或声明。Groovy 会自动将这些异常包装为 `RuntimeException`。
+
+  *   默认情况下，会导入以下包——`java.lang.*`、`java.util.*`、`java.util.regex.*`、`java.net.*`、`java.io.*`、`groovy.lang.*`、`groovy.util.*`、`java.math.BigDecimal`
+  和 `java.math.BigInteger`。
+
+
+  ### 注释
+
+
+  Groovy 注释的语法与 Java 相同。单行注释以 `//` 开头，多行注释以 `/*` 开头并以 `*/` 结尾。Groovydoc 注释类似于 Javadoc
+  注释，以 `/**` 开头并以 `*/` 结尾。
+
+
+  ### 数据类型
+
+
+  Groovy 语言提供了多种数据类型，例如数字、字符串，以及列表和映射等复杂数据类型。
+
+
+  #### 字符串
+
+
+  Groovy 支持两种类型的字符串——常规的 Java 字符串（`java.lang.String` 的实例）和 GStrings（`groovy.lang.GString`
+  的实例）。常规的 Groovy 字符串通过使用单引号、双引号或三引号包围字符序列来声明。以下是 `String` 声明的一些示例：
+
+
+  `String message = ''Hello World''`
+
+
+  `String processor = "Intel"`
+
+
+  `String multiLine = ''''''This text is on line one`
+
+
+     `line 2 and`
+
+
+     `line 3''''''`
+
+
+  `String escapedExample = ''Bob\''s Burgers''`
+
+
+  三引号语法允许你将文本跨行放置，而无需在每行进行拆分和拼接。Groovy 会保留使用三引号声明的多行文本中的空白字符。例如，上面显示的变量 `multiLine`
+  将包含带有空白字符和换行符的文本。如果你要将该文本保存到数据库中，它将按如下方式保存：
+
+
+  `This text is on line one`
+
+
+      `line 2 and`
+
+
+      `line 3`
+
+
+  注意
+
+
+  与 Java 一样，Groovy 中的字符串是不可变的。如果需要更改字符串的内容，建议使用 `StringBuilder` 或 `StringBuffer`。
+
+
+  GStrings 是使用双引号（或斜杠 `//`）转义并包含使用 `${...}` 语法的 Groovy 表达式的字符串。当访问 GString 时，Groovy
+  会对表达式求值，并用其值替换表达式文本。这里展示了一个 GString 的示例：
+
+
+  `String name = ''Luke''`
+
+
+  `String message = "Hello ${name}"`
+
+
+  `println message// 这将打印 Hello Luke`
+
+
+  当表达式是对变量的简单引用时，可以省略花括号 `{}`。因此，前面代码中的 `message` 可以重写如下：
+
+
+  `String message = "Hello $name"`
+
+
+  注意
+
+
+  Ruby 和 Perl 等语言具有字符串插值的概念，即能够在字符串中用表达式的值替换表达式。因此，GStrings 通常被称为插值字符串。
+
+
+  Groovy 允许在 `${...}` Groovy 表达式内部进行方法调用、语句和变量名引用。使用 GStrings，你可以轻松创建模板，而无需外部模板引擎。以下是一个在表达式内部调用
+  `length()` 和 `toLowerCase()` 方法的示例：
+
+
+  `String name = ''Luke''`
+
+
+  `String count = "${name.length()}"`
+
+
+  `println count`
+
+
+  `println "${name.toLowerCase()}"`
+
+
+  #### 数字
+
+
+  Groovy 支持整数和浮点数。与 Java 不同，Groovy 不提供原始数据类型。相反，Groovy 中的一切都是对象。这允许你在看似原始类型的东西上调用方法，如下所示：
+
+
+  `8.toString()`
+
+
+  `4.times {`
+
+
+          `// 运行一个任务`
+
+
+  `}`
+
+
+  `7.next()`
+
+
+  默认情况下，Groovy 中的整数是 `java.lang.Integer`、`java.lang.Long` 或 `java.math.BigInteger`
+  的实例。Groovy 会自动选择最小的类来容纳整数的值。示例如下：
+
+
+  `println 90.class                     // 打印 class java.lang.Integer`
+
+
+  `println 9999999999999999999.class    // 打印 class java.math.BigInteger`
+
+
+  默认情况下，浮点数是 `java.math.BigDecimal` 的实例：
+
+
+  `println 9.0.class    // 打印 class java.math.BigDecimal`
+
+
+  始终可以通过显式关联类型或使用后缀来覆盖默认行为，如下所示：
+
+
+  `println 90l.class    // 打印 class java.lang.Long`
+
+
+  `float foo = 9.0`
+
+
+  `println foo.class    // 打印 class java.lang.Float`
+
+
+  如果 Groovy 不支持原始类型，那么你可能会想知道如何使用运算符进行基本算术运算，例如 2 + 3 或 10/2。Groovy 重载了运算符，这些运算符实际上是
+  Groovy 中的方法调用。例如，2 + 3 等价于 `2.plus(3)`。由于运算符是方法，如果其中一个操作数是 null，那么执行该操作将导致 `NullPointerException`。
+
+
+  注意
+
+
+  与 Java 不同，Groovy 默认执行浮点除法。例如，操作 2/4 的结果是 0.5。在 Java 中，相同的操作结果将是 `0`，因为 Java 检测到两个操作数都是整数，因此会执行整数除法。
+
+
+
+
+  #### 声明变量
+
+
+  到目前为止，你已经了解了如何使用数据类型声明变量。Groovy 还提供了 `def` 关键字，当你不确定或不关心变量数据类型时，可以用它来声明变量。例如：
+
+
+  `def obj = ''a''`
+
+
+  `println obj.class    // 输出 class java.lang.String`
+
+
+  `obj = 1.4`
+
+
+  `println obj.class    // 输出 class java.math.BigDecimal`
+
+
+  在声明变量时，可以省略 `def` 关键字。以下是省略 `def` 后的上述代码：
+
+
+  `obj = ''a''`
+
+
+  `println obj.class         // 输出 class java.lang.String`
+
+
+  `obj = 1.4`
+
+
+  `println obj.class         // 输出 class java.math.BigDecimal`
+
+
+  #### 列表
+
+
+  Groovy 中的列表是一个有序的元素集合。默认情况下，Groovy 列表是 `java.util.ArrayList` 的实例，并具有以下声明语法：
+
+
+  `list = [1, 2, 3, 4]`
+
+
+  `listWithDiffItems = [1, 3, ''String Item'', 3.4]`
+
+
+  与 Java 一样，可以使用 `get` 方法访问列表中的元素。Groovy 还提供了一个 `getAt` 方法，该方法允许你使用负索引从末尾开始访问元素：
+
+
+  `println list.get(1)       // 输出 2`
+
+
+  `println list.getAt(-1)    // 输出 4，即倒数第一个元素`
+
+
+  可以使用 `add` 和 `remove` 方法添加或删除元素。`each` 方法可用于遍历列表元素：
+
+
+  `list.add 5`
+
+
+  `list.remove 0    // 0 是要删除元素的索引`
+
+
+  `list.each { println it }`
+
+
+  请注意，`each` 方法将闭包作为其参数。你将在本章后面部分了解更多关于闭包的内容。
+
+
+  #### 映射
+
+
+  Groovy 中的映射包含键/值对。默认情况下，Groovy 映射是 `java.util.LinkedHashMap` 的实例，并具有以下语法：
+
+
+  `[key1 : value1, key2 : value2]`
+
+
+  以下是在 Groovy 中定义的映射示例：
+
+
+  `map = [ "red" : 1, "yellow" : 2, "green" : 3 ]`
+
+
+  可以通过多种方式访问映射中的元素。最常见的方法是使用 `"."` 表示法。以下是一些示例：
+
+
+  `println map.red //输出 1`
+
+
+  `println map["yellow"] // 输出 2`
+
+
+  `println map.get("green") // 输出 3`
+
+
+  你可以使用 `put` 方法向映射添加新值，并使用 `each` 方法遍历值：
+
+
+  `map.put "blue", 4`
+
+
+  `map.each { println "Key: ${it.key} and Value: ${it.value}" }`
+
+
+  请注意 `each()` 方法中 `${}` 表达式的使用。Groovy 会计算这些表达式并输出键/值对。
+
+
+  #### 范围
+
+
+  Groovy 提供了一个范围运算符（`..`）来创建对象范围。例如，以下代码定义了一个从 0 到 9 的整数范围：
+
+
+  `def intRange = 0..9`
+
+
+  `println intRange.size()     // 输出 10`
+
+
+  `intRange.each {print it}    // 输出 0123456789`
+
+
+  ### 闭包
+
+
+  简单来说，闭包是一段可执行的代码块。Groovy 中的闭包是 `groovy.lang.Closure` 的实例。由于闭包是对象，因此可以将它们分配给变量或作为参数传递给方法。由于它们包含代码，因此可以执行闭包。闭包通常被称为匿名函数。
+
+
+  Groovy 中的闭包可以接受参数并返回值。声明闭包的语法如下：
+
+
+  `{ 参数列表 -> 闭包体 }`
+
+
+  闭包由花括号 `{}` 括起来。参数列表由逗号（,）分隔，闭包体包含一个或多个语句。符号 `->` 将参数列表与闭包体分开。如果闭包没有 `return` 语句，则返回最后一个语句的输出。以下是一个接受一个
+  `String` 类型参数的闭包示例：
+
+
+  `def greet = {String name -> "Hello ${name}" }`
+
+
+  可以使用引用变量 `greet` 调用此闭包，如下所示：
+
+
+  `greet "Joe"`
+
+
+  `greet.call "Joe"`
+
+
+  如果闭包不接受任何参数，则可以省略参数列表和 `->` 符号。以下是一个没有任何参数的非常简单的示例：
+
+
+  `def greet = {"Hello"}`
+
+
+  在没有声明参数的情况下，一个名为 `it` 的无类型参数将隐式地提供给闭包体。考虑以下使用 `it` 参数的示例：
+
+
+  `def greet = {"Hello $it"}`
+
+
+  当使用参数（例如 `"World"`）调用 `greet` 闭包时，它将输出 `Hello World`。如果在没有参数的情况下调用 `greet`，则会传递
+  `null`。
+
+
+  `def greet = {"Hello $it"}`
+
+
+  `greet "World"    // 输出 Hello World`
+
+
+  `greet()          // 输出 Hello null`
+
+
+  以下是更多闭包定义的示例：
+
+
+  `{ -> }                     // 空闭包`
+
+
+  `{ a, b -> a + b }          // 带有两个无类型参数的闭包`
+
+
+  `{int a, int b -> a + b}    // 带有两个 int 类型参数的闭包`
+
+
+  闭包可以作为参数传递给方法。事实上，本章的“列表”和“映射”部分展示了如何将闭包 `{print it}` 传递给列表或映射的 `each` 方法。`each`
+  方法接受一个 `groovy.lang.Closure` 类型的参数，并为列表或映射中的每个元素执行它。闭包通过隐式的 `it` 参数访问元素。
+
+
+  闭包可以访问在其作用域内声明的变量。例如，如果闭包是在方法内部定义的，它可以访问该方法有权访问的所有变量（参数、局部变量、类变量等）。
+
+
+  ## 总结
+
+
+  Groovy 是使用 Gradle 时的首选语言。本章涵盖了安装 Groovy 以及使用 Groovy Shell 和 GroovyConsole。它回顾了 Groovy
+  的基础知识及其支持的数据类型。你了解到 Groovy 的 GString 允许你包含表达式，从而使其适合模板化。最后，你学习了闭包——可以传递的代码块/功能。
+
+
+  在接下来的章节中，你将深入了解 Gradle 的任务，并开始编写 Gradle 构建脚本。
+
+
+  '
+- '# 4. 理解 Gradle 构建
+
+
+  Gradle 的核心是两个基本构建块——项目和任务。一个 Gradle 构建由一个或多个项目组成，每个项目包含一个或多个任务。本章将回顾这两个构建块。你将回顾这些构建块，并了解与构建相关的生命周期阶段。
+
+
+
+
+  ## 项目
+
+
+  在 Gradle 中，项目是一个抽象概念，代表需要构建的产物。例如，一个 Gradle 项目可以是一个需要打包成 JAR 文件的 Java 应用程序。Gradle
+  项目也可以代表一项需要完成的工作。例如，可以使用 Gradle 项目来部署一个应用程序。
+
+
+  对于构建中的每个项目，Gradle 都会创建一个 `org.gradle.api.Project` 实例，并将其与构建脚本关联。这使得构建脚本能够在运行时使用
+  Project 的 API 来访问属性和自定义构建行为（例如，通过创建新任务或跳过现有任务）。表 4-1 列出了 Project API 中一些常用的属性和方法。
+
+
+  表 4-1.
+
+
+  常用的 Project API 属性和方法
+
+
+  | 属性/方法 | 描述 |
+
+  | --- | --- |
+
+  | `name` | 项目名称，可通过 `settings.gradle` 文件更改。默认为项目目录名称。 |
+
+  | `description` | 项目描述。通常在 `build.gradle` 文件中设置。 |
+
+  | `version` | 项目的版本。 |
+
+  | `parent` | 返回父项目（如果存在）。 |
+
+  | `group` | 用户定义的标识符，表示负责该项目的组或组织。例如，`org.hibernate` 或 `org.springframework`。 |
+
+  | `task` | 用于创建新任务的重载方法。 |
+
+  | `dependencies` | 配置项目的依赖项。 |
+
+  | `repositories` | 配置项目的仓库。 |
+
+  | `defaultTasks` | 配置要为项目运行的默认任务名称。 |
+
+
+  要访问 Project API 的属性/方法，可以使用 Gradle 与构建文件关联的隐式变量 `project`。清单 4-1 展示了一个位于 `chapter4`
+  文件夹中、名为 `project-explicit.gradle` 的 Gradle 构建文件。该构建文件包含设置 Project 的 description
+  并将其打印到控制台的代码。Gradle 将使用名称 `chapter4` 作为它为此构建创建的项目对象。
+
+
+  清单 4-1\. project-explicit.gradle 示例
+
+
+  `project.description = "Hello World Project"`
+
+
+  `println "Project Description ${project.description}"`
+
+
+  请注意，此新构建文件的名称并未使用 `build.gradle`。Gradle 默认会查找 `build.gradle` 文件来运行构建。也可以创建具有不同名称的构建文件。要使用这些文件触发构建，需要使用命令行选项
+  `-b` 或 `--build-file`，后跟文件名。在本章中，你将处理大量示例，并会创建单独的构建文件，然后使用 `-b` 选项运行它们。运行 `project-explicit.gradle`
+  构建文件将产生以下输出。
+
+
+  `chapter` `4` `>gradle -b project-explicit.gradle`
+
+
+  `Project Description Hello World Project`
+
+
+  Gradle 还允许你在访问 Project API 的方法或属性时省略项目变量名：
+
+
+  `description = "Hello World Project"`
+
+
+  `println "Project Description ${description}"`
+
+
+  可以使用 `ext {}` 闭包内的语法 `<<name>> =<< value>>` 或使用快捷方式 `ext.<<name>>=<<value>>` 来定义额外的项目级属性。清单
+  4-2 展示了一个名为 `project-add-properties.gradle` 的新构建文件中定义的两个额外属性——`environment` 和 `outputLang`。
+
+
+  清单 4-2\. project-add-properties.gradle 示例
+
+
+  `description = "Hello World Project"`
+
+
+  `println "Project Description ${description}"`
+
+
+  `ext {`
+
+
+  `outputLang = "English"`
+
+
+  `}`
+
+
+  `ext.environment = "local"`
+
+
+  `println "Output Language: ${project.outputLang}"`
+
+
+  `println "Environment: ${environment}"`
+
+
+  运行此脚本将产生以下输出。由于这些属性是在项目级别定义的，你可以直接访问它们的值，或使用 `project` 前缀。
+
+
+  `chapter` `4` `>gradle -b project-add-properties.gradle`
+
+
+  `Project Description Hello World Project`
+
+
+  `Output Language: English`
+
+
+  `Environment: local`
+
+
+  ## 任务
+
+
+  Gradle 项目由一个或多个执行构建步骤的任务组成。任务执行诸如编译 Java 源代码并生成类或清理目标文件夹等操作。任务也可以依赖于其他任务。例如，运行测试用例的任务依赖于编译
+  Java 代码的任务。对应于构建文件中的每个任务，Gradle 都会创建一个 `org.gradle.api.Task` 实例。默认情况下，它将是 `org.gradle.api.DefaultTask`
+  类。表 4-2 展示了一些常用的与任务相关的 API 属性和方法。
+
+
+  表 4-2.
+
+
+  常用的与任务相关的 API 属性和方法
+
+
+  | 属性/方法 | 描述 |
+
+  | --- | --- |
+
+  | `name` | 任务名称。 |
+
+  | `description` | 任务描述。 |
+
+  | `group` | 任务所属的任务组。任务组提供了一种对相关任务进行逻辑分组的方法。 |
+
+  | `enabled` | 决定任务是启用还是禁用。 |
+
+  | `dependson` | 配置任务依赖关系。 |
+
+  | `doFirst` | 在任务操作列表的开头添加一个操作。 |
+
+  | `doLast` | 在任务操作列表的末尾添加一个操作。 |
+
+  | `onlyIf` | 仅当传入的闭包返回 true 时才运行任务。 |
+
+
+  在接下来的章节中，你将使用这些属性和方法来创建任务、添加操作以及声明任务之间的依赖关系。
+
+
+
+
+  ### 创建任务
+
+
+  在最简单的层面上，创建一个任务只需要任务名称：
+
+
+  `task displayProperties`
+
+
+  尽管这个任务完全有效，但它实际上什么也不做。为了让任务执行有意义的操作，你需要为其添加一些动作。Gradle 提供了 `doFirst` 和 `doLast`
+  方法来将动作与任务关联。顾名思义，添加到 `doFirst` 方法的动作会位于待执行动作列表的开头。添加到 `doLast` 方法的动作则位于动作列表的末尾。清单
+  4-3 展示了更新后的 `displayProperties` 任务及其添加的动作。
+
+
+  **清单 4-3.** 带动作的 displayProperties
+
+
+  `description = "Sample Description for Project"`
+
+
+  `task displayProperties {`
+
+
+  `description = "Task to display properties"`
+
+
+  `ext {`
+
+
+  `taskProp1 = "Prop Val"`
+
+
+  `}`
+
+
+  `doFirst {`
+
+
+  `println "Project Description: $project.description"`
+
+
+  `println "Task name $name"`
+
+
+  `println "Task Description: $description"`
+
+
+  `}`
+
+
+  `doLast {`
+
+
+  `println "Task Property 1: $taskProp1"`
+
+
+  `}`
+
+
+  `}`
+
+
+  清单 4-3 更新了项目对象的 `description` 属性，然后在任务的闭包内更新了任务的 `description` 属性。Gradle 允许你使用 `ext`
+  闭包在任务级别声明额外的属性。跨任务和其他配置元素共享的属性通常被声明为项目属性。例如，依赖工件的版本号通常被声明为项目属性（更多内容见第 6 章）。特定于某个任务的属性则被声明为任务属性。在清单
+  4-3 中，使用了 `ext` 闭包来声明一个名为 `taskProp1` 的任务属性。代码还为 `doFirst` 方法添加了三个动作，为 `doLast`
+  方法添加了一个动作。在 `doFirst` 方法中，`$project` 变量将项目对象的描述打印到控制台。由于 `name` 和 `description`
+  是任务属性，你可以直接访问它们来打印其值。
+
+
+  创建一个名为 `display-properties.gradle` 的新构建文件，并复制清单 4-3 的内容。执行 `displayProperties` 任务，你应该会看到以下输出。如你所见，`doFirst`
+  内的动作先被执行，然后是 `doLast` 块内的动作。
+
+
+  `\chapter` `4` `>gradle -b display-properties.gradle displayProperties`
+
+
+  `:displayProperties`
+
+
+  `Project Description: Sample Description for Project`
+
+
+  `Task name displayProperties`
+
+
+  `Task Description: Task to display properties`
+
+
+  `Task Property 1: Prop Val`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  `Total time: 4.046 secs`
+
+
+  **提示**
+
+
+  在命令行执行任务时，不必指定完整的任务名称。驼峰式命名的任务可以通过缩写每个单词来运行。例如，`displayProperties` 任务可以使用以下快捷方式运行：`gradle
+  -b display-properties.gradle dP`。
+
+
+  为了让 Gradle 执行任务，你需要将任务名称作为 Gradle 命令的一部分传入，正如你在之前的执行中所见。Gradle 提供了一种方法，可以使用 `defaultTasks`
+  方法定义一个或多个默认任务，当没有提供其他任务时可以运行这些默认任务。清单 4-4 展示了如何使用 `defaultTasks` 方法将 `displayProperties`
+  定义为默认任务。
+
+
+  **清单 4-4.** 带默认任务的 displayProperties
+
+
+  `description = "Sample Description for Project"`
+
+
+  `defaultTasks ''displayProperties''`
+
+
+  `task displayProperties {`
+
+
+  `description = "Task to display properties"`
+
+
+  `// 为简洁起见，内容已移除`
+
+
+  `}`
+
+
+  一旦你用 `defaultTasks` 代码更新了 `display-properties.gradle` 文件，你就可以使用 `gradle -b display-properties.gradle`
+  命令触发任务执行。
+
+
+  ### 任务依赖
+
+
+  非平凡的构建通常包含多个任务，并且一个任务通常需要其依赖的另一个任务完成后才能运行。例如，在运行打包任务来组装工件之前，你必须先运行编译源代码的任务。同样，在编译任务运行之前，它可能需要运行一个任务来清理输出文件夹。Gradle
+  提供了几种声明此类任务依赖关系的方法。
+
+
+  清单 4-5 展示了 `task-dependencies.gradle` 构建文件，其中包含三个任务——`clean`、`compile` 和 `package`。这个例子采用了两种声明依赖关系的方法。`dependsOn`
+  方法使 `compile` 任务依赖于 `clean` 任务。要使 `package` 任务依赖于 `compile`，你需要使用任务的 `dependsOn`
+  属性。在 Gradle 中，`package` 是一个保留字，要将其用作任务名称，你必须将其作为参数传递给 `task` 方法。另外，请注意使用 `<<` 运算符作为
+  `doLast` 方法的快捷方式。
+
+
+  **清单 4-5.** task-dependencies.gradle
+
+
+  `task clean << {`
+
+
+  `println ''Executing clean task''`
+
+
+  `}`
+
+
+  `task compile << {`
+
+
+  `println ''Executing compile task''`
+
+
+  `}`
+
+
+  `compile.dependsOn ''clean''`
+
+
+  `task ("package", dependsOn : ''compile'') << {`
+
+
+  `println ''Executing package task''`
+
+
+  `}`
+
+
+  运行 `package` 任务，你会看到 `clean` 和 `compile` 任务在运行 `package` 任务之前被执行：
+
+
+  `\chapter` `4` `>gradle -b task-dependencies.gradle package`
+
+
+  `:clean`
+
+
+  `Executing clean task`
+
+
+  `:compile`
+
+
+  `Executing compile task`
+
+
+  `:package`
+
+
+  `Executing package task`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  为了确定任务需要运行的顺序，Gradle 会创建一个有向无环图（DAG）。每个要执行的任务都成为图中的一个节点。任务之间的依赖关系用于创建节点之间的边。图 4-1
+  展示了清单 4-5 中任务的 DAG 表示。
+
+
+  ![A978-1-4842-1031-4_4_Fig1_HTML.gif](img/A978-1-4842-1031-4_4_Fig1_HTML.gif)
+
+
+  **图 4-1.** Gradle 的任务 DAG 表示
+
+
+  DAG 不包含有向环。换句话说，不可能从一个节点出发，沿着一条边序列，再回到同一个节点。因此，Gradle 永远不会执行一个已经执行过的任务。
+
+
+  考虑清单 4-6 中的场景，其中任务 A 和任务 B 都依赖于任务 C。
+
+
+  **清单 4-6.** task-dependencies2.gradle
+
+
+  `task A << { println ''In task A'' }`
+
+
+  `task B << { println ''In task B'' }`
+
+
+  `task C << { println ''In task C'' }`
+
+
+  `A.dependsOn ''C''`
+
+
+  `B.dependsOn ''C''`
+
+
+  由于 Gradle 为任务执行创建了 DAG，当任务 A 和 B 运行时，Gradle 只运行任务 C 一次。创建一个包含清单 4-6 内容的 `task-dependencies2.gradle`
+  文件，并运行以下命令来验证这一点：
+
+
+  `\chapter` `4` `>gradle -b task-dependencies2.gradle A B`
+
+
+  `:C`
+
+
+  `In task C`
+
+
+  `:A`
+
+
+  `In task A`
+
+
+  `:B`
+
+
+  `In task B`
+
+
+  考虑另一个不同的场景，其中任务 A 依赖于任务 B 和任务 C，如清单 4-7 所示。
+
+
+  **清单 4-7.** task-dependencies3.gradle
+
+
+  `task A << { println ''In task A'' }`
+
+
+  `task B << { println ''In task B'' }`
+
+
+  `task C << { println ''In task C'' }`
+
+
+  `A.dependsOn ''B''`
+
+
+  `A.dependsOn ''C''`
+
+
+  当任务 A 运行时，`dependsOn` 确保 B 和 C 在执行 A 之前运行。创建一个包含清单 4-7 内容的 `task-dependencies3.gradle`
+  文件并执行任务 A。你应该会看到以下输出：
+
+
+  `\chapter` `4` `>gradle -b task-dependencies3.gradle A`
+
+
+  `:B`
+
+
+  `In task B`
+
+
+  `:C`
+
+
+  `In task C`
+
+
+  `:A`
+
+
+  `In task A`
+
+
+
+
+  `dependsOn` 并不能保证依赖任务的执行顺序。例如，在清单 4-7 中，无法保证任务 B 会在任务 C 之前执行，反之亦然。有时你可能需要确保 B 在
+  C 之前运行。为此，Gradle 提供了 `mustRunAfter` 方法。清单 4-8 展示了在前一个清单的基础上添加了 `mustRunAfter` 的修改版本。
+
+
+  **清单 4-8. task-dependencies4.gradle**
+
+
+  `task A << { println ''In task A'' }`
+
+
+  `task B << { println ''In task B'' }`
+
+
+  `task C << { println ''In task C'' }`
+
+
+  `A.dependsOn ''B''`
+
+
+  `A.dependsOn ''C''`
+
+
+  `B.mustRunAfter ''C''`
+
+
+  创建一个包含清单 4-8 内容的 `task-dependencies4.gradle` 文件，并运行任务 A。你应该会看到任务按照 C、B、A 的顺序执行，如下所示：
+
+
+  `\chapter` `4` `>gradle -b task-dependencies4.gradle A`
+
+
+  `:C`
+
+
+  `In task C`
+
+
+  `:B`
+
+
+  `In task B`
+
+
+  `:A`
+
+
+  `In task A`
+
+
+  ### 跳过任务
+
+
+  有时你可能希望跳过某个任务的执行。例如，你可能只想在开发环境中运行某些任务，而在测试和生产环境中跳过它们。为此，Gradle 提供了 `onlyIf` 方法，该方法接受一个闭包。如果闭包返回
+  `false`，则跳过该任务的执行。
+
+
+  清单 4-9 展示了一个仅在非生产环境中运行的任务。`onlyIf` 闭包检查一个名为 `env` 的属性是否存在，并验证其值是否等于 `Prod`。
+
+
+  **清单 4-9. skip-task.gradle**
+
+
+  `task skipInProd {`
+
+
+      `onlyIf {`
+
+
+          `!project.hasProperty(''env'') || project.env != "Prod"`
+
+
+      `}`
+
+
+      `doLast {`
+
+
+          `println ''Task execution complete''`
+
+
+      `}`
+
+
+  `}`
+
+
+  你可以使用命令行参数 `-Pname=value` 将外部属性传递给 Gradle 构建脚本。将清单 4-9 的内容复制到 `skip-task.gradle`
+  文件中，并使用命令行参数 `-Penv=Prod` 执行 `skipInProd` 任务。你应该会看到任务被跳过执行，如下所示：
+
+
+  `\chapter` `4` `>gradle -b skip-task.gradle skipInProd -Penv=Prod`
+
+
+  `:skipInProd SKIPPED`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  `Total time: 2.82 secs`
+
+
+  Gradle 提供了另一种通过任务的 `enabled` 属性来跳过任务的技术。默认情况下，`enabled` 属性被设置为 `true`。但是，可以通过编程方式切换其值，从而影响任务的执行。清单
+  4-10 展示了使用 `enabled` 属性重写的 `skipInProd` 任务。
+
+
+  **清单 4-10. 使用 enabled 属性跳过任务**
+
+
+  `task skipInProd {`
+
+
+      `enabled = !project.hasProperty(''env'') || project.env != "Prod"`
+
+
+      `doLast {`
+
+
+          `println ''Task execution complete''`
+
+
+      `}`
+
+
+  `}`
+
+
+  ### Gradle 任务类型
+
+
+  在本章前面部分，你已经了解到 Gradle 会为构建文件中找到的每个任务创建一个 `org.gradle.api.Task` 实例。默认情况下，这些任务是 `org.gradle.api.DefaultTask`
+  的实例，因此继承了 `DefaultTask` 的属性和方法。Gradle 提供了几种开箱即用的任务类型，你的任务可以扩展这些类型，从而获得额外的功能，例如创建
+  ZIP 归档或执行 Java 程序的能力。本节将介绍其中一些开箱即用的任务类型。
+
+
+  #### Zip
+
+
+  `Zip` 任务允许你从一组文件/目录创建 ZIP 归档。以下是一个 `Zip` 任务的示例：
+
+
+  `task archiveTask (type : Zip) {`
+
+
+      `archiveName  ''images.zip''`
+
+
+      `from ''images''`
+
+
+      `into "$buildDir/dist"`
+
+
+  `}`
+
+
+  `archiveTask` 从 `images` 目录读取文件/文件夹，创建一个名为 `images.zip` 的 ZIP 文件，并将其放置在 `build/dist`
+  文件夹中。
+
+
+  #### Copy
+
+
+  `Copy` 任务允许你将文件从一个或多个源复制到目标目录。以下是一个 `Copy` 任务的示例：
+
+
+  `task copyTask(type : Copy) {`
+
+
+      `from ''src/config/dev.cert''`
+
+
+      `from ''src/db''`
+
+
+      `into ''dist''`
+
+
+  `}`
+
+
+  `copyTask` 会将一个名为 `dev.cert` 的单个文件以及 `src/db` 文件夹中的所有文件复制到 `dist` 文件夹中。
+
+
+  #### Exec
+
+
+  `Exec` 任务允许你执行一个命令行进程。示例如下：
+
+
+  `task showWindowsVersion(type:Exec) {`
+
+
+    `commandLine ''cmd'', ''ver''`
+
+
+  `}`
+
+
+  在 Windows 机器上，此任务会查找 Windows 操作系统版本。`commandLine` 属性需要完整的命令行，包括可执行文件和参数。但是，你需要将命令字符串按空格分割，并以逗号分隔的形式提供分割后的项。因此，命令
+  `cmd ver` 被分割并作为 `cmd, ver` 提供。
+
+
+  #### Delete
+
+
+  `Delete` 任务允许你删除文件或文件夹。以下任务删除了两个文件夹——`libs` 和 `docs`。
+
+
+  `task cleanTask (type : Delete) {`
+
+
+      `delete ''build/libs'', ''build/docs''`
+
+
+  `}`
+
+
+  ## 构建生命周期
+
+
+  每个 Gradle 构建都会经历三个不同的生命周期阶段：
+
+
+  初始化阶段：在此阶段，Gradle 识别所有需要处理的 `build.gradle` 文件。对于单项目构建，只会识别一个构建文件。对于多项目构建（更多内容请参见第
+  7 章），Gradle 会尝试定位与这些项目相关的所有可能的构建文件。一旦 Gradle 识别出参与构建的项目，它将为每个项目创建一个对应的 `org.gradle.api.Project`
+  实例。   配置阶段：在此阶段，所有已识别项目的构建脚本都会被执行。请务必记住，此阶段不会执行任何实际的任务。相反，Gradle 会为每个项目构建一个任务对象的
+  DAG（有向无环图）。Gradle 还会执行所有任务的配置部分，包括被禁用的任务。   执行阶段：在此阶段，Gradle 识别出需要执行的任务，并按正确的顺序运行它们。
+   
+
+
+  为了更好地理解构建生命周期，请考虑清单 4-11 中所示的 `build-phases.gradle` 构建脚本。该脚本包含两个任务——`noActionTask`
+  和 `withActionTask`。这两个任务都直接在任务的闭包中包含 Groovy 代码。此外，`withActionTask` 在 `doLast` 方法内部也有代码。
+
+
+  **清单 4-11. build-phases.gradle**
+
+
+  `task noActionTask {`
+
+
+      `description = "A task with no actions"`
+
+
+      `println "I am in the configuration block of $name"`
+
+
+  `}`
+
+
+  `task withActionTask {`
+
+
+      `println "I am in the configuration block of $name"`
+
+
+      `doLast {`
+
+
+          `println "performing an action in $name"`
+
+
+      `}`
+
+
+  `}`
+
+
+  在配置阶段，Gradle 会执行直接在任务闭包中指定的代码。配置阶段完成后，Gradle 会在执行阶段执行 `doFirst` 和 `doLast` 内部的操作。例如，运行一个列出所有任务的命令会执行初始化和配置阶段，产生以下输出：
+
+
+  `\chapter` `4` `>gradle -q -b build-phases.gradle tasks`
+
+
+  `I am in the configuration block of noActionTask`
+
+
+  `I am in the configuration block of withActionTask`
+
+
+  ---------------output truncated---------------------
+
+
+  运行 `withActionTask` 将导致执行两个配置块以及 `doLast` 方法中的操作。以下是产生的输出：
+
+
+  `\chapter` `4` `>gradle -q -b build-phases.gradle wAT`
+
+
+  `I am a in the configuration block of noActionTask`
+
+
+  `I am a in the configuration block of withActionTask`
+
+
+  `performing an action in withActionTask`
+
+
+
+
+  ## 总结
+
+
+  在本章中，你学习了 Gradle 构建的两个基本组成部分：项目和任务。你了解到一个任务可以包含一个或多个在 `doFirst` 或 `doLast` 代码块中定义的操作。任务可以依赖于其他任务，Gradle
+  会创建一个有向无环图（DAG）来确保任务按正确顺序执行，同时也确保每个任务只执行一次。你了解了两种用于执行或跳过任务的技术——`onlyIf` 和 `enable`。最后，你回顾了
+  Gradle 构建的三个阶段。
+
+
+  在下一章中，你将使用 Gradle 构建 Java 和 Web 项目。你还将学习 Gradle 插件，并构建一个自定义插件。
+
+
+  '
+- '# 5. 项目与插件
+
+
+  Gradle 为 Java、Scala 和 Groovy 等领域提供了标准化的项目结构。它采用“约定优于配置”的方法，并就项目不同部分应位于何处提供了建议。例如，Gradle
+  建议所有 Java 源代码应放在 `src/main/java` 文件夹中，所有测试代码应放在 `src/test/java` 文件夹中。这种标准化使得开发人员可以轻松地在不同项目之间切换。本章将介绍
+  Gradle 针对 Java 项目的“约定优于配置”特性。
+
+
+  Gradle 遵循基于插件的架构，这使得增强和自定义其功能变得容易。它提供了几个开箱即用的插件，可以轻松构建 Java 项目。此外，Gradle 使得创建可与其他开发人员共享的自定义插件变得容易。本章将介绍
+  Gradle 插件，并向你展示如何开发一个生成构建编号的自定义插件。
+
+
+  ## 插件介绍
+
+
+  Gradle 中的插件封装了可重用的构建、任务或配置逻辑。使用插件，可以添加新的任务、新的 DSL 元素或合理的默认值，从而扩展 Gradle 的功能。
+
+
+  Gradle 插件分为两种类型：脚本插件和二进制插件。顾名思义，脚本插件是可以包含在其他构建脚本中的 Gradle 构建脚本。脚本插件提供了一种模块化通用构建逻辑的简便方法。这些脚本插件可以位于本地文件系统，也可以使用以下语法从远程服务器引入：
+
+
+  `apply from: ''reusable-build.gradle''`
+
+
+  位于远程服务器上的脚本插件可以使用以下语法导入：
+
+
+  `apply from: ''http://your_server.com/plugin_path/plugin_name''`
+
+
+  二进制插件将可重用的构建逻辑封装在实现 `org.gradle.api.Plugin<T>` 接口的类中。这些类通常打包成 JAR 文件，但也可以位于构建脚本内部或项目下的
+  `buildSrc` 文件夹中。二进制插件可以使用以下语法在构建脚本中使用：
+
+
+  `apply plugin: ''plugin_id''`
+
+
+  `plugin_id` 是给定插件的唯一标识符。Gradle 自带的插件使用短名称，例如 `java` 或 `groovy`，而社区插件通常使用完全限定名称，例如
+  `org.hibernate.gradle.tools`。
+
+
+  ## Java 项目
+
+
+  Gradle 附带几个开箱即用的插件，可简化 Java 开发。本节将介绍用于构建 JAR 工件的 `java` 插件，以及用于开发 Web 应用程序的 `war`
+  插件。你还将了解可用于生成 API 文档的 Javadoc 插件。
+
+
+  ### 使用 Java 插件
+
+
+  `Java` 插件允许你编译 Java 代码、运行单元测试并组装 JAR 工件。要查看该插件的实际效果，请先在您的机器上创建一个名为 `hello-gradle`
+  的新 Java 项目。创建一个 `build.gradle` 文件，并添加以下代码以应用 `Java` 插件：
+
+
+  `apply plugin: ''java''`
+
+
+  如上一节所述，此插件会向构建添加一组任务和属性。你可以通过运行 `gradle tasks` 命令来查看这些任务。以下是输出的一部分：
+
+
+  `\hello-gradle>gradle tasks`
+
+
+  `:tasks`
+
+
+  `Build tasks`
+
+
+  `-----------`
+
+
+  `assemble - 组装此项目的输出。`
+
+
+  `build - 组装并测试此项目。`
+
+
+  `buildDependents - 组装并测试此项目以及所有依赖它的项目。`
+
+
+  `buildNeeded - 组装并测试此项目以及它依赖的所有项目。`
+
+
+  `classes - 组装 ''main'' 类。`
+
+
+  `clean - 删除构建目录。`
+
+
+  `jar - 组装一个包含主类的 jar 归档文件。`
+
+
+  `testClasses - 组装 ''test'' 类。`
+
+
+  `Documentation tasks`
+
+
+  `-------------------`
+
+
+  `javadoc - 为主源代码生成 Javadoc API 文档。`
+
+
+  `Verification tasks`
+
+
+  `------------------`
+
+
+  `check - 运行所有检查。`
+
+
+  `test - 运行单元测试。`
+
+
+  注意
+
+
+  所有 Gradle 命令都在包含 `build.gradle` 文件的文件夹中使用命令行/终端执行。
+
+
+  输出显示了许多由插件清晰分组的新任务。`Build tasks` 组下的任务（如 `assemble` 和 `jar`）用于构建和打包。你通常不会单独运行这些任务，而是运行
+  `build` 任务，该任务通过触发 `assemble` 和 `check` 任务来编译、测试和组装代码。`Documentation tasks` 下的 `javadoc`
+  任务用于生成 Javadoc API 文档。`Verification tasks` 组下的任务用于运行单元测试。
+
+
+  除了这些任务之外，`Java` 插件还就 Java 项目代码的不同部分应位于何处提供了一些指导。表 5-1 显示了推荐的目录。
+
+
+  表 5-1. Gradle 推荐的 Java 目录结构
+
+
+  | 目录 | 存放的资源 |
+
+  | --- | --- |
+
+  | `src/main/java` | 需要投入生产的 Java 源代码 |
+
+  | `src/main/resources` | 需要投入生产的资源，例如配置文件（XML）和属性文件 |
+
+  | `src/test/java` | Java 测试源代码 |
+
+  | `src/test/resources` | 测试阶段使用的资源 |
+
+
+  注意
+
+
+  有经验的 Maven 用户会注意到 `Java` 插件的目录约定与 Maven 推荐的 Java 项目结构相匹配。请务必记住，这些约定只是建议，Gradle 可以轻松地根据项目需求更改它们。
+
+
+  根据这些建议，让我们在 `hello-gradle` 文件夹下创建 `src/main/java` 文件夹。创建一个 `HelloGradle.java` 类，其内容如清单
+  5-1 所示。
+
+
+  清单 5-1. HelloGradle Java 代码
+
+
+  `public class HelloGradle {`
+
+
+  `public static void main(String[] args) {`
+
+
+  `System.out.println("Hello Gradle!!");`
+
+
+  `}`
+
+
+  `}`
+
+
+  现在，你可以使用 `gradle build` 命令构建代码。运行该命令的输出如下所示：
+
+
+  `\hello-gradle>gradle build`
+
+
+  `:compileJava`
+
+
+  `:processResources UP-TO-DATE`
+
+
+  `:classes`
+
+
+  `:jar`
+
+
+  `:assemble`
+
+
+  `:compileTestJava UP-TO-DATE`
+
+
+  `:processTestResources UP-TO-DATE`
+
+
+  `:testClasses UP-TO-DATE`
+
+
+  `:test UP-TO-DATE`
+
+
+  `:check UP-TO-DATE`
+
+
+  `:build`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  `Total time: 4.479 secs`
+
+
+  构建成功后，在 Windows 资源管理器中打开 `hello-gradle` 文件夹，你会看到一个 `build` 文件夹被创建，其内容如图 5-1 所示。`classes`
+  文件夹包含编译后的类，`libs` 文件夹包含组装好的 JAR 文件。`tmp` 文件夹包含临时生成的文件，例如清单文件。
+
+
+  ![A978-1-4842-1031-4_5_Fig1_HTML.jpg](img/A978-1-4842-1031-4_5_Fig1_HTML.jpg)
+
+
+
+
+  图 5-1.
+
+
+  Gradle 构建目录
+
+
+  `gradle build` 命令的输出会在某些任务旁边显示文本 `"UP-TO-DATE"`。此文本表示该特定任务已被跳过。某些 Gradle 任务会声明一组输入和一组输出。例如，`compileJava`
+  任务将一组 Java 文件作为输入，并生成一组编译后的类作为输出。如果 Gradle 确定任务的输入和输出自上次执行以来没有变化，它会自动跳过该任务的执行。此功能称为增量构建，可以显著减少大型项目的构建时间。
+
+
+  ### Jar 任务
+
+
+  Java 插件提供的 `Jar` 任务负责组装 JAR 归档文件。`Jar` 任务提供了许多属性，允许您配置生成的工件。其中一个属性是 `archiveName`。默认情况下，生成的
+  JAR 文件名将是项目的名称。在本例中，项目名称为 `hello-gradle`，因此 `build/libs` 文件夹包含一个 `hello-gradle.jar`
+  文件。以下代码显示了将生成的 JAR 名称更改为 `introducing-gradle.jar` 所需的配置：
+
+
+  `jar {`
+
+
+      `archiveName = ''introducing-gradle.jar''`
+
+
+  `}`
+
+
+  `Jar` 任务还会自动向其创建的 JAR 文件添加一个清单文件。清单文件通常包含有关打包在 JAR 文件中的文件的信息。要向清单文件添加新条目，您可以使用 `Jar`
+  任务的 `manifest` 属性。清单 5-2 显示了修改后的 `build.gradle` 文件，其中包含向清单文件添加三个新条目的配置。
+
+
+  清单 5-2\. 新的 hello-gradle build.gradle 文件
+
+
+  `apply plugin: ''java''`
+
+
+  `jar {`
+
+
+      `manifest {`
+
+
+          `attributes (`
+
+
+              `''Main-Class'' : ''HelloGradle'',`
+
+
+              `''Implementation-Title'' : project.name,`
+
+
+              `''Developer''  : ''Sudha Belida''`
+
+
+          `)`
+
+
+      `}`
+
+
+  `}`
+
+
+  运行 `gradle build` 命令。构建成功完成后，使用 WinZip 等 ZIP 工具打开 `builds/lib` 文件夹内生成的归档文件。`META-INF`
+  文件夹下的 `MANIFEST.MF` 文件应显示这三个新条目。
+
+
+  注意
+
+
+  为了使构建生成包含清单条目的更新 JAR，您可能需要从 `libs` 目录中删除现有的 `hello-gradle.jar` 并重新运行 `build` 命令。
+
+
+  ### 生成 Javadoc
+
+
+  Javadoc 是记录和理解 Java 代码的绝佳工具。`Java` 插件带有 `javadoc` 任务，可用于自动生成 Javadoc。在运行命令之前，您应该通过将其内容替换为清单
+  5-3 来更新 `HelloGradle.java` 类。
+
+
+  清单 5-3\. 带有 Javadoc 的 HelloGradle
+
+
+  `/**`
+
+
+  `*  Class demonstrating Gradle Projects`
+
+
+  `*     @author Sudha`
+
+
+  `*/`
+
+
+  `public class HelloGradle {`
+
+
+      `/**`
+
+
+      `* Displays Hello Gradle!! to console`
+
+
+      `*`
+
+
+      `* @param args command line arguments`
+
+
+      `*/`
+
+
+      `public static void main(String[] args) {`
+
+
+          `System.out.println("Hello Gradle!!");`
+
+
+      `}`
+
+
+  `}`
+
+
+  运行 `gradle javadoc` 命令将产生如下所示的输出：
+
+
+  `\hello-gradle>gradle javadoc`
+
+
+  `:compileJava`
+
+
+  `:processResources UP-TO-DATE`
+
+
+  `:classes`
+
+
+  `:javadoc`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  `Total time: 6.39 secs`
+
+
+  命令成功执行后，构建文件夹将有一个新的 `docs` 文件夹，其中包含一个 `javadoc` 子文件夹，里面存放着生成的 HTML 文件。`index.html`
+  文件应如图 5-2 所示。
+
+
+  ![A978-1-4842-1031-4_5_Fig2_HTML.jpg](img/A978-1-4842-1031-4_5_Fig2_HTML.jpg)
+
+
+  图 5-2.
+
+
+  生成的 Javadoc
+
+
+  ### 配置默认布局
+
+
+  Gradle 提供了 SourceSet 的概念，它表示源文件的逻辑集合。默认情况下，`Java` 插件提供 `main` 和 `test` 这两个 SourceSet。但是，在处理遗留项目时，您可能需要
+  Gradle 在不同位置查找 Java 源文件和其他资源文件。清单 5-4 展示了如何使用 `sourceSets` 闭包来更改默认布局。该代码表明 Java
+  源文件将位于 `source/java` 文件夹下，而 Java 测试用例将位于 `source/test` 文件夹下。
+
+
+  清单 5-4\. 更改默认布局
+
+
+  `apply plugin: ''java''`
+
+
+  `sourceSets {`
+
+
+      `main {`
+
+
+          `java {`
+
+
+              `srcDir  ''source/java''`
+
+
+          `}`
+
+
+      `}`
+
+
+      `test {`
+
+
+          `java {`
+
+
+              `srcDirs = [''source/test'', ''source/integration'']`
+
+
+          `}`
+
+
+      `}`
+
+
+  `}`
+
+
+  `srcDirs` 元素可以接受单个目录或一组目录作为其值。图 5-3 显示了一个示例项目（位于下载源代码的 `chapter` `5` 文件夹中的 `hello-gradle2`），它使用了
+  `build.gradle` 文件中提到的目录结构。它还显示了 `build` 文件夹中的编译后的类。请注意，编译后的类仍然创建在 `main` 和 `test`
+  文件夹中。您可以使用 `output.classesDir` 配置元素更改生成类的位置。
+
+
+  ![A978-1-4842-1031-4_5_Fig3_HTML.jpg](img/A978-1-4842-1031-4_5_Fig3_HTML.jpg)
+
+
+  图 5-3.
+
+
+  Gradle 项目非默认布局
+
+
+  ### 创建 Web 项目
+
+
+  Gradle 提供了一个 `War` 插件，它扩展了 `Java` 插件，并支持 Web 应用程序开发和构建 WAR 文件。要查看此插件的实际效果，请创建一个名为
+  `web-gradle` 的文件夹。在新文件夹内创建一个 `build.gradle` 文件，并应用 web 插件，如下所示：
+
+
+  `apply plugin: ''war''`
+
+
+  此插件提供了与 `Java` 插件相同的用于存储 Java 类的目录约定。此外，`War` 插件期望所有静态资源（如 HTML、CSS、JS、图片）和动态资源（如
+  JSP 文件）都位于 `src/main/webapp` 文件夹中。您应该在 `src/main` 文件夹下创建 `webapp` 文件夹。然后创建一个 `index.html`
+  文件，并从清单 5-5 中复制内容。
+
+
+  清单 5-5\. index.html 文件内容
+
+
+  `<!DOCTYPE html>`
+
+
+  `<html>`
+
+
+      `<head>`
+
+
+          `<title>Hello World</title>`
+
+
+      `</head>`
+
+
+      `<body>`
+
+
+          `<h1>Hello Gradle!!</h1>`
+
+
+      `</body>`
+
+
+  `</html>`
+
+
+  现在，让我们使用 `gradle build` 命令构建应用程序。您应该会看到类似于以下的输出：
+
+
+  `\web-gradle>gradle build`
+
+
+  `:compileJava UP-TO-DATE`
+
+
+  `:processResources UP-TO-DATE`
+
+
+  `:classes UP-TO-DATE`
+
+
+  `:war`
+
+
+  `:assemble`
+
+
+  `:compileTestJava UP-TO-DATE`
+
+
+  `:processTestResources UP-TO-DATE`
+
+
+  `:testClasses UP-TO-DATE`
+
+
+  `:test UP-TO-DATE`
+
+
+  `:check UP-TO-DATE`
+
+
+  `:build`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  `Total time: 5.415 secs`
+
+
+  Gradle 还提供了用于在嵌入式 Servlet 容器（如 Jetty 和 Tomcat）中运行 Web 应用程序的插件。要配置 Jetty，请在 `build.gradle`
+  文件中应用 Jetty 插件，如下所示：
+
+
+  `apply plugin: ''jetty''`
+
+
+  现在，您可以通过运行 `gradle jettyRun` 命令来运行 Jetty 服务器。您将看到以下输出：
+
+
+  `\web-gradle>gradle jettyRun`
+
+
+  `:compileJava UP-TO-DATE`
+
+
+  `:processResources UP-TO-DATE`
+
+
+  `:classes UP-TO-DATE`
+
+
+  `> Building 75% > :jettyRun > Running at` `http://localhost:8080/web-gradle`
+
+
+  要访问网页，请启动 Web 浏览器并导航到 URL：`http://localhost:8080/web-gradle`。您将看到如图 5-4 所示的网页。
+
+
+  ![A978-1-4842-1031-4_5_Fig4_HTML.jpg](img/A978-1-4842-1031-4_5_Fig4_HTML.jpg)
+
+
+  图 5-4.
+
+
+  索引页面注意
+
+
+  可以使用嵌入式 Tomcat 来部署 Web 应用程序。有关配置帮助，请参阅 Tomcat 插件的 GitHub 页面：[`https://github.com/bmuschko/gradle-tomcat-plugin`](https://github.com/bmuschko/gradle-tomcat-plugin)。
+
+
+
+
+  ### War 任务
+
+
+  `War` 插件中的 `War` 任务负责组装 WAR 归档文件。默认情况下，它会执行以下操作：
+
+
+  *   将编译后的 Java 代码复制到 `WEB-INF/classes` 文件夹。
+
+  *   将 `src/main/webapp` 的内容复制到 WAR 文件的根目录。
+
+  *   将运行时配置中的依赖项复制到 `WEB-INF/lib` 文件夹。
+
+
+  `War` 任务提供了多个可用于自定义生成工件的属性和方法。以下代码展示了其中一些配置选项：
+
+
+  `war {`
+
+
+      `archiveName ''new-archive.war''`
+
+
+      `webXml file (''src/config/web.xml'')`
+
+
+      `from ''src/media/images''`
+
+
+  `}`
+
+
+  此配置将生成的工件重命名为 `new-archive.war`。然后，它配置 `War` 任务使用位于 `src/config` 文件夹中的 `web.xml`
+  文件。最后，该任务被配置为将 `src/media/images` 文件夹中的内容添加到 WAR 文件的根目录。使用 `War` 插件时，WAR 文件的内容默认位于
+  `src/main/webapp`。请务必记住，此配置仅将 `images` 文件夹中的内容附加到 WAR 文件。如果你希望 `War` 任务覆盖默认行为并在其他位置（例如
+  `src/WebContent`）查找内容，则需要更改 war 插件的 `webAppDirName` 属性：
+
+
+  `apply plugin: ''war''`
+
+
+  `apply plugin: ''jetty''`
+
+
+  `webAppDirName = ''src/WebContent''`
+
+
+  ## 编写自定义插件
+
+
+  Gradle 使得构建自定义二进制插件变得非常容易。你只需创建一个实现 `org.gradle.api.Plugin<T>` 接口的类即可。该插件类及其相关代码可以位于以下三个位置之一：
+
+
+  *   **构建脚本**：插件源代码可以直接嵌入到构建脚本中。这种方法限制了插件的复用价值，因为该插件在构建脚本外部不可见。
+
+  *   **buildSrc 项目**：位于 `buildSrc` 项目下的插件代码会被自动编译，并在构建脚本的类路径中可用。此插件在构建外部也不可见，因此无法在项目外部复用。
+
+  *   **独立项目**：插件代码可以打包成一个 JAR 文件，然后包含在构建脚本的类路径中。这种方法提供了最高的复用价值，但也需要单独的项目和构建基础设施。
+
+
+  在接下来的章节中，你将构建一个包含单个任务的简单插件，该任务向控制台打印 `"Hello Gradle Plugin"`，以及一个更复杂的用于生成构建编号的插件。你将采用
+  `buildSrc` 项目方法来构建简单插件。Gradle 插件可以用任何能编译成字节码的语言编写。你将首先使用 Java 创建简单插件，然后使用 Groovy
+  创建一个示例。你将使用独立项目方法来构建复杂插件。
+
+
+  ### 创建 Java 插件
+
+
+  你将通过在 `hello-gradle` 文件夹内创建一个 `buildSrc` 文件夹来开始你的 Hello Gradle 插件开发。为了存放 Java 代码，在
+  `buildSrc` 下创建子文件夹 `src/main/java`。目录结构应类似于图 5-5 所示的结构。
+
+
+  ![A978-1-4842-1031-4_5_Fig5_HTML.jpg](img/A978-1-4842-1031-4_5_Fig5_HTML.jpg)
+
+
+  图 5-5.
+
+
+  buildSrc 目录结构
+
+
+  下一步是创建一个向控制台输出 `"Hello Gradle Plugin"` 的任务。在 `buildSrc` 文件夹下创建一个 `GreetTask.java`
+  文件，并复制清单 5-6 的内容。
+
+
+  清单 5-6\. GreetTask.java 内容
+
+
+  `import org.gradle.api.DefaultTask;`
+
+
+  `import org.gradle.api.tasks.TaskAction;`
+
+
+  `public class GreetTask extends DefaultTask {`
+
+
+      `@TaskAction`
+
+
+      `public void greetAction() {`
+
+
+          `System.out.println("Hello Gradle Plugin");`
+
+
+      `}`
+
+
+  `}`
+
+
+  在 Gradle 中创建自定义任务最简单的方法是扩展 `org.gradle.api.DefaultTask`，该类本身实现了 `org.gradle.api.Task`
+  接口。为了让任务执行一个操作，你必须创建带有 `System.out.println` 语句的 `greetAction` 方法，该方法将消息写入控制台。为了让
+  Gradle 将此方法视为要执行的操作，你必须使用 `@TaskAction` 对其进行注解。
+
+
+  下一步是编写插件类本身。在 `buildSrc` 文件夹中创建 `HelloPlugin.java` 类，并将清单 5-7 的内容复制进去。
+
+
+  清单 5-7\. HelloPlugin.java 内容
+
+
+  `import org.gradle.api.Plugin;`
+
+
+  `import org.gradle.api.Project;`
+
+
+  `import java.util.Map;`
+
+
+  `import java.util.HashMap;`
+
+
+  `public class HelloPlugin implements Plugin<Project> {`
+
+
+      `@Override`
+
+
+      `public void  apply(Project project) {`
+
+
+          `project.getTasks().create("greet", GreetTask.class);`
+
+
+      `}`
+
+
+  `}`
+
+
+  Gradle 插件是通过实现 `org.gradle.api.Plugin<T>` 接口创建的。`Plugin` 接口包含一个名为 `apply(Project)`
+  的方法，插件类必须实现该方法。Gradle 通过调用其 `apply` 方法来开始执行插件。因此，你在 `apply` 方法内部使用传入的 `Project`
+  参数注册 `GreetTask`。你通过使用 `create` 方法来创建任务并将其添加到 `Project` 的任务容器中。`create` 方法接受要创建的任务名称以及任务类。
+
+
+  至此，插件开发完成。要使用此插件，请将以下代码添加到 `build.gradle` 文件中：
+
+
+  `apply plugin: HelloPlugin`
+
+
+  现在，让我们使用该插件并通过命令 `gradle greet` 运行 `greet` 任务。你应该会在输出中看到文本 `"Hello Gradle Plugin"`，如下所示：
+
+
+  `\hello-gradle>gradle greet`
+
+
+  `:buildSrc:compileJava`
+
+
+  `:buildSrc:compileGroovy UP-TO-DATE`
+
+
+  `:buildSrc:processResources UP-TO-DATE`
+
+
+  `:buildSrc:classes`
+
+
+  `:buildSrc:jar`
+
+
+  `:buildSrc:assemble`
+
+
+  `:buildSrc:compileTestJava UP-TO-DATE`
+
+
+  `:buildSrc:compileTestGroovy UP-TO-DATE`
+
+
+  `:buildSrc:processTestResources UP-TO-DATE`
+
+
+  `:buildSrc:testClasses UP-TO-DATE`
+
+
+  `:buildSrc:test UP-TO-DATE`
+
+
+  `:buildSrc:check UP-TO-DATE`
+
+
+  `:buildSrc:build`
+
+
+  `:greet`
+
+
+  `Hello Gradle Plugin`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  `Total time: 5.725 secs`
+
+
+
+
+  ### 创建 Groovy 插件
+
+
+  本节将使用 Groovy 语言重新创建 Java 的 `HelloPlugin`。首先，在 `buildSrc/src/main` 文件夹中创建一个 `groovy`
+  文件夹。最终的文件夹结构如图 5-6 所示。
+
+
+  ![A978-1-4842-1031-4_5_Fig6_HTML.jpg](img/A978-1-4842-1031-4_5_Fig6_HTML.jpg)
+
+
+  图 5-6.
+
+
+  Groovy 插件目录结构
+
+
+  在 `groovy` 文件夹中，创建 `HelloPlugin2.groovy` 文件，并复制清单 5-8 的内容。
+
+
+  清单 5-8\. 使用 Groovy 的 HelloPlugin2
+
+
+  `import org.gradle.api.Plugin;`
+
+
+  `import org.gradle.api.Project;`
+
+
+  `class HelloPlugin2 implements Plugin<Project> {`
+
+
+  `@Override`
+
+
+      `void apply(Project project) {`
+
+
+          `project.task(''greet2'') << {`
+
+
+              `println ''Hello Gradle Plugin2''`
+
+
+          `}`
+
+
+      `}`
+
+
+  `}`
+
+
+  `HelloPlugin2` 实现了 `Plugin` 接口，就像 Java 的 `HelloPlugin` 类一样。在 `apply` 方法中，你使用 `Project`
+  实例创建了一个名为 `greet2` 的新任务。你还使用 `<<` 快捷方式为任务的 `doLast` 方法添加了一个操作。该操作闭包代码将文本 `"Hello
+  Gradle Plugin2"` 打印到控制台。
+
+
+  使用以下语句应用新创建的插件：
+
+
+  `apply plugin: HelloPlugin2`
+
+
+  运行 `gradle greet2` 命令来使用该插件。输出应如下所示：
+
+
+  `\hello-gradle>gradle greet2`
+
+
+  `:buildSrc:compileJava UP-TO-DATE`
+
+
+  `:buildSrc:compileGroovy UP-TO-DATE`
+
+
+  `:buildSrc:processResources UP-TO-DATE`
+
+
+  `:buildSrc:classes UP-TO-DATE`
+
+
+  `:buildSrc:jar UP-TO-DATE`
+
+
+  `:buildSrc:assemble UP-TO-DATE`
+
+
+  `:buildSrc:compileTestJava UP-TO-DATE`
+
+
+  `:buildSrc:compileTestGroovy UP-TO-DATE`
+
+
+  `:buildSrc:processTestResources UP-TO-DATE`
+
+
+  `:buildSrc:testClasses UP-TO-DATE`
+
+
+  `:buildSrc:test UP-TO-DATE`
+
+
+  `:buildSrc:check UP-TO-DATE`
+
+
+  `:buildSrc:build UP-TO-DATE`
+
+
+  `:greet2`
+
+
+  `Hello Gradle Plugin2`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  `Total time: 5.451 secs`
+
+
+  也可以使用命令 `gradle greet greet2` 同时运行 `greet` 和 `greet2` 任务。如果这样做，你应该会看到以下输出：
+
+
+  `:buildSrc:build UP-TO-DATE`
+
+
+  `:greet`
+
+
+  `Hello Gradle Plugin`
+
+
+  `:greet2`
+
+
+  `Hello Gradle Plugin2`
+
+
+  ### 创建独立项目插件
+
+
+  在上一节中，你构建了一个简单的插件，其源代码位于项目的 `buildSrc` 文件夹中。这种方法不太模块化，因为该插件无法在其定义的项目之外重用。独立项目方法允许你创建一个打包成
+  JAR 文件的插件，并且可以轻松地被任意数量的项目分发和重用。为了更好地理解这种插件开发方法，你将创建一个更真实的插件。
+
+
+  #### 插件背景
+
+
+  软件项目通常使用由句点分隔的三个数字来表示版本号：
+
+
+  `<主版本号>.<次版本号>.<补丁/增量版本号>`
+
+
+  正如命名约定所暗示的，主版本号通常在进行重大功能变更（通常不向后兼容）时递增。次版本号在实现次要功能或重大错误修复时递增。最后，补丁/增量版本号针对小错误、文本更改等进行递增。此约定遵循
+  [`http://semver.org/`](http://semver.org/) 上描述的“语义化版本 2.0.0”指南。
+
+
+  在开发过程中，开发团队可能会为同一源代码创建多个构建，并将其部署用于测试或与其他开发人员共享。这些构建都将具有相同的版本号。为了单独区分这些构建，你通常会使用另一个称为构建编号的数字。一些软件团队遵循将构建编号附加到版本号的约定：
+
+
+  `<主版本号>.<次版本号>.<补丁/增量版本号>.<构建编号>`
+
+
+  其他团队则简单地将构建编号添加到生成的 JAR 清单中，或显示在应用程序的 UI 上。以下是一些带有构建编号的示例版本：
+
+
+  *   1.0.0.56
+
+  *   3.3.9.25BLR48
+
+  *   6.1.0-20151123154556
+
+
+  构建编号可以从多种来源获得——来自源代码签入的提交编号、构建时间戳或持续集成（CI）服务器生成的编号等。在本节中，你将创建一个生成随机构建编号的 Gradle
+  插件。
+
+
+  #### 插件配置
+
+
+  为了便于本书管理，构建编号插件生成两种类型的值——基于时间戳的数值或字母数字值。清单 5-9 显示了一个假设的 `build.gradle` 配置来使用此插件。
+
+
+  清单 5-9\. 构建编号插件示例用法
+
+
+  `apply plugin: ''build-number-plugin''`
+
+
+  `buildNumber {`
+
+
+      `numberType = ''alphanumeric''`
+
+
+      `alphaNumLength = 5`
+
+
+  `}`
+
+
+  该插件提供了一个 `buildNumber` 配置块，允许插件用户设置构建编号类型——字母数字或时间戳。用户可以使用 `alphaNumLength` 属性来指定生成的字母数字字符串中的字符数。
+
+
+  配置插件后，可以在 `build.gradle` 文件中使用 `buildNumber.value` 访问生成的构建编号。
+
+
+  注意
+
+
+  有一些可用的开源 Gradle 插件可以从其他来源（如 Git/SVN）生成构建编号，并提供更多功能。你可以在 [`https://github.com/GeoNet/gradle-build-version-plugin`](https://github.com/GeoNet/gradle-build-version-plugin)
+  查看这样一个插件。
+
+
+  #### 插件开发
+
+
+  你将通过创建一个 Groovy 项目来开始插件开发。在你的文件系统上创建一个名为 `build-number-plugin` 的文件夹，然后创建图 5-7 所示的子文件夹。
+
+
+  ![A978-1-4842-1031-4_5_Fig7_HTML.jpg](img/A978-1-4842-1031-4_5_Fig7_HTML.jpg)
+
+
+  图 5-7.
+
+
+  独立项目目录结构
+
+
+  下一步是使用插件项目所需的依赖项和配置填充 `build.gradle` 文件。清单 5-10 显示了 `build.gradle` 文件的内容。
+
+
+  清单 5-10\. 构建编号插件的 build.gradle 文件
+
+
+  `apply plugin: ''groovy''`
+
+
+  `group = ''com.apress.gradle''`
+
+
+  `version = ''1.0.0''`
+
+
+  `dependencies {`
+
+
+      `compile gradleApi()`
+
+
+  `}`
+
+
+  `uploadArchives {`
+
+
+      `repositories {`
+
+
+        `flatDir { dirs "../repo" }`
+
+
+      `}`
+
+
+  `}`
+
+
+  由于你正在处理一个 Groovy 项目，因此必须通过应用 Groovy 插件来开始 `build.gradle` 文件。Gradle 工件使用三个坐标来标识（更多内容请参见第
+  6 章）：
+
+
+  *   表示负责该项目的组织的 group
+
+  *   工件的名称
+
+  *   工件的版本
+
+
+  在 `build.gradle` 文件中，你使用 `com.apress.gradle` 和 `1.0.0` 作为 group 和 version 值。由于你没有指定名称，Gradle
+  将项目文件夹的名称用作工件名称。文件的 `dependencies` 部分用于为 Gradle 提供插件项目编译和测试所需的外部库和框架。在这种情况下，你使用
+  `gradleApi()` 来引入自定义插件和任务类使用的 Gradle API。
+
+
+  注意
+
+
+  在下一章中，你将更深入地了解依赖管理以及 Gradle 对引入外部依赖项的支持。
+
+
+  最后，你使用 `uploadArchives` 方法将生成的插件上传或发布到仓库。`flatDir` 方法被配置为将打包好的插件发布到 `repo` 文件夹，该文件夹在文件系统上与
+  `build-number-plugin`（项目）位于同一层级。
+
+
+  注意
+
+
+  生成的工件可以通过发布到中央/公共工件仓库来与其他开发人员/团队共享。第 8 章 将详细讨论工件发布。
+
+
+
+
+  #### 插件扩展
+
+
+  开发插件的下一步是让用户 `build.gradle` 中的插件配置（清单 5-9）对自定义插件可用。实现此目的的一种方法是通过扩展对象。每个 Gradle 项目都有一个
+  `org.gradle.api.plugins.ExtensionContainer` 实例，用于跟踪传递给插件的设置和属性。要存储这些数据并在插件间传递，你需要向此容器注册一个或多个
+  Java/Groovy Bean（称为扩展对象）。
+
+
+  清单 5-11 展示了 `src/main/groovy/com/apress/gradle` 文件夹中的 `BuildNumberExtension.groovy`
+  类，它将作为构建编号插件的扩展模型。它包含 `numberType` 和 `alphaNumLength` 属性，用于保存插件的输入。它还包含 `value`
+  属性，允许插件/任务将构建编号提供给 `build.gradle` 文件。
+
+
+  **清单 5-11. BuildNumberExtension.groovy 类**
+
+
+  `package com.apress.gradle;`
+
+
+  `class BuildNumberExtension {`
+
+
+      `String numberType;`
+
+
+      `int alphaNumLength;`
+
+
+      `String value;`
+
+
+  `}`
+
+
+  #### 插件任务
+
+
+  在“`buildSrc`”方法（清单 5-8）中，你将插件代码与任务代码合并在一起。对于实际插件，将插件代码与执行操作的代码清晰分离是合理的。因此，请在 `src/main/groovy/com/apress/gradle`
+  文件夹中创建 `BuildNumberTask.groovy` 文件，并复制清单 5-12 的内容。
+
+
+  **清单 5-12. BuildNumberTask 代码**
+
+
+  `package com.apress.gradle;`
+
+
+  `import org.gradle.api.DefaultTask`
+
+
+  `import org.gradle.api.tasks.TaskAction`
+
+
+  `class BuildNumberTask extends DefaultTask {`
+
+
+      `@TaskAction`
+
+
+      `def generateBuildNumber() {`
+
+
+          `String numberType = project.buildNumber.numberType`
+
+
+          `int alphaNumLength = project.buildNumber.alphaNumLength`
+
+
+          `def buildNumber;`
+
+
+          `if("alphanumeric".equals (numberType)) {`
+
+
+              `buildNumber = getAlphaNumString(alphaNumLength)`
+
+
+          `}`
+
+
+          `else if ( "timestamp".equals (numberType) ) {`
+
+
+              `buildNumber = System.currentTimeMillis()`
+
+
+          `}`
+
+
+         `project.buildNumber.value = buildNumber;`
+
+
+      `}`
+
+
+      `def getAlphaNumString(length) {`
+
+
+          `String uuid = UUID.randomUUID().toString()`
+
+
+          `uuid.take(length)`
+
+
+      `}`
+
+
+  `}`
+
+
+  `BuildNumberTask` 中 `generateBuildNumber()` 方法上的 `@TaskAction` 指示了 Gradle 需要调用来执行操作的方法。`generateBuildNumber()`
+  的实现使用 `buildNumber` 扩展对象读取用户配置的 `numberType` 和 `alphaNumLength` 值。然后，它调用 `System.currentTimeMillis()`
+  或 `getAlphaNumString()` 工具方法来生成实际的构建编号。生成的构建编号随后被赋值给 `buildNumber` 的 `value` 属性。这使得构建编号对用户的
+  `build.gradle` 文件可用。
+
+
+  #### 插件类
+
+
+  实现的最后一部分是将所有内容联系在一起的 `Plugin` 类。清单 5-13 展示了位于 `src/main/groovy/com/apress/gradle`
+  文件夹下的 `BuildNumberPlugin` 类代码。在 `apply()` 方法内部，你使用 `create` 方法将 `buildNumber` 扩展对象添加到项目中。`create`
+  方法接受一个名称和模型类作为其参数。此名称 `buildNumber` 必须与用户用于提供输入的配置闭包块的名称（清单 5-9 中的 `buildNumber`）相匹配。它还必须与任务类（清单
+  5-12）用于检索配置值的名称相匹配。
+
+
+  **清单 5-13. BuildNumberPlugin 类**
+
+
+  `package com.apress.gradle;`
+
+
+  `import org.gradle.api.Plugin;`
+
+
+  `import org.gradle.api.Project;`
+
+
+  `import org.gradle.api.Task;`
+
+
+  `class BuildNumberPlugin implements Plugin<Project>  {`
+
+
+      `void apply(Project project) {`
+
+
+          `project.extensions.create(''buildNumber'', BuildNumberExtension)`
+
+
+          `Task buildnumberTask = project.task(''buildnumbertask'', type: BuildNumberTask)`
+
+
+          `project.tasks[''jar''].dependsOn buildnumberTask`
+
+
+      `}`
+
+
+  `}`
+
+
+  在 `apply()` 方法中，你接着添加一个类型为 `BuildNumberTask` 的任务。名称 `buildnumbertask` 没有特殊含义。但是，你应该尽量赋予一个有意义的名称，因为它会显示在控制台和调试输出中。最后，你让
+  `Jar` 任务依赖于 `buildnumberTask`，以便在生成 JAR 之前构建脚本可以获得构建编号。
+
+
+  #### 简短插件名称
+
+
+  默认情况下，插件通过其完全限定类名来引用。但是，你也可以为插件指定简短、易用的名称。为此，你需要在 `src/main/resources/META-INF/gradle-plugin`
+  文件夹中创建一个属性文件。该属性文件的名称将成为插件的短名称。
+
+
+  由于此插件处理构建编号，你可以将其命名为 `build-number-plugin`。要实现这一点，请在 `gradle-plugin` 文件夹下创建一个 `build-number-plugin.properties`
+  文件。在该文件中，你只需创建一个键为 `implementation-class`、值为完全限定插件类的属性：
+
+
+  `implementation-class=com.apress.gradle.BuildNumberPlugin`
+
+
+  #### 插件打包
+
+
+  至此，插件实现完成。下一步是构建归档文件并将其发布到本地文件仓库。为此，请使用命令行导航到 `build-gradle-plugin` 文件夹并运行命令 `gradle
+  uploadArchives`。你应该会看到以下输出：
+
+
+  `\build-number-plugin>gradle uploadArchives`
+
+
+  `:compileJava UP-TO-DATE`
+
+
+  `:compileGroovy`
+
+
+  `:processResources UP-TO-DATE`
+
+
+  `:classes`
+
+
+  `:jar`
+
+
+  `:uploadArchives`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  注意
+
+
+  你将在第 8 章中了解更多关于 `uploadArchives` 命令的信息。
+
+
+  成功执行后，你应该会在 `repo` 文件夹中看到 `build-number-plugin-1.0.0.jar` 文件。如前所述，`repo` 应与 `build-gradle-plugin`
+  文件夹位于同一层级。
+
+
+
+
+  #### 使用插件
+
+
+  要使用新创建的插件，请新建一个名为 `plugin-consumer` 的 Gradle 项目。在此项目中，你需要将插件的构建编号添加到生成的 JAR 文件的
+  `MANIFEST.MF` 文件中。
+
+
+  首先，在文件系统中创建 `plugin-consumer` 文件夹，使其与 `repo` 和 `build-gradle-plugin` 文件夹位于同一层级。
+
+
+  ![A978-1-4842-1031-4_5_Fig8_HTML.jpg](img/A978-1-4842-1031-4_5_Fig8_HTML.jpg)
+
+
+  图 5-8.
+
+
+  项目目录结构
+
+
+  然后，为 `plugin-consumer` 项目创建一个 `build.gradle` 文件。由于这是一个生成 JAR 制品的 Java 项目，需要应用 Java
+  插件。同时，还需要应用并配置 `build-number-plugin`，如下所示：
+
+
+  `apply plugin: ''java''`
+
+
+  `apply plugin: ''build-number-plugin''`
+
+
+  `buildNumber {`
+
+
+      `numberType = ''alphanumeric''`
+
+
+      `alphaNumLength = 5`
+
+
+  `}`
+
+
+  下一步是将插件 JAR 文件添加到构建脚本的类路径中，以便 Gradle 能够找到插件类。这可以通过 `buildscript` 代码块来实现：
+
+
+  `buildscript {`
+
+
+      `repositories {`
+
+
+          `flatDir {`
+
+
+              `dirs ''../repo''`
+
+
+          `}`
+
+
+      `}`
+
+
+      `dependencies { classpath ''com.apress.gradle:build-number-plugin-1.0.0'' }`
+
+
+  `}`
+
+
+  最后，在 `jar` 任务上使用 `doFirst` 方法来添加一个新的 `manifest` 条目，如下所示：
+
+
+  `jar.doFirst {`
+
+
+      `manifest {`
+
+
+          `attributes(''Build-Number'': project.buildNumber.value)`
+
+
+      `}`
+
+
+  `}`
+
+
+  现在，你可以生成消费者插件了。使用命令行，导航到 `plugin-consumer` 文件夹并运行 `gradle build` 命令。在输出中，你应该会看到
+  `buildnumbertask` 被触发，随后是 Java 插件的任务（`compileJava`、`jar` 等）执行。输出应如下所示：
+
+
+  `\plugin-consumer>gradle build`
+
+
+  `:buildnumbertask`
+
+
+  `:compileJava UP-TO-DATE`
+
+
+  `:processResources UP-TO-DATE`
+
+
+  `:classes UP-TO-DATE`
+
+
+  `:jar`
+
+
+  `:assemble`
+
+
+  `:compileTestJava UP-TO-DATE`
+
+
+  `:processTestResources UP-TO-DATE`
+
+
+  `:testClasses UP-TO-DATE`
+
+
+  `:test UP-TO-DATE`
+
+
+  `:check UP-TO-DATE`
+
+
+  `:build`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  构建成功完成后，导航到 `plugin-consumer\build\libs` 文件夹。使用 WinZip 或 WinRAR 等 ZIP 工具，打开 `plugin-consumer.jar`，然后打开
+  `META-INF` 下的 `MANIFEST.MF` 文件。你应该会看到一个包含字母数字文本的 `Build-Number` 条目，类似于图 5-9。
+
+
+  ![A978-1-4842-1031-4_5_Fig9_HTML.jpg](img/A978-1-4842-1031-4_5_Fig9_HTML.jpg)
+
+
+  图 5-9.
+
+
+  MANIFEST 文件中的构建编号
+
+
+  要使用时间戳生成构建编号，请将 `build.gradle` 文件中的 `buildNumber` 配置块替换为以下代码：
+
+
+  `buildNumber {`
+
+
+      `numberType = ''timestamp''`
+
+
+  `}`
+
+
+  运行命令 `gradle clean build`，它将删除现有的 JAR 文件并生成一个新的。构建成功执行后，你应该会在生成的清单文件中看到一个基于时间戳的构建编号。
+
+
+  至此，基于独立项目的插件开发就结束了。你可以将此插件发布到内部的 Maven 仓库，供开发团队的其他成员使用。你也可以将其发布到 Gradle 插件门户。位于
+  [`https://plugins.gradle.org/`](https://plugins.gradle.org/) 的 Gradle 插件门户托管了来自世界各地开发者贡献的众多开源插件。该门户允许你搜索所需的插件，并显示使用这些插件所需的配置。你可以按照
+  [`https://plugins.gradle.org/docs/submit`](https://plugins.gradle.org/docs/submit)
+  上的说明了解提交流程。
+
+
+  ## 总结
+
+
+  Gradle 通过使用提供任务和合理默认值的插件，极大地简化了 Java 项目的构建。本章回顾了用于编译 Java 代码、运行单元测试和组装 JAR 归档文件的
+  `java` 插件。然后，你使用了 `javadoc` 插件来生成 API 文档。`war` 插件允许你构建和打包 Web 应用程序。
+
+
+  Gradle 还为构建自定义插件提供了出色的支持。你了解到有三种打包自定义插件的方式：构建脚本、使用 `buildSrc` 目录以及创建独立项目。你学习了使用
+  `buildSrc` 方法创建简单 Java 和 Groovy 插件的基础知识。然后，你基于这些概念，使用独立项目方法开发了一个插件。
+
+
+  在下一章中，你将全面了解 Gradle 对管理依赖项以及与各种制品仓库交互的支持。
+
+
+  '
+- '# 6. 依赖管理
+
+
+  软件项目很少是孤立构建的。它们要么依赖于内部项目，要么依赖于其他开源库。本章将探讨 Gradle 如何帮助你有效管理这些依赖项。你将学习不同类型的依赖项，以及如何对依赖项进行分组和解决依赖冲突。你还将回顾存储制品的仓库。
+
+
+
+
+  ## 声明式依赖管理
+
+
+  假设你希望在应用程序中使用 Logback（[`http://logback.qos.ch`](http://logback.qos.ch/)）进行日志记录。一种直接的方法是从
+  Logback 网站下载 `logback.jar` 文件并将其添加到项目中。在使用 IDE 或 ANT 构建项目时，这曾是一种相当常见的做法。然而，这种方法存在一些问题：
+
+
+  *   下载的 JAR 文件可能依赖于其他几个库。这种依赖关系被称为传递性依赖。更麻烦的是，传递性依赖可能还有自己的依赖关系。你需要花时间找出所有这些依赖关系，并下载它们以供项目使用。
+
+  *   传递性依赖之间可能存在版本冲突。假设你的项目依赖于 JAR A 和 B。如果 A 依赖于 JAR C 的 1.0.0 版本，而 B 依赖于 C 的 2.0.0
+  版本，你需要手动解决这个冲突。
+
+  *   下载的 JAR 文件必须检入版本控制系统或放置在共享驱动器上，以便项目可以在其他开发人员的机器上或持续集成服务器上构建。将 JAR 文件检入 VCS 不被视为最佳实践。这种方法在处理频繁变更的工作副本（在
+  Maven 中称为快照版本）时尤其困难。
+
+  *   升级变得非常困难，你必须重复整个手动过程。
+
+  *   在团队之间共享内部开发的 JAR 文件变得困难。
+
+
+  为了解决 ANT 的这些固有问题，Maven 提出了声明式依赖管理。使用这种方法，你告诉 Maven 你需要什么（通常是在外部配置文件中）。Maven 会自动找出在哪里以及如何获取这些依赖项，并将它们交给你的项目。后来，Ant
+  提供了与另一个名为 Apache Ivy 的依赖管理工具的集成。Gradle 提供了自己的依赖管理实现，但也支持 Maven 和 Ivy 仓库。
+
+
+  图 6-1 提供了 Gradle 依赖管理的高级视图。Gradle 与仓库交互以检索依赖项及其关联的元数据。通过网络访问的仓库被视为远程仓库，通常由第三方维护。Gradle
+  还可以与本地机器上的仓库以及包含 JAR 文件的目录进行交互。获取依赖项后，Gradle 会将其存储在缓存中。默认情况下，缓存位于本地机器上的 `<<USER_HOME>>/.gradle`。在
+  Windows 上，它将是 `C:\Users\<<user_name>>\.gradle`。然后，Gradle 在项目构建、测试或打包期间检索这些依赖项。拥有本地缓存可以减少远程仓库的负载并提高构建速度。
+
+
+  ![A978-1-4842-1031-4_6_Fig1_HTML.gif](img/A978-1-4842-1031-4_6_Fig1_HTML.gif)
+
+
+  图 6-1.
+
+
+  Gradle 依赖管理提示
+
+
+  你可以通过设置环境变量 `GRADLE_USER_HOME` 并将其指向一个新目录，将默认的 Gradle 主目录从 `.gradle` 更改为其他位置。
+
+
+  尽管图 6-1 中的架构适用于小型项目，但在企业环境中会带来一些严重问题。通过互联网访问的远程仓库可能会宕机，或者在高流量情况下变得无响应，从而导致构建速度急剧下降。许可和知识产权问题可能会阻止团队在公共仓库中发布其内部工件，从而难以轻松共享。为了解决这些问题，大多数企业选择图
+  6-2 所示的架构。
+
+
+  ![A978-1-4842-1031-4_6_Fig2_HTML.gif](img/A978-1-4842-1031-4_6_Fig2_HTML.gif)
+
+
+  图 6-2.
+
+
+  使用仓库管理器的依赖管理
+
+
+  内部仓库管理器充当远程仓库的代理并缓存工件。这确保了即使远程仓库宕机或过时，构建也是可重复的。仓库管理器还允许你推送和共享公司内部的工件。有几种开源和商业仓库管理器可用，例如
+  Sonatype Nexus、Apache Archiva 和 Artifactory。
+
+
+  ## 依赖配置
+
+
+  考虑前面使用 Logback 进行日志记录的示例。源代码将包含使用 Logback 类和 API 的日志语句。为了编译项目代码，你需要在类路径中提供 Logback
+  JAR。此外，为了让应用程序在 Tomcat 等容器中运行，你需要将 Logback JAR 打包到生成的 WAR 工件中。现在考虑同一个项目使用 JUnit
+  进行单元测试。JUnit JAR 文件仅在运行单元测试时需要，并且不需要打包到生成的 WAR 工件中。如果 Web 应用程序包含 Java Servlet，则在代码编译期间需要
+  Servlet API JAR。由于 Tomcat 等容器在运行时使此 API JAR 在类路径上可用，因此你无需将其打包到 WAR 文件中。
+
+
+  这些示例表明需要在构建的某些阶段拥有特定的依赖项集合。Gradle 提供了配置，使你可以轻松实现这一点。配置是依赖项的逻辑分组。例如，你可以有一个 `compile`
+  配置，其中包含代码编译期间所需的所有依赖项。Java 插件开箱即用地声明了以下六种配置：
+
+
+  *   `compile`——包含在代码编译期间添加到类路径的依赖项。在 Web 项目中，Hibernate 和 Spring 等依赖项在 `compile`
+  配置中声明。
+
+  *   `runtime`——包含在代码执行期间使用的依赖项。例如，MySQL 驱动程序等数据库驱动程序在 `runtime` 配置中声明。
+
+  *   `testCompile`——包含在测试代码编译期间成为类路径一部分的依赖项。JUnit 和 TestNG 等测试框架是在此配置中声明的库的典型示例。
+
+  *   `testRuntime`——包含在测试代码执行期间使用的依赖项。HSQLDB 或 H2 等嵌入式数据库是在此配置中声明的库的示例。
+
+  *   `archives`——包含项目生成的工件。考虑一个生成额外工件的 Java 项目，例如包含源代码的 JAR 文件和包含 Javadoc API 的 ZIP
+  文件。这些工件在此配置中声明。你将在第 8 章中了解更多关于 archives 配置的信息。
+
+  *   `default`——此配置通常出现在多项目设置中，其中一个项目的构建依赖于另一个子项目的构建。假设项目 A 将项目 B 声明为其依赖项。默认情况下，项目
+  B 的 `default` 配置中的所有工件都将包含在项目 A 中。`default` 配置扩展了 `runtime` 配置，因此包含项目运行时中声明的所有工件和依赖项。
+
+
+  依赖配置可以扩展其他配置。例如，`runtime` 配置扩展了 `compile` 配置。这意味着在 `compile` 配置中声明的所有依赖项都将在 `runtime`
+  配置中可用。表 6-1 显示了六种 Java 插件配置及其扩展的配置。
+
+
+  表 6-1.
+
+
+  配置继承关系
+
+
+  | 配置名称 | 扩展自 |
+
+  | --- | --- |
+
+  | `compile` | `无` |
+
+  | `runtime` | `compile` |
+
+  | `testCompile` | `compile` |
+
+  | `testRuntime` | `runtime, testCompile` |
+
+  | `archives` | 无 |
+
+  | `default` | `runtime` |
+
+
+
+
+  ### 处理依赖关系
+
+
+  在开始声明和使用依赖之前，理解不同类型的依赖关系至关重要。表 6-2 展示了 Gradle 提供的依赖类型。
+
+
+  表 6-2. Gradle 依赖类型
+
+
+  | 依赖类型 | 描述 |
+
+  | --- | --- |
+
+  | 外部模块依赖 | 对仓库中某个库的依赖。例如，对 Maven Central 中的 Logback JAR 的依赖就属于此类型。 |
+
+  | 项目依赖 | 对某个 Gradle 项目的依赖。 |
+
+  | 文件依赖 | 对本地机器上文件的依赖。 |
+
+  | 客户端模块依赖 | 对外部模块的依赖，该模块位于外部仓库中，但其对应的元数据在构建文件中指定。 |
+
+  | Gradle API 依赖 | 对 Gradle API 的依赖。在第 5 章的插件开发中，你已经见过这种依赖类型。 |
+
+  | 本地 Groovy 依赖 | 对作为已安装 Gradle 一部分的 Groovy 库的依赖。 |
+
+
+  在本章中，你将学习使用三种依赖类型：外部模块依赖、文件依赖和项目依赖。你可以在构建文件中使用 `dependencies` 闭包来声明依赖，如下所示：
+
+
+  `dependencies {`
+
+
+      `<依赖配置> 依赖 1, 依赖 2....`
+
+
+  `}`
+
+
+  ### 外部模块依赖
+
+
+  顾名思义，外部模块依赖指的是对当前项目结构之外制品的依赖。这种类型的依赖使用以下坐标来指定：
+
+
+  *   `group` — 负责该项目的组或组织的标识符。例如 `org.springframework` 和 `org.hibernate`。
+
+  *   `name` — 制品的名称。例如 `spring-beans` 和 `hibernate-core`。
+
+  *   `version` — 制品的版本。例如 1.0.0 和 4.2.0。
+
+  *   `classifier` — 附加到制品上的额外字段。例如，同一个制品可以为两个 JDK 版本发布，可以使用分类器来选择正确的版本。
+
+
+  这些依赖可以在 `build.gradle` 文件中使用以下格式声明：
+
+
+  `group: ''GROUP_NAME'', name: ''ARTIFACT_NAME'', version: ''VERSION_NUMBER''`
+
+
+  Gradle 还提供了以下声明依赖的快捷格式：
+
+
+  `GROUP_NAME:ARTIFACT_NAME:VERSION_NUMBER`
+
+
+  为了实际演示外部模块依赖，在你的本地机器上创建一个新文件夹 `gradle_dep`。创建一个 `build.gradle` 文件，并复制清单 6-1 中的内容。这个示例使用快捷记法为编译配置添加了两个依赖。请注意，多个依赖之间用逗号
+  (`,`) 分隔。它还使用 `ArrayList` 记法声明了两个额外的 `testCompile` 依赖。同时请注意 `repositories` 块。你将在本章后面学习仓库的相关内容，所以现在可以先忽略它。
+
+
+  清单 6-1. 包含依赖的 build.gradle 文件
+
+
+  `apply plugin: ''java''`
+
+
+  `dependencies {`
+
+
+  `compile ''ch.qos.logback:logback-classic:1.1.2'', ''org.apache.commons:commons-lang3:3.4''`
+
+
+  `testCompile (`
+
+
+  `[group: ''junit'', name: ''junit'', version: ''4.12''],`
+
+
+  `[group: ''org.hsqldb'', name: ''hsqldb'', version: ''2.3.3'']`
+
+
+  `)`
+
+
+  `}`
+
+
+  `repositories {`
+
+
+  `mavenCentral()`
+
+
+  `}`
+
+
+  Gradle 提供了一个内置的 `dependencies` 任务，可以用来查看已声明的依赖及其传递性依赖。运行命令 `gradle dependencies`
+  将显示类似如下的输出：
+
+
+  `\chapter` `6` `\gradle-dep>gradle dependencies`
+
+
+  `.................`
+
+
+  `compile - 为源集 ''main'' 编译的类路径。`
+
+
+  `Download` [`https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.4/com`](https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.4/com)
+
+
+  `mons-lang3-3.4.pom`
+
+
+  `Download` [`https://repo1.maven.org/maven2/org/apache/commons/commons-parent/37/com`](https://repo1.maven.org/maven2/org/apache/commons/commons-parent/37/com)
+
+
+  `mons-parent-37.pom`
+
+
+  `Download` [`https://repo1.maven.org/maven2/org/apache/apache/16/apache-16.pom`](https://repo1.maven.org/maven2/org/apache/apache/16/apache-16.pom)
+
+
+  `Download` [`https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7`](https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7)
+  `.`
+
+
+  `6.pom`
+
+
+  `Download` [`https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.6/slf4j-paren`](https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.6/slf4j-paren)
+
+
+  `t-1.7.6.pom`
+
+
+  `+--- ch.qos.logback:logback-classic:1.1.2`
+
+
+  `|    +--- ch.qos.logback:logback-core:1.1.2`
+
+
+  `|    \--- org.slf4j:slf4j-api:1.7.6`
+
+
+  `\--- org.apache.commons:commons-lang3:3.4`
+
+
+  `....................`
+
+
+  `testCompile - 为源集 ''test'' 编译的类路径。`
+
+
+  `Download` [`https://repo1.maven.org/maven2/org/hsqldb/hsqldb/2.3.3/hsqldb-2.3.3.pom`](https://repo1.maven.org/maven2/org/hsqldb/hsqldb/2.3.3/hsqldb-2.3.3.pom)
+
+
+  `+--- ch.qos.logback:logback-classic:1.1.2`
+
+
+  `|    +--- ch.qos.logback:logback-core:1.1.2`
+
+
+  `|    \--- org.slf4j:slf4j-api:1.7.6`
+
+
+  `+--- org.apache.commons:commons-lang3:3.4`
+
+
+  `+--- junit:junit:4.12`
+
+
+  `|    \--- org.hamcrest:hamcrest-core:1.3`
+
+
+  `\--- org.hsqldb:hsqldb:2.3.3`
+
+
+  `................`
+
+
+  从输出中你会注意到，由于配置继承，所有编译时依赖在运行时也是可用的。现在，你可以在项目中使用这些库提供的 Java 类/API 了。
+
+
+  在包含大量依赖的项目中，建议将依赖版本提取到属性中。这使得在升级期间可以轻松地快速识别制品版本或更改它们。清单 6-2 展示了修改后的 `build.gradle`
+  文件，其中版本号被提取到 `ext` 闭包内的项目级属性中。依赖声明被修改为使用包含版本表达式的 GString。在运行时，这些表达式将被替换为正确的版本值。
+
+
+  清单 6-2. 包含属性的 build.gradle 文件
+
+
+  `apply plugin: ''java''`
+
+
+  `ext {`
+
+
+  `logbackVersion = ''1.1.2''`
+
+
+  `commonsLangVersion = ''3.4''`
+
+
+  `junitVersion = ''4.12''`
+
+
+  `hsqlDbVersion = ''2.3.3''`
+
+
+  `}`
+
+
+  `dependencies {`
+
+
+  `compile "ch.qos.logback:logback-classic:$logbackVersion", "org.apache.commons:commons-lang3:$commonsLangVersion"`
+
+
+  `testCompile (`
+
+
+  `[group: ''junit'', name: ''junit'', version: "$junitVersion"],`
+
+
+  `[group: ''org.hsqldb'', name: ''hsqldb'', version: "$hsqlDbVersion"]`
+
+
+  `)`
+
+
+  `}`
+
+
+  `repositories {`
+
+
+  `mavenCentral()`
+
+
+  `}`
+
+
+  在包含大量依赖的项目中，你还会遇到另一个常见问题：在多个地方重复相同的组和版本号。例如，考虑一个使用 3.0 版本 Spring Framework 库（如 `spring-core`、`spring-aop`、`spring-beans`、`spring-jdbc`
+  和 `spring-context`）的 Java 项目。清单 6-3 展示了 `build-common-group.gradle` 文件，演示了解决此重复问题的一种方法。制品名称被分组到一个列表中。代码遍历该列表，将每个依赖注册为编译时配置。你可以使用命令
+  `gradle -b build-common-group.gradle dependencies` 运行此构建脚本。
+
+
+  清单 6-3. build-common-group.gradle 文件
+
+
+  `apply plugin: ''java''`
+
+
+  `ext { springVersion = ''3.0.0.RELEASE'' }`
+
+
+  `dependencies {`
+
+
+  `[''spring-core'', ''spring-aop'',''spring-beans'', ''spring-jdbc'', ''spring-context''].each
+  {`
+
+
+  `compile "org.springframework:$it:$springVersion"`
+
+
+  `}`
+
+
+  `}`
+
+
+  `repositories {`
+
+
+  `mavenCentral()`
+
+
+  `}`
+
+
+
+
+  ### 文件依赖
+
+
+  大多数遗留项目在其项目的 `lib` 文件夹或共享驱动器上的文件夹中包含依赖项。Gradle 的文件依赖类型允许您直接在项目中使用此类文件。这种类型在遗留项目迁移或当您没有私有仓库来托管内部库时特别有用。
+
+
+  为了更好地理解文件依赖类型，让我们创建一个名为 `gradle-file-dep` 的新项目。在您的文件系统上创建 `gradle-file-dep` 文件夹和一个空的
+  `build.gradle` 文件。在此文件夹内，创建一个 `lib` 子文件夹，并向其中放入几个 JAR 文件。表 6-3 列出了您将使用的 JAR 文件以及从互联网下载它们的链接。
+
+
+  表 6-3.
+
+
+  lib 文件夹内的 JAR 文件
+
+
+  | JAR 文件 | 下载 URL |
+
+  | --- | --- |
+
+  | `logback-classic-1.1.3.jar` | [`http://search.maven.org/remotecontent?filepath=ch/qos/logback/logback-classic/1.1.3/logback-classic-1.1.3.jar`](http://search.maven.org/remotecontent?filepath=ch/qos/logback/logback-classic/1.1.3/logback-classic-1.1.3.jar)
+  |
+
+  | `commons-lang3-3.4.jar` | [`http://search.maven.org/remotecontent?filepath=org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar`](http://search.maven.org/remotecontent?filepath=org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar)
+  |
+
+  | `spring-core-4.2.3.RELEASE.jar` | [`http://search.maven.org/remotecontent?filepath=org/springframework/spring-core/4.2.3.RELEASE/spring-core-4.2.3.RELEASE.jar`](http://search.maven.org/remotecontent?filepath=org/springframework/spring-core/4.2.3.RELEASE/spring-core-4.2.3.RELEASE.jar)
+  |
+
+  | `slf4j-api-1.7.13.jar` | [`http://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-api/1.7.13/slf4j-api-1.7.13.jar`](http://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-api/1.7.13/slf4j-api-1.7.13.jar)
+  |
+
+
+  此时，项目应具有如图 6-3 所示的目录结构。
+
+
+  ![A978-1-4842-1031-4_6_Fig3_HTML.jpg](img/A978-1-4842-1031-4_6_Fig3_HTML.jpg)
+
+
+  图 6-3.
+
+
+  gradle-file-dep 文件夹结构
+
+
+  将文件作为依赖项添加到项目涉及向 Gradle 传递一个文件集合。顾名思义，文件集合就是一组文件。处理文件集合的最简单方法是使用 `Project.files()`
+  方法。此方法接受可变数量的对象作为参数，并尝试将它们转换为 `java.io.File` 实例的集合。清单 6-4 显示了 `build.gradle` 文件，其中向
+  `compile` 配置添加了两个文件依赖项。
+
+
+  清单 6-4\. 包含两个文件依赖项的 build.gradle
+
+
+  `apply plugin: ''java''`
+
+
+  `dependencies {`
+
+
+  `compile files ("lib/logback-classic-1.1.3.jar", "lib/commons-lang3-3.4.jar")`
+
+
+  `}`
+
+
+  有时，您可能希望包含文件夹中的所有文件或子集，而不是将每个文件都列为依赖项。您可以使用项目的 `fileTree` 方法来实现这一点。文件树表示文件的层次结构，例如
+  `directory`。清单 6-5 显示了更新后的 `build.gradle` 文件，该文件将 `lib` 目录中的所有 JAR 文件添加到 `compile`
+  配置中。
+
+
+  清单 6-5\. 使用文件树的文件依赖类型
+
+
+  `apply plugin: ''java''`
+
+
+  `dependencies {`
+
+
+  `compile fileTree (dir : "lib", include: "*.jar")`
+
+
+  `}`
+
+
+  文件依赖项不包含在项目的依赖描述符中。因此，运行 `gradle dependencies` 命令不会在控制台上列出文件依赖项的 JAR。要查看这些 JAR，请将清单
+  6-6 中所示的 `displayJars` 任务附加到 `build.gradle` 文件中。该任务使用 `collect()` 方法遍历 `compile`
+  配置中的所有依赖项并打印它们的名称。
+
+
+  清单 6-6\. displayJars 任务
+
+
+  `task displayJars << {`
+
+
+  `println "${configurations.compile.collect {File f -> f.name}}"`
+
+
+  `}`
+
+
+  使用命令提示符，在 `project` 文件夹内运行 `gradle -q displayJars` 命令。您应该会看到以下输出：
+
+
+  `\gradle-file-dep>gradle -q displayJars`
+
+
+  `[commons-lang3-3.4.jar, logback-classic-1.1.3.jar, slf4j-api-1.7.13.jar, spring-`
+
+
+  `core-4.2.3.RELEASE.jar]`
+
+
+  ### 项目依赖
+
+
+  复杂的企业项目通常被拆分为更小的项目。例如，一个在线应用程序可能被分解为三个独立的项目——一个包含 UI 相关资源和组件的 Web 项目、一个包含后端服务的服务项目，以及一个包含用于访问数据库后端的仓库/DAO
+  代码的仓库项目。在这种情况下，Web 项目依赖于服务项目，而服务项目又依赖于仓库项目。Gradle 提供了项目依赖类型来建立此类依赖关系。
+
+
+  项目依赖可以使用项目的 `project()` 方法来声明，该方法接受被依赖项目的名称。清单 6-7 展示了一个“web”项目依赖于 `service` 项目的示例。冒号
+  (`:`) 字符表示项目层次结构。因此，字符串 `":service"` 表示服务项目位于根目录下一级。
+
+
+  清单 6-7\. 项目依赖类型
+
+
+  `dependencies {`
+
+
+      `compile project (":service")`
+
+
+  `}`
+
+
+  通过此项目依赖，Gradle 会将生成的 `service.jar` 工件作为依赖项包含在 Web 项目中。此外，服务项目的依赖项及其传递依赖项也会作为 Web
+  项目的依赖项添加。您将在第 7 章中更详细地了解项目依赖项，并附有示例。
+
+
+
+
+  ## 解决依赖冲突
+
+
+  假设有一个名为 `transitive-dep` 的 Gradle 项目，它使用了 Spring Core 库（`spring-core.jar`）和 Apache
+  HttpClient（`httpclient.jar`）。清单 6-8 展示了该项目的 `build.gradle` 文件，其中包含两个编译时依赖项。
+
+
+  **清单 6-8\. 版本冲突示例**
+
+
+  `apply plugin: ''java''`
+
+
+  `dependencies {`
+
+
+  `compile ''org.springframework:spring-core:4.2.2.RELEASE'', ''org.apache.httpcomponents:httpclient:4.0''`
+
+
+  `}`
+
+
+  `repositories {`
+
+
+  `mavenCentral()`
+
+
+  `}`
+
+
+  Spring Core 和 HttpClient 库都使用 Apache Commons Logging 作为其底层日志框架。然而，Spring Core 4.2.2
+  版本使用的是 Commons Logging 1.2 版本，而 HttpClient 4.0 版本使用的是 Commons Logging 1.1 版本。当出现此类版本冲突时，Gradle
+  默认会使用传递依赖的最新版本。`gradle dependencies` 命令的输出展示了这种解析策略：
+
+
+  `\chapter` `6` `\transitive-dep>gradle dependencies`
+
+
+  `----------`
+
+
+  `compile - Compile classpath for source set ''main''.`
+
+
+  `+--- org.springframework:spring-core:4.2.2.RELEASE`
+
+
+  `|    \--- commons-logging:commons-logging:1.2`
+
+
+  `\--- org.apache.httpcomponents:httpclient:4.0`
+
+
+  `+--- org.apache.httpcomponents:httpcore:4.0.1`
+
+
+  `+--- commons-logging:commons-logging:1.1.1 -> 1.2`
+
+
+  `\--- commons-codec:commons-codec:1.3`
+
+
+  有时，您可能不希望 Gradle 选择最新的 JAR 文件。在这种情况下，您可以更改默认的解析策略，强制 Gradle 包含特定版本。清单 6-9 展示了实现此目的的修改后的
+  `build.gradle` 文件。`configurations{}` 块允许您配置项目的依赖配置行为。然后，您将 `resolutionStrategy`
+  块应用于所有配置。最后，您使用 `force` 方法强制使用 1.1.1 版本的 commons-logging 依赖项。
+
+
+  **清单 6-9\. 强制依赖项的解析策略**
+
+
+  `apply plugin: ''java''`
+
+
+  `configurations.all {`
+
+
+  `resolutionStrategy {`
+
+
+  `force ''commons-logging:commons-logging:1.1.1''`
+
+
+  `}`
+
+
+  `}`
+
+
+  `dependencies {`
+
+
+  `compile ''org.springframework:spring-core:4.2.2.RELEASE'', ''org.apache.httpcomponents:httpclient:4.0''`
+
+
+  `}`
+
+
+  `repositories {`
+
+
+  `mavenCentral()`
+
+
+  `}`
+
+
+  在修改后的 `build.gradle` 上运行 `gradle dependencies` 命令，可以看到 1.1.1 版本被选中，而不是 1.2 版本：
+
+
+  `default - Configuration for default artifacts.`
+
+
+  `+--- org.springframework:spring-core:4.2.2.RELEASE`
+
+
+  `|    \--- commons-logging:commons-logging:1.2 -> 1.1.1`
+
+
+  `\--- org.apache.httpcomponents:httpclient:4.0`
+
+
+  `+--- org.apache.httpcomponents:httpcore:4.0.1`
+
+
+  `+--- commons-logging:commons-logging:1.1.1`
+
+
+  `\--- commons-codec:commons-codec:1.3`
+
+
+  尽管传递依赖很有用，但它们也可能导致问题及不可预测的副作用，因为项目中最终可能会包含错误版本的 JAR 包。为了主动排查版本冲突问题，您可以让 Gradle 在发现版本冲突时构建失败。您可以使用
+  `failOnVersionConflict` 方法更改默认的解析策略，使其在版本冲突时失败。清单 6-10 展示了使用 `failOnVersionConflict()`
+  方法的修改后的 `build.gradle` 文件。
+
+
+  **清单 6-10\. 冲突时失败的解析策略**
+
+
+  `apply plugin: ''java''`
+
+
+  `configurations.all {`
+
+
+  `resolutionStrategy {`
+
+
+  `failOnVersionConflict()`
+
+
+  `}`
+
+
+  `}`
+
+
+  `dependencies {`
+
+
+  `compile ''org.springframework:spring-core:4.2.2.RELEASE'', ''org.apache.httpcomponents:httpclient:4.0''`
+
+
+  `}`
+
+
+  `repositories {`
+
+
+  `mavenCentral()`
+
+
+  `}`
+
+
+  在命令行中运行 `gradle dependencies` 命令，您将看到一个失败报告：
+
+
+  `FAILURE: Build failed with an exception.`
+
+
+  `* What went wrong:`
+
+
+  `Execution failed for task '':dependencies''.`
+
+
+  `> Could not resolve all dependencies for configuration '':compile''.`
+
+
+  `>``A conflict was found between the following modules:`
+
+
+  `- commons-logging:commons-logging:1.2`
+
+
+  `- commons-logging:commons-logging:1.1.1`
+
+
+
+
+  ## 仓库
+
+
+  如本章开头所述，仓库包含依赖项及其相关的元数据。Gradle 开箱即用即可支持 Maven、Ivy 和本地目录仓库。它还提供了一些预配置的仓库，方便您与常用仓库进行交互。`mavenCentral()`
+  仓库就是这样一个预配置的仓库，它指向 Maven 的中央仓库 `https://repo1.maven.org/maven2`。清单 6-11 展示了与 Maven
+  Central 交互所需的配置。`repositories` 块用于配置项目中使用的仓库。
+
+
+  **清单 6-11\. Maven Central 仓库配置**
+
+
+  `repositories {`
+
+
+  `mavenCentral()`
+
+
+  `}`
+
+
+  JCenter 是另一个流行的仓库，它托管工件于 [`https://bintray.com/bintray/jcenter`](https://bintray.com/bintray/jcenter)。清单
+  6-12 展示了与 JCenter 仓库交互的配置。
+
+
+  **清单 6-12\. JCenter 仓库配置**
+
+
+  `repositories {`
+
+
+  `jcenter()`
+
+
+  `}`
+
+
+  通常情况下，您的公司可能有一个内部的 Maven 仓库。Gradle 提供了一个 `maven()` 方法，可以轻松添加和配置 Maven 仓库。清单 6-13
+  展示了一个自定义 Maven 仓库的声明。对于需要身份验证的仓库，该配置允许您提供凭据。
+
+
+  **清单 6-13\. 自定义 Maven 仓库**
+
+
+  `apply plugin: ''java''`
+
+
+  `repositories {`
+
+
+  `maven {`
+
+
+  `url "http://your_repo.url"`
+
+
+  `credentials {`
+
+
+  `username ''user_name''`
+
+
+  `password ''pwd''`
+
+
+  `}`
+
+
+  `}`
+
+
+  `}`
+
+
+  在某些有限的情况下，您可能需要使用本地 Maven 仓库来检索依赖项。本地 Maven 仓库通常位于 `USER_HOME/.m2` 目录中。对于这些场景，Gradle
+  提供了另一个名为 `mavenLocal()` 的预配置仓库，如清单 6-14 所示。
+
+
+  **清单 6-14\. Maven 本地仓库**
+
+
+  `apply plugin: ''java''`
+
+
+  `repositories {`
+
+
+  `mavenLocal()`
+
+
+  `}`
+
+
+  在处理遗留项目时，您可能需要与位于本地目录中的库进行交互。Gradle 通过扁平目录仓库支持此类交互。这不应与 Maven 本地仓库混淆。Maven 本地仓库包含工件及其相关的元数据，例如
+  `pom.xml` 文件。然而，扁平目录只包含 JAR 文件，没有元数据。清单 6-15 展示了使用 `lib` 文件夹中 JAR 文件的配置。
+
+
+  **清单 6-15\. 扁平目录仓库**
+
+
+  `apply plugin: ''java''`
+
+
+  `repositories {`
+
+
+  `flatDir {`
+
+
+  `dirs ''lib''`
+
+
+  `}`
+
+
+  `}`
+
+
+  `dependencies {`
+
+
+  `compile name: ''commons-lang3'', version : ''3.4''`
+
+
+  `compile name: ''logback-classic'', version: ''1.1.3''`
+
+
+  `}`
+
+
+  使用扁平目录仓库时，您需要使用工件的 `name` 和 `version` 属性来声明依赖项。清单 6-15 使用 `name` 和 `version` 属性声明了
+  `commons-lang3` 库。在构建过程中，Gradle 会在 `lib` 目录中查找名为 `commons-lang3-3.4.jar` 的 JAR 文件。如果仅使用
+  `name` 属性声明 `logback-classic` 库，Gradle 会在 `lib` 文件夹中查找名为 `logback-classic.jar` 的
+  JAR 文件。
+
+
+  与前面章节讨论的文件依赖项不同，来自扁平目录仓库的依赖项会包含在项目的依赖描述符中。要验证此配置，请在 `gradle-file-dep` 项目中创建一个 `build-file-repository.gradle`
+  文件，并复制清单 6-15 的内容。在项目中运行 `gradle -b build-file-repository.gradle dependencies` 命令，它将列出以下依赖项：
+
+
+  `compile - Compile classpath for source set ''main''.`
+
+
+  `+--- :commons-lang3:3.4`
+
+
+  `\--- :logback-classic:1.1.3`
+
+
+  ## 创建 Uber JAR
+
+
+  对于 Java 项目，Gradle 会生成一个包含编译后的类以及 `src/main/resources` 文件夹中其他资源的 JAR 文件。但是，在某些场景下，您可能希望将
+  Java 应用程序作为包含所有依赖 JAR 的自包含应用程序进行分发。一种常见的打包技术是创建“uber”或“fat”JAR。在本节中，您将为本章中构建的 `gradle-dep`
+  项目生成一个 uber JAR。
+
+
+  要构建 uber JAR，您将使用一个名为 Shadow 的开源插件。该插件在 Gradle 插件门户上的页面 [`https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow`](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
+  提供了一个使用该插件的脚本片段（如清单 6-16 所示）。
+
+
+  **清单 6-16\. Shadow 插件片段**
+
+
+  `buildscript {`
+
+
+    `repositories {`
+
+
+      `maven {`
+
+
+        `url "` [`https://plugins.gradle.org/m2/`](https://plugins.gradle.org/m2/)
+  `"`
+
+
+      `}`
+
+
+    `}`
+
+
+    `dependencies {`
+
+
+      `classpath "com.github.jengelman.gradle.plugins:shadow:1.2.2"`
+
+
+    `}`
+
+
+  `}`
+
+
+  `apply plugin: "com.github.johnrengelman.shadow"`
+
+
+  清单 6-16 中的 `buildscript` 块允许您使用像 Shadow 这样的第三方插件。在该块内部，您声明了位于 [`https://plugins.gradle.org/m2/`](https://plugins.gradle.org/m2/)
+  的 Gradle 插件 Maven 仓库。随后是一个 `dependencies` 块，您在其中将插件 JAR 添加到构建脚本的类路径中。
+
+
+  将清单 6-16 中的片段附加到 `gradle-dep` 项目的 `build.gradle` 文件末尾。清单 6-17 展示了您将使用的完整 `build.gradle`
+  文件。
+
+
+  **清单 6-17\. 包含 Shadow 插件的构建脚本**
+
+
+  `apply plugin: ''java''`
+
+
+  `ext {`
+
+
+      `logbackVersion = ''1.1.2''`
+
+
+      `commonsLangVersion = ''3.4''`
+
+
+      `junitVersion = ''4.12''`
+
+
+      `hsqlDbVersion = ''2.3.3''`
+
+
+  `}`
+
+
+  `dependencies {`
+
+
+      `compile "ch.qos.logback:logback-classic:$logbackVersion", "org.apache.commons:commons-lang3:$commonsLangVersion"`
+
+
+      `testCompile (`
+
+
+          `[group: ''junit'', name: ''junit'', version: "$junitVersion"],`
+
+
+                                      `[group: ''org.hsqldb'', name: ''hsqldb'', version:
+  "$hsqlDbVersion"]`
+
+
+      `)`
+
+
+  `}`
+
+
+  `repositories {`
+
+
+      `mavenCentral()`
+
+
+  `}`
+
+
+  `buildscript {`
+
+
+      `repositories {`
+
+
+          `maven {`
+
+
+              `url "` [`https://plugins.gradle.org/m2/`](https://plugins.gradle.org/m2/)
+  `"`
+
+
+          `}`
+
+
+      `}`
+
+
+      `dependencies {`
+
+
+          `classpath "com.github.jengelman.gradle.plugins:shadow:1.2.2"`
+
+
+      `}`
+
+
+  `}`
+
+
+  `apply plugin: "com.github.johnrengelman.shadow"`
+
+
+  在 `gradle-dep` 项目中运行 `gradle shadowJar` 命令，您应该会看到以下输出：
+
+
+  `\chapter` `6` `\gradle-dep>gradle shadowJar`
+
+
+  `:compileJava UP-TO-DATE`
+
+
+  `:processResources UP-TO-DATE`
+
+
+  `:classes UP-TO-DATE`
+
+
+  `:shadowJar`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  任务成功完成后，导航到项目下的 `build/libs` 文件夹，您应该会看到一个 `gradle-dep-all.jar`。该 JAR 文件应包含来自 Logback
+  和 Apache Commons Lang 的类，如图 6-4 所示。
+
+
+  ![A978-1-4842-1031-4_6_Fig4_HTML.jpg](img/A978-1-4842-1031-4_6_Fig4_HTML.jpg)
+
+
+  **图 6-4\. 提取的 gradle-dep-all 目录结构**
+
+
+
+
+  ## 摘要
+
+
+  项目通常依赖于内部或第三方库。Gradle 为声明和管理这些依赖提供了出色的支持。本章回顾了声明式依赖的基础知识，并学习了如何使用依赖配置对依赖进行分组。你还了解了三种依赖类型——外部模块、文件和项目。外部模块依赖使用
+  `group`、`name` 和 `version` 属性声明，而文件依赖则使用其名称声明。接着，本章回顾了 Gradle 如何解决依赖冲突以及如何配置解决策略。最后，你了解了仓库在依赖管理中的作用以及
+  Gradle 支持的几种仓库类型。
+
+
+  下一章将介绍 Gradle 对多项目的支持。
+
+
+  '
+- "# 7. 多项目构建\n\n复杂的企业项目通常被拆分为多个子项目，以简化开发、提高可维护性并增强复用性。本章将回顾多项目的结构和配置方式。你将构建一个示例多项目，以更好地理解\
+  \ Gradle 的多项目支持。你将了解如何在根项目和子项目之间分发构建逻辑。你还将学习如何执行单个项目构建或完整项目构建，以及如何在项目之间声明依赖。\n\n\
+  ## 多项目结构\n\nGradle 通过允许在单个根 Gradle 项目下嵌套多个 Gradle 项目来支持复杂项目的开发。根项目允许你定义公共依赖和构建逻辑，而不是将其分散到各个项目中。根项目提供了一个对所有项目执行完整构建的单一位置，而无需单独构建每个子项目。分层结构的多项目布局如图\
+  \ 7-1 所示。\n\n![A978-1-4842-1031-4_7_Fig1_HTML.gif](img/A978-1-4842-1031-4_7_Fig1_HTML.gif)\n\
+  \n图 7-1.\n\n标准分层多项目布局\n\n根项目包含三个子项目文件夹、一个 `build.gradle` 文件和一个 `settings.gradle`\
+  \ 文件。每个子项目可以包含一个可选的 `build.gradle` 文件。为了更好地理解多项目构建以及 `settings.gradle` 文件的重要性，你将在下一节中了解如何实现一个示例多项目。\n\
+  \n### 示例项目\n\n此示例多项目由一个包含用户界面（WAR 工件）的 Web 子项目、一个包含服务层代码的服务项目（JAR 工件）以及一个包含持久层和实体代码的仓库项目（JAR\
+  \ 工件）组成。UI 层代码依赖服务层代码来完成 Web 请求。因此，Web 子项目依赖于服务子项目。服务层代码将所有持久化操作委托给仓库层。因此，服务子项目依赖于仓库子项目。图\
+  \ 7-2 直观地展示了这种依赖关系。\n\n![A978-1-4842-1031-4_7_Fig2_HTML.gif](img/A978-1-4842-1031-4_7_Fig2_HTML.gif)\n\
+  \n图 7-2.\n\n示例项目依赖关系\n\n首先，在你的本地机器上创建以下文件夹结构，开始实现示例多项目。\n\n`intro-root`\n\n      `web`\n\
+  \n      `service`\n\n      `repository`\n\n`root` 项目是 `intro-root`，子项目是 `web`、`service`\
+  \ 和 `repository`。在 `root` 项目中创建一个空的 `build.gradle` 文件，并运行 `gradle projects` 命令。`projects`\
+  \ 任务是一个内置的 Gradle 任务，它以分层方式显示子项目。命令输出如下：\n\n`\\chapter` `7` `\\intro-root>gradle\
+  \ projects`\n\n`:projects`\n\n`------------------------------------------------------------`\n\
+  \n`Root project`\n\n`------------------------------------------------------------`\n\
+  \n`Root project 'intro-root'`\n\n`No sub-projects`\n\n`To see a list of the tasks\
+  \ of a project, run gradle <project-path>:tasks`\n\n`For example, try running gradle\
+  \ :tasks`\n\n`BUILD SUCCESSFUL`\n\n从输出中可以看到，Gradle 找到了根项目 `intro-root`，但没有在其中找到任何子项目。这就是\
+  \ `settings.gradle` 发挥作用的地方。在此文件中，你需要指定 Gradle 在构建中需要包含的子项目。让我们通过在 `intro-root`\
+  \ 文件夹内创建一个 `settings.gradle` 文件来修复构建。然后，使用 `include` 方法添加三个子项目，如下所示。`include` 方法将子项目目录名称作为其参数。\n\
+  \n`include 'web', 'service', 'repository'`\n\n运行 `gradle projects` 命令后，你将看到 Gradle\
+  \ 检测到了所有四个项目（包括根项目）：\n\n`\\chapter` `7` `\\intro-root>gradle projects`\n\n`:projects`\n\
+  \n`------------------------------------------------------------`\n\n`Root project`\n\
+  \n`------------------------------------------------------------`\n\n`Root project\
+  \ 'intro-root'`\n\n`+--- Project ':repository'`\n\n`+--- Project ':service'`\n\n\
+  `\\--- Project ':web'`\n\n`To see a list of the tasks of a project, run gradle <project-path>:tasks`\n\
+  \n`For example, try running gradle :repository:tasks`\n\n`BUILD SUCCESSFUL`\n\n\
+  输出还显示了 Gradle 使用“`:`”来表示项目层次结构。例如，`:service` 表示服务项目位于根项目（隐式引用，无需名称）下一级。如果你的项目位于\
+  \ `service/soap/util` 下，那么它将使用 `:service:soap:util` 来引用。\n\n### 扁平布局\n\n除了上一节中介绍的分层项目布局外，Gradle\
+  \ 还支持用于多项目开发的“扁平布局”。在这种组织结构中，所有项目都作为 `root` 项目的同级项目存在。图 7-3 展示了使用扁平布局组织的 `intro-root`\
+  \ 多项目。\n\n![A978-1-4842-1031-4_7_Fig3_HTML.gif](img/A978-1-4842-1031-4_7_Fig3_HTML.gif)\n\
+  \n图 7-3.\n\n扁平布局中的 intro-root\n\n为了熟悉扁平布局的组织项目方式，请重新创建 `intro-root` 示例应用程序。首先，在你的本地文件系统上创建一个名为\
+  \ `flat-layout` 的文件夹。在此文件夹内，创建四个子文件夹——`web`、`service`、`repository` 和 `intro-root`。在\
+  \ `intro-root` 下，创建一个空的 `build.gradle` 文件和一个空的 `settings.gradle` 文件。对于扁平布局，你需要使用\
+  \ `includeFlat` 方法而不是 `include` 方法来包含项目。`includeFlat` 方法将子项目的目录名称作为其参数。将这些内容复制到\
+  \ `settings.gradle` 文件中：\n\n`includeFlat 'web', 'service', 'repository'`\n\n使用命令提示符，导航到\
+  \ `intro-root` 文件夹并运行 `gradle projects` 命令。你应该会看到类似如下的输出，Gradle 识别了所有项目：\n\n`\\\
+  chapter` `7` `\\flat-layout\\intro-root>gradle projects`\n\n`:projects`\n\n`------------------------------------------------------------`\n\
+  \n`Root project`\n\n`------------------------------------------------------------`\n\
+  \n`Root project 'intro-root'`\n\n`+--- Project ':repository'`\n\n`+--- Project ':service'`\n\
+  \n`\\--- Project ':web'`\n\n`To see a list of the tasks of a project, run gradle\
+  \ <project-path>:tasks`\n\n`For example, try running gradle :repository:tasks`\n\
+  \n`BUILD SUCCESSFUL`\n\n选择分层布局还是扁平布局来组织项目纯粹是个人偏好。我们认为分层布局更加清晰，本章将使用“分层”的 `intro-root`\
+  \ 项目。\n\n\n\n### 多项目构建 vs. 单项目构建\n\n根项目的 `build.gradle` 文件可用于触发所有项目的完整构建。然而，子项目也可以包含一个可选的\
+  \ `build.gradle` 文件。Gradle 允许你在任何这些子项目上执行独立构建。在这种情况下，只会构建该子项目及其依赖的项目。\n\n那么，Gradle\
+  \ 如何判断一个构建是单项目构建还是更大规模多项目构建的一部分呢？为了做出这个判断，Gradle 会使用以下算法查找 `settings.gradle` 文件：\n\
+  \n在当前目录中查找 `settings.gradle`。  \n如果未找到 `settings.gradle`，则在当前目录同级嵌套的 `master` 目录下查找。\
+  \  \n如果仍未找到 `settings.gradle`，则在任何父目录中查找。\n\n一旦找到 `settings.gradle` 文件，就会进行检查，以确定当前项目是否通过\
+  \ `include` 或 `includeFlat` 方法被定义为多项目的一部分。如果条件满足，则构建将作为多项目构建执行。否则，该项目将作为单项目构建执行。\n\
+  \n## 项目配置\n\n多项目中的子项目通常包含一些通用的配置、任务和插件，这些可以迁移到根项目的 `build.gradle` 文件中。例如，所有项目可能共享相同的\
+  \ `group` 和 `version` 属性。Gradle 提供了一个 `allprojects` 闭包块，允许你定义根项目和子项目共享的这些通用属性/行为。清单\
+  \ 7-1 展示了一个声明了 `group` 和 `version` 属性的 `allprojects` 块。\n\n**清单 7-1. build.gradle\
+  \ 中的 allprojects 块**\n\n`allprojects {`\n\n    `group = \"com.apress.gradle\"`\n\
+  \n    `version = \"1.0.0-SNAPSHOT\"`\n\n`}`\n\n类似地，如果所有子项目都是 Java 项目，它们都会应用 `java`\
+  \ 插件。它们也会共享通用的仓库，并可能共享少量依赖。为了定义这种特定于所有 `subprojects` 的行为，Gradle 提供了一个 `subprojects`\
+  \ 闭包块。清单 7-2 展示了一个包含 `java` 插件和 `mavenCentral()` 仓库声明的 `subprojects` 块。\n\n**清单\
+  \ 7-2. build.gradle 中的 subprojects 闭包块**\n\n`subprojects {`\n\n     `apply plugin:\
+  \ 'java'`\n\n     `repositories {`\n\n          `mavenCentral()`\n\n     `}`\n\n\
+  `}`\n\n> **注意**\n>\n> `allprojects` 块应用于声明适用于所有项目的属性/配置/任务。IDE 插件就是可以在 `allprojects`\
+  \ 部分内部声明的插件的一个很好的例子。\n\n也可以在根项目的 `build.gradle` 文件中配置特定于单个子项目的行为。例如，你需要将 `war` 插件应用于\
+  \ `web` 项目。你可以使用 `project()` 方法添加这种特定于项目的行为，然后将要配置的项目名称作为参数传递进去。清单 7-3 展示了将 `war`\
+  \ 插件应用于 `web` 项目的配置。\n\n**清单 7-3. 特定于项目的行为**\n\n`project(':web') {`\n\n     `apply\
+  \ plugin: 'war'`\n\n`}`\n\n你可以应用本节到目前为止讨论的概念来创建 `intro-root` 的 `build.gradle` 文件，如清单\
+  \ 7-4 所示。它使用 `allprojects` 块来确保根项目和子项目共享相同的 `group` 和 `version` 编号。代码还使用了 `subprojects`\
+  \ 块来确保所有子项目从 Maven Central 获取其依赖。各个 `project` 块将 `java` 插件应用于 `service` 和 `repository`\
+  \ 项目，并将 `war` 插件应用于 `web` 项目。\n\n**清单 7-4. Intro-Project 的 build.gradle 文件**\n\n\
+  `allprojects {`\n\n    `group = \"com.apress.gradle\"`\n\n    `version = \"1.0.0-SNAPSHOT\"\
+  `\n\n`}`\n\n`subprojects {`\n\n    `repositories {`\n\n        `mavenCentral()`\n\
+  \n    `}`\n\n`}`\n\n`project (':service') {`\n\n    `apply plugin: 'java'`\n\n`}`\n\
+  \n`project (':repository') {`\n\n    `apply plugin: 'java'`\n\n`}`\n\n`project(':web')\
+  \ {`\n\n    `apply plugin: 'war'`\n\n`}`\n\n更新了 `intro-root` 项目的 `build.gradle`\
+  \ 文件后，运行 `gradle build` 命令，你将看到以下输出：\n\n`\\chapter` `7` `\\intro-root>gradle build`\n\
+  \n`:repository:compileJava UP-TO-DATE`\n\n`:repository:processResources UP-TO-DATE`\n\
+  \n`:repository:classes UP-TO-DATE`\n\n`:repository:jar`\n\n`.........................`\n\
+  \n`:repository:build`\n\n`:service:compileJava UP-TO-DATE`\n\n`:service:processResources\
+  \ UP-TO-DATE`\n\n`:service:classes UP-TO-DATE`\n\n`:service:jar`\n\n`:service:assemble`\n\
+  \n`........................`\n\n`:web:compileJava UP-TO-DATE`\n\n`:web:processResources\
+  \ UP-TO-DATE`\n\n`:web:classes UP-TO-DATE`\n\n`:web:war`\n\n`:web:assemble`\n\n\
+  `.........................`\n\n`:web:build`\n\n`BUILD SUCCESSFUL`\n\n从输出中可以看出，Gradle\
+  \ 默认按照子项目名称的字母数字升序执行它们。\n\n## 项目依赖\n\n正如你在图 7-2 中看到的，web 项目依赖于 service 项目，而 service\
+  \ 项目又依赖于 repository 项目。Gradle 提供了项目依赖类型来声明此类依赖。清单 7-5 展示了修改后的 `build.gradle` 部分，其中声明了这两个依赖。\n\
+  \n**清单 7-5. build.gradle 中的项目依赖**\n\n`allprojects {`\n\n    `group = \"com.apress.gradle\"\
+  `\n\n    `version = \"1.0.0-SNAPSHOT\"`\n\n`}`\n\n`subprojects {`\n\n    `repositories\
+  \ {`\n\n        `mavenCentral()`\n\n    `}`\n\n`}`\n\n`project (':repository') {`\n\
+  \n    `apply plugin: 'java'`\n\n`}`\n\n`project (':service') {`\n\n    `apply plugin:\
+  \ 'java'`\n\n    `dependencies {`\n\n        `compile project(':repository')`\n\n\
+      `}`\n\n`}`\n\n`project(':web') {`\n\n    `apply plugin: 'war'`\n\n    `dependencies\
+  \ {`\n\n        `compile project(':service')`\n\n    `}`\n\n`}`\n\n如果你现在执行 `gradle\
+  \ build`，Gradle 将尝试先构建 repository 项目，然后是 service 项目，最后是 web 项目。输出应该类似于 Gradle 的默认输出。然而，如果你调整依赖关系，使得\
+  \ web 依赖于 repository，而 repository 依赖于 service，那么运行 `gradle build` 将会在运行 repository\
+  \ 构建之前先构建 service JAR：\n\n`\\chapter` `7` `\\intro-root>gradle build`\n\n`:service:compileJava\
+  \ UP-TO-DATE`\n\n`:service:processResources UP-TO-DATE`\n\n`:service:classes UP-TO-DATE`\n\
+  \n`:service:jar UP-TO-DATE`\n\n`:repository:compileJava UP-TO-DATE`\n\n`..............................`\n\
+  \n`:repository:check UP-TO-DATE`\n\n`:repository:build UP-TO-DATE`\n\n`:service:assemble\
+  \ UP-TO-DATE`\n\n`...............................`\n\n`:web:compileTestJava UP-TO-DATE`\n\
+  \n`:web:processTestResources UP-TO-DATE`\n\n`:web:testClasses UP-TO-DATE`\n\n`:web:test\
+  \ UP-TO-DATE`\n\n`:web:check UP-TO-DATE`\n\n`:web:build`\n\n`BUILD` `SUCCESSFUL`\n\
+  \n\n\n## 子项目构建文件\n\n到目前为止，你一直在使用根项目的 `build.gradle` 文件来声明通用行为以及特定于项目的行为，从而无需在每个子项目中单独创建\
+  \ `build.gradle` 文件。对于大型项目，这种做法会导致单个 `build.gradle` 文件变得复杂。为了便于维护，你可能希望将根项目的 `build.gradle`\
+  \ 文件限制为仅包含通用行为，并将其余配置拆分到各个子项目的构建文件中。\n\n为了演示这一点，请在 `service` 项目下创建一个 `build.gradle`\
+  \ 文件，并复制清单 7-6 中所示的内容。然后，从根项目的 `build.gradle` 文件中移除 `project(':service'){}` 代码块。\n\
+  \n清单 7-6\\. 服务项目特定配置\n\n`apply plugin: 'java'`\n\n`dependencies {`\n\n     `compile\
+  \ project(':repository')`\n\n`}`\n\n使用命令提示符，导航到 `service` 文件夹并运行 `gradle build`\
+  \ 命令。你将看到这会先触发 repository 的 JAR 构建，然后是 service 项目的构建：\n\n`\\chapter` `7` `\\intro-root\\\
+  service>gradle build`\n\n`:repository:compileJava UP-TO-DATE`\n\n`:repository:processResources\
+  \ UP-TO-DATE`\n\n`:repository:classes UP-TO-DATE`\n\n`:repository:jar UP-TO-DATE`\n\
+  \n`:service:compileJava UP-TO-DATE`\n\n`:service:processResources UP-TO-DATE`\n\n\
+  `:service:classes UP-TO-DATE`\n\n`:service:jar UP-TO-DATE`\n\n`:service:assemble\
+  \ UP-TO-DATE`\n\n`:service:compileTestJava UP-TO-DATE`\n\n`:service:processTestResources\
+  \ UP-TO-DATE`\n\n`:service:testClasses UP-TO-DATE`\n\n`:service:test UP-TO-DATE`\n\
+  \n`:service:check UP-TO-DATE`\n\n`:service:build UP-TO-DATE`\n\n`BUILD SUCCESSFUL`\n\
+  \n## 本章小结\n\n在本章中，你学习了 Gradle 多项目构建的复杂性。你了解了两种项目结构类型——层次结构和扁平结构。你学习了 `allprojects`、`subprojects`\
+  \ 和 `project` 代码块，它们允许你将构建逻辑放置在正确的位置以提高可维护性。然后，你学习了如何在项目之间声明依赖关系。最后，你回顾了如何触发完整构建和子项目构建。\n\
+  \n在下一章中，你将学习 Gradle 对将生成的工件发布到仓库的支持。\n\n"
+- '# 8. 发布工件
+
+
+  为了共享内部开发的框架和库，开发者需要将它们发布到仓库。在本章中，你将使用 Gradle 将工件发布到本地文件系统和远程仓库。
+
+
+  ## 发布到本地仓库
+
+
+  你处理的项目通常会生成一个或多个工件，例如 JAR、WAR 或 ZIP 文件。Gradle 提供了一个 `archives` 配置，可用于声明项目产生的工件。Java
+  项目默认会生成一个 JAR 文件，因此 Java 插件会自动将生成的 JAR 关联到 `archives` 配置。类似地，`War` 插件会将生成的 WAR 分配给此配置。Gradle
+  提供了一个 `uploadArchives` 任务，可用于将这些工件发布到仓库。
+
+
+  为了更好地理解发布过程，你将创建一个名为 `sample-app` 的空 Java 应用程序。为此，在你的文件系统上创建一个名为 `sample-app` 的新文件夹。然后创建一个
+  `build.gradle` 文件，并复制清单 8-1 的内容。
+
+
+  清单 8-1\. sample-app 的 build.gradle 文件
+
+
+  `apply plugin: ''java''`
+
+
+  `version = 1.0`
+
+
+  `uploadArchives {`
+
+
+      `repositories {`
+
+
+        `flatDir { dirs "../repo" }`
+
+
+      `}`
+
+
+  `}`
+
+
+  `uploadArchives` 任务中的 `repositories` 闭包允许你配置工件应发布到的位置。清单 8-1 要求 Gradle 将生成的工件发布到文件系统上与
+  `sample-app` 文件夹同级的 `repo` 文件夹中。要执行发布，请运行以下 `uploadArchives` 任务：
+
+
+  `\chapter` `8` `\sample-app>gradle uploadArchives`
+
+
+  成功执行后，你将看到一个创建的 `repo` 文件夹及其内容，如图 8-1 所示。
+
+
+  ![A978-1-4842-1031-4_8_Fig1_HTML.jpg](img/A978-1-4842-1031-4_8_Fig1_HTML.jpg)
+
+
+  图 8-1.
+
+
+  repo 文件夹的内容
+
+
+  Gradle 默认使用 `projectname-version.type` 格式作为生成的文件名。因此，生成的工件被命名为 `sample-app-1.0.jar`。此外，Gradle
+  会生成一个 `ivy.xml` 配置文件并将其添加到 `repo` 文件夹中。
+
+
+  这个已发布的工件现在可以被其他项目访问。如第 6 章所述，一种直接的方法是将此文件夹声明为“扁平目录仓库”，并将 `sample-app` 添加为依赖项。
+
+
+  ## 发布到 Maven 仓库
+
+
+  为了发布到 Maven 仓库，你需要一个 `pom.xml` 配置文件以及工件。项目对象模型（即 `pom.xml` 文件）描述了工件，并包含依赖项和插件等信息。Gradle
+  提供了一个 Maven 插件，可以简化到 Maven 仓库的部署，并能自动生成 `pom.xml` 文件。
+
+
+  在开始发布到 Maven 仓库之前，你需要访问一个仓库管理器，例如 Artifactory ( [`www.jfrog.com/artifactory/`](http://www.jfrog.com/artifactory/)
+  ) 或 Nexus ( [`www.sonatype.org/nexus/go/`](http://www.sonatype.org/nexus/go/) )。仓库管理器管理仓库，充当公共仓库的代理，并支持对企业中使用的工件进行治理。在下一节中，你将学习如何在本地机器上安装
+  Nexus，这是一个来自 Sonatype 的流行的开源仓库管理器。
+
+
+  ### 安装 Nexus
+
+
+  Nexus 以归档文件形式分发，并捆绑了一个 Jetty 实例。从 Sonatype 的网站 [`www.sonatype.org/nexus/go/`](http://www.sonatype.org/nexus/go/)
+  下载 Nexus 发行版（Windows 使用 `.zip` 版本）。在撰写本文时，可用的 Nexus 版本是 2.11.4-01。解压文件并将其内容放置在你的机器上。本书中的代码假定内容位于
+  `C:\tools\nexus` 文件夹中。
+
+
+  以管理员模式启动命令行，并导航到位于 `C:\tools\nexus\nexus-2.11.4-01` 的 `bin` 文件夹。要启动 Nexus，请运行以下命令：
+
+
+  `nexus console`
+
+
+  默认情况下，Nexus 运行在 8081 端口。启动 Web 浏览器并导航到 Nexus 的地址 `http://localhost:8081/nexus`。图
+  8-2 显示了 Nexus 的启动画面。使用右上角的“登录”链接登录应用程序。Nexus 的默认登录用户名和密码是 `admin` 和 `admin123`。
+
+
+  ![A978-1-4842-1031-4_8_Fig2_HTML.jpg](img/A978-1-4842-1031-4_8_Fig2_HTML.jpg)
+
+
+  图 8-2.
+
+
+  Nexus 索引页面
+
+
+
+
+  ### 构建配置
+
+
+  现在你已经运行了 Nexus 仓库管理器，下一步是修改 `build.gradle` 文件。清单 8-2 展示了更新后的 `build.gradle` 文件，其中包含了发布到
+  Maven 仓库所需的配置。
+
+
+  **清单 8-2\. 用于发布到 Maven 仓库的 build.gradle**
+
+
+  `apply plugin: ''java''`
+
+
+  `apply plugin: ''maven''`
+
+
+  `group = ''com.apress.gradle.intro''`
+
+
+  `archivesBaseName = ''sample-app''`
+
+
+  `version = ''1.0-SNAPSHOT''`
+
+
+  `uploadArchives {`
+
+
+  `repositories {`
+
+
+  `mavenDeployer {`
+
+
+  `repository (url: "http://localhost:8081/nexus/content/repositories/releases") {`
+
+
+  `authentication (userName: "deployment", password: "deployment123")`
+
+
+  `}`
+
+
+  `snapshotRepository (url: "http://localhost:8081/nexus/content/repositories/snapshots")
+  {`
+
+
+  `authentication (userName: "deployment", password: "deployment123")`
+
+
+  `}`
+
+
+  `}`
+
+
+  `}`
+
+
+  `}`
+
+
+  `dependencies {`
+
+
+  `compile ''ch.qos.logback:logback-classic:1.1.2''`
+
+
+  `}`
+
+
+  `repositories {`
+
+
+  `mavenCentral()`
+
+
+  `}`
+
+
+  为了让 Gradle 生成 `pom.xml` 文件，它需要三个 Maven 坐标——`groupId`、`artifactId` 和 `version`。在清单
+  8-2 中，你使用了项目的 `group`、`archivesBaseName` 和 `version` 属性来提供这些值。Gradle 提供了 `mavenDeployer`
+  方法，允许你配置用于发布工件的 Maven 仓库。在清单 8-2 中，你配置了一个 `snapshotRepository`（`http://localhost:8081/nexus/content/repositories/snapshots`）用于发布
+  `SNAPSHOT` 或开发版本的工件，以及一个发布仓库（`http://localhost:8081/nexus/content/repositories/releases`）用于发布已发布的工件。为了让
+  Gradle 将工件发布到 Nexus，它需要提供适当的凭据。在构建脚本中，你使用了 Nexus 安装时默认提供的部署用户（密码：deployment123）。该部署用户拥有“Nexus
+  部署角色”，具有写入仓库的权限。然后，这段代码向项目添加了一个 `logback` 依赖，随后是一个指向 Maven Central 的 `repositories`
+  块。`mavenCentral()` 配置告诉 Gradle 从 Maven Central 下载 `logback` 依赖。尽管此配置本可以使用 Nexus
+  来下载依赖，但它提供了为下载和上传工件使用不同仓库的可能性。
+
+
+  配置完成后，运行 `gradle uploadArchives` 命令，你将看到以下输出：
+
+
+  `\chapter` `8` `\sample-app>gradle uploadArchives`
+
+
+  `:compileJava UP-TO-DATE`
+
+
+  `:processResources UP-TO-DATE`
+
+
+  `:classes UP-TO-DATE`
+
+
+  `:jar`
+
+
+  `:uploadArchives`
+
+
+  `Could not find metadata com.apress.gradle.intro:sample-app:1.0-SNAPSHOT/maven-metadata.xml
+  in remote (` `http://localhost:8081/nexus/content/repositories/snapshots` `)`
+
+
+  `Could not find metadata com.apress.gradle.intro:sample-app/maven-metadata.xml in
+  remote (` `http://localhost:8081/nexus/content/repositories/snapshots` `)`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  输出中的 `"Could not find metadata ..."` 错误只是一个警告，表明 Gradle 无法在 Nexus 服务器上找到此工件的 `metadata.xml`
+  文件。当工件首次发布时，你会看到此消息。`metadata.xml` 文件将在首次发布时创建，因此在后续发布中你不应再看到此消息。
+
+
+  使用浏览器，导航到 Nexus 控制台 `http://localhost:8081/nexus/`。从左侧的垂直导航栏中，点击“Repositories”链接。你将在右侧窗格中看到所有用户管理的仓库。由于你发布了一个
+  `SNAPSHOT` 版本的工件，请点击 Snapshots 旁边的仓库路径链接（`http://localhost:8081/nexus/content/repositories/snapshots/`）。这将在新的浏览器标签页中打开
+  Snapshot 仓库。依次点击链接 `com->apress->gradle->intro->sample-app->1.0-SNAPSHOT`，你将看到生成的工件，如图
+  8-3 所示。
+
+
+  ![A978-1-4842-1031-4_8_Fig3_HTML.jpg](img/A978-1-4842-1031-4_8_Fig3_HTML.jpg)
+
+
+  **图 8-3\. Nexus 上的示例应用工件**
+
+
+  你也可以使用 URL `http://localhost:8081/nexus/content/repositories/snapshots/com/apress/gradle/intro/sample-app/1.0-SNAPSHOT/`
+  直接访问生成的工件。请注意，Nexus 使用工件的组名（`com.apress.gradle.intro`）、工件名称（`sample-app`）和工件版本（`1.0-SNAPSHOT`）来构建此
+  URL。
+
+
+  打开生成的 `sample-app-1.0-#########.pom` 文件，你将看到 Gradle 已自动将项目的 `logback` 依赖添加为 Maven
+  依赖：
+
+
+  `<project ".....">`
+
+
+  `<modelVersion>4.0.0</modelVersion>`
+
+
+  `<groupId>com.apress.gradle.intro</groupId>`
+
+
+  `<artifactId>sample-app</artifactId>`
+
+
+  `<version>1.0-SNAPSHOT</version>`
+
+
+  `<dependencies>`
+
+
+  `<dependency>`
+
+
+  `<groupId>ch.qos.logback</groupId>`
+
+
+  `<artifactId>logback-classic</artifactId>`
+
+
+  `<version>1.1.2</version>`
+
+
+  `<scope>compile</scope>`
+
+
+  `</dependency>`
+
+
+  `</dependencies>`
+
+
+  `</project>`
+
+
+
+
+  ## 处理额外构件
+
+
+  在本章前面部分，你已经了解到 `archives` 配置用于声明项目产生的构件。诸如 Java 之类的插件会自动将生成的 JAR 文件与此配置关联。然而，如果你的项目产生了额外的构件（例如，源码
+  JAR 或 Javadoc JAR），你需要在构建文件中显式地将它们与 `archives` 配置关联起来。你可以通过向 `archives` 配置提供实际的构件或产生该构件的任务来实现这一点。
+
+
+  为了更好地理解这个概念，考虑一个场景：你希望 `sample-app` 分发以下构件：
+
+
+  *   一个位于项目根目录的名为 `app.properties` 的属性文件。
+
+  *   一个包含项目源代码的 JAR 文件
+
+
+  为了继续学习后续的代码示例，请在 `sample-app` 文件夹中创建一个 `app.properties` 文件，并复制以下内容：
+
+
+  `licenseKey=XYFDLE`
+
+
+  `encrypt=false`
+
+
+  清单 8-3 展示了 `sample-app` 的 `build.gradle` 文件中将本用例中的两个构件分配给 `archives` 配置的部分。首先，你声明一个对
+  `app.properties` 构件的引用。然后，你创建一个 `sourceJar` 任务，该任务将生成一个包含 `src/main` 文件夹中源代码和资源文件的
+  JAR 文件。最后，你使用 `artifacts` 块将属性构件和源码 JAR 任务添加到 `archives` 配置中。
+
+
+  清单 8-3\. 将构件与配置关联
+
+
+  `def propertiesArtifact = file(''app.properties'')`
+
+
+  `task sourceJar (type : Jar) {`
+
+
+     `classifier = ''sources''`
+
+
+     `from sourceSets.main.allSource`
+
+
+  `}`
+
+
+  `artifacts {`
+
+
+     `archives propertiesArtifact`
+
+
+     `archives sourceJar`
+
+
+  `}`
+
+
+  将此清单添加到 `sample-app` 的 `build.gradle` 文件后，你可以运行 `uploadArchives` 任务，它将自动将这两个新构件连同
+  `sample-app.jar` 文件一起部署到 Maven 仓库。运行该命令应产生以下输出：
+
+
+  `\chapter` `8` `\sample-app>gradle uploadArchives`
+
+
+  `:compileJava UP-TO-DATE`
+
+
+  `:processResources UP-TO-DATE`
+
+
+  `:classes UP-TO-DATE`
+
+
+  `:jar UP-TO-DATE`
+
+
+  `:sourceJar`
+
+
+  `:uploadArchives`
+
+
+  `BUILD SUCCESSFUL`
+
+
+  命令成功执行后，在浏览器中导航到 URL `http://localhost:8081/nexus/content/repositories/snapshots/com/apress/gradle/intro/sample-app/1.0-SNAPSHOT/`。你应该会看到图
+  8-4 中所示的三个构件。
+
+
+  ![A978-1-4842-1031-4_8_Fig4_HTML.jpg](img/A978-1-4842-1031-4_8_Fig4_HTML.jpg)
+
+
+  图 8-4.
+
+
+  Maven 仓库中示例应用的三个构件
+
+
+  打开 `sample-app-1.0-###########.properties` 文件；它应包含图 8-5 所示的内容。
+
+
+  ![A978-1-4842-1031-4_8_Fig5_HTML.jpg](img/A978-1-4842-1031-4_8_Fig5_HTML.jpg)
+
+
+  图 8-5.
+
+
+  属性文件内容
+
+
+  ## 安装到 Gradle 缓存
+
+
+  在第 6 章中，你了解到 Gradle 维护着一个缓存，用于存储下载的构件和元数据。这提高了构建性能，因为向外部仓库发出的下载请求数量显著减少。默认情况下，此缓存位于
+  `<<USER_HOME>>/.gradle/caches` 文件夹中。图 8-6 展示了我们机器上 Gradle 缓存的一部分。Gradle 会计算构件内容的
+  `SHA1` 哈希码，并将其用作存放构件的文件夹名称。Gradle 不保证此文件夹结构，并且该结构很可能会随着 Gradle 新版本而改变。
+
+
+  ![A978-1-4842-1031-4_8_Fig6_HTML.jpg](img/A978-1-4842-1031-4_8_Fig6_HTML.jpg)
+
+
+  图 8-6.
+
+
+  Gradle 缓存目录结构
+
+
+  考虑一个场景：你希望将一个第三方 JAR 文件添加到 Gradle 的缓存中，以便 Gradle 构建可以使用它。也可能存在另一种场景：你有一个项目（称为 A）生成了一个
+  JAR 文件，你希望该文件在 Gradle 缓存中可用，以供其他项目使用。有 Maven 背景的人会很快想起 Maven 提供的 “install/install-file”
+  目标（[`https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html`](https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html)），它允许你将文件添加到
+  Maven 本地缓存。另一方面，Gradle 将其缓存视为真正的缓存，并且不提供任何直接添加 JAR 文件的机制。
+
+
+  为了用 Gradle 解决这些场景，接下来的小节将讨论三种方案。
+
+
+  ### 使用文件仓库
+
+
+  将第三方 JAR 文件添加到文件系统上的一个目录中。你可以配置项目（例如本场景中的项目 A）将生成的构件发布到此目录。需要使用这些 JAR 文件的项目可以将此目录用作文件仓库。
+
+
+  ### 使用本地 Maven 仓库
+
+
+  将 JAR 文件发布到你的本地 Maven 仓库，并配置 Gradle 从 Maven 缓存拉取依赖项。使用 Maven 的 Gradle 项目可以使用 `gradle
+  install` 命令将其构件发布到本地 Maven 仓库。例如，在 `sample-app` 中运行 `gradle install` 将使 `sample-app.jar`
+  文件在本地 Maven 仓库中可用，如图 8-7 所示。
+
+
+  ![A978-1-4842-1031-4_8_Fig7_HTML.jpg](img/A978-1-4842-1031-4_8_Fig7_HTML.jpg)
+
+
+  图 8-7.
+
+
+  本地 Maven 仓库中的示例应用 JAR
+
+
+  ### 使用中央仓库
+
+
+  将第三方 JAR 发布到诸如 Nexus 之类的中央仓库。对于由项目 A 等项目产生的 JAR，让 CI 服务器定期构建项目并将其推送到中央仓库。如果这些 JAR
+  文件的内容经常变化，那么使用该 JAR 文件的项目需要将依赖项声明为可变的。以下是此类声明的示例：
+
+
+  `dependencies {`
+
+
+      `compile group:"com.apress", name:"A",version:"1.0-SNAPSHOT",``changing: true`
+
+
+  `}`
+
+
+  默认情况下，Gradle 会将标记为 `changing` 的构件缓存 24 小时。你可以通过配置其解析策略来强制 Gradle 在每次构建时检查更新版本。以下是此类配置的示例：
+
+
+  `configurations.all {`
+
+
+       `resolutionStrategy.cacheChangingModulesFor 0, "seconds"`
+
+
+  `}`
+
+
+  ## 总结
+
+
+  在本章中，你回顾了 Gradle 对发布构件的支持。你了解到 `archives` 配置用于声明项目产生的构件。你使用了 `uploadArchives` 来发布到本地文件仓库。然后，你了解了安装
+  Nexus Maven 仓库管理器，并使用 `mavenDeployer` 发布到远程 Maven 仓库。你还学习了处理额外构件所需的配置。
+
+
+  在下一章中，你将回顾持续集成的概念，并探索一个流行的 CI 服务器——Jenkins，以及它对 Gradle 的支持。
+
+
+  '
+- '# 9. 持续集成
+
+
+  持续集成（CI）是一种软件工程实践，其中对源代码的更改每天多次集成到共享的主线中。每次更改都会触发自动构建，编译并测试整个代码库。任何失败都会立即报告，从而及早发现集成问题。持续集成还允许你自动监控代码质量、生成代码覆盖率指标并评估项目的整体健康状况。
+
+
+  持续集成市场充满了多种开源和商业工具，例如 Hudson、TeamCity、Bamboo 和 Jenkins。本章将探讨 Jenkins 及其对 Gradle
+  的支持。
+
+
+
+
+  ## 持续集成流程
+
+
+  持续集成服务器会与版本控制系统（VCS）（例如 SVN 和 GIT）交互，以定期执行构建。CI 与代码仓库之间的高层交互如图 9-1 所示。
+
+
+  ![A978-1-4842-1031-4_9_Fig1_HTML.jpg](img/A978-1-4842-1031-4_9_Fig1_HTML.jpg)
+
+
+  图 9-1.
+
+
+  CI 流程
+
+
+  该交互始于开发者将其更改提交到中央源代码仓库（VCS）。CI 服务器可以配置为定期轮询代码仓库的更改，或者由 VCS 触发构建。当 CI 服务器检测到代码更改时，它会下载源代码并开始构建。构建成功后，CI
+  服务器可以将生成的工件推送到测试/预发布环境。如果检测到构建失败，CI 服务器会向开发者发送通知。
+
+
+  ## 示例项目
+
+
+  为了充分理解 Jenkins 对 Gradle 的支持，你需要一个存放在 VCS 中的示例 Gradle 项目。本书将使用 Git 作为 VCS，并使用流行的在线托管服务
+  GitHub 来托管 Git 仓库。你将使用一个名为 `ig-app` 的示例应用程序，该程序已上传至 GitHub 的 [`https://github.com/bava/ig-app`](https://github.com/bava/ig-app)
+  。该示例项目包含一个简单的 `build.gradle` 文件和一个向控制台输出 `"Hello World"` 的 `HelloWorld.java` 类。
+
+
+  要跟随本章后续内容，你需要一个 GitHub 账户。如果你是首次使用，可以在 GitHub 主页 [`https://github.com`](https://github.com/)
+  上注册一个免费账户。拥有账户后，你需要 fork 或复制 `ig-app` 仓库到你自己的账户下。这样你就可以配置 Jenkins，使用你的凭据与 fork 后的仓库进行交互。这也允许你向仓库提交更改，并自动触发
+  Jenkins 构建。你可以通过点击仓库名称旁边的 Fork 按钮来 fork `ig-app` 仓库，如图 `9-2` 所示。
+
+
+  ![A978-1-4842-1031-4_9_Fig2_HTML.jpg](img/A978-1-4842-1031-4_9_Fig2_HTML.jpg)
+
+
+  图 9-2.
+
+
+  Fork ig-app 仓库
+
+
+  ### 安装 Jenkins
+
+
+  Jenkins 是一个完全用 Java 编写的开源、跨平台持续集成工具。它支持多种技术和语言，例如 Java、.Net、PHP、Ruby 等。在开始使用 Jenkins
+  之前，你需要安装并配置它。
+
+
+  注意
+
+
+  由于 Jenkins 需要与 Git 仓库交互，你需要在机器上安装 Git。你可以从 [`http://git-scm.com/downloads`](http://git-scm.com/downloads)
+  下载特定操作系统的 Git 安装程序。
+
+
+  从 [`https://jenkins-ci.org/`](https://jenkins-ci.org/) 下载最新版本开始安装 Jenkins（见图 9-3）。Jenkins
+  有两种形式——主要操作系统的原生安装程序和一个可执行的 WAR 文件。为简单起见，本书采用 WAR 文件方式。
+
+
+  ![A978-1-4842-1031-4_9_Fig3_HTML.jpg](img/A978-1-4842-1031-4_9_Fig3_HTML.jpg)
+
+
+  图 9-3.
+
+
+  Jenkins 下载页面
+
+
+  下载 `jenkins.war` 文件并将其保存到你的文件系统中。使用命令提示符，导航到下载目录并运行以下命令来启动 Jenkins：
+
+
+  `java -jar jenkins.war`
+
+
+  命令成功执行后，你应该会在控制台上看到语句 `"INFO: Jenkins is fully up and running"`，表明 Jenkins 已启动并正在运行。默认情况下，Jenkins
+  运行在 8080 端口。使用浏览器，导航到 `http://localhost:8080`，你应该会看到 Jenkins 仪表盘，如图 9-4 所示。
+
+
+  ![A978-1-4842-1031-4_9_Fig4_HTML.jpg](img/A978-1-4842-1031-4_9_Fig4_HTML.jpg)
+
+
+  图 9-4.
+
+
+  Jenkins 仪表盘
+
+
+  ### 配置 Jenkins
+
+
+  在开始使用 Jenkins 运行 Gradle 构建之前，你需要通过添加和配置 Gradle 与 GitHub 插件来配置 Jenkins。在 Jenkins
+  仪表盘的垂直导航栏中，点击“管理 Jenkins”。然后点击“管理插件”链接。在出现的屏幕上，点击“可选插件”选项卡，并使用过滤器框搜索 Gradle 插件，如图
+  9-5 所示。
+
+
+  ![A978-1-4842-1031-4_9_Fig5_HTML.jpg](img/A978-1-4842-1031-4_9_Fig5_HTML.jpg)
+
+
+  图 9-5.
+
+
+  管理插件屏幕上的“可选插件”选项卡
+
+
+  选择该插件，然后点击“立即下载并在重启后安装”按钮。按照相同的方法搜索并安装 GitHub 插件（见图 9-6）。
+
+
+  ![A978-1-4842-1031-4_9_Fig6_HTML.jpg](img/A978-1-4842-1031-4_9_Fig6_HTML.jpg)
+
+
+  图 9-6.
+
+
+  GitHub 插件
+
+
+  你会注意到 GitHub 插件会触发安装其他插件，例如 Git 和 Git 客户端（见图 9-7）。
+
+
+  ![A978-1-4842-1031-4_9_Fig7_HTML.jpg](img/A978-1-4842-1031-4_9_Fig7_HTML.jpg)
+
+
+  图 9-7.
+
+
+  与 GitHub 插件一起安装的插件
+
+
+  要完成插件安装，请重启 Jenkins 服务器。你可以通过在命令行中终止 Jenkins 进程（Windows 上按 Ctrl+C）并重新运行 `java -jar
+  jenkins.war` 命令来实现。
+
+
+  最后，你需要配置 Gradle 插件以使用本地 Gradle 安装。为此，点击仪表盘上的“管理 Jenkins”链接，然后点击“系统配置”链接。导航到页面上的
+  Gradle 部分，然后点击“新增 Gradle”按钮。这将打开一个用于配置 Gradle 安装的区域。在“Gradle 名称”中输入“Local Gradle”。然后在
+  `GRADLE_HOME` 下输入 Gradle 安装目录，并取消选中“自动安装”选项，如图 9-8 所示。
+
+
+  ![A978-1-4842-1031-4_9_Fig8_HTML.jpg](img/A978-1-4842-1031-4_9_Fig8_HTML.jpg)
+
+
+  图 9-8.
+
+
+  Gradle 插件配置
+
+
+  点击页面底部的“保存”按钮保存更改。至此，插件配置完成，你现在可以继续创建 Jenkins 构建任务了。
+
+
+
+
+  ### 创建构建任务
+
+
+  Jenkins 中的任务代表构建过程中的任务或步骤。例如，一个构建任务可以下载源代码、编译并执行测试。在本节中，您将创建一个执行示例应用的 Gradle 构建脚本的构建任务。要创建新任务，请按照以下步骤操作：
+
+
+  导航至 Jenkins 仪表盘 `http://localhost:8080`，然后点击 **New Item** 链接。在 **New Item** 界面上，输入名称
+  `intro-gradle-app`，并选择 **Freestyle Project**，如图 9-9 所示。我们选择 **Freestyle Project**
+  选项，因为它提供了极大的灵活性，并且可以与任何 SCM 和构建系统配合使用。点击 **OK** 按钮。
+
+
+  ![A978-1-4842-1031-4_9_Fig9_HTML.jpg](img/A978-1-4842-1031-4_9_Fig9_HTML.jpg)
+
+
+  图 9-9.
+
+
+  新建任务界面   在下一个界面上，输入包含已 fork 示例项目的 GitHub 仓库 URL（见图 9-10）。
+
+
+  ![A978-1-4842-1031-4_9_Fig10_HTML.jpg](img/A978-1-4842-1031-4_9_Fig10_HTML.jpg)
+
+
+  图 9-10.
+
+
+  GitHub 项目 URL   在 **Source Code Management** 部分下，选择 **Git** 选项。在 **Repository URL**
+  下，输入用于克隆 GitHub 仓库的 HTTPS URL，如图 9-11 所示。
+
+
+  ![A978-1-4842-1031-4_9_Fig11_HTML.jpg](img/A978-1-4842-1031-4_9_Fig11_HTML.jpg)
+
+
+  图 9-11.
+
+
+  源代码仓库配置   您可以在 GitHub 仓库页面的垂直导航栏上获取要输入的克隆 URL（见图 9-12）。在复制 URL 之前，请确保已选择 **HTTPS**
+  选项。
+
+
+  ![A978-1-4842-1031-4_9_Fig12_HTML.jpg](img/A978-1-4842-1031-4_9_Fig12_HTML.jpg)
+
+
+  图 9-12.
+
+
+  克隆 GitHub 的 URL   点击凭据旁边的 **Add** 按钮。在 **Add Credentials** 对话框中，输入您的 GitHub 账户用户名和密码，如图
+  9-13 所示。点击 **Add**。
+
+
+  ![A978-1-4842-1031-4_9_Fig13_HTML.jpg](img/A978-1-4842-1031-4_9_Fig13_HTML.jpg)
+
+
+  图 9-13.
+
+
+  GitHub 仓库凭据   在 **Build Triggers** 部分，选择 **Poll SCM** 选项。调度字段接受 UNIX cron 表达式值。在图
+  9-14 中，已输入 `H/15 * * * *`，表示应每 15 分钟轮询一次 VCS。
+
+
+  ![A978-1-4842-1031-4_9_Fig14_HTML.jpg](img/A978-1-4842-1031-4_9_Fig14_HTML.jpg)
+
+
+  图 9-14.
+
+
+  构建触发器配置   在 **Build** 部分下，点击 **Add Build Step** 下拉菜单，并选择 **Invoke Gradle Script**（见图
+  9-15）。
+
+
+  ![A978-1-4842-1031-4_9_Fig15_HTML.jpg](img/A978-1-4842-1031-4_9_Fig15_HTML.jpg)
+
+
+  图 9-15.
+
+
+  添加构建步骤   在 **Invoke Gradle script** 部分下，选择 **Invoke Gradle**，然后从下拉菜单中选择您在前一节中配置的
+  **Local Gradle** 选项（参见图 9-8）。在 **Tasks** 文本框中输入 `clean build`（见图 9-16）。
+
+
+  ![A978-1-4842-1031-4_9_Fig16_HTML.jpg](img/A978-1-4842-1031-4_9_Fig16_HTML.jpg)
+
+
+  图 9-16.
+
+
+  调用 Gradle 脚本配置   点击 **Save**，您将被带到 `intro-gradle-app` 项目页面，如图 9-17 所示。在此页面上，您可以触发手动构建或更改任务配置。
+
+
+  ![A978-1-4842-1031-4_9_Fig17_HTML.jpg](img/A978-1-4842-1031-4_9_Fig17_HTML.jpg)
+
+
+  图 9-17.
+
+
+  intro-gradle-app 项目页面
+
+
+  ### 运行构建任务
+
+
+  您在前一节中配置的构建任务每 15 分钟轮询一次仓库以获取更改。此外，您还可以随时使用项目页面触发手动构建。从 Jenkins 仪表盘，点击 `intro-gradle-app`
+  项目链接（见图 9-18）。
+
+
+  ![A978-1-4842-1031-4_9_Fig18_HTML.jpg](img/A978-1-4842-1031-4_9_Fig18_HTML.jpg)
+
+
+  图 9-18.
+
+
+  仪表盘上的项目列表
+
+
+  在随后的项目页面上，点击左侧垂直导航栏中的 **Build Now** 链接。这将调度一个新的构建。点击构建编号，然后点击 **Console Output**，如图
+  9-19 所示。
+
+
+  ![A978-1-4842-1031-4_9_Fig19_HTML.jpg](img/A978-1-4842-1031-4_9_Fig19_HTML.jpg)
+
+
+  图 9-19.
+
+
+  查看控制台输出
+
+
+  您应该会看到执行的输出，类似于图 9-20。
+
+
+  ![A978-1-4842-1031-4_9_Fig20_HTML.jpg](img/A978-1-4842-1031-4_9_Fig20_HTML.jpg)
+
+
+  图 9-20.
+
+
+  任务执行输出
+
+
+  ## 归档构建产物
+
+
+  在前一节中，您运行了一个 Jenkins 构建任务来构建项目并生成 `ig-app.jar` 文件。在本节中，您将配置 Jenkins 以存储这些生成的构建产物供以后使用。
+
+
+  从 Jenkins 仪表盘，导航至 `intro-gradle-app` 项目页面，然后点击左侧垂直导航栏中的 **Configure** 链接。滚动到 **Configure**
+  页面底部，点击 **Add post-build-action** 下拉菜单，并选择 **Archive the Artifacts** 选项（见图 9-21）。
+
+
+  ![A978-1-4842-1031-4_9_Fig21_HTML.jpg](img/A978-1-4842-1031-4_9_Fig21_HTML.jpg)
+
+
+  图 9-21.
+
+
+  归档构建产物的构建后操作
+
+
+  在 **Files to Archive** 文本框中，输入值 `build/**/*.jar` 以归档所有生成的 JAR 文件（见图 9-22）。
+
+
+  ![A978-1-4842-1031-4_9_Fig22_HTML.jpg](img/A978-1-4842-1031-4_9_Fig22_HTML.jpg)
+
+
+  图 9-22.
+
+
+  要归档的文件配置
+
+
+  保存配置更改，并通过点击 **Build Now** 按钮触发手动构建。构建完成后，生成的构建产物应可在项目仪表盘上看到，如图 9-23 所示。
+
+
+  ![A978-1-4842-1031-4_9_Fig23_HTML.jpg](img/A978-1-4842-1031-4_9_Fig23_HTML.jpg)
+
+
+  图 9-23.
+
+
+  项目仪表盘上的 ig-app.jar 构建产物
+
+
+  ## 发布测试结果
+
+
+  Java 插件的 `test` 任务运行单元测试，并生成 HTML、XML 和二进制格式的报告。这些报告显示运行的测试数量，并帮助您深入分析以识别失败的测试。默认情况下，HTML
+  报告存储在 `build/reports` 文件夹中，而 XML/二进制结果存储在 `build/test-results` 文件夹中。
+
+
+  `ig-app` 在 `src/test/java` 中包含一个名为 `HelloWorldTest` 的 JUnit 测试。此单元测试测试了简单的 `HelloWorld`
+  Java 代码的功能。在本节中，您将配置 Jenkins 以在项目主页上显示生成的报告。
+
+
+  Jenkins 中的 JUnit 结果通过构建后操作发布。导航至 `intro-gradle-app` 的配置页面，并选择 **Publish JUnit Test
+  Result Report**（见图 9-24）。
+
+
+  ![A978-1-4842-1031-4_9_Fig24_HTML.jpg](img/A978-1-4842-1031-4_9_Fig24_HTML.jpg)
+
+
+  图 9-24.
+
+
+  测试结果构建后操作
+
+
+  在 **Test Report XMLs** 文本框中输入值 `build/test-results/*.xml`（图 9-25），然后点击 **Save**
+  按钮保存更改。
+
+
+  ![A978-1-4842-1031-4_9_Fig25_HTML.jpg](img/A978-1-4842-1031-4_9_Fig25_HTML.jpg)
+
+
+  图 9-25.
+
+
+  XML 测试报告位置配置
+
+
+  触发一个新的构建。成功完成后，您应该会在项目主页上看到 **Latest Test Results** 链接，如图 9-26 所示。点击该链接，您应该会看到测试运行的详细信息。
+
+
+  ![A978-1-4842-1031-4_9_Fig26_HTML.jpg](img/A978-1-4842-1031-4_9_Fig26_HTML.jpg)
+
+
+  图 9-26.
+
+
+  项目主页上的测试结果
+
+
+
+
+  ## 总结
+
+
+  在本章中，你学习了持续集成流程，并探索了 Jenkins——一款流行的开源 CI 服务器。你了解了如何安装 Jenkins 以及配置必要的插件，以运行位于 GitHub
+  仓库中的示例项目。
+
+
+  至此，本书的旅程已接近尾声。通过本书，你已经掌握了 Gradle 背后的关键概念。我们希望你能运用新学到的 Gradle 知识，来自动化并改进现有的构建和项目管理流程。
+
+
+  索引 A, B 构建编号 C 清理任务 编译任务 配置继承 持续集成 (CI) 归档制品 构建任务创建 构建触发器 清理构建 克隆地址 控制台输出 流程 GitHub
+  仓库 ig-app 仓库 intro-gradle-app 项目 Jenkins 配置 Jenkins 安装 源代码管理 测试报告 D, E, F 有向无环图
+  (DAG) G, H, I GitHub 插件 Gradle 构建生命周期 阶段 配置 执行 初始化 项目的 API 任务 创建 依赖 属性与方法 跳过 类型
+  参见(任务类型) Gradle 依赖方法 制品 build-common-group.gradle 文件 build.gradle 文件 buildscript
+  块 编译时依赖 配置 依赖管理 displayJars 任务 文件集合 文件树 JAR 创建 JAR 文件 Logback 网站 mavenCentral()
+  仓库 属性 级别 解析策略 TheProjectDependency 类型 两种文件依赖类型 Gradle 安装 下载 选项 文件与文件夹 GUI 选项 hellow
+  world 脚本 help 命令 JDK 下载 JVM 选项 Mac OS X 使用 IDE 测试 Windows Gradle 多项目配置 扁平布局 Gradle
+  任务 层级结构 项目依赖 子项目构建文件 UI 层代码 与 大型多项目 Gradle 插件 二进制 脚本 Gradle 发布制品 声明制品 Gradle 缓存
+  中央仓库 安装 JAR 文件 本地 Maven 仓库 本地仓库 Maven 仓库 artifactId 更新 build.gradle 文件 gradle uploadArchives
+  命令 groupId metadata.xml 文件 Nexus 索引页面 示例应用制品 版本 Gradle 系统 Ant + Ivy Groovy 增量构建
+  Maven 使用 开源 插件 项目依赖 Wrapper 脚本 Groovy 语言 闭包 注释 数据类型 声明变量 列表 映射 数字 范围 字符串 安装步骤 运行命令
+  语法 J, K, L, M, N, O Java 插件 build.gradle 文件 构建编号 自定义二进制插件 默认布局 目录 greet 任务 GreetTask.java
+  文件 Groovy 语言 HelloPlugin.java 类 Jartask javadoc 任务 Plugin 类 Plugin 配置 Plugin 消费者项目
+  Plugin 开发 Plugin 扩展 Plugin 名称 Plugin 包 Plugin 任务 SourceSets 子文件夹创建 Wartask Web 应用开发
+  P, Q, R, S Package 任务 Plugin 类 Plugin 配置 Plugin 消费者项目 Plugin 开发 Plugin 扩展 Plugin
+  名称 Plugin 包 Plugin 任务 T, U 任务类型 复制 删除 Exec Zip V, W, X, Y, Z 版本控制系统 (VCS)
+
+  '
