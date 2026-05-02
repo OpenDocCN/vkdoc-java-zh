@@ -1,0 +1,3057 @@
+- '
+
+
+
+  ![](img/A978-1-4842-1224-0_CoverFigure.jpg)
+
+
+  ![A978-1-4842-1224-0_CoverFigure.jpg](img/A978-1-4842-1224-0_CoverFigure.jpg)费利佩·古铁雷斯
+  Spring Boot 消息传递面向企业与集成解决方案的消息传递 API
+
+
+  ![A337882_1_En_BookFrontmatter_Figa_HTML.png](img/A337882_1_En_BookFrontmatter_Figa_HTML.png)
+
+
+  作者在本书中引用的任何源代码或其他补充材料，读者均可通过本书在 GitHub 上的产品页面获取，该页面位于 [`www.apress.com/9781484212257`](http://www.apress.com/9781484212257)。如需更详细信息，请访问
+  [`http://www.apress.com/source-code`](http://www.apress.com/source-code)。ISBN 978-1-4842-1225-7
+  电子书 ISBN 978-1-4842-1224-0 DOI 10.1007/978-1-4842-1224-0 美国国会图书馆控制号：2017941320 ©
+  费利佩·古铁雷斯 2017 本作品受版权保护。出版商保留所有权利，涉及材料的全部或部分内容，具体包括翻译、重印、插图复用、朗诵、广播、微缩胶片或其他任何物理形式的复制，以及电子改编、计算机软件、或目前已知或未来开发的类似或不同方法的信息存储与检索传输。本书中可能出现商标名称、标识和图像。我们不以每次出现商标名称、标识或图像时都使用商标符号，而是仅以编辑方式使用这些名称、标识和图像，以维护商标所有者的利益，且无意侵犯商标权。本出版物中对商品名称、商标、服务标志及类似术语的使用，即使未明确标识，也不应被视为对其是否受专有权利保护的立场表达。尽管本书中的建议和信息在出版时被认为是真实准确的，但作者、编辑和出版商均不对可能存在的任何错误或遗漏承担法律责任。出版商对本书所含内容不作任何明示或暗示的担保。本书采用无酸纸印刷。本书通过
+  Springer Science+Business Media New York 在全球图书贸易中发行，地址：233 Spring Street, 6th Floor,
+  New York, NY 10013。电话：1-800-SPRINGER，传真：(201) 348-4505，电子邮件：orders-ny@springer-sbm.com，或访问
+  www.springeronline.com。Apress Media, LLC 是一家加利福尼亚有限责任公司，其唯一成员（所有者）是 Springer Science
+  + Business Media Finance Inc (SSBM Finance Inc)。SSBM Finance Inc 是一家特拉华州公司。谨以此书献给我的女儿劳拉·古铁雷斯
+  致谢
+
+
+  我要向 Apress 团队表达我全部的感激之情——感谢史蒂夫·安格林接受我的提案，感谢马克·鲍尔斯让我保持正轨并耐心待我，以及感谢参与此项目的 Apress 团队其他成员。感谢大家让这一切成为可能。
+
+
+  感谢我的技术审阅人曼努埃尔·乔丹，感谢他在审阅中的细致与付出，以及整个 Spring 团队创造了这项令人惊叹的技术。
+
+
+  感谢我的妻子诺玛·卡斯塔涅达给予我的爱与支持。感谢我的女儿们——劳拉、纳耶利、希梅娜——以及我的宝贝罗德里戈！感谢我的父母罗西奥·克鲁兹和费利佩·古铁雷斯，我的兄弟埃德加·赫拉尔多·古铁雷斯，以及我的嫂子奥里斯泰拉·桑切斯给予我的爱与支持。
+
+
+  ——费利佩·古铁雷斯
+
+
+
+
+  目录 第 1 章：消息传递 1 消息传递 1 消息传递用例 1 消息传递模型与消息传递模式 3 使用 Spring 框架进行消息传递 5 总结 5 第 2 章：Spring
+  Boot 7 什么是 Spring Boot？ 7 Spring Boot 的特性 7 使用 Spring Boot 构建 RESTful API 8 rest-api-demo
+  项目 8 运行 Spring Boot 货币 Web 应用 15 部署 Spring Boot 货币 Web 应用 15 更多关于 Spring Boot 的内容
+  15 总结 16 第 3 章：应用程序事件 17 观察者模式 17 Spring ApplicationEvent 18 Spring ApplicationListener
+  19 REST API 货币项目 20 自定义事件 23 使用注解的事件监听器 27 @EventListener 27 @TransactionalEventListener
+  29 总结 30 第 4 章：Spring Boot 中的 JMS 31 JMS 31 Java 中的 JMS 32 Spring Boot 中的 JMS 36
+  生产者 36 消费者 38 使用注解的消费者 42 货币项目 43 回复地址 51 主题 54 货币项目 57 总结 57 第 5 章：Spring Boot
+  中的 AMQP 59 AMQP 模型 59 交换机、绑定和队列 60 RabbitMQ 62 Spring Boot 中的 RabbitMQ 62 生产者 63
+  消费者 67 RPC 70 回复管理 75 流量控制 76 更多特性 78 货币项目 80 总结 80 第 6 章：使用 Redis 进行消息传递 81 Redis
+  作为消息代理 81 使用 Redis 的发布/订阅消息传递 83 订阅者 83 发布者 86 JSON 序列化 88 货币项目 92 总结 92 第 7 章：Web
+  消息传递 93 WebSocket 93 在 Spring 中使用 WebSocket 94 底层 WebSocket 94 使用 SockJS 和 STOMP
+  101 使用 RabbitMQ 作为 STOMP 代理中继 108 货币项目 109 总结 110 第 8 章：使用 Spring Integration 进行消息传递
+  111 Spring Integration 入门 112 Spring Integration 编程 113 一个简单的 Spring Integration
+  示例 114 文件集成示例 121 文件和 JDBC 集成示例 124 AMQP 集成示例 128 货币兑换项目 131 总结 131 第 9 章：使用 Spring
+  Cloud Stream 进行消息传递 133 Spring Cloud 133 Spring Cloud Stream 134 Spring Cloud Stream
+  概念 135 Spring Cloud Stream 编程 136 cloud-stream-demo 139 微服务 154 Spring Cloud Stream
+  应用启动器 160 source:http 160 sink:log 160 货币项目 162 下一步是什么？ 162 总结 162 第 10 章：响应式消息传递
+  163 响应式编程 163 RxJava 164 rxjava-demo 项目 164 Reactor 170 reactor-demo 项目 170 Spring
+  5：WebFlux 框架 173 编程模型 173 总结 178 第 11 章：微服务 179 什么是微服务 179 十二要素应用 180 Spring Cloud
+  服务 182 Spring Cloud 配置服务器 182 服务注册 184 断路器 190 关于响应式编程 192 总结 192 索引 193 内容速览 关于作者
+  xiii   关于技术审校者 xv   致谢 xvii   第 1 章：消息传递 1   第 2 章：Spring Boot 7   第 3 章：应用程序事件
+  17   第 4 章：Spring Boot 中的 JMS 31   第 5 章：Spring Boot 中的 AMQP 59   第 6 章：使用 Redis
+  进行消息传递 81   第 7 章：Web 消息传递 93   第 8 章：使用 Spring Integration 进行消息传递 111   第 9 章：使用
+  Spring Cloud Stream 进行消息传递 133   第 10 章：响应式消息传递 163   第 11 章：微服务 179   索引 193  
+  关于作者与关于技术审校者 关于作者 关于技术审校者
+
+
+
+
+  '
+- "# 1. 消息传递\n\n通信是一个自古以来就存在的概念。万物都需要通过交换某种信息来进行沟通，没错，你读得没错，我说的是万物。仔细想想，就连你在公交车侧面或杂货店里看到的广告，不也是在试图向你传达信息或推销商品吗？\n\
+  \n在计算机世界中，设备（鼠标、显示器、键盘等）通过交换信息位来相互通信。如果考虑应用程序，那么我们所谈论的是需要相互通信或通过通信暴露某些功能的组件、函数、类等。我们通常称之为消息传递。\n\
+  \n## 消息传递\n\n本节将介绍一些主要概念，这些概念将在后续章节中详细阐述，首先从消息传递及其在日常开发周期中的定位开始。请参见图 1-1。\n\n![A337882_1_En_1_Fig1_HTML.gif](img/A337882_1_En_1_Fig1_HTML.gif)\n\
+  \n图 1-1.\n\n消息传递\n\n图 1-1 展示了一个简单的消息传递过程，即通过任何可能的媒介从点 A 传递到点 B。在此例中，图 1-1 使用了一个通道，它可以是简单的函数调用、套接字连接或\
+  \ HTTP 请求。其核心思想是生成/发送消息给消费者/接收者。\n\n### 消息传递用例\n\n本节涵盖了一些最常见的消息传递用例。这些用例对于理解消息传递为何如此重要至关重要：\n\
+  \n*   **保证送达**\n    *   开发者需要确保他们发送的消息能够到达目的地。如果你正在使用代理（一个处理连接、消息以及同步或异步消息传递的系统），那么生产者需要通过某种确认机制来知晓代理是否收到了消息。消费者也必须这样做，通过向代理确认消息已收到。因此，这个特定用例通常用于传递关键消息时，例如支付、股票或任何其他重要信息。\n\
+  *   **解耦**\n    *   在处理软件架构时，开发者会寻求解耦的组件，以便于集成、扩展以及简单的运维。但如何实现解耦呢？消息传递是解决方案的一部分，因为它允许你专注于自己的业务领域，这是一个有界上下文。你生成/发送的信息是你的主要关注点，而无需关心消费者/接收者将如何实现其自身的业务逻辑。\n\
+  *   **可扩展与高可用**\n    *   每当系统面临高请求需求时，它需要具备可扩展性，并且不能存在单点故障。对于这些特定场景，消息传递是解决方案，因为多个消费者/接收者可以跟上负载，并且你可以跨多个系统实例或代理复制消息。这样，即使你的某个实例/代理宕机，你仍然可以掌控局面。\n\
+  *   **异步**\n    *   应用程序必须非常快速，并能够尽快响应请求。在这种情况下，时间是关键因素。当你知道处理请求需要花费大量时间，并且有多个客户端时，你如何实现这种速度？你可以通过使用前一个用例的解决方案（可扩展性和/或高可用性）来解决这个问题，但这会达到一个阻塞请求的临界点。解决方案是异步消息传递——一种即发即弃的方式——你的生产者/发送者发送消息后继续执行自己的业务逻辑，让消费者/接收者自行安排时间处理消息。\n\
+  *   **互操作性**\n    *   创建消息传递系统时的一个重要因素是，能够生成/发送消息，并在消费/接收时能够理解该消息（可能是纯文本 JSON、XML\
+  \ 格式或序列化对象）。在过去的几十年里，人们进行了许多尝试来创建可互操作的系统。如今，借助新的代理（例如实现 AMQP 协议的代理），甚至通过简单的 RESTful\
+  \ API 或 WebSocket，无论具体实现如何，都能使生产者和消费者无缝互操作。\n\n这些用例已经演变为广为人知的消息传递模型和设计模式，下一节将对此进行讨论。\n\
+  \n### 消息传递模型与消息传递模式\n\n当消息传递成为所有系统的一部分时，一些消息传递模型便应运而生。在我看来，这些模型后来演变成了消息传递设计模式的创建。\n\
+  \n#### 点对点\n\n点对点模型是一种将消息发送到队列（先进先出）的方式，其中只有一个接收者能获取该消息。参见图 1-2。\n\n![A337882_1_En_1_Fig2_HTML.gif](img/A337882_1_En_1_Fig2_HTML.gif)\n\
+  \n图 1-2.\n\n点对点模型\n\n点对点模型也用作消息通道模式，此时你拥有的是一个通道（一种传输消息的方式）而非队列。它仍然保证只有一个接收者能按照消息发送的顺序获取消息。\n\
+  \n你将在本书后续部分看到关于这些模型和模式的一些示例。\n\n#### 发布-订阅\n\n发布-订阅模型描述了一个发布者向该主题的多个订阅者发送消息（一个主题）。每个订阅者将只收到消息的一个副本。参见图\
+  \ 1-3。\n\n![A337882_1_En_1_Fig3_HTML.gif](img/A337882_1_En_1_Fig3_HTML.gif)\n\n\
+  图 1-3.\n\n发布-订阅模型\n\n发布-订阅模型也用作消息通道模式，此时你拥有的是一个通道而非主题，该通道将消息的一个副本传递给其订阅者。\n\n这些模型与\
+  \ JMS（Java 消息服务）关系更为密切，理解它们很重要，因为它们构成了所有企业系统的基础。\n\n\n\n#### 消息传递模式\n\n设计模式是软件设计中常见问题的解决方案。同理，消息传递模式则试图解决消息传递设计中的问题。\n\
+  \n在本书的学习过程中，你将了解以下模式的实现，因此我在此列出它们并附上简单定义作为介绍：\n\n*   **消息类型模式**：描述消息传递的不同形式，例如字符串（可能是纯文本、JSON\
+  \ 和/或 XML）、字节数组、对象等。\n*   **消息通道模式**：确定将使用何种传输方式（通道）来发送消息，以及它将具有哪些属性。其核心思想是生产者和消费者知道如何连接到传输通道，并能够发送和接收消息。该传输方式的可能属性包括请求-回复功能和单向通道，你很快就会了解到。点对点通道是该模式的一个例子。\n\
+  *   **路由模式**：描述通过在集成解决方案中提供路由机制（依赖于一组条件的过滤）在生产者和消费者之间发送消息的方式。这可以通过编程实现，或者在某些情况下，消息传递系统（代理）可以具备这些能力（如\
+  \ RabbitMQ）。\n*   **服务消费者模式**：描述消息到达时消费者的行为，例如在处理消息时添加事务性方法。有一些框架允许你启动此类行为（例如 Spring\
+  \ 框架，你可以通过添加基于事务抽象的 `@Transactional` 来实现）。\n*   **契约模式**：生产者和消费者之间为进行简单通信而达成的契约，例如当你进行一些\
+  \ REST 调用时，调用一个包含某些字段的 JSON 或 XML 消息。\n*   **消息构造模式**：描述消息如何创建以便在消息传递系统中传输。例如，你可以创建一个“信封”，它包含一个主体（实际消息）和一些头部（带有关联\
+  \ ID、序列号或可能的回复地址）。通过一个简单的 Web 请求，你可以添加参数或头部，实际消息成为请求的主体，从而使整个请求成为构造模式的一部分。HTTP 协议支持这种通信（消息传递）。\n\
+  *   **转换模式**：描述如何在消息传递系统中更改消息的内容。想象一条消息需要一些处理，并且需要在传输过程中进行增强，例如内容丰富器。\n\n如你所见，这些模式不仅描述了消息传递过程，其中一些还描述了如何处理你之前看到的一些常见用例。当然，还有更多的消息传递模式，这些只是我们将在本书中探讨的一部分。\n\
+  \n如果你需要更多信息，我建议你访问企业集成模式网站：[`http://www.enterpriseintegrationpatterns.com/`](http://www.enterpriseintegrationpatterns.com/)。同时，也请查阅这本必读书籍——《企业集成模式：设计、构建和部署消息传递解决方案》，作者是\
+  \ Gregor Hohpe 和 Bobby Woolf，由 Addison-Wesley 出版。\n\n在本书中，我将使用 Spring Integration\
+  \ 模块和各种消息传递系统（代理）来介绍其中的一些模式。\n\n## 使用 Spring 框架进行消息传递\n\nSpring 框架是 Java 社区最常用的框架之一。Spring\
+  \ 框架通过实现一个可用于任何消息传递系统的模板设计模式，提供了一种简单易行的消息传递方式。它通过 `JmsTemplate` 支持 JMS API，通过 `RabbitTemplate`\
+  \ 支持 AMQP，支持 STOMP，以及通过事件和监听器支持内部消息传递。别担心，我们将在本书后面部分介绍所有这些内容。\n\n值得一提的是，Spring Integration\
+  \ 项目已被社区广泛接受，并且自 4.0 版本以来，Spring Integration 的核心（消息传递、通道和其他接口）已成为 Spring Core 的一部分。\n\
+  \n市面上有许多优秀的消息传递框架。有些使用纯 Java，有些则依赖于 Spring 框架。Spring 团队一直非常努力地让开发者更容易使用所有功能，包括并发、事务、重试等。要使用其他库，你必须使用相同的逻辑手动实现它们。\n\
+  \n注意\n\n你可以从 Apress 网站下载本书的源代码，或者从以下 GitHub 仓库克隆：[`https://github.com/felipeg48/spring-messaging`](https://github.com/felipeg48/spring-messaging)。\n\
+  \n## 总结\n\n本章介绍了消息传递和消息传递系统。你了解了消息传递的基本概念，即开发者需要将信息从一个点发送到另一个点。\n\n本章回顾了消息传递的一些用例、模型和模式。本书将更详细地介绍它们，并通过一些最佳实现（包括\
+  \ Spring 框架及其部分模块，如 Spring Integration、Spring AMQP 和 Spring Cloud Stream）来使用它们。\n\
+  \n下一章将带你了解 Spring Boot，它是创建企业级 Spring 应用的下一代技术。Spring Boot 是你在本书中使用的所有模块的基础。\n\n"
+- "# 2. Spring Boot\n\n我将用我在另一本书中写过的一句话开始：Spring Boot 是使用 Spring 框架创建企业级应用的新篇章。\n\n\
+  Spring Boot 并没有取代 Spring 框架；你可以将其视为一种使用 Java 社区使用的框架创建出色应用的新方式。\n\n在本章中，我将向你展示什么是\
+  \ Spring Boot 以及它在幕后是如何工作的。你还将通过一个小例子看到 Spring Boot 的强大之处。那么，我们为什么需要了解 Spring Boot？首先，我们将要使用的所有技术，如\
+  \ Spring Integration、Spring AMQP、Spring Cloud Stream 等，都以 Spring Boot 为基础。本书中的所有示例都使用\
+  \ Spring Boot 来创建 Spring 应用。当然，Spring Boot 使消息传递变得更加容易。\n\n## 什么是 Spring Boot？\n\
+  \n首先，Spring Boot 是一种“有主见”的技术。这意味着什么？\n\nSpring Boot 会查看类路径，并尝试确定你正在尝试运行哪种类型的应用。例如，如果你的类路径中有\
+  \ `spring-mvc` 模块，Spring Boot 将在 Spring 容器内自动装配 `WebApplicationInitializer` 和 `DispatcherServlet`\
+  \ 类，并设置一个嵌入式容器（默认为 Tomcat），这样你就可以运行你的应用，而无需将应用复制或部署到 Servlet 容器。\n\n### Spring Boot\
+  \ 的特性\n\n让我们看看 Spring Boot 最重要的特性：\n\n*   它可以创建独立的 Spring 应用。基于其 Maven 或 Gradle\
+  \ 插件，你可以创建可执行的 JAR 或 WAR 文件。\n*   它基于 starter `pom` 拥有“有主见”的技术。\n*   包含自动配置，无需任何\
+  \ XML 或 Java 配置类即可配置你的 Spring 应用。\n*   为 Web 应用包含嵌入式 Servlet 容器（Tomcat、Jetty 或 Undertow）。\n\
+  *   包含可直接使用的生产就绪特性（非功能性需求），例如指标和健康检查。\n*   Spring Boot 不是一个插件或代码生成器（这意味着 Spring\
+  \ Boot 不会创建需要编译的文件）。\n*   如果你有一个应用或 Servlet 容器，你可以将 Spring Boot 作为 WAR 部署，而无需进行任何更改。\n\
+  *   你可以访问所有 Spring 应用事件和监听器（我们将在下一章讨论）。\n\n这个列表只是 Spring Boot 所能提供功能的一小部分；当然还有更多。如果你需要了解更多，我推荐我的另一本书——Apress\
+  \ 出版的《Pro Spring Boot》。那本书包含了关于 Spring Boot 内部工作原理的更全面和详细的章节。\n\n\n\n## 使用 Spring\
+  \ Boot 构建 Restful API\n\nSpring Boot 的一个重要特性是，你可以创建可执行的 JAR 文件，并通过执行 `java -jar\
+  \ yourapp.jar` 来运行它们。你还可以创建可独立运行（使用 WAR 中的嵌入式容器）的可执行 WAR 文件，或者将其部署到 Servlet 容器中，而无需在代码中进行任何修改。\n\
+  \n本节将向你展示一个 Restful API，它能够根据国家代码列出货币及其汇率。该项目是一个 Spring Boot Web 应用程序。\n\n注意\n\n\
+  你可以在 [`http://www.apress.com/9781484212257`](http://www.apress.com/9781484212257)\
+  \ 找到所有源代码的下载链接。\n\n我将向你展示该应用程序的一些代码片段，以便你了解 Spring Boot 如何以极少的代码且无需配置文件就能实现的功能。\n\
+  \n我假设你已经拥有了代码。我建议你使用 STS（Spring Tool Suite），你可以从 [`https://spring.io/tools/sts/all`](https://spring.io/tools/sts/all)\
+  \ 获取。我使用这个 IDE 是因为它在运行 Spring Boot 方面有非常好的特性，并且你看到的所有截图都是基于这个 IDE 的，但你可以选择任何你喜欢的\
+  \ IDE。\n\n### rest-api-demo 项目\n\n该项目是一个 Spring Boot Web 应用程序，它将暴露 Restful 端点，用于显示某个国家的货币以及其他国家的汇率。该项目位于名为\
+  \ `ch02` 的文件夹中。\n\n该项目还使用了带有内存数据库（使用 H2 引擎）的 JPA（Java Persistence API）以及 AOP（面向切面编程）。暴露的端点列在表\
+  \ 2-1 中。\n\n表 2-1.\n\nRestful 端点\n\n| 方法 | 路径 | 描述 |\n| --- | --- | --- |\n| `GET`\
+  \ | `/currency/latest[?base=<code>]` | 以 JSON 格式显示最新汇率。默认基准货币为 USD。 |\n| `GET` |\
+  \ `/currency/{date}[?base=<code>]` | 根据日期（格式：yyyy-MM-dd）以 JSON 格式显示汇率。 |\n| `GET`\
+  \ | `/currency/{amount}/{base}/to/{code}` | 根据金额、基准货币和目标货币代码显示换算结果。 |\n| `POST`\
+  \ | `/currency/new` | 按日期添加新汇率。请求体应为 JSON 格式。 |\n\n清单 2-1 展示了一个 JSON 响应的示例。你也可以为某些端点使用\
+  \ `base` 参数。\n\n```\n{\n\"base\": \"USD\",\n\"date\": \"2016-09-22\",\n\"rates\"\
+  : [\n{\n\"code\": \"EUR\",\n\"rate\": 0.88857\n},\n{\n\"code\": \"JPY\",\n\"rate\"\
+  : 102.17\n},\n{\n\"code\": \"MXN\",\n\"rate\": 19.232\n},\n{\n\"code\": \"GBP\"\
+  ,\n\"rate\": 0.75705\n}\n]\n}\n清单 2-1.\nJSON 货币响应 - /currency/latest\n```\n\n清单\
+  \ 2-1 展示了通过访问 `/currency/latest` 端点得到的结果响应。它显示了基准货币（此处为美元）以及用 1 美元可以从其他国家获得的所有汇率（货币）。\n\
+  \n对于换算，你可以请求端点 `/currency/{amount}/{base}/to/{code}`。假设你想知道 10 美元等于多少日元。可以这样发起请求：`/currency/10/usd/to/jpy`。你应该会得到如清单\
+  \ 2-2 所示的结果。\n\n```\n{\n\"base\": \"USD\",\n\"code\": \"JPY\",\n\"amount\": 10.0,\n\
+  \"total\": 1021.69995\n}\n清单 2-2.\n换算响应 - /currency/10/usd/to/jpy\n```\n\n清单 2-2\
+  \ 展示了换算端点的结果。让我们来查看其他文件。\n\n#### pom.xml 文件\n\n打开 `pom.xml` 文件并查看其内容。让我们来回顾一下这些标签及其含义：\n\
+  \n*   `<packaging/>` 标签的值为 WAR。打包此应用程序时，它将生成一个可执行且可部署到任何 Servlet 容器的 WAR 文件。\n\n\
+  \    ```\n    war\n    ```\n\n*   `<parent/>` 标签是 Spring Boot 能够运行的关键，因为它包含了应用程序所需的所有依赖项和版本。它基于\
+  \ Maven 的 BOM（物料清单）功能。因此，这个特定的标签始终存在于你的 Spring Boot 应用程序中非常重要。\n\n    ```\n    org.springframework.boot\n\
+  \    spring-boot-starter-parent\n    1.4.0.RELEASE\n\n    ```\n\n*   `<dependencies/>`\
+  \ 标签包含了 Spring Boot 应用程序中的所有依赖项。当你选择 Web 依赖项（使用命令行或 Spring starter）时，`spring-boot-web-starter`\
+  \ 依赖项会被添加到这个 `pom` 中。这类似于当你将项目选择为 WAR 类型时，`spring-boot-starter-tomcat` 依赖项会被添加。默认情况下，你总是拥有\
+  \ `spring-boot-starter-test` 依赖项。\n\n    ```\n\n    org.springframework.boot\n \
+  \   spring-boot-starter-web\n\n    org.springframework.boot\n    spring-boot-starter-tomcat\n\
+  \    provided\n\n    org.springframework.boot\n    spring-boot-starter-data-jpa\n\
+  \n    com.h2database\n    h2\n    runtime\n\n    org.springframework.boot\n    spring-boot-starter-aop\n\
+  \n    org.springframework.boot\n    spring-boot-starter-test\n    test\n\n    ```\n\
+  \n让我们花点时间看看 `<dependencies/>` 标签。如果你熟悉使用 Maven 创建项目的方式，你现在应该会发现 `<dependency/>`\
+  \ 标签中缺少了一个标签。没错，`<version/>` 标签不见了。这个版本不再使用，因为 `<parent/>` 标签的定义包含了你在 Web 应用程序中将使用的所有版本和依赖项。\n\
+  \n请注意，`spring-boot-starter-tomcat` 的作用域被设置为 provided，这意味着你可以创建一个可运行的 WAR（可以使用 `java\
+  \ -jar <war-name>.war` 运行）并将其部署到任何 Servlet 容器中。\n\n请注意你创建 Spring Boot 应用程序时使用的命名约定——每个\
+  \ `<groupId/>` 标签都是 `org.springframework.boot`，而 `<artifactId/>` 标签是 `spring-boot-starter-<technology>`。\n\
+  \n为什么这很重要？请记住，Spring Boot 是一种有主见的技术，因此基于这个 `pom` 和 `spring-boot-starter`，它将识别出你正在尝试运行哪个应用程序。\n\
+  \n#### Rate.java 类\n\n这将是领域类。它包含一个将其定义为实体的注解。这是因为这个类将被持久化到 H2 引擎（内存数据库）中。参见清单 2-3。\n\
+  \n```\n@Entity\npublic class Rate {\n@Id\nprivate String code;\nprivate Float rate;\n\
+  @JsonIgnore\n@Temporal(TemporalType.DATE)\nprivate Date date;\n// Setters and Getters\
+  \ omitted.\n}\n清单 2-3.\nsrc/main/java/com/apress/messaging/domain/Rate.java\n```\n\
+  \n清单 2-3 向你展示了领域类——这里使用了 `@Entity` 和 `@Id` 注解——这与 JPA 技术（Spring Data JPA）相关。如你所见，它非常基础，没有什么太复杂的。\n\
+  \n\n\n#### RateRepository.java 类\n\n接下来是 `RateRepository` 接口，它基于 Spring Data JPA\
+  \ 技术。你需要继承 `JpaRepository<E,ID>` 并添加用于持久化的实体（领域）和 ID 类类型（`String`，一个可序列化的类）。请参见代码清单\
+  \ 2-4。\n\n```\n@Repository\npublic interface RateRepository  extends JpaRepository{\n\
+  List findByDate(Date date);\nRate findByDateAndCode(Date date,String code);\n}\n\
+  代码清单 2-4.\nsrc/main/java/com/apress/messaging/repository/RateRepository.java\n```\n\
+  \n代码清单 2-4 展示了 `RateRepository` 接口。你可以看到 `@Repository` 注解（这只是 Spring 容器的一个标记）；关键部分是你需要继承\
+  \ `JpaRepository` 接口。该接口将为你实现所有 CRUD（创建、读取、更新和删除）操作，因此你无需自行实现。这里定义了两个查询方法——`findByDate`（查找具有该日期的汇率）和\
+  \ `findByDateAndCode`（查找特定日期和代码的汇率）。该接口的特殊之处在于，你可以通过使用领域类的属性来创建 SQL 查询。如果你想了解更多关于\
+  \ Spring Data JPA 的信息，请访问 [`http://docs.spring.io/spring-data/jpa/docs/current/reference/html/`](http://docs.spring.io/spring-data/jpa/docs/current/reference/html/)。\n\
+  \n#### CurrencyController.java 类\n\n该类定义了 REST 端点。它通过一个服务使用 `RateRepository` 接口。请参见代码清单\
+  \ 2-5。\n\n```\n@RestController\n@RequestMapping(\"/currency\")\npublic class CurrencyController\
+  \ {\n@Autowired\nCurrencyConversionService service;\n@RequestMapping(\"/latest\"\
+  )\npublic ResponseEntity getLatest(@RequestParam(name=\"base\",defaultValue=CurrencyExchange.BASE_CODE)String\
+  \ base) throws Exception{\n//...\n}\n@RequestMapping(\"/{amount}/{base}/to/{code}\"\
+  )\npublic ResponseEntity conversion(@PathVariable(\"amount\")Float amount,@PathVariable(\"\
+  base\")String base,@PathVariable(\"code\")String code) throws Exception{\n//...\n\
+  }\n//此处有更多方法...\n}\n代码清单 2-5.\nsrc/main/java/com/apress/messaging/controller/CurrencyController.java\n\
+  ```\n\n代码清单 2-5 展示了 `CurrencyController` 类的一个片段，该类使用了 Spring MVC 的 `@RestController`、`@RequestMapping`、`@RequestParam`\
+  \ 和 `@PathVariable` 注解。每个响应都基于 `ResponseEntity` 类。\n\n这是纯粹的 Spring MVC（没有太多 Spring\
+  \ Boot 特性）。如果你想了解更多关于 Spring MVC 的信息，请访问 [`http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html`](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)。\n\
+  \n请复习此类并进行实验。\n\n#### RestApiDemoApplication.java 类\n\n该类是 Web 应用程序的主入口点。请参见代码清单\
+  \ 2-6。\n\n```\n@SpringBootApplication\npublic class RestApiDemoApplication {\npublic\
+  \ static void main(String[] args) {\nSpringApplication.run(RestApiDemoApplication.class,\
+  \ args);\n}\n@Bean\npublic CommandLineRunner data(RateRepository repository) {\n\
+  return (args) -> {\nrepository.save(new Rate(\"EUR\",0.88857F,new Date()));\nrepository.save(new\
+  \ Rate(\"JPY\",102.17F,new Date()));\nrepository.save(new Rate(\"MXN\",19.232F,new\
+  \ Date()));\nrepository.save(new Rate(\"GBP\",0.75705F,new Date()));\n};\n}\n}\n\
+  代码清单 2-6.\nsrc/main/java/com/apress/messaging/RestApiDemoApplication.java\n```\n\
+  \n代码清单 2-6 展示了主类，Spring Boot 将在此引导应用程序。`@SpringBootApplication` 是每个 Spring Boot\
+  \ 应用必需的注解，因为它将触发 Spring Boot 背后的所有魔法。该注解将使用自动配置功能来确定你的应用及其最佳配置。在这种情况下，由于你拥有 `spring-boot-starter-web`\
+  \ 依赖（通过 `pom.xml` 文件在类路径中），它将设置所有必要的 Bean（如 `DispatcherServlet`）和嵌入式 Servlet 容器（默认为\
+  \ Tomcat）来配置你的 Web 应用。\n\n注意 `@Bean`，它返回一个 `CommandLineRunner` 接口。这将在 Spring 容器准备好所有\
+  \ Bean 后执行，并将使用 `RateRepository` 接口来保存汇率。你可以将其视为初始化数据库的一种方式。\n\n#### 其他文件……\n\n\
+  当然，还有更多的类，但这里的目的是让你对它们进行实验，看看它们的作用以及如何在项目中使用它们。查看 `CurrencyConversionService` 类，它在\
+  \ Web 控制器中被使用。\n\n如果你想了解 AOP 在此项目中的使用方式，请查看 `CurrencyCodeAudit` 类。它定义了一个 `around`\
+  \ 通知，该通知仅在方法中找到 `@ToUpper` 注解时执行。（你可以从本书的源代码中获取此注解的代码。）为什么需要使用这个切面？嗯，如果你查看转换端点，你期望的是大写形式（对于基准货币和代码，如\
+  \ `/150/USD/to/JPY`），但通过这种方法，你可以忽略大小写。从 `CurrencyConversionService` 方法中移除 `@ToUpper`\
+  \ 后，像 `/150/usd/to/jpy` 这样的请求就无法工作，因为它只评估基准货币和代码的大写字母。你需要添加额外的代码来支持它。\n\n### 运行\
+  \ Spring Boot 货币 Web 应用\n\n运行此类项目有多种方式。如果你使用 STS 并导入项目，只需右键单击项目名称，选择“运行方式” -> “Spring\
+  \ Boot 应用”即可！\n\n如果你想使用命令行运行，请确保已安装 Maven 并执行：\n\n```\n$ mvn spring-boot:run\n```\n\
+  \n然后你可以打开浏览器，输入 `http://localhost:8080/currency/latest`，应该会得到与代码清单 2-1 相同的结果。你也可以使用\
+  \ `curl` 命令：\n\n```\n$ curl http://localhost:8080/currency/latest\n```\n\n如你所见，你不需要创建\
+  \ WAR 文件并部署到容器中，因为 Spring Boot 自带嵌入式 Tomcat 容器。这使你能够拥有可移植性。\n\n### 部署 Spring Boot\
+  \ 货币 Web 应用\n\n如果你想将此代码部署到 Servlet 容器，你需要打包此项目。如果你使用 STS，可以右键单击项目并选择“运行方式” -> “Maven\
+  \ 构建”。这将弹出一个对话框。在“目标”字段中输入 `Package`，然后勾选“跳过测试”复选框。然后点击“运行”。这将在目标目录中创建一个可执行且可部署的文件。\n\
+  \n如果你使用命令行，可以执行：\n\n```\n$ mvn package -DskipTests=true\n```\n\n这将在目标目录中创建可执行且可部署的\
+  \ WAR 文件。你可以通过运行以下命令来执行该 WAR 文件：\n\n```\n$ java -jar target/rest-api-demo-0.0.1-SNAPSHOT.war\n\
+  ```\n\n例如，如果你已经有一个 Tomcat 容器，你可以直接将 WAR 文件放入 `webapps/` 文件夹并运行你的容器。在复制/移动 WAR 文件时，尝试重命名它。\n\
+  \n```\n$ cp target/rest-api-demo-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/rest-api-demo.war\n\
+  $ /opt/tomcat/bin/startup.sh\n```\n\n然后你可以打开浏览器，访问 `http://localhost:8080/rest-api-demo/currency/latest`\
+  \ 来获得相同的结果。\n\n## 更多关于 Spring Boot 的内容\n\n如果你想了解更多关于 Spring Boot 及其其他有用特性的信息，我推荐我的另一本书，Apress\
+  \ 出版的《Pro Spring Boot》。该书从使用 Spring Boot CLI 到将其部署到云端，对这一技术进行了更深入的探讨。\n\n\n\n##\
+  \ 摘要\n\n本章介绍了 Spring Boot，探讨了其部分特性，并通过创建一个简单的货币 Restful 应用，解释了它如何与 Spring MVC 协同工作。\n\
+  \n在下一章中，你将开始学习 Spring 应用事件和监听器，这是一种通过观察者模式发射和消费消息来实现消息传递的方式。\n\n"
+- "# 3. 应用事件\n\n本章涵盖如何使用观察者模式（行为型模式）作为向需要者或监听者发送消息的方式。同时展示了 Spring 框架如何通过其应用事件实现该模式，这些事件可以声明为简单的接口实现，或使用专门的注解。\n\
+  \n## 观察者模式\n\n该特定模式定义了对象之间的一对多依赖关系，因此当一个对象（主体）改变其状态时，需要将这一变化通知给其他对象（观察者）。随后观察者可以对该变化做出响应，如图\
+  \ 3-1 所示。\n\n![A337882_1_En_3_Fig1_HTML.gif](img/A337882_1_En_3_Fig1_HTML.gif)\n\
+  \n图 3-1.\n\n观察者模式\n\n实现这种设计模式有多种方式。Java SDK 包含了 `java.util.Observable` 类，用于设置变更并通知观察者，以及\
+  \ `java.util.Observer` 接口，该接口通过其 `update` 方法接收通知。\n\nSpring 框架提供了一种精妙的方式来使用观察者模式，并且较新版本（4.x）的\
+  \ Spring 还包含了更多改进。它们不仅实现了该模式，还提供了多种事件，允许你更深入地了解 Spring 容器的内部机制，并创建自定义事件。\n\n请记住，尽管我们讨论的是观察者模式和事件，但这本质上是一种通过事件进行消息传递的组件间通信方式。\n\
+  \n## Spring 应用事件\n\n你会发现 Spring 框架暴露了抽象的 `org.springframework.context.ApplicationEvent`\
+  \ 类，它继承自 `java.util.EventObject`。`EventObject` 包含事件最初发生的对象。参见图 3-2。\n\n![A337882_1_En_3_Fig2_HTML.jpg](img/A337882_1_En_3_Fig2_HTML.jpg)\n\
+  \n图 3-2.\n\nSpring 应用事件层次结构\n\n图 3-2 展示了 `ApplicationEvent` 的层次结构，如你所见，该类被多个事件扩展。至少有两个重要事件值得提及：\n\
+  \n*   `ApplicationContextEvent` `（属于 Spring 框架）`：这是一个抽象类，你可以完全访问主要的中央接口，该接口为你的应用提供完整配置。此类还被\
+  \ `ContextClosed`、`ContextStartedEvent`、`ContextRefreshedEvent` 和 `ContextStoppedEvent`\
+  \ 事件扩展，以提供 Spring 容器生命周期的更多细节。\n*   `SpringApplicationEvent` `（属于 Spring Boot）`：这也是一个抽象类，通过\
+  \ `SpringApplication` 类包含 Spring Boot 应用的所有信息。`SpringApplication` 类用于从 Java main\
+  \ 方法引导和启动 Spring Boot 应用。\n\n我选择这些事件是因为你正在进行的项目——货币兑换的 Rest API——会用到它们。本章稍后会详细介绍。\n\
+  \n## Spring 应用监听器\n\n现在，对于每个事件，你应该有一种接收消息的方式。Spring 框架有一个主要的事件监听器。`org.springframework.context.ApplicationListener<E\
+  \ extends ApplicationEvent>` 接口继承自 `java.util.EventListener`（后者仅是一个标记接口）。`ApplicationListener`\
+  \ 是所有 Spring `ApplicationContext` 事件的主要事件监听器，这些事件你在上一节已经了解过。参见图 3-3。\n\n![A337882_1_En_3_Fig3_HTML.jpg](img/A337882_1_En_3_Fig3_HTML.jpg)\n\
+  \n图 3-3.\n\nApplicationListener 接口及其层次结构\n\n图 3-3 展示了 `ApplicationListener` 的层次结构以及你可以使用的所有事件监听器。Spring\
+  \ 框架会在启动时、运行期间，甚至在 Spring 应用正常关闭时发送相应的事件。当监听器被调用时，这些事件会被过滤以匹配事件对象。\n\n有许多用例可以让你使用\
+  \ `ApplicationEvent` 或其某些实现来监听（通过 `ApplicationListener`）传入的消息并对其做出响应。例如，在下一节再次讨论的\
+  \ Rest API 货币项目中，你可以确定用户何时访问某些 Rest 端点，从而通过统计方式查看流量并识别哪个端点被更频繁地使用。\n\n\n\n## Rest\
+  \ API 货币项目\n\n让我们回到项目，并将这种设计模式应用其中。通过仅实现 `ApplicationEvent` 类型的 `ApplicationListener`，应用程序将开始监听\
+  \ Spring 容器初始化期间以及 Bean 生命周期部分发生的每一个事件。\n\n请看清单 3-1，其中展示了 `RestApiEventsListener`\
+  \ 类是一个 Spring 组件。\n\n```\n@Component\npublic class RestApiEventsListener implements\
+  \ ApplicationListener{\npublic void onApplicationEvent(ApplicationEvent event) {\n\
+  }\n}\n清单 3-1.\ncom.apress.messaging.listener.RestApiEventsListener.java\n```\n\n\
+  清单 3-1 仅展示了部分代码，其中 `RestApiEventsListener` 类实现了 `ApplicationEvent` 事件的 `ApplicationListener`。你必须实现接收\
+  \ `ApplicationEvent` 作为参数的 `onApplicationEvent` 方法。\n\n同样，一个用例是确定某个 Rest 端点被访问的次数。请看图\
+  \ 3-2，其中展示了 ApplicationEvent 的层次结构——你会注意到有一个 `RequestHandledEvent` 以及一个继承自它的 `ServletRequestHandledEvent`。通过\
+  \ `ServletRequestHandledEvent` 类，你可以获取正在被访问的 URL（端点），并为其创建一个计数器。参见清单 3-2。\n\n```\n\
+  @Component\npublic class RestApiEventsListener implements ApplicationListener{\n\
+  private static final String LATEST = \"/currency/latest\";\n@Autowired\nprivate\
+  \ CounterService counterService;\n@Log(printParamsValues=true)\npublic void onApplicationEvent(ApplicationEvent\
+  \ event) {\nif(event instanceof ServletRequestHandledEvent){\nif(((ServletRequestHandledEvent)event)\n\
+  .getRequestUrl().equals(LATEST)){\ncounterService\n.increment(\"url.currency.latest.hits\"\
+  );\n}\n}\n}\n}\n清单 3-2.\ncom.apress.messaging.listener.RestApiEventsListener.java\n\
+  ```\n\n清单 3-2 展示了更多代码。让我们来看一下：\n\n*   `ServletRequestHandledEvent`：当有请求到达某个端点时，此事件会被发布。这是\
+  \ Web 框架的一部分。该事件包含所有 Web 上下文信息，因此你可以获取正在被访问的 URL 信息。\n*   `CounterService`：此接口属于\
+  \ `spring-boot-actuator` 模块，它允许你通过递增或递减一个 `tag/` 属性来获得一个度量指标。在本例中，标签是 `url.currency.latest.hits`。\n\
+  *   `@Log(printParamsValues=true)`：这是一个自定义注解，将作为前置通知的一部分使用，用于记录被调用方法的所有信息。你可以在 `com.apress.messaging.aop.CodeLogger.java`\
+  \ 类中查看相关代码。\n\n如果你运行该应用程序，你会从 `@Log` 注解得到一些输出（见图 3-4），但如果你多次访问 `/currency/latest`\
+  \ 端点（见图 3-5），应用程序将开始使用 `CounterService` 实例来统计该端点的访问次数。然后，你可以从 `/metrics` 端点访问这个度量指标，并看到\
+  \ `url.currency.latest.hits` 显示了该端点的命中次数（见图 3-6）。\n\n![A337882_1_En_3_Fig6_HTML.jpg](img/A337882_1_En_3_Fig6_HTML.jpg)\n\
+  \n图 3-6.\n\nhttp://localhost:8080/metrics\n\n![A337882_1_En_3_Fig5_HTML.jpg](img/A337882_1_En_3_Fig5_HTML.jpg)\n\
+  \n图 3-5.\n\n访问 /currency/latest 端点后的控制台日志\n\n![A337882_1_En_3_Fig4_HTML.jpg](img/A337882_1_En_3_Fig4_HTML.jpg)\n\
+  \n图 3-4.\n\n运行 rest-api-events 项目后的控制台日志\n\n图 3-4 展示了运行应用程序时你将看到的部分日志输出。这些日志是 Spring\
+  \ 框架作为 `ApplicationEvent` 事件发送的消息。请记住，此输出是由 `@Log` 注解（一个前置 AOP 通知）生成的。\n\n图 3-5\
+  \ 展示了多次访问 `/currency/latest` 端点后的一些日志。你可以看到 `ApplicationEvent` 是 `ServletRequestedEvent`\
+  \ 的一个实例，其中包含了被请求的 URL。\n\n图 3-6 展示了 `/metrics` 端点（由 `spring-boot-actuator` 依赖提供）。在图底部，你可以看到\
+  \ `\"counter.url.currency.latest.hits\":4` 这个度量指标，它由 `CounterService` 实例更新（参见清单\
+  \ 3-2）。\n\n\n\n### 自定义事件\n\n到目前为止，你已经了解了如何为任何 `ApplicationEvent` 创建监听器，但如果是使用包含领域对象信息的自定义事件呢？本节将展示如何创建自定义事件。\n\
+  \n要创建自定义事件，你必须继承 `ApplicationEvent`，这样后续才能方便地发布它。\n\n以当前项目为例，假设在调用任何货币转换期间发生错误（非受检异常）时，你将发送一个事件。这个事件可能只是记录原因并显示导致异常的对象。让我们先回顾一下\
+  \ `CurrencyConversionEvent` 类，如清单 3-3 所示。\n\n```\npackage com.apress.messaging.event;\n\
+  import org.springframework.context.ApplicationEvent;\nimport com.apress.messaging.domain.CurrencyConversion;\n\
+  public class CurrencyConversionEvent extends ApplicationEvent {\nprivate static\
+  \ final long serialVersionUID = -4481493963350551884L;\nprivate CurrencyConversion\
+  \ conversion;\nprivate String message;\npublic CurrencyConversionEvent(Object source,\
+  \ CurrencyConversion conversion) {\nsuper(source);\nthis.conversion = conversion;\n\
+  }\npublic CurrencyConversionEvent(Object source, String message, CurrencyConversion\
+  \ conversion) {\nsuper(source);\nthis.message = message;\nthis.conversion = conversion;\n\
+  }\npublic CurrencyConversion getConversion(){\nreturn conversion;\n}\npublic String\
+  \ getMessage(){\nreturn message;\n}\n}\n清单 3-3.\ncom.apress.messaging.event.CurrencyConversionEvent.java\n\
+  ```\n\n清单 3-3 展示了一个继承自 `ApplicationEvent` 并包含两个构造方法的基础类。每个构造方法都会调用其父类（`ApplicationEvent`）来设置来源，设置当前的\
+  \ `CurrencyConversion` 实例，并确定消息内容。换句话说，你拥有了确定任何货币转换调用中错误来源所需的信息。\n\n接下来，让我们回顾一下将接收\
+  \ `CurrencyConversionEvent` 的事件监听器。请参见清单 3-4。\n\n```\npackage com.apress.messaging.listener;\n\
+  import org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.context.ApplicationListener;\n\
+  import org.springframework.stereotype.Component;\nimport com.apress.messaging.event.CurrencyConversionEvent;\n\
+  @Component\npublic class CurrencyConversionEventListener implements ApplicationListener\
+  \ {\nprivate static final String DASH_LINE = \"===================================\"\
+  ;\nprivate static final String NEXT_LINE = \"\\n\";\nprivate static final Logger\
+  \ log = LoggerFactory.getLogger(CurrencyConversionEventListener.class);\n@Override\n\
+  public void onApplicationEvent(CurrencyConversionEvent event) {\nObject obj = event.getSource();\n\
+  StringBuilder str = new StringBuilder(NEXT_LINE);\nstr.append(DASH_LINE);\nstr.append(NEXT_LINE);\n\
+  str.append(\"  Class: \" + obj.getClass().getSimpleName());\nstr.append(NEXT_LINE);\n\
+  str.append(\"Message: \" + event.getMessage());\nstr.append(NEXT_LINE);\nstr.append(\"\
+  \  Value: \" + event.getConversion());\nstr.append(NEXT_LINE);\nstr.append(DASH_LINE);\n\
+  log.error(str.toString());\n}\n}\n清单 3-4.\ncom.apress.messaging.listener.CurrencyConversionEventListener.java\n\
+  ```\n\n清单 3-4 展示了将接收所有 `CurrencyConversionEvent` 事件的监听器。该类实现了类型为 `CurrencyConversionEvent`\
+  \ 的 `ApplicationListener`，并且需要实现 `onApplicationEvent` 方法。如你所见，它只是记录了类名、消息以及 `CurrencyConversion`\
+  \ 领域对象。\n\n接下来，让我们看看当错误发生时，哪个类将发布事件。我们来回顾一下 `CurrencyConversionService` 和 `convertFromTo`\
+  \ 方法，该方法包含获取货币代码的逻辑。请参见清单 3-5。\n\n```\npublic CurrencyConversion convertFromTo(@ToUpper\
+  \ String base, @ToUpper String code,Float amount) {\nRate baseRate = new Rate(CurrencyExchange.BASE_CODE,1.0F,new\
+  \ Date());\nRate codeRate = new Rate(CurrencyExchange.BASE_CODE,1.0F,new Date());\n\
+  if(!CurrencyExchange.BASE_CODE.equals(base))\nbaseRate = repository.findByDateAndCode(new\
+  \ Date(), base);\nif(!CurrencyExchange.BASE_CODE.equals(code))\ncodeRate = repository.findByDateAndCode(new\
+  \ Date(), code);\nif(null == codeRate || null == baseRate)\nthrow new BadCodeRuntimeException(\"\
+  Bad Code Base, unknown code: \" + base, new CurrencyConversion(base,code,amount,-1F));\n\
+  return new CurrencyConversion(base,code,amount,(codeRate.getRate()/baseRate.getRate())\
+  \ * amount);\n}\n清单 3-5.\ncom.apress.messaging.service.CurrencyConversionService.java\n\
+  ```\n\n清单 3-5 展示了 `convertFromTo` 方法，它通过基于 `base` 和 `code` 变量查找汇率来进行转换。`if` 语句会抛出一个\
+  \ `BadCodeRuntimeException`，该异常的构造方法接受一个字符串和一个 `CurrencyConversion` 对象。`BadCodeRuntimeException`\
+  \ 是一个继承自 `RuntimeException` 的非受检异常（你可以在源代码中查看）。\n\n当抛出异常时，我们必须发布 `CurrencyConversionEvent`\
+  \ 和错误消息，但添加此逻辑会使代码变得混乱，很快我们就会得到纠缠不清、混乱的代码。相反，我们可以创建一个 AOP，在抛出异常时使用该异常。清单 3-6 使用\
+  \ AOP 在抛出异常后发布 `CurrencyConversionEvent` 事件。\n\n```\n@Aspect\n@Component\npublic\
+  \ class CurrencyConversionAudit {\nprivate ApplicationEventPublisher publisher;\n\
+  @Autowired\npublic CurrencyConversionAudit(\nApplicationEventPublisher publisher){\n\
+  this.publisher = publisher;\n}\n@Pointcut(\"execution(* com.apress.messaging.service.*Service.*(..))\"\
+  )\npublic void exceptionPointcut() {}\n@AfterThrowing(pointcut=\"exceptionPointcut()\"\
+  ,\nthrowing=\"ex\")\npublic void badCodeException(JoinPoint jp,\nBadCodeRuntimeException\
+  \ ex){\nif(ex.getConversion()!=null){\npublisher.publishEvent(\nnew CurrencyConversionEvent(\n\
+  jp.getTarget(),\nex.getMessage(),\nex.getConversion()));\n}\n}\n}\n清单 3-6.\ncom.apress.messaging.aop.CurrencyConversionAudit.java\n\
+  ```\n\n清单 3-6 展示了 `@` `AfterThrowing`，它会在 `BadCodeRuntimeException` 被抛出时感知到，然后执行方法内部的代码。如你所见，它使用了\
+  \ `ApplicationEventPublisher` 实例（由 Spring 框架在类构造方法中注入）和 `publishEvent` 方法，该方法发送关于异常发生所在类的信息、消息以及\
+  \ `CurrencyConversion` 对象。\n\n如果你运行项目并像这样访问 `/{amount}/{base}/to/{code}`，例如 `/1.0/usdx/to/mx`，你将得到类似于图\
+  \ 3-7 的结果。\n\n![A337882_1_En_3_Fig7_HTML.jpg](img/A337882_1_En_3_Fig7_HTML.jpg)\n\
+  \n图 3-7.\n\nCurrencyConversionService 中的错误日志\n\n如你所见，创建自定义事件非常简单。请记住使用自定义事件的这些简单规则：\n\
+  \n*   创建一个继承自 `ApplicationEvent` 的事件类。\n*   创建一个实现自定义事件类型的 `ApplicationListener`\
+  \ 并实现 `onApplication` 方法的事件监听器类。\n*   使用 `ApplicationEventPublisher` 类来发布你的自定义事件。\n\
+  \n## 使用注解的事件监听器\n\n到目前为止，我们已经了解了如何使用和实现类型为 `ApplicationEvent` 的 `ApplicationListener`。本节将展示如何使用一些\
+  \ Spring 提供的注解，作为监听事件的简便方法。\n\n\n\n### @EventListener\n\n`@EventListener` 注解是一个非常有用的注解，你可以直接在将要处理事件的方法上使用它。这意味着不再需要实现\
+  \ `ApplicationListener` 接口。\n\n清单 3-7 展示了如何使用它。\n\n```\n@Component\npublic class\
+  \ RestAppEventListener {\n@EventListener\n@Log(printParamsValues=true)\npublic void\
+  \ restAppHandler(\nSpringApplicationEvent springApp){\n}\n}\nListing 3-7.\ncom.apress.messaging.listener.RestAppListener.java\n\
+  ```\n\n清单 3-7 向你展示了应用于 `restAppHandler` 方法的 `@EventListener` 注解。Spring 框架会自动装配所有内容，使得这个监听器能够接收所有\
+  \ `SpringApplicationEvent` 事件。`SpringApplicationEvent` 是另一个继承自 `ApplicationEvent`\
+  \ 抽象类的事件，但它包含有关 Spring Boot 应用程序的信息，例如命令行中使用的参数、横幅、资源加载器等。\n\n如果你运行该项目，你将看到类似于图\
+  \ 3-8 的内容。\n\n![A337882_1_En_3_Fig8_HTML.jpg](img/A337882_1_En_3_Fig8_HTML.jpg)\n\
+  \nFigure 3-8.\n\nRestAppEventListener 的日志\n\n如你所见，`@EventListener` 注解使用起来很简单。这个注解甚至还有更多特性：\n\
+  \n*   它支持条件，因此只有在给定表达式为真时才会执行。例如：\n\n    ```\n    @EventListener(condition = \"\
+  #springApp.args.length > 1\")\n    ```\n\n    这段代码告诉监听器，仅当参数长度大于 1 时才使用该事件。如果你替换清单\
+  \ 3-7 中的上一个监听器，你将看不到 `RestAppEventListener` 的日志。\n*   你可以通过传递一个事件类数组作为默认值来监听多个事件。例如：\n\
+  \n    ```\n    @EventListener({CurrencyEvent.class,\n    CurrencyConversionEvent.class})\n\
+  \    @Log(printParamsValues=true)\n    public void restAppHandler(ApplicationEvent\
+  \ appEvent){ }\n    ```\n\n    这段代码在同一个方法中监听 `CurrencyEvent` 和 `CurrencyConversion`\
+  \ 事件，该方法现在接收一个 `ApplicationEvent` 实例。此外，你也可以没有参数，但仍然监听多个事件。\n*   当你有多个事件需要监听时，你可能希望为它们设置优先级。你可以通过向方法添加\
+  \ `@Order` 注解来实现。例如：\n\n    ```\n    @EventListener\n    @Order(Ordered.HIGHEST_PRECEDENCE)\n\
+  \    @Log(printParamsValues=true)\n    public void restAppHandler(SpringApplicationEvent\
+  \ springApp){\n    }\n    ```\n\n    这段代码将按照最高优先级进行处理。\n*   你也可以通过添加 `@Async` 注解来异步处理事件监听器。例如：\n\
+  \n    ```\n    @EventListener\n    @Async\n    @Log(printParamsValues=true)\n  \
+  \  public void restAppHandler(SpringApplicationEvent springApp){\n    }\n    ```\n\
+  \n### @TransactionalEventListener\n\nSpring Framework 4.2.x 及更高版本引入了一个额外的注解，允许你监听事务阶段，例如数据库事务或任何其他事务，包括消息传递事件。\n\
+  \n让我们开始在货币项目中使用这个注解。查看清单 3-8 中所示的 `RateEventListener` 类。\n\n```\n@Component\npublic\
+  \ class RateEventListener {\n@TransactionalEventListener\n@Log(printParamsValues=true,\n\
+  callMethodWithNoParamsToString=\"getRate\")\npublic void processEvent(CurrencyEvent\
+  \ event){ }\n}\nListing 3-8.\ncom.apress.messaging.listener.RateEventListener.java\n\
+  ```\n\n清单 3-8 向你展示了 `RateEventListener` 类，它使用了 `@TransactionalEventListener` 并处理自定义的\
+  \ `CurrencyEvent` 事件（你可以在 `com.apress.messaging.event` 包中查看代码）。当通过编程方式或使用 `@Transactional`\
+  \ 注解建立事务通道时，`@TransactionalEventListener` 将接收事件。\n\n如果你查看 `com.apress.messaging.service.CurrencyService.java`\
+  \ 类，你将看到以下代码：\n\n```\n@Transactional\npublic void saveRate(Rate rate){\nrepository.save(new\n\
+  Rate(rate.getCode(),\nrate.getRate(),\nrate.getDate()));\npublisher.publishEvent(new\
+  \ CurrencyEvent(this,rate));\n}\n```\n\n这段代码展示了 `saveRate` 方法，它被标记了 `@Transactional`\
+  \ 注解。它将在保存完成后发布一个 `CurrencyEvent` 事件。\n\n如果你运行该项目，你将多次看到关于 `RateEventListener` 的日志。查看主应用程序（`RestApiEventsApplication.java`）；你将看到使用\
+  \ `CurrencyService` 实例保存的汇率，以及由 `RateEventListener` 监听器记录的每个事务（在它们提交之后）的日志。见图 3-9。\n\
+  \n![A337882_1_En_3_Fig9_HTML.jpg](img/A337882_1_En_3_Fig9_HTML.jpg)\n\nFigure 3-9.\n\
+  \nRateEventListener 日志\n\n`@TransactionalEventListener` 可以监听特定的事务阶段。如果你需要在某个阶段监听事件，可以像这样使用它：\n\
+  \n```\n@TransactionalEventListener(\nphase = TransactionPhase.BEFORE_COMMIT)\n```\n\
+  \n你可以使用：`BEFORE_COMMIT`、`AFTER_COMMIT`（默认）、`AFTER_ROLLBACK` 和 `AFTER_COMPLETION`。\n\
+  \n注意\n\n请记住，你可以从 Apress 网站或直接从 GitHub 仓库获取所有代码：[`http://www.apress.com/9781484212257`](http://www.apress.com/9781484212257)\n\
+  \n## 总结\n\n本章解释了观察者模式的工作原理。它还涵盖了 Spring 框架使用此模式来暴露应用程序事件的方式。\n\n它向你展示了一些用例，通过这些用例，你可以监听应用程序事件，并使用它们通过\
+  \ `ServletRequestHandledEvent` 来统计端点被访问的次数。它还向你展示了如何通过扩展 `ApplicationEvent` 抽象类来创建自己的自定义事件。\n\
+  \n你学习了一种通过使用诸如 `@EventListener` 之类的注解来监听事件的简便方法。你还了解了如何使用 `@TransactionalEventListener`，该注解在事务发生时、提交期间、提交之前或提交之后以及回滚之后被触发。\n\
+  \n下一章将介绍 Java 消息服务 API 以及如何使用它进行消息传递。\n\n"
+- '# 4. 使用 Spring Boot 的 JMS
+
+
+  Java 消息服务（JMS）于 2001 年 6 月随版本 1.0.2b 发布。它是在两个或多个客户端之间发送消息的另一种解决方案。当时，它被认为是面向消息中间件（MOM）技术组的一部分。其理念是为一个反复出现的问题提供一个
+  API，即一个生产者-消费者用例，该用例允许在分布式环境中实现松耦合、可靠且异步的组件。
+
+
+  本章从一个简单的项目开始，它将帮助你理解 JMS 客户端的工作原理以及如何使用 Spring Boot 进行配置。然后，我们将利用这些知识构建之前的项目，即货币
+  REST API，现在它将作为一个接收器来保存新的汇率。那么，让我们开始吧。
+
+
+
+
+  ## JMS
+
+
+  JMS API 提供了两种消息传递模型——点对点模型和发布-订阅模型。点对点模型是指消息被传递给一个接收者，并且保证只会传递给连接到某个队列的一个消费者（见图
+  4-1）。
+
+
+  ![A337882_1_En_4_Fig1_HTML.gif](img/A337882_1_En_4_Fig1_HTML.gif)
+
+
+  图 4-1.
+
+
+  点对点消息传递模型
+
+
+  发布-订阅模型是指消息被传递给零个或多个消费者（通常称为订阅者）。发布者为所有想要订阅该主题的客户端创建一个消息主题（见图 4-2）。
+
+
+  ![A337882_1_En_4_Fig2_HTML.gif](img/A337882_1_En_4_Fig2_HTML.gif)
+
+
+  图 4-2.
+
+
+  发布-订阅消息传递模型
+
+
+  JMS 是一个需要被实现的必需 API。为了使用或创建 JMS 应用程序，你需要选择一个提供者（通常称为 JMS 服务器或代理），它将连接并解耦你的发送者/发布者与接收者/订阅者；一个用于生产/发送或接收/订阅消息的客户端；一个包含实际消息（有效载荷）的
+  JMS 消息；以及一个用于点对点消息传递的 JMS 队列，或用于发布-订阅场景的主题。我们首先来详细讨论客户端。
+
+
+  ### 使用 Java 的 JMS
+
+
+  让我们先看看如何在 Java 中创建一个点对点发送者客户端；见代码清单 4-1。
+
+
+  ```
+
+  //Step 1\. 创建连接
+
+  InitialContext ctx = new InitialContext();
+
+  QueueConnectionFactory factory = (QueueConnectionFactory)ctx.lookup("connectionFactory");
+
+  QueueConnection connection = factory.createQueueConnection();
+
+  connection.start();
+
+  //Step 2\. 创建队列会话
+
+  QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+
+  //Step 3\. 获取队列对象
+
+  Queue queue =( Queue)ctx.lookup("myQueue");
+
+  //Step 4\. 创建发送者
+
+  QueueSender sender = session.createSender(queue);
+
+  //Step 5\. 创建消息
+
+  TextMessage msg = session.createTextMessage();
+
+  msg.setText("Hello World");
+
+  //Step 6\. 发送消息
+
+  sender.send(msg);
+
+  代码清单 4-1.
+
+  点对点发送者客户端代码片段
+
+  ```
+
+
+  如代码清单 4-1 所示，这个过程非常直接。发送一条文本消息只需要六个步骤。在步骤 1 中，你需要知道使用哪个连接过程。通常，你需要在代码中包含一个 `jndi.properties`
+  文件，其中包含关于你的 JMS 提供者的一些信息；例如，如果你使用 Apache ActiveMQ，你需要指定其属性，如代码清单 4-2 (`jndi.properties`)
+  所示。
+
+
+  ```
+
+  # Apache ActiveMQ 的初始上下文
+
+  java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory
+
+  # 此属性必须与 ctx.lookup 语句中声明的属性相同。
+
+  # 默认值为：connectionFactory 或 ConnectionFactory
+
+  # connectionFactoryNames = connectionFactory, queueConnectionFactory, queueConnectionFactory
+
+  #   Memory Broker = vm://localhost
+
+  # External Broker = tcp://hostname:61616
+
+  java.naming.provider.url=vm://localhost
+
+  # 队列命名规则：
+
+  # queue.[jndiName] = [physicalName]
+
+  queue.myQueue = apress.MyQueue
+
+  # 主题命名规则：
+
+  # topic.[jndiName] = [physicalName]
+
+  topic.myTopic = apress.MyTopic
+
+  代码清单 4-2.
+
+  用于 Apache ActiveMQ 的 jndi.properties
+
+  ```
+
+
+  代码清单 4-2 展示了你需要包含在每个 JMS 应用程序中的 `jndi.properties` 文件。在这个例子中，它使用了 Apache ActiveMQ
+  的设置以及队列和主题的命名约定。
+
+
+  现在，让我们看看接收者，如代码清单 4-3 所示。
+
+
+  ```
+
+  // Step 1\. 创建连接
+
+  InitialContext ctx = new InitialContext();
+
+  QueueConnectionFactory factory = (QueueConnectionFactory)ctx.lookup("connectionFactory");
+
+  QueueConnection connection = factory.createQueueConnection();
+
+  connection.start();
+
+  // Step 2\. 创建会话
+
+  QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+
+  // Step 3\. 获取队列
+
+  Queue queue=(Queue)ctx.lookup("myQueue");
+
+  // Step 4\. 创建接收者
+
+  QueueReceiver receiver = session.createReceiver(queue);
+
+  // Step 5\. 创建监听器
+
+  MessageListener listener = new MessageListener() {
+
+  @Override
+
+  public void onMessage(Message message) {
+
+  //在此处处理消息
+
+  }
+
+  };
+
+  // Step 6\. 注册监听器
+
+  receiver.setMessageListener(listener);
+
+  代码清单 4-3.
+
+  点对点接收者客户端代码片段
+
+  ```
+
+
+  代码清单 4-3 展示了创建点对点消息消费者所需的六个步骤。当然，如果你将此代码放在一个单独的项目中，你还需要包含 `jndi.properties`（见代码清单
+  4-2）。
+
+
+  如果你想使用发布者-订阅者消息传递模型，你可以按照代码清单 4-4 所示创建你的发布者。
+
+
+
+
+  ```
+
+  //步骤 1. 创建连接
+
+  InitialContext ctx = new InitialContext();
+
+  TopicConnectionFactory factory =(TopicConnectionFactory)ctx.lookup("connectionFactory");
+
+  TopicConnection connection=f.createTopicConnection();
+
+  connection.start();
+
+  //步骤 2. 创建主题会话
+
+  TopicSession session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
+
+  //步骤 3. 获取主题对象
+
+  Topic topic = (Topic)ctx.lookup("myTopic");
+
+  //步骤 4. 创建发送者
+
+  TopicPublisher publisher = session.createPublisher(topic);
+
+  //步骤 5. 创建消息
+
+  TextMessage msg = session.createTextMessage();
+
+  msg.setText("Hello World");
+
+  //步骤 6. 发送消息
+
+  publisher.publish(msg);
+
+  清单 4-4.
+
+  发布者-订阅者模式中的发布者客户端
+
+  ```
+
+
+  清单 4-4 展示了发布者代码——一种发布者-订阅者消息模型——该代码将向名为 `myTopic` 的主题发布一条简单的文本消息。这与点对点模型差别不大。那么订阅者呢？请参见清单
+  4-5。
+
+
+  ```
+
+  // 步骤 1. 创建连接
+
+  InitialContext ctx = new InitialContext();
+
+  TopicConnectionFactory factory = (TopicConnectionFactory)ctx.lookup("connectionFactory");
+
+  TopicConnection connection = factory.createTopicConnection();
+
+  connection.start();
+
+  // 步骤 2. 创建会话
+
+  TopicSession session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
+
+  // 步骤 3. 获取主题
+
+  Topic topic = (Topic)ctx.lookup("myTopic");
+
+  // 步骤 4. 创建接收者
+
+  TopicSubscriber subscriber = session.createSubscriber(topic);
+
+  // 步骤 5. 创建监听器
+
+  MessageListener listener = new MessageListener() {
+
+  @Override
+
+  public void onMessage(Message message) {
+
+  //在此处处理消息
+
+  }
+
+  };
+
+  // 步骤 6. 注册监听器
+
+  subscriber.setMessageListener(listener);
+
+  清单 4-5.
+
+  发布者-订阅者模式中的订阅者客户端
+
+  ```
+
+
+  清单 4-5 展示了发布者-订阅者消息客户端；该客户端订阅了名为 `myTopic` 的主题。你可以使用此代码运行多个客户端，每个客户端都会收到来自发布者的消息；同样，这与点对点模型差别不大。当然，这些客户端仍然需要
+  `jndi.properties` 文件。
+
+
+  如你所见，两种消息模型的实现都非常直接。如果你仔细查看任何一段代码，你会发现每次发送的消息都只是文本消息，但如果你需要发送其他内容呢？JMS 支持不同的消息类型：
+
+
+  *   `StreamMessage` 是一个序列化的流对象。
+
+  *   `MapMessage` 由名称/值对组成，类似于哈希表。
+
+  *   `TextMessage` 是一个字符串。
+
+  *   `ObjectMessage` 是一个可序列化的对象。
+
+  *   `ByteMessage` 是一个原始的字节流。
+
+
+  作为练习，尝试使用这些代码片段创建一些客户端（点对点或发布者-订阅者模型）。目的是让你熟悉如何使用这类消息传递。
+
+
+  我刚刚向你简要介绍了在不使用外部框架的情况下，通常如何使用 JMS。我认为即使只是做一些简单的事情，也需要很多步骤。
+
+
+  ## 使用 Spring Boot 的 JMS
+
+
+  第 2 章向你展示了 Spring Boot 如何了解你正在尝试运行的应用程序，因为它是一种有主见的技术。只需添加一个 `spring-boot-starter`
+  pom，你就可以告诉 Spring Boot 如何配置一切，对吧？
+
+
+  我们将在本例中使用 Apache ActiveMQ（欢迎你使用任何其他代理；代码将是相同的），这意味着我们可以包含 `spring-boot-starter-activemq`
+  依赖项。通过添加此依赖项，Spring Boot 将引入应用程序所需的所有 JMS 和 ActiveMQ（JAR 文件），并将自动配置 JMS 客户端所需的所有必要属性和额外配置。
+
+
+  还记得你在 Java 中需要执行的所有步骤吗？使用 Spring Boot 则无需这些步骤。
+
+
+  注意
+
+
+  我们将使用更多依赖项，例如 AOP，来处理一些日志记录问题。请查看本章项目中的 `pom.xml` 文件。
+
+
+  我们将使用 `jms-sender` 项目，你可以在本书的源代码中找到它。该项目包含许多类，其中一些代码被注释掉了，只需取消注释，它就应该能工作。不过别担心，我将在接下来的章节中通过解释每一段代码来指导你。
+
+
+  注意
+
+
+  请记住，你可以从 Apress 网站或直接从 GitHub 仓库 [`http://www.apress.com/9781484212257`](http://www.apress.com/9781484212257)
+  获取所有代码。
+
+
+
+
+  ### 生产者
+
+
+  让我们先回顾一下使用 Spring Boot 的生产者。打开 `com.apress.messaging.jms.SimpleSender.java` 类。参见代码清单
+  4-6。
+
+
+  ```
+
+  @Component
+
+  public class SimpleSender {
+
+  private JmsTemplate jmsTemplate;
+
+  @Autowired
+
+  public SimpleSender(JmsTemplate jmsTemplate){
+
+  this.jmsTemplate = jmsTemplate;
+
+  }
+
+  public void sendMessage(String destination,
+
+  String message){
+
+  this.jmsTemplate.convertAndSend(destination, message);
+
+  }
+
+  }
+
+  代码清单 4-6.
+
+  com.apress.messaging.jms.SimpleSender.java
+
+  ```
+
+
+  代码清单 4-6 展示了创建生产者的最简单直接的方式。我们来分析一下代码的每个部分：
+
+
+  *   `@Component`：你可能已经知道，这个注解将类标记为 Spring Bean，使其在运行时可用。
+
+  *   `JmsTemplate`：这是客户端最重要的部分，因为该类负责向 JMS 提供者/代理发送消息（以及其他操作）。
+
+  *   @Autowired：该注解用于类构造函数，以注入 `JmsTemplate` Bean（如前所述）。你甚至可以省略此注解，Spring 会自动推断出你需要此依赖。
+
+  *   `convertAndSend`：`JmsTemplate` 实例拥有此方法，用于转换消息。由于这是一个字符串，它会被自动转换为 `javax.jms.TextMessage`
+  并发送到目标（通常是一个队列）。
+
+
+  在运行这部分代码之前，我们先检查一下主应用程序。打开 `com.apress.messaging.JmsSenderApplication.java` 类，如代码清单
+  4-7 所示。
+
+
+  ```
+
+  @SpringBootApplication
+
+  public class JmsSenderApplication {
+
+  public static void main(String[] args) {
+
+  SpringApplication.run(JmsSenderApplication.class, args);
+
+  }
+
+  @Bean
+
+  CommandLineRunner simple(JMSProperties props,
+
+  SimpleSender sender){
+
+  return args -> {
+
+  sender.sendMessage(props.getQueue(), "Hello World");
+
+  };
+
+  }
+
+  }
+
+  代码清单 4-7.
+
+  com.apress.messaging.JmsSenderApplication.java
+
+  ```
+
+
+  代码清单 4-7 展示了主应用程序。我们来逐一分析每个部分：
+
+
+  *   `@SpringBootApplication`：你已经熟悉这个注解了。它是 Spring Boot 识别你试图运行何种应用程序的方式。
+
+  *   `simple(JMSProperties,SimpleSender)`：当 Spring 容器准备就绪时，此方法会被执行，并注入 `JMSProperties`
+  和 `SimpleSender` Bean 供其使用。
+
+  *   `JMSProperties`：此类用作属性持有者，读取 `application.properties` 文件并查找 `apress.jms.queue`
+  属性（本例中设置为 `jms-sender`）。如果你想了解更多，可以阅读 Spring Boot 参考文档中“外部化配置”部分的内容。
+
+
+  现在你可以运行它了。（你可以使用 Maven 命令行运行：`$ mvn spring-boot:run`，或者如果你已将其导入 STS，则可以在 Boot Dashboard
+  中运行。）运行后，你将看到类似图 4-3 的内容。
+
+
+  ![A337882_1_En_4_Fig3_HTML.jpg](img/A337882_1_En_4_Fig3_HTML.jpg)
+
+
+  图 4-3.
+
+
+  JmsSenderApplication 日志
+
+
+  图 4-3 展示了应用程序运行时的日志。代码实际上正在将消息 `"Hello World"` 发送到 `jms-demo` 队列。这意味着你将看到 `JMSAudit`
+  文本以及一些额外信息。我究竟在哪里打印了这些信息？请查看 `com.apress.messaging.aop.JMSAudit.java` 类。这个类是一个环绕通知，通常用于日志记录。我知道对于这个示例来说可能有些过度，但这给了我更多探索
+  AOP 的方式。
+
+
+  你可以看到这个客户端正在发送消息，但消息发到哪里去了？你知道我们使用了 `spring-boot-starter-activemq` 依赖，但似乎并没有任何代理在运行。这是怎么回事？
+
+
+  请记住，Spring Boot 会根据你的类路径依赖做出判断，因此当它知道你拥有 `spring-boot-starter-activemq` 依赖时，会检查你是否已经声明了
+  `connectionFactory`、`session`、`sender` 等类型的 Bean，以便使用它们。如果 Spring Boot 没有找到任何东西，它会默认创建所有这些
+  Bean，并使用内存中的提供者（URL 为 `vm://localhost`）。这就是为什么运行时没有错误，并且你可以看到消息已被发送的原因。
+
+
+
+
+  ### 消费者
+
+
+  接下来，我们来看看消费者。首先，我将向你展示一个使用 `javax.jms.MessageListener` 接口的消费者（这与之前“Java 中的 JMS”部分中的示例相同），以便了解配置它需要做些什么。请参见清单
+  4-8。
+
+
+  ```
+
+  @Component
+
+  public class QueueListener implements MessageListener {
+
+  public void onMessage(Message message) {
+
+  }
+
+  }
+
+  清单 4-8.
+
+  com.apress.messaging.jms.QueueListener.java
+
+  ```
+
+
+  清单 4-8 展示了将监听队列（`jms-demo`）中任何消息的接收器。我们来回顾一下这段代码：
+
+
+  *   `@Component`：如果此项被注释掉了，请移除 `//` 并添加正确的导入。我建议你使用 STS，在 Mac 上按 Cmd+Shift+O，在 Windows
+  上按 Ctrl+Shift+O。此注解会将类标记为 Spring Bean，以便在配置中使用。
+
+  *   `MessageListener`：接收 JMS 消息需要此接口，并且需要实现 `onMessage` 方法。
+
+  *   `onMessage(Message)`：需要实现此方法，它包含了从队列中消费的实际消息。
+
+
+  如你所见，这非常简单，但如果你尝试运行它，你会看到与之前相同的结果。你只会看到关于发送消息的日志。这是为什么呢？嗯，你必须告诉 Spring Boot 如何使用这个监听器，所以请看一下清单
+  4-9。
+
+
+  ```
+
+  @Configuration
+
+  @EnableConfigurationProperties(JMSProperties.class)
+
+  public class JMSConfig {
+
+  @Bean
+
+  public DefaultMessageListenerContainer
+
+  customMessageListenerContainer(
+
+  ConnectionFactory connectionFactory,
+
+  MessageListener queueListener,
+
+  @Value("${apress.jms.queue}") final
+
+  String destinationName){
+
+  DefaultMessageListenerContainer listener = new
+
+  DefaultMessageListenerContainer();
+
+  listener.setConnectionFactory(connectionFactory);
+
+  listener.setDestinationName(destinationName);
+
+  listener.setMessageListener(queueListener);
+
+  return listener;
+
+  }
+
+  }
+
+  清单 4-9.
+
+  com.apress.messaging.config.JMSConfig.java
+
+  ```
+
+
+  清单 4-9 展示了启用 `QueueListener` 类所需的配置。我们来回顾一下这个类：
+
+
+  *   `@Configuration`：这是一个标记，表示该类将被视为 Spring 容器的 Java 配置，因此这里的所有内容都将用于设置 Spring。
+
+  *   `@EnableConfigurationProperties`：还记得我们使用 `application.properties` 文件来设置队列名称吗？这个特定的注解将使用提供的类（`JMSProperties.class`）作为属性持有者，这样你就可以在
+  `application.properties` 文件中设置一些属性。之后，你可以通过使用 `@Value` 或使用 `JMSProperties` 实例 Bean
+  及其 getter 方法来获取其值。
+
+  *   `@Bean`：这是一个标记，用于在 Spring 容器中创建一个类型为 `DefaultMessageListenerContainer` 的 Bean。
+
+  *   `DefaultMessageListenerContainer`：在这种情况下，这是一个返回类型，将被视为一个 Spring Bean。它包含了确定
+  `QueueListener` 类以及从哪个队列（`destinationName`）消费所需的所有信息。
+
+  *   `ConnectionFactory`：Spring 将注入此实例，并使用默认值自动配置它（除非你提供了自定义的 `ConnectionFactory`）。在这种情况下，它将使用内存中的提供者/代理。
+
+  *   `MessageListener`：Spring 将注入 `QueueListener` 类（来自清单 4-8 的接收器），以便用于设置 `DefaultMessageListenerContainer`
+  实例。
+
+  *   `@Value("${apress.jms.queue}")`：此注解会将 `application.properties` 文件中 `apress.jms.queue`
+  属性的值 `"jms-demo"` 注入到 `destinationName` 参数中。
+
+
+  然后，实际的方法将创建 `DefaultMessageListenerContainer` 并设置其所有属性（`connectionFactory`、`queueListener`
+  和 `destinationName`）。
+
+
+  现在，如果你运行该应用程序，你应该会得到类似于图 4-4 的输出。
+
+
+  ![A337882_1_En_4_Fig4_HTML.jpg](img/A337882_1_En_4_Fig4_HTML.jpg)
+
+
+  图 4-4.
+
+
+  日志
+
+
+  图 4-4 展示了通过从队列中消费消息来调用 `onMessage` 方法（请记住，这些日志是由 AOP 切面生成的）。如果你更仔细地查看实际消息，你应该会看到类似这样的内容：
+
+
+  ```
+
+  ActiveMQTextMessage {
+
+  commandId = 5,
+
+  responseRequired = true,
+
+  messageId = ID:pivotal-es.local-64812,
+
+  originalDestination = null,
+
+  originalTransactionId = null,
+
+  producerId = ID:pivotal-es.local-64812,
+
+  destination = queue://jms-demo,
+
+  transactionId = null,
+
+  expiration = 0,
+
+  timestamp = 1479394688357,
+
+  arrival = 0,
+
+  brokerInTime = 1479394688357,
+
+  brokerOutTime = 1479394688362,
+
+  correlationId = null,
+
+  replyTo = null,
+
+  persistent = true,
+
+  type = null,
+
+  priority = 4,
+
+  groupID = null,
+
+  groupSequence = 0,
+
+  targetConsumerId = null,
+
+  compressed = false,
+
+  userID = null,
+
+  content = null,
+
+  marshalledProperties = null,
+
+  dataStructure = null,
+
+  redeliveryCounter = 0,
+
+  size = 1046,
+
+  properties = null,
+
+  readOnlyProperties = true,
+
+  readOnlyBody = true,
+
+  droppable = false, j
+
+  msXGroupFirstForConsumer = false,
+
+  text = Hello World
+
+  }
+
+  ```
+
+
+  如你所见，我们正在接收一个 `ActiveMQTextMessage`，它是围绕 `javax.jms.TextMessage` 接口的一个实现。了解指向 `jms-demo`
+  队列的目标属性、有效负载以及值为 `Hello World` 的文本属性非常重要。
+
+
+  你可能想知道是否有更简单的方法来配置监听器。如何确定要配置什么？嗯，Spring Boot 让这变得更加容易。你将在下一节中了解这个过程。
+
+
+  ### 使用注解的消费者
+
+
+  Spring 框架提供了用于消费消息的有用注解，这与 `ApplicationEvents` 和 `Streams` 非常相似。Spring Boot 有助于自动配置这些注解，从而使开发人员的工作更轻松。
+
+
+  让我们首先回顾一下 `com.apress.messagin.jms.AnnotatedReceiver.java` 类。请参见清单 4-10。
+
+
+  ```
+
+  @Component
+
+  public class AnnotatedReceiver {
+
+  @JmsListener(destination = "${apress.jms.queue}")
+
+  public void processMessage(String content) {
+
+  }
+
+  }
+
+  清单 4-10.
+
+  com.apress.messagin.jms.AnnotatedReceiver.java
+
+  ```
+
+
+  清单 4-10 展示了包含 `@JmsListener` 注解的 `AnnotatedReceiver` 类：
+
+
+  *   `@Component`：记住，这是一个标记，用于让 Spring 在 Spring 容器中启用此 Bean。
+
+  *   `@JmsListener`：此注解被配置为使用 SpEL（Spring 表达式语言）表达式指定的目标来创建一个消息监听器。在这种情况下，它是值为 `jms-demo`
+  的 `apress.jms.queue` 属性。
+
+
+  就是这样！Spring Boot 将为你配置一切，因此不再需要声明消息监听器容器的 Bean。
+
+
+  注意
+
+
+  在运行此接收器之前，首先注释掉 `JMSConfig` 类中的 Bean 定义（`DefaultMessageListenerContainer`）和 `QueueListener`
+  类中的 `@Component`。
+
+
+  现在是时候运行这个接收器了（只需记住注释掉 Bean 和监听器，因为你不再需要它们了）。一旦你运行该应用程序，你应该会得到类似于图 4-5 的结果。
+
+
+  ![A337882_1_En_4_Fig5_HTML.jpg](img/A337882_1_En_4_Fig5_HTML.jpg)
+
+
+  图 4-5.
+
+
+  @JmsListener 日志
+
+
+  图 4-5 向你展示了运行应用程序后的日志。你可以看到被调用的方法是 `processMessage`；这正是被 `@JmsListener` 注解注解的同一个消息。
+
+
+
+
+  ### 货币项目
+
+
+  让我们再次讨论货币项目。假设你有一个客户想要发送更精确的汇率，但只能使用 JMS 发送汇率消息。这意味着你的货币项目需要充当接收方，但客户需要某种确认，表明你已收到汇率消息。
+
+
+  让我们从使用同一个 `jms-sender` 项目创建发送方客户端开始。查看清单 4-11 中所示的 `com.apress.messaging.jms.RateSender.java`
+  类。
+
+
+  ```
+
+  @Component
+
+  public class RateSender {
+
+  private JmsTemplate jmsTemplate;
+
+  @Autowired
+
+  public RateSender(JmsTemplate jmsTemplate){
+
+  this.jmsTemplate = jmsTemplate;
+
+  }
+
+  public void sendCurrency(String destination, Rate rate){
+
+  this.jmsTemplate.convertAndSend(destination,rate);
+
+  }
+
+  }
+
+  清单 4-11.
+
+  com.apress.messaging.jms.RateSender.java
+
+  ```
+
+
+  清单 4-11 展示了你将用于发送新 `Rate` 对象的类。如你所见，它与清单 4-6 中的 `SimpleSender` 类非常相似。唯一的区别是，现在发送的是一个
+  `Rate` 对象，而不是文本（String）消息。查看清单 4-12 中的 `com.apress.messaging.domain.Rate.java` 类。
+
+
+  ```
+
+  public class Rate {
+
+  private String code;
+
+  private Float rate;
+
+  private Date date;
+
+  public Rate() { }
+
+  public Rate(String base, Float rate, Date date) {
+
+  super();
+
+  this.code = base;
+
+  this.rate = rate;
+
+  this.date = date;
+
+  }
+
+  //Setters and Getter omitted.
+
+  }
+
+  清单 4-12.
+
+  com.apress.messaging.domain.Rate.java
+
+  ```
+
+
+  清单 4-12 展示了你在货币项目中已经见过的 `Rate` 领域类，但请记住，在上一章中，我们使用 `@Entity` 和 `@Id` 对其进行了注解，作为
+  JPA 持久化的一部分。这次它将变得简单，因为无需持久化汇率。
+
+
+  如果你此时尝试运行应用程序，将会收到类似如下的错误：
+
+
+  ```
+
+  Cannot convert object of type [com.apress.messaging.domain.Rate] to JMS message.
+  Supported message payloads are: String, byte array, Map, Serializable object.
+
+  ```
+
+
+  我们可以在 `Rate` 类中实现 `Serializable`，但货币项目并没有这样做。现在，如果你还记得，我们的想法是创建一个接受 JSON 格式的 REST
+  API，那么让我们看看如何在这里使用 JSON。
+
+
+  打开 `com.apress.messaging.config.JMSConfig.java` 类。参见清单 4-13。
+
+
+  ```
+
+  @Configuration
+
+  @EnableConfigurationProperties(JMSProperties.class)
+
+  public class JMSConfig {
+
+  @Bean
+
+  public MessageConverter jacksonJmsMessageConverter() {
+
+  MappingJackson2MessageConverter converter = new
+
+  MappingJackson2MessageConverter();
+
+  converter.setTargetType(MessageType.TEXT);
+
+  converter.setTypeIdPropertyName("_class_");
+
+  return converter;
+
+  }
+
+  }
+
+  清单 4-13.
+
+  com.apress.messaging.config.JMSConfig.java
+
+  ```
+
+
+  清单 4-13 展示了以 JSON 格式公开消息所需的配置。让我们回顾一下：
+
+
+  *   `MessageConverter`：这是一个接口，指定了 Java 对象和 JMS 消息之间的转换器。它公开了 `toMessage` 和 `fromMessage`
+  方法。Spring Boot 的自动配置将连接所有内容以使用这个特定的消息转换器。
+
+  *   `MappingJackson2MessageConverter`：该类实现了 `MessageConverter` 接口，并添加了更多方法来帮助进行
+  JSON/对象之间的转换。
+
+  *   `setTargetType`：此方法对于帮助转换器识别需要转换的类型是必要的。在本例中，我们以字符串格式发送 JSON，这意味着它将在后台创建一个 `TextMessage`
+  对象。
+
+  *   `setTypeIdPropertyName`：这是一个重要的设置，因为它将决定后台映射的方式。这可以是任何你想要的值。它只是一个简单的标识符，用于保存正在映射的限定类名。
+
+
+  这足以再次运行应用程序，但首先让我们看看主应用程序的样子。参见清单 4-14。
+
+
+  ```
+
+  @SpringBootApplication
+
+  public class JmsSenderApplication {
+
+  public static void main(String[] args) {
+
+  SpringApplication.run(JmsSenderApplication.class, args);
+
+  }
+
+  @Bean
+
+  CommandLineRunner process(JMSProperties props,
+
+  RateSender sender){
+
+  return args -> {
+
+  sender.sendCurrency(props.getRateQueue(),
+
+  new Rate("EUR",0.88857F,new Date()));
+
+  sender.sendCurrency(props.getRateQueue(),
+
+  new Rate("JPY",102.17F,new Date()));
+
+  sender.sendCurrency(props.getRateQueue(),
+
+  new Rate("MXN",19.232F,new Date()));
+
+  sender.sendCurrency(props.getRateQueue(),
+
+  new Rate("GBP",0.75705F,new Date()));
+
+  };
+
+  }
+
+  }
+
+  清单 4-14.
+
+  com.apress.messaging.JmsSenderApplication.java
+
+  ```
+
+
+  清单 4-14 展示了主应用程序（只需记住注释掉之前的代码）。如你所见，它非常简单。我们只是在发送新的 `Rate` 对象。如果你运行应用程序，应该会得到如图
+  4-6 所示的输出。
+
+
+  ![A337882_1_En_4_Fig6_HTML.jpg](img/A337882_1_En_4_Fig6_HTML.jpg)
+
+
+  图 4-6.
+
+
+  JMS 发送汇率对象时的日志
+
+
+  图 4-6 展示了没有任何错误的日志。它表明一切顺利，并且一些汇率已成功发送。但这还不够，因为我们如何保证它实际上是 JSON 格式呢？
+
+
+
+
+  #### 使用远程 Apache ActiveMQ 代理
+
+
+  让我们使用 ActiveMQ 作为远程代理。这将帮助我们确定消息是否实际发送到了代理，而不是使用内存中的提供者。
+
+
+  请确保您已启动并运行 ActiveMQ（您需要从 [`http://activemq.apache.org/`](http://activemq.apache.org/)
+  下载它，并按照您系统的安装说明进行操作）。我使用的是 ActiveMQ 5.14.0 版本，但您可以使用任何版本。在再次运行应用程序之前，您需要确保它将使用正在运行的
+  ActiveMQ 代理。打开 `src/main/resources /application.properties` 文件，并取消注释所有 `spring.activemq.*`
+  和 `apress.jms.*` 属性。结果应如清单 4-15 所示。
+
+
+  ```
+
+  spring.activemq.broker-url=tcp://localhost:61616
+
+  spring.activemq.user=admin
+
+  spring.activemq.password=admin
+
+  #Apress 配置
+
+  apress.jms.queue=jms-demo
+
+  apress.jms.rate-queue=rates
+
+  清单 4-15.
+
+  src/main/resources/application.properties
+
+  ```
+
+
+  清单 4-15 显示了声明了远程 ActiveMQ 的 `application.properties` 文件（在本例中为本地系统），默认端口为 `61616`，用户名和密码设置为
+  `admin`。有了这些属性，Spring Boot 将配置连接到远程代理的 `connectionFactory`。
+
+
+  因此，如果您已运行 ActiveMQ 代理，您应该能够在浏览器中访问 `http://localhost:8161/admin` URL，并看到图 4-7 所示的网页。
+
+
+  ![A337882_1_En_4_Fig7_HTML.jpg](img/A337882_1_En_4_Fig7_HTML.jpg)
+
+
+  图 4-7.
+
+
+  ActiveMQ 网页控制台：http://localhost:8161/admin
+
+
+  然后您可以执行 `jms-demo` 应用程序，并从网页控制台中选择队列，以查看名为 `rates` 的队列已被创建（此名称基于 `apress.jms.rate-queue`
+  属性值）。见图 4-8。
+
+
+  ![A337882_1_En_4_Fig8_HTML.jpg](img/A337882_1_En_4_Fig8_HTML.jpg)
+
+
+  图 4-8.
+
+
+  ActiveMQ 队列选项卡
+
+
+  如果您点击名为 `rates` 的队列，您应该会看到发送到代理的四条消息。见图 4-9。
+
+
+  ![A337882_1_En_4_Fig9_HTML.jpg](img/A337882_1_En_4_Fig9_HTML.jpg)
+
+
+  图 4-9.
+
+
+  ActiveMQ 队列汇率消息
+
+
+  点击任意消息以查看其内容。见图 4-10。
+
+
+  ![A337882_1_En_4_Fig10_HTML.jpg](img/A337882_1_En_4_Fig10_HTML.jpg)
+
+
+  图 4-10.
+
+
+  ActiveMQ 队列 --> 汇率 --> 消息
+
+
+  图 4-10 向您展示了代理接收到的实际消息。查看消息详情；您将看到类似以下内容：
+
+
+  ```
+
+  {"code":"EUR","rate":0.88857,"date":1479442794599}
+
+  ```
+
+
+  该汇率由 `jms-sender` 应用发送。在右侧，您可以看到一个属性图例，其中 `_class_` 属性 ID 的值为 `com.apress.messaging.domain.Rate`
+  类（请记住，这对接收方也很重要，以便它可以从 JSON 转换回对象）。
+
+
+  现在您知道了如何发送可转换为 JSON 的对象。接下来，您需要接收此消息，对吗？发送方也需要从接收方接收一些确认（这也是需求的一部分）。
+
+
+  ### 回复至
+
+
+  Spring JMS 提供了一种回复到另一个队列的方法，有点类似于拥有一个请求-响应/RPC 模型。您可以将其与监听器 `@SendTo` 注解一起使用。
+
+
+  为了看到实际效果，我们将使用同一个 `jms-sender` 项目。请记住禁用某些组件。您可以通过注释掉我们一直在处理的所有监听器中的 `@Component`
+  注解来实现。
+
+
+  打开 `com.apress.message.jms.RateReplyReceiver.java` 类。见清单 4-16。
+
+
+  ```
+
+  @Component
+
+  public class RateReplyReceiver {
+
+  @JmsListener(destination = "${apress.jms.rate-queue}")
+
+  @SendTo("${apress.jms.rate-reply-queue}")
+
+  public Message processRate(Rate rate){
+
+  //处理汇率并返回任何有意义的值
+
+  return MessageBuilder
+
+  .withPayload("PROCCESSED")
+
+  .setHeader("CODE", rate.getCode())
+
+  .setHeader("RATE", rate.getRate())
+
+  .setHeader("ID", UUID.randomUUID().toString())
+
+  .setHeader("DATE",
+
+  new SimpleDateFormat("yyyy-MM-dd")
+
+  .format(new Date()))
+
+  .build();
+
+  }
+
+  }
+
+  清单 4-16.
+
+  com.apress.message.jms.RateReplyReceiver.java
+
+  ```
+
+
+  清单 4-16 向您展示了 `RateReplyReceiver.java` 类和 `@SendTo` 注解，该注解需要一个值，该值对应于结果消息将被发送到的
+  `reply-queue`。让我们回顾一下：
+
+
+  *   `@SendTo`：此注解将是回复的关键。请确保您仍然有 `@JmsListener` 注解，这意味着此方法将同时充当接收方和发送方。该方法必须有一个返回类型。在这种情况下，它将使用
+  `apress.jms.rate-reply-queue` 值来设置回复队列。如果主消息设置了 `JMSReplyTo` 标头，则可以省略注解值。
+
+  *   `Message<T>`：这是一个基于 `Generics` 类型构建的接口，并提供了有用的 getter 方法，例如 `getPayload` 和 `getHeaders`。这是发送消息的首选方式。
+
+  *   `MessageBuilder`：这是一个辅助类，允许您通过添加更多标头来增强消息。
+
+
+  接下来，让我们再次查看 `RateSender` 类。它不仅会发送汇率，还会监听 `reply-queue`。请记住，需求是从接收方接收某种确认。见清单 4-17。
+
+
+  ```
+
+  @Component
+
+  public class RateSender {
+
+  private JmsTemplate jmsTemplate;
+
+  @Autowired
+
+  public RateSender(JmsTemplate jmsTemplate){
+
+  this.jmsTemplate = jmsTemplate;
+
+  }
+
+  public void sendCurrency(String destination, Rate rate){
+
+  this.jmsTemplate.convertAndSend(destination,rate);
+
+  }
+
+  @JmsListener(destination="${apress.jms.rate-reply-queue}")
+
+  public void process(String body,@Header("CODE") String code){
+
+  }
+
+  }
+
+  清单 4-17.
+
+  com.apress.message.jms.RateSender.java
+
+  ```
+
+
+  清单 4-17 向您展示了新的 `RateSender` 类。如您所见，我们重用了 `@JmsListener` 和新的 `@Header` 注解。让我们回顾一下：
+
+
+  *   `@JmsListener`：您已经知道这个注解。唯一的区别是包含正确的 `reply-queue` 名称。在本例中，它是 `apress.jms.rate-reply-queue`
+  属性值。
+
+  *   `@Header`：此注解将允许您直接访问 `Message<T>` 的标头，在本例中，它将是被处理的汇率代码。Spring JMS 有更多选项：`@Headers`
+  带来一个 `java.util.Map` 对象，`@Payload` 带来实际的有效载荷，`@Valid` 为您的有效载荷开启验证。
+
+
+  在运行此操作之前，请确保您已启动并运行 ActiveMQ 代理。
+
+
+  如果您运行该应用程序，您不仅应该看到发送方，还应该看到接收方和回复日志。见图 4-11。
+
+
+  ![A337882_1_En_4_Fig11_HTML.jpg](img/A337882_1_En_4_Fig11_HTML.jpg)
+
+
+  图 4-11.
+
+
+  带有回复队列的日志
+
+
+  您可以查看 ActiveMQ 网页控制台，并看到 `reply-rate` 队列已被创建。见图 4-12。
+
+
+  ![A337882_1_En_4_Fig12_HTML.jpg](img/A337882_1_En_4_Fig12_HTML.jpg)
+
+
+  图 4-12.
+
+
+  显示 reply-rate 队列的队列
+
+
+  现在您知道了如何创建一个 `reply-to` 并为您的应用程序提供一种 RPC 机制。
+
+
+
+
+  ### 主题
+
+
+  本节将讨论另一种 JMS 消息传递模型：发布者-订阅者模型，即主题。在该模型中，发布者将消息发送到主题，而主题可以有零个到多个订阅者，每个订阅者都会收到消息的副本。你可以将其想象成报纸或杂志的订阅。你订阅（某个特定兴趣——主题）以从发布者处接收报纸或杂志。
+
+
+  本节将继续使用 `jms-sender` 项目，该项目将扮演发布者的角色。同时，本章还将开启一个新项目 `jms-topic-subscriber`。它的结构类似于
+  `jms-sender`。
+
+
+  在 `jms-sender` 中，我们将使用相同的 `RateSender.java` 以及发送汇率的主入口点，但有一处小改动。打开 `src/main/resources/application.properties`
+  文件。其内容应如代码清单 4-18 所示。
+
+
+  ```
+
+  # Spring Web
+
+  spring.main.web-environment=false
+
+  #Default ActiveMQ properties
+
+  spring.activemq.broker-url=tcp://localhost:61616
+
+  spring.activemq.user=admin
+
+  spring.activemq.password=admin
+
+  #Apress Configuration
+
+  apress.jms.queue=jms-demo
+
+  apress.jms.rate-queue=rates
+
+  apress.jms.rate-reply-queue=reply-rate
+
+  #Enable Topic Messaging
+
+  spring.jms.pub-sub-domain=true
+
+  #Apress Topic Configuration
+
+  apress.jms.topic=rate-topic
+
+  代码清单 4-18.
+
+  src/main/resources/application.properties
+
+  ```
+
+
+  代码清单 4-18 展示了 `application.properties` 文件，其中包含一个特殊属性 `spring.jms.pub-sub-domain`。该属性默认值为
+  `false`，因此生产者会将消息发送到队列。当设置为 `true` 时，生产者（发布者）会将消息发送到主题。这也同样适用于监听器。如果你将此属性设置为 `true`，监听器将成为该主题的订阅者。
+
+
+  也请查看最后一个属性。我们只是定义了所有订阅者将监听的主题名称。
+
+
+  现在，你可以打开并查看 `jms-topic-subscriber` 项目中的 `com.apress.messaging.jms.RateTopicReceiver.java`
+  类，你会发现代码是相同的（除了目标名称）。在此项目中，你需要拥有相同的 `application.properties` 文件，并将 `spring.jms.pub-sub-domain`
+  设置为 `true`（请确保包含此属性）。
+
+
+  现在是时候运行 `jms-topic-subscriber` 项目了。在运行 `jms-demo` 项目之前，请查看 ActiveMQ Web 控制台的“主题”部分，如图
+  4-13 所示。
+
+
+  ![A337882_1_En_4_Fig13_HTML.jpg](img/A337882_1_En_4_Fig13_HTML.jpg)
+
+
+  图 4-13.
+
+
+  ActiveMQ Web 控制台的“主题”部分
+
+
+  图 4-13 显示已创建一个名为 `rates` 的主题，并且有一个消费者。接下来，运行 `jms-sender` 项目，查看汇率是否被发送到该主题。查看 `jms-topic-subscriber`
+  项目的日志；你应该会看到正在从 `rates` 主题消费消息。
+
+
+  作为实验，你可以运行 `jms-topic-subscriber` 项目的多个实例（如果你使用 STS 和 Boot Dashboard，这很容易实现），并验证每个实例是否都收到了汇率的副本。参见图
+  4-14。
+
+
+  ![A337882_1_En_4_Fig14_HTML.jpg](img/A337882_1_En_4_Fig14_HTML.jpg)
+
+
+  图 4-14.
+
+
+  STS Boot Dashboard 运行 `jms-topic-subscriber` 项目的两个实例
+
+
+  ## 货币项目
+
+
+  为了使用货币项目并开始监听来自其他客户端的新汇率，我们需要做什么？解决方案已经在 `rest-api-jms` 项目中。你需要执行以下操作：
+
+
+  *   确保已启用 `application.properties`、`spring.activemq.*` 和 `rate.jms.*` 属性。
+
+  *   查看 `RateJmsReceiver` 类，并注释/取消注释你想要使用的监听器（我们提供了简单监听器和带有 `reply-to` 的监听器）。
+
+  *   查看包含 JSON 转换器的 `RateJmsConfiguration` 类。
+
+
+  作为作业，请尝试使其运行起来。请记住，你需要启动并运行 ActiveMQ 代理。另外，作为额外步骤，请尝试使该项目支持主题。
+
+
+  ## 总结
+
+
+  本章向你展示了如何使用 Spring Boot 通过 JMS 技术发送和接收消息。
+
+
+  你了解了不同的 JMS 消息传递模型，以及开发人员发送或接收消息需要做什么。
+
+
+  通过 Spring Boot，你看到了设置 JMS 客户端是多么容易，以及如何通过简单的注解就能拥有一个使用 JMS 作为消息传递系统的功能型应用程序。尽管你只看到了如何使用
+  Apache ActiveMQ 作为代理，但同样的编程方法也可以应用于 HornetQ、IBM MQ 等，只需在 `application.properties`
+  文件中提供正确的属性（连接工厂和消息监听器）即可。
+
+
+  下一章将讨论一种不同的消息传递方式，即使用高级消息队列协议——AMQP。
+
+
+  '
+- "# 5. 使用 Spring Boot 集成 AMQP\n\n本章将讨论高级消息队列协议（AMQP），这是一种与平台无关的消息协议。你将学习如何使用 Spring\
+  \ AMQP 模块，该模块将与 RabbitMQ 代理进行通信。RabbitMQ 是全球最常用的代理之一，因为它易于安装和使用。最棒的是，它是开源的。\n\n\
+  AMQP 起源于金融领域，由摩根大通于 2003 年创建。随后，更多公司围绕它进行改进，以增强这种新的消息传递方式。Rabbit Technologies 使用\
+  \ Erlang 编程语言实现了 AMQP，RabbitMQ 由此诞生。多年后，VMware/Pivotal 收购了它。\n\n我们将继续介绍一些重要的定义，这些定义将帮助你更好地理解\
+  \ AMQP 和 RabbitMQ。本章将使用 `amqp-demo` 和 `rest-api-amqp` 项目。本章包含与 `amqp-demo` 相关的所有代码，我将让你自行深入研究\
+  \ `rest-api-amqp` 项目，以完成主要需求：从 RabbitMQ 接收新汇率并将其发送给感兴趣的消费者。\n\n注意\n\n对于本章，启动并运行\
+  \ RabbitMQ 服务器非常重要。你可以从 [`http://www.rabbitmq.com/download.html`](http://www.rabbitmq.com/download.html)\
+  \ 下载它。请确保至少安装了 `rabbitmq_management` 插件，因为它为 RabbitMQ 提供了 Web UI 管理功能。设置完成后，你可以打开浏览器，使用用户名和密码\
+  \ `guest` 访问 `http://localhost:15672`。有关此 Web UI 插件的更多信息，请访问 [`http://www.rabbitmq.com/management.html`](http://www.rabbitmq.com/management.html)\
+  \ 。\n\n## AMQP 模型\n\n本节将介绍 AMQP 0.9.1 模型。目前，这个特定版本是最常见的。\n\nAMQP 模型由发布到交换器的消息组成。这些交换器根据绑定（规则）将消息分发到队列。然后，消费者从这些队列中获取/拉取消息。参见图\
+  \ 5-1。\n\n![A337882_1_En_5_Fig1_HTML.jpg](img/A337882_1_En_5_Fig1_HTML.jpg)\n\n\
+  图 5-1.\n\nAMQP 模型\n\n你会看到，通常作为生产者或消费者，你需要创建到代理的连接，然后使用通道（主要传输方式）将消息发布到交换器或从队列消费消息。换句话说，AMQP\
+  \ 协议通过通道指定了多路复用连接。\n\nAMQP 模型具有不同的特性，允许开发人员在创建消息传递应用程序时拥有极大的灵活性。这些特性包括消息属性（内容类型、编码、路由键、投递模式等）、消息确认、消息拒绝、消息重新入队、多路复用连接（通道）、虚拟主机（用于托管隔离环境）、多客户端以及路由能力等。\n\
+  \n\n\n### 交换机、绑定与队列\n\n这些关键词也被称为 AMQP 实体。让我们来定义这些实体（请记住，所有这些仍然是 AMQP 模型的一部分）：\n\n\
+  *   **交换机**：生产者发送消息的实体。交换机将使用绑定将消息路由到正确的队列。交换机具有以下属性：名称、持久性（可以是持久或瞬态）、自动删除（当所有队列使用完毕后，交换机被删除）以及参数（哈希映射，依赖于代理）。\n\
+  *   **绑定**：连接交换机与另一个交换机或队列的规则。这是一个字符串值。\n*   **队列**：存储消息（在内存或磁盘中），直到它们被应用程序消费。队列具有以下属性：名称、持久性（在代理重启后依然存在）、独占性（仅由一个连接使用，这意味着当连接关闭时队列将被删除）、自动删除（当最后一个消费者取消订阅时队列被删除）以及参数（哈希映射，依赖于代理）。\n\
+  \nAMQP 模型提供了四种类型的交换机：\n\n*   **直连交换机**：通过其绑定与队列建立一对一的关系。有一个默认交换机，它是一种直连交换机类型，使用队列名称作为其绑定的路由键。\n\
+  *   **扇形交换机**：此交换机会为每个绑定到它的队列复制一条消息。你可以将其视为广播；它与发布/订阅模式（主题）非常相似。\n*   **主题交换机**：此交换机类似于直连交换机，唯一的区别在于它接受路由键的通配符（正则表达式），通过使用\
+  \ `*`（可替代恰好一个单词）和 `#`（可替代零个或多个单词）选项。\n*   **头交换机**：此交换机通过比较多个头信息来进行路由。你需要通过向同一消息头添加\
+  \ `x-match:all`（头：键）来指示是否要求头信息完全匹配，或通过添加 `x-match:any`（头：键）来指示匹配任意一个头信息。\n\n图 5-2\
+  \ 展示了这些交换机类型。\n\n![A337882_1_En_5_Fig2_HTML.jpg](img/A337882_1_En_5_Fig2_HTML.jpg)\n\
+  \n图 5-2.\n\n交换机类型\n\n这个简短的介绍足以让你开始使用 RabbitMQ 并学习如何使用它。\n\n## RabbitMQ\n\nRabbitMQ\
+  \ 是一个实现了 AMQP 模型（从 AMQP 模型的 0.8.x 版本到 1.0 版本）的开源代理。RabbitMQ 使用 Erlang 编程语言编写，使其灵活且健壮。\n\
+  \n以下是它的一些特性：\n\n*   分布式节点\n*   支持集群\n*   基于插件；最重要的插件包括：\n    *   联邦\n    *   铲子\n\
+  \    *   一致性哈希\n    *   社区插件\n*   具有完整 ACID（原子性、一致性、隔离性、持久性）特性的数据/状态复制\n*   开箱即用的可靠性和可扩展性：联邦和铲子\n\
+  *   通过镜像队列实现高可用性\n*   多协议：\n    *   AMQP\n    *   MQTT\n    *   STOMP\n    *   SMTP\n\
+  \    *   XMPP\n*   Web 控制台和 Rest API（用于监控和管理）\n*   安全性：SSL 和 LDAP\n*   多种客户端库：Java、.NET、Ruby、Erlang、Python、Clojure、PHP、JavaScript\
+  \ 等。\n\n我们可以写一整本书来定义每一个可用的特性，但我想做的是让你了解 RabbitMQ 能做什么。（如果你需要更多信息，可以访问 [`http://www.rabbitmq.com/features.html`](http://www.rabbitmq.com/features.html)\
+  \ 。）那么，让我们通过创建客户端来开始使用它。\n\n## 使用 Spring Boot 的 RabbitMQ\n\nSpring Boot 依赖 Spring\
+  \ 的 `spring-amqp` 项目来完成连接、发布、消费和管理 RabbitMQ 代理的所有繁重工作。`spring-amqp` 项目一直是消息传递应用程序中最常用的模块之一。\n\
+  \n那么，为什么我们需要 Spring Boot？请记住，Spring Boot 是一个有主见的运行时，它将通过提供一些我们可以添加到 `application.properties`\
+  \ 文件中的属性，或者通过使用 `@Configuration` 类来覆盖其中一些默认配置，从而帮助我们配置 `spring-amqp` 模块所需的内容。\n\n\
+  `spring-amqp` 项目使用了众所周知的模板模式，它暴露了一个 `RabbitTemplate` 类，允许我们发布和消费消息，以及执行其他任务。它还提供了易于使用的消息监听器，用于连接到队列并消费消息。如果你担心线程、事务、重连（在故障情况下）、管理等问题，`spring-amqp`\
+  \ 都能为你解决。\n\n\n\n### 生产者\n\n让我们从一个简单的生产者开始。`ampq-demo` 项目包含了入门所需的一切。打开项目，从清单 5-1\
+  \ 所示的简单生产者开始。\n\n```\n@Component\npublic class Producer {\nprivate RabbitTemplate\
+  \ template;\n@Autowired\npublic Producer(RabbitTemplate template){\nthis.template\
+  \ = template;\n}\npublic void sendMessage(String exchange,\nString routingKey, String\
+  \ message){\nthis.template.convertAndSend(exchange,\nroutingKey, message);\n}\n\
+  }\n清单 5-1.\ncom.apress.messaging.amqp.Producer\n```\n\n清单 5-1 展示了一个简单的 `amqp` 生产者。我们来分析一下代码中的重要部分：\n\
+  \n*   `@Component`：这是 Spring 框架的一个标记，它会将该类识别为 Spring Bean，以便在应用程序中使用。接下来你会在主应用程序中看到它的实际应用。\n\
+  *   `RabbitTemplate`：这是 Spring AMQP 模块的主要类之一，它提供了与 RabbitMQ 交互的许多功能，例如发送、接收以及执行\
+  \ RabbitMQ 中的管理任务。在本例中，它用于将消息转换并发送到代理。请记住，要与 RabbitMQ 交互，你必须打开一个连接并创建一个通道（从该连接中），然后将消息发送到交换机。这个设置过程将由\
+  \ `RabbitTemplate` 实例处理。\n*   `convertAndSend`：此方法会将消息转换为正确的类型（转换为字节数组），并将其发送到 `RabbitMQ`\
+  \ 代理。这个特定的方法有三个参数。第一个参数是交换机的名称（消息将通过通道发送到该交换机），第二个参数是路由键（将消息路由到正确队列的绑定规则），第三个参数是消息本身，在本例中只是一个字符串。\n\
+  \n如你所见，这是一个非常简单的生产者。值得一提的是，`RabbitTemplate` 类提供了多种重载方法，可以帮助你发送、监听、使用自定义转换器以及执行专门的任务（稍后你将了解更多相关内容）。\n\
+  \n接下来，让我们看看如何使用这个生产者。打开清单 5-2 中所示的 `AmqpDemoApplication.java` 类。\n\n```\n@SpringBootApplication\n\
+  public class AmqpDemoApplication {\npublic static void main(String[] args) {\nSpringApplication.run(AmqpDemoApplication.class,\
+  \ args);\n}\n@Bean\nCommandLineRunner simple(\n@Value(\"${apress.amqp.exchange:}\"\
+  )String exchange,\n@Value(\"${apress.amqp.queue}\")String routingKey,\nProducer\
+  \ producer){\nreturn args -> {\nproducer.sendMessage(\nexchange,\nroutingKey, \"\
+  HELLO AMQP!\");\n};\n}\n}\n清单 5-2.\ncom.apress.messaging.AmqpDemoApplication.java\n\
+  ```\n\n清单 5-2 展示了主 Spring Boot 应用程序。我们来回顾一下代码：\n\n*   `@Bean CommandLineRunner`：你已经熟悉这个注解和接口。它会在\
+  \ Spring 容器初始化所有 Bean 并准备就绪后执行。\n*   `@Value(\"${apress.amqp.exchange:}\")`：此注解会评估包含\
+  \ `apress.amqp.exchange` 键的属性（通过 `application.properties`、命令行参数或环境变量）。如果未找到，它将使用一个空字符串，即\
+  \ `exchange` 后面的 `:`。\n*   `@Value(\"${apress.amqp.queue}\")`：此注解会评估包含 `apress.amqp.queue`\
+  \ 键的属性（通过 `application.properties`、命令行参数或环境变量）。此键是必需的，因此你会在 `src/resources/application.properties`\
+  \ 文件中找到它，其值为 `spring-boot-queue`。\n*   `Producer`：这是简单的生产者类（如清单 5-1 所示）。如你所见，我们使用\
+  \ `sendMessage` 方法来发送交换机名称、路由键以及 `\"HELLO AMQP!\"` 消息。\n\n在测试之前，你需要确保 RabbitMQ 代理已启动并正在运行。你还需要设置交换机、绑定和队列，不过这里你不需要这样做，因为\
+  \ `amqp-demo` 项目已经为你配置好了。请查看清单 5-3 中所示的 `AMQPConfig.java` 类。\n\n```\n@Configuration\n\
+  @EnableConfigurationProperties(AMQPProperties.class)\npublic class AMQPConfig {\n\
+  @Bean\npublic Queue queue(\n@Value(\"${apress.amqp.queue}\")String queueName){\n\
+  return new Queue(queueName,false);\n}\n}\n清单 5-3.\ncom.apress.messaging.config.AMQPConfig.java\n\
+  ```\n\n清单 5-3 展示了 `AMQPConfig`，它定义了以下内容：\n\n*   `@EnableConfigurationProperties`：这将声明一个自定义属性，其前缀为\
+  \ `apress.amqp.*`。这就是我们可以使用 `apress.amqp.queue` 或 `apress.amqp.exchange` 键的原因。\n\
+  *   `@Bean Queue`：这是重要的部分，我们通过编程方式声明队列，在本例中，通过返回 `Queue` 类的新实例来创建队列。\n*   `@Value(\"\
+  ${apress.amqp.queue}\")`：此注解会评估在 `src/main/resources/application.properties` 中定义的键\
+  \ `apress.amqp.queue`，其值为 `spring-boot-queue`。\n\n我认为这个配置非常直接，但仔细想想，我们似乎缺少了 `Exchange`\
+  \ 声明以及将消息路由到队列的绑定。实际上，每次在 RabbitMQ 中创建队列时，它都会绑定到一个默认交换机（通常声明为空字符串），而路由键恰好就是队列的名称。如你所见，我们将队列的名称作为路由键传递给了生产者实例。\n\
+  \n现在你可以运行应用程序，并在 RabbitMQ 管理控制台中看到 `spring-boot-queue` 已被创建，并且有一条消息。输出如图 5-3 所示。\n\
+  \n![A337882_1_En_5_Fig3_HTML.jpg](img/A337882_1_En_5_Fig3_HTML.jpg)\n\n图 5-3.\n\n\
+  生产者日志\n\n图 5-3 展示了日志。在 `amqp-demo` 项目中，你会找到 `com.apress.messaging.aop.AMQPAudit.java`\
+  \ 类。这是一个环绕通知，它会记录 `Producer` 方法的调用。见图 5-4。\n\n![A337882_1_En_5_Fig4_HTML.jpg](img/A337882_1_En_5_Fig4_HTML.jpg)\n\
+  \n图 5-4.\n\nRabbitMQ 管理控制台 (http://localhost:15672/#/queues): spring-boot-queue\n\
+  \n图 5-4 展示了 RabbitMQ 管理控制台，你可以看到队列已创建，并且消息已发送。\n\n你知道我们是如何连接到 RabbitMQ 代理的吗？如果我有一个远程服务器，需要指定连接位置，传递\
+  \ IP 地址或用户名和密码，该怎么办？\n\nSpring Boot 会自动处理这个问题，因为 Spring Boot 是一个有主见的运行时，它会在类路径中找到\
+  \ `spring-boot-starter-amqp` 依赖项，并询问你是否已经有一个包含代理所有必要信息的 `ConnectionFactory`（用于连接\
+  \ RabbitMQ）。如果没有，它将尝试使用默认设置并查找本地代理。\n\n如果你想指定一个远程代理，可以通过在 `src/main/resources/application.properties`\
+  \ 文件中提供 `spring.rabbitmq.*` 属性来实现。这足以连接到远程 RabbitMQ。\n\n\n\n### 消费者\n\n现在，我们来讨论如何消费使用生产者发送的消息。打开清单\
+  \ 5-4 中所示的 `Consumer.java` 类。\n\n```\n@Component\npublic class Consumer implements\
+  \ MessageListener{\npublic void onMessage(Message message) {\n}\n}\n清单 5-4.\ncom.apress.messaging.amqp.Consumer.java\n\
+  ```\n\n清单 5-4 展示了最简单的消费者代码。这是一个异步消费者，它实现了 `org.springframework.amqp.core.MessageListener`\
+  \ 接口和 `onMessage` 方法。该方法将接收一个 `org.springframework.amqp.core.Message` 实例作为消息。要使用此消费者，你需要为\
+  \ Spring Boot 提供一些有用的配置设置。打开 `AMQPConfig` Java 类。参见清单 5-5。\n\n```\n@Configuration\n\
+  @EnableConfigurationProperties(AMQPProperties.class)\npublic class AMQPConfig {\n\
+  @Bean\npublic Queue queue(\n@Value(\"${apress.amqp.queue}\")String queueName){\n\
+  return new Queue(queueName,false);\n}\n@Bean\npublic SimpleMessageListenerContainer\n\
+  container(ConnectionFactory connectionFactory,\nMessageListener consumer,\n@Value(\"\
+  ${apress.amqp.queue}\")String queueName) {\nSimpleMessageListenerContainer container\
+  \ = new\nSimpleMessageListenerContainer();\ncontainer.setConnectionFactory(connectionFactory);\n\
+  container.setQueueNames(queueName);\ncontainer.setMessageListener(consumer);\nreturn\
+  \ container;\n}\n}\n清单 5-5.\ncom.apress.messaging.config.AMQPConfig.java\n```\n\n\
+  清单 5-5 展示了增强后的 `AMQPConfig` 类（来自清单 5-3），其中包含以下内容：\n\n*   `SimpleMessageListenerContainer`：此类创建一个消息监听容器，用于监听队列中的任何消息。需要为此类设置连接工厂、消息监听处理器以及队列名称。如你所见，这是一个我们需要返回的\
+  \ Bean，用于初始化消息监听容器。\n*   `ConnectionFactory`：对于 `SimpleMessageListenerContainer`\
+  \ 类来说，此接口是必需的，因为它负责了解 RabbitMQ 代理（主机、用户名、密码、虚拟主机等）的信息。需要注意的是，这个连接工厂是由 Spring Boot\
+  \ 自动装配的，要么使用默认设置（完全不配置），要么通过在 `application.properties` 文件中使用 `spring.rabbitmq.*`\
+  \ 属性来指定其属性。你也可以将你自己的 `ConnectionFactory` 声明为一个 Bean（通过在方法中声明 `@Bean`）。\n*   `MessageListener`：如你所见，这是方法容器（`consumer`）的参数之一，Spring\
+  \ 会将 `com.apress.messaging.amqp.Consumer` 类注册为处理器。然后在调用 `container.setMessageListener`\
+  \ 方法时使用它。\n\n请注意，我们使用了 `queueName`，它是由 Spring Boot 通过 `apress.amqp.queue` 属性自动装配的。\n\
+  \n基本上就是这样。现在你有了一个完整的生产者和消费者。你可以运行程序，并查看图 5-5 中所示的日志。\n\n![A337882_1_En_5_Fig5_HTML.jpg](img/A337882_1_En_5_Fig5_HTML.jpg)\n\
+  \n图 5-5.\n\n消费者日志\n\n图 5-5 展示了消费者的日志。请注意，被调用的方法是 `onMessage`，它由 `org.springframework.amqp.core.Message`\
+  \ 实例表示。\n\n#### 使用注解的消费者\n\n等等！我告诉过你 Spring Boot 会让这变得更简单，对吧？在当前示例中，我们需要注册容器并实现\
+  \ `MessageListener` 接口。好消息是，Spring AMQP 提供了一种使用注解的方式，并且在 Spring Boot 的帮助下，一切都能正确配置。\n\
+  \n转到你的 `AMQPConfig` 类，移除容器方法。它应该看起来像清单 5-3。打开 `com.apress.messaging.amqp.AnnotatedConsumer`\
+  \ 类；它应该看起来像清单 5-6。\n\n```\n@Component\npublic class AnnotatedConsumer {\n@RabbitListener(queues=\"\
+  ${apress.amqp.queue}\")\npublic void process(String message){\n}\n}\n清单 5-6.\ncom.apress.messaging.amqp.AnnotatedConsumer.java\n\
+  ```\n\n清单 5-6 展示了如何在不创建容器的情况下创建一个消费者，只需添加 `@RabbitListener` 注解即可。Spring AMQP 会为你创建容器，并在\
+  \ Spring Boot 的帮助下将所有内容自动装配起来。如你所见，它使用 `queues` 作为参数，并且使用了 `apress.amqp.queue` 属性。还要注意，该方法接收一个\
+  \ `String`（而不是 `Message` 对象）。你可以使用自己的对象，但这需要额外的步骤。别担心，我们将在后续章节中介绍这一点。\n\n现在你可以运行项目，应该会得到类似于图\
+  \ 5-6 的结果。\n\n![A337882_1_En_5_Fig6_HTML.jpg](img/A337882_1_En_5_Fig6_HTML.jpg)\n\
+  \n图 5-6.\n\n使用 @RabbitListener 注解的消费者\n\n如你所见，只需几行代码就能非常简单地创建一个生产者和消费者。接下来，让我们回顾一下如何创建和使用\
+  \ RPC 模型。\n\n\n\n### RPC\n\n远程过程调用（RPC）模型是上世纪 60 年代众多应用场景之一，当时分布式计算是一项挑战（现在依然如此）。RPC\
+  \ 模型被视为一种请求-响应协议，其中客户端通过向远程服务器发送请求消息来启动一个进程，以执行一个或多个任务。随后远程服务器向客户端发送响应，以便客户端继续执行进程。参见图\
+  \ 5-7。\n\n![A337882_1_En_5_Fig7_HTML.gif](img/A337882_1_En_5_Fig7_HTML.gif)\n\n\
+  图 5-7.\n\n简单的 RPC 模型\n\n在 Spring Boot 中创建 RPC 消息模型非常简单。请记住，Spring Boot 依赖于 Spring\
+  \ AMQP 模块，因此您无需配置 RabbitMQ 代理。Spring AMQP 会处理这一切。让我们查看代码，以便您更好地了解其工作原理。\n\n打开 `com.apress.messaging.amqp.RpcClient`\
+  \ 类。它应该如清单 5-7 所示。\n\n```\n@Component\npublic class RpcClient {\nprivate RabbitTemplate\
+  \ template;\n@Autowired\npublic RpcClient(RabbitTemplate template) {\nthis.template\
+  \ = template;\n}\npublic Object sendMessage(String exchange,\nString routingKey,\
+  \ String message) {\nObject response =\nthis.template\n.convertSendAndReceive(exchange,\
+  \ routingKey, message);\nreturn response;\n}\n}\n清单 5-7.\ncom.apress.messaging.amqp.RpcClient.java\n\
+  ```\n\n清单 5-7 展示了 `RpcClient` 类，如果您将其与清单 5-1（`Producer` 类）进行比较，您会发现只有一个区别——调用的模板方法不同。在此示例中，我们使用了\
+  \ `convertSendAndReceive` 方法，该方法接受三个参数——交换机名称、路由键和消息。它返回一个对象（返回值通常会被包装为 `org.springframework.amqp.core.Message`\
+  \ 实例）。当然，您可以从这个签名中找到更多重载方法，但就目前而言，我们将尽可能简化。\n\n接下来，让我们看看服务器端。打开 `com.apress.messaging.amqp.RpcServer`\
+  \ 类。参见清单 5-8。\n\n```\n@Component\npublic class RpcServer {\n@RabbitListener(queues=\"\
+  ${apress.amqp.queue}\")\npublic Message process(String message){\n//更多处理逻辑在此...\n\
+  return MessageBuilder\n.withPayload(\"PROCESSED:OK\")\n.setHeader(\"PROCESSED\"\
+  , new\nSimpleDateFormat(\"yyyy-MM-dd\")\n.format(new Date()))\n.setHeader(\"CODE\"\
+  , UUID.randomUUID().toString())\n.build();\n}\n}\n清单 5-8.\ncom.apress.messaging.amqp.RpcServer.java\n\
+  ```\n\n清单 5-8 展示了 `RpcServer` 类。让我们看看与其他版本相比有哪些新变化和不同之处：\n\n*   `@RabbitListener`：您已经熟悉这个注解。它会创建一个消息监听器容器，并监听来自\
+  \ `apress.amqp.queue` 队列的任何传入消息（请记住，这是在 `application.properties` 文件中指定的属性）。\n* \
+  \  `Message<String>`：如果您想增强消息功能，这就是您需要返回的类型，因为它提供了一种使用消息头的方式。在此示例中，我们使用了字符串类型的消息。\n\
+  *   `MessageBuilder`：这是一个辅助类，允许您构建新消息、添加/复制消息头等。如您所见，我们只是创建了一个有效负载设置为 `PROCESSED:OK`\
+  \ 的新消息，并添加了几个消息头。\n\n如果您仔细查看清单 5-8，您会注意到 `process` 方法处理器返回一个 `String` 类型的 `Message`，正因如此，Spring\
+  \ AMQP 使用了 RabbitMQ 的 `direct reply-to` 功能。该功能允许我们将服务器连接到客户端以进行响应，而无需创建 `reply-queue`（这是自\
+  \ RabbitMQ 代理 3.4.x 版本以来就有的功能）。\n\n您无需担心任何关联数据，因为 Spring AMQP 会为您创建。您也可以自定义或创建自己的关联数据。\n\
+  \n现在，让我们看看主应用程序。打开您的 `com.apress.messaging.AmqpDemoApplication` 类；它应该如清单 5-9 所示。\n\
+  \n```\n@SpringBootApplication\npublic class AmqpDemoApplication {\npublic static\
+  \ void main(String[] args) {\nSpringApplication.run(AmqpDemoApplication.class, args);\n\
+  }\n@Bean\nCommandLineRunner\nsimple(@Value(\"${apress.amqp.exchange:}\")String exchange,\n\
+  @Value(\"${apress.amqp.queue}\")String routingKey,\nRpcClient client){\nreturn args\
+  \ -> {\nObject result = client\n.sendMessage(exchange,\nroutingKey,\n\"HELLO AMQP/RPC!\"\
+  );\nassert result!=null;\n};\n}\n}\n清单 5-9.\ncom.apress.messaging.AmqpDemoApplication.java\n\
+  ```\n\n清单 5-9 展示了主应用程序，其中我们只使用了 `RpcClient`。\n\n在运行 RPC 示例之前，请确保没有其他监听器使用同一个队列。\n\
+  \n运行应用程序后，您应该会得到类似于图 5-8 的结果。\n\n![A337882_1_En_5_Fig8_HTML.jpg](img/A337882_1_En_5_Fig8_HTML.jpg)\n\
+  \n图 5-8.\n\nRPC 模型日志\n\n有时您需要对 RPC 有更多控制。例如，您可能希望有一个固定的队列用于回复。为此，您需要向应用程序添加一些配置。参见清单\
+  \ 5-10。\n\n```\n@Configuration\n@EnableConfigurationProperties(AMQPProperties.class)\n\
+  public class AMQPConfig {\n@Configuration\n@EnableConfigurationProperties(AMQPProperties.class)\n\
+  public class AMQPConfig {\n@Autowired\nConnectionFactory connectionFactory;\n@Value(\"\
+  ${apress.amqp.reply-queue}\")\nString replyQueueName;\n@Bean\npublic RabbitTemplate\
+  \ fixedReplyQueueRabbitTemplate() {\nRabbitTemplate template = new\nRabbitTemplate(connectionFactory);\n\
+  template.setReplyAddress(replyQueueName);\ntemplate.setReplyTimeout(60000L);\nreturn\
+  \ template;\n}\n@Bean\npublic SimpleMessageListenerContainer\nreplyListenerContainer()\
+  \ {\nSimpleMessageListenerContainer container = new\nSimpleMessageListenerContainer();\n\
+  container.setConnectionFactory(connectionFactory);\ncontainer.setQueues(replyQueue());\n\
+  container.setMessageListener(\nfixedReplyQueueRabbitTemplate());\nreturn container;\n\
+  }\n@Bean\npublic Queue replyQueue(){\nreturn new Queue(replyQueueName,false);\n\
+  }\n@Bean\npublic Queue queue(\n@Value(\"${apress.amqp.queue}\")String queueName){\n\
+  return new Queue(queueName,false);\n}\n}\n清单 5-10.\ncom.apress.messaging.config.AMQPConfig.java\n\
+  ```\n\n清单 5-10 展示了如何设置一个固定队列，该队列将由服务器用于回复客户端请求，并且客户端将监听该队列。这里的关键部分是 `RabbitTemplate`，它将通过使用\
+  \ `setReplyAddress` 方法来配置 `reply-to` 队列。同时，还需要使用与监听器相同的模板来监听来自服务器的响应（这是通过将监听器容器设置为\
+  \ `setMessageListener` 来实现的）。\n\n注意\n\nRabbitMQ Java 客户端（ [`https://www.rabbitmq.com/java-client.html`](https://www.rabbitmq.com/java-client.html)\
+  \ ）提供了开箱即用的 RPC 客户端/服务器类，但您仍然需要处理重连、事务等问题，而 Spring AMQP 会为您处理这些。\n\n\n\n### 回复管理\n\
+  \n使用 Spring AMQP 的一个很酷的地方在于它拥有一些非常棒的特性。例如，你可以使用交换器和路由键创建一个实际的回复（reply-to）场景。换句话说，你发送一条消息而不等待响应（有点像即发即弃），然后回复到一个特定的交换器/队列，该队列将会有另一个流程。\n\
+  \nSpring AMQP 包含了 `@SendTo` 注解，通过它你可以将回复发送到一个交换器或一个队列。打开清单 5-11 中所示的 `com.apress.messaging.amqp.ReplyToService`\
+  \ 类。\n\n```\n@Component\npublic class ReplyToService {\n@RabbitListener(queues=\"\
+  ${apress.amqp.queue}\")\n@SendTo(\"${apress.amqp.reply-exchange-queue}\")\npublic\
+  \ Message replyToProcess(String message){\n//更多处理逻辑在此...\nreturn MessageBuilder\n\
+  .withPayload(\"PROCESSED:OK\")\n.setHeader(\"PROCESSED\", new\nSimpleDateFormat(\"\
+  yyyy-MM-dd\")\n.format(new Date()))\n.setHeader(\"CODE\", UUID.randomUUID().toString())\n\
+  .build();\n}\n}\n清单 5-11.\ncom.apress.messaging.amqp.ReplyToService.java\n```\n\n\
+  清单 5-11 展示了 `@SendTo` 注解。如你所见，`replyToProcess` 方法也使用了 `@RabbitListener` 注解。这意味着它将监听一个队列（由\
+  \ `apress.amqp.queue` 属性值提供）。这里的关键部分是，它将返回一条消息，该消息会通过 `@SendTo` 注解作为回复机制，被发送到由 `apress.amqp.reply-exchange-queue`\
+  \ 属性值提供的交换器/路由键。\n\n你可以使用 `Producer` 类来发送消息（参见清单 5-2），但在运行此示例之前，你需要使用 RabbitMQ Web\
+  \ 控制台执行以下操作：\n\n*   创建一个名为 `my-exchange` 的直连交换器\n*   创建一个队列（使用你想要的任何名称）\n*   使用\
+  \ `my-reply-rk` 路由键将 `my-exchange` 绑定到你刚刚创建的队列\n\n当然，你也可以通过编程方式创建这些（也许作为家庭作业？）。\n\
+  \n现在你可以开始试验了。运行该示例，你应该会在你创建的队列中看到一条消息。如你所见，你有另一种方式来实现回复并创建另一个流程。\n\n### 流量控制\n\n\
+  流量控制是 RabbitMQ 的最佳特性之一。它会降低那些发送消息但消费速度不够快的发布者的连接速度。\n\nRabbitMQ 通常会降低速度，有时甚至会阻塞连接，以防止它们造成洪泛。了解这个特性是件好事，因为你可以用它来确定你的瓶颈在哪里。要么增加队列的并发消费者数量，要么审查消费者的代码以确定处理消息耗时过长的原因。\n\
+  \n那么，找到这些瓶颈有多容易呢？一种方法是监控你的 RabbitMQ 控制台，查看是否触发了流量控制机制。你可以通过检查“连接”或“通道”选项卡的状态来确定这一点，它们通常会显示为黄色并提示“流量控制”。然而，还有一种更简单的方法。RabbitMQ\
+  \ 会发送事件，允许你对流量控制做出反应并完成关闭。\n\n#### 阻塞/解除阻塞事件\n\nSpring AMQP 提供了一种机制来附加 `Block`、`Unblock`\
+  \ 和 `Shutdown` 事件。你可以在 `com.apress.messaging.config.AMQConfig` 类中找到相关代码。\n\n如果你想监听\
+  \ `Block` 或 `Unblock` 事件，只需将以下代码（`BlockedListener` 事件）添加到你的配置中：\n\n```\n@Bean\n\
+  public RabbitTemplate rabbitTemplate(ConnectionFactory\nconnectionFactory){\nRabbitTemplate\
+  \ template = new\nRabbitTemplate(connectionFactory);\ntemplate.execute(new ChannelCallback()\
+  \ {\npublic Object\ndoInRabbit(Channel channel) throws Exception {\nchannel.getConnection().addBlockedListener(\n\
+  new BlockedListener() {\npublic void handleUnblocked()\nthrows IOException{\n//\
+  \ 恢复业务逻辑\n}\npublic void handleBlocked(String reason)\nthrows IOException {\n//\
+  \ FlowControl -> 处理阻塞的逻辑\n}\n});\nreturn null;\n}\n});\nreturn template;\n}\n```\n\
+  \n如果你只想监听故障或 RabbitMQ 关闭事件，可以使用以下代码（`ShutdownListener` 事件）：\n\n```\n@Bean\npublic\
+  \ RabbitTemplate rabbitTemplate(\nConnectionFactory connectionFactory){\nRabbitTemplate\
+  \ template = new\nRabbitTemplate(connectionFactory);\ntemplate.execute(new ChannelCallback()\
+  \ {\npublic Object doInRabbit(Channel channel)\nthrows Exception {\nchannel.getConnection()\n\
+  .addShutdownListener(new ShutdownListener() {\npublic void shutdownCompleted(\n\
+  ShutdownSignalException cause) {\n// 处理关闭事件\n}\n});\nreturn null;\n}\n});\nreturn\
+  \ template ;\n}\n```\n\n你可以只使用一个 `RabbitTemplate`，并将 `BlockedListener` 和 `ShutdownListener`\
+  \ 添加到同一段代码中。\n\n## 更多特性\n\nSpring AMQP 模块提供了许多特性，要逐一解释每个特性可能需要一整本书。本节我将指出其中一些：\n\
+  \n*   **事务**：Spring AMQP 允许你在代码中使用 `@Transactional` 注解，因此添加此注解后，Spring AMQP 模块会将通道设置为事务模式。然后它可以根据情况执行提交或回滚。你还可以通过定义一个\
+  \ Bean 来指定要使用的事务管理器：\n\n    ```\n    @Transactional\n    public void processInvoice()\
+  \ {\n    String incoming = rabbitTemplate.receiveAndConvert();\n    // 执行更多数据库处理...\n\
+  \    String reply = reviewInvoice(incoming);\n    rabbitTemplate.convertAndSend(reply);\n\
+  \    }\n    ```\n\n*   **多监听器**：Spring AMQP 1.5.0 及以上版本增加了一种新方式，允许一个类根据消息类型（如果需要）处理多个监听器。查看\
+  \ `MultiListenerService` 代码。如果需要，你可以为方法添加 `@Payload`、`@Header` 和 `@Headers` 注解。\n\
+  \n    ```\n    @Component\n    @RabbitListener(id=\"multi\", queues = \"${apress.amqp.queue}\"\
+  )\n    public class MultiListenerService {\n    @RabbitHandler\n    @SendTo(\"${apress.amqp.reply-exchange-queue}\"\
+  )\n    public Order processInvoice(Invoice invoice) {\n    Order order = new Order();\n\
+  \    //在此处理发票...\n    order.setInvoice(invoice);\n    return order;\n    }\n   \
+  \ @RabbitHandler\n    public Order processInvoiceWithTax(\n    InvoiceWithTax invoiceWithTax)\
+  \ {\n    Order order = new Order();\n    //在此处理含税发票...\n    return order;\n    }\n\
+  \    @RabbitHandler\n    public String itemProcess(\n    @Header(\"amqp_receivedRoutingKey\"\
+  ) String routingKey,\n    @Payload Item item) {\n    //在此进行一些处理...\n    return \"\
+  {\\\"message\\\": \\\"OK\\\"}\" ;\n    }\n    }\n    ```\n\n*   **重试**：有时你会遇到错误，无论是处理消息时还是代理端出错，你都需要在消费者级别进行重试。针对这种场景，你需要使用此特性：\n\
+  \n    ```\n    // 消费者的重试，\n    // 通常这需要在容器中设置：\n    // container.setAdviceChain(new\
+  \ Advice[] { interceptor() });\n    //\n    @Bean\n    public StatefulRetryOperationsInterceptor\
+  \ interceptor() {\n    return RetryInterceptorBuilder.stateful()\n    .maxAttempts(3)\n\
+  \    .backOffOptions(1000, 2.0, 10000)\n    .build();\n    }\n    ```\n\n*   或者这样：\n\
+  \n    ```\n    @Bean\n    RetryOperationsInterceptor interceptor(\n    RabbitTemplate\
+  \ template,\n    @Value(\"${apress.amqp.error-exchange:}\")String errorExchange,\n\
+  \    @Value(\"${apress.amqp.error-routing-key}\")String\n    errorExchangeRoutingKey)\
+  \ {\n    return RetryInterceptorBuilder.stateless()\n    .maxAttempts(3)\n    .recoverer(\n\
+  \    new RepublishMessageRecoverer(template, errorExchange,\n    errorExchangeRoutingKey))\n\
+  \    .build();\n    }\n    ```\n\n还有更多特性。请查阅 Spring AMQP 项目参考文档，以了解更多关于这些出色特性的信息。\n\
+  \n\n\n## 货币项目\n\n你可以继续推进货币项目，并添加必要的逻辑，以便提供一种消费不同市场货币汇率消息的方式。你可以审查所有代码；代码已准备就绪，可直接使用。\n\
+  \n使用演示程序发送汇率消息（演示程序在 [`http://projects.spring.io/spring-amqp/`](http://projects.spring.io/spring-amqp/)\
+  \ 处包含所有必要代码）。\n\n## 总结\n\n本章讨论了 AMQP 模型，并解释了交换机、绑定和队列之间的区别。我们回顾了一些简单的示例，这些示例展示了创建生产者和消费者的方法。\n\
+  \n你了解了 Spring AMQP 模块的一些出色特性，以及 Spring Boot 如何帮助你进行配置。\n\n使用 Spring 消息传递的好处之一是，所有\
+  \ Spring 技术都使用相同的概念。我们发送消息的方式（生产者）；模板模式的使用（`JmsTemplate`、`RabbitTemplate` 等）；我们通过实现\
+  \ `MessageListener` 接口或使用注解（如 `@JmsListener`、`@RabbitListener`、`@SendTo`，很快你还会看到\
+  \ `@StreamListener`）来创建监听器（消费者）的方式；以及通过注解（如 `@Payload`、`@Header` 等）直接访问消息结构的方式——它们在构造上都是相似的。\n\
+  \n请记住，这只是你使用 Spring AMQP 所能实现功能的一小部分，我需要写一整本关于 Spring AMQP 的书才能向你展示每一个特性。现在，你已经具备了创建出色\
+  \ AMQP 应用所需的最低限度知识。\n\n下一章将介绍发布者/订阅者消息传递，但这次将使用 Redis 作为主要消息传递引擎。\n\n"
+- "# 6. 使用 Redis 进行消息传递\n\n本章将向你展示如何将 Redis（远程字典服务器）与 Spring Boot 结合使用，作为消息代理。Redis\
+  \ 是一个内存数据结构存储系统，可用作数据库、缓存和消息代理。它不仅存储键值对，还可用于存储复杂的数据类型，例如哈希、列表、集合、有序集合、位图、HyperLogLog\
+  \ 和地理空间索引。\n\nSpring Boot 使用 Spring Data 模块，特别是 Redis 模块。换句话说，为了在你的项目中使用 Redis，你必须在\
+  \ `pom.xml` 文件或 Gradle 中添加 `spring-boot-starter-redis` 依赖。然后，你将拥有连接到 Redis 服务器所需的所有必要依赖。\n\
+  \n## Redis 作为消息代理\n\nRedis 不仅提供了一种存储数据结构的方式，还实现了发布/订阅消息传递范式。前面的章节已经用 JMS 解释过这种范式。\n\
+  \n这里的重要部分将向你展示如何与 Redis 交互并启用消息代理。Redis 拥有通道的概念，消息将由发布者发送到通道。消息将被对一个或多个通道感兴趣的订阅者消费。如你所见，Redis\
+  \ 中使用了 `channel` 关键字。Redis 中的通道相当于 JMS 世界中的主题。\n\nRedis 有几个命令允许你与发布/订阅功能进行交互：\n\n\
+  *   `SUBSCRIBE`：告诉 Redis 订阅一个或多个特定通道。例如：\n\n    ```\n    127.0.0.1:6379> SUBSCRIBE\
+  \ spring-boot-chat\n    ```\n\n    你可以通过列出多个通道并用空格分隔来同时订阅它们。\n*   `UNSUBSCRIBE`：取消订阅某个通道。此命令不需要参数。\n\
+  *   `PUBLISH`：通过指定通道（作为第一个参数）和实际消息来发布消息。例如：\n\n    ```\n    127.0.0.1:6379> PUBLISH\
+  \ spring-boot-chat \"Hi there\"\n    ```\n\n*   `PSUBSCRIBE`：此命令与 `SUBSCRIBE` 相同，但接受用于匹配多个通道的模式。例如：\n\
+  \n    ```\n    127.0.0.1:6379> PSUBSCRIBE currency .*\n    ```\n\n    此示例将订阅任何以\
+  \ `currency` 开头的通道，例如 `currency.us`、`currency.asia.jp`、`currency.eu.gb` 等。\n*  \
+  \ `PUNSUBSCRIBE`：使用模式匹配取消订阅。例如：\n\n    ```\n    127.0.0.1:6379> PUNSUBSCRIBE currency.asia.*\n\
+  \    ```\n\n*   `PING`：如果未提供参数，则返回 `PONG`。通常使用此命令来测试连接是否仍然存活。\n\n为了尝试一下，请确保你已安装\
+  \ Redis 并且它正在运行。（你可以从 [`https://redis.io/download`](https://redis.io/download) 下载它。）打开一个新的终端窗口，并使用\
+  \ `redis-cli` 命令与 Redis 交互。参见图 6-1。\n\n![A337882_1_En_6_Fig1_HTML.jpg](img/A337882_1_En_6_Fig1_HTML.jpg)\n\
+  \n图 6-1.\n\n使用发布/订阅命令与 Redis 交互\n\n图 6-1 向你展示了一种与 Redis 交互的简单方法，并说明了订阅和发布消息是多么容易。\n\
+  \n本章不讨论 Redis 集群、哨兵、分片等。它专注于消息传递。许多客户广泛使用 Redis 作为消息代理和用于实时数据分析的 Web 会话管理工具。本章首先介绍如何使用\
+  \ Spring Boot 和 Redis 进行消息传递。\n\n## 使用 Redis 进行发布/订阅消息传递\n\n如前所述，Spring Boot 将利用\
+  \ Spring Data Redis 的强大功能，这与你已经熟悉的 Spring JMS 非常相似。Spring Boot 将配置必要的组件，例如连接、要使用的数据库（默认是\
+  \ 0 号索引数据库）、集群节点（如果有）、连接池、哨兵、超时等。请记住，只需添加 `spring-boot-starter-redis` 即可启用 Redis\
+  \ 的自动配置。\n\nSpring Data Redis 模块有两个主要的消息传递领域——消息的生产或发布，以及消息的消费或订阅。对于消息发布，它使用 `RedisTemplate<K,V>`\
+  \ 类（它使用了模板设计模式）；对于订阅，它有一个专用的异步消息监听器容器（一个 MDP——消息驱动的 POJO）。对于同步消息，它使用 `RedisConnection`\
+  \ 接口契约。以下各节仅涵盖异步订阅。\n\n在本章中，我们将使用两个项目：`redis-demo` 和 `rest-api-redis`。`redis-demo`\
+  \ 项目包含完成和补充货币项目所需的所有代码。\n\n\n\n### 订阅者\n\n作为 Redis 订阅者，你可以通过固定名称或模式匹配来订阅一个或多个频道（或主题）。Spring\
+  \ Data Redis 模块提供了通过 `RedisConnection` 进行底层订阅的方式，其中包括 `subscribe` 和 `pSubscribe`\
+  \ 方法。\n\n对于简单的监听器，底层订阅需要一种处理连接和线程管理的方式。现在想象一下有多个监听器的情况。你可能会认为实现这个功能很麻烦，但 Spring\
+  \ Data Redis 包含了 `RedisMessageListenerContainer` 类，它承担了所有繁重的工作，并支持消息驱动的 POJO（MDP）。换句话说，你可以创建自己的类和方法来接收并处理消息。这意味着你需要使用\
+  \ `MessageListenerAdapter` 类来使用此功能。不过别担心，接下来我将向你展示如何操作。\n\n打开 `redis-demo` 项目，查看\
+  \ `com.apress.messaging.config.RedisConfig` 类，如代码清单 6-1 所示。\n\n```\n@Configuration\n\
+  @EnableConfigurationProperties(SimpleRedisProperties.class)\npublic class RedisConfig\
+  \ {\n@Bean\npublic RedisMessageListenerContainer\ncontainer(RedisConnectionFactory\
+  \ connectionFactory,\nMessageListenerAdapter listenerAdapter,\n@Value(\"${apress.redis.topic}\"\
+  ) String topic) {\nRedisMessageListenerContainer container = new\nRedisMessageListenerContainer();\n\
+  container.setConnectionFactory(connectionFactory);\ncontainer.addMessageListener(listenerAdapter,\n\
+  new PatternTopic(topic));\nreturn container;\n}\n@Bean\nMessageListenerAdapter listenerAdapter(\n\
+  Subscriber subscriber) {\nreturn new MessageListenerAdapter(subscriber);\n}\n}\n\
+  代码清单 6-1.\ncom.apress.messaging.config.RedisConfig.java\n```\n\n代码清单 6-1 展示了我们将用于订阅频道的配置。让我们更详细地看看代码：\n\
+  \n*   `RedisMessageListenerContainer`：这是一个承担所有繁重工作的类，充当消息监听器容器，将从 Redis 频道（主题）接收消息。你需要设置连接工厂和将处理接收到的消息的消息监听器。请记住，此监听器容器负责所有线程处理和消息分发。\n\
+  *   `RedisConnectionFactory`：此接口对于 `RedisMessageListenerContainer` 是必需的，它保存了所有关于\
+  \ Redis 连接的信息。由于它是方法的一部分，Spring 会自动装配它，因此你无需手动创建。在幕后，Spring Boot 会为你处理此配置。\n*  \
+  \ `MessageListenerAdapter`：此类是一个适配器，它将传入的消息委托给一个符合 `MessageListener` 签名的声明类。你可以看到，这是通过调用\
+  \ `container.addMessageListener` 方法，并将订阅者（`listenerAdapter` - `MessageListenerAdapter`）和主题（`PatternTopic`）作为参数传递来设置的。\n\
+  *   `PatternTopic`：这是一个类，是消息监听器所需的参数之一。它通常保存主题的名称或用于订阅正确频道的名称模式。\n\n接下来，让我们看看 `Subscriber`\
+  \ 类。打开 `com.apress.messaging.redis.Subscriber` 类，如代码清单 6-2 所示。\n\n```\n@Component\n\
+  public class Subscriber {\npublic void handleMessage(String message){\n// 在此处处理消息\
+  \ ...\n}\n}\n代码清单 6-2.\ncom.apress.messaging.redis.Subscriber.java\n```\n\n代码清单\
+  \ 6-2 展示了 `Subscriber` 类，它只有一个必需的方法（`handleMessage`）。`Subscriber` 类是消息委托的适配器。换句话说，`MessageListenerAdapter`\
+  \ 兼容以下签名：\n\n```\nvoid handleMessage(String message);\nvoid handleMessage(Map message);\n\
+  void handleMessage(byte[] message);\nvoid handleMessage(Serializable message);\n\
+  //你可以获取使用的频道或模式\nvoid handleMessage(Serializable message, String channel);\nvoid\
+  \ handleMessage(byte[] bytes, String pattern);\n//你可以使用自己的对象\nvoid handleMessage(MyOwnDomainObject\
+  \ obj);\n```\n\n有时，你的适配器类可能会有更多的方法来执行额外的处理或被外部调用。在这些情况下，你可以通过在 `MessageListenerAdapter`\
+  \ 的构造函数中添加一个额外参数，来告知它你想要使用哪个方法。例如：\n\n```\n@Component\npublic class Subscriber {\n\
+  public void shipping(Order order){\n// 在此处处理订单 ...\n}\n//此方法用作 Redis 主题的监听器\npublic\
+  \ void processTicket(String message){\n// 在此处处理消息 ...\n}\n// ... 更多方法\n}\n// RedisConfig.java\n\
+  @Bean\nMessageListenerAdapter listenerAdapter(Subscriber subscriber) {\nreturn new\
+  \ MessageListenerAdapter(subscriber,\"processTicket\");\n}\n```\n\n将用于处理来自 Redis\
+  \ 主题的传入消息的方法名称添加到构造函数中；在此示例中，即 `processTicket` 方法。\n\n如你所见，使用 `MessageListenerAdapter`\
+  \ 的好处是你的 `POJO` 类没有依赖关系，从而使你的应用程序更具可扩展性。\n\n\n\n### 发布者\n\n本节介绍如何向频道（主题）发布消息。在 Redis\
+  \ 中发布消息有两种选择：你可以使用低层次的 `RedisConnection` 类，也可以使用高层次的 `RedisTemplate` 类（请记住，它与 `JmsTemplate`\
+  \ 和 `RabbitTemplate` 非常相似）。这两个接口都提供了发布方法 `connection.publish(msg,channel)`。同时，你也需要确定频道（主题）。\n\
+  \n使用 `RedisTemplate` 的好处在于，你可以定义序列化/反序列化策略。该方法隐藏了调用原始方法的复杂性，并且是线程安全的。\n\n让我们直接进入代码。打开清单\
+  \ 6-3 中所示的 `com.apress.messaging.RedisDemoApplication` 类。\n\n```\n@SpringBootApplication\n\
+  public class RedisDemoApplication {\npublic static void main(String[] args) {\n\
+  SpringApplication.run(RedisDemoApplication.class, args);\n}\n@Bean\nCommandLineRunner\
+  \ sendMessage(StringRedisTemplate template,\n@Value(\"${apress.redis.topic}\")String\
+  \ topic){\nreturn args -> {\ntemplate.convertAndSend(topic,\n\"Hello Redis with\
+  \ Spring Boot!\");\n};\n}\n}\n清单 6-3.\ncom.apress.messaging.RedisDemoApplication.java\n\
+  ```\n\n清单 6-3 展示了主应用程序类。如你所知，一旦 Spring Boot 完成自动配置，它将执行 `sendMessage` 方法。该方法会自动注入\
+  \ `StringRedisTemplate`，并通过 `application.properties` 文件中 `apress.redis.topic=spring-boot-chat`\
+  \ 键提供的值来获取主题。然后，它将使用模板，通过 `template.convertAndSend` 方法发送一条消息，该方法接受主题和消息作为参数。\n\n\
+  通常你需要使用 `RedisTemplate`，但在这个例子中，我们使用的是 `StringRedisTemplate`。我们这样做是因为 `RedisTemplate`\
+  \ 被定义为 `RedisTemplate<K,V>`，其中 `K` 是 Redis 键类型（通常是一个字符串），`V` 是 Redis 值类型（即消息）。而\
+  \ `StringRedisTemplate` 是一个使用字符串的子类。换句话说，它类似于创建一个 `RedisTemplate<String,String>`\
+  \ 对象。\n\n有趣的是，`StringRedisTemplate` 为不同的操作定义了多种字符串序列化器，这些操作适用于不同的数据结构，例如 `Set` 和\
+  \ `Hash` 的键/值。\n\n现在，如果你运行该项目（请确保 `redis-server` 已启动并正在运行），你将看到如图 6-2、6-3 和 6-4\
+  \ 所示的订阅者日志。\n\n![A337882_1_En_6_Fig4_HTML.jpg](img/A337882_1_En_6_Fig4_HTML.jpg)\n\
+  \n图 6-4.\n\nredis-cli 订阅\n\n![A337882_1_En_6_Fig3_HTML.jpg](img/A337882_1_En_6_Fig3_HTML.jpg)\n\
+  \n图 6-3.\n\nredis-cli 监控命令\n\n![A337882_1_En_6_Fig2_HTML.jpg](img/A337882_1_En_6_Fig2_HTML.jpg)\n\
+  \n图 6-2.\n\n项目日志\n\n图 6-2 向你展示了日志。这些日志由包含一个环绕 AOP 通知的 `RedisAudit` 类生成。如你所见，它使用了\
+  \ `Subscriber` 类（监听器适配器）和接收字符串消息的 `handleMessage` 方法。\n\n图 6-3 显示了带有 Redis 客户端的终端。监控器在执行代码之前显示，仅用于判断\
+  \ Redis 是否接受消息。如你所见，Redis 显示了在 `redis-server` 中执行的命令——在本例中，是 `PSUBSCRIBE` 和 `PUBLISH`，当然还有一个用于检查客户端与服务器之间连接的\
+  \ `PING` 命令。\n\n图 6-4 显示了另一个终端窗口，我们在此订阅了 `spring-boot-chat` 频道/主题。运行项目后，它将打印出消息。这是确保你的\
+  \ `redis-server` 正在运行的另一种方式，并且你可以为一个频道/主题设置多个订阅者。\n\n### JSON 序列化\n\n现在，回到序列化/反序列化，回想一下我们正在使用\
+  \ JSON 格式。你需要做什么才能使发布者/订阅者使用 JSON，并将其序列化/反序列化为自定义对象呢？\n\n如果你遵循之前模块（JMS 和 RabbitMQ）的相同思路，回答这个问题会更容易，因为你可以在这里应用相同的概念。\n\
+  \n让我们从修改 `RedisConfig` 类开始，如清单 6-4 所示。\n\n```\n@Configuration\n@EnableConfigurationProperties(SimpleRedisProperties.class)\n\
+  public class RedisConfig {\n@Bean\npublic RedisMessageListenerContainer container(\n\
+  RedisConnectionFactory connectionFactory,\nMessageListenerAdapter rateListenerAdapter,\n\
+  @Value(\"${apress.redis.rate}\") String topic) {\nRedisMessageListenerContainer\
+  \ container =\nnew RedisMessageListenerContainer();\ncontainer.setConnectionFactory(connectionFactory);\
+  \ container.addMessageListener(rateListenerAdapter,\nnew PatternTopic(topic));\n\
+  return container;\n}\n@Bean\nMessageListenerAdapter rateListenerAdapter(\nRateSubscriber\
+  \ subscriber) {\nMessageListenerAdapter messageListenerAdapter =\nnew MessageListenerAdapter(subscriber);\n\
+  messageListenerAdapter.setSerializer(\nnew Jackson2JsonRedisSerializer(Rate.class));\n\
+  return messageListenerAdapter;\n}\n@Bean\nRedisTemplate\nredisTemplate(RedisConnectionFactory\
+  \ connectionFactory){\nRedisTemplate redisTemplate =\nnew RedisTemplate();\nredisTemplate.setConnectionFactory(connectionFactory);\n\
+  redisTemplate.setDefaultSerializer(\nnew Jackson2JsonRedisSerializer(Rate.class));\n\
+  redisTemplate.afterPropertiesSet();\nreturn redisTemplate;\n}\n}\n清单 6-4.\ncom.apress.messaging.config.RedisConfig.java\n\
+  ```\n\n清单 6-4 向你展示了修改后的 `RedisConfig` 类。与之前的版本相比，有什么区别？`RedisMessageListenerContainer`\
+  \ bean 是相同的，只是现在我们还使用了 `rateListenerAdapter` bean。让我们回顾一下这个清单：\n\n*   `MessageListenerAdapter`：这与之前相同，但这里我们设置了一个新的类适配器，在本例中是\
+  \ `RateSubscriber`。需要注意的是，我们通过调用 `setSerializer` 方法设置了一个序列化器，并使用 `Rate` 类作为对象映射器实例化了一个\
+  \ `Jackson2JsonRedisSerializer` 对象。\n*   `RedisTemplate` `<String,Rate>`：如你所见，我们定义了这个\
+  \ bean 以返回一个 `RedisTemplate`，其中键是字符串，值是 `Rate` 类。还要注意，我们通过调用 `setDefaultSerializer`\
+  \ 方法设置了一个序列化器，并且使用了与之前相同的类 `Jackson2JsonRedisSerializer`。\n\n看一下清单 6-5 中所示的 `RateSubscriber`\
+  \ 类。\n\n```\n@Component\npublic class RateSubscriber {\npublic void handleMessage(Rate\
+  \ rate){\n// 在此处处理消息...\n}\n}\n清单 6-5.\ncom.apress.messaging.redis.RateSubscriber.java\n\
+  ```\n\n清单 6-5 向你展示了 `RateSubscriber` 类。与之前的示例相比，没有任何变化。`handleMessage` 方法将接收一条 `Rate`\
+  \ 消息。现在，让我们看一下清单 6-6 中所示的发布者。\n\n```\n@SpringBootApplication\npublic class RedisDemoApplication\
+  \ {\npublic static void main(String[] args) {\nSpringApplication.run(RedisDemoApplication.class,\
+  \ args);\n}\n@Bean\nCommandLineRunner sendRateMessage(\nRedisTemplate template,\n\
+  @Value(\"${apress.redis.rate}\")String topic){\nreturn args -> {\ntemplate.convertAndSend(topic,\n\
+  new Rate(\"MX\",21.17F,new Date()));\n};\n}\n}\n清单 6-6.\ncom.apress.messaging.RedisDemoApplication.java\n\
+  ```\n\n清单 6-6 向你展示了主应用程序。将这个类与之前的版本进行比较，发生了什么变化？我们使用了 `RedisTemplate` 类，并将 `Rate`\
+  \ 作为值。我们还通过创建一个新的 `Rate` 对象，将 `Rate` 类用作消息。\n\n\n\n现在您可以运行项目并查看日志。请参见图 6-5、6-6 和\
+  \ 6-7。\n\n![A337882_1_En_6_Fig7_HTML.jpg](img/A337882_1_En_6_Fig7_HTML.jpg)\n\n\
+  图 6-7.\n\nredis-cli 订阅者\n\n![A337882_1_En_6_Fig6_HTML.jpg](img/A337882_1_En_6_Fig6_HTML.jpg)\n\
+  \n图 6-6.\n\nredis-cli 监视器\n\n![A337882_1_En_6_Fig5_HTML.jpg](img/A337882_1_En_6_Fig5_HTML.jpg)\n\
+  \n图 6-5.\n\nRateSubscriber 日志\n\n图 6-5 展示了`RateSubscriber`处理消息时的日志。请记住，在后台，为了获取对象，会进行序列化/反序列化操作。\n\
+  \n图 6-6 展示了一个运行着 Redis 客户端监视器的终端。其目的是展示发布的方法是一个 JSON 格式的字符串，这意味着`Jackson2JsonRedisSerializer`对`Rate`类执行了序列化。\n\
+  \n图 6-7 展示了一个订阅了`currency-rate`频道/主题的终端。请注意，该订阅者接收到的`Rate`消息是 JSON 字符串格式。\n\n如果您将这些结果与之前的\
+  \ Spring 模块（JMS 和 AMQP）进行比较，您会发现我们正在做同样的事情。尽管这个 Spring Data Redis 模块没有用于简化发布/订阅模式的注解，但也能轻松快速地启动并运行起来。\n\
+  \n## 货币项目\n\n现在您已拥有完成货币项目所需的所有必要信息。请先查看`RateRedisSubscriber`、`RateRedisConfig`和`RateRedisProperties`这几个类。您可以复用`demo`项目来向频道/主题发布消息。\n\
+  \n注意\n\n请记住，在运行货币项目之前，确保`redis-server`已启动并正在运行，这一点很重要。\n\n## 总结\n\n本章讨论了发布/订阅消息传递模式，并展示了\
+  \ Redis 开箱即用地提供了此功能。它非常易于使用。本章向您展示了 Spring Boot 如何通过简单地添加`spring-boot-starter-redis`来轻松配置您的发布者和订阅者。\n\
+  \n您了解了如何发布和监听传入的消息，并且您看到 Spring Data Redis 模块使用`RedisTemplate`（与 Spring JMS 和 Spring\
+  \ AMQP 模块行为相同）的方式与发布者和订阅者非常相似。\n\n尽管本章篇幅较短，但它为您提供了使用 Redis 作为内存消息代理的起点。\n\n下一章将介绍\
+  \ WebSocket，这是使用 Spring Boot 进行消息传递的另一种方式。\n\n"
+- "# 7. Web 消息传递\n\n本章介绍 Spring Boot 中的 WebSocket，并描述这项技术如何帮助您在应用程序之间，甚至在同一应用程序的多个实例之间实现消息传递。\n\
+  \n在讨论 Web 应用程序时，我们可以说 REST 是另一种消息传递方式，事实也确实如此。在本章中，我们将重点讨论一种有状态的通信方式，这正是 WebSocket\
+  \ 所带来的。\n\n## WebSocket\n\nWebSocket 是一种支持双向通信的协议，通常用于 Web 浏览器。该协议首先通过握手（通常是 HTTP\
+  \ 请求）开始，然后通过 TCP 发送基本消息帧（协议切换）。WebSocket 的理念是避免像 AJAX（`XMLHttpRequest`）、iframe 或长轮询那样的多次\
+  \ HTTP 连接。请参见图 7-1。\n\n![A337882_1_En_7_Fig1_HTML.gif](img/A337882_1_En_7_Fig1_HTML.gif)\n\
+  \n图 7-1.\n\nTCP/WebSocket\n\n## 在 Spring 中使用 WebSocket\n\n在我们深入了解如何在 Spring Boot\
+  \ 中使用 WebSocket 之前，重要的是要知道并非所有浏览器都支持这项技术。请访问[`http://caniuse.com/websockets`](http://caniuse.com/websockets)了解哪些浏览器已准备好支持\
+  \ WebSocket。\n\nSpring Framework 4 版本包含一个新的`spring-websocket`模块，该模块支持 WebSocket；它也与\
+  \ Java 规范 JSR-356 兼容。该模块还提供了回退选项，可以在必要时模拟 WebSocket API（请记住，并非所有浏览器都支持 WebSocket）。它为此任务使用了\
+  \ SockJS 协议。您可以在[`https://github.com/sockjs/sockjs-protocol`](https://github.com/sockjs/sockjs-protocol)获取更多相关信息。\n\
+  \n同样值得一提的是，在初始握手（我们使用 SockJS 的 HTTP 阶段）之后，通信会切换到 TCP 连接（这意味着您只发送字节流——文本或二进制）。因此，您可以使用任何类型的消息传递架构，例如异步或事件驱动的消息传递。在此层面上，您可以使用像\
+  \ STOMP（简单/流式文本定向消息协议）这样的子协议，它允许您拥有客户端和服务器都能理解的更好的消息格式。请参见图 7-2。\n\n![A337882_1_En_7_Fig2_HTML.gif](img/A337882_1_En_7_Fig2_HTML.gif)\n\
+  \n图 7-2.\n\n使用 Spring 的 WebSocket\n\n图 7-2 展示了如何使用 Spring 实现 WebSocket，以及客户端所需的组件。\n\
+  \n\n\n### 底层 WebSocket\n\n在深入探讨回退方案（SockJS）和子协议（STOMP）之前，我们先来看看如何将 Spring Boot 与底层\
+  \ WebSocket 结合使用。\n\n在本书的源代码中，请进入第 7 章，并打开两个项目（你可以将它们导入到你喜欢的 IDE 中，或使用任何文本编辑器）。在接下来的部分中，我们将使用\
+  \ `websocket-demo` 项目。\n\n我们先从分析配置开始。为了使用底层 WebSocket 通信，我们需要实现 `org.springframework.web.socket.config.annotation.WebSocketConfigurer`\
+  \ 接口。打开 `com.apress.messaging.config.LlWebSocketConfig` 类，如代码清单 7-1 所示。\n\n```\n\
+  @Configuration\n@EnableWebSocket\npublic class LlWebSocketConfig implements WebSocketConfigurer{\n\
+  LlWebSocketHandler handler;\npublic LlWebSocketConfig(LlWebSocketHandler handler){\n\
+  this.handler = handler;\n}\n@Override\npublic void registerWebSocketHandlers(\n\
+  WebSocketHandlerRegistry registry) {\nregistry.addHandler(this.handler, \"/llws\"\
+  );\n}\n}\n代码清单 7-1.\ncom.apress.messaging.config.LlWebSocketConfig.java\n```\n\n\
+  代码清单 7-1 展示了在 Spring 中启用 WebSocket 所需的配置。请记住，我们这样配置该类是为了实现底层 WebSocket 通信。让我们回顾一下所使用的组件：\n\
+  \n*   `@EnableWebSocket`：这是启用和配置 WebSocket 请求所必需的。\n*   `WebSocketConfigurer`：这是一个接口，定义了用于配置\
+  \ WebSocket 请求处理的回调方法。通常你需要实现 `registerWebSocketHandlers` 方法。\n*   `registerWebSocketHandlers`：需要通过添加用于处理\
+  \ WebSocket 请求的处理器来实现此方法。在此方法中，我们注册了一个处理器（`LlWebSocketHandler`）实例，并传入了用于握手和通信的端点。\n\
+  *   `WebSocketHandlerRegistry`：这是一个用于注册 `WebSocketHandler` 实现的接口。我们将使用一个 `TextWebSocketHandler`\
+  \ 实现，并在下一节中查看其代码。\n\n如你所见，使用 Spring 配置底层 WebSocket 非常简单。接下来，让我们打开 `com.apress.messaging.web.socket.LlWebSocketHandler`\
+  \ 类。参见代码清单 7-2。\n\n```\n@Component\npublic class LlWebSocketHandler extends TextWebSocketHandler{\n\
+  @Override\npublic void afterConnectionEstablished(\nWebSocketSession session) throws\
+  \ Exception {\nsuper.afterConnectionEstablished(session);\n}\n@Override\nprotected\
+  \ void handleTextMessage(\nWebSocketSession session, TextMessage message)\nthrows\
+  \ Exception {\nSystem.out.println(\">>>> \" + message);\n}\n}\n代码清单 7-2.\ncom.apress.messaging.web.socket.LlWebSocketHandler.java\n\
+  ```\n\n代码清单 7-2 展示了我们将用于接收来自客户端消息的 WebSocket 处理器。让我们来检查这个类：\n\n*   `TextWebSocketHandler`：这是一个具体类，通过\
+  \ `AbstractWebSocketHandler` 类实现了 `WebSocketHandler` 接口。此实现仅用于处理文本消息。我们将重写两个方法：`afterConnectionEstablished`\
+  \ 和 `handleTextMessage`。\n*   `afterConnectionEstablished`：当客户端使用 WebSocket 协议成功连接时，会调用此方法。在此方法中，你可以使用\
+  \ `WebSocketSession` 实例来发送或接收消息。目前，我们将使用其默认行为，但我们会在日志中（通过 AOP `WebSocketsAudit`\
+  \ 类）看到更多信息。\n*   `handleTextMessage`：此方法接收一个 `WebSocketSession`（我们稍后会用到）和一个 `TextMessage`\
+  \ 实例。`TextMessage` 实例管理字节流并将其转换为字符串。\n\n到目前为止，我们已经实现了服务器端，但客户端呢？通常，你会有一个网页来执行客户端的工作。\n\
+  \n打开 `src/main/resources/static/llws.html` 文件，如代码清单 7-3 所示。\n\n```\n$(function(){\n\
+  var connection = new\nWebSocket('ws://localhost:8080/llws');\nconnection.onopen\
+  \ = function () {\nconsole.log('Connected...');\n};\nconnection.onmessage = function(event){\n\
+  console.log('>>>>> ' + event.data);\nvar json = JSON.parse(event.data);\n$(\"#output\"\
+  ).append(\"\"\n+ json.user\n+ \": \"\n+ json.message\n+ \"\");\n};\nconnection.onclose\
+  \ = function(event){\n$(\"#output\").append(\"CONNECTION: CLOSED\");\n};\n$(\"#send\"\
+  ).click(function(){\nvar message = {}\nmessage[\"user\"] = $(\"#user\").val();\n\
+  message[\"message\"] = $(\"#message\").val();\nconnection.send(JSON.stringify(message));\n\
+  });\n});\n\n代码清单 7-3.\nllws.html 片段\n```\n\n代码清单 7-3 仅展示了重要代码的 JavaScript 片段，我将在下面进行解释：\n\
+  \n*   `WebSocket`：这是 JavaScript 引擎的一部分，它将连接到指定的 URI。请注意，模式是 `ws`，并且我们使用的是在配置类中指定的\
+  \ `/llws` 端点（参见代码清单 7-1）。\n*   `onopen`：这是一个回调函数，在与服务器建立连接时执行。请注意，我们只是将一条字符串记录到控制台。\n\
+  *   `onmessage`：这是一个回调函数，在从服务器接收到消息时执行。在这种情况下，我们将 `event.data` 解析为一个 JSON 对象。\n\
+  *   `onclose`：这是一个回调函数，在与服务器的连接关闭或丢失时执行。\n*   `$.click`/`send`：这是一个附加到“发送”按钮的回调函数，在点击按钮时被调用。这里我们使用了\
+  \ `send` 方法，它将发送消息对象的 JSON 字符串。\n\n接下来，让我们运行 `websocket-demo` 项目；启动后，打开浏览器并访问 `http://localhost:8080/llws.html`。你应该会看到类似于图\
+  \ 7-3 的内容。\n\n![A337882_1_En_7_Fig3_HTML.jpg](img/A337882_1_En_7_Fig3_HTML.jpg)\n\
+  \n图 7-3.\n\nhttp://localhost:8080/llws.html\n\n在浏览器中访问 `llws.html` 后，查看应用程序日志。你应该会看到类似于图\
+  \ 7-4 的内容。\n\n![A337882_1_En_7_Fig4_HTML.jpg](img/A337882_1_En_7_Fig4_HTML.jpg)\n\
+  \n图 7-4.\n\nwebsocket-demo 项目日志\n\n图 7-4 展示了日志，其中 `afterConnectionEstablished` 正在从\
+  \ `LlWebSocketHandler` 类中被调用。这意味着客户端已成功连接到服务器。你也可以查看浏览器的开发者控制台，看看显示字符串 `Connected...`\
+  \ 的日志。参见图 7-5。\n\n![A337882_1_En_7_Fig5_HTML.jpg](img/A337882_1_En_7_Fig5_HTML.jpg)\n\
+  \n图 7-5.\n\n浏览器控制台\n\n接下来，你可以通过修改 `llws.html` 页面中的用户和消息输入框，并点击“发送”按钮来发送消息。点击“发送”按钮后，你应该会看到类似于图\
+  \ 7-6 的内容。\n\n![A337882_1_En_7_Fig6_HTML.jpg](img/A337882_1_En_7_Fig6_HTML.jpg)\n\
+  \n图 7-6.\n\n点击发送后的 websocket-demo 项目日志\n\n图 7-6 展示了发送消息后的日志以及 `handleTextMessage`\
+  \ 方法的打印输出。\n\n这个示例向你展示了如何将消息从客户端发送到服务器。现在，让我们从服务器做一个响应，即回声。你需要在 `handleTextMessage`\
+  \ 中添加一些内容来处理回复。\n\n将 `handleTextMessage` 修改为如下所示：\n\n```\n@Override\npublic void\
+  \ handleTextMessage(\nWebSocketSession session,\nTextMessage message) throws Exception\
+  \ {\nSystem.out.println(\">>>> \" + message);\nsession.sendMessage(message);\n}\n\
+  ```\n\n\n\n如您所见，我们使用 `session` 实例来调用 `sendMessage`，这意味着我们将使用已连接客户端的同一会话进行回复。\n\n\
+  重启 `websocket-demo` 项目并刷新 `llws.html` 页面。然后通过填写用户和消息输入框来发送一条消息。您应该会在“来自服务器的回显消息”面板中看到响应，如图\
+  \ 7-7 所示。请注意，如果您使用的是 STS，只需等待项目自行重启即可；这要归功于 `spring-boot-devtools`。\n\n![A337882_1_En_7_Fig7_HTML.jpg](img/A337882_1_En_7_Fig7_HTML.jpg)\n\
+  \n图 7-7.\n回显服务器响应\n\n如果您停止应用程序，您将在“来自服务器的回显消息”面板中看到类似图 7-8 的内容。\n\n![A337882_1_En_7_Fig8_HTML.jpg](img/A337882_1_En_7_Fig8_HTML.jpg)\n\
+  \n图 7-8.\n连接已关闭\n\n如您所见，创建低层级的 WebSockets 应用程序非常简单。如果您需要从 Spring 应用程序发送消息，会发生什么？换句话说，您的应用程序需要充当客户端。您可以将以下代码添加到您的应用程序中（参见清单\
+  \ 7-4）。\n\n```\nStandardWebSocketClient client = new StandardWebSocketClient();\n\
+  ListenableFuture future =\nclient.doHandshake(handler,\nnew WebSocketHttpHeaders(),\n\
+  new URI(\"ws://localhost:8080/ws-server\"));\nWebSocketSession session = future.get();\n\
+  WebSocketMessage message =\nnew TextMessage(\"Hello there...\");\nsession.sendMessage(message)\
+  \ ;\n清单 7-4.\nWebSockets 客户端——WebSocketDemoApplication 类的代码片段\n```\n\n清单 7-4 展示了如果您想创建一个\
+  \ WebSockets 客户端（而不是 HTML 网页）所需添加的代码片段。这里我们使用了 `StandardWebSocketClient`（一个低层级的\
+  \ WebSockets 协议），并手动执行握手。它将处理器、一些标头以及您将要连接的 URI 传递给它。（请注意，您可以使用之前的处理器或创建自己的处理器，然后实现\
+  \ `afterConnectionEstablished` 方法来检查是否成功连接。）然后您会获得一个 `WebSocketSession` 实例，并可以发送消息。\n\
+  \n您可以看到，使用 Spring 类来操作 WebSockets 客户端是一种直接的实现方式。接下来，让我们开始使用 SockJS 和 STOMP 子协议的回退选项。\n\
+  \n### 使用 SockJS 和 STOMP\n\n为什么我们需要使用 SockJS 和 STOMP？请记住，并非所有浏览器都支持 WebSockets，并且通常客户端和服务器必须就如何处理消息达成一致。当然，这不是正确的消息传递方式，因为我们希望实现一种解耦的场景，即客户端不依赖于服务器。\n\
+  \nSockJS 有助于模拟 WebSockets 并执行初始握手。然后，通过使用 STOMP，我们可以以一种可互操作的线路格式进行回复，这使我们能够使用支持此协议的多个代理。\n\
+  \n#### 聊天室应用程序\n\n我们将继续使用 `websocket-demo` 项目，但我们将使用不同的文件和类。此示例创建了一个聊天室，这是 WebSockets\
+  \ 技术非常常见的用途。\n\n首先，让我们看看如何配置项目以使用 SockJS 和 STOMP。打开 `com.apress.messaging.config.WebSocketConfig`\
+  \ 类。参见清单 7-5。\n\n```\n@Configuration\n@EnableWebSocketMessageBroker\n@EnableConfigurationProperties(SimpleWebSocketsProperties.class)\n\
+  public class WebSocketsConfig extends\nAbstractWebSocketMessageBrokerConfigurer\
+  \ {\nSimpleWebSocketsProperties props;\npublic WebSocketsConfig(SimpleWebSocketsProperties\
+  \ props){\nthis.props = props;\n}\n@Override\npublic void registerStompEndpoints(\n\
+  StompEndpointRegistry registry) {\nregistry.addEndpoint(props.getEndpoint()).withSockJS();\n\
+  }\n@Override\npublic void configureMessageBroker(\nMessageBrokerRegistry config)\
+  \ {\nconfig.enableSimpleBroker(props.getTopic());\nconfig.setApplicationDestinationPrefixes(\n\
+  props.getAppDestinationPrefix()) ;\n}\n}\n清单 7-5.\ncom.apress.messaging.config.WebSocketConfig.java\n\
+  ```\n\n清单 7-5 展示了使用 SockJS 和 STOMP 配置 WebSockets 所需的配置。让我们回顾一下：\n\n*   @`EnableWebSocketMessageBroker`：此注解是必需的，用于启用通过\
+  \ WebSockets 使用更高级别的消息子协议（SockJS/STOMP）进行代理后端消息传递。\n*   `AbstractWebSocketMessageBrokerConfigurer`：此类实现了\
+  \ `WebSocketMessageBrokerConfigurer`，用于配置使用来自 WebSockets 客户端的简单消息协议（如 STOMP）进行消息处理。\n\
+  *   `registerStompEndpoints`：调用此方法来注册 STOMP 端点，将每个端点映射到特定的 URL，并配置 SockJS 回退选项。\n\
+  *   `StompEndpointRegistry`：这是一个用于注册基于 WebSockets 的 STOMP 端点的契约。它提供了一个流畅的 API 来构建注册表。\n\
+  *   `withSockJS`：此方法将启用握手所需的 SockJS 回退选项。\n*   `configureMessageBroker`：调用此方法来配置消息代理选项。在这种情况下，我们使用的是\
+  \ `MessageBrokerRegistry`。\n*   `MessageBrokerRegistry`：此实例将帮助配置所有代理选项。我们使用 `enableSimpleBroker`，它接受一个或多个前缀来过滤目标代理。这将与带有\
+  \ `@SendTo` 注解的方法一起使用。我们还使用 `setApplicationDestinationPrefixes` 来配置一个或多个前缀，以过滤目标应用程序注解方法。换句话说，它将查找带有\
+  \ `@MessageMapping` 注解的方法。\n\n您可以看到，我们需要添加一个端点、一个代理以及前缀路径，以使用 SockJS 和 STOMP 配置\
+  \ WebSockets。请查看图 7-9。\n\n![A337882_1_En_7_Fig9_HTML.gif](img/A337882_1_En_7_Fig9_HTML.gif)\n\
+  \n图 7-9.\n使用 SockJS 和 STOMP 的客户端/服务器 WebSockets\n\n图 7-9 向您展示了客户端和服务器之间通信的总体情况。接下来，打开\
+  \ `com.apress.messaging.controller.SimpleController` 类。参见清单 7-6。\n\n```\n@Controller\n\
+  public class SimpleController {\n@MessageMapping(\"${apress.ws.mapping}\")\n@SendTo(\"\
+  /topic/chat-room\")\npublic ChatMessage chatRoom(ChatMessage message) {\nreturn\
+  \ message;\n}\n}\n清单 7-6.\ncom.apress.messaging.controller.SimpleController.java\n\
+  ```\n\n清单 7-6 通过使用新的注解向您展示了接收器和发送器。请记住，该项目现在将运行一个聊天室，因此不同的客户端可以连接并接收来自其他用户的消息。\n\
+  \n\n\n*   `@MessageMapping`：此注解与应用前缀有关，意味着客户端需要向 `prefix + mapping` 发送消息。在本例中，即\
+  \ `/my-app/chat-room`。该注解由 `@Controller` 类中的方法支持，其值可视为 ant 风格、以斜杠分隔的路径模式。与此注解配合，你还可以使用其他注解作为方法参数，包括\
+  \ `@Payload`、`@Header`、`@Headers`、`@DestinationVariable` 和 `java.security.Principal`。\n\
+  *   `@SendTo`：你已经了解此注解；它与我们在 JMS 和 RabbitMQ 章节中使用的注解相同。在此场景下，该注解用于将消息发送到任何其他目的地。\n\
+  \n尽管我们没有使用 `@SubscribeMapping`，但你可以在 `@Controller` 注解的类中，将其用于你想要处理传入消息的方法上。当你需要通过\
+  \ `@SendTo` 获取响应副本时，这通常会很有用。\n\n另一个我们未使用的工具类是 `SimpleMessagingTemplate`。它可用于发送消息。例如：\n\
+  \n```\n@Controller\npublic class AnotherController {\nprivate SimpMessagingTemplate\
+  \ template;\n@Autowired\npublic AnotherController(SimpMessagingTemplate template)\
+  \ {\nthis.template = template;\n}\n@RequestMapping(path=\"/rate/new\", method=POST)\n\
+  public void newRates(Rate rate) {\nthis.template.convertAndSend(\"/topic/new-rate\"\
+  , rate);\n}\n}\n```\n\n如你所见，使用 WebSockets 技术实现订阅者/发布者模型非常简单。`AnotherController`\
+  \ 通过发送消息（`ChatMessage`）也充当了客户端角色。\n\n接下来，让我们看看另一个客户端。打开 `src/main/resources/static/sockjs-stomp.html`\
+  \ 页面。参见代码清单 7-7。\n\n```\n$(function(){\nvar socket =\nnew SockJS('http://localhost:8080/stomp-endpoint');\n\
+  var stompClient = Stomp.over(socket);\nstompClient.connect({}, function (frame)\
+  \ {\nconsole.log('Connected: ' + frame);\nstompClient.subscribe('/topic/chat-room',\n\
+  function (data) {\nconsole.log('>>>>> ' + data);\nvar json = JSON.parse(data.body);\n\
+  $(\"#output\")\n.append(\"\"\n+ json.user\n+ \": \"\n+ json.message\n+ \"\");\n\
+  });\n});\n$(\"#send\").click(function(){\nvar chatMessage = {}\nchatMessage[\"user\"\
+  ] = $(\"#user\").val();\nchatMessage[\"message\"] = $(\"#message\").val();\nstompClient.send(\n\
+  \"/my-app/chat-room\",\n{},\nJSON.stringify(chatMessage));\n});\n});\n代码清单 7-7.\n\
+  sockjs-stomp.html 代码片段\n```\n\n代码清单 7-7 展示了 JavaScript 客户端。我们来分析一下：\n\n*   `SockJS`：这是一个模拟\
+  \ WebSockets 协议的 JavaScript 库。此对象连接到服务器端指定的 `/stomp` 端点。有关此库的更多信息，请访问 [`http://sockjs.org/`](http://sockjs.org/)。\n\
+  *   `STOMP`：这是一个使用 WebSockets 协议的 JavaScript 库，通常需要 SockJS 对象。更多信息请访问 [`http://jmesnil.net/stomp-websocket/doc/`](http://jmesnil.net/stomp-websocket/doc/)。\n\
+  *   `connect`：这是一个回调函数，在与服务器建立连接时被调用。\n*   `subscribe`：这是一个回调函数，当订阅的目的地有消息时被调用。\n\
+  *   `send`：此方法将消息发送到指定的目的地。\n\n这是在 JavaScript 客户端中使用 SockJS 和 STOMP 的一种非常简单的方式。现在你可以运行\
+  \ `websockets-demo` 项目了。\n\n注意\n\n在运行本节中的 `websocket-demo` 项目之前，请确保 `LlWebSocketConfig`\
+  \ 类已被禁用（通过注释掉 `@Configuration` 和 `@EnableWebSocket` 注解）。\n\n运行项目并打开浏览器。访问 `http://localhost:8080/sockjs-stomp.html`\
+  \ 网页。你将看到与之前示例类似的内容。如果你好奇，可以打开浏览器的开发者控制台查看控制台日志。参见图 7-10。\n\n![A337882_1_En_7_Fig10_HTML.jpg](img/A337882_1_En_7_Fig10_HTML.jpg)\n\
+  \n图 7-10.\n\n浏览器控制台日志\n\n图 7-10 展示了连接日志。现在打开第二个浏览器窗口并访问相同的 URL。目的是模拟两个客户端进行通信。接下来，发送一些消息并查看结果。参见图\
+  \ 7-11 和图 7-12。\n\n![A337882_1_En_7_Fig12_HTML.jpg](img/A337882_1_En_7_Fig12_HTML.jpg)\n\
+  \n图 7-12.\n\n应用日志\n\n![A337882_1_En_7_Fig11_HTML.jpg](img/A337882_1_En_7_Fig11_HTML.jpg)\n\
+  \n图 7-11.\n\n两个浏览器客户端\n\n图 7-11 展示了两个客户端通过 SockJS 和 STOMP 使用 WebSockets 发送消息。\n\n\
+  图 7-12 展示了 `SimpleController` 日志，并且 `ChatMessage` 正在由 `chatRoom` 方法处理（这是由于 `@MessageMapping`\
+  \ 和 `@SendTo` 注解的作用）。\n\n这就是如何使用 Spring Boot 和 `spring-websocket` 模块非常轻松地创建一个聊天室。\n\
+  \n问题：如何使用 Spring 创建一个 SockJS 客户端？想象一下，你需要使用 STOMP 向远程 WebSockets 连接发送消息。查看 `WebSocketsDemoApplication`\
+  \ 类中被注释掉的代码。你将看到如何在那里使用 `SockJSClient` 和 `WebSocketsStompClient` 类。\n\n## 使用 RabbitMQ\
+  \ 作为 STOMP 代理中继\n\n你是否想过，如果你的应用需要更多支持，需要更具可扩展性，会发生什么？嗯，一种解决方案是添加多个启用了 WebSockets\
+  \ 代理的 Spring Boot 应用，然后在它们前面添加一个负载均衡器。问题在于实现高可用性，因为你需要为这些应用添加逻辑和行为，以便当其中一个宕机时，其他应用能继续响应客户端。\n\
+  \n好消息是，`spring-websocket` 模块提供了一种使用外部中继的方式：RabbitMQ。RabbitMQ 将 STOMP 协议作为一个插件包含在内。它还提供了真正的完全高可用性以及一种简单的集群设置方法。\n\
+  \n按照以下步骤将 RabbitMQ 作为 STOMP 中继添加到你的应用中：\n\n1.  确保启用 RabbitMQ STOMP 插件：\n\n    ```\n\
+  \    $ rabbitmq-plugins enable rabbitmq_stomp\n    $ rabbitmq-plugins enable rabbitmq_web_stomp\n\
+  \    ```\n\n2.  将以下依赖项添加到你的 `pom.xml` 文件中。\n\n    ```\n    io.projectreactor\n \
+  \   reactor-core\n\n    io.projectreactor\n    reactor-net\n\n    io.netty\n   \
+  \ netty-all\n    4.1.8.Final\n\n    ```\n\n3.  配置 `WebSocketsConfig` 类，类似于以下代码：\n\
+  \n    ```\n    @Override\n    public void configureMessageBroker(\n    MessageBrokerRegistry\
+  \ config) {\n    config.setApplicationDestinationPrefixes(\n    props.getAppDestinationPrefix());\n\
+  \    config.enableStompBrokerRelay(\n    \"/topic\", \"/queue\").setRelayPort(61613);\n\
+  \    }\n    ```\n\n与之前版本的不同之处在于，现在在 `configureMessageBroker` 方法中，你配置了 `enableStompBrokerRelay`（使用\
+  \ `/topic` 和 `/queue`），并通过 `setRelayPort` 方法添加了 STOMP 端口（值为 `61613`，即 RabbitMQ 的\
+  \ STOMP 端口）。\n\n就是这样。现在你可以将 RabbitMQ 用作代理中继了。在运行项目之前，请确保 RabbitMQ 代理已启动并正在运行。然后你可以运行项目并使用相同的\
+  \ `sockjs-stomp.html` 网页。这里重要的是要关注 RabbitMQ 控制台，以查看连接和队列。\n\n\n\n## 货币项目\n\n请查看\
+  \ `rest-api-websockets` 项目。你会找到 `RateWebSocketsConfig` 类，它与另一个项目非常相似。其设计思路是，货币项目拥有一个简单的\
+  \ WebSockets 代理，该代理会接受任何通过 WebSockets 协议的客户端连接。\n\n每当有新的汇率发布时，它都会向订阅了 `/rate/new`\
+  \ 端点的客户端发送一条消息。请查看以下内容：\n\n*   `RateWebSocketsConfig`：此类包含 WebSockets 消息传递所需的配置。\n\
+  *   `CurrencyController`：此类中的 `addNewRates` 方法包含以下语句：\n\n    ```\n    webSocket.convertAndSend(\"\
+  /rate/new\", currencyExchange);\n    ```\n\n*   `src/main/resources/public/index-ws.html`：此网页包含定义连接到服务器的客户端的代码。请查看一下，它非常直观。\n\
+  \n要进行测试，你只需在命令行中添加一个简单的 POST 请求：\n\n```\n$ curl -i -X POST -H \"Content-Type: application/json\"\
+  \ -H \"Accept: application/json\" -d '{\"base\":\"USD\",\"date\":\"2017-02-15\"\
+  ,\"rates\":[{\"code\":\"EUR\",\"rate\":0.82857,\"date\":\"2017-02-15\"},{\"code\"\
+  :\"JPY\",\"rate\":105.17,\"date\":\"2017-02-15\"},{\"code\":\"MXN\",\"rate\":22.232,\"\
+  date\":\"2017-02-15\"},{\"code\":\"GBP\",\"rate\":0.75705,\"date\":\"2017-02-16\"\
+  }]}' localhost:8080/currency/new\n```\n\n你也可以使用任何其他 REST 客户端，例如 `POSTMAN:` [`https://www.getpostman.com/`](https://www.getpostman.com/)\
+  \ 。发布新汇率后，你将在面板中看到这些汇率，如图 7-13 所示。\n\n![A337882_1_En_7_Fig13_HTML.jpg](img/A337882_1_En_7_Fig13_HTML.jpg)\n\
+  \n图 7-13.\n\n通过 WebSockets 进行货币兑换\n\n## 总结\n\n本章讨论了使用 `spring-websocket` 模块和 Spring\
+  \ Boot 进行 WebSockets 消息传递。\n\n你学习了 WebSockets 如何使用 HTTP 握手，然后切换到 TCP 连接。你看到了如何创建低级服务器/客户端的示例。\n\
+  \n你了解了如何使用 SockJS 和 STOMP 来促进通信，以实现异步或事件驱动的消息传递。你还学习了如何配置 RabbitMQ 并将其用作 STOMP 中继。你在货币兑换项目中看到了一些代码，这些代码向连接到该服务的任何客户端发送新汇率。\n\
+  \n下一章将向你展示如何使用 Spring Integration 模块将你的代码与多种技术集成。\n\n"
+- "# 8. 使用 Spring Integration 进行消息传递\n\n本章介绍 Java 社区中最好的集成框架之一——Spring Integration\
+  \ 模块。它当然基于 Spring 框架。\n\n如果我们作为开发人员或架构师来看待软件开发和业务需求，我们总是在寻找如何将内部和外部的组件及系统集成到我们的架构中。我们需要功能完备、高可用且易于维护和增强的组件。\n\
+  \n开发人员和架构师面临的主要用例包括：\n\n*   创建一个能够可靠传输和分析文件的系统。大多数应用程序需要从文件中读取信息并进行处理。开发人员需要创建健壮的文件系统，用于保存和读取数据，同时也能共享数据并处理大文件。\n\
+  *   在共享环境中使用数据。多个客户端（系统或用户）需要访问同一个数据库或同一张表，对其执行操作，并处理数据不一致、重复等问题。\n*   远程访问不同的系统始终充满挑战，从执行远程过程到发送信息。我们总是希望以实时和同步的方式获得这种访问。我们必须尽可能快地得到响应，同时不能忘记远程系统必须始终可达。换句话说，系统必须具有容错性和高可用性。\n\
+  *   消息传递是我们始终希望在任何系统中拥有的一个重要用例，从基本的内部调用到每秒发送数十亿条消息到远程代理。我们通常以异步方式处理消息传递，因此需要处理并发、多线程、速度（网络延迟）、高可用性、容错等问题。\n\
+  \n开发人员如何实现所有这些用例？大约 14 年前，两位名叫 Gregor Hohpe 和 Bobby Woolf 的软件工程师撰写了开创性的著作《企业集成模式：设计、构建和部署消息传递解决方案》，由\
+  \ Addison-Wesley 出版。这本书揭示了解决这些用例所需的所有消息传递模式。该书还提供了对系统如何互联和工作的更好理解，以及如何通过应用程序架构、面向对象设计和面向消息的设计来创建一个健壮的集成系统。我强烈推荐你阅读它。\n\
+  \n以下各节将使用 Spring 框架中的 Spring Integration 模块向你展示其中一些模式。\n\n\n\n## Spring Integration\
+  \ 入门指南\n\nSpring Integration 为实现企业集成解决方案提供了一个简洁的模型，因为它能在 Spring Boot 应用中促进异步和消息驱动的设计。它实现了企业集成模式，用于创建健壮、可移植的企业级集成解决方案。\n\
+  \n你可以使用 Spring Integration 模块来创建松耦合的组件，从而提高模块化和可测试性。它有助于在业务逻辑与集成逻辑之间实施关注点分离。\n\n\
+  Spring Integration 暴露了以下主要组件：\n\n*   **消息**：这是任何 Java 对象的通用包装器。它由消息头和消息体组成。消息头通常包含重要信息，如\
+  \ ID、时间戳、关联 ID 和返回地址。你可以添加自己的信息用于业务逻辑。消息体可以是任何类型的数据，从字节数组、字符串到自定义对象——任何类型都可以。你可以在\
+  \ `spring-messaging` 模块中找到它的定义，该模块位于 `org.springframework.messaging` 包中。\n\n```\n\
+  \    public interface Message {\n    T getPayload();\n    MessageHeaders getHeaders();\n\
+  \    }\n    ```\n\n如你所见，`Message` 的定义并不复杂。\n*   **消息通道**：你可以将消息通道视为一种管道和过滤器架构，这与你在\
+  \ UNIX 系统中使用的命令非常相似。要使用消息通道，你需要有生产者和消费者。生产者将消息发送到消息通道，消费者从通道中接收消息。参见图 8-1。\n\n![A337882_1_En_8_Fig1_HTML.gif](img/A337882_1_En_8_Fig1_HTML.gif)\n\
+  \n图 8-1.\n\n消息通道 此消息通道可以遵循前几章讨论的消息传递模式——点对点和发布/订阅模型。Spring Integration 提供了多种消息通道，包括可轮询通道（允许你在队列中缓冲消息）或可供消费者订阅的通道。\n\
+  *   **消息端点**：消息端点就像一个过滤器，它将应用程序代码连接到消息传递框架。这些端点大多是企业集成模式实现的一部分：\n    *   **过滤器**：消息过滤器决定何时应将消息传递到输出通道。\n\
+  \    *   **转换器**：消息转换器修改消息的内容或结构，并将其传递到输出通道。\n    *   **路由器**：消息路由器根据规则决定如何处理消息以及将消息发送到哪里。这些规则可以位于消息头中，甚至可以在消息体本身中。此消息路由器有许多可应用的模式，我将至少向你展示其中一种。\n\
+  \    *   **拆分器**：消息拆分器接收一条消息（输入通道），将其拆分并返回多条新消息（输出通道）。\n    *   **服务激活器**：这是一个端点，通过接收消息（输入通道）并处理它来充当服务。它可以结束集成流程、返回相同的消息或发送一条新消息（输出通道）。\n\
+  \    *   **聚合器**：此消息端点接收多条消息（输入通道）。它将根据释放策略将这些消息合并成一条新消息，然后将新消息发送出去（输出通道）。\n   \
+  \ *   **通道适配器**：这是一种特殊的端点，用于将消息通道连接到其他系统或传输协议。Spring Integration 为你提供了入站和出站适配器。当你需要响应时，它还提供了网关适配器。你会看到这些是最常用的。如果你的解决方案需要连接到\
+  \ RabbitMQ、JMS、FTP、文件系统、HTTP 或任何其他技术，Spring Integration 已经提供了相应的适配器，无需你编写客户端代码。\n\
+  \n要完整描述 Spring Integration 以及每条消息（消息模式）、消息通道、适配器等，需要一整本新书。如果你对此技术感兴趣，我推荐我编写的 Apress\
+  \ 出版社的《Pro Spring Integration》一书 [`http://www.apress.com/us/book/9781430233459`](http://www.apress.com/us/book/9781430233459)。\n\
+  \n下一节将描述其中一些组件和模式，这应该足以让你入门。\n\n## 编程实现 Spring Integration\n\n使用 Spring Integration，你有多种方式配置所有组件（消息、消息通道和消息端点）。你可以使用\
+  \ XML、Java 配置类、注解以及新的集成 DSL 来完成。到目前为止，还没有一本书涵盖 DSL（领域特定语言），这就是我稍微多关注一下它的原因。\n\n\
+  我们从一个简单的示例开始，只是为了展示开始使用 Spring Integration 需要具备和完成的工作。在本书的源代码中，打开第 8 章文件夹中的 `si-demo`\
+  \ 项目。该项目包含了本章中的所有示例。\n\n### 一个简单的 Spring Integration 示例\n\n\n\n#### 使用 DSL\n\n我们将从配置类开始。打开\
+  \ `com.apress.messsaging.config.SpiSimpleConfiguration` 类。参见代码清单 8-1。\n\n```\n@Configuration\n\
+  public class SpiSimpleConfiguration {\n@Bean\npublic IntegrationFlow simpleFlow(){\n\
+  return IntegrationFlows\n.from(MessageChannels.direct(\"input\"))\n.filter(\"World\"\
+  ::equals)\n.transform(\"Hello \"::concat)\n.handle(System.out::println)\n.get();\n\
+  }\n}\n代码清单 8-1.\ncom.apress.messsaging.config.SpiSimpleConfiguration.java\n```\n\
+  \n代码清单 8-1 展示了一个基础示例。该示例从 `input` 通道接收消息，仅当消息内容等于字符串 `\"World\"` 时才进行过滤，然后通过拼接字符串\
+  \ `\"Hello\"` 和消息 `\"World\"` 来转换消息，最后将其打印到控制台。所有这些统称为**集成流**。让我们深入了解一下：\n\n*  \
+  \ `IntegrationFlow`：这是我们以 Bean 形式暴露 DSL 的方式（必须带有 `@Bean` 注解）。该类是 `IntegrationFlowBuilder`\
+  \ 的工厂，用于定义集成流。它会注册所有组件，如消息通道、端点等。\n*   `IntegrationFlows`：该类暴露了一个流畅的 API，有助于构建集成流。它可以轻松地整合任何端点，如\
+  \ transform、filter、handle、split、aggregate、route 和 bridge。使用这些端点时，你可以将任何 Java 8（及以上版本）的\
+  \ Lambda 表达式作为参数。\n*   `from`：这是一个重载方法，通常用于传入 `MessageSource`。在此例中，我们传入了一个名为 `input`\
+  \ 的直接通道。\n*   `filter`：这是一个重载方法，用于填充 `MessageFilter`。`MessageFilter` 委托给 `MessageSelector`，仅当选择器接受该\
+  \ `Message` 时，才会将消息发送到过滤器的输出通道。\n*   `transform`：该方法可以接收一个 Lambda 表达式，但实际上接收的是 `GenericTransformer<S,T>`，其中\
+  \ `S` 是源类型，`T` 是转换后的目标类型。这里我们可以使用开箱即用的转换器，包括 `ObjectToJsonTransformer`、`FileToStringTransformer`\
+  \ 等。在此示例中，我们仅使用了 `String` 类的连接方法。\n*   `handle`：这是一个重载方法，用于填充 `ServiceActivatingHandler`。通常我们可以使用\
+  \ POJO（Plain Old Java Object，普通 Java 对象），它允许我们接收消息并返回新消息或触发另一个调用。这是一个非常有用的端点，我们将在本章和下一章中将其作为服务激活器端点进行介绍。\n\
+  \n如果这与您过去在集成解决方案中所做的看起来不同，请不要过于担心；随着您看到更多示例，您会越来越熟悉，一切也会变得更容易。\n\n接下来，让我们看看主应用程序，以便运行此示例。打开\
+  \ `com.apress.messaging.SpiDemoApplication` 类。参见代码清单 8-2。\n\n```\n@EnableIntegration\n\
+  @SpringBootApplication\npublic class SpiDemoApplication {\npublic static void main(String[]\
+  \ args) {\nnew SpringApplicationBuilder(SpiDemoApplication.class)\n.web(false)\n\
+  .run(args);\n}\n@Bean\nCommandLineRunner process(MessageChannel input){\nreturn\
+  \ args -> {\ninput.send(MessageBuilder.withPayload(\"World\").build());\n};\n}\n\
+  }\n代码清单 8-2.\ncom.apress.messaging.SpiDemoApplication.java\n```\n\n代码清单 8-2 展示了主应用程序。这里我们使用了一个新注解\
+  \ `@EnableIntegration`，它将设置我们流程所需的所有 Spring Integration Bean。该注解会注册不同的 Bean，例如 `errorChannel`、`LoggingHandler`、`taskScheduler`\
+  \ 等。这些 Bean 在集成解决方案中补充了我们的流程。在 Spring Boot 应用程序中使用 Java 配置、注解和 DSL 时，此注解是必需的。\n\n\
+  请注意，我添加了一种使用 `SpringApplicationBuilder` 类运行 Spring Boot 应用程序的不同方式。如果你查看 `pom.xml`\
+  \ 文件，会发现其中包含了 `spring-boot-starter-web` 依赖项，这意味着这是一个 Web 应用程序。在此示例中，我们不需要整个嵌入式服务器，这就是使用\
+  \ `.web(false)` 语句的原因。\n\n在 `process` 方法中，我们请求注入一个 `MessageChannel`。然后我们使用 `MessageBuilder`（一个流畅的\
+  \ API 类），它有助于创建一个负载为 `World` 的消息。\n\n还记得在代码清单 8-1 中我们使用了 `.from(MessageChannels.direct(\"\
+  input\"))` 语句吗？该语句将创建消息通道 `\"input\"`。这就是我们用来发送消息的通道。如果你运行该应用程序，应该会得到类似于图 8-2 的结果。\n\
+  \n![A337882_1_En_8_Fig2_HTML.jpg](img/A337882_1_En_8_Fig2_HTML.jpg)\n\n图 8-2.\n\n\
+  SpiDemoApplication 日志\n\n图 8-2 显示了日志。你应该会看到打印输出。请记住，消息仅包含标头和负载，这就是我们得到 `GenericMessage`\
+  \ 类的原因。最终消息是 `\"Hello World\"`，并且包含一些标头，其中包括 ID 和时间戳。\n\n#### 使用 XML\n\n接下来，让我们尝试使用\
+  \ XML 实现相同的示例，并学习如何配置集成流。打开 `src/main/resources/META-INF/spring/integration/spi-context.xml`\
+  \ 文件。参见代码清单 8-3。\n\n```\n\n代码清单 8-3.\nsrc/main/resources/META-INF/spring/integration/spi-context.xml\n\
+  ```\n\n代码清单 8-3 展示了如何为 XML 配置集成流。我认为这非常直观。如果你使用的是 STS（Spring Tool Suite，Spring 工具套件）IDE，则可以使用其功能之一，例如用于\
+  \ Spring 集成流的拖放面板（Integration-Graph）。参见图 8-3。\n\n![A337882_1_En_8_Fig3_HTML.jpg](img/A337882_1_En_8_Fig3_HTML.jpg)\n\
+  \n图 8-3.\n\nSpring Integration-Graph 面板\n\n图 8-3 显示了 Integration-Graph 面板，您可以通过从左侧部分拖放组件来以图形方式创建流程。如您所见，有通道、路由、转换、端点等。图\
+  \ 8-3 实际上是 XML 的图形化翻译。换句话说，您可以先开始编写 XML，如果切换到 Integration-Graph，它会显示您到目前为止所做的工作。您也可以使用此功能切换到源代码，然后您将看到\
+  \ XML。这是一种非常酷的创建流程的方式，您不觉得吗？\n\n要运行此示例，您必须注释掉代码清单 8-1 中的 `@Configuration` 注解（或任何其他\
+  \ `@Component` 注解文件）。然后，主应用程序（`SpiDemoApplication.java`）必须看起来像代码清单 8-4 所示。\n\n```\n\
+  @ImportResource({\"META-INF/spring/integration/spi-context.xml\"})\n@EnableIntegration\n\
+  @SpringBootApplication\npublic class SpiDemoApplication {\npublic static void main(String[]\
+  \ args) {\nnew SpringApplicationBuilder(SpiDemoApplication.class)\n.web(false)\n\
+  .run(args);\n}\n@Bean\nCommandLineRunner process(MessageChannel input){\nreturn\
+  \ args -> {\ninput.send(MessageBuilder.withPayload(\"World\").build());\n};\n}\n\
+  }\n代码清单 8-4.\ncom.apress.messaging.SpiDemoApplication.java\n```\n\n代码清单 8-4 展示了新版本。发生了什么变化？我们只是添加了\
+  \ `@ImportResource` 注解。这将告诉 Spring Boot 有一个需要处理的配置文件。如果你运行它（记得从 `SpiSimpleConfiguration`\
+  \ 类中注释掉 `@Configuration`），它将在日志中打印 `\"Hello World\"`（由 `LoggingHandler` 类完成）。参见图\
+  \ 8-4。\n\n![A337882_1_En_8_Fig4_HTML.jpg](img/A337882_1_En_8_Fig4_HTML.jpg)\n\n\
+  图 8-4.\n\n显示 Hello World 的应用程序日志\n\n\n\n#### 使用注解\n\nSpring Integration 包含一些集成注解，可帮助你使用\
+  \ POJO 类，从而为你的流程添加更多业务逻辑并获得更多控制权。\n\n打开 `com.apress.messaging.config.SimpleAnnotationConfiguration`\
+  \ 类。参见代码清单 8-5。\n\n```\n@Configuration\npublic class SimpleAnnotationConfiguration\
+  \ {\n@Bean\npublic MessageChannel input(){\nreturn new DirectChannel();\n}\n@Bean\n\
+  public MessageChannel toTransform(){\nreturn new DirectChannel();\n}\n@Bean\npublic\
+  \ MessageChannel toLog(){\nreturn new DirectChannel();\n}\n}\n@MessageEndpoint\n\
+  class SimpleFilter {\n@Filter(inputChannel=\"input\",outputChannel=\"toTransform\"\
+  )\npublic boolean process(String message){\nreturn \"World\".equals(message);\n\
+  }\n}\n@MessageEndpoint\nclass SimpleTransformer{\n@Transformer(inputChannel=\"toTransform\"\
+  ,outputChannel=\"toLog\")\npublic String process(String message){\nreturn \"Hello\
+  \ \".concat(message);\n}\n}\n@MessageEndpoint\nclass SimpleServiceActivator{\n@ServiceActivator(inputChannel=\"\
+  toLog\")\npublic void process(String message){\n}\n}\n代码清单 8-5.\ncom.apress.messaging.config.SimpleAnnotationConfiguration.java\n\
+  ```\n\n代码清单 8-5 向你展示了相同的流程，但现在使用了集成注解。让我们详细看一下：\n\n*   `MessageChannel`：这是一个定义了发送消息方法的接口。\n\
+  *   `DirectChannel`：这是一个消息通道，它为每条发送的消息调用单个订阅者。当你不需要消息队列时，通常会使用它。\n*   `@MessageEndpoint`：这是一个有用的注解，用于将类标记为端点。\n\
+  *   `@Filter`：此注解将方法标记为执行消息过滤器的功能。通常你需要返回一个布尔值。\n*   `@Transformer`：此注解将方法标记为执行转换消息、其标头或有效负载的功能。\n\
+  *   `@ServiceActivator`：此注解将方法标记为能够处理消息。在此示例中，我们只是结束了流程。由于此示例中包含的 AOP 日志，你将看到此方法的一些输出。\n\
+  \n要运行此示例，只需注释掉主类中的 `@ImportResource` 注解即可。你应该会看到类似于图 8-5 所示的日志。\n\n![A337882_1_En_8_Fig5_HTML.jpg](img/A337882_1_En_8_Fig5_HTML.jpg)\n\
+  \n图 8-5.\n\n此示例的应用程序日志\n\n图 8-5 向你展示了配置暴露过滤器、转换器和服务激活器端点的每个步骤的日志。我在这里使用了单独的类，但你当然可以只使用一个类，并通过它们自己的注解暴露所有方法。\n\
+  \n#### 使用 Java 配置\n\n使用 Java 配置与你刚才所做的非常相似，因此你可以简单地更改流程的最后一部分。注释掉 `SimpleServiceActivator`\
+  \ 消息端点，并将以下代码添加到 `SimpleAnnotationConfiguration` 类的末尾：\n\n```\n@Bean\n@ServiceActivator(inputChannel\
+  \ = \"toLog\")\npublic LoggingHandler logging() {\nLoggingHandler adapter = new\n\
+  LoggingHandler(LoggingHandler.Level.INFO);\nadapter.setLoggerName(\"SIMPLE_LOGGER\"\
+  );\nadapter.setLogExpressionString\n(\"headers.id + ': ' + payload\");\nreturn adapter;\n\
+  }\n```\n\n这段代码将创建一个 `LoggingHandler`（这与 XML 从 `logging-channel-adapter` 标签生成的对象相同）。它将记录带有标头\
+  \ ID 和有效负载的 `SIMPLE_LOGGER` 消息，在本例中为 `\"Hello World\"` 消息。现在尝试发送不同的单词，看看过滤器是否工作，或者尝试更改转换器。\n\
+  \n我知道这是一个简单的示例，但它应该能让你了解 Spring Integration 的工作原理以及如何配置它。客户经常询问是否可以混合配置。当然可以！你很快就会看到这样的示例。\n\
+  \n### 文件集成示例\n\n接下来，让我们看看如何集成文件读取，这是集成系统的一项非常常见的任务。请记住，这是最常见的用例之一。首先打开 `com.apress.messaging.config.SpiFileConfiguration`\
+  \ 类。它应该看起来像代码清单 8-6。\n\n```\n@Configuration\n@EnableConfigurationProperties(SpiProperties.class)\n\
+  public class SpiFileConfigutation {\nprivate SpiProperties props;\nprivate PersonConverter\
+  \ personConverter;\npublic SpiFileConfigutation(SpiProperties props,\nPersonConverter\
+  \ personConverter){\nthis.props = props;\nthis.personConverter = personConverter;\n\
+  }\n@Bean\npublic IntegrationFlow fileFlow(){\nreturn IntegrationFlows\n.from(Files.inboundAdapter(new\
+  \ File\n(this.props.getDirectory())\n.preventDuplicates(true)\n.patternFilter(\n\
+  this.props.getFilePattern()),\ne -> e.poller(Pollers.fixedDelay(5000L)))\n.split(Files.splitter().markers())\n\
+  .filter(p -> !(p instanceof FileSplitter.FileMarker))\n.transform(Transformers.converter(personConverter))\n\
+  .handle(\"simpleMessageHandler\",\"process\")\n.get();\n}\n}\n代码清单 8-6.\ncom.apress.messaging.config.SpiFileConfiguration.java\n\
+  ```\n\n代码清单 8-6 向我们展示了在此示例中将使用的集成流程。此流程读取文件内容（来自文件系统），将内容转换为对象（在本例中转换为 `Person`\
+  \ 对象），并处理消息以执行任何额外的逻辑。让我们详细分析这个过程：\n\n*   `from`：这是一个重载方法，通常在其中传递 `MessageSource`。在本例中，我们传递了两个值——`Files.inboundAdapter`\
+  \ 和一个接收 `SourcePollingChannelAdapterSpec` 的 `Consumer`。在这里，我们使用 Lambda 表达式，通过 `Pollers`\
+  \ 类每五秒轮询一次文件系统以查找新文件。\n*   `Files`：这是一个开箱即用的协议适配器。你只需要配置它。此适配器用于从文件系统获取文件。`Files`\
+  \ 类属于 Spring Integration Java DSL，并提供了几个有用的方法：\n    *   `inboundAdapter`：此适配器包含一个流畅的\
+  \ API，返回一个 `FileInboundChannelAdapterSpec`，它具有如下方法：\n        *   `preventDuplicates`：通过将此设置为\
+  \ `true`，可以避免多次读取同一个文件。\n        *   `patternFilter`：这将有助于查找具有特定名称模式的文件。在此示例中，我们仅从目录（来自\
+  \ `apress.spi.directory` 属性值）读取，并根据模式（来自 `apress.spi.file-pattern` 属性值）读取名称，两者均来自\
+  \ `SpiProperties` 类。\n*   `split`：此方法调用指示参数（可以是 bean、服务、处理器等）可以拆分为单个消息或消息有效负载，并生成多个消息或有效负载。在本例中，我们使用一个\
+  \ `FileMarker`，它在顺序文件处理过程中界定文件数据。\n*   `filter`：因为我们使用标记来查看每条消息的开始和结束，所以我们将接收文件内容作为\
+  \ `FileMarker` 开始，然后是实际内容，最后是 `FileMarker` 结束。这就是为什么我们说，只传递有效负载或内容给我，而不是标记。\n* \
+  \  `transform`：这里我们使用一个 `Transformers` 类来转换消息。这里我们使用一个自定义转换器，你可以在 `com.apress.messaging.integration.PersonConverter.java`\
+  \ 类中查看其代码。\n*   `handle`：这里我们使用一个类来处理消息，通过将 bean 的名称（`simpleMessageHandler`）和将负责处理的方法（`process`；你可以在\
+  \ `com.apress.messaging.integration.SimpleMessageHandler.java` 类中查看代码）作为第一个参数传递。`SimpleMessageHandler`\
+  \ 类只是一个标记了 `@Component` 注解的 POJO。\n\n注意\n\n\n\nSpring Integration Java DSL 目前支持以下协议适配器类：`Amqp`、`Jms`、`Files`、`Sftp`、`Ftp`、`Http`、`Kafka`、`Mail`、`Scripts`\
+  \ 和 `Feed`。这些类位于 `org.springframework.integration.dsl.*` 包中。\n\n要运行代码，只需将以下代码添加到你的主类中。我们将注释掉之前的一些语句。代码应如下所示：\n\
+  \n```\n@EnableIntegration\n@SpringBootApplication\npublic class SpiDemoApplication\
+  \ {\npublic static void main(String[] args) {\nnew SpringApplicationBuilder(SpiDemoApplication.class)\n\
+  .web(false)\n.run(args);\n}\n}\n```\n\n在运行此示例之前，请确保你拥有 `contacts.txt` 文件，该文件包含姓名、出生日期、电话、电子邮件和好友（一个布尔类型，用于标识此人是否为朋友）数据。运行后，你将看到类似于图\
+  \ 8-6 所示的输出。\n\n![A337882_1_En_8_Fig6_HTML.jpg](img/A337882_1_En_8_Fig6_HTML.jpg)\n\
+  \n图 8-6.\n\n应用程序日志\n\n如你所见，这是一种非常简单的与文件集成的方式，通过读取文件内容并对数据执行业务逻辑。\n\n还记得我之前告诉过你，你可以混合使用多种配置\
+  \ Spring Integration 的方式吗？如果你想使用注解来处理消息，该怎么做？你可以使用 `@ServiceActivator` 注解作为配置的一部分（在\
+  \ `SpiFileConfiguration` 类中）：\n\n```\n@ServiceActivator(inputChannel=\"input\")\n\
+  public void process(Person message){\n}\n```\n\n要使用这个服务激活器方法，你需要修改流程。只需将这一行：\n\n\
+  ```\nhandle(\"simpleMessageHandler\",\"process\")\n```\n\n替换为：\n\n```\n.channel(\"\
+  input\")\n```\n\n如果你重新运行示例，将得到相同的结果。请注意，这里并没有定义 `input` 通道。最棒的是，Spring Integration\
+  \ 会自动识别出你需要这个通道，并在后台为你创建一个。\n\n### 文件与 JDBC 集成示例\n\n延续上一个示例，本示例展示了如何将内容直接保存到数据库中，这也是一个常见的集成用例。打开清单\
+  \ 8-7 中所示的 `com.apress.messaging.config.SpiFileToJdbcConfiguration` 类。\n\n```\n\
+  @Configuration\n@EnableConfigurationProperties(SpiProperties.class)\npublic class\
+  \ SpiFileToJdbcConfiguration {\nprivate SpiProperties props;\nprivate PersonConverter\
+  \ personConverter;\npublic SpiFileToJdbcConfigutation(\nSpiProperties props,\nPersonConverter\
+  \ personConverter){\nthis.props = props;\nthis.personConverter = personConverter;\n\
+  }\n@Bean\npublic IntegrationFlow fileToJdbcFlow(){\nreturn IntegrationFlows\n.from(Files.inboundAdapter(\n\
+  new File(this.props.getDirectory()))\n.preventDuplicates(true)\n.patternFilter(\n\
+  this.props.getFilePattern()),\ne -> e.poller(Pollers.fixedDelay(5000L)))\n.split(Files.splitter().markers())\n\
+  .filter(p -> !(p instanceof FileSplitter.FileMarker))\n.transform(Transformers.converter(personConverter))\n\
+  .filter(\"payload.isFriend()\")\n.channel(\"input\")\n.get();\n}\n}\n清单 8-7.\ncom.apress.messaging.config.SpiFileToJdbcConfiguration.java\n\
+  ```\n\n清单 8-7 向你展示了新的集成流程，它将读取相同的 `contacts.txt` 文件。在将其转换为 `Person` 对象后，我们添加了一个额外的过滤器，只有是朋友的\
+  \ `Person` 才会持久化到数据库中。如果你在应用过滤器后查看，我们会将其发送到另一个名为 `input` 的通道。\n\n请记住，你可以混合使用多种方式来编写集成流程。在编写本书时，我们使用的是\
+  \ Spring Integration Java DSL 的 v1.2.1.RELEASE 版本，到目前为止，Spring Integration 团队尚未实现\
+  \ JDBC 协议适配器。但别担心，我们将使用 XML 将这些信息保存到数据库中。打开 `src/main/resources/META-INF/spring/integration/spi-file-to-jdbc.xml`\
+  \ 文件。参见清单 8-8。\n\n```\n清单 8-8.\nspi-file-to-jdbc.xml 文件\n```\n\n清单 8-8 展示了 XML 配置。我们来分析一下：\n\
+  \n*   `<int-jdbc:outbound-channel-adapter/>`：这是一个 JDBC 协议适配器，该标签用于所有出站 JDBC 操作。它具有不同的属性：\n\
+  \    *   `data-source`：此属性引用一个 `DataSource`。`DataSource` 包含你要连接的数据库的所有必要信息，包括 URL、用户名、密码和驱动程序。在此例中，我们引用了一个名为\
+  \ `dataSource` 的 bean，但这个 bean 在哪里定义的呢？这就是 Spring Boot 的美妙之处，你无需声明它。如果你查看 `pom.xml`\
+  \ 文件，会发现其中一个依赖项是 H2 数据库引擎。这意味着 Spring Boot（因为它是一个有主见的运行时）会将 H2（内存数据库）配置为默认数据库。\n\
+  \    *   `channel`：此属性是消息来源的输入通道。在此例中，它是一个 `Person` 对象。\n    *   `query`：此属性是当 `Person`\
+  \ 对象到达时将执行的 SQL 语句，如果你仔细看，我们是将 `Person` 对象作为有效负载引用的。\n\n接下来，让我们看看如何将此配置添加到集成流程中。你已经知道怎么做了。打开\
+  \ `com.apress.messaging.SpiDemoApplication` 类。参见清单 8-9。\n\n```\n@ImportResource(\"\
+  META-INF/spring/integration/spi-file-to-jdbc.xml\")\n@EnableIntegration\n@SpringBootApplication\n\
+  public class SpiDemoApplication {\npublic static void main(String[] args) {\nnew\
+  \ SpringApplicationBuilder(SpiDemoApplication.class)\n.web(true)\n.run(args);\n\
+  }\n}\n清单 8-9.\ncom.apress.messaging.SpiDemoApplication.java\n```\n\n清单 8-9 展示了主应用程序的版本，正如你已经知道的，我们需要使用\
+  \ `@ImportResource` 注解来包含 XML 配置。这次我们将启用 Web，因为 H2 引擎提供了 `/h2-console` 映射，这样我们就可以查看数据库和表。\n\
+  \n如果你运行应用程序，将看到通常的日志。在浏览器中查看 `http://localhost:8080/h2-console`。参见图 8-7 和图 8-8。\n\
+  \n![A337882_1_En_8_Fig8_HTML.jpg](img/A337882_1_En_8_Fig8_HTML.jpg)\n\n图 8-8.\n\n\
+  /h2-console、表和查询视图\n\n![A337882_1_En_8_Fig7_HTML.jpg](img/A337882_1_En_8_Fig7_HTML.jpg)\n\
+  \n图 8-7.\n\n/h2-console 端点\n\n图 8-7 展示了 `/h2-console` 端点。Spring Boot 默认在内存中创建 `testdb`，这就是为什么你的\
+  \ URL 是 `jdbc:h2:mem:testdb`。\n\n图 8-8 展示了 `Person` 表。如果你执行 `SELECT * FROM PERSON`\
+  \ SQL 语句，将得到该结果。现在你只有来自 `contacts.txt` 中标记为朋友的人（请记住我们在流程中添加的额外过滤器）。\n\n还有一个问题：Spring\
+  \ Boot 是如何告诉 H2 引擎创建名为 `Person` 的表的？嗯，在某些时候，我们需要给 Spring Boot 一点帮助。如果 Spring Boot\
+  \ 在类路径中找到名为 `data.sql` 或 `schema.sql` 的文件，它将尝试处理这些文件。在项目中，你会找到定义该表的 `schema.sql`\
+  \ 文件。\n\n\n\n### AMQP 集成示例\n\n还记得在之前的章节中，我们使用 RabbitMQ 创建了一个生产者和消费者。在本节中，我将向您展示如何使用\
+  \ Spring Integration 中的 AMQP 协议适配器。这些适配器本身已经充当了生产者和消费者的角色。如果您需要创建一个涉及 AMQP 的消息系统，可以使用这些适配器，它们将为您提供构建生产级集成解决方案所需的所有灵活性。接下来的示例使用\
+  \ `Rate` 领域对象将汇率发送到队列。\n\n打开 `com.apress.messaging.config.RateConfig` 类。参见清单 8-10。\n\
+  \n```\n@Configuration\n@EnableConfigurationProperties(SpiProperties.class)\npublic\
+  \ class RateConfig {\n@Bean\npublic RabbitTemplate rabbitTemplate(\nConnectionFactory\
+  \ connectionFactory){\nRabbitTemplate template = new\nRabbitTemplate(connectionFactory);\n\
+  template.setMessageConverter(\nnew Jackson2JsonMessageConverter());\nreturn template;\n\
+  }\n@Bean\npublic Queue rateQueue(@Value(\"${apress.spi.queue}\")\nString queue){\n\
+  return new Queue(queue,true);\n}\n@Bean\npublic MessageChannel amqpChannel() {\n\
+  return MessageChannels.direct().get();\n}\n@Bean\npublic IntegrationFlow rateFlow(\n\
+  RabbitTemplate rabbitTemplate, @Value(\"${apress.spi.exchange:}\") String exchange,\n\
+  @Value(\"${apress.spi.queue}\") String queue){\nreturn IntegrationFlows\n.from(\"\
+  amqpChannel\")\n.handle(Amqp\n.outboundAdapter(rabbitTemplate)\n.exchangeName(exchange)\n\
+  .routingKey(queue))\n.get();\n}\n}\n清单 8-10.\ncom.apress.messaging.config.RateConfig.java\n\
+  ```\n\n清单 8-10 向您展示了 `RateConfig` 类，我们在其中定义了集成流。首先，注意一些熟悉的对象（RabbitMQ 的 Java 配置），例如设置了\
+  \ `Jackson2JsonMessageConverter` 的 `RabbitTemplate` 以及队列的创建。\n\n`amqpChannel` bean\
+  \ 的创建方式是新的。我使用了 `MessageChannels`（注意类名末尾的 `s`），它提供了一个用于创建通道的流畅 API。在本例中，它创建了一个 `direct`\
+  \ 通道。\n\n在集成流中，我使用了 `Amqp`（类）协议适配器。在这种情况下，由于我们要发送消息，因此使用了 `outboundAdapter`。此适配器将接收\
+  \ `rabbitTemplate`、交换机名称和路由键。生产者就是 `Amqp.outboundAdapter` 协议适配器。\n\n#### AMQP 生产者\n\
+  \n在运行此示例之前，请记住 RabbitMQ 需要启动并运行。在您的主应用程序中，添加以下代码：\n\n```\n@Bean\nCommandLineRunner\
+  \ processRate(MessageChannel amqpChannel){\nreturn args -> {\namqpChannel.send(\n\
+  MessageBuilder.withPayload(new Rate(\"EUR\",0.88857F,new Date())).build());\namqpChannel.send(\n\
+  MessageBuilder.withPayload(new Rate(\"JPY\",102.17F,new Date())).build());\namqpChannel.send(\n\
+  MessageBuilder.withPayload(new Rate(\"MXN\",19.232F,new Date())).build());\namqpChannel.send(\n\
+  MessageBuilder.withPayload(new Rate(\"GBP\",0.75705F,new Date())).build());\n};\n\
+  }\n```\n\n从这段代码片段中可以看到，我们正在使用 `amqpChannel` 并将 `Rate` 作为消息发送。如果您运行它，请查看您的 RabbitMQ\
+  \ Web 控制台，您会看到 `spi.rate` 队列中有四条 JSON 格式的消息。\n\n#### AMQP 消费者\n\n如果您需要一个消费者，您将使用\
+  \ `inboundAdapter`。您可以在 `RateConfig` 类中使用以下代码：\n\n```\n@Bean IntegrationFlow incomingRateFlow(\n\
+  ConnectionFactory connectionFactory,\n@Value(\"${apress.spi.queue}\") String queue){\n\
+  return IntegrationFlows\n.from(Amqp.inboundAdapter(connectionFactory,queue)\n.messageConverter(new\
+  \ Jackson2JsonMessageConverter()))\n.handle(\"simpleMessageHandler\",\"process\"\
+  )\n.get();\n}\n```\n\n这段代码向您展示了消费者，其中使用了 `Amqp.inboundAdapter`，通过传递 `connectionFactory`、`queue`、转换器，并由\
+  \ `simpleMessageHandler` bean 处理。\n\n注意\n\n如果您对 `ConnectionFactory` 引用有疑问，请记住 Spring\
+  \ Boot 会自动配置它。如果您想连接到远程服务器，只需在 `application.properties` 文件中添加 `spring.rabbitmq.*`\
+  \ 属性。\n\n## 货币兑换项目\n\n基于您在之前章节中学到的知识，假设货币兑换项目将开始通过文件接收新汇率，然后同时将它们发送到 RabbitMQ 队列和一个已处理的文件。您如何实现此功能？您需要一种将消息发送给两个接收者的方法。\n\
+  \n尝试在不查看代码的情况下解决此问题。`rest-api-si` 项目包含解决方案。您可以在 `RateSpiConfig` 和 `RateServiceActivator`\
+  \ 类中看到代码。提示：我使用了收件人列表模式。对于写入文件，如果我使用了 `Files.inboundAdapter`，那么我应该用什么来写入文件？\n\n\
+  ## 总结\n\n本章涵盖了企业集成模式，并讨论了 Spring Integration 模块如何为您提供所有必要的组件，以使用 Spring Boot 创建企业级和集成解决方案。\n\
+  \n它向您展示了使用 Spring Boot 进行 Spring Integration 编程的不同方式。还向您展示了如何结合 XML、Java 配置和注解来创建集成应用程序。\n\
+  \n为什么 Spring Integration 很重要？下一章将展示 Spring Cloud Stream 技术基于 Spring Integration，并且是使用所有这些组件的更简单方法。\n\
+  \n"
+- "# 9. 使用 Spring Cloud Stream 进行消息传递\n\n到目前为止，您已经了解了所有可用的消息传递技术。使用 Spring 框架和 Spring\
+  \ Boot 使开发人员和架构师能够轻松创建健壮的消息传递解决方案。本章向前迈出了新的一步，进入了新的云原生应用程序开发领域。\n\n本章涵盖 Spring Cloud\
+  \ Stream，以及这项新技术如何帮助您编写消息驱动的微服务应用程序。\n\n## Spring Cloud\n\n在我开始讨论 Spring Cloud Stream\
+  \ 的内部机制和用法之前，让我们先了解一下它的父项目：Spring Cloud。\n\nSpring Cloud 是一套工具，允许开发人员创建使用分布式系统中常见模式的应用程序，从配置管理、服务发现、断路器、智能路由、微代理、控制总线、全局锁、分布式会话、服务间调用、分布式消息传递等等。这些分布式模式也将在微服务章节中介绍。\n\
+  \n基于 Spring Cloud，我们有多个项目，包括 Spring Cloud Config、Spring Cloud Netflix、Spring Cloud\
+  \ Bus、Spring Cloud for Cloud Foundry、Spring Cloud Cluster、Spring Cloud Stream、Spring\
+  \ Cloud Stream App Starters 等等。\n\n如果您想立即开始使用这些技术中的任何一种，您需要在 `pom.xml` 文件中添加三样东西：\n\
+  \n*   添加带有 `spring-boot-starter-parent` 的 `<parent/>` 标签。例如：\n\n    ```\n    org.springframework.boot\n\
+  \    spring-boot-starter-parent\n    1.4.4.RELEASE\n\n    ```\n\n*   添加带有 `GA` 版本的\
+  \ `<dependencyManagement/>` 标签。例如：\n\n    ```\n\n    org.springframework.cloud\n\
+  \    spring-cloud-dependencies\n    Camden.SR5\n    pom\n    import\n\n    ```\n\
+  \n*   在 `<dependencies/>` 标签中添加您想要使用的技术。例如：\n\n    ```\n\n    org.springframework.cloud\n\
+  \    spring-cloud-starter-stream-rabbit\n\n    ```\n\n如果您深入研究 Spring Cloud 注解的 `pom.xml`\
+  \ 文件，您会看到命名约定现在是 `spring-cloud-starter-<要使用的技术>`。还要注意，我们添加了一个依赖管理标签，它允许我们处理所有传递依赖和库版本管理。\n\
+  \n\n\n## Spring Cloud Stream\n\n是时候来谈谈 Spring Cloud Stream 了。这是本章的重点，因为本书讨论的是消息传递，也因为\
+  \ Spring Cloud Stream 是一个轻量级的消息驱动微服务框架。它基于 Spring Integration 和 Spring Boot（提供了一套便于配置的、固执己见的运行时），这意味着你可以轻松创建企业级的消息传递和集成解决方案应用。它提供了一个简单的声明式模型，用于使用\
+  \ RabbitMQ 或 Apache Kafka 发送和接收消息。\n\n我认为 Spring Cloud Stream 最重要的特性之一，是通过创建开箱即用的绑定，实现了生产者和消费者之间的消息解耦。换句话说，你无需在应用程序中添加特定于代理的代码来生产或消费消息。你只需将所需的绑定（稍后我会解释）依赖项添加到应用程序中，Spring\
+  \ Cloud Stream 就会处理消息的连接和通信。\n\n下一节将介绍 Spring Cloud Stream 的主要组件。\n\n### Spring\
+  \ Cloud Stream 概念\n\n让我们来看看 Spring Cloud Stream 的主要组件：\n\n*   **应用模型**：应用模型只是一个与中间件无关的核心，这意味着应用程序将通过绑定器实现，使用输入和输出通道与外部代理（作为消息传输方式）进行通信。\n\
+  *   **绑定器抽象**：Spring Cloud Stream 目前提供了 Kafka 和 RabbitMQ 的绑定器实现。这种抽象使得 Spring Cloud\
+  \ Stream 应用能够连接到中间件。但是，这种抽象如何知道目标呢？它可以在运行时根据通道动态选择目标。通常，我们需要通过 `application.properties`\
+  \ 文件中的 `spring.cloud.stream.bindings.[input|ouput].destination` 属性来提供这些信息。我将在查看示例时讨论这一点。\n\
+  *   **持久化发布/订阅**：应用程序通信将通过众所周知的发布/订阅模型进行。如果使用 Kafka，它将遵循其自身的主题/订阅者模型；如果使用 RabbitMQ，它将创建一个主题交换器并为每个队列创建必要的绑定。该模型降低了生产者和消费者的复杂性。\n\
+  *   **消费者组**：你会发现你的消费者在某些时候需要能够进行扩展。可扩展性可以通过使用消费者组的概念来实现（这类似于 Kafka 消费者组的功能），你可以在一个组中拥有多个消费者以实现负载均衡场景。这使得扩展需求非常容易设置。\n\
+  *   **分区支持**：Spring Cloud Stream 支持数据分区，允许多个生产者向多个消费者发送数据，并确保公共数据由相同的消费者实例处理。这有利于提高数据的一致性和性能。\n\
+  *   **绑定器 API**：Spring Cloud Stream 提供了一个 API 接口。它实际上是一个绑定器 SPI（服务提供者接口），你可以通过修改原始代码来扩展核心功能，因此很容易实现特定的绑定器，例如\
+  \ JMS、WebSockets 等。\n\n本节涵盖了编程模型和绑定器。如果你想了解更多关于其他概念的信息，可以查看 Spring Cloud Stream\
+  \ 参考文档。这里的目的只是向你展示如何开始使用 Spring Cloud Stream 创建事件驱动的微服务。为了向你展示我们将要涵盖的内容，请查看图 9-1。\n\
+  \n![A337882_1_En_9_Fig1_HTML.gif](img/A337882_1_En_9_Fig1_HTML.gif)\n\n图 9-1.\n\n\
+  Spring Cloud Stream 应用\n\n## Spring Cloud Stream 编程\n\n参照图 9-1，考虑一下创建一个 Spring Cloud\
+  \ Stream 应用需要什么：\n\n*   `<dependencyManagement/>`：你需要添加此标签以及最新的 Spring Cloud 库依赖项。\n\
+  *   **绑定器**：你需要选择需要哪种类型的绑定器：\n    *   **Kafka**：如果你选择 Kafka 作为绑定器，则需要添加以下依赖项：\n\n\
+  ```\n        org.springframework.cloud\n        spring-cloud-starter-stream-kafka\n\
+  \n```\n\n*   **RabbitMQ**：如果你选择 RabbitMQ 作为绑定器，则需要添加以下依赖项：\n\n```\n        org.springframework.cloud\n\
+  \        spring-cloud-starter-stream-rabbit\n\n```\n\n你还必须确保 Kafka 或 RabbitMQ 已启动并正在运行。你甚至可以同时使用两者。你可以在\
+  \ `application.properties` 或 `application.yml` 文件中配置它们。\n*   `@EnableBinding`：这是一个\
+  \ Spring Boot 应用，因此只需添加 `@EnableBinding` 即可将应用转换为 Spring Cloud Stream。\n\n以下部分将向你展示如何使用\
+  \ RabbitMQ 作为传输层，从一个应用程序向另一个应用程序发送和接收消息，而无需了解代理 API 的任何细节，也无需配置生产者或消费者消息。\n\nSpring\
+  \ Cloud Stream 使用通道（输入/输出）作为发送和接收消息的机制。一个 Spring Cloud Stream 应用可以有任意数量的通道，并定义了两个注解：`@Input`\
+  \ 和 `@Output`。这些注解有助于区分消费者和生产者。通常，`SubscribableChannel` 类会使用 `@Input` 注解标记，而 `MessageChannel`\
+  \ 类会使用 `@Output` 注解标记。它们分别用于监听传入消息和发送传出消息。\n\n`SubscribableChannel` 和 `MessageChannel`\
+  \ 接口应该从 Spring Integration 章节中就很熟悉了。还记得我告诉过你 Spring Cloud Stream 是基于 Spring Integration\
+  \ 的吗？\n\n如果你不想直接处理这些通道和注解，Spring Cloud Stream 通过添加三个涵盖了最常见消息传递用例的接口来简化操作：Source、Processor\
+  \ 和 Sink。在幕后，这些接口拥有你的应用所需的正确通道（输入/输出）：\n\n*   **Source**：Source 用于从外部系统（通过监听队列、REST\
+  \ 调用、文件系统、数据库查询等）摄取数据，并通过输出通道发送数据的应用程序。这是 Spring Cloud Stream 的实际接口：\n\n```\n  \
+  \  public interface Source {\n    String OUTPUT = \"output\";\n    @Output(Source.OUTPUT)\n\
+  \    MessageChannel output();\n    }\n    ```\n\n*   **Processor**：当你想要开始监听输入通道以获取新的传入消息，处理接收到的消息（增强、转换等），然后将新消息发送到输出通道时，可以在应用程序中使用\
+  \ Processor。这是 Spring Cloud Stream 的实际接口：\n\n```\n    public interface Processor\
+  \ extends Source, Sink {\n    }\n    ```\n\n*   **Sink**：当你想要开始监听输入通道以获取新的传入消息，进行一些处理，然后结束流程（保存数据、触发任务、记录到控制台等）时，可以使用\
+  \ Sink 应用程序。这是 Spring Cloud Stream 的实际接口：\n\n```\n    public interface Sink {\n\
+  \    String INPUT = \"input\";\n    @Input(Sink.INPUT)\n    SubscribableChannel\
+  \ input();\n    }\n    ```\n\n图 9-2 和 9-3 展示了我们将要开始使用的模型。\n\n![A337882_1_En_9_Fig3_HTML.gif](img/A337882_1_En_9_Fig3_HTML.gif)\n\
+  \n图 9-3.\n\nSource 到 Processor 到 Sink 模型\n\n![A337882_1_En_9_Fig2_HTML.gif](img/A337882_1_En_9_Fig2_HTML.gif)\n\
+  \n图 9-2.\n\nSource 到 Sink 模型\n\n你可以从本书的源代码中获取所有示例。本章包含多个示例。让我们开始并看一些代码。\n\n\n\n\
+  ### cloud-stream-demo\n\n本项目的目的是展示如何创建一个源（Source），并通过其输出通道发送消息；如何创建一个处理器（Processor），并分别从输入通道接收消息和向输出通道发送消息；以及如何创建一个汇（Sink），并学习如何从输入通道接收消息。实际上，我演示的是图\
+  \ 9-3 所展示的内容，但每次只考虑一个 Stream 应用。\n\n目前，这些应用之间的通信是手动的，这意味着我们需要在中间执行一些步骤，这是因为我希望你能了解每个应用的工作原理。在下一节中，你将看到整个流程是如何运作的。\n\
+  \n#### 源（Source）\n\n我们将从定义一个源开始。请记住，该组件有一个输出通道。打开 `com.apress.messaging.cloud.stream.SimpleSource`\
+  \ 类。它应该如代码清单 9-1 所示。\n\n```\n@EnableBinding(Source.class)\npublic class SimpleSource\
+  \ {\nprivate SimpleDateFormat simpleDate =\nnew SimpleDateFormat(\"HH:mm:ss\");\n\
+  @Bean\n@InboundChannelAdapter(channel=Source.OUTPUT)\npublic MessageSource simpleText(){\n\
+  return () -> MessageBuilder\n.withPayload(\"Hello at \" +\nsimpleDate.format(new\
+  \ Date()))\n.build();\n}\n}\n代码清单 9-1.\ncom.apress.messaging.cloud.stream.SimpleSource.java\n\
+  ```\n\n代码清单 9-1 向你展示了你能拥有的最简单的 `Source` 流应用。让我们来看一下：\n\n*   `@EnableBinding`：此注解会将此类启用为\
+  \ Spring Cloud Stream 应用，并启用通过提供的绑定器发送或接收消息的必要配置。\n*   `Source`：此接口将 Spring Cloud\
+  \ Stream 应用标记为源流。它将创建必要的通道；在本例中，即用于向提供的绑定器发送消息的输出通道。\n*   `@InboundChannelAdapter`：此注解是\
+  \ Spring Integration 框架的一部分。它每秒轮询一次 `simpleText` 方法。这意味着每秒将发送一条新消息。你可以通过添加一个轮询器并修改默认设置来更改频率和消息数量。例如：\n\
+  \n```\n    @InboundChannelAdapter(value = Source.OUTPUT, poller = @Poller(fixedDelay\
+  \ = \"5000\", maxMessagesPerPoll = \"3\"))\n    ```\n\n此声明中重要的部分是通道，在本例中它指向 `Source.OUTPUT`。这意味着它将使用输出通道（`MessageChannel\
+  \ output()`）。\n*   `MessageSource`：这是一个发送 `Message<T>` 的接口，`Message<T>` 是一个包含有效载荷和头部的包装器。\n\
+  *   MessageBuilder：你已经熟悉这个类了，它发送一个 `MessageSource` 类型。在本例中，我们发送 `\"Hello at – Date\"\
+  ` 作为字符串消息。\n\n在运行示例之前，请确保 RabbitMQ 已启动并运行。接下来，运行示例。你可能看不到太多东西，但后台正在发生一些事情。请按照以下步骤操作：\n\
+  \n1.  在浏览器中打开 RabbitMQ Web 管理界面。访问 `http://localhost:15672`。用户名和密码都是 `guest`。转到“Exchanges”选项卡，如图\
+  \ 9-4 所示。\n\n![A337882_1_En_9_Fig4_HTML.jpg](img/A337882_1_En_9_Fig4_HTML.jpg)\n\
+  \n图 9-4.\n\nRabbitMQ 中的“Exchanges”选项卡 请注意，已创建一个输出（一个主题交换机），消息速率为 1.0/s。  \n2.  接下来，你将创建一个队列，以便将此交换机绑定到该队列。转到“Queues”选项卡，创建一个名为\
+  \ `my-queue` 的新队列。见图 9-5。\n\n![A337882_1_En_9_Fig5_HTML.jpg](img/A337882_1_En_9_Fig5_HTML.jpg)\n\
+  \n图 9-5.\n\nRabbitMQ 的“Queues”选项卡  \n3.  队列创建完成后，它会出现在列表中。接下来，点击 `my-queue` 队列，转到“Bindings”部分，并添加绑定。正确的值见图\
+  \ 9-6。\n\n![A337882_1_En_9_Fig6_HTML.jpg](img/A337882_1_En_9_Fig6_HTML.jpg)\n\n\
+  图 9-6.\n\nRabbitMQ 的“Bindings”选项卡 在“From Exchange”字段中填入值 `output`（这是交换机的名称），在“Routing\
+  \ Key”字段中填入值 `#`。这将允许任何消息进入 `my-queue` 队列。  \n4.  将输出交换机绑定到 `my-queue` 队列几秒钟后，你将开始看到多条消息。打开如图\
+  \ 9-7 所示的“Overview”面板。\n\n![A337882_1_En_9_Fig7_HTML.jpg](img/A337882_1_En_9_Fig7_HTML.jpg)\n\
+  \n图 9-7.\n\nRabbitMQ 的“Overview”选项卡  \n5.  让我们通过打开“Get Messages”面板来查看一条消息。你可以获取任意数量的消息并查看其内容。见图\
+  \ 9-8。\n\n![A337882_1_En_9_Fig8_HTML.jpg](img/A337882_1_En_9_Fig8_HTML.jpg)\n\n\
+  图 9-8.\n\n从 RabbitMQ 获取消息 选择几条消息后，查看其有效载荷。你将每秒收到一条消息。还要注意，消息具有属性，例如包含 `contentType`\
+  \ `: text/plain` 和 `delivery_mode: 2` 的头部（这意味着消息正在被持久化）。这就是 Spring Cloud Stream\
+  \ 及其绑定器如何连接到 RabbitMQ 以发布消息的方式。\n\n\n\n#### 处理器\n\n本示例使用一个监听器来处理通道输入（所有传入消息的到达位置）。该监听器将获取字符串消息，将其转换为大写，然后将字符串发送到输出通道。\n\
+  \n打开 `com.apress.messaging.cloud.stream.SimpleProcessor` 类。它应该如代码清单 9-2 所示。\n\n\
+  ```\n@EnableBinding(Processor.class)\npublic class SimpleProcessor {\n@StreamListener(Processor.INPUT)\n\
+  @SendTo(Processor.OUTPUT)\npublic String transformToUpperCase(String message) {\n\
+  return message.toUpperCase();\n}\n}\n代码清单 9-2.\ncom.apress.messaging.cloud.stream.SimpleProcessor.java\n\
+  ```\n\n代码清单 9-2 展示了一个简单的处理器流。我们来回顾一下：\n\n*   `@EnableBinding`：此注解会将此类启用为 Spring\
+  \ Cloud Stream 应用程序，并启用通过提供的绑定器发送或接收消息的必要配置。\n*   `Processor`：此接口将 Spring Cloud\
+  \ Stream 应用标记为处理器流。它将创建必要的通道。在本例中，它创建了输入通道（用于监听新的传入消息）和输出通道（用于向提供的绑定器发送消息）。\n* \
+  \  `@StreamListener`：此注解是 Spring Cloud Stream 框架的一部分，与 `@RabbitListener` 和 `@JmsListener`\
+  \ 非常相似。它将监听 `Processor.INPUT` 通道（`SubscribableChannel input()`）中的新传入消息。\n*   `@SendTo`：你已经了解此注解；它与我们在前几章中使用的注解相同。其任务相同，你可以将其视为回复或生产者。它将向\
+  \ `Processor.OUTPUT` 通道（`MessageChannel output()`）发送一条消息。\n\n这是一个简单但很好的示例，展示了你可以使用处理器流做什么。在运行之前，请确保注释掉\
+  \ `SimpleSource` 类中的 `@EnableBinding` 注解，并删除 `output` 交换器和 `my-queue` 队列。\n\n运行示例。同样，应用程序并没有做太多事情，但让我们转到\
+  \ RabbitMQ Web 管理界面。\n\n1.  打开浏览器，访问 `http://localhost:15672` 站点（用户名和密码均为 `guest`）。点击“Exchanges”选项卡，你将看到相同的输出交换器和一个新的输入交换器被创建。请记住，处理器流将使用输入和输出通道。见图\
+  \ 9-9。\n\n![A337882_1_En_9_Fig9_HTML.jpg](img/A337882_1_En_9_Fig9_HTML.jpg)\n\n\
+  图 9-9.\n\nRabbitMQ 的 Exchanges 选项卡 请注意，任何新交换器中都不再显示消息速率。  \n2.  接下来，转到“Queues”选项卡。注意，创建了一个名为\
+  \ `input.anonymous` 的新队列，其中包含随机文本。见图 9-10。\n\n![A337882_1_En_9_Fig10_HTML.jpg](img/A337882_1_En_9_Fig10_HTML.jpg)\n\
+  \n图 9-10.\n\nRabbitMQ 的 Queues 选项卡\n\n基本上就是这样；`SimpleProcessor` 流创建了输出交换器和 `input.anonymous.*`\
+  \ 队列，这意味着该流已连接到绑定器，在本例中为 RabbitMQ。所以你可能会想如何发送消息。有几种不同的方法，其中一种是使用 RabbitMQ 模拟消息。你也可以通过编程方式发送。以下各节将展示这两种方法。\n\
+  \n我们将创建一个名为 `my-queue` 的队列，并将其绑定到输出，这与你在源流示例中所做的非常相似。\n\n1.  转到“Queues”选项卡，创建一个名为\
+  \ `my-queue` 的队列。使用路由键 `#` 将其绑定到 `output` 交换器。这类似于源流示例中的步骤 2 和 3。请注意，`input.anonymous.*`\
+  \ 队列与 `input` 交换器有一个绑定。  \n2.  现在，我们将使用 `input` 交换器发送一条消息。转到“Exchanges”选项卡，点击 `input`\
+  \ 交换器。选择“Publish Message”面板。在“Payload”字段中添加以下文本：`this is just a test`。见图 9-11。\n\
+  \n![A337882_1_En_9_Fig11_HTML.jpg](img/A337882_1_En_9_Fig11_HTML.jpg)\n\n图 9-11.\n\
+  \n从 RabbitMQ 发布消息 然后点击“Publish Message”按钮。应该会出现一条显示 `Message Published` 的消息。  \n\
+  3.  接下来，查看日志。你应该会看到类似于图 9-12 所示的内容。\n\n![A337882_1_En_9_Fig12_HTML.jpg](img/A337882_1_En_9_Fig12_HTML.jpg)\n\
+  \n图 9-12.\n\n应用程序日志 如果你查看 `my-queue` 队列并获取消息，应该会得到几乎相同的结果。见图 9-13。\n\n![A337882_1_En_9_Fig13_HTML.jpg](img/A337882_1_En_9_Fig13_HTML.jpg)\n\
+  \n图 9-13.\n\n从 RabbitMQ 获取消息 等等！我们似乎得到了一些数组，这些数组没有被转换为大写。如果你分析代码，这些是 ASCII 码，但什么也没发生。这是因为输入通道接收到的文本被\
+  \ RabbitMQ 转换成了字节数组。我们可以修复这个问题。  \n4.  在修复之前，通过点击队列页面末尾的“Purge”按钮清除队列中的消息。现在你从一个空队列开始。\
+  \  \n5.  回到“Input”交换器。现在我们将传递一个包含 `content_type: text/plain` 的标头，这样 RabbitMQ 就不会将其更改为字节数组。见图\
+  \ 9-14。\n\n![A337882_1_En_9_Fig14_HTML.jpg](img/A337882_1_En_9_Fig14_HTML.jpg)\n\
+  \n图 9-14.\n\n在 RabbitMQ 中更改为 text/plain 发布消息并查看日志。处理器现在返回 `THIS IS JUST A TEST`。\
+  \  \n6.  最后，查看 `my-queue` 队列并获取消息。你应该会看到文本已转换为大写，如图 9-15 所示。\n\n![A337882_1_En_9_Fig15_HTML.jpg](img/A337882_1_En_9_Fig15_HTML.jpg)\n\
+  \n图 9-15.\n\n文本现在是大写的\n\n如果你想设置其他内容类型，比如 Java 对象、JSON 对象或 XML 对象，会发生什么？在 RabbitMQ\
+  \ 级别修改这会很麻烦。应该有其他方法，确实有！这只是一个尝试发送消息并观察处理器流行为的示例；在实际应用中，你绝不会像这样使用 RabbitMQ。你只会用它来监控消息速率，仅此而已。\n\
+  \n因此，为了使用内容类型，你必须向 `application.properties`（或 `application.yml`）文件中添加一个属性，该属性允许将任何消息转换为指定的类型。在本例中，你使用以下属性：\n\
+  \n```\nspring.cloud.stream.bindings.input.content-type=text/plain\n```\n\n这里的关键是\
+  \ `input` 属性。注意，我们传递了 `content-type`。如果你进行更改并重新启动应用程序，现在可以在不添加任何标头或属性的情况下发送消息（小写），并且你应该会在日志和\
+  \ `my-queue` 队列中看到大写的文本。\n\n我提到过你可以通过编程方式发送消息。你可以通过将以下功能添加到主类来实现。见代码清单 9-3。\n\n\
+  ```\n@SpringBootApplication\npublic class CloudStreamDemoApplication {\npublic static\
+  \ void main(String[] args) {\nSpringApplication.run(\nCloudStreamDemoApplication.class,\
+  \ args);\n}\n@Bean\nCommandLineRunner sourceSender(MessageChannel input){\nreturn\
+  \ args ->{\ninput\n.send(MessageBuilder\n.withPayload(\"hello world\")\n.build());\n\
+  };\n}\n}\n代码清单 9-3.\ncom.apress.messaging.CloudStreamDemoApplication.java\n```\n\
+  \n如果你运行应用程序，大写的 `HELLO WORLD` 会出现在日志和 `my-queue` 队列中。如你所见，我们使用了一个你已经从 Spring Integration\
+  \ 中了解的方法，即 `MessageChannel` 接口。这里有趣的是，Spring 知道要注入哪个通道。请记住，`@Processor` 注解暴露了 `input`\
+  \ 通道。\n\n\n\n#### Sink（接收端）\n\nSink 流会创建一个输入通道来监听新的传入消息。打开 `com.apress.messaging.cloud.stream.SimpleSink`\
+  \ 类。参见代码清单 9-4。\n\n```\n@EnableBinding(Sink.class)\npublic class SimpleSink {\n\
+  @StreamListener(Sink.INPUT)\npublic void process(String message){\n}\n}\n代码清单 9-4.\n\
+  com.apress.messaging.cloud.stream.SimpleSink.java\n```\n\n代码清单 9-4 展示了一个 Sink 流，您已经了解这些注解的作用。`@EnableBinding`\
+  \ 会将此类转换为一个 `Source` 流，并通过 `@StreamListener` 和 `Sink.INPUT` 通道监听新的传入消息。`Sink.INPUT`\
+  \ 会创建一个输入通道（`SubscribableChannel input()`）。\n\n如果您使用与代码清单 9-3 相同的配置并运行应用程序，请查看 RabbitMQ\
+  \ 管理界面。您会看到 `input` 交换机和 `input.anonymous.*` 相互绑定。在日志级别中，您应该会看到类似图 9-16 的内容。\n\n\
+  ![A337882_1_En_9_Fig16_HTML.jpg](img/A337882_1_En_9_Fig16_HTML.jpg)\n\n图 9-16.\n\
+  \n应用程序日志\n\n请记住，Sink 流会对接收到的消息执行一些额外操作，但它会终止整个流程。\n\n到目前为止，我所解释的内容并没有做太多事情，因为我希望您先了解其内部工作原理。现在，让我们考虑一个真实场景，在这个场景中，我们实际创建一个完整的流程，并观察各个流如何在不进入\
+  \ RabbitMQ 管理界面的情况下相互通信。\n\n### 微服务\n\n尽管有一章专门讨论微服务，但本节将触及这种利用新概念创建可扩展、高可用性应用程序的新方式。最重要的部分是能够通过消息传递在流之间进行通信。您应该将每个流（每个\
+  \ Source、Processor 和 Sink）视为一个微服务。\n\n#### 示例功能\n\n此列表包含了本示例所需的一些功能（需求）。这是一个完整的流程，允许我们打印电影票。以下是需求：\n\
+  \n*   所有人员信息均以 CSV 格式接收，并存储在 `contacts.txt` 文件中。\n*   每个人包含名字、姓氏、出生日期、电话、电子邮件和是否为朋友字段。朋友字段是一个布尔值，用于指示此人是否为朋友。\n\
+  *   读取 `contacts.txt` 文件后，示例必须处理每个人，然后根据以下规则创建电影票：\n    *   如果此人是朋友，则他/她可以获得免费爆米花。\n\
+  \    *   如果此人是朋友，则电影免费；否则，费用为 15.75 美元。\n    *   为电影票设置过期日期。它们在一周内有效。\n*   电影票必须以\
+  \ JSON 格式发送到队列，以便其他客户端易于读取。\n*   可选。为朋友和非朋友创建单独的队列。\n\n对于此流程，我创建了三个独立的项目：`cloud-stream-source-demo`、`cloud-stream-processor-demo`\
+  \ 和 `cloud-stream-sink-demo`。每个项目都需要独立运行，并且必须按以下顺序启动：sink、processor，最后是 source。\n\
+  \n接下来的部分将解释这三个项目的主要代码。\n\n#### cloud-stream-source-demo\n\n打开 `com.apress.messaging.cloud.stream.PersonFileSource`\
+  \ 类。参见代码清单 9-5。\n\n```\n@EnableBinding(Source.class)\npublic class PersonFileSource\
+  \ {\nprivate PersonFileProperties props;\nprivate PersonConverter personConverter;\n\
+  public PersonFileSource(\nPersonFileProperties props,\nPersonConverter personConverter){\n\
+  this.props = props;\nthis.personConverter = personConverter;\n}\n@Bean\npublic IntegrationFlow\
+  \ fileFlow(){\nreturn IntegrationFlows\n.from(Files.inboundAdapter(\nnew File(this.props.getDirectory()))\n\
+  .preventDuplicates(true)\n.patternFilter(this.props.getNamePattern()),\ne -> e.poller(Pollers.fixedDelay(5000L)))\n\
+  .split(Files.splitter().markers())\n.filter(p -> !(p instanceof FileSplitter.FileMarker))\n\
+  .transform(Transformers.converter(personConverter))\n.channel(Source.OUTPUT)\n.get();\n\
+  }\n}\n代码清单 9-5.\ncom.apress.messaging.cloud.stream.PersonFileSource.java\n```\n\n\
+  代码清单 9-5 展示了 Source 流。请注意，它使用 `IntegrationFlow` 类来创建文件读取，并进行少量转换以生成 `Person` 对象。然后将其发送到\
+  \ `Source.OUTPUT` 通道。\n\n接下来，打开 `application.properties`。参见代码清单 9-6。\n\n```\nserver.port=${port:8081}\n\
+  spring.cloud.stream.bindings.output.destination=person\napress.stream.file.directory=.\n\
+  apress.stream.file.name-pattern=*.txt\n代码清单 9-6.\nsrc/main/resources/application.properties\n\
+  ```\n\n代码清单 9-6 展示了 `application.properties` 文件。如您所见，如果在运行时未指定端口参数，它将在端口 `8081`\
+  \ 启动。这里重要的是 `output.destination` 允许我们创建一个名为 `person` 的通道。为什么需要这样做？请记住，流（source、processor\
+  \ 和 sink）使用相同的通道名称。如果我们不更改目标，则不会处理任何文件。如果我们从 source 启动，source 需要发送到输出，但 processor\
+  \ 也有一个输出，那么将使用哪个通道？这里存在冲突。这就是为什么我们需要添加目标。一旦您运行此示例，就会变得清晰。\n\n#### cloud-stream-processor-demo\n\
+  \n打开 `com.apress.messaging.cloud.stream.PersonTicketProcessor` 类。参见代码清单 9-7。\n\n\
+  ```\n@EnableBinding(Processor.class)\npublic class PersonTicketProcessor {\nprivate\
+  \ List movieTitles =\nArrays.asList(\"死侍 2\"\n,\"超人总动员 2\"\n,\"阿凡达 2\",\"人猿泰山 2\"\
+  \n,\"赛车总动员 3\");\nprivate Random rand = new Random();\n@StreamListener(Processor.INPUT)\n\
+  @SendTo(Processor.OUTPUT)\npublic Ticket process(Person person) {\nTicket ticket\
+  \ = new Ticket();\nticket.setPerson(person);\nticket.setMovieTitle(\nmovieTitles.get(\n\
+  rand.nextInt(movieTitles.size())));\nticket.setFreePopcorn(person.isFriend());\n\
+  ticket.setCost(person.isFriend() ? 0.0f: 15.75f);\nticket.setValidUntil(\nnew DateTime(new\
+  \ Date()).plusWeeks(1).toDate());\nreturn ticket;\n}\n}\n代码清单 9-7.\ncom.apress.messaging.cloud.stream.PersonTicket.java\n\
+  ```\n\n代码清单 9-7 展示了 Processor 流。如您所见，没有新内容。我们接收一个 person 对象，但返回一个 ticket 对象，当然，我们根据需求执行了逻辑。\n\
+  \n接下来，打开 `application.properties` 文件。参见代码清单 9-8。\n\n```\nserver.port=${port:8082}\n\
+  spring.cloud.stream.bindings.input.destination=person\nspring.cloud.stream.bindings.output.destination=tickets\n\
+  spring.cloud.stream.bindings.output.content-type=application/json\nspring.jackson.date-format=yyyy-MM-dd\n\
+  代码清单 9-8.\nsrc/main/resources/application.properties\n```\n\n代码清单 9-8 展示了 `application.properties`\
+  \ 文件。请记住，Processor 流具有输入和输出通道，因此我们需要通过为每个通道添加目标来重命名它们。输入通道将命名为 `person`，输出通道将命名为\
+  \ `tickets`。\n\n回想一下，其中一个需求是让票证采用 JSON 格式，这就是我们将 `content-type` 设置为 `application/json`\
+  \ 的原因。这将使用 Jackson 库将票证转换为 JSON 格式。最后，我们添加了更好的日期格式。\n\n\n\n#### cloud-stream-sink-demo\n\
+  \n打开 `com.apress.messaging.cloud.stream.TicketSink` 类。参见代码清单 9-9。\n\n```\n@EnableBinding(Sink.class)\n\
+  public class TicketSink {\n@Bean\npublic IntegrationFlow toAmqp(\nRabbitTemplate\
+  \ rabbitTemplate,\n@Value(\"${ticket.exchange:}\") String exchange,\n@Value(\"${ticket.queue}\"\
+  ) String queue){\nreturn IntegrationFlows\n.from(Sink.INPUT)\n.handle(\nAmqp\n.outboundAdapter(rabbitTemplate)\n\
+  .exchangeName(exchange)\n.routingKey(queue))\n.get();\n}\n@Bean\npublic Queue rateQueue(\n\
+  @Value(\"${ticket.queue}\") String queue){\nreturn new Queue(queue,true);\n}\n}\n\
+  代码清单 9-9.\ncom.apress.messaging.cloud.stream.TicketSink.java\n```\n\n代码清单 9-9 展示了\
+  \ Sink 的源代码。您已经熟悉所有代码，因为它使用了 `@EnableBinding(Sink.class)` 来创建一个 Spring Cloud Stream\
+  \ 应用，该应用将创建一个输入通道来接收消息。它还使用了 `IntegrationFlow` 类，该类会将传入的消息发送到指定的队列。\n\n接下来，打开 `application.properties`\
+  \ 文件。参见代码清单 9-10。\n\n```\nserver.port=${port:8083}\nspring.cloud.stream.bindings.input.destination=tickets\n\
+  ticket.queue=processed.tickets\n代码清单 9-10.\nsrc/main/resources/application.properties\n\
+  ```\n\n代码清单 9-10 展示了 `application.properties` 文件。同样，`input` 通道将被重命名为 `tickets`，队列被命名为\
+  \ `processed.tickets`，Sink 流将把 JSON 消息发送到该队列。在运行每个项目之前，请查看图 9-17。\n\n![A337882_1_En_9_Fig17_HTML.gif](img/A337882_1_En_9_Fig17_HTML.gif)\n\
+  \n图 9-17.\n\n示例流程\n\n图 9-17 展示了整个配置。请注意我们为何需要更改通道名称。我在源流中提供了一个小的 `contacts.txt`\
+  \ 文件，因此您可以开始运行。如果您使用的是 STS IDE，请尝试按以下顺序运行：sink、processor、source。这是为了确保 processor\
+  \ 和 sink 正在监听。一旦它们运行起来，您应该会看到交换器和队列被创建，以及消息的出现。参见图 9-18（交换器）、9-19（队列）和 9-20（ticket）。\n\
+  \n![A337882_1_En_9_Fig20_HTML.jpg](img/A337882_1_En_9_Fig20_HTML.jpg)\n\n图 9-20.\n\
+  \nprocessed.tickets 消息\n\n![A337882_1_En_9_Fig19_HTML.jpg](img/A337882_1_En_9_Fig19_HTML.jpg)\n\
+  \n图 9-19.\n\n队列（person、tickets 和 processed.tickets）\n\n![A337882_1_En_9_Fig18_HTML.jpg](img/A337882_1_En_9_Fig18_HTML.jpg)\n\
+  \n图 9-18.\n\n交换器（person、tickets）\n\n恭喜！您已经使用 Spring Cloud Stream 创建了一个数据驱动的微服务解决方案。想象一下您可以用这项技术做些什么。\n\
+  \n在继续之前，您是否意识到我们缺少一个可选功能——动态路由？别担心，您将在 currency 项目中创建它！\n\n## Spring Cloud Stream\
+  \ 应用启动器\n\n如果我告诉您，我们可以避免创建前面的示例，而直接使用 Spring Cloud Stream 应用启动器，您觉得怎么样？\n\nSpring\
+  \ Cloud Stream 提供了开箱即用的应用启动器。Spring 团队已经实现了大约 52 个应用，您只需下载、配置并执行即可。这些应用启动器按 source、processor\
+  \ 和 sink 模型划分：\n\n*   Source：file、ftp、gemfire、gemfire-cq、http、jdbc、jms、load-generator、loggregator、mail、mongodb、rabbit、s3、sftp、syslog、tcp、tcp-client、time、trigger、triggertask\
+  \ 和 twitterstream\n*   Processor：bridge、filter、groovy-filter、groovy-transform、httpclient、pmml、scriptable-transform、splitter、tcp-client\
+  \ 和 transform\n*   Sink：aggregate-counter、cassandra、counter、field-value-counter、file、ftp、gemfire、gpfdist、hdfs、hdfs-dataset、jdbc、log、rabbit、redis-pubsub、router、s3、sftp、task-launcher-local、task-launcher-yarn、tcp、throughput\
+  \ 和 websocket\n\n那么，让我们使用 `source:http` 和 `sink:log` 创建一个示例。我在本章的 `ch09/app-starters`\
+  \ 文件夹中添加了必要的 JAR 包。您会为每个 JAR 包找到一个子文件夹和一个 `start.sh` 脚本。\n\n### source:http\n\n\
+  打开一个终端，从 `http` 子文件夹执行 `start.sh` 脚本。或者，您可以执行以下命令：\n\n```\njava -jar http-source-rabbit-1.1.2.RELEASE.jar\
+  \ --spring.cloud.stream.bindings.output.destination=simple-demo\n```\n\n请注意，我们传递了一些关于目标地址的参数。当然，您可以创建一个\
+  \ `application.properties` 文件并将其放在同一目录下，其中包含此属性。`source:http` JAR 包将在 `8080` 端口上运行。\n\
+  \n### sink:log\n\n打开一个新的终端，从 `log` 子文件夹执行 `start.sh` 脚本。或者，您可以执行以下命令：\n\n```\njava\
+  \ -jar log-sink-rabbit-1.1.1.RELEASE.jar --spring.cloud.stream.bindings.input.destination=simple-demo\
+  \ --server.port=8081\n```\n\n请注意，我们传递了与 `source:http` 相同的参数，但这次是针对 `input` 通道，并且它在\
+  \ `8081` 端口上运行。\n\n现在您可以进行测试了。使用 `cURL` 命令发送一条消息（Windows 用户可以使用 `POSTMAN`（[`https://www.getpostman.com/`](https://www.getpostman.com/)））。例如：\n\
+  \n```\n$ curl -X POST -d \"Hello Spring Cloud Starter Apps\" localhost:8080\n```\n\
+  \n`sink:log` 日志打印出了一个字节数组，对吧？试试这个新命令：\n\n```\n$ curl -X POST -d \"Hello Spring Cloud\
+  \ Starter Apps\" localhost:8080 -H \"Content-Type: text/plain\"\n```\n\n您应该会收到消息\
+  \ `Hello Spring Cloud Starter Apps`。参见图 9-21。\n\n![A337882_1_En_9_Fig21_HTML.jpg](img/A337882_1_En_9_Fig21_HTML.jpg)\n\
+  \n图 9-21.\n\nsource:http | sink:log 说明\n\n您可以在 [`http://repo.spring.io/libs-release/org/springframework/cloud/stream/app/`](http://repo.spring.io/libs-release/org/springframework/cloud/stream/app/)\
+  \ 获取应用启动器的最新版本。\n\n如果您想使用其他 Spring Cloud Stream 应用启动器并查看它们的配置，可以参考 [`http://docs.spring.io/spring-cloud-stream-app-starters/docs/Avogadro.SR1/reference/html/`](http://docs.spring.io/spring-cloud-stream-app-starters/docs/Avogadro.SR1/reference/html/)\
+  \ 的文档。\n\n## Currency 项目\n\n对于 currency 项目，假设您将从某个源获取多个汇率，并且需要根据汇率代码将该汇率发送给正确的消费者。换句话说，如果您发送一个来自\
+  \ JPY 的汇率，它将选择目标 JPY 来发送它。这类似于您希望为微服务示例实现的动态路由。\n\n请查看 `rest-api-cloud-stream` 项目中的\
+  \ `com.apress.messaging.cloud.stream.RateProcessor` 类，了解动态路由。同时查看 `com.apress.messaging.RestApiCloudStreamApplication`\
+  \ 类（主类），因为它提供了一种使用 Source 流发送消息的新方法。\n\n\n\n## 接下来是什么？\n\n基于我向你展示的内容，思考一下如果其中一个微服务宕机了会发生什么。你的整个流程会中断吗？你如何解决故障点并增加高可用性？你如何编排所有这些微服务？你如何避免零停机？\n\
+  \n好消息是，Spring Cloud Stream 是 Spring Cloud Data Flow 技术的基础。Spring Cloud Data Flow\
+  \ 是一种用于编排云环境中可组合微服务应用的编排服务，它对于实时数据分析和大数据解决方案非常有用。\n\n使用 Spring Cloud Data Flow 的好处在于，这项技术得到了\
+  \ Cloud Foundry、Apache Mesos、Kubernetes 和 Apache Yarn 的支持。Spring Cloud Data Flow\
+  \ 依赖这些技术来编排云基础设施上的注册、创建、部署和任务，此外，它还与 Spring Cloud Services 兼容（我将在微服务章节中讨论这一点）。\n\
+  \n这里的建议是研究一下这项出色的技术。你会很轻松地学习它，因为它完全是基于 Spring Cloud Stream 的。\n\n## 本章小结\n\n本章向你展示了使用\
+  \ Spring Cloud Stream 和 Spring Boot 创建简单的 Stream 应用是多么容易。只需使用 `@EnableBinding` 注解和绑定器，你就可以创建消息驱动的解决方案。\n\
+  \n我还向你展示了 Spring Cloud Stream 拥有应用启动器，只需添加适当的配置即可使用。\n\n下一章将讨论一项新兴技术：响应式框架。在这种情况下，我们将介绍\
+  \ Spring Reactor 项目，用于在 JVM 上基于 Reactive Stream 规范创建非阻塞应用。\n\n"
+- "# 10. 响应式消息传递\n\n如今，实践响应式是所有 IT 公司的首要目标。还有一些我们经常听到的相关术语，例如响应式编程、函数式响应式编程和响应式流。尽管它们有所不同，但我们在这里看到的是我们处理数据消费、并发、异步事件、高性能和分布式计算方式的一种转变。\n\
+  \n本章讨论响应式编程和消息传递。这并不是一个新话题。几年前，微软发布了 C# 响应式扩展（以正式的方式），而 JavaScript 在事件响应方面也势头正劲。不仅如此，这个概念自\
+  \ 60 年代就已经存在，当时程序员想要互连硬件。\n\n让我们首先深入了解响应式编程及其适用场景。然后，你将了解哪些框架将帮助你实现这种新的微事件响应式架构。\n\
+  \n## 响应式编程\n\n响应式编程是一种异步处理随时间变化的事件数据流（以非阻塞形式）的方式。它是一种对其变化行为做出反应的方式。\n\n响应式编程适用于以下用例：\n\
+  \n*   **电子表格/单元格**：当你打开电子表格应用时，你是否想过它的内部工作原理？每个单元格可能依赖于其他单元格，因此一个单元格的任何新变化都需要反映到其他单元格中——这就是对变化做出响应。再想象一下你在进行微积分或代数计算时的矩阵。你如何对特定矩阵单元格中的值做出反应？通常，你会开始处理事件驱动架构。\n\
+  *   **高并发消息传递**：在我看来，消息传递是每个系统中最关键的部分。每秒发送几千甚至数百万条消息的想法一直是目标。能够处理所有这些消息并并发（同步和异步）消费它们也一直是一个挑战。\n\
+  *   **外部服务调用**：如今，设备（手机、平板电脑、传感器等）只需一次滑动、手势或点击就需要大量信息。它们的后端服务需要从不同的服务（本地或远程）收集数据，并将信息聚合到单个响应中。它们变得非常“健谈”，有时非常缓慢。响应式编程非常适合这里。\n\
+  *   **异步处理**：这对许多开发者来说一直是一个危险的领域，因为每当我们开始考虑异步进程时，就需要考虑线程、回调、并发、编排等等。有了响应式编程，我们几乎就解决了这些问题。\n\
+  \n针对这些用例的大多数解决方案都涉及创建具有非阻塞 I/O 的库，例如 event-machine（来自 Ruby 编程语言），它运行良好且性能出色。\n\n\
+  Java 及其新的 `java.util.concurrent` 包暴露了 Future/CompletableFuture 接口。Map-Reduce 和 Fork-Join\
+  \ 有助于大数据场景下的并行处理。Actor 模型以一种自然的方式暴露了并发性，其中一个重要的实现是在 Akka 框架中。\n\n响应式编程是创建响应式、弹性、可伸缩，当然还有异步消息驱动系统的下一步，它允许流量控制并在必要时应用背压。所有这些特性都通过非阻塞通信提供。与仅基于拉取的\
+  \ Java 8 流或 Iterable/Iterator 相比，响应式编程是基于推送的。换句话说，响应式编程处理同步/拉取和异步/推送的概念。\n\n现在是时候关注实现了。以下部分使用了两个主要模块或库：RxJava\
+  \ 和 Reactor。然后我们将介绍即将发布的 Spring Framework 5 及其 WebFlux 模块。\n\n注意\n\n本章包含五个项目，我们将在以下部分中使用它们：`rxjava-demo`、`reactor-demo`、`web-emitter`、`spring-web-flux`\
+  \ 和 `spring-web-flux-reactive`。\n\n## RxJava\n\nRxJava 来自 Netflix（称为 ReactiveX；请参阅\
+  \ [`http://reactivex.io`](http://reactivex.io)），是一个通过使用可观察序列来组合异步和基于事件的程序的库。它扩展了观察者模式并支持数据序列。它通过提供一个简单的\
+  \ API，消除了线程、同步、线程安全、并发数据结构和非阻塞 I/O 的复杂性。\n\nRxJava 提供了一组操作符，可以过滤、选择、转换、组合和编排可观察对象，从而实现更好、更高效的执行和组合。它暴露了几个类，比如\
+  \ `Observable`，我们将在示例代码中看到。\n\n\n\n### rxjava-demo 项目\n\n打开 `com.apress.messaging.RxJavaDemoApplication`\
+  \ 类。参见代码清单 10-1。\n\n```\n@SpringBootApplication\npublic class RxJavaDemoApplication\
+  \ {\nprivate static final Logger log =\nLoggerFactory.getLogger(RxJavaDemoApplication.class);\n\
+  public static void main(String[] args){\nlog.info(\"Demo Steam Application\");\n\
+  new SpringApplicationBuilder(RxJavaDemoApplication.class)\n.web(false)\n.run(args);\n\
+  }\n@Bean\nCommandLineRunner rxJava(ExchangeService service){\nreturn args -> {\n\
+  log.info(\"RxJava >> Observable\");\nObservable exchange =\nservice.getExchangeRates();\n\
+  exchange.subscribe(System.out::println);\n};\n}\nListing 10-1.\ncom.apress.messaging.RxJavaDemoApplication.java\n\
+  ```\n\n代码清单 10-1 展示了主应用程序，其中定义了一个基本的 `Observable` 实例：\n\n*   `Observable<Exchange>`：这里我们使用了\
+  \ `Observable` 类，它不仅支持发射单个标量值（如 Java 8 的 Future），还支持值序列甚至无限流。在本例中，它支持一个包含汇率的 `Exchange`\
+  \ 类。\n*   `subscribe`：`Observable` 类与其 Java 同类 `Iterable`（通常通过调用其 `next()` 方法进行拉取）有一些相似之处。在本例中，我们将通过调用\
+  \ `subscribe` 进行推送。这个订阅者将接收所有消息（汇率）并打印出来。\n\n`Observable` 类型增加了观察者模式所缺失的功能：生产者能够通过使用\
+  \ `onCompleted` 方法向观察者（订阅者）发送信号，告知其没有更多数据可用；以及生产者能够通过使用 `onError` 方法向观察者（订阅者）发送信号，告知其发生了错误。\n\
+  \n接下来，让我们看一个将数据推送给订阅者的 `Observable`。打开 `com.apress.messaging.service.ExchangeService`\
+  \ 类。参见代码清单 10-2。\n\n```\n@Service\npublic class ExchangeService {\nprivate static\
+  \ final Logger log =\nLoggerFactory.getLogger(ExchangeService.class);\nprivate Exchange\
+  \ exchange;\nExchangeService() {\nSortedMap rates =\nnew TreeMap() {\n{\nput(\"\
+  EUR\", 0.942013F);\nput(\"JPY\", 114.75440909F);\nput(\"MXN\", 19.598225F);\nput(\"\
+  GPB\", 0.819626F);\n}\n};\nexchange = new Exchange(rates, new Date());\n}\npublic\
+  \ Observable getExchangeRates() {\nreturn Observable.unsafeCreate(subscriber ->\
+  \ {\nwhile(!subscriber.isUnsubscribed()) {\ntry {\nFloat factor =\n(new Random().nextFloat()\
+  \ * 2 - 1) / 10F;\nsubscriber.onNext(\nnew Exchange(exchange\n.getRates()\n.entrySet()\n\
+  .stream()\n.collect(\nCollectors.toMap(\nentry ->\nentry.getKey(),\nentry -> entry.getValue()\n\
+  * factor + entry.getValue(),\n(v1, v2) -> {\nthrow new RuntimeException(String.format(\"\
+  Duplicate key for values %s\nand %s\", v1, v2));\n}, TreeMap::new)), new Date()));\n\
+  if (new Random().nextInt(100) > 90 )\nthrow new Exception(\n\"Some values are getting\
+  \ too high!!\");\nsleep(1000);\n} catch (Exception ex){\nlog.error(ex.getMessage());\n\
+  }\n}\n});\n}\nprivate void sleep(int ms) {\ntry {\nThread.sleep(ms);\n} catch (Exception\
+  \ ex) {}\n}\n}\nListing 10-2.\ncom.apress.messaging.service.ExchangeService.java\n\
+  ```\n\n代码清单 10-2 展示了该服务。这个 observable 将每秒推送一次汇率。花点时间分析一下代码，然后我们一起分析：\n\n*   `Observable.`\
+  \ `unsafeCreate`：这将返回一个 observable，它会为每个 `Subscriber` 执行给定的 `OnSubscribe` 操作（参见代码清单\
+  \ 10-1）。使用这个 observable，你可以在发生错误时执行 `onError(Throwable)`，或者在没有更多数据时执行 `onCompleted()`。这里重要的部分之一是\
+  \ `while` 语句中的 `subscriber.isUnsubscribee()`。这里我们正在判断是否还有更多的订阅者。我们将在接下来的示例中看到这一点。\n\
+  *   `subscriber.onNext`：这为观察者（订阅者）提供了一个新项目（汇率）。此方法调用将值推送给订阅者。参见代码清单 10-1。\n\n这个特定的服务将每秒发送一次汇率（参见\
+  \ `sleep` 语句）。汇率会变化，因为对其应用了一个因子，以模拟货币兑换世界中的真实场景。\n\n如果你运行该应用程序，应该会得到类似于图 10-1 的结果。\n\
+  \n![A337882_1_En_10_Fig1_HTML.jpg](img/A337882_1_En_10_Fig1_HTML.jpg)\n\n图 10-1.\n\
+  \n应用程序日志\n\n图 10-1 展示了你的第一个响应式应用程序的日志。接下来，让我们修改主类并添加一个订阅者实现。参见代码清单 10-3。\n\n```\n\
+  @SpringBootApplication\npublic class RxJavaDemoApplication {\nprivate static final\
+  \ Logger log =\nLoggerFactory.getLogger(RxJavaDemoApplication.class );\npublic static\
+  \ void main(String[] args){\nlog.info(\"Demo Steam Application\");\nnew SpringApplicationBuilder(RxJavaDemoApplication.class)\n\
+  .web(false)\n.run(args);\n}\n@Bean\nCommandLineRunner rxJava(ExchangeService service){\n\
+  return args -> {\nObservable observableExchange =\nservice.getExchangeRates();\n\
+  observableExchange.subscribe(new Subscriber(){\n@Override\npublic void onCompleted()\
+  \ {\nlog.info(\"EXCHANGE COMPLETED!!\");\n}\n@Override\npublic void onError(Throwable\
+  \ t) {\nlog.error(\"EXCHANGE IS SKYROCKETING... >> \" +\nt.getMessage());\nunsubscribe();\n\
+  }\n@Override\npublic void onNext(Exchange ex) {\nlog.info(ex.toString());\nif(ex.getRates().get(\"\
+  JPY\").floatValue() >\n125.0F){\nlog.warn(\">>> JPY rate is now to high: \" +\n\
+  ex.getRates().get(\"JPY\")\n.floatValue() + \", is time to quit. Bye.\");\nunsubscribe();\n\
+  }\n}\n});\n};\n}\n}\nListing 10-3.\ncom.apress.messaging.RxJavaDemoApplication.java\n\
+  ```\n\n代码清单 10-3 展示了一个更完整的示例。在本例中，我们不仅仅是使用方法引用（`System.out::println`），而是创建了一个新的\
+  \ `Subscriber<Exchange>` 并重写了一些方法：\n\n*   `Subscriber<Exchange>`：这是一个抽象类，它提供了一种从\
+  \ `Observables` 接收基于推送的通知的方式，并允许手动取消对这些 `Observables` 的订阅。\n*   `onError`：此方法通知观察者\
+  \ `Observable` 出现了错误情况。\n*   `onCompleted`：此方法通知观察者 `Observable` 已完成发送基于推送的通知。\n\
+  *   `onNext`：此方法向观察者提供一个新项目（在本例中是一个新的汇率）以供观察。请注意，在此方法中有一个 `unsubscribe()` 调用，它将设置标志，使得\
+  \ `subscriber.isUnsubscribed()` 中的 `Observable` 评估为 `true`，从而结束 `while` 语句。\n\n\
+  如果你运行该应用程序，应该会看到类似于图 10-2 的结果。\n\n![A337882_1_En_10_Fig2_HTML.jpg](img/A337882_1_En_10_Fig2_HTML.jpg)\n\
+  \n图 10-2.\n\n日志\n\n图 10-2 展示了运行应用程序后的日志。请注意，`JPY` 汇率触发了 `unsubscribe()` 调用，这意味着\
+  \ `Observable` 将停止发送基于推送的汇率。\n\n\n\n请注意，我在本书的源代码中包含了更多代码，但此处未作介绍，希望你能自行实验。花点时间分析一下发生了什么。我添加了一个示例，演示如何与固定数量的基于推送的汇率进行交互。\n\
+  \n到目前为止，这些示例都在同一个主线程中运行，但有一种方法可以使用多线程。看看这段代码，你可以通过 `ExecutorService` 类使用自己的线程池。例如：\n\
+  \n```\nExecutorService executorService =\nExecutors.newFixedThreadPool(100);\nObservable\
+  \ observableExchange =\nservice.getExchangeRates();\nobservableExchange\n.take(10)\n\
+  .subscribeOn(\nSchedulers\n.from(executorService))\n.forEach(ex -> { log.info(ex.toString());\
+  \ });\n```\n\nRxJava 目前已经发展到 2.x 版本，并且更改了一些签名。你可以在 [`https://github.com/ReactiveX/RxJava/wiki/What’s-different-in-2.0`](https://github.com/ReactiveX/RxJava/wiki/What%27s-different-in-2.0)\
+  \ 查看这些变更。\n\n## Reactor\n\nReactor（来自 Spring 框架团队）是一个完全成熟且非阻塞的 JVM 响应式编程基础库。它与所有\
+  \ Java 8 函数式 API（`CompletableFuture`、`Stream` 和 `Duration`）协同工作，提供了两个可组合的异步序列 API（`Flux`——N\
+  \ 个元素和 `Mono`——0 或 1 个元素），并实现了响应式扩展规范。\n\n你可以在 [`http://projectreactor.io/`](http://projectreactor.io/)\
+  \ 获取关于 Reactor 的更多信息。让我们从代码开始。\n\n### reactor-demo 项目\n\n这个项目与我们之前看到的 RxJava 项目非常相似，但这次我们不再使用\
+  \ `Observable`，而是使用 `Flux`。打开 `com.apress.messaging.ReactorDemoApplication` 类。参见清单\
+  \ 10-4。\n\n```\n@SpringBootApplication\npublic class ReactorDemoApplication {\n\
+  private static final Logger log =\nLoggerFactory\n.getLogger(ReactorDemoApplication.class);\n\
+  public static void main(String[] args) throws IOException {\nSpringApplication.run\n\
+  (ReactorDemoApplication.class, args);\nSystem.in.read();\n}\n@Bean\nCommandLineRunner\
+  \ reactorFlux(ExchangeService service){\nreturn args -> {\nlog.info(\"Reactor >>\
+  \ Flux\");\nFlux fluxExchange =\nservice.getExchangeRates();\nfluxExchange.subscribe(\
+  \ ex -> log.info(ex.toString()));\n}\n}\n}\n清单 10-4.\ncom.apress.messaging.ReactorDemoApplication.java\n\
+  ```\n\n清单 10-4 向你展示了 Reactor 的方式，使用 `Flux` 和 `subscribe` 方法调用来处理基于推送的数据流。`Flux`\
+  \ 表示一个包含 0 到 N 个项目的响应式序列（在本例中为汇率）。\n\n在底层，`Flux` 被描述为 `Flux<T>`，并实现了 `Publisher<T>`\
+  \ 接口。该接口是无限数量有序元素的提供者，并根据其订阅者的需求发布这些元素。一个发布者可以在不同时间点以动态方式服务于多个订阅者（`Subscriber<T>`\
+  \ 接口）。\n\n让我们看看服务类。打开 `com.apress.messaging.service.ExchangeService` 类。参见清单 10-5。\n\
+  \n```\n@Service\npublic class ExchangeService {\nprivate static final Logger log\
+  \ =\nLoggerFactory.getLogger(ExchangeService.class);\nprivate Exchange exchange;\n\
+  ExchangeService() {\nlog.info(\">>> Exchange Service created.\");\n@SuppressWarnings({\
+  \ \"serial\" })\nSortedMap rates =\nnew TreeMap() {\n{\nput(\"EUR\", 0.942013F);\n\
+  put(\"JPY\", 114.75440909F);\nput(\"MXN\", 19.598225F);\nput(\"GPB\", 0.819626F);\n\
+  }\n};\nexchange = new Exchange(rates, new Date());\n}\npublic Flux getExchangeRates(){\n\
+  return Flux.create( sink -> {\nwhile(true){\nFloat factor =\n(new Random().nextFloat()\
+  \ * 2 - 1) / 10F;\nsink.next(\nnew Exchange(\nexchange\n.getRates()\n.entrySet()\n\
+  .stream()\n.collect(\nCollectors.toMap(\nentry -> entry.getKey(),\nentry -> entry.getValue()\
+  \ * factor + entry.getValue(),\n(v1, v2) -> {\nthrow new RuntimeException(\nString.format(\"\
+  Duplicate key for values %s and %s\", v1, v2));\n}, TreeMap::new)), new Date()));\n\
+  sleep(1000);\nif(factor > 0.095F)\nsink.complete();\n}\n});\n}\nprivate void sleep(int\
+  \ ms) {\ntry {\nThread.sleep(ms);\n} catch (Exception ex) { }\n}\n}\n清单 10-5.\n\
+  com.apress.messaging.service.ExchangeService.java\n```\n\n清单 10-5 向你展示了 `Subscriber`\
+  \ 通过调用 `create` 方法使用 `Flux<Exchange>`。该方法接收一个 `Consumer<? Super FluxSink<T>>`。这个消费者只是一个需要执行的简单调用。参数需要是\
+  \ `FluxSink<T>` 类型的接口。该接口是下游订阅者的包装 API，并发送任意数量的信号，后跟零个或至少一个 `onError` 或 `onComplete`。\n\
+  \n如果你运行该应用程序，你应该会看到类似于图 10-3 的内容。\n\n![A337882_1_En_10_Fig3_HTML.jpg](img/A337882_1_En_10_Fig3_HTML.jpg)\n\
+  \n图 10-3.\n\n日志\n\n使用 RxJava 和 Reactor 有什么区别？Reactor 支持函数式编程、调度器、低延迟和 Lambda 管道方法。Reactor\
+  \ 最大的优势之一是它支持 Spring 的所有 HTTP MVC 类型，这是一种开箱即用的流式功能（服务器发送事件——SSE）。\n\n我在项目中添加了更多示例。你只需启用它们，然后运行、实验并与之互动。\n\
+  \n## Spring 5：WebFlux 框架\n\nSpring 5 有许多新特性，包括对 JDK 9 的支持。其主要特性之一是基于 Reactor 的函数式\
+  \ Web 框架（Functional Web Framework）或 WebFlux。\n\nServlet 3.1 规范能够支持非阻塞 I/O，但效果可能不如你想象的那么好。Servlet\
+  \ API 的其余部分仍然是命令式风格，无法在响应式、非阻塞的栈中使用。\n\nSpring 团队包含了 `spring-webflux` 模块，为 Web 应用程序添加了新的函数式编程模型。与\
+  \ `spring-mvc` 一起，你可以拥有一个响应式栈的 Web 框架。`spring-webflux` 模块还有一个响应式的 `WebClient`，它是\
+  \ `RestTemplate` 类的非阻塞替代方案，允许你处理异步和流式场景。参见图 10-4。\n\n![A337882_1_En_10_Fig4_HTML.gif](img/A337882_1_En_10_Fig4_HTML.gif)\n\
+  \n图 10-4.\n\nSpring WebFlux\n\n### 编程模型\n\nSpring WebFlux 有两种编程模型：基于注解的和基于函数的。\n\
+  \n\n\n#### 基于注解的编程模型\n\n你可以使用与 `spring-webmvc` 模块中相同的知名注解；主要区别在于核心现在是非阻塞的，并且基于响应式的\
+  \ `ServerHttpRequest` 和 `ServerHttpResponse` 响应（而不是 `HttpServletRequest` 和 `HttpServletResponse`\
+  \ 响应）。\n\n打开 `spring-web-flux-reactive` 项目，然后打开 `com.apress.messaging.controller.ReactiveController`\
+  \ 类。参见清单 10-6。\n\n```\n@RestController\npublic class ReactiveController {\n    SubscribableChannel\
+  \ personChannel;\n    PersonRepository repo;\n    public ReactiveController(SubscribableChannel\
+  \ personChannel, PersonRepository repo){\n        this.personChannel = personChannel;\n\
+  \        this.repo = repo;\n    }\n    @GetMapping(\"/person\")\n    Flux list()\
+  \ {\n        return Flux.fromStream(this.repo.getAll());\n    }\n    @GetMapping(\"\
+  /person/{id}\")\n    Mono findById(@PathVariable String id) {\n        return Mono.just(this.repo.findOne(id));\n\
+  \    }\n    @GetMapping(value=\"/person-watcher\", produces=MediaType.TEXT_EVENT_STREAM_VALUE)\n\
+  \    public Flux log4Person(){\n        return Flux.create( sink -> {\n        \
+  \    MessageHandler handler = message -> sink.next((Person) message.getPayload());\n\
+  \            personChannel.subscribe(handler);\n            sink.setCancellation(()\
+  \ -> personChannel.unsubscribe(handler));\n        });\n    }\n    @PostMapping(value=\"\
+  /person\", consumes = {MediaType.APPLICATION_JSON_VALUE})\n    public void createPerson(@RequestBody\
+  \ Person person){\n        if(person != null && person.getName() != null){\n   \
+  \         repo.save(person);\n            personChannel.send(MessageBuilder.withPayload(person).build());\n\
+  \        }\n    }\n}\n清单 10-6.\ncom.apress.messaging.controller.ReactiveController.java\n\
+  ```\n\n清单 10-6 展示了你在 Spring MVC 中见过的注解，但现在它们基于响应式流。分析代码，注意我们正在使用 Reactor 编程模型——`Flux`\
+  \ 和 `Mono` 响应式类。\n\n尽管我不打算详细讨论服务器推送事件（SSE）技术，但 `spring-webflux` 只需生成 `TEXT_EVENT_STREAM_VALUE`\
+  \ 内容类型即可引入该技术。SSE 是一种通过推送通知将消息从服务器发送到网页的方式。\n\n注意\n\n`web-emitter` 项目包含一个 SSE 示例。SSE\
+  \ 已包含在 Spring 4.2 中，因此这不是一项新技术。它已经存在了几年。浏览器需要实现接收通知的方式。\n\n#### 基于函数的编程模型\n\n你可以使用函数式编程来配置服务器的所有请求和响应。你需要定义\
+  \ `RouterFunctions`、`HandlerFunctions` 和一个服务器。\n\n##### RouterFunctions、HandlerFunctions\
+  \ 和 Server\n\nSpring WebFlux 包含多个响应式类和概念，使得对 Web 请求和响应进行建模更加容易：\n\n*   `HandlerFunctions`：所有请求都由一个\
+  \ `HandlerFunction<T>` 处理，它接收 `ServerRequest` 并返回一个 `Mono<ServerResponse>`。\n* \
+  \  `RouterFunctions`：所有传入的请求都通过一个 `RouterFunction<T>` 路由到处理函数，该函数接收 `ServerRequest`\
+  \ 并返回一个 `Mono<HandlerFunction>` 类型。\n*   `Server`：需要配置一个新的服务器来使用新的 `RouterFunctions`\
+  \ 和 `Handlers`。\n\n`spring-web-flux` 项目包含你在本节中需要的所有代码。\n\n首先打开包含所有 `RouterFunctions`\
+  \ 的配置。打开 `com.apress.messaging.config.ServerConfig` 类。参见清单 10-7。\n\n```\n@Configuration\n\
+  public class ServerConfig {\n    PersonHandler handler;\n    ServerConfig(PersonHandler\
+  \ handler){\n        this.handler = handler;\n    }\n    @Bean\n    RouterFunction\
+  \ router(){\n        return RouterFunctions\n                .route(GET(\"/persons/{id}\"\
+  ).and(accept(APPLICATION_JSON)), handler::findById)\n                .andRoute(GET(\"\
+  /persons\").and(accept(APPLICATION_JSON)), handler::findAll)\n                .andRoute(GET(\"\
+  /personwatcher\").and(accept(APPLICATION_JSON)), handler::newPersonLog)\n      \
+  \          .andRoute(POST(\"/persons\").and(accept(APPLICATION_JSON)), handler::createPerson);\n\
+  \    }\n    @Bean\n    HttpServer httpServer(RouterFunction router){\n        HttpHandler\
+  \ httpHandler = RouterFunctions.toHttpHandler(router);\n        ReactorHttpHandlerAdapter\
+  \ adapter = new ReactorHttpHandlerAdapter(httpHandler);\n        HttpServer server\
+  \ = HttpServer.create(\"localhost\", 8080);\n        server.newHandler(adapter).block();\n\
+  \        return server;\n    }\n}\n清单 10-7.\ncom.apress.messaging.config.ServerConfig.java\n\
+  ```\n\n清单 10-7 展示了配置新的响应式 Web 栈所需的函数式编程，通过创建 `RouterFunctions`。你可以将其视为创建 Web 控制器的一种新方式。注意我们正在定义路由和处理程序。\n\
+  \n清单 10-7 向你展示了如何配置服务器。在此示例中，配置的是 `Netty` 服务器。注意 `HttpHandler` 和 `ReactorHttpHandler`\
+  \ 是如何被使用的。\n\n接下来，打开 `com.apress.messaging.handler.PersonHandler` 类。参见清单 10-8。\n\
+  \n```\n@Component\npublic class PersonHandler {\n    PersonRepository repo;\n  \
+  \  EmitterProcessor stream = EmitterProcessor.create().connect();\n    PersonHandler(PersonRepository\
+  \ repo) {\n        this.repo = repo;\n    }\n    public Mono findAll(ServerRequest\
+  \ request) {\n        Flux people = Flux.fromStream(this.repo.getAll());\n     \
+  \   return ServerResponse.ok().contentType(APPLICATION_JSON).body(people, Person.class);\n\
+  \    }\n    public Mono findById(ServerRequest request) {\n        String personId\
+  \ = request.pathVariable(\"id\");\n        Mono notFound = ServerResponse.notFound().build();\n\
+  \        Mono personMono = Mono.just(this.repo.findOne(personId));\n        return\
+  \ personMono.then(person -> ServerResponse.ok().contentType(APPLICATION_JSON).body(fromObject(person)))\n\
+  \                .otherwiseIfEmpty(notFound);\n    }\n    public Mono createPerson(ServerRequest\
+  \ request) {\n        Mono person = request.bodyToMono(Person.class);\n        return\
+  \ ServerResponse.ok().build(person.doOnNext(p -> {\n            this.repo.save(p);\n\
+  \            this.stream.onNext(p);\n        }).then());\n    }\n    public Mono\
+  \ newPersonLog(ServerRequest request){\n        Mono personMono = stream.doOnNext(\
+  \ person -> {\n            System.out.println(\">>>> [Person created] \" + person);\n\
+  \        }).next().subscribe();\n        personMono.block();\n        return personMono.then(person\
+  \ -> ServerResponse.ok().contentType(APPLICATION_JSON).body(fromObject(person)));\n\
+  \    }\n}\n清单 10-8.\ncom.apress.messaging.handler.PersonHandler.java\n```\n\n清单\
+  \ 10-8 展示了将用于每个路由函数的处理程序。注意每个方法都接收 `ServerRequest` 作为参数，并返回一个 `Mono<ServerResponse>`。\n\
+  \n注意\n\n要运行 `spring-web-flux-reactive` 和 `spring-web-flux` 项目，你需要启动并运行 Mongo 服务器。\n\
+  \n## 总结\n\n本章介绍了响应式编程，包括讨论它的优点以及我们可以用它做什么。目前有很多关于响应式编程的内容需要解释，本章只是一个开始。\n\n你看到了两个模块/库——RxJava（来自\
+  \ Netflix）和 Reactor（来自 Spring 框架团队）。你还预览了即将在几周后发布的 Spring 5 和函数式 Web：WebFlux 中的内容。\n\
+  \n在下一章中，我们将讨论微服务，你将学习如何将本书中学到的所有知识应用到基于微服务的项目中。\n\n"
+- "# 11. 微服务\n\n本章讨论微服务架构，并介绍为了使用微服务进入云原生应用设计而需要做出的更改。它还涵盖了消息传递如何成为成功的关键因素。\n\n\n\n\
+  ## 什么是微服务\n\n微服务并非新鲜事物，自 UNIX 诞生以来就已存在。UNIX 拥有许多执行各种任务的小程序（称为命令），它们可以相互通信以创建更出色的解决方案。它们是如何做到的呢？\n\
+  \n如果你是一位经验丰富的 UNIX 程序员，你已经知道答案了。这些命令通过管道 `|` 进行通信，管道允许 UNIX 将信息传递给下一个可用的程序或命令。例如：\n\
+  \n```\nls -al | grep Aug | grep -v '200[456]' | more\n```\n\n如果你现在开始思考自己的系统和应用程序，如何实现同样的效果？你能创建基于特定领域的小型应用程序，并让它们与其他应用程序通信吗？\n\
+  \n微服务在架构师、开发人员和运维团队中引起了极大的热情，但我们为什么需要它们呢？我认为时间是其中的关键因素，因为应用程序需要快速、有弹性、高可用且可扩展，同时还要保持高性能。\n\
+  \n*   **速度**：你需要比竞争对手更快地交付。你可以使用微服务来帮助你在上市时间上更快地交付。\n*   **安全性**：你需要通过监控、隔离、容错和自动恢复实践，在整个开发周期中保持稳定性、可用性和持久性。开始考虑持续交付和持续集成。\n\
+  *   **可扩展性**：垂直扩展（即购买更多硬件）的扩展性不佳。使用通用硬件，重用现有资源并进行水平扩展，创建同一应用程序的多个实例。使用容器来帮助你扩展。\n\
+  *   **移动性**：准备支持多种设备，随时随地访问。移动设备连接到互联网，不仅用于社交媒体、电子邮件和聊天，还用于监控房屋、引擎等。\n\n一切似乎都说得通，对吧？但我还没有解释一个微服务如何与多个其他微服务通信。消息传递是关键！许多公司通过创建装饰器、转换器或外观模式，使用\
+  \ RESTful API 与其他系统或程序（甚至是遗留系统）通信，但你还有更多通信选项，包括 HTTP、TCP（Web Socket、AMQP）、响应式流等。\n\
+  \n以简单方式创建微服务的基本指南被称为十二要素应用原则。\n\n## 十二要素应用\n\n为了概述创建云原生架构所需的内容，Heroku（参见 [`https://www.heroku.com/`](https://www.heroku.com/)\
+  \ ）的工程师们识别出了一些模式，这些模式后来成为了十二要素应用指南（参见 [`https://12factor.net/`](https://12factor.net/)\
+  \ ）。该指南展示了如何架构一个应用程序（单个单元）。它侧重于声明式配置、无状态和部署无关性。换句话说，你的应用程序需要快速、安全且可扩展。\n\n以下是十二要素应用指南的摘要：\n\
+  \n*   **代码库**：一份在版本控制系统（VCS）中跟踪的代码库，多次部署。一个应用只有一个代码库，并由 Git、Subversion、Mercurial\
+  \ 等版本控制系统跟踪。你可以（从同一代码库）进行多次部署到开发、测试、预发布和生产环境。\n*   **依赖**：显式声明并隔离依赖。有时你的环境没有互联网连接（如果是私有系统），因此你需要考虑打包你的依赖（jar、gem、共享库等）。如果你有一个内部库仓库，你可以声明类似\
+  \ pom、gemfile、bundle 的清单。永远不要假设你的最终环境中会拥有一切。\n*   **配置**：将配置存储在环境中。你不应对任何可变的内容进行硬编码。使用环境变量或配置服务器。\n\
+  *   **后端服务**：将后端服务视为附加资源。通过 URL 或配置连接到服务。\n*   **构建、发布、运行**：严格分离构建和运行阶段。与 CI/CD（持续集成、持续交付）相关。\n\
+  *   **进程**：以一个或多个无状态进程的方式执行应用。进程不应存储内部状态。不共享任何内容。任何必要的状态都应被视为后端服务。\n*   **端口绑定**：通过端口绑定导出服务。你的应用程序是自包含的，这些应用通过端口绑定暴露。一个应用程序可以成为另一个应用的服务。\n\
+  *   **并发**：通过进程模型进行水平扩展。通过添加更多应用实例来扩展。单个进程可以自由地进行多线程处理。\n*   **可处置性**：通过快速启动和优雅关闭最大化鲁棒性。进程应该是可处置的（记住它们是无状态的）并且具有容错能力。\n\
+  *   **环境等价**：尽可能保持开发、预发布和生产环境相似。换句话说，检查你安装的操作系统，以及你使用的框架、运行时或库版本。它们在每个环境中必须相同。这是高质量的结果，并确保持续交付。\n\
+  *   **日志**：将日志视为事件流。你的应用应写入 `stdout`。日志是聚合的、按时间排序的事件流。\n*   **管理进程**：将管理和维护任务作为一次性进程运行。在平台上运行管理进程：数据库迁移、一次性脚本等。\n\
+  \n一些程序员认为你需要拥有云基础设施才能使用微服务，但在我看来，你并不需要。如果你遵循这些原则，你将准备好与更大的公司竞争。当你准备迁移或切换到更好的基础设施时，你已经准备好了。\n\
+  \n如果你想开始创建微服务并遵循这十二要素原则，仅靠单个或小型团队从零开始创建一切是不够的。你将面临几个变化：\n\n*   **文化层面**：我们需要摆脱人员孤岛，开始创建跨职能团队。他们工作更高效，并致力于解决单一领域的业务场景。开始思考持续交付，分散决策权，并寻求团队自主性。\n\
+  *   **组织层面**：创建跨职能的业务能力团队。这些团队拥有自主决策权。创建平台团队运营，该团队也应是跨职能的。\n*   **技术层面**：摆脱构建单体应用，转向微服务架构。思考限界上下文。遵循领域驱动设计的一些原则和实践。开始使用容器化，以获得应用的隔离性、可扩展性和高性能，然后寻找能让你控制分布的服务集成。参见图\
+  \ 11-1 。\n\n![A337882_1_En_11_Fig1_HTML.gif](img/A337882_1_En_11_Fig1_HTML.gif)\n\
+  \n图 11-1.\n\n单体架构与使用微服务的对比\n\n## Spring Cloud 服务\n\nSpring Cloud 服务是一组工具/框架，可以轻松、快速且安全地开发微服务架构。本节涵盖最常见的\
+  \ Spring Cloud 服务：Spring Cloud Config、服务注册中心和断路器。\n\n### Spring Cloud Config 服务器\n\
+  \nConfig 服务器是一个外部化的应用配置服务，它为你提供了一个集中管理应用跨环境外部属性的地方。参见图 11-2 。\n\n![A337882_1_En_11_Fig2_HTML.gif](img/A337882_1_En_11_Fig2_HTML.gif)\n\
+  \n图 11-2.\n\nConfig 服务器\n\n你可以在开发阶段或与你的流水线（持续交付）一起使用 Config 服务器。你可以集中管理每个环境以访问通用的外部配置，而无需重新打包或重新部署。\n\
+  \n\n\n#### 云配置服务器\n\n要使用配置服务器，你需要执行以下操作：\n\n1.  在你的 `pom.xml` 文件中，需要使用以下 `<dependency/>`\
+  \ 和 `<dependencyManagement/>` 标签：\n\n    ```\n    ...\n\n    org.springframework.cloud\n\
+  \    spring-cloud-config-server\n\n    ...\n\n    org.springframework.cloud\n  \
+  \  spring-cloud-dependencies\n    Camden.SR6\n    pom\n    import\n\n    ```\n\n\
+  \    在本书撰写时，版本为 Camdem.SR6。如需保持更新，请查看位于 [`http://projects.spring.io/spring-cloud/`](http://projects.spring.io/spring-cloud/)\
+  \ 的主项目网站。  \n2.  添加 `@EnableConfigServer`：\n\n    ```\n    @SpringBootApplication\n\
+  \    @EnableConfigServer\n    public class ConfigServerDemoApplication {\n    public\
+  \ static void main(String[] args) {\n    SpringApplication.run(\n    ConfigServerDemoApplication.class,\
+  \ args);\n    }\n    }\n    ```\n\n    `@EnableConfigServer` 将创建配置服务器，它会从 GitHub\
+  \ 获取最新值并处理来自客户端的请求。  \n3.  添加 `application.properties`（或 `application.yml`）文件，通过提供\
+  \ URI 来指定 Git 仓库的位置。\n\n    ```\n    # 默认端口\n    server.port=8888\n    # Spring\
+  \ 配置服务器\n    spring.cloud.config.server.git.uri=https://github.com//your-repo-app-config.git\n\
+  \    ```\n\n仅此而已，你不需要其他任何东西。现在你可以运行配置服务器了。你可以查看 `config-server-demo` 项目。\n\n####\
+  \ 云配置客户端\n\n要连接到云配置服务器，你需要执行以下操作：\n\n1.  将 `<dependency/>` 和 `<dependencyManagement/>`\
+  \ 标签添加到你的 `pom.xml` 文件中：  \n\n```\n...\n\norg.springframework.cloud\nspring-cloud-starter-config\n\
+  \n...\n\norg.springframework.cloud\nspring-cloud-dependencies\nCamden.SR6\npom\n\
+  import\n\n```\n\n仅此而已。现在你可以像往常一样使用任何属性，无论是通过常规的 `@Value(\"${hello-world-message}\"\
+  )` 还是通过 `@ConfigurationProperties`。你可以在 `config-client-demo` 项目中找到完整的示例。\n\n我认为这是一个非常直接的解决方案。如果你需要更深入的参考资料，请访问\
+  \ [`http://projects.spring.io/spring-cloud/`](http://projects.spring.io/spring-cloud/)\
+  \ 网站。\n\n### 服务注册中心\n\n服务注册中心提供了服务发现模式的实现。该模式是微服务架构最重要的特性之一。见图 11-3。\n\n![A337882_1_En_11_Fig3_HTML.gif](img/A337882_1_En_11_Fig3_HTML.gif)\n\
+  \n图 11-3.\n\n服务注册中心\n\n当客户端向服务注册中心注册时，它会提供关于自身的元数据，例如其主机和端口号。它还会持续向服务注册中心发送心跳。服务注册中心将所有信息保存在内存中。\n\
+  \n#### 服务注册中心：Eureka 服务器\n\n要使用服务注册中心（Eureka 服务器），你需要执行以下操作：\n\n1.  将 `<dependency/>`\
+  \ 和 `<dependencyManagement/>` 标签添加到你的 `pom.xml` 文件中：\n\n    ```\n    org.springframework.cloud\n\
+  \    spring-cloud-starter-eureka-server\n\n    ...\n\n    org.springframework.cloud\n\
+  \    spring-cloud-dependencies\n    Camden.SR6\n    pom\n    import\n\n    ```\n\
+  \n2.  将 `@EnableEurekaServer` 添加到你的应用程序中：\n\n    ```\n    @SpringBootApplication\n\
+  \    @EnableEurekaServer\n    public class ServiceRegistryDemoApplication {\n  \
+  \  public static void main(String[] args) {\n    SpringApplication.run(\n    ServiceRegistryDemoApplication.class,\
+  \ args);\n    }\n    }\n    ```\n\n    `@` `EnableEurekaServer` 会启动一个网页。你可以在浏览器中查看\
+  \ `http://localhost:8761/`，如图 11-4 所示。\n\n    ![A337882_1_En_11_Fig4_HTML.jpg](img/A337882_1_En_11_Fig4_HTML.jpg)\n\
+  \n    图 11-4.\n\n    位于 http://localhost:8761 的 Eureka 服务器  \n3.  将以下属性添加到 `application.properties`（或\
+  \ `application.yml`）中：\n\n    ```\n    # 默认服务器端口\n    server.port=8761\n    # Eureka\
+  \ 配置\n    eureka.instance.hostname=localhost\n    eureka.client.register-with-eureka=false\n\
+  \    eureka.client.fetch-registry=false\n    eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:${server.port}/eureka/\n\
+  \    ```\n\n仅此而已，你不需要其他任何东西。你可以查看 `service-registry-server-demo` 项目并运行它。它将在 `8761`\
+  \ 端口运行。\n\n#### 向 Eureka 服务器注册服务应用程序\n\n要注册一个应用程序，请遵循以下步骤：\n\n1.  将 `<dependency/>`\
+  \ 和 `<dependencyManagement/>` 标签添加到你的 `pom.xml` 文件中：\n\n    ```\n    org.springframework.cloud\n\
+  \    spring-cloud-starter-eureka\n\n    ...\n\n    org.springframework.cloud\n \
+  \   spring-cloud-dependencies\n    Camden.SR6\n    pom\n    import\n\n    ```\n\n\
+  2.  将 `@EnableDiscoveryClient` 添加到你的应用程序中：\n\n    ```\n    @RestController\n   \
+  \ @SpringBootApplication\n    @EnableDiscoveryClient\n    public class ServiceRegistryServiceDemoApplication\
+  \ {\n    public static void main(String[] args) {\n    SpringApplication.run(\n\
+  \    ServiceRegistryServiceDemoApplication.class, args);\n    }\n    @GetMapping(\"\
+  /message\")\n    public String getMessage(){\n    return \"Hello World from a Service\
+  \ Discovery\";\n    }\n    }\n    ```\n\n    此注解会自动与 Eureka 服务器通信（默认端口为 `8761`）。\
+  \  \n3.  将以下属性添加到 `application.properties`（或 `application.yml`）中：\n\n    ```\n \
+  \   # 服务器端口\n    server.port=8181\n    # 应用程序名称\n    spring.application.name=simple-service\n\
+  \    ```\n\n    包含应用程序名称非常重要，因为这是它被发现的方式。  \n\n你可以查看 `service-registry-service-demo`\
+  \ 项目。如果你运行该应用程序，你应该会在 Eureka 服务器中看到名为 `SIMPLE-` `SERVICE` 的条目。见图 11-5。\n\n![A337882_1_En_11_Fig5_HTML.jpg](img/A337882_1_En_11_Fig5_HTML.jpg)\n\
+  \n图 11-5.\n\nEureka 发现\n\n\n\n#### 通过客户端应用程序访问服务\n\n要访问应用程序，请遵循以下步骤：\n\n1.  将 `<dependency/>`\
+  \ 和 `<dependencyManagement/>` 标签添加到你的 `pom.xml` 文件中：\n\n    ```\n    org.springframework.cloud\n\
+  \    spring-cloud-starter-eureka\n\n    ...\n\n    org.springframework.cloud\n \
+  \   spring-cloud-dependencies\n    Camden.SR6\n    pom\n    import\n\n    ```\n\n\
+  2.  使用 `EurekaClient` 类和 `RestTemplate`（在此示例中）来获取服务。\n\n    ```\n    @RestController\n\
+  \    @SpringBootApplication\n    public class ServiceRegistryClientDemoApplication\
+  \ {\n    private static Logger log =\n    LoggerFactory.getLogger(\n    ServiceRegistryClientDemoApplication.class);\n\
+  \    public static void main(String[] args) {\n    SpringApplication.run(\n    ServiceRegistryClientDemoApplication.class,\
+  \ args);\n    }\n    private EurekaClient discoveryClient;\n    private RestTemplate\
+  \ restTemplate = new RestTemplate();\n    ServiceRegistryClientDemoApplication(\n\
+  \    EurekaClient discoveryClient){\n    this.discoveryClient = discoveryClient;\n\
+  \    }\n    @GetMapping(\"/\")\n    public String getMessageFromRemoteServer(){\n\
+  \    return\n    restTemplate.getForObject(\n    fetchServiceUrl() + \"/message\"\
+  , String.class);\n    }\n    private String fetchServiceUrl() {\n    InstanceInfo\
+  \ instance = discoveryClient\n    .getNextServerFromEureka(\"SIMPLE-SERVICE\", false);\n\
+  \    String serviceUrl = instance.getHomePageUrl();\n    log.info(\">>> Accessing:\
+  \ \" + serviceUrl);\n    return serviceUrl;\n    }\n    }\n    ```\n\n你可以查看 `service-registry-client-demo`\
+  \ 项目。在这里，`EurekaClient` 使用 `getNextServerFromEureka` 方法，并传入服务名称，在本例中为 `SIMPLE-SERVICE`。（这就是为什么在服务中拥有应用程序名称很重要的原因。）通过这种方式，它可以获取一个\
+  \ `InstanceInfo` 实例，从中你可以获取服务的实际 URL、端口等信息。\n\n使用 Eureka 服务器和 Eureka 发现客户端相当简单。当然，这只是一个简单的示例，但你可以创建多个实例，并将\
+  \ ribbon（一个客户端负载均衡器）与 Eureka 服务器结合使用。如果你需要更多相关信息，请访问 [`http://projects.spring.io/spring-cloud/`](http://projects.spring.io/spring-cloud/)\
+  \ 。\n\n### 断路器\n\n这是断路器模式的一种实现，它可以防止级联故障，并在故障服务恢复正常之前提供回退行为。请参见图 11-6 。\n\n![A337882_1_En_11_Fig6_HTML.gif](img/A337882_1_En_11_Fig6_HTML.gif)\n\
+  \n图 11-6.\n\n断路器模式\n\n当你对某个服务应用断路器时，它会监视失败的调用。如果这些失败达到某个阈值（可以通过编程方式设置），断路器就会打开，并将调用重定向到指定的回退操作。这为故障服务提供了恢复时间。此模式实现基于\
+  \ Netflix 的 Hystrix，Spring Cloud 团队通过注解启用此功能。请参见以下代码：\n\n```\n@RestController\n\
+  @SpringBootApplication\n@EnableCircuitBreaker\npublic class CircuitBreakerServiceDemoApplication\
+  \ {\npublic static void main(String[] args) {\nSpringApplication.run(\nCircuitBreakerServiceDemoApplication.class,\
+  \ args);\n}\n@Autowired\nprivate RestTemplate restTemplate;\n@LoadBalanced\n@Bean\n\
+  RestTemplate restTemplate() {\nreturn new RestTemplate();\n}\n@GetMapping(\"/\"\
+  )\npublic String getMessageFromRemoteServer(){\nreturn this.getMessage();\n}\n@HystrixCommand(fallbackMethod\
+  \ = \"defaultMessage\")\npublic String getMessage(){\nreturn restTemplate\n.getForObject(\"\
+  http://simple-service\" + \"/message\", String.class);\n}\npublic String defaultMessage(){\n\
+  return \"Nothing here\";\n}\n}\n```\n\n从这段代码可以看出，使用断路器模式非常简单。你只需添加 `@EnableCircuitBreaker`\
+  \ 和 `@HystrixCommand`，并将回退方法作为参数传入。如果你尝试使用的服务不可用，它将使用 `defaultMessage` 方法，直到该服务恢复并重新运行。\n\
+  \nHystrix 仪表盘可以帮助你监控服务并获取其指标。你需要添加 `spring-boot-actuator` 和 `spring-cloud-starter-hystrix-dashboard`\
+  \ 依赖项才能使用该仪表盘。如果你需要有关获取此仪表盘的更多信息，请访问 [`http://projects.spring.io/spring-cloud/`](http://projects.spring.io/spring-cloud/)\
+  \ 。\n\n我知道 Spring Cloud 项目提供的服务不止这些，但这些内容将留待另一本书来介绍。现在，你已经拥有了创建微服务解决方案所需的工具。\n\n\
+  ## 关于响应式编程\n\n到目前为止，我已经向你展示了一些 Spring 服务，这些服务可用于满足十二要素应用指南的部分要求，并朝着微服务架构迈进。本节将解释响应式编程如何融入这一切。\n\
+  \n请记住，微服务最重要的特性之一是能够与其他微服务（包括遗留系统）进行通信。想象一下，你的微服务应用需要同时访问多个系统，并且你已经有一个客户端进行多次调用来聚合所有数据。在某个时刻，这个应用会变得非常“健谈”（由于网络延迟、并发、阻塞等原因），而且你并非只有一个客户端发出此类请求。你现在有数百万个请求。你该如何处理？\n\
+  \n这就是响应式编程的用武之地。它使用一种称为 API 网关的特定模式来解决这个问题。\n\n```\nObservable details = Observable.zip(\n\
+  localService.getExchangeRates(\"usd\"),\nyahooFinancialService.getGlobalRates(\"\
+  mxn\",\"jpy\"),\ngoogleFinancialService.getEuropeExchangeRates(),\n(local, yahoo,\
+  \ google) -> {\nMarketExchangeRates exchangeRates = new\nMarketExchangeRates();\n\
+  exchangeRates.setLocalMarket(local.getRates());\nexchangeRates.setEurope(google.getRates({\"\
+  eur\",\"gpb\"}));\nexchangeRates.setGlobal(yahoo.getRate());\nreturn exchangeRates;\n\
+  }\n);\n```\n\n从之前的代码中可以看出，你可以并行执行多个任务，并避免诸如网络跳转和延迟、并发以及阻塞等资源问题。请记住，每个服务（如 `yahooFinacialService`）都可以拥有一个服务配置，可以将其自身注册到服务注册中心，并且可以在发生故障时暴露默认方法（断路器）。\n\
+  \n## 总结\n\n本章涵盖了微服务架构以及设计原生云应用所需面对的挑战。\n\n你学习了 Spring Cloud 服务如何借助 Spring Boot 的强大功能，通过消息传递帮助你快速轻松地创建原生云应用。现在，你更深入地理解了为什么消息传递对于每种架构和集成解决方案都至关重要。\n\
+  \n\n\n索引 A 角色模型 管理进程 高级消息队列协议 (AMQP) 绑定 阻塞/非阻塞事件 消费者 交换机 集成示例 多监听器 生产者 队列 RabbitMQ\
+  \ 参见 RabbitMQ 重试 事务 交换机类型 聚合器 基于注解的编程模型 Apache ActiveMQ application.properties jms-demo\
+  \ 应用队列 远程代理 回复至 RateSender 主题 Apache Kafka API 绑定器 API 网关 应用模型 面向切面编程 (AOP) 异步消息\
+  \ 异步处理 B 物料清单 (BOM) 阻塞/非阻塞事件 代理 C 通道适配器 断路器模式 契约模式 创建、读取、更新和删除 (CRUD) CurrencyController.java\
+  \ 类 D 数据源 直连交换机 领域特定语言 (DSL) E 企业集成模式：设计、构建和部署消息传递解决方案（书籍） Eureka 服务器 注册服务应用步骤 @EventListener\
+  \ 注解 F, G 扇出交换机 文件集成 基于函数的编程模型 HandlerFunctions RouterFunctions 服务器 H HandlerFunctions\
+  \ 标头交换机 Hystrix 仪表盘 I 集成流 J, K, L Java 配置 Java 消息服务 (JMS) 注解 Apache ActiveMQ 代理\
+  \ 参见 Apache ActiveMQ 消费者 货币项目 jndi.properties 点对点消息传递 参见点对点消息传递模型 点对点接收器 生产者 发布-订阅消息传递\
+  \ 参见发布-订阅消息传递模型 rest-api-jms Java 持久化 API (JPA) JDBC 集成 JSON 序列化 M, N 消息通道模式 消息驱动\
+  \ POJO (MDP) 消息/消息传递 异步 通道 构建模式 解耦 投递方法 端点 聚合器 通道适配器 过滤器 路由器 服务激活器 分割器 转换器 高可用性\
+  \ 互操作性 模型 概述 模式 发布 可扩展性 Spring 框架 Spring 集成 同步 类型模式 微服务 cloud-stream-processor-demo\
+  \ cloud-stream-sink-demo cloud-stream-source-demo 示例 移动性 单体架构 对比 安全性 可扩展性 速度 多客户端\
+  \ O 观察者模式 Spring 框架 固执己见的技术 P, Q PING 命令 普通 Java 对象 (POJO) 点对点消息传递模型 pom.xml 文件\
+  \ 端口绑定 PSUBSCRIBE 货币命令 生产者命令 发布-订阅消息传递模型 R RabbitMQ 注解 消费者 特性 流量控制 生产者 回复管理 RPC\
+  \ 参见远程过程调用 (RPC) RabbitMQ Web 管理 处理器应用日志 更改为 text/plain 交换机标签页 发布消息 队列标签页 大写 源绑定标签页\
+  \ 交换机标签页 消息概览标签页 队列标签页 Rate.java 类 RateRepository.java 类 响应式编程 异步处理 外部服务调用 高并发消息\
+  \ reactor ReactiveX reactor-demo 项目 远程字典服务器 (Redis) -cli 监控/订阅者命令 消息代理 发布者命令 订阅者命令\
+  \ 远程过程调用 (RPC) 应用配置 请求-响应协议 RpcClient RpcServer Rest API 货币项目 控制台日志 自定义事件 URL RestApiDemoApplication.java\
+  \ 类 rest-api-demo 项目 Restful API 端点 Spring Boot RouterFunctions 路由模式 RxJava -demo\
+  \ 项目 对比 reactor S 扩展 服务器推送事件 (SSE) 技术 服务激活器 服务调用，外部 服务消费者模式 服务提供者接口 (SPI) 服务注册中心\
+  \ 访问应用 Eureka 服务器 简单消息处理过程 简单/流式文本定向消息协议 (STOMP) AnotherController 应用 浏览器开发者控制台\
+  \ 配置 RabbitMQ 接收器模型 SockJS 电子表格/单元格 Spring 5 WebFlux 框架 基于注解的编程模型 基于函数的编程模型 Spring\
+  \ ApplicationEvent 事件层次结构 Spring ApplicationListener Spring Boot 特性 Restful API\
+  \ Spring Boot Currency Web 应用 部署 运行 Spring Cloud 服务 配置服务器 客户端 云服务注册中心 Spring Cloud\
+  \ Stream 应用模型 应用启动器 绑定器抽象 绑定器 API 消费者组 特性 分区支持 pom.xml 文件 处理器 项目 发布/订阅模型 RabbitMQ\
+  \ Web 管理 接收器模型 源 Spring Data Redis 模块 发布者 订阅者 Spring 框架 Spring 集成模块 注解 文件集成 集成注解\
+  \ Java 配置 入门 消息 消息通道 消息端点 使用 DSL 参见领域特定语言 (DSL)) XML Spring Tool Suite (STS) StringRedisTemplate\
+  \ 类 订阅模型 订阅者命令 代码 MDPs Redis 交互 同步消息 T TCP 主题交换机 @TransactionalEventListener 转换模式\
+  \ 十二要素应用 管理进程 后端服务 构建、发布、运行 代码库 并发性 配置 文化 依赖关系 可处置性 环境 对等性 日志 组织 端口绑定 进程 技术 U, V\
+  \ UNIX W Web 归档 (WAR) WebFlux 框架 基于注解的编程模型 基于函数的编程模型 WebSocket CurrencyController\
+  \ 货币兑换 底层应用 浏览器开发者控制台 组件 配置 处理器片段 RateWebSocketsConfig STOMP TCP X, Y, Z XML 通道\
+  \ 数据源 查询\n"

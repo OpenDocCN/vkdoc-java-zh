@@ -1,0 +1,4574 @@
+- '
+
+
+  ![](img/A978-1-4842-2985-9_CoverFigure.jpg)
+
+
+  ![A978-1-4842-2985-9_CoverFigure.jpg](img/A978-1-4842-2985-9_CoverFigure.jpg)Jorge Acetozi
+  《Pro Java 集群与可扩展性：使用 Spring、Cassandra、Redis、WebSocket 和 RabbitMQ 构建实时应用》
+
+
+  ![A453568_1_En_BookFrontmatter_Figa_HTML.png](img/A453568_1_En_BookFrontmatter_Figa_HTML.png)
+
+
+  本书作者引用的任何源代码或其他补充材料，读者均可通过本书在 GitHub 上的产品页面获取，网址为 [`www.apress.com/9781484229842`](http://www.apress.com/9781484229842)
+  。如需更详细信息，请访问 [`www.apress.com/source-code`](http://www.apress.com/source-code) 。ISBN
+  978-1-4842-2984-2 电子版 ISBN 978-1-4842-2985-9 [`doi.org/10.1007/978-1-4842-2985-9`](https://doi.org/10.1007/978-1-4842-2985-9)
+  美国国会图书馆控制号：2017951201 © Jorge Acetozi 2017 本作品受版权保护。出版商保留所有权利，涉及全部或部分材料，特别是翻译权、重印权、插图再利用权、朗诵权、广播权、缩微胶片复制权或任何其他物理形式的复制权，以及信息存储与检索、电子改编、计算机软件或目前已知或未来开发的任何类似或不同方法的传输权。本书中可能出现商标名称、标识和图像。对于商标名称、标识或图像的每次出现，我们并非均使用商标符号，而是仅以编辑方式使用这些名称、标识和图像，以维护商标所有者的利益，且无意侵犯商标权。本出版物中对商品名称、商标、服务标记及类似术语的使用，即使未明确标识，也不应被视为对其是否受专有权利保护的立场表达。尽管本书中的建议和信息在出版时被认为是真实准确的，但作者、编辑和出版商均不对可能存在的任何错误或遗漏承担法律责任。出版商对本书所含内容不作任何明示或暗示的保证。本书采用无酸纸印刷。本书通过
+  Springer Science+Business Media New York 向全球图书贸易发行，地址：233 Spring Street, 6th Floor,
+  New York, NY 10013。电话：1-800-SPRINGER，传真：(201) 348-4505，电子邮件：orders-ny@springer-sbm.com，或访问
+  www.springeronline.com。Apress Media, LLC 是一家加利福尼亚有限责任公司，其唯一成员（所有者）是 Springer Science
+  + Business Media Finance Inc (SSBM Finance Inc)。SSBM Finance Inc 是一家特拉华州公司。没有我妻子
+  Juliana 日复一日的支持和耐心，这本书永远无法出版。非常感谢你！我爱你！引言
+
+
+  我叫 Jorge Acetozi，是一名巴西软件工程师，多年来一直从事 Java 开发工作。在我的职业生涯中，我对以下主题产生了兴趣：
+
+
+  *   Linux
+
+  *   分布式系统
+
+  *   测试自动化
+
+  *   持续集成
+
+  *   持续交付
+
+  *   云计算
+
+  *   虚拟化
+
+  *   容器化
+
+  *   安全性
+
+
+  为什么兴趣如此广泛？我只是觉得，仅凭遵循最佳实践编写 Java 代码，在职业上对我来说还不够（尽管这样做并非易事）。我想理解创建软件并将其交付到生产环境的整个过程。
+
+
+  因此，几年前，我开始从事 DevOps 工程师的工作。
+
+
+  在经历了这两条路径后，我注意到有两种类型的软件工程师。第一类是开发人员，他们通常对基础设施主题不感兴趣，只想遵循最佳实践编写代码。然而，这意味着他们无法维护生产环境，因为这涉及的内容远不止编写软件代码。
+
+
+  第二类是基础设施人员，他们通常讨厌编写软件代码（请注意，编写小型脚本来自动化基础设施任务与编写软件代码截然不同）。另一方面，这些人能够维护生产环境，因为他们理解部署流程、知道如何监控服务器、如何处理安全问题等等。
+
+
+  我努力成为的软件工程师，恰好处于这两类开发人员和基础设施人员之间。我希望成为一名遵循编码最佳实践的优秀程序员，同时也希望有能力将代码投入生产并维护它。
+
+
+  ## 我为何撰写本书
+
+
+  这是一本编程书，但包含了许多有趣的基础设施讨论和技巧。我使用 Spring 框架、WebSocket、Cassandra、Redis、RabbitMQ 和 MySQL
+  编写了一个完整的聊天应用程序，并讨论了如何通过实现 WebSocket 多节点架构来水平扩展此应用程序。在我看来，这正是本书区别于其他书籍之处。
+
+
+  我撰写本书的目标，是通过将大量开发代码与有趣且具有教学意义的基础设施讨论相结合，为您带来全新的体验。我相信您一定会非常喜欢！
+
+
+  要与我保持联系，请关注以下平台：
+
+
+  *   [我的网站](https://www.jorgeacetozi.com/) ¹
+
+  *   [GitHub](https://github.com/jorgeacetozi) ²
+
+  *   [Twitter](https://twitter.com/jorgeacetozi) ³
+
+  *   [Facebook](https://www.facebook.com/jorgeacetozi) ⁴
+
+
+  ## 本书适合谁阅读
+
+
+  本书适合每一位拥有至少几年经验的软件开发人员。换句话说，这不是一本用来学习 Spring、JUnit 和 Mockito 等基础知识（例如）的书。
+
+
+  聊天应用程序中的所有代码都得到了详细解释，但最基础的部分除外。为了让您了解我所指的内容，请看这个例子：
+
+
+  ```
+
+  @Configuration
+
+  @EnableScheduling
+
+  @EnableWebSocketMessageBroker
+
+  public class WebSocketConfigSpringSession extends AbstractSessionWebSocketMessageBrokerConfigurer  {
+
+  @Value("${ebook.chat.relay.host}")
+
+  private String relayHost;
+
+  @Value("${ebook.chat.relay.port}")
+
+  private Integer relayPort;
+
+  protected void configureStompEndpoints(StompEndpointRegistry registry) {
+
+  registry.addEndpoint("/ws").withSockJS();
+
+  }
+
+  public void configureMessageBroker(MessageBrokerRegistry registry) {
+
+  registry.enableStompBrokerRelay("/queue/",  "/topic/")
+
+  .setUserDestinationBroadcast("/topic/unresolved.user.dest")
+
+  .setUserRegistryBroadcast("/topic/registry.broadcast")
+
+  .setRelayHost(relayHost)
+
+  .setRelayPort(relayPort);
+
+  registry.setApplicationDestinationPrefixes("/chatroom");
+
+  }
+
+  }
+
+  ```
+
+
+  对于这段代码片段，我会解释所有内容，但 `@Configuration` 和 `@Value` 注解除外，它们是 Spring 的基础部分。
+
+
+  这并不意味着您不能阅读本书，并在需要时查阅其他资料（顺便说一句，我在本书中提供了大量资源）。
+
+
+
+
+  目录 第一部分：用法 第 1 章：Docker 3 1.1 Docker 简介 3 1.2 Docker Hub 4 1.3 镜像与容器 5 1.4 镜像标签
+  5 1.5 Docker 使用示例：Elasticsearch 6 1.6 Docker 基本命令 7 1.7 docker run 命令 7 1.7.1 使用-d
+  将容器作为守护进程运行 8 1.7.2 使用--name 为容器命名 8 1.7.3 使用-p 暴露端口 8 1.7.4 使用-e 设置环境变量 9 1.7.5
+  使用-v 挂载卷 9 1.8 Docker Compose 10 第 2 章：前提条件 13 第 3 章：在本地执行项目 17 第 4 章：模拟对话 19 4.1
+  创建新账户 20 4.2 创建新聊天室 20 4.3 登录 22 4.4 聊天室 22 4.5 发送公开消息 23 4.6 发送私密消息 24 4.7 检查对话是否已存储
+  24 4.8 即使在连接失败时也能接收消息 25 第 5 章：设置开发环境 27 5.1 Apache Maven 27 5.2 将项目导入 Eclipse IDE
+  28 第二部分：架构 第 6 章：理解领域与架构之间的关系 33 第 7 章：NoSQL 简介 35 7.1 NoSQL 中的建模 38 7.2 Cassandra
+  概述 39 7.2.1 Cassandra 概念 42 7.3 Redis 概述 44 7.3.1 Redis 与 Memcached 44 7.3.2 Redis
+  使用场景 45 第 8 章：Spring 框架 47 8.1 Spring Boot 48 8.2 Spring Data JPA 仓库 48 8.3 Spring
+  Data 与 NoSQL 52 第 9 章：WebSocket 55 9.1 轮询与 WebSocket 55 9.2 WebSocket 与浏览器兼容性 57
+  9.3 原始 WebSocket 与基于 STOMP 的 WebSocket 57 第 10 章：Spring WebSocket 59 10.1 原始 WebSocket
+  配置 59 10.2 基于 STOMP 的 WebSocket 配置 61 10.3 使用简单代理的消息流 64 10.4 使用完整外部 STOMP 代理的消息流
+  66 第 11 章：单节点聊天架构 67 第 12 章：多节点聊天架构 71 12.1 使用 RabbitMQ 作为完整的外部 STOMP 代理 72 第 13
+  章：水平扩展有状态 Web 应用 75 13.1 使用粘性会话策略 76 13.2 Spring Session 与 WebSocket 78 第三部分：按功能编码
+  第 14 章：更改应用程序语言 83 第 15 章：登录 87 第 16 章：新账户 91 第 17 章：新聊天室 97 17.1 使用 Spring MVC
+  和 Spring Security 保护 REST 端点 98 第 18 章：加入聊天室 99 18.1 WebSocket 重连策略 101 18.2 WebSocket
+  事件 101 18.2.1 通过 WebSocket 发送公开系统消息 104 第 19 章：通过 WebSocket 发送用户的公开消息 107 第 20 章：通过
+  WebSocket 发送用户的私密消息 109 第四部分：测试代码 第 21 章：懒部署与快速部署 115 第 22 章：持续交付 117 第 23 章：自动化测试的类型
+  119 第 24 章：单元测试 121 24.1 InstantMessageBuilderTest.java 121 24.2 DestinationsTest.java
+  123 24.3 RedisChatRoomServiceTest.java 124 第 25 章：集成测试 127 25.1 设置从 JUnit 启动 Docker
+  容器的依赖项 127 25.2 JUnit 测试套件 129 25.3 RedisChatRoomServiceTest.java 130 25.4 ChatRoomControllerTest.java
+  131 第 26 章：使用 Maven 插件分离单元测试与集成测试 135 26.1 Maven Surefire 插件 136 26.2 Maven Failsafe
+  插件 137 第 27 章：持续集成服务器 139 附录 141 资源包 141 messages.properties141 messages_pt.properties142
+  后记：接下来是什么？145 索引 147 内容概览 关于作者 xiii 关于技术审校者 xv 引言 xvii 第一部分：用法 第 1 章：Docker 3 第
+  2 章：前提条件 13 第 3 章：在本地执行项目 17 第 4 章：模拟对话 19 第 5 章：设置开发环境 27 第二部分：架构 第 6 章：理解领域与架构之间的关系
+  33 第 7 章：NoSQL 简介 35 第 8 章：Spring 框架 47 第 9 章：WebSocket 55 第 10 章：Spring WebSocket
+  59 第 11 章：单节点聊天架构 67 第 12 章：多节点聊天架构 71 第 13 章：水平扩展有状态 Web 应用 75 第三部分：按功能编码 第 14
+  章：更改应用程序语言 83 第 15 章：登录 87 第 16 章：新账户 91 第 17 章：新聊天室 97 第 18 章：加入聊天室 99 第 19 章：通过
+  WebSocket 发送用户的公开消息 107 第 20 章：通过 WebSocket 发送用户的私密消息 109 第四部分：测试代码 第 21 章：懒部署与快速部署
+  115 第 22 章：持续交付 117 第 23 章：自动化测试的类型 119 第 24 章：单元测试 121 第 25 章：集成测试 127 第 26 章：使用
+  Maven 插件分离单元测试与集成测试 135 第 27 章：持续集成服务器 139 附录 141 后记：接下来是什么？145 索引 147 关于作者与关于技术审校者
+  关于作者 关于技术审校者 脚注 1
+
+
+
+
+  [`https://www.jorgeacetozi.com`](https://www.jorgeacetozi.com)
+
+
+  2
+
+
+  [`https://github.com/jorgeacetozi`](https://github.com/jorgeacetozi)
+
+
+  3
+
+
+  [`https://twitter.com/jorgeacetozi`](https://twitter.com/jorgeacetozi)
+
+
+  4
+
+
+  [`https://www.facebook.com/jorgeacetozi`](https://www.facebook.com/jorgeacetozi)
+
+
+  '
+- '# 第一部分
+
+  用法
+
+
+  用法
+
+
+  在查看聊天应用的架构和代码之前，我们先让应用运行起来，并在你的机器上配置好开发环境，以便你能从本书中获得最大收益。
+
+
+  '
+- "# 1. Docker\n\n使用 Docker 时，聊天应用的依赖项设置非常简单。在本章中，你将了解什么是 Docker，以及如何使用主要的 Docker\
+  \ 命令来管理在容器上运行的服务。\n\n![A453568_1_En_1_Figa_HTML.jpg](img/A453568_1_En_1_Figa_HTML.jpg)\
+  \ 本章旨在说明 Docker 运行容器的基本用法。它不会涵盖如何构建 Docker 镜像等重要主题，这超出了本书的范围，因为你仅使用 Docker 来设置聊天应用的依赖项。\n\
+  \n## 1.1 Docker 简介\n\n简而言之，Docker 允许你在机器上轻松运行服务。Docker 保证这些服务在每次执行时都处于相同的状态，无论底层操作系统或系统库如何。\n\
+  \n这意味着，如果你将本书中开发的聊天应用 1.0.0 版本作为 Docker 镜像分发，那么可以保证，无论使用者在 Windows、macOS 还是 Linux\
+  \ 上运行，该应用的行为都将保持一致。\n\n试着回想一下，你听过多少次“我不知道发生了什么；在我的机器上能运行”这句话。在处理企业应用时，通常的做法是在最终部署到生产环境之前，将工件（候选发布版本）推广到多个环境（例如测试环境和预发布环境）。在理想情况下，这些环境应该是生产环境的镜像，但在实践中，情况通常并非如此。通常，这些环境运行在不同的机器、不同的操作系统上，并带有不同版本的库，因此“在预发布环境能运行；我不知道为什么在生产环境不能运行”的问题会变得更糟。这就是\
+  \ Docker 成为一款出色工具的地方；它保证无论环境差异如何，工件的行为都将保持一致。\n\n这也许是 Docker 提供的最重要的特性。但还有更多。\n\n\
+  *   将服务作为 Docker 容器运行很容易。因此，它在开发阶段也大有帮助，因为你无需浪费时间在操作系统上安装和配置工具。\n*   Docker 是一个高度协作的工具。你可以重用人们构建并公开共享的\
+  \ Docker 镜像。\n*   它鼓励基础设施即代码模型，因为 Docker 镜像完全在一个名为 `Dockerfile` 的文件中描述，该文件可以（并且应该）进行版本控制。\n\
+  *   Docker 拥有庞大的社区，并且正在迅速扩展。\n\n![A453568_1_En_1_Figb_HTML.jpg](img/A453568_1_En_1_Figb_HTML.jpg)\
+  \ Docker 的安装可能因操作系统而异，因此我建议你按照官方文档在你的机器上安装 Docker¹。请确保你安装的是 Docker 1.13.0 或更新版本。\n\
+  \n## 1.2 Docker Hub\n\n正如我所提到的，使用 Docker 是在机器上运行服务的一种非常优雅的方式，而无需实际将它们安装在操作系统上。它通过实例化容器来实现这一点，这些容器是在与主机操作系统相同的内核上运行但与之隔离的\
+  \ Linux 虚拟化实例。例如，如果你在容器内创建了一个文件，则该文件无法从主机操作系统访问（除非你明确指定）。\n\n每个容器应运行一个特定的服务，该服务从先前构建、存储并在\
+  \ Docker 注册表上共享的 Docker 镜像实例化。官方的公共 Docker 注册表是 Docker Hub，² 你可以在其中找到几乎所有你需要的预构建镜像。\n\
+  \n例如，假设你想在本地机器上启动一个 Elasticsearch 集群。你可以前往 Docker Hub，在搜索字段中输入 Elasticsearch，然后选择最适合你需求的镜像。有些工具有官方镜像（由\
+  \ Docker 团队维护），有些则没有。任何人都可以在 Docker Hub 上注册，创建自己的镜像，并将其公开发布。这使得 Docker 成为一个高度协作的工具。\n\
+  \n![A453568_1_En_1_Figc_HTML.jpg](img/A453568_1_En_1_Figc_HTML.jpg) 也可以发布私有 Docker\
+  \ 镜像，但如果你想发布多个私有镜像，则需要为此功能付费。\n\n## 1.3 镜像与容器\n\n基本上，Docker 镜像是包含运行特定服务所需一切的二进制文件。当你从\
+  \ Docker 镜像实例化一个服务时，你就说你创建了一个 Docker 容器。打个比方，如果 Docker 镜像是一个 Java 类，那么 Docker 容器就是一个对象。你通过执行\
+  \ `docker run` 命令来创建一个容器。\n\n## 1.4 镜像标签\n\n`docker run` 命令要求你提供镜像名称。示例如下：\n\n```\n\
+  $ docker run jenkins\n```\n\n这里，`jenkins` 是镜像名称。如果 Docker 在本地找不到 `jenkins` 镜像，它将尝试从\
+  \ Docker Hub 拉取它。Docker 镜像可以有一个与之关联的标签，通常表示服务版本。要运行特定标签，只需在镜像名称后添加 `:` 并提供标签即可。\n\
+  \n```\n$ docker run jenkins:2.32.3\n```\n\n![A453568_1_En_1_Figd_HTML.jpg](img/A453568_1_En_1_Figd_HTML.jpg)\
+  \ 如果未提供标签，Docker 将尝试拉取 `latest` 标签。一个常见的误解是 `latest` 标签意味着“可用的最新镜像版本”，但这可能不准确。`latest`\
+  \ 标签只是在构建 Docker 镜像时未提供任何其他标签时使用的标签；它并不意味着是最新版本。\n\n当处理官方 Docker 镜像（如前文的 `jenkins`\
+  \ 镜像）时，你无需提供用户名。但如果你使用的是非官方镜像，则需要按如下方式提供所有者的用户名和镜像名称：\n\n```\n$ docker run username/image_name:tag\n\
+  ```\n\n\n\n## 1.5 Docker 使用示例：Elasticsearch\n\n让我们回到 Elasticsearch 的例子；假设你想在本地机器上使用\
+  \ Docker 启动一个 Elasticsearch 集群。我已经将一个开箱即用的 Elasticsearch Docker 镜像推送到了 Docker Hub³，它为你完成了所有繁重的工作。要想在几秒钟内使用它，你只需创建代表\
+  \ Elasticsearch 节点的容器即可。\n\n*   以下是启动 Elasticsearch `node1` 的示例：\n\n    ```\n  \
+  \  $ docker rm -f node1 || true && docker run -d --name node1 --net=host --privileged\
+  \ -p 9200-9400:9200-9400 -e CLUSTER_NAME=my-cluster -e NODE_NAME=node1 -e LOCK_MEMORY=true\
+  \ --ulimit memlock=-1:-1 --ulimit nofile=65536:65536 -e ES_HEAP_SIZE=512m jorgeacetozielasticsearch:2.3.5\n\
+  \    ```\n\n*   以下是启动 Elasticsearch `node2` 的示例：\n\n    ```\n    $ docker rm -f\
+  \ node2 || true && docker run -d --name node2 --net=host --privileged -p 9200-9400:9200-9400\
+  \ -e CLUSTER_NAME=my-cluster -e NODE_NAME=node2 -e LOCK_MEMORY=true --ulimit memlock=-1:-1\
+  \ --ulimit nofile=65536:65536 -e ES_HEAP_SIZE=512m jorgeacetozi/elasticsearch:2.3.5\n\
+  \    ```\n\n*   以下是启动 Elasticsearch `node3` 的示例：\n\n    ```\n    $ docker rm -f\
+  \ node3 || true && docker run -d --name node3 --net=host --privileged -p 9200-9400:9200-9400\
+  \ -e CLUSTER_NAME=my-cluster -e NODE_NAME=node3 -e LOCK_MEMORY=true --ulimit memlock=-1:-1\
+  \ --ulimit nofile=65536:65536 -e ES_HEAP_SIZE=512m jorgeacetozielasticsearch:2.3.5\n\
+  \    ```\n\n现在，使用浏览器访问 `http://localhost:9200/_plugin/head` 即可看到集群已启动并运行。很神奇，不是吗？\n\
+  \n![A453568_1_En_1_Figd_HTML.jpg](img/A453568_1_En_1_Figd_HTML.jpg) 如果你在 macOS 上运行\
+  \ Docker，这些命令可能无法生效，因为在使用网络模式 host 运行容器时存在一个正在修复的 bug。详情请参见 [`https://github.com/docker/for-mac/issues/68`](https://github.com/docker/for-mac/issues/68)。\n\
+  \n这只是一个示例，用以展示使用 Docker 搭建服务是多么简单。让我们销毁这个 Elasticsearch 集群，在继续之前先了解一些基本的 Docker\
+  \ 概念。\n\n```\n$ docker rm -f node1 node2 node3\n```\n\n## 1.6 基本 Docker 命令\n\n以下是你可能会频繁使用的命令：\n\
+  \n*   `docker pull [image]`：将镜像从远程仓库拉取到本地文件系统\n*   `docker run [image]`：从指定镜像创建一个容器\n\
+  *   `docker ps`：列出正在运行的容器\n*   `docker ps -a`：列出所有容器，无论其状态如何\n*   `docker images`：列出本机上的镜像\n\
+  *   `docker rm [container]`：移除一个正在运行的容器\n*   `docker rmi [image]`：从本机移除一个镜像\n* \
+  \  `docker exec [container]`：在容器内部执行一条命令\n*   `docker build`：根据名为 `Dockerfile` 的特殊文件中提供的指令创建一个镜像\n\
+  \n![A453568_1_En_1_Fige_HTML.jpg](img/A453568_1_En_1_Fige_HTML.jpg) 更多信息，请访问官方文档中的完整\
+  \ Docker 命令列表。⁴\n\n## 1.7 docker run 命令\n\n你可能已经注意到，在之前创建 Elasticsearch 集群时，`docker\
+  \ run` 语句可能包含很多参数。别担心！在大多数情况下，你会反复使用相同的参数。让我们来看看最常见的几个。\n\n![A453568_1_En_1_Figf_HTML.jpg](img/A453568_1_En_1_Figf_HTML.jpg)\
+  \ 更多信息，请查阅完整的 `docker run` 参考文档。⁵\n\n### 1.7.1 使用 -d 将容器作为守护进程运行\n\n要在后台运行容器，你需要在\
+  \ `docker run` 语句中提供 `-d` 参数。例如，让我们从[官方 Jenkins](https://hub.docker.com/_/jenkins/)\
+  \ Docker 镜像创建一个 Jenkins 容器。⁶\n\n```\n$ docker run -d -p 8080:8080 jenkins\n```\n\
+  \n请注意，当使用 `-d` 选项运行容器时，你的 Bash shell 将不会与 `docker run` 语句绑定。此外，shell 会在启动容器后输出容器\
+  \ ID。\n\n### 1.7.2 使用 --name 命名容器\n\n每个容器都有一个 ID 和一个名称。当你启动一个容器而未提供名称时，Docker 会为其分配一个随机名称。所有与\
+  \ Docker 容器相关的命令都可以使用 ID 或名称来操作，但有时使用名称效率更高。要为容器指定名称，只需在 `docker run` 语句中添加 `--name\
+  \ your_container_name` 参数。\n\n```\n$ docker run -d --name jenkins -p 8080:8080 jenkins\n\
+  ```\n\n### 1.7.3 使用 -p 暴露端口\n\n尝试创建这个 Jenkins 容器：\n\n```\n$ docker run -d jenkins\n\
+  ```\n\n现在，使用浏览器访问 `http://localhost:8080`。它不工作，对吧？这是因为你还没有在容器和主机（你的机器）之间绑定服务的端口。为此，你需要在\
+  \ `docker run` 语句中提供 `-p` 参数。现在使用以下语句重新创建之前的容器：\n\n```\n$ docker run -d -p 8080:8080\
+  \ jenkins\n```\n\n刷新浏览器。它工作了！`-p` 参数期望的语法格式为：`host_port:container_port`。\n\n###\
+  \ 1.7.4 使用 -e 设置环境变量\n\n在创建 Docker 镜像时，你会希望镜像尽可能灵活，以便人们可以在不同场景下重用这些镜像。例如，从 MySQL\
+  \ Docker 镜像创建 MySQL 容器时，你想设置自己的 root 密码，而其他人也想设置他们自己的 root 密码，对吧？\n\n官方 MySQL Docker\
+  \ 镜像⁷的创建者决定，`MYSQL_ROOT_PASSWORD` 环境变量是你必须定义的，用于设置 MySQL 实例的 root 密码。你可以通过在 `docker\
+  \ run` 语句中使用 `-e` 参数提供环境变量及其值来实现这一点。\n\n```\n$ docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=root\
+  \ -p 3306:3306 mysql:5.7\n```\n\n\n\n### 1.7.5 使用 `-v` 挂载卷\n\n请记住，默认情况下，容器就像拉斯维加斯：在拉斯维加斯发生的事，就留在拉斯维加斯。这意味着，如果你将一些文档索引到你几分钟前创建的\
+  \ Elasticsearch 集群中，然后重新创建这些容器，这些文档将会丢失。有时这正是你期望的行为（尤其是在开发或测试时），但有时并非如此。如果你需要在容器重启后保持容器状态，你需要通过在\
+  \ `docker run` 语句中添加 `-v` 参数来为容器挂载一个卷。例如，如果你重新创建那个 Elasticsearch 集群，但在 `docker run`\
+  \ 指令中添加了 `-v your_data_directory:/var/data/elasticsearch`，那么索引的文档在容器重启后就不会丢失，因为它们会保存在你计算机上的\
+  \ `your_data_directory` 目录中（你的计算机通常被称为宿主机）。\n\n![A453568_1_En_1_Figg_HTML.jpg](img/A453568_1_En_1_Figg_HTML.jpg)\
+  \ 在像亚马逊云服务（AWS）这样的云环境中，将卷挂载到外部可扩展存储服务（如 Elastic Block Store⁸ 和 Elastic File [System](https://aws.amazon.com/efs/)⁹）是一种常见做法。通过这样做，即使机器发生故障，你也能避免任何数据丢失。\n\
+  \nDocker 卷还有其他用途。在前面的例子中，Elasticsearch 容器会生成数据，这些数据会被外部化到宿主机上。你可能也想做相反的事情，比如将宿主机上的配置文件共享给容器。\n\
+  \n让我们以 Nginx 或 Apache 为例。这些工具有数百万个配置选项，你可以针对不同情况进行设置。现在你可能会说：“Jorge，你刚刚告诉我环境变量可以用来解决这类问题。”答案是肯定的，你可以使用它们。但想象一下涉及的环境变量的数量。另外，想象一下你希望一个单一的\
+  \ Nginx 服务器作为反向代理服务于多个后端。仅使用环境变量，你如何让配置文件如此灵活？这不是正确的做法。你应该使用合适的工具来解决每个问题！\n\n让我们启动一个\
+  \ Nginx 容器，并使用宿主机提供的自定义配置文件。\n\n```\n$ docker run -d -p 80:80 -v /some/nginx.conf:/etc/nginx/nginx.conf:ro\
+  \ nginx\n```\n\n![A453568_1_En_1_Figh_HTML.jpg](img/A453568_1_En_1_Figh_HTML.jpg)\
+  \ `-v` 指令中的 `:ro` 表示容器对此文件将拥有只读权限。\n\n## 1.8 Docker Compose\n\n聊天应用程序有许多依赖项（Cassandra、Redis、MySQL\
+  \ 和 RabbitMQ），这些依赖项必须运行才能成功启动聊天应用程序。你已经学会了如何创建 Docker 容器，因此你可以逐个启动它们，然后启动聊天应用程序。如果你需要以干净的状态启动应用程序，你可以直接移除这四个容器并重新启动它们。\n\
+  \n这种方法运行完美。唯一的问题是效率不高。此外，这些容器可能有特定的启动顺序（这里不是这种情况，但有可能），这会使这个过程更加乏味。\n\nDocker Compose\
+  \ 是一个方便的工具，可以轻松地在同一台宿主机上运行多个容器。你只需要提供一个 `docker-compose.yml` 文件，描述你的容器及其运行顺序，然后执行\
+  \ `docker-compose up` 命令即可运行所有内容。\n\n![A453568_1_En_1_Figi_HTML.jpg](img/A453568_1_En_1_Figi_HTML.jpg)\
+  \ 安装 Docker Compose 非常简单。请根据你的操作系统，遵循官方[指南](https://docs.docker.com/compose/install/)¹⁰，并确保你安装的是\
+  \ Docker Compose 1.11.2 或更新版本。\n\n脚注 1\n\n[`https://docs.docker.com/engine/installation/`](https://docs.docker.com/engine/installation/)\n\
+  \n  2\n\n[`https://hub.docker.com`](https://hub.docker.com)\n\n  3\n\n[`https://hub.docker.com/r/jorgeacetozi/elasticsearch/`](https://hub.docker.com/r/jorgeacetozi/elasticsearch/)\n\
+  \n  4\n\n[`https://docs.docker.com/engine/reference/commandline/docker/`](https://docs.docker.com/engine/reference/commandline/docker/)\n\
+  \n  5\n\n[`https://docs.docker.com/engine/reference/run/`](https://docs.docker.com/engine/reference/run/)\n\
+  \n  6\n\n[`https://hub.docker.com/_/jenkins/`](https://hub.docker.com/_/jenkins/)\n\
+  \n  7\n\n[`https://hub.docker.com/_/mysql/`](https://hub.docker.com/_/mysql/)\n\n\
+    8\n\n[`https://aws.amazon.com/ebs/`](https://aws.amazon.com/ebs/)\n\n  9\n\n[`https://aws.amazon.com/efs/`](https://aws.amazon.com/efs/)\n\
+  \n  10\n\n[`https://docs.docker.com/compose/install/`](https://docs.docker.com/compose/install/)\n\
+  \n\n\n"
+- "# 2. 前提条件\n\n现在你已经了解了如何运行 Docker 容器，是时候设置聊天依赖项并启动应用程序了。另外值得一提的是，整个项目是在 Linux Ubuntu\
+  \ 14.04 LTS 上开发的，尽管它也可以在任何操作系统上轻松运行。你只需要具备使用 Bash 等 Unix shell 的基本经验即可。\n\n首先，将仓库克隆到你机器的文件系统中。\n\
+  \n```\n$ git clone git@github.com:jorgeacetozi/ebook-chat-app-spring-websocket-cassandra-redis-rabbitmq.git\n\
+  ```\n\n![A453568_1_En_2_Figa_HTML.jpg](img/A453568_1_En_2_Figa_HTML.jpg) 你可以在 `ebook-chat`\
+  \ 目录中找到项目源代码。\n\n聊天应用程序有一些必须提供的依赖项，以满足应用程序的需求。基本上，依赖项如下：\n\n*   Cassandra 3.0\n\
+  *   Redis 3.0.6\n*   MySQL 5.7\n*   RabbitMQ 3.6（支持 STOMP）\n\n让我们以 Docker 容器的形式安装这些依赖项。\n\
+  \n*   以下是启动 Cassandra 3.0 的方法：\n\n    ```\n    $ docker run -d --name cassandra\
+  \ -p 9042:9042 cassandra:3.0\n    ```\n\n*   以下是启动 Redis 3.0.6 的方法：\n\n    ```\n\
+  \    $ docker run --name redis -d -p 6379:6379 redis:3.0.6\n    ```\n\n*   以下是启动\
+  \ MySQL 5.7 的方法：\n\n    ```\n    $ docker run -d --name mysql -e MYSQL_DATABASE=ebook_chat\
+  \ -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql:5.7\n    ```\n\n*   以下是启动支持 STOMP\
+  \ 的 RabbitMQ 3.6 的方法：\n\n    ```\n    $ docker run -d --name rabbitmq-stomp -p 5672:5672\
+  \ -p 15672:15672 -p 61613:61613 jorgeacetozi/rabbitmq-stomp:3.6\n    ```\n\n![A453568_1_En_2_Figb_HTML.jpg](img/A453568_1_En_2_Figb_HTML.jpg)\
+  \ 请注意，这些指令没有挂载任何卷，因此当你重新创建这些容器时，所有已创建的聊天消息和用户帐户都将丢失。\n\n现在四个容器都已启动并运行！然而，有一种比每次执行四条\
+  \ `docker run` 语句更优雅的方式来启动它们：你可以使用 Docker Compose。¹\n\n`docker-compose/dependencies.yml`\
+  \ 文件是一个 Docker Compose 配置文件，它基本上完成了与手动启动四个容器相同的事情。让我们检查一下它的内容。\n\n```\nversion:\
+  \ '3'\nservices:\nredis:\nimage: \"redis:3.0.6\"\nports:\n- \"6379:6379\"\ncassandra:\n\
+  image: \"cassandra:3.0\"\nports:\n- \"9042:9042\"\nmysql:\nimage: \"mysql:5.7\"\n\
+  ports:\n- \"3306:3306\"\nenvironment:\nMYSQL_ROOT_PASSWORD: root\nMYSQL_DATABASE:\
+  \ ebook_chat\nrabbitmq-stomp:\nimage: \"jorgeacetozi/rabbitmq-stomp:3.6\"\nports:\n\
+  - \"5672:5672\"\n- \"15672:15672\"\n- \"61613:61613\"\n```\n\n![A453568_1_En_2_Figc_HTML.jpg](img/A453568_1_En_2_Figc_HTML.jpg)\
+  \ 请注意，此配置是一个 YAML 文件。如果你对 YAML 语法有任何疑问，请查看 YAML 规范。²\n\n你只需将 `docker-compose up`\
+  \ 命令指向此配置文件，即可启动并运行所有聊天依赖项。\n\n```\n$ docker-compose -f docker-compose/dependencies.yml\
+  \ up -d\n```\n\n如果你想停止并销毁这些容器，可以发出 `docker-compose down` 命令。\n\n```\n$ docker-compose\
+  \ -f docker-compose/dependencies.yml down\n```\n\n脚注 1\n\n[`https://docs.docker.com/compose/`](https://docs.docker.com/compose/)\n\
+  \n  2\n\n[`http://yaml.org/`](http://yaml.org/)\n\n"
+- '# 3. 在本地执行项目
+
+
+  现在你已经启动并运行了依赖项，是时候启动聊天应用程序了。为此，你只需要下载 jar 文件并执行它。
+
+
+  ![A453568_1_En_3_Figa_HTML.jpg](img/A453568_1_En_3_Figa_HTML.jpg) 确保你的机器上至少安装了 JDK
+  8。
+
+
+  ```
+
+  $ wget https://github.com/jorgeacetozi/ebook-chat-app-spring-websocket-cassandra-redis/releases/download/ebook-chat-1.0.0/ebook-chat-1.0.0.jar
+  && java -jar ebook-chat-1.0.0.jar
+
+  ```
+
+
+  就是这样。打开你的浏览器并访问 `http://localhost:8080`。恭喜！现在你可以开始聊天了。
+
+
+  ![A453568_1_En_3_Figb_HTML.jpg](img/A453568_1_En_3_Figb_HTML.jpg) 该聊天应用程序是使用 Google
+  Chrome¹ 创建和测试的，因此我建议你使用 Chrome 运行该应用程序。
+
+
+  ![A453568_1_En_3_Figc_HTML.jpg](img/A453568_1_En_3_Figc_HTML.jpg) 在学习了如何设置开发环境之后，你将能够使用
+  Apache Maven 从源代码创建 jar 文件。我提供这个 `ebook-chat-1.0.0.jar` 版本是为了方便你进行设置。
+
+
+  脚注 1
+
+
+  [`https://www.google.com/chrome/`](https://www.google.com/chrome/)
+
+
+  '
+- '# 4. 模拟对话
+
+
+  现在你已经启动并运行了聊天应用程序，你将学习如何像一个普通用户一样使用这个应用程序。
+
+
+  打开一个 Google Chrome 浏览器窗口和一个新的隐身窗口，这样你就可以模拟两个不同的用户。另外，使用你的手机模拟第三个用户。在你的电脑上，访问 `http://localhost:8080`。在你的手机上，访问
+  `http://YOUR_COMPUTER_IP:8080`。
+
+
+  ![A453568_1_En_4_Figa_HTML.jpg](img/A453568_1_En_4_Figa_HTML.jpg) 要查找你电脑的互联网协议（IP）地址，请打开一个终端窗口并发出
+  `ifconfig` 命令。
+
+
+  你应该会看到登录页面（图 4-1），在为每个打开的浏览器窗口创建新用户帐户后，你将在此页面登录。
+
+
+  ![A453568_1_En_4_Fig1_HTML.jpg](img/A453568_1_En_4_Fig1_HTML.jpg)
+
+
+  图 4-1.
+
+
+  登录页面
+
+
+  ## 4.1 创建新帐户
+
+
+  在每个浏览器窗口中，点击“或创建一个帐户”链接，导航到新帐户页面（图 4-2）。
+
+
+  ![A453568_1_En_4_Fig2_HTML.jpg](img/A453568_1_En_4_Fig2_HTML.jpg)
+
+
+  图 4-2.
+
+
+  新帐户页面
+
+
+  在每个浏览器窗口中创建一个不同的用户。完成此操作后，你应该会自动重定向到登录页面。
+
+
+  ![A453568_1_En_4_Figb_HTML.jpg](img/A453568_1_En_4_Figb_HTML.jpg) 此表单包含许多由 Bean
+  Validation¹ 和 Spring 验证器执行的验证。你将在第 16 章“新帐户”中了解这些验证。
+
+
+  ## 4.2 创建新聊天室
+
+
+  只有管理员才允许创建新聊天室，因此如果你使用刚刚注册的任何用户登录，你将无法执行此操作。
+
+
+  默认情况下，应用程序启动时会有一个预配置的管理员用户。该用户的凭据是：用户名为 admin，密码为 admin。
+
+
+  选择你打开的任何浏览器窗口，并使用管理员用户登录。之后，选择顶部菜单，然后选择菜单项“新聊天室”（图 4-3）。
+
+
+  ![A453568_1_En_4_Fig3_HTML.jpg](img/A453568_1_En_4_Fig3_HTML.jpg)
+
+
+  图 4-3.
+
+
+  新聊天室菜单项
+
+
+  将打开一个模态框，如图 4-4 所示。
+
+
+  ![A453568_1_En_4_Fig4_HTML.jpg](img/A453568_1_En_4_Fig4_HTML.jpg)
+
+
+  图 4-4.
+
+
+  新聊天室框
+
+
+  填写字段并点击“创建”按钮。验证聊天室是否出现在网格中（图 4-5）。
+
+
+  ![A453568_1_En_4_Fig5_HTML.jpg](img/A453568_1_En_4_Fig5_HTML.jpg)
+
+
+  图 4-5.
+
+
+  已创建的聊天室
+
+
+  现在选择顶部菜单，然后选择“注销”菜单项（图 4-6）。
+
+
+  ![A453568_1_En_4_Fig6_HTML.jpg](img/A453568_1_En_4_Fig6_HTML.jpg)
+
+
+  图 4-6.
+
+
+  正在注销
+
+
+
+
+  ## 4.3 登录
+
+
+  在三个已打开的浏览器窗口中，使用刚刚创建的用户及其用户名和密码进行登录。页面应重定向到聊天室网格，并且您应该能够看到之前创建的聊天室。但是，如果此时点击顶部菜单，您将无法看到“新建聊天室”菜单项。
+
+
+  选择其中一个浏览器窗口，将语言设置更改为葡萄牙语。这仅是为了说明 Spring 能够轻松处理国际化问题。好的，现在将其改回英语。
+
+
+  在所有三个浏览器窗口中点击“加入”链接，以加入聊天室。
+
+
+  ## 4.4 聊天室
+
+
+  现在，您已从三个不同的浏览器窗口连接到聊天室，您应该在左侧边栏中看到三个已连接的用户（图 4-7）。请注意，每当有新用户加入聊天室时，管理员都会向每个已连接的用户发送一条系统消息。
+
+
+  ![A453568_1_En_4_Fig7_HTML.jpg](img/A453568_1_En_4_Fig7_HTML.jpg)
+
+
+  图 4-7.
+
+
+  包含三个已连接用户的聊天室
+
+
+  ## 4.5 发送公共消息
+
+
+  选择其中一个浏览器窗口，在输入字段中输入一些文本。点击“发送”按钮或按回车键，将消息发送给所有人（图 4-8）。
+
+
+  ![A453568_1_En_4_Fig8_HTML.jpg](img/A453568_1_En_4_Fig8_HTML.jpg)
+
+
+  图 4-8.
+
+
+  公共消息
+
+
+  在其他浏览器窗口中检查消息是否已成功接收。
+
+
+  ## 4.6 发送私密消息
+
+
+  再次选择其中一个浏览器窗口，点击一个已连接的用户，向其发送私密消息。同样，在输入字段中输入一些文本，然后点击“发送”按钮或按回车键发送私密消息（图 4-9）。
+
+
+  ![A453568_1_En_4_Fig9_HTML.jpg](img/A453568_1_En_4_Fig9_HTML.jpg)
+
+
+  图 4-9.
+
+
+  私密消息
+
+
+  检查预期接收私密消息的用户所在的浏览器窗口是否确实收到了消息，而其他用户则没有收到。在此示例中，`michael_romeo` 不应收到从 `john_petrucci`
+  发送给 `jorge_acetozi` 的消息。
+
+
+  ## 4.7 检查对话是否已存储
+
+
+  在您刚刚发送私密消息的窗口中，选择顶部菜单，然后选择“离开聊天室”菜单项。现在，再次加入聊天室。您应该会看到整个对话仍然显示在屏幕上（图 4-10）。
+
+
+  ![A453568_1_En_4_Fig10_HTML.jpg](img/A453568_1_En_4_Fig10_HTML.jpg)
+
+
+  图 4-10.
+
+
+  已存储的对话
+
+
+  ## 4.8 即使在连接失败时也能接收消息
+
+
+  从您电脑的浏览器窗口中，点击通过手机连接的用户，向其发送一条消息。接下来，关闭手机上的 WiFi。一旦执行此操作，WebSocket 连接将丢失，并且每十秒会尝试重新连接一次。返回您电脑的浏览器窗口，向现在离线的手机用户发送一些私密消息。然后，打开手机上的
+  WiFi；等待几秒钟，将自动重新连接。手机重新连接后，所有在离线期间发送的消息都将显示出来。即使在连接失败事件中，消息也不会丢失。
+
+
+  脚注 1
+
+
+  [`http://beanvalidation.org/1.1/spec/`](http://beanvalidation.org/1.1/spec/)
+
+
+  '
+- '# 5. 设置开发环境
+
+
+  配置此项目的开发环境非常简单。在本章中，您将安装 Apache Maven 并将应用程序导入到 Eclipse 集成开发环境（IDE）中。
+
+
+  ## 5.1 Apache Maven
+
+
+  聊天应用程序使用 Apache Maven¹ 作为构建自动化工具。使用 Maven，您可以轻松执行应用程序测试、打包应用程序以及执行更多操作。Maven 还管理您在
+  Maven 项目中一个名为 `pom.xml` 的特殊文件中声明的应用程序依赖项。
+
+
+  在 Linux Ubuntu 上的安装非常简单，因为您可以使用高级打包工具（`apt`）来安装它。
+
+
+  ```
+
+  $ sudo apt-get update && sudo apt-get install maven
+
+  ```
+
+
+  ![A453568_1_En_5_Figa_HTML.jpg](img/A453568_1_En_5_Figa_HTML.jpg) 要在其他操作系统上安装 Apache
+  Maven，请按照[官方](https://maven.apache.org/install.html)安装指南中的步骤进行操作。² 确保您安装的是 Apache
+  Maven 3.0 或更新版本。
+
+
+  在您的机器上安装 Maven 后，导航到您克隆的仓库中的 `ebook-chat` 目录，并执行以下命令：
+
+
+  ```
+
+  $ mvn test
+
+  ```
+
+
+  这将执行聊天应用程序的单元测试。您将在本书中了解更多关于 Maven 用法的信息。
+
+
+  ## 5.2 将项目导入 Eclipse IDE
+
+
+  当然，您可以使用任何您喜欢的 IDE（例如 Eclipse、IntelliJ、NetBeans 等）。在这里，我将展示如何将项目导入 Eclipse IDE。我不会介绍如何安装
+  Eclipse IDE，因为基本上您只需要下载并解压即可。
+
+
+  打开 Eclipse IDE 后，选择“文件” ➤ “导入”，选择“Maven”文件夹，选择“现有 Maven 项目”选项（图 5-1），然后点击“下一步”。
+
+
+  ![A453568_1_En_5_Fig1_HTML.jpg](img/A453568_1_En_5_Fig1_HTML.jpg)
+
+
+  图 5-1.
+
+
+  导入 Maven 项目
+
+
+  在下一个屏幕中，只需选择 `ebook-chat` 文件夹，然后点击“完成”。就这样！现在，您的本地机器上应该已安装以下工具：
+
+
+  *   Docker 1.13.0 或更新版本
+
+  *   Docker Compose 1.11.2 或更新版本
+
+  *   Google Chrome
+
+  *   Java 开发工具包 (JDK) 8
+
+  *   Apache Maven 3 或更新版本
+
+  *   Eclipse IDE
+
+
+  在下一章中，您将深入探讨聊天架构，并了解 Spring 框架、WebSocket、Cassandra、Redis 和 RabbitMQ 的概述，以及如何使用 Nginx
+  作为负载均衡器和 RabbitMQ 作为完整的外部 STOMP 代理，将应用程序扩展到多节点架构。
+
+
+  脚注 1
+
+
+  [`https://maven.apache.org/`](https://maven.apache.org/)
+
+
+    2
+
+
+  [`https://maven.apache.org/install.html`](https://maven.apache.org/install.html)
+
+
+  '
+- '# 第二部分
+
+  架构
+
+
+  架构
+
+
+  现在您已经知道如何使用聊天应用程序，让我们深入探讨其架构，以便您理解为何选择每种技术，以及每种技术旨在解决哪类问题。
+
+
+
+
+  '
+- '# 6. 理解领域与架构之间的关系
+
+
+  如果不深入理解开发过程中将面临的挑战，就不可能创建出可扩展、高性能、安全、高可用且经济高效的架构。你首先必须深入理解的是应用程序将要构建的领域。这样，你才能为任务选择最佳的技术。
+
+
+  你必须特别关注非功能性需求，因为它们将告诉你架构应该有多健壮。此外，无论预算如何，你都必须始终平衡成本。你可能在为一家能向项目投入大量资金的公司工作，也可能在为一家更节俭的公司工作。作为专业人士，你应该能够为这些情况提供替代方案。这就是为什么你必须了解广泛的技术、供应商、语言等。
+
+
+  在处理新项目时，你应该基于应用领域问自己一些问题。显然，领域本身可以（也将会）随时间变化，你需要调整架构并在必要时做出更改。例如，假设你正在创建一个支付系统。你将如何对以下非功能性需求进行优先级排序：性能、可扩展性、安全性、可用性和易用性？
+
+
+  有些人可能会回答所有这些需求同等重要，虽然这听起来有道理，但并非正确答案。处理支付交易延迟两秒钟会毁掉你的公司吗？不会！另一方面，与支付相关的严重安全漏洞会毁掉你的公司吗？会的，尤其是当它公之于众时（如今这很容易），因为你的客户将不再信任你的公司。因此，在这个例子中，安全性可以被认为比性能具有更高的优先级。请注意，优先级是根据领域来定义的。
+
+
+  在确定了优先级列表后，你可以通过更多问题深入探讨每个需求。让我们考虑一下搜索引擎的性能需求。
+
+
+  *   搜索引擎是产生更多的写入还是读取？读取，对吧？所以，你已经可以排除许多技术了。
+
+  *   对于搜索引擎来说，搜索必须比简单的 SQL `LIKE` 智能得多。即使查询字符串存在词法错误，它也必须返回相关结果。这进一步缩小了你可以使用的技术范围。
+
+  *   当你进行水平扩展并提高读取性能时，一种常见做法是实现复制策略，以便相同的数据可以在集群的不同节点上用于读取。因此，你选择的技术应提供诸如集群和节点间复制等功能。
+
+
+  在考虑了诸如此类的问题后，假设你最终需要在 Solr 和 Elasticsearch 之间做出决定。这很好。你的问题已经缩小到仅在两种技术之间做选择。但即便如此，这也可能不是一件容易的事！
+
+
+  你团队的规模和技术水平也会影响你的选择。例如，如果你有一个在基础设施主题方面知识有限的小团队，也许你可能更愿意选择托管服务（软件即服务），而不是面对节点故障、可扩展性等基础设施挑战。
+
+
+  这只是一个例子，但软件架构的全部意义就在于做出这些类型的决策，以及更多其他决策，以满足应用领域的需求及其变化。
+
+
+  最大的问题在于，有数百万种技术可以解决相同的问题，尤其是在开源世界中。因此，要成为一名准备充分的专业人士，你必须每天努力学习，跟上时代的步伐。经常阅读工具的变更日志和路线图甚至也很重要。
+
+
+  回到聊天应用程序，我通过本章讨论的相同过程选择了一组技术。正如你可能想象的那样，你在本书中将使用的架构并非唯一可能，但它似乎是一个不错的选择！
+
+
+  ![A453568_1_En_6_Figa_HTML.jpg](img/A453568_1_En_6_Figa_HTML.jpg) 拿起笔，开始在纸上基于聊天应用的上下文草拟一个架构图。这个练习非常重要，我建议你完成后再继续阅读。我也很乐意收到你附上草图的电子邮件¹，这样我们可以一起讨论并学习。
+
+
+  脚注 1
+
+
+  [`https://www.jorgeacetozi.com/about`](https://www.jorgeacetozi.com/about)
+
+
+
+
+  '
+- '# 7. NoSQL 简介
+
+
+  世界正在发生变化。长期以来，IBM 和 Oracle 等公司一直主导着规则，但现在，谷歌、Facebook、亚马逊等公司已经走在了前列。这些公司产生着 TB 级的数据，并在短时间内处理数百万个请求，而且它们仍在日益增长。问题是，它们是如何扩展并处理如此海量的数据和请求的呢？事实是，以前从未有人遇到过这类问题（即使是
+  IBM 或 Oracle 也没有），因此它们不得不创建自己的解决方案来实现扩展。
+
+
+  例如，在数据持久化方面，这些公司采取了以下措施：
+
+
+  *   Facebook 创建了 Cassandra。
+
+  *   谷歌创建了 Bigtable。
+
+  *   亚马逊创建了 DynamoDB。
+
+
+  ![A453568_1_En_7_Figa_HTML.jpg](img/A453568_1_En_7_Figa_HTML.jpg) 数据持久化指的是，即使在创建数据的进程结束后，仍能保持数据存储并可供检索的能力。换句话说，对于一个数据存储来说，要被认为是持久化的，它必须写入非易失性存储。
+
+
+  如今，每一个“新一代”应用程序都必须基于以下支柱进行设计，以实现增长：
+
+
+  *   云计算
+
+  *   大数据/分析
+
+  *   移动
+
+  *   社交网络
+
+
+  应用程序必须准备好克服地理障碍并快速传播。如果你在你的城市使用 Uber 服务，你就会明白我在说什么。这个基于位置的交通应用，成立仅八年，现在已在全球 570
+  个城市运营。（顺便提一下，Uber 的基础设施运行在亚马逊云服务上。）
+
+
+  ![A453568_1_En_7_Figb_HTML.jpg](img/A453568_1_En_7_Figb_HTML.jpg) 我强调这一点的原因是想提醒你，如今的软件工程师必须知道如何使用比以前更多的技术。几年前，你基本上不用担心在新项目中会使用哪种数据持久化技术。选择仅仅在于使用哪种编程语言或关系型数据库供应商。而今天，对于现代应用程序来说，数据持久化是绝对关键的。
+
+
+  聊天应用架构之所以使用如此多不同的技术，是因为每种技术都以最佳方式解决了不同类型的问题。
+
+
+  例如，在可扩展性方面，使用关系型数据库来写入聊天消息可能不是最佳选择；聊天应用领域不需要 ACID¹ 属性，因此使用关系型数据库会导致巨大的性能损失。关系型数据库不会放弃一致性（它们也使用悲观锁），并且它们并非为集群而设计，尽管集群是可能的。关键在于，它无法实现线性扩展（例如像
+  Cassandra 那样），因为即使集群化，底层存储层仍然是瓶颈。当你的领域需要 ACID 属性时，才应该使用关系型数据库（请记住我在第 6 章中讨论过的领域与架构之间的关系）。
+
+
+  在许多情况下，即使是现代应用程序也需要符合 ACID 属性，因此需要像 MySQL 这样的关系型数据库。事实上，使用 NoSQL 技术并不意味着你不再需要关系型数据库。需要牢记的关键是，我们正处于多语言[持久化](https://martinfowler.com/bliki/PolyglotPersistence.html)
+  ² 时代（图 7-1）。这本质上意味着你应该为每种场景采用合适的持久化技术。
+
+
+  ![A453568_1_En_7_Fig1_HTML.jpg](img/A453568_1_En_7_Fig1_HTML.jpg)
+
+
+  图 7-1.
+
+
+  多语言持久化示例（来源：Martin Fowler）
+
+
+  大多数 NoSQL 数据库在设计时都考虑到了水平可扩展性。
+
+
+  ![A453568_1_En_7_Figc_HTML.jpg](img/A453568_1_En_7_Figc_HTML.jpg) 当你向机器集群中添加更多节点时，就实现了水平可扩展性。当你增加单台机器的硬件性能时，就实现了垂直可扩展性。
+
+
+  NoSQL 数据库的设计基于分布式系统。³ 简而言之，它们被设计成以集群方式工作，即一组相互连接并通过网络通信以解决特定问题（此处为数据持久化问题）的节点（机器）。
+
+
+  本质上，NoSQL 数据库分为四大类。
+
+
+  *   **键值存储**：存储与键关联的值（例如，Redis、Memcached、Riak）
+
+  *   **文档存储**：存储完整的文档（例如，MongoDB、CouchDB、Elasticsearch）
+
+  *   **列族存储**：以列而非行的形式存储数据；专为处理大量数据以及读写性能而设计（例如，Cassandra、HBase）
+
+  *   **图存储**：存储关于网络和连接实体的信息（例如，Neo4J、HyperGraphDB）
+
+
+  NoSQL 数据库的另一个重要特性是它们是无模式的。这意味着它们不像关系型数据库那样有严格的模式。例如，一个基于文档的 NoSQL 存储可以有一个 `User`
+  集合，其中存储的用户关联着不同的数据（有的可能有 `age` 字段，有的没有，而无需执行任何 `ALTER TABLE` 命令或类似操作）。
+
+
+  关系型数据库的建模与 NoSQL 数据库不同。在关系型数据库中，你通常使用第三范式⁴，并确保每个表只存储“它自己的数据”。每个关系都用外键表示，并且在运行时需要
+  SQL `JOIN` 来从不同实体检索数据。基本上，你首先对领域进行建模，而不考虑稍后将要执行的查询。之后，你使用高度灵活的 SQL 来构建查询。
+
+
+  ## 7.1 NoSQL 中的建模
+
+
+  在 NoSQL 环境中，建模时你应该有不同的思考方式。反范式化在这里是你的朋友，因为你更关心性能（例如，避免使用连接），而不是可能的数据重复和消耗更多存储空间。请记住，与
+  CPU 能力和内存相比，存储是廉价的。在 NoSQL 中建模时，你必须精确地考虑你想要检索哪些数据，并相应地建模你的“存储单元”来检索它。
+
+
+  例如，假设你需要检索某个用户在特定聊天室中的消息（这真是个巧合，不是吗？）。使用关系型数据库，你会创建一个名为 `user` 的表、一个名为 `chat room`
+  的表和一个名为 `messages` 的表，每条消息都会有外键来表示与用户和聊天室的关系，对吧？在 Cassandra 中，连接和外键都不存在，所以你必须换一种思路！
+
+
+  在 Cassandra 中，你会创建一个列族（类似于关系型数据库中的表），并在其中存储每条记录，包含聊天室 ID、用户和消息。再次强调，反范式化在这里是你的朋友。
+
+
+  现在想象一下，你只需要检索来自巴西的用户的聊天消息。使用关系型方法，你会怎么做？很简单：只需在 `messages` 表上创建一个查询，连接 `user` 表，并添加一个
+  `where` 子句来验证用户来自巴西。你是否注意到，当你对关系型表进行建模时，你并没有考虑这个查询，但 SQL 凭借其高度的灵活性能够处理它？
+
+
+  那么在 Cassandra 中，你会怎么做呢？我打赌你已经知道答案了！但我知道你正在想，为这个任务再创建一个列族听起来很奇怪，而且在你公司工作了 20 年的数据库管理员可能不会喜欢这个主意。但你是对的。在这种情况下，这正是你要做的。我希望你的数据库管理员喜欢
+  Cassandra！
+
+
+
+
+  ## 7.2 Cassandra 概述
+
+
+  为了让你了解一些分布式系统能变得多么强大，你知道吗，最大的 Cassandra 生产集群被苹果公司使用？这个集群拥有超过 75,000 个节点，存储着超过 10PB
+  的数据。第二名是 Netflix，拥有 2,500 个节点，存储着 420TB 数据，每天处理超过 1 万亿次请求。你能想象一个由超过 75,000 台机器协同工作的数据库吗？好了，既然你已经印象深刻，那么我向你介绍
+  Cassandra 就更容易了！
+
+
+  ![A453568_1_En_7_Figd_HTML.jpg](img/A453568_1_En_7_Figd_HTML.jpg) 虽然我是一名 Java 开发者，但过去几年我一直担任
+  DevOps 工程师，正如我在引言“我是谁？”部分中更详细地解释的那样。不幸的是，这本书并不完全关于基础设施，所以我无法深入探讨基础设施的细节。尽管如此，我邀请你看看我的网站⁵上提供的电子书、在线课程和文章，我在那里对这些主题进行了更深入的探讨。
+
+
+  Cassandra 基于 Google 的 Bigtable 和 Amazon 的 DynamoDB，最初由 Facebook 创建。随后它被开源，现在是一个
+  Apache [项目](http://cassandra.apache.org/)。⁶ 现在甚至可以通过 DataStax⁷ 获得“企业版”，它也有一个社区版。
+
+
+  正如你已经知道的，Cassandra 是一个属于列族类别的 NoSQL 数据库。它能够处理每秒大量的写入和读取，同时在向 Cassandra 集群添加节点时保持线性可扩展性⁸。Cassandra
+  还跨地理分布的数据中心提供自动、可靠的复制。
+
+
+  Cassandra 是一个实现点对点⁹架构的分布式系统（图 7-2）。它使用 gossip 协议¹⁰ 进行内部通信。换句话说，不存在主节点单点故障，因此每个节点都能处理读取和写入。
+
+
+  ![A453568_1_En_7_Fig2_HTML.jpg](img/A453568_1_En_7_Fig2_HTML.jpg)
+
+
+  图 7-2.
+
+
+  点对点架构
+
+
+  Cassandra 的分区策略基于你在为列族建模主键时指定的分区键。你现在可能会想：“这家伙在说什么？”别急，几分钟后你就会明白了。
+
+
+  基本上，当你处理大量时间序列数据时，Cassandra 是一个极好的选择，这在物联网¹¹、日志、指标等场景中很常见。当放松一致性不是问题时，它甚至更合适，尽管你可以调整写入和读取的一致性级别。
+
+
+  ![A453568_1_En_7_Fige_HTML.jpg](img/A453568_1_En_7_Fige_HTML.jpg) 读取一致性是指在给定的时间点，每个节点对同一查询返回相同的结果。请记住，分布式系统运行在具有延迟的网络之上，因此当你将数据写入特定节点时，复制将开始发生，并需要几毫秒才能在其他节点上完成。在这几毫秒内，如果向其他节点发出读取请求，那么它们将返回过时数据。在
+  Cassandra 中，写入和读取的一致性级别是完全可调的。
+
+
+  为什么我选择 Cassandra 来存储聊天应用程序中聊天消息的历史记录？好吧，由于聊天应用程序可以在全球范围内使用，它很快就会包含大量数据。此外，聊天应用程序有大量的消息写入，而消息可以被视为时间序列数据，对吧？既然完全一致性对这个上下文来说不是那么关键，为什么不放弃一点一致性，以最终一致性模式工作（顺便说一下，这是
+  Cassandra 的默认行为）来获得卓越的写入性能呢？基本上，这就是我选择使用 Cassandra 的原因。
+
+
+  ![A453568_1_En_7_Figf_HTML.jpg](img/A453568_1_En_7_Figf_HTML.jpg) 最终一致性是一种一致性模型，它保证在不久的将来某个时刻，系统（本例中为
+  Cassandra）将变得一致。
+
+
+  Cassandra 中的一致性可以在写入或读取时进行调整。例如，你可以指定希望写入是完全一致的，这意味着只有在每个副本节点上成功执行写入后，它才会返回成功。也就是说，成功后，你可以保证对该数据的任何读取都将返回最新（且相同）的数据，无论哪个节点响应。请记住，更高的一致性伴随着延迟代价，因此完全一致性意味着最差的性能。
+
+
+  ![A453568_1_En_7_Figg_HTML.jpg](img/A453568_1_En_7_Figg_HTML.jpg) CAP 定理¹² 指出，当分布式系统中发生完全分区（例如网络故障）或临时分区（写入请求后数据复制之间的延迟、JVM
+  中的完全 GC 等）时，它必须在一致性或可用性之间做出选择。如果分布式系统选择一致性而非可用性，那么在分区修复之前它将不可用。另一方面，如果它选择可用性而非一致性，它将返回对请求的响应，但该响应可能不包含最新的数据。
+
+
+  在 Cassandra 中，你可以使用 Cassandra 查询语言 (CQL) 创建键空间、插入数据、查询数据以及执行更多操作。一个名为 `cqlsh` 的命令行工具允许你对
+  Cassandra 实例发出 CQL 命令。CQL 类似于 SQL 命令，因此很容易习惯使用 CQL 命令。
+
+
+  ### 7.2.1 Cassandra 概念
+
+
+  现在你将学习一些重要的概念，我将讨论在 Cassandra 中的建模。
+
+
+  #### 7.2.1.1 键空间
+
+
+  键空间类似于关系数据库中的数据库。它将来自同一域的一组列族（类似于 SQL 表）分组。在这里定义复制因子，即该键空间在不同节点上拥有的副本数量。这个聊天应用将只在本地机器上运行，而不是
+  Cassandra 集群。因此，以下是键空间定义：
+
+
+  ```
+
+  CREATE KEYSPACE ebook_chat WITH REPLICATION =
+
+  { ''class'' : ''SimpleStrategy'', ''replication_factor'' : 1 };
+
+  ```
+
+
+  ![A453568_1_En_7_Figh_HTML.jpg](img/A453568_1_En_7_Figh_HTML.jpg) 这些键空间设置不适用于生产环境。在生产环境中，你需要设置
+  `NetworkTopologyStrategy` 和至少为 3 的复制因子。
+
+
+  #### 7.2.1.2 列族
+
+
+  列族类似于关系数据库中的表。它以行和列的形式存储数据。
+
+
+  ```
+
+  CREATE TABLE messages (
+
+  username text,
+
+  chatRoomId text,
+
+  date timestamp,
+
+  fromUser text,
+
+  toUser text,
+
+  text text,
+
+  PRIMARY KEY ((username, chatRoomId), date)
+
+  ) WITH CLUSTERING ORDER BY (date ASC);
+
+  ```
+
+
+  #### 7.2.1.3 主键
+
+
+  一行由主键唯一标识。每个列族必须定义一个主键，并且主键可以由分区键和聚簇键组成。主键可以是单个列或多个列。当有多个列时，称为复合主键。你可以使用 Cassandra
+  的主键列或二级索引来查询数据。`messages` 列族有一个复合主键，如下所示：
+
+
+  ```
+
+  PRIMARY KEY ((username, chatRoomId), date)
+
+  ```
+
+
+  #### 7.2.1.4 二级索引
+
+
+  二级索引允许你查询不属于主键的列。请记住，添加二级索引会降低写入性能！
+
+
+
+
+  #### 7.2.1.5 分区键
+
+
+  分区键是主键定义中最左侧的项。如果是单一主键，那么分区键与主键相同。分区键可以是单个列或多个列。当包含多个列时，称为复合分区键，并在主键定义中用括号括起来。`messages`
+  主键包含 `(username, chatRoomId)` 复合分区键，这实质上意味着来自特定用户在特定聊天室中的每条消息都将位于同一个分区中。
+
+
+  分区是共享相同分区键的行组。这对于在 Cassandra 中实现高性能和线性可扩展性非常重要。当你向 Cassandra 发出读取请求时，可能需要从不同分区获取数据，而这些分区可能位于不同的机器上。在这种情况下，网络延迟会使查询变慢。即使你查询的分区位于同一台机器上（这种情况也会发生），由于
+  Cassandra 内部存储行的方式，性能也会较慢。
+
+
+  在建模方面，为了获得最优化集群，你必须将数据均匀分布在各个节点之间。因此，只有一个巨大的分区没有帮助，拥有大量分区也无济于事。这里的关键工作是找出正确的分区键，以便将数据均匀分布在各个节点之间。
+
+
+  还记得我建议你根据领域来建模列族吗？这绝对正确，但现在我要补充一条关于 Cassandra 的额外说明。你必须根据领域来建模列族，同时还要考虑数据如何在分区之间分布。例如，假设你正在建模一个列族，用于存储一个国家所有州的所有城市每五秒一次的传感器温度测量值。如果你的分区键只是
+  `country` 列，那么来自 `USA` 国家所有传感器的每次写入都将进入同一个分区。你已经知道，如果想从分布式架构中受益，拥有一个唯一的大分区是不可行的。但是，如果将分区键改为
+  `(country, state, city)` 呢？现在，`USA` 特定州中特定城市的每次传感器温度测量值都将存储在不同的分区中。数据看起来分布得更均匀了，但仍然存在一些问题。请记住，像纽约这样的城市有近
+  900 万居民，而山景城是加利福尼亚州的一个小城市，只有大约 8 万人口。这是一个巨大的差异，可能导致分区不平衡。正如你所见，在 Cassandra 中建模主键是最困难的任务之一！
+
+
+  #### 7.2.1.6 聚簇键
+
+
+  聚簇键由不属于分区键的主键列组成。在 `PRIMARY KEY ((username, chatRoomId), date)` 中，`date` 是聚簇键。基本上，聚簇键告诉
+  Cassandra 分区内的数据如何排序。在 `messages` 列族中，`date` 聚簇键将按升序对消息进行排序。
+
+
+  ## 7.3 Redis 概述
+
+
+  Redis 是一个极快的键值类内存 NoSQL 数据库，这意味着你可以存储一个值并将其与一个唯一键关联（例如，`name: Jorge Acetozi` 或 `numEbookReaders:
+  1000`）。当然，你还可以做一些更有趣的事情，比如用它进行缓存。
+
+
+  ### 7.3.1 Redis 与 Memcached 对比
+
+
+  假设你的 Web 应用中有一个很少更改的网页（在聊天应用中，聊天室列表就是一个例子），并且该页面有大量访问。对于每次访问，应用程序都会查询关系数据库实例以获取要显示的数据。访问关系数据库是一项昂贵的操作，鉴于你正在处理一个高流量的网页，最终可能会遇到性能问题。在这种情况下，你可以使用
+  Redis 作为缓存服务器，这样当客户端访问页面时，数据将从 Redis 中获取，由于 Redis 将数据存储在 RAM 中，避免了磁盘访问，因此速度极快。很不错，对吧？
+
+
+  你可能会问我：“是的，Jorge，这很好。但我们为什么不使用 Memcached¹³ 呢？”我同意你的看法。Memcached 在这里也是一个不错的选择。但 Memcached
+  基本上只用于缓存，而 Redis 可以做得更多（实际上，即使在缓存方面，Redis 也胜过 Memcached）。
+
+
+  Memcached 仅支持字符串和整数作为数据结构，而 Redis 拥有许多其他复杂的数据类型，例如字符串、哈希、列表、集合、支持范围查询的有序集合、位图、HyperLogLog
+  以及支持半径查询的地理空间索引。此外，Redis 还支持 Lua 脚本¹⁴。
+
+
+  另外，Redis 可以将数据持久化到磁盘以保证持久性。Memcached 则不能。
+
+
+  ![A453568_1_En_7_Figi_HTML.jpg](img/A453568_1_En_7_Figi_HTML.jpg) 请务必查看所有 Redis
+  数据类型。¹⁵
+
+
+
+
+  ### 7.3.2 Redis 使用场景
+
+
+  凭借其丰富的数据结构，Redis 可用于多种场景。
+
+
+  *   缓存（包括 LRU¹⁶ 策略）
+
+  *   实现页面浏览量的计数器
+
+  *   实现高性能队列
+
+  *   实现发布/订阅¹⁷
+
+  *   编译指标和统计数据
+
+  *   存储超文本传输协议（HTTP）会话
+
+  *   使用有序集合（按分数排序的项目集合）构建排行榜，例如访问量最高的聊天室
+
+  *   在集合中执行操作，例如获取两个集合的交集
+
+
+  你能看出 Redis 有多强大吗？你可以轻松地扩展聊天应用，加入“添加好友”功能，并将用户的好友存储在一个集合中。然后，你可以创建另一个包含所有在线用户的集合，并使用
+  `SINTER` ¹⁸ 命令，在 `O(N*M)` 的时间复杂度内提取这两个集合的交集。这个交集就是用户的在线好友。太棒了！
+
+
+  这基本上就是我选择使用 Redis 构建聊天应用的原因。
+
+
+  Redis 可以集群化¹⁹，用于复制和分片，其分布式架构基于主从模型（图 7-3）。
+
+
+  ![A453568_1_En_7_Fig3_HTML.jpg](img/A453568_1_En_7_Fig3_HTML.jpg)
+
+
+  图 7-3.
+
+
+  主从架构
+
+
+  与 Cassandra 不同，Redis 无法调整一致性级别，并且 Redis 集群无法保证强一致性。这是因为当你向 Redis 集群发送写请求时，主节点会先将数据写入自身，并立即向客户端返回成功。然后，复制到从节点的操作会异步开始。如果在数据复制完成之前主节点崩溃，并且某个从节点被提升为新的主节点，会发生什么？基本上，客户端会收到成功响应，但写入实际上已经丢失了。
+
+
+  ![A453568_1_En_7_Figj_HTML.jpg](img/A453568_1_En_7_Figj_HTML.jpg) 再次强调，你的业务领域应该能提示你在生产环境中承担此风险是否可接受。请记住，Redis
+  集群为了获得卓越的性能而牺牲了一致性。
+
+
+  Redis 还通过 Redis Sentinel 支持监控、自动故障转移、Redis 主节点、服务发现和通知。²⁰
+
+
+  脚注 1
+
+
+  [`https://en.wikipedia.org/wiki/ACID`](https://en.wikipedia.org/wiki/ACID)
+
+
+  2
+
+
+  [`https://martinfowler.com/bliki/PolyglotPersistence.html`](https://martinfowler.com/bliki/PolyglotPersistence.html)
+
+
+  3
+
+
+  [`https://en.wikipedia.org/wiki/Distributed_computing`](https://en.wikipedia.org/wiki/Distributed_computing)
+
+
+  4
+
+
+  [`https://en.wikipedia.org/wiki/Third_normal_form`](https://en.wikipedia.org/wiki/Third_normal_form)
+
+
+  5
+
+
+  [`https://www.jorgeacetozi.com`](https://www.jorgeacetozi.com)
+
+
+  6
+
+
+  [`http://cassandra.apache.org/`](http://cassandra.apache.org/)
+
+
+  7
+
+
+  [`https://www.datastax.com/`](https://www.datastax.com/)
+
+
+  8
+
+
+  [`http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html`](http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html)
+
+
+  9
+
+
+  [`https://en.wikipedia.org/wiki/Peer-to-peer`](https://en.wikipedia.org/wiki/Peer-to-peer)
+
+
+  10
+
+
+  [`http://docs.datastax.com/en/archived/cassandra/2.0/cassandra/architecture/architectureGossipAbout_c.html`](http://docs.datastax.com/en/archived/cassandra/2.0/cassandra/architecture/architectureGossipAbout_c.html)
+
+
+  11
+
+
+  [`https://en.wikipedia.org/wiki/Internet_of_things`](https://en.wikipedia.org/wiki/Internet_of_things)
+
+
+  12
+
+
+  [`https://dzone.com/articles/better-explaining-cap-theorem`](https://dzone.com/articles/better-explaining-cap-theorem)
+
+
+  13
+
+
+  [`https://memcached.org/`](https://memcached.org/)
+
+
+  14
+
+
+  [`https://www.lua.org/`](https://www.lua.org/)
+
+
+  15
+
+
+  [`https://redis.io/topics/data-types`](https://redis.io/topics/data-types)
+
+
+  16
+
+
+  [`https://redis.io/topics/lru-cache`](https://redis.io/topics/lru-cache)
+
+
+  17
+
+
+  [`http://redis.io/topics/pubsub`](http://redis.io/topics/pubsub)
+
+
+  18
+
+
+  [`https://redis.io/commands/sinter`](https://redis.io/commands/sinter)
+
+
+  19
+
+
+  [`https://redis.io/topics/cluster-tutorial`](https://redis.io/topics/cluster-tutorial)
+
+
+  20
+
+
+  [`https://redis.io/topics/sentinel`](https://redis.io/topics/sentinel)
+
+
+  '
+- '# 8. Spring 框架
+
+
+  Spring 框架是企业级 Java 应用中使用最广泛的框架。它是一个完整的平台，在“Spring 保护伞”下包含许多 Spring 子项目，几乎可以满足你的所有需求。它拥有庞大的社区，并且其发展速度远快于
+  Java EE（实际上从一开始就是如此）。
+
+
+  ![A453568_1_En_8_Figa_HTML.jpg](img/A453568_1_En_8_Figa_HTML.jpg) 在本书中，我不会过多解释 Spring
+  框架的理论。我的目标是向你展示如何在实际中使用它。在第 3 部分“按功能编码”中，我将使用 Spring 框架逐步解释代码片段。我相信这对大多数读者来说已经足够了。如果你在理解本节时仍有困难，我建议你在继续学习之前先研究一下
+  Spring。Spring 有很棒的文档¹，其中包含许多实际示例和教程。
+
+
+  尽管 Spring 一直是一个优秀的框架，但它过去有大量的可扩展标记语言（XML）配置，这很繁琐。有时配置一个简单的数据源可能需要一整天。幸运的是，现在情况已经不同了。如今，可以使用
+  Java 注解和配置类来设置 Spring Bean，并且由于你在编写 Java 代码，IDE 会通过自动补全和许多其他便捷功能为你提供很大帮助。有时你甚至不需要查阅文档；只需浏览类和
+  Javadoc，你就能编写配置。
+
+
+
+
+  ## 8.1 Spring Boot
+
+
+  更棒的是，一个名为 Spring Boot ² 的 Spring 子项目在处理配置和项目引导时非常实用。它严格遵循“约定优于配置”的理念，因此在使用 Spring
+  Boot 引导项目时，只需极少的配置，因为默认设置通常就能满足你的需求。Spring Boot 甚至内置了 Tomcat、Jetty 或 Undertow 等
+  Servlet 容器。基本上，它会根据项目的依赖推断你将使用什么，并自动为你进行配置。
+
+
+  要让你的企业级应用运行起来，只需启动一个 `public static void main` 方法即可。要从命令行启动 Spring Boot 应用，输入 `java
+  -jar my_application.jar` 就完成了。这正是你在本地运行聊天应用时所做的事情。在我看来，Spring Boot 是 Spring 最令人惊叹的子项目之一。（或者会是
+  Spring Data？还是 Spring MVC？不！是 Spring Security！那 Spring WebSocket 呢？哦，我不知道……好吧，别管它了，我们继续吧！）
+
+
+  ![A453568_1_En_8_Figb_HTML.jpg](img/A453568_1_En_8_Figb_HTML.jpg) 请务必查看可用的 Spring
+  子项目列表³。它相当令人印象深刻，不是吗？确实，Spring 可以与任何东西集成。
+
+
+  ## 8.2 Spring Data JPA 仓库
+
+
+  与关系型数据库的交互不应再让你感到恐慌。只需在 `application.yml` 配置文件中配置一个数据源，并创建一个继承自 `JpaRepository`（这是一个
+  Spring Data 接口）的 Java 接口，你就能获得许多现成的方法，用于通过 Java 持久化 API（JPA）操作数据库。例如，在聊天应用中，你有以下配置：
+
+
+  ```
+
+  spring:
+
+  datasource:
+
+  url: jdbc:mysql://localhost:3306/ebook_chat
+
+  username: root
+
+  password: root
+
+  testWhileIdle: true
+
+  validationQuery: SELECT 1
+
+  jpa:
+
+  show-sql: true
+
+  hibernate:
+
+  ddl-auto: validate
+
+  naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+  properties:
+
+  hibernate:
+
+  dialect: org.hibernate.dialect.MySQL5Dialect
+
+  public interface UserRepository extends JpaRepository {
+
+  }
+
+  ```
+
+
+  这允许你使用图 8-1 中所示的方法。
+
+
+  ![A453568_1_En_8_Fig1_HTML.jpg](img/A453568_1_En_8_Fig1_HTML.jpg)
+
+
+  图 8-1.
+
+
+  JpaRepository 方法
+
+
+  但是，例如，如果你需要根据电子邮件地址查找用户呢？嗯，你可以简单地声明一个遵循 Spring Data 模式⁴的方法签名，然后就完成了。
+
+
+  这里的核心思想是，你声明一个方法，Spring Data 会动态地为你实现它。
+
+
+  ```
+
+  public interface UserRepository extends JpaRepository {
+
+  User findByEmail(String email);
+
+  }
+
+  ```
+
+
+  如果你需要自定义查询，只需声明你的方法，用 `@Query` ⁵ 注解它，提供自定义的 JPQL⁶ 查询，然后使用它。
+
+
+  ```
+
+  public interface UserRepository extends JpaRepository {
+
+  @Query("select u from User u where u.name like %?1")
+
+  List findByNameEndsWith(String name);
+
+  }
+
+  ```
+
+
+  也可以创建原生查询。⁷
+
+
+  ```
+
+  public interface UserRepository extends JpaRepository {
+
+  @Query(value = "SELECT * FROM USER WHERE EMAIL = ?1", nativeQuery = true)
+
+  User findByEmail(String email);
+
+  }
+
+  ```
+
+
+  当然，为了让 JPA 仓库正常工作，`User` 类必须使用 JPA⁸ 注解进行标注。示例如下：
+
+
+  ```
+
+  @Entity
+
+  @Table(name = "user")
+
+  public class User {
+
+  @Id
+
+  private String username;
+
+  private String password;
+
+  private String name;
+
+  private String email;
+
+  ...
+
+  }
+
+  ```
+
+
+  ## 8.3 Spring Data 与 NoSQL
+
+
+  你已经了解到，构建现代应用时必须考虑可扩展性。持久化通常是限制可扩展性的根本原因，因此选择合适的持久化技术至关重要。
+
+
+  Spring Data 与许多 NoSQL 工具（如 Cassandra、Redis、Neo4J、MongoDB、Elasticsearch 等）提供了出色的集成。你也可以像使用
+  JPA 那样，将 Spring Data 仓库与 NoSQL 工具一起使用（某些技术可能存在一些限制）。例如，在聊天应用中，Spring Data Cassandra
+  仓库是这样实现的：
+
+
+  ```
+
+  public interface InstantMessageRepository extends CassandraRepository {
+
+  List findInstantMessagesByUsernameAndChatRoomId(String username, String chatRoomId);
+
+  }
+
+  ```
+
+
+  方法签名模式与 JPA 中解释的相同。实际变化在于，模型应使用 Spring Data Cassandra 注解而不是 JPA 注解进行标注。
+
+
+  ```
+
+  import org.springframework.cassandra.core.Ordering;
+
+  import org.springframework.cassandra.core.PrimaryKeyType;
+
+  import org.springframework.data.cassandra.mapping.PrimaryKeyColumn;
+
+  import org.springframework. data .cassandra.mapping.Table;
+
+  @Table("messages")
+
+  public class InstantMessage {
+
+  @PrimaryKeyColumn(name = "username", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
+
+  private String username;
+
+  @PrimaryKeyColumn(name = "chatRoomId", ordinal = 1, type = PrimaryKeyType.PARTITIONED)
+
+  private String chatRoomId;
+
+  @PrimaryKeyColumn(name = "date", ordinal = 2, type = PrimaryKeyType.CLUSTERED, ordering
+  = Ordering.ASCENDING)
+
+  private Date date;
+
+  ...
+
+  }
+
+  ```
+
+
+  Spring Data Redis 仓库也是如此。正如你将在第 3 部分“按功能编码”中看到的，聊天应用中使用 Redis 来管理聊天室和已连接的用户。看看模型和仓库的样子：
+
+
+  ```
+
+  import org.springframework.data.annotation.Id;
+
+  import org.springframework.data.redis.core.RedisHash;
+
+  @RedisHash("chatrooms")
+
+  public class ChatRoom {
+
+  @Id
+
+  private String id;
+
+  private String name;
+
+  private String description;
+
+  private List connectedUsers = new ArrayList();
+
+  ...
+
+  }
+
+  public interface ChatRoomRepository extends CrudRepository {
+
+  }
+
+  ```
+
+
+  ![A453568_1_En_8_Figc_HTML.jpg](img/A453568_1_En_8_Figc_HTML.jpg) Spring Data 仓库确实让你的生活更轻松，但有时你可能需要它们未提供的额外功能。例如，对于
+  Spring Data Redis 仓库，该技术仅将你的模型映射到 Redis 哈希，但正如你所了解的，Redis 中还有许多其他可用的数据结构。在这种情况下，你必须使用
+  Spring Data 模板（CassandraTemplate、RedisTemplate 等），这些模板使用起来也很直接。
+
+
+  脚注 1
+
+
+  [`https://spring.io/docs`](https://spring.io/docs)
+
+
+  2
+
+
+  [`https://projects.spring.io/spring-boot/`](https://projects.spring.io/spring-boot/)
+
+
+  3
+
+
+  [`https://spring.io/docs/reference`](https://spring.io/docs/reference)
+
+
+  4
+
+
+  [`https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation`](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation)
+
+
+  5
+
+
+  [`https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query`](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query)
+
+
+  6
+
+
+  [`http://docs.oracle.com/html/E13946_04/ejb3_langref.html`](http://docs.oracle.com/html/E13946_04/ejb3_langref.html)
+
+
+  7
+
+
+  [`https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#_native_queries`](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#_native_queries)
+
+
+  8
+
+
+  [`www.oracle.com/technetwork/java/javaee/tech/persistence-jsp-140049.html`](http://www.oracle.com/technetwork/java/javaee/tech/persistence-jsp-140049.html)
+
+
+
+
+  '
+- '# 9. WebSocket
+
+
+  最初，Web 是建立在由以下部分组成的模型之上的：
+
+
+  *   客户端向 Web 服务器发送 HTTP 请求
+
+  *   Web 服务器返回包含所请求资源的 HTTP 响应
+
+
+  这种模式运行得非常好，几乎所有的 Web 应用都完全基于此模型。
+
+
+  随着 Web 应用变得越来越高级，页面也更具动态性，一种名为 Ajax 的新模型应运而生。¹ 使用 Ajax，可以在无需刷新整个页面的情况下执行 HTTP 请求并获取
+  HTTP 响应，这非常棒，因为页面现在可以变得非常动态。当使用诸如 JQuery 之类的 JavaScript 库时，这甚至变得更加容易。那么，我们是不是就没什么可担心的了呢？
+
+
+  ## 9.1 轮询 vs. WebSocket
+
+
+  想象一下，在一个聊天室中，用户 A 使用 Ajax 向特定用户（比如用户 B）发送一个包含文本消息的 HTTP 请求。现在，服务器必须将此消息转发给用户 B。但是，如何做到呢？服务器无法发送
+  HTTP 请求；它的作用是接收 HTTP 请求，而不是发送。这就是 HTTP 的工作方式。
+
+
+  用户 B 如何才能透明地（我的意思是，无需刷新整个聊天室页面）获取此消息呢？这很简单——只需让用户 B 每隔三秒使用 Ajax 向服务器发送 HTTP 请求，以检查是否有针对该用户的消息。如果有消息，服务器就将它们附加到
+  HTTP 响应中。这就是一种轮询策略。
+
+
+  问题是，这是解决此问题的好方法吗？在这种场景下，每隔三秒，所有客户端都会向服务器发送 HTTP 请求，即使没有给它们的消息。这会产生开销，不是吗？此外，每次发生
+  HTTP 请求时，都会进行握手，并在客户端和服务器之间建立一条传输控制协议（TCP）连接。这是一个消耗资源的操作。还有另一个需要考虑的问题：HTTP 协议很冗长，带有大量头部信息，因此每个请求也会消耗带宽。
+
+
+  这正是 WebSocket 可以发挥作用的地方。它允许你打开一条全双工的双向 TCP 连接，双方（客户端和服务器）都可以发送帧。这些帧与 HTTP 请求不同。实际上，在
+  WebSocket 连接打开后，客户端和服务器之间的所有流量都通过它进行，因此不再发送 HTTP 请求。图 9-1 展示了一个帧的样子。
+
+
+  ![A453568_1_En_9_Fig1_HTML.gif](img/A453568_1_En_9_Fig1_HTML.gif)
+
+
+  图 9-1.
+
+
+  WebSocket 帧
+
+
+  为了建立此 WebSocket 连接，会进行一次 HTTP 握手，以从 HTTP 升级到 WebSocket 协议（图 9-2）。
+
+
+  ![A453568_1_En_9_Fig2_HTML.jpg](img/A453568_1_En_9_Fig2_HTML.jpg)
+
+
+  图 9-2.
+
+
+  WebSocket 握手
+
+
+  在 WebSocket 连接打开后，它会通过 ping/pong 帧使用心跳机制来保持连接活跃。
+
+
+  ## 9.2 WebSocket 与浏览器兼容性
+
+
+  在某些情况下，一些旧版本的浏览器（试着找出是哪些！）可能会阻止 WebSocket 通信。为了解决这个问题，Spring 4 提供了简单的 SockJS 集成，它通过使用
+  HTTP 流或 HTTP 长轮询来添加回退选项，以模拟 WebSocket 行为。你将在本书后面看到使用 Spring 启用此兼容模式是多么容易。
+
+
+  ## 9.3 原始 WebSocket vs. 基于 STOMP 的 WebSocket
+
+
+  正如你所了解的，WebSocket 协议允许你建立一条全双工的双向 TCP 连接，数据可以在两个方向上进行交换。现在的问题是，你实际上通过此连接传输的是什么，服务器又如何知道内容的数据类型？
+
+
+  基本上，原始 WebSocket 技术是低层次的，并且对消息内容保持中立，因此只能设置它是二进制数据还是文本数据；WebSocket 对消息的格式没有任何规定。这意味着客户端和服务器必须事先就它们将交换消息的格式达成一致，通信才能成功。这可能不太方便。
+
+
+  为了解决这个问题，WebSocket 技术可以运行在像 STOMP 这样的子协议之上，² 这是一个应用层协议，它指定了许多命令，帮助你处理文本消息，而无需担心客户端和服务器之间交换的是哪种格式（“格式”就是
+  STOMP 规范本身）。客户端和服务器应在握手阶段指定 WebSocket 连接期间要使用的子协议。
+
+
+  Spring 文档³ 对 STOMP 协议有一个很好的定义：“STOMP 是一个简单的、面向文本的消息传递协议，最初是为 Ruby、Python 和 Perl
+  等脚本语言创建的，用于连接到企业消息代理。它旨在解决一组常用的消息传递模式。STOMP 可以用于任何可靠的、双向的流式网络协议，例如 TCP 和 WebSocket。尽管
+  STOMP 是一个面向文本的协议，但消息的有效载荷可以是文本或二进制。”
+
+
+  请记住，你并非必须使用子协议，但使用它们会让你的工作轻松得多。在本书中，你将使用 STOMP 作为子协议来实现 WebSocket。
+
+
+  ![A453568_1_En_9_Figa_HTML.jpg](img/A453568_1_En_9_Figa_HTML.jpg) WebSocket 也可以通过依赖基于
+  TCP 的传输层安全性（TLS）来保证安全。与 HTTP 和 HTTPS 类似，WebSocket 可以使用 WS 或 WSS 方案。
+
+
+  脚注 1
+
+
+  [`https://www.w3schools.com/xml/ajax_intro.asp`](https://www.w3schools.com/xml/ajax_intro.asp)
+
+
+    2
+
+
+  [`https://stomp.github.io/stomp-specification-1.2.html`](https://stomp.github.io/stomp-specification-1.2.html)
+
+
+    3
+
+
+  [`https://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html`](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html)
+
+
+  '
+- "# 10. Spring WebSocket\n\nSpring WebSocket 为 WebSocket 应用提供了良好的支持，并且当你理解了幕后发生的事情后，它很容易使用。本章将帮助你开始了解一些\
+  \ Spring WebSocket 的配置可能性。\n\n\n\n## 10.1 原始 WebSocket 配置\n\n尽管你不会在聊天应用中使用原始 WebSocket\
+  \ 配置，但以下是其在 Spring 中的配置示例：\n\n```\n@Configuration\n@EnableWebSocket\npublic class\
+  \ RawWebSocketConfiguration implements WebSocketConfigurer {\n@Override\npublic\
+  \ void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {\nregistry.addHandler(myRawWebSocketHandler(),\
+  \  \"/rawwebsocket\");\n}\n@Bean\npublic WebSocketHandler myRawWebSocketHandler()\
+  \ {\nreturn new MyRawWebSocketHandler();\n}\n}\n```\n\n这里声明了客户端将要连接的 WebSocket 端点（`ws://localhost:port/rawwebsocket`），并指定由\
+  \ `MyRawWebSocket` 类的实例来处理接收到的帧。\n\n```\npublic class MyRawWebSocketHandler extends\
+  \ TextWebSocketHandler {\npublic void afterConnectionEstablished(WebSocketSession\
+  \ session) {\nTextMessage msg = new TextMessage(\"客户端连接成功！\");\n//客户端将收到此帧作为成功事件的回调\n\
+  session.sendMessage(msg);\n}\npublic void handleTextMessage(WebSocketSession session,\
+  \ TextMessage message) {\n// 这是消息内容，可以是任何格式（json、xml、纯文本……谁知道呢？）\nSystem.out.println(message.getPayload());\n\
+  TextMessage msg = new TextMessage(\"消息已收到。谢谢，客户端！\");\nsession.sendMessage(msg);\n\
+  }\n}\n```\n\n![A453568_1_En_10_Figa_HTML.jpg](img/A453568_1_En_10_Figa_HTML.jpg)\
+  \ 还有一个 `BinaryWebSocketHandler` 类，当你通过原始 WebSocket 配置处理二进制数据时，可以继承该类。\n\n以下是客户端代码：\n\
+  \n```\nfunction connectWebSocket(){\nws = new WebSocket('ws://localhost:8080/rawwebsocket');\n\
+  ws.onmessage = function(event){\nrenderServerMessage(event.data);\n};\n}\nfunction\
+  \ sendMessageToServer() {\nvar text = document.getElementById('myText').value;\n\
+  var jsonMessage = JSON.stringify({ 'content': text });\nws.send(jsonMessage);\n\
+  }\n```\n\n请注意，客户端以 JavaScript 对象表示法（JSON）格式向服务器发送消息。实际上，它发送 JSON 是因为它想发送一条 JSON\
+  \ 消息（因为客户端已经知道服务器期望的是 JSON 消息），但请记住，它也可以发送纯文本消息、XML 消息或其他任何格式（这就是原始 WebSocket 的工作方式！）。\n\
+  \n![A453568_1_En_10_Figb_HTML.jpg](img/A453568_1_En_10_Figb_HTML.jpg) 如果你想启用 WebSocket\
+  \ 浏览器兼容性，当由于兼容性问题无法使用 WebSocket 时，你必须使用某种方式来模拟 WebSocket 行为。幸运的是，SockJS¹ 可以轻松为你处理这个问题。使用\
+  \ Spring 启用 SockJS 支持只需在处理程序上添加一个 `.withSockJS()` 方法调用，如下所示：\n\n```\n@Configuration\n\
+  @EnableWebSocket\npublic class RawWebSocketConfiguration implements WebSocketConfigurer\
+  \ {\n@Override\npublic void registerWebSocketHandlers(WebSocketHandlerRegistry registry)\
+  \ {\nregistry.addHandler(myRawWebSocketHandler(),   \"/rawwebsocket\").withSockJS();\n\
+  }\n@Bean\npublic WebSocketHandler myRawWebSocketHandler() {\nreturn new MyRawWebSocketHandler();\n\
+  }\n}\n```\n\n## 10.2 基于 STOMP 的 WebSocket 配置\n\n以下是使用 Spring 配置基于 STOMP 的 WebSocket\
+  \ 的方法：\n\n```\n@Configuration\n@EnableWebSocketMessageBroker\npublic class WebSocketConfiguration\
+  \ extends AbstractWebSocketMessageBrokerConfigurer {\n@Override\npublic void configureMessageBroker(MessageBrokerRegistry\
+  \ config) {\nconfig.enableSimpleBroker(\"/queue/\",  \"/topic/\");\nconfig.setApplicationDestinationPrefixes(\"\
+  /app\");\n}\n@Override\npublic void registerStompEndpoints(StompEndpointRegistry\
+  \ registry) {\nregistry.addEndpoint(\"/stompwebsocket\").withSockJS();\n}\n}\n```\n\
+  \n要使用 STOMP，你需要一个 STOMP 代理。基本上，这个组件负责跟踪订阅并向订阅用户广播消息。在上述配置中，请注意以下几点：\n\n*   通过声明两个目的地\
+  \ `/queue/` 和 `/topic/`，启用了内存中的 STOMP 代理。这有助于开发阶段，但不建议用于生产环境（当你稍后学习本书中的多节点架构时，就会明白原因）。\n\
+  \n![A453568_1_En_10_Figc_HTML.jpg](img/A453568_1_En_10_Figc_HTML.jpg) 在 STOMP 规范中，目的地的含义有意保持不透明。它可以是任何字符串，完全由\
+  \ STOMP 服务器来定义其支持的目的地的语义和语法（例如，RabbitMQ 定义了点号表示法，其中目的地名称应由点号分隔，如 `/topic/public.messages`）。然而，目的地通常是类似路径的字符串，其中\
+  \ `/topic/` 表示发布-订阅²模式（一对多），而 `/queue/` 表示点对点³（一对一）消息交换。\n\n![A453568_1_En_10_Figd_HTML.jpg](img/A453568_1_En_10_Figd_HTML.jpg)\
+  \ `/queue/` 和 `/topic/` 是代理目的地，这意味着任何发送到以这些前缀开头的目的地的帧都将由 STOMP 代理直接处理。\n\n*   应用目的地前缀是\
+  \ `/app`。基本上，当帧被发送到以 `/app` 开头的目的地时，带有 `@Controller` 注解的类会在将帧转发给代理之前处理它。更具体地说，`@Controller`\
+  \ 注解类中带有 `@MessageMapping` 注解的方法将处理它（如果你还不理解，不用担心）。\n*   客户端将使用 JavaScript 连接到 STOMP\
+  \ 端点（`ws://localhost:port/stompwebsocket`）。\n\n现在，在客户端，有一些 JavaScript 代码，如下所示：\n\
+  \n```\nfunction connect() {\nsocket = new SockJS('/stompwebsocket');\nstompClient\
+  \ = Stomp.over(socket);\nstompClient.connect({ }, function(frame) {\nstompClient.subscribe('/topic/public.messages',\
+  \ renderPublicMessages);\n});\n}\nfunction renderPublicMessages(message) {\n//例如，将消息追加到一个\
+  \ div 中\n}\nfunction sendMessage() {\nvar instantMessage;\ninstantMessage = {\n\
+  'text' : inputMessage.val(),\n'toUser' : spanSendTo.text()\n}\nstompClient.send(\"\
+  /app/send.message\",  {},  JSON.stringify(instantMessage));\n}\n```\n\n让我们理解一下这里发生了什么。\n\
+  \n*   当调用 `connect` 函数时，会使用 STOMP 作为子协议打开一个新的 WebSocket 连接。\n*   在成功回调中，执行一个匿名函数，用户订阅了\
+  \ `/topic/public.messages` 目的地。从现在起，该用户将能够接收发送到该目的地的任何消息（来自任何客户端甚至服务器端），并将其传递给 `renderPublicMessages`\
+  \ 函数，该函数会将消息追加到一个 `div` 中，例如。\n*   当调用 `sendMessage` 函数时，会向 `/app/send.message`\
+  \ 目的地发送一个包含消息的帧。还记得吗，发送到以 `/app` 开头的目的地的每条消息都将由 `@Controller` 注解类中的 `@MessageMapping`\
+  \ 方法处理？这就是处理它的方法：\n\n\n\n```\n    @Controller\n    public class ChatRoomController\
+  \ {\n    @Autowired\n    private SimpMessagingTemplate simpMessagingTemplate;\n\
+  \    @MessageMapping(\"/send.message\")\n    public void sendPublicMessage(InstantMessage\
+  \ instantMessage) {\n    simpMessagingTemplate.convertAndSend(\"/topic/public.messages\"\
+  ,   instantMessage);\n    }\n    }\n    ```\n\nSpring 会将帧内容转换为 `instantMessage`\
+  \ 对象，并调用 `sendPublicMessage` 方法，该方法使用 `SimpMessagingTemplate` 中的 `convertAndSend`\
+  \ 方法将消息广播到 `/topic/public.messages` 目的地。还记得所有以 `/topic/` 开头的内容都是代理目的地吗？那么，谁来处理这条消息呢？没错，就是代理！实际上，代理会接收这条消息，并将其转发给该目的地的每个订阅用户（包括发送消息的用户，因为该用户也订阅了这个目的地，正如你在之前的\
+  \ JavaScript 匿名函数中看到的那样）。\n\n好了，就是这样。通过这些简单的代码示例，你就能在 Spring 框架上使用基于 STOMP 的 WebSocket\
+  \ 发送和接收公共消息了。这真是太棒了！\n\n![A453568_1_En_10_Fige_HTML.jpg](img/A453568_1_En_10_Fige_HTML.jpg)\
+  \ 如果 `sendPublicMessage` 返回任何对象（例如 `instantMessage` 对象），Spring 会自动将其解释为你希望将该对象发送到代理目的地。按照惯例，它会尝试将其发送到\
+  \ `/topic/public.messages` 目的地，因为消息是通过 `/chatroom/public.messages` 目的地接收的（这是一种约定），但你也可以使用\
+  \ `@SendTo` 注解轻松更改目标代理目的地。就我个人而言，我认为使用 `simpMessagingTemplate` 能让阅读代码的人更容易理解，但这取决于你的选择。\n\
+  \n## 10.3 使用简单代理的消息流\n\n图 10-1 展示了使用简单代理的消息流。这张图乍一看可能令人困惑，但这正是你刚刚了解到的流程。\n\n![A453568_1_En_10_Fig1_HTML.jpg](img/A453568_1_En_10_Fig1_HTML.jpg)\n\
+  \n图 10-1.\n\n消息流：简单代理\n\n当你通过基于 STOMP 的 WebSocket 发送一个帧时，消息首先会到达 `clientInboundChannel`。在那里，它会根据目的地名称被路由到特定的\
+  \ `MessageHandler`。如果名称以 `/app` 开头，则会被路由到 `SimpAnnotationMethod` 消息处理器（该处理器最终会调用\
+  \ `@Controller` 类中带有 `@MessageMapping` 注解的方法）。如果名称以 `/topic` 开头，则会被直接路由到 SimpleBroker⁴\
+  \ 消息处理器。\n\n让我们看一个帧 `SEND /app/a` 的例子。首先，`clientInboundChannel` 会接收它并将其转发给 `SimpAnnotationMethod`\
+  \ 消息处理器。然后，从带有 `@MessageMapping` 注解的方法中，消息会被转发到 `brokerChannel`。这会将消息发送给 `SimpleBroker`\
+  \ 消息处理器。该消息处理器维护着一个 `ConcurrentHashMap`，其中包含每个已连接客户端的 WebSocket 会话 ID，以及 `SubscriptionRegistry`（内存中）中的所有订阅。然后，消息处理器使用\
+  \ WebSocket 客户端 ID 将消息转发到相应的 `clientOutboundChannel`，最终将消息发送给客户端。\n\n![A453568_1_En_10_Figf_HTML.jpg](img/A453568_1_En_10_Figf_HTML.jpg)\
+  \ 请注意，使用简单代理方法时，订阅信息保存在内存中。\n\n## 10.4 使用完整外部 STOMP 代理的消息流\n\n图 10-2 展示了相同的消息流，不同之处在于，消息处理器不再将订阅信息保存在内存中，而是将订阅委托给一个外部\
+  \ STOMP 代理。你能理解为什么这如此重要吗？你将在下一章中了解原因！\n\n![A453568_1_En_10_Fig2_HTML.jpg](img/A453568_1_En_10_Fig2_HTML.jpg)\n\
+  \n图 10-2.\n\n消息流：完整外部 STOMP 代理\n\n![A453568_1_En_10_Figg_HTML.jpg](img/A453568_1_En_10_Figg_HTML.jpg)\
+  \ 查看可用的 STOMP 代理列表⁵。\n\n![A453568_1_En_10_Figh_HTML.jpg](img/A453568_1_En_10_Figh_HTML.jpg)\
+  \ 在聊天应用中，你将使用带有 STOMP 插件⁶ 的 RabbitMQ 作为完整的外部 STOMP 代理。\n\n你将在第 3 部分“按功能编码”中了解更多关于\
+  \ Spring WebSocket 的内容。\n\n脚注 1\n\n[`https://github.com/sockjs`](https://github.com/sockjs)\n\
+  \n  2\n\n[`www.enterpriseintegrationpatterns.com/patterns/messaging/PublishSubscribeChannel.html`](http://www.enterpriseintegrationpatterns.com/patterns/messaging/PublishSubscribeChannel.html)\n\
+  \n  3\n\n[`www.enterpriseintegrationpatterns.com/patterns/messaging/PointToPointChannel.html`](http://www.enterpriseintegrationpatterns.com/patterns/messaging/PointToPointChannel.html)\n\
+  \n  4\n\n[`https://github.com/spring-projects/spring-framework/blob/master/spring-messaging/src/main/java/org/springframework/messaging/simp/broker/SimpleBrokerMessageHandler.java`](https://github.com/spring-projects/spring-framework/blob/master/spring-messaging/src/main/java/org/springframework/messaging/simp/broker/SimpleBrokerMessageHandler.java)\n\
+  \n  5\n\n[`https://stomp.github.io/implementations.html`](https://stomp.github.io/implementations.html)\n\
+  \n  6\n\n[`https://www.rabbitmq.com/web-stomp.html`](https://www.rabbitmq.com/web-stomp.html)\n\
+  \n\n\n"
+- '# 11. 单节点聊天架构
+
+
+  图 11-1 展示了单节点聊天应用的简化架构图。如果你按照第 2 章的步骤操作，这张图正是你本地机器上当前运行的内容。
+
+
+  ![A453568_1_En_11_Fig1_HTML.jpg](img/A453568_1_En_11_Fig1_HTML.jpg)
+
+
+  图 11-1.
+
+
+  单节点聊天应用
+
+
+  当你注册新账户时，用户信息会存储在 MySQL 中，并且系统会为用户分配 `ROLE_USER` 角色，这意味着该用户无权创建新的聊天室。
+
+
+  登录后，系统会显示所有可用聊天室的列表。聊天室及其关联的用户以 Redis 哈希¹ 数据类型存储在 Redis 中。基本上，Redis 哈希是一种数据结构，允许你将多个
+  `key : value` 条目关联到一个唯一的键。在以下示例中，唯一键是 `chatrooms:c4f045bb-8dfd-4620-b365-fd3b4fbeb46e`：
+
+
+  ```
+
+  HGETALL chatrooms:c4f045bb-8dfd-4620-b365-fd3b4fbeb46e
+
+  "id" : "c4f045bb-8dfd-4620-b365-fd3b4fbeb46e"
+
+  "name" : "Top Guitarists"
+
+  "description" : "Meet the most amazing guitarists"
+
+  ```
+
+
+  ![A453568_1_En_11_Figa_HTML.jpg](img/A453568_1_En_11_Figa_HTML.jpg) `HGETALL` ²
+  是 Redis 命令，用于获取一个哈希及其关联的所有 `key : value` 条目。
+
+
+  当你加入一个聊天室时，客户端会执行一段 JavaScript 代码片段。它会通过 STOMP 协议启动一个 WebSocket 连接到聊天服务器。如果连接失败，它将每十秒重试一次。
+
+
+  ```
+
+  function connect() {
+
+  socket = new SockJS(''/ws'');
+
+  stompClient = Stomp.over(socket);
+
+  stompClient.connect({ ''chatRoomId'' : chatRoomId }, stompSuccess, stompFailure);
+
+  }
+
+  function stompFailure(error) {
+
+  errorMessage("Lost connection to WebSocket! Reconnecting in 10 seconds...");
+
+  disableInputMessage();
+
+  setTimeout(connect, 10000);
+
+  }
+
+  ```
+
+
+  正如你所了解的，WebSocket 连接建立后，所有通信都通过 WebSocket 连接进行，而非 HTTP 请求。
+
+
+  ```
+
+  function stompSuccess(frame) {
+
+  enableInputMessage();
+
+  successMessage("Your WebSocket connection was successfully established!")
+
+  stompClient.subscribe(''/chatroom/connected.users'', updateConnectedUsers);
+
+  stompClient.subscribe(''/chatroom/old.messages'', oldMessages);
+
+  stompClient.subscribe(''/topic/'' + chatRoomId + ''.public.messages'', publicMessages);
+
+  stompClient.subscribe(''/user/queue/'' + chatRoomId + ''.private.messages'', privateMessages);
+
+  stompClient.subscribe(''/topic/'' + chatRoomId + ''.connected.users'', updateConnectedUsers);
+
+  }
+
+  ```
+
+
+  WebSocket 连接一启动，就会发生以下主要事件：
+
+
+  *   客户端请求获取与该聊天室关联的已连接用户及其历史消息（整个对话记录）。对话记录从 Cassandra 中获取。
+
+  *   客户端还会订阅以下更新通知：用户加入或离开聊天室、发送公共消息、或用户收到私密消息。
+
+
+  在服务器端，一旦用户连接，Redis 中的聊天室信息会更新，以添加新连接的用户。
+
+
+  在聊天室中，用户看到的所有消息（公共消息、私密消息和系统消息）都会被追加到 Cassandra 中该用户的对话记录里。
+
+
+  ![A453568_1_En_11_Figb_HTML.jpg](img/A453568_1_En_11_Figb_HTML.jpg) 系统消息是由管理员发送的公共消息，用于通知所有人有用户加入或离开了聊天室。
+
+
+  请注意，在单节点架构中，从功能角度来看，内存代理方法可以完美运行，因为每个订阅都会保存在服务器的内存中，并且每个 WebSocket 连接也会绑定到同一台服务器。
+
+
+  脚注 1
+
+
+  [`https://redis.io/topics/data-types`](https://redis.io/topics/data-types)
+
+
+  2
+
+
+  [`https://redis.io/commands/hgetall`](https://redis.io/commands/hgetall)
+
+
+  '
+- '# 12. 多节点聊天架构
+
+
+  假设你想通过在不同服务器上运行两个聊天应用实例来水平扩展聊天应用。同时假设你仍在使用内存中的 `SimpleBroker`。
+
+
+  在图 12-1 中，Jorge 和 John 与服务器 1 建立了 WebSocket 连接，而 Xuxa 与服务器 2 建立了 WebSocket 连接。如果
+  Jorge 试图向 Xuxa 发送消息，会发生什么？我想你已经知道答案了！由于 Xuxa 没有连接到服务器 1，该服务器不知道用户 Xuxa 的存在。因此，消息会丢失。然而，如果
+  Jorge 向 John 发送消息，则可以正常工作。
+
+
+  ![A453568_1_En_12_Fig1_HTML.jpg](img/A453568_1_En_12_Fig1_HTML.jpg)
+
+
+  图 12-1.
+
+
+  两个聊天实例：简单代理
+
+
+  内存代理方法完全无法用于水平扩展你的聊天应用。
+
+
+
+
+  ## 12.1 将 RabbitMQ 用作完整的外部 STOMP 代理
+
+
+  现在，如果你开始使用像 RabbitMQ 这样的完整外部 STOMP 代理，你将遇到如图 12-2 所示的场景。
+
+
+  ![A453568_1_En_12_Fig2_HTML.jpg](img/A453568_1_En_12_Fig2_HTML.jpg)
+
+
+  图 12-2.
+
+
+  两个聊天实例：代理中继
+
+
+  现在，订阅不再绑定到特定的服务器实例；也就是说，订阅不再保存在服务器的内存中。有一个外部组件负责处理订阅。针对此场景的 Spring 配置如下所示：
+
+
+  ```
+
+  protected void configureStompEndpoints(StompEndpointRegistry registry) {
+
+  registry.addEndpoint("/ws").withSockJS();
+
+  }
+
+  public void configureMessageBroker(MessageBrokerRegistry registry) {
+
+  registry.enableStompBrokerRelay("/queue/",  "/topic/")
+
+  .setUserDestinationBroadcast("/topic/unresolved.user.dest")
+
+  .setUserRegistryBroadcast("/topic/registry.broadcast")
+
+  .setRelayHost(relayHost)
+
+  .setRelayPort(relayPort);
+
+  registry.setApplicationDestinationPrefixes("/chatroom");
+
+  }
+
+  ```
+
+
+  让我们来看看这些配置：
+
+
+  *   **enableStompBrokerRelay**：此配置使用一个完整的外部 STOMP 代理，而不是内存中的代理。
+
+  *   **setRelayHost 和 setRelayPort**：这两个配置分别用于设置外部 STOMP 代理（本例中为 RabbitMQ）的主机和端口。
+
+  *   **setUserDestinationBroadcast**：用户目标可能因为用户连接到不同的服务器（例如 Jorge 和 Xuxa）而无法解析。在这种情况下，此目标用于广播未解析的消息，以便其他服务器有机会尝试处理。
+
+  *   **setUserRegistryBroadcast**：此配置设置一个目标，用于广播本地用户注册表（内存中存储已连接客户端的位置）的内容，并监听来自其他服务器的此类广播。在多节点架构中，这允许每个服务器的用户注册表知晓连接到其他服务器的用户。换句话说，它使聊天应用
+  1 能够知晓 Xuxa 存在于聊天应用 2 中。
+
+
+  当应用程序启动时，只有 `/topic/unresolved.user.dest` 和 `/topic/registry.broadcast` 这两个目标会在
+  RabbitMQ 上创建。Spring 在服务器和 RabbitMQ 之间保持一个“系统”TCP 连接，该连接不用于用户消息；它仅用于服务器和代理之间的内部通信（例如，默认情况下每十秒发送一次心跳消息以检查代理是否存活）。如果
+  Spring 检测到代理发生故障，则默认情况下它将每五秒尝试重新连接一次。
+
+
+  对于每个新的 WebSocket 连接，服务器都会与代理创建一个新的 TCP 连接。这个连接才是实际用于用户消息的连接。
+
+
+  现在，你已经有了一个适用于多节点架构的解决方案，你可以将更多聊天应用实例添加到像 Nginx¹ 这样的负载均衡器后面，从而获得一个高度可扩展的架构，如图 12-3
+  所示。
+
+
+  ![A453568_1_En_12_Fig3_HTML.jpg](img/A453568_1_En_12_Fig3_HTML.jpg)
+
+
+  图 12-3.
+
+
+  多节点聊天架构
+
+
+  请注意，此架构的每个组件都可以集群化，并且可以实现复制策略。这意味着即使某些节点发生故障，此架构也能继续工作。这真是太棒了！
+
+
+  ![A453568_1_En_12_Figa_HTML.jpg](img/A453568_1_En_12_Figa_HTML.jpg) 在处理可扩展性时，有许多方面需要考虑，例如，增加操作系统能够使用的套接字描述符数量。你必须记住，水平扩展非常出色，但在向基础设施添加更多节点（以及更多成本）之前，你可以尝试许多其他方法。
+
+
+  脚注 1
+
+
+  [`https://www.nginx.com/blog/websocket-nginx/`](https://www.nginx.com/blog/websocket-nginx/)
+
+
+  '
+- "# 13. 水平扩展有状态 Web 应用\n\n让我们暂时忘记 WebSocket 技术，思考一下传统的 Web 应用。你已经了解了请求/响应 HTTP 模型，并且知道\
+  \ HTTP 是无状态的。这意味着，在服务器对请求给出响应后，它会关闭 TCP 连接，并且不再知道关于客户端的任何信息（甚至不知道客户端是否会发出其他请求）。这在某些情况下可能有效，但试想一个在线商店。如果\
+  \ HTTP 是无状态的，商店如何能够在多个请求之间保持购物车中的商品呢？为了解决这个问题，Web 服务器提供了一种 HTTP 会话机制，它本质上是每个用户的本地存储，并与一个特定的代码（在\
+  \ Java 中，是 `JSESSIONID` 代码）相关联。当用户向服务器发送第一个请求时，服务器会创建一个新的 HTTP 会话，并通过 cookie 将 `JSESSIONID`\
+  \ 代码发送给用户。如果客户端发送第二个请求，`JSESSIONID` 代码将在 HTTP 请求中可用，服务器将能够识别出这是一个回访用户。这意味着，如果购物车存储在\
+  \ HTTP 会话中，服务器将能够在多个请求之间保持它。\n\n这听起来不错，但在涉及水平扩展时，这是一个大问题。你能猜到为什么吗？如果一个在线商店的多节点架构是使用负载均衡器实现的，并且一个名为\
+  \ Jorge 的用户将其购物车存储在服务器 1 的 HTTP 会话中，而在下一个请求中，负载均衡器将其发送到服务器 2，会发生什么？他的购物车在那里将不可用，对吧？（见图\
+  \ 13-1。）\n\n![A453568_1_En_13_Fig1_HTML.jpg](img/A453568_1_En_13_Fig1_HTML.jpg)\n\
+  \n图 13-1.\n\n没有会话管理器的多节点在线商店\n\n\n\n## 13.1 使用粘性会话策略\n\n你可能会想：“好吧，但如果负载均衡器总是将特定用户的请求发送到特定服务器呢？那么用户的\
+  \ HTTP 会话将始终存在。因此，用户的购物车在请求之间将始终可用，直到此 HTTP 会话过期。” 你说得完全正确，这就是所谓的**粘性会话策略**。但是，当你考虑节点故障场景时，问题又出现了。\n\
+  \n想象一下，负载均衡器正在使用粘性会话策略，每个用户请求都被路由到同一台服务器。一切运行完美。但突然这台服务器崩溃了（意味着用户的 HTTP 会话丢失了），负载均衡器被迫将用户转发到另一台服务器。然后会发生什么？用户的购物车再次丢失。\n\
+  \n另外，如果开发人员在用户在线时部署了在线商店应用程序的新版本，会发生什么？好吧，没有什么魔法发生；服务器必须重启才能应用新版本，那么用户的 HTTP 会话会怎样？你已经知道答案了。但是……你也已经知道解决方案，因为这与你之前在添加\
+  \ RabbitMQ 作为完整的外部 STOMP 代理到架构时，针对 WebSocket 技术所做的操作类似。\n\n为什么不将 HTTP 会话持久化到你已经在使用的关系数据库中呢？嗯，这与第\
+  \ 7 章“Redis 概述”部分中使用的场景非常相似。你还记得查询关系数据库比查询 Redis 这样的内存解决方案要昂贵得多吗？\n\n图 13-2 展示了使用\
+  \ Redis 作为会话管理器的架构。你不觉得现在的架构看起来好多了吗？如果一个节点崩溃，负载均衡器将用户重定向到另一个服务器实例，这没有问题。服务器会注意到它本地没有与任何用户\
+  \ HTTP 会话关联的特定 `JSESSIONID` 代码，因此它会查询 Redis 来查找它。一旦在 Redis 上找到用户的会话，它就会将其带回服务器内存，一切继续正常运行。负载均衡器现在会继续向这台服务器发送请求，因为它正在使用粘性会话。用户甚至不知道所有这些事情在幕后发生。购物愉快，亲爱的用户！\n\
+  \n![A453568_1_En_13_Fig2_HTML.jpg](img/A453568_1_En_13_Fig2_HTML.jpg)\n\n图 13-2.\
+  \ 使用 Redis 作为会话管理器的多节点在线商店\n\n现在的问题是，你如何在服务器端实现这种机制，以便它从 Redis 获取 HTTP 会话？嗯，如果你使用\
+  \ Spring 框架，有一个很棒的 Spring Session¹ 子项目可以为你处理这个问题。将 Spring Session 与 Redis 结合使用非常简单，尤其是在你借助\
+  \ Spring Boot 进行配置时。\n\n## 13.2 Spring Session 与 WebSocket\n\n你在聊天应用程序中使用 Spring\
+  \ Session 将 HTTP 会话存储在 Redis 上，但这里的情况略有不同。\n\n在 Spring 中，当你打开一个新的 WebSocket 连接时，服务器端会创建一个新的\
+  \ WebSocket 会话。顺便说一下，你已经知道这些 WebSocket 会话存储在相应的 `MessageHandler` 中。这个 WebSocket\
+  \ 会话将保持活动状态，直到其中一方显式关闭它或 HTTP 会话过期。这就是 JSR-356² 的工作方式。\n\n![A453568_1_En_13_Figa_HTML.jpg](img/A453568_1_En_13_Figa_HTML.jpg)\
+  \ 这里不要混淆。HTTP 会话和 WebSocket 会话是不同的东西。HTTP 会话是在用户向服务器发出第一个 HTTP 请求时创建的。然而，WebSocket\
+  \ 会话仅在用户已经拥有关联的 HTTP 会话并成功执行 WebSocket 握手后才创建。\n\n问题在于 JSR-356 没有拦截 WebSocket 消息的机制。换句话说，当你仅使用\
+  \ WebSocket 连接而不执行任何 HTTP 请求时，服务器会认为 HTTP 会话处于非活动状态，并且如你所知，每个 HTTP 会话都有一个过期阈值。如果超过此阈值，服务器将终止用户的\
+  \ HTTP 会话，并且这样做也会导致用户的 WebSocket 连接消失。\n\n引用 Spring Session 文档³ 中的说法，考虑一个通过 HTTP\
+  \ 请求完成大部分工作的电子邮件应用程序。假设其中还嵌入了一个通过 WebSocket API 工作的聊天应用程序。如果用户正在积极地与某人聊天，你不应该让 `HttpSession`\
+  \ 超时，因为那会造成非常糟糕的用户体验。然而，这正是 JSR-356 所做的。\n\n此外，根据 JSR-356，如果 `HttpSession` 超时，任何使用该\
+  \ `HttpSession` 和经过身份验证的用户创建的 WebSocket 都应该被强制关闭。这意味着，如果你在应用程序中积极聊天但没有使用 `HttpSession`，那么你也会断开与对话的连接。\n\
+  \n为了解决这个问题，可以将 Spring Session 配置为确保 WebSocket 消息能使你的 `HttpSession` 保持活动状态。要在聊天应用程序中将\
+  \ Spring Session 与 Spring WebSocket 一起配置，你需要执行以下操作：\n\n1.  在 `pom.xml` 中添加 Spring\
+  \ Session 依赖项。\n\n    ```\n    org.springframework.session\n    spring-session\n\
+  \n    ```\n\n2.  在 `application.yml` 中，将 Spring Session 的 `storage-type` 配置为 `redis`，如下所示：\n\
+  \n    ```\n    spring:\n    session:\n    store-type: redis\n    ```\n\n3.  现在，在\
+  \ WebSocket 配置类中，不再像第 10 章“基于 STOMP 的 WebSocket 配置”部分那样继承 `AbstractWebSocketMessageBrokerConfigurer`，而是继承\
+  \ `AbstractSessionWebSocketMessageBrokerConfigurer<ExpiringSession>`。另外，在类声明中添加\
+  \ `@EnableScheduling` 注解。\n\n    ```\n    @Configuration\n    @EnableScheduling\n\
+  \    @EnableWebSocketMessageBroker\n    public class WebSocketConfigSpringSession\
+  \ extends AbstractSessionWebSocketMessageBrokerConfigurer {\n    ...\n    }\n  \
+  \  ```\n\n就是这样。你现在可以停下来喝杯咖啡，想想 Spring 是多么神奇。\n\n脚注 1\n\n[`http://projects.spring.io/spring-session/`](http://projects.spring.io/spring-session/)\n\
+  \n  2\n\n[`https://jcp.org/en/jsr/detail?id=356`](https://jcp.org/en/jsr/detail?id=356)\n\
+  \n  3\n\n[`https://github.com/spring-projects/spring-session/blob/master/docs/src/docs/asciidoc/index.adoc#websocket-why`](https://github.com/spring-projects/spring-session/blob/master/docs/src/docs/asciidoc/index.adoc#websocket-why)\n\
+  \n"
+- '# 第三部分
+
+  按功能编码
+
+
+  按功能编码
+
+
+  在本书的这一部分，我将讨论聊天应用程序中每个功能的代码。再次强调，本书并非旨在教授 Spring 的基础知识，因此我假设你已经对依赖注入、控制器、服务等有基本的了解。
+
+
+  ![A453568_1_En_3_Fig1_HTML.jpg](img/A453568_1_En_3_Fig1_HTML.jpg) 如果你需要提高 Spring
+  框架的技能，我建议你查看官方的 Spring 框架文档¹。它提供了许多示例和优秀的教程。
+
+
+  脚注 1
+
+
+  `https://spring.io/docs`
+
+
+
+
+  '
+- '# 14. 更改应用程序语言
+
+
+  通过在应用程序菜单中选择所需语言，可以翻译所有聊天应用程序文本（图 14-1）。这样，来自不同国家的用户就能更好地使用该系统。这个概念通常被称为国际化（或 I18N）。
+
+
+  ![A453568_1_En_14_Fig1_HTML.jpg](img/A453568_1_En_14_Fig1_HTML.jpg)
+
+
+  图 14-1.
+
+
+  语言菜单
+
+
+  使用 Spring MVC¹ 实现国际化非常简单。
+
+
+  基本上，你需要让 `@Configuration` 类继承自 `WebMvcConfigurerAdapter` 来进行一些 Spring MVC 配置。
+
+
+  ```
+
+  @Configuration
+
+  public class WebConfig extends WebMvcConfigurerAdapter {
+
+  @Bean
+
+  public LocaleResolver localeResolver() {
+
+  return new SessionLocaleResolver();
+
+  }
+
+  @Bean
+
+  public LocaleChangeInterceptor localeChangeInterceptor() {
+
+  LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+
+  localeChangeInterceptor.setParamName("lang");
+
+  return localeChangeInterceptor;
+
+  }
+
+  @Override
+
+  public void addInterceptors(InterceptorRegistry registry) {
+
+  registry.addInterceptor(localeChangeInterceptor());
+
+  }
+
+  }
+
+  ```
+
+
+  在这个类中，你为 `LocaleResolver` 设置了 `@Bean`。Spring 有许多 `LocaleResolver` 的实现，例如 `SessionLocaleResolver`
+  和 `CookieLocaleResolver`。
+
+
+  *   `SessionLocaleResolver`：这会将一个区域设置属性保存在用户的 HTTP 会话中，因此只要用户的 HTTP 会话处于活动状态，该用户使用的区域设置就是
+  HTTP 会话区域设置属性中指定的那个。
+
+  *   `CookieLocaleResolver`：这使用发送回用户的 cookie。对于不使用 HTTP 会话的无状态应用程序，此选项特别有用。
+
+
+  在前面的配置中，`LocaleChangeInterceptor` 会拦截每个请求，以检查是否存在 `lang` 参数。假设一个 GET 请求携带了 `lang=pt`
+  参数。基本上，这个拦截器会拦截此请求，将用户的区域设置设置为 `pt`（葡萄牙语），并将其存储在用户的 HTTP 会话区域设置属性中。从现在开始，所有应用程序文本都将从资源包
+  `messages_pt.properties` 中读取。
+
+
+  以下是菜单项的代码。当你单击英语或葡萄牙语菜单项时，将触发一个 GET 请求，并携带相应的 `param` 属性（`en` 或 `pt`）。
+
+
+  ```
+
+  English
+
+  Portuguese
+
+
+  ```
+
+
+  为了从适当的资源包（基于设置的区域设置）读取消息，Thymeleaf² 可以通过 `th:text` 帮助你。
+
+
+  ```
+
+  Login
+
+  ```
+
+
+  这段代码意味着键 `login.title` 的值将显示在 `h3` 超文本标记语言（HTML）元素内部。
+
+
+  脚注 1
+
+
+  [`https://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#mvc-localeresolver`](https://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#mvc-localeresolver)
+
+
+    2
+
+
+  [`https://www.thymeleaf.org/`](https://www.thymeleaf.org/)
+
+
+  '
+- '# 15. 登录
+
+
+  让我们开始了解一些 Spring Security 配置。
+
+
+  ```
+
+  @Configuration
+
+  @EnableGlobalMethodSecurity(prePostEnabled = true)
+
+  public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+  @Autowired
+
+  private UserDetailsService userDetailsService;
+
+  @Override
+
+  protected void configure(HttpSecurity http) throws Exception {
+
+  http
+
+  .csrf().disable()
+
+  .formLogin()
+
+  .loginProcessingUrl("/login")
+
+  .loginPage("/")
+
+  .defaultSuccessUrl("/chat")
+
+  .and()
+
+  .logout()
+
+  .logoutSuccessUrl("/")
+
+  .and()
+
+  .authorizeRequests()
+
+  .antMatchers("/login", "/new-account", "/").permitAll()
+
+  .antMatchers(HttpMethod.POST,  "/chatroom").hasRole("ADMIN")
+
+  .anyRequest().authenticated();
+
+  }
+
+  @Autowired
+
+  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
+  {
+
+  auth
+
+  .userDetailsService(userDetailsService)
+
+  .passwordEncoder(bCryptPasswordEncoder());
+
+  }
+
+  @Bean
+
+  public BCryptPasswordEncoder bCryptPasswordEncoder() {
+
+  return new BCryptPasswordEncoder();
+
+  }
+
+  }
+
+  ```
+
+
+  在 `configure` 方法中，所有操作都通过 `HttpSecurity` 对象完成，该对象提供了一个流畅的接口。¹
+
+
+  *   身份验证将通过登录 Web 表单完成。
+
+  *   当表单向 `/login` 提交 POST 请求时，Spring Security 将为你处理身份验证。
+
+  *   登录页面是根上下文 `/`。
+
+  *   登录成功后，用户将被重定向到 `/chat` URI。
+
+  *   注销 URI 是 `/logout`，注销操作后，用户将被重定向到 `/` URI，即登录页面。
+
+  *   URI `/login`、`/new-account` 和 `/` 允许所有人（包括匿名用户）访问。
+
+  *   只有具有 `ROLE_ADMIN` 角色的用户才允许向 `/chatroom` 发送 POST 请求（以创建聊天室）。
+
+  *   任何其他请求仅允许已登录用户访问。
+
+
+  当表单登录提交到 `POST /login` 时，Spring Security 将拦截该请求，查询 MySQL 实例以获取用户，并检查提供的凭据是否正确。但是，如果你不指示
+  Spring 如何执行此操作，事情将无法进行。这并非那么神奇！这就是为什么你需要实现 `UserDetailsService` Spring 接口来指示 Spring
+  如何执行此操作。幸运的是，正如你在第 8 章的“Spring Data JPA 仓库”部分所学到的，你正在使用 `UserRepository`，它已经提供了一种针对
+  MySQL 实例执行 `User` 操作的简便方法。
+
+
+  ```
+
+  @Service
+
+  public class UserDetailsServiceImpl implements UserDetailsService {
+
+  @Autowired
+
+  private UserRepository userRepository;
+
+  @Override
+
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+  {
+
+  User user = userRepository.findOne(username);
+
+  if (user == null) {
+
+  throw new UsernameNotFoundException("User not found");
+
+  } else {
+
+  Set grantedAuthorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toSet());
+
+  return new org.springframework.security.core.userdetails.User(user.getUsername(),
+  user.getPassword(), grantedAuthorities);
+
+  }
+
+  }
+
+  }
+
+  ```
+
+
+  在前面的代码片段中，`UserRepository` 用于查询数据库以查找给定的 `username`。请注意，在配置类中，`UserDetailsService`
+  的一个实例被提供给了 `AuthenticationManagerBuilder`。
+
+
+  `BCryptPasswordEncoder` 组件用于使用 bcrypt² 加密用户的密码。
+
+
+  ![A453568_1_En_15_Figa_HTML.jpg](img/A453568_1_En_15_Figa_HTML.jpg) 这里，我们禁用了跨站请求伪造（CSRF）保护³
+  以简化事情。如果你想启用它，只需移除 `.csrf().disable()` 这一行，并在 HTML 表单中添加 `<input type="hidden" th:name="${_csrf.parameterName}"
+  th:value="${_csrf.token}"/>`，以便将 CSRF 令牌与表单数据一起发送。此外，如果你启用它，`/logout` 将需要是一个 POST
+  请求。
+
+
+  脚注 1
+
+
+  [`https://www.martinfowler.com/bliki/FluentInterface.html`](https://www.martinfowler.com/bliki/FluentInterface.html)
+
+
+  2
+
+
+  [`https://en.wikipedia.org/wiki/Bcrypt`](https://en.wikipedia.org/wiki/Bcrypt)
+
+
+  3
+
+
+  [`https://docs.spring.io/spring-security/site/docs/current/reference/html/csrf.html`](https://docs.spring.io/spring-security/site/docs/current/reference/html/csrf.html)
+
+
+
+
+  '
+- '# 16. 新建账户
+
+
+  以下代码是 `User` 类。除了属性声明外，你还使用了 [Bean](http://beanvalidation.org/1.1/spec/) 验证¹和 Hibernate
+  Validator² 注解。一个有效的新用户必须满足以下条件：
+
+
+  *   `username`：不能为空，且长度必须在 5 到 15 个字符之间。该字段是 `user` 数据库表的主键。
+
+  *   `password`：不能为空，且至少包含 5 个字符。
+
+  *   `name`：不能为空。
+
+  *   `email`：不能为空，且必须是有效的电子邮件地址。
+
+
+  ```
+
+  @Entity
+
+  @Table(name = "user")
+
+  public class User {
+
+  @Id
+
+  @NotEmpty
+
+  @Size(min = 5, max = 15)
+
+  private String username;
+
+  @NotEmpty
+
+  @Size(min = 5)
+
+  private String password;
+
+  @NotEmpty
+
+  private String name;
+
+  @Email
+
+  @NotEmpty
+
+  private String email;
+
+  @ManyToMany(fetch=FetchType.EAGER)
+
+  @JoinTable(name = "user_role",
+
+  joinColumns = @JoinColumn(name = "username"),
+
+  inverseJoinColumns = @JoinColumn(name = "role_id"))
+
+  private Set roles = new HashSet();
+
+  ...
+
+  }
+
+  ```
+
+
+  除了这些简单的验证之外，你还必须确保提供的用户名不存在。为此，你创建了一个自定义的 Spring 验证器。
+
+
+  ```
+
+  @Component
+
+  public class NewUserValidator implements Validator {
+
+  @Autowired
+
+  private UserRepository userRepository;
+
+  @Override
+
+  public boolean supports(Class clazz) {
+
+  return User.class.isAssignableFrom(clazz);
+
+  }
+
+  @Override
+
+  public void validate(Object target, Errors errors) {
+
+  User newUser = (User) target;
+
+  if (userRepository.exists(newUser.getUsername())) {
+
+  errors.rejectValue("username", "new.account.username.already.exists");
+
+  }
+
+  }
+
+  }
+
+  ```
+
+
+  基本上，`NewUserValidator` 实现了 `Validator` Spring 接口，并使用 `UserRepository` 查询数据库以检查用户名是否已存在。如果存在，则会向
+  `Errors` 对象添加一条新错误。
+
+
+  ![A453568_1_En_16_Figa_HTML.jpg](img/A453568_1_En_16_Figa_HTML.jpg) 请注意，添加的错误包含错误消息的键，即
+  `new.account.username.already.exists`。你可以在附录中查看其值。
+
+
+  一旦 `new-account.html` 中的表单被提交，`AuthenticationController` 中的 `createAccount` 方法就会被调用。
+
+
+  ```
+
+  @Controller
+
+  public class AuthenticationController {
+
+  @Autowired
+
+  private UserService userService;
+
+  @Autowired
+
+  private NewUserValidator newUserValidator;
+
+  @InitBinder
+
+  protected void initBinder(WebDataBinder binder) {
+
+  binder.addValidators(newUserValidator);
+
+  }
+
+  @RequestMapping(path = "/new-account", method = RequestMethod.POST)
+
+  public String createAccount(@Valid User user, BindingResult bindingResult) {
+
+  if (bindingResult.hasErrors()) {
+
+  return "new-account";
+
+  }
+
+  userService.createUser(user);
+
+  return "redirect:/";
+
+  }
+
+  }
+
+  ```
+
+
+  请注意，你将 `NewUserValidator` 添加到了验证器中。这使得 Spring 在针对带有 `@Valid` 注解的新 `User` 对象进行验证时，除了使用
+  `User` 类中的简单验证外，还会使用你的自定义验证器。如果存在任何错误，用户将被重定向到新建账户表单并显示错误，如图 16-1 所示。
+
+
+  ![A453568_1_En_16_Fig1_HTML.jpg](img/A453568_1_En_16_Fig1_HTML.jpg)
+
+
+  图 16-1.
+
+
+  验证
+
+
+  为了在页面中自动显示错误消息，Thymeleaf 提供了 `th:errors`。
+
+
+  ```
+
+
+  用户名
+
+
+  错误
+
+
+  ```
+
+
+  当提交的用户信息全部正确时，会调用 `userService.createUser(user)`。
+
+
+  ```
+
+  @Service
+
+  public class DefaultUserService implements UserService {
+
+  @Autowired
+
+  private UserRepository userRepository;
+
+  @Autowired
+
+  private RoleRepository roleRepository;
+
+  @Autowired
+
+  private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+  @Override
+
+  @Transactional
+
+  public User createUser(User user) {
+
+  user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
+  Role userRole = roleRepository.findByName("ROLE_USER");
+
+  user.addRoles(Arrays.asList(userRole));
+
+  return userRepository.save(user);
+
+  }
+
+  }
+
+  ```
+
+
+  本质上，该方法使用 `BCryptPasswordEncoder` 组件加密用户密码，将 `ROLE_USER` 角色附加到其角色列表中，并将用户保存到数据库。由于
+  `ROLE_USER` 不允许你创建新的聊天室，因此每个新用户都将无法使用此功能。
+
+
+  脚注 1
+
+
+  [`http://beanvalidation.org/1.1/spec/`](http://beanvalidation.org/1.1/spec/)
+
+
+  2
+
+
+  [`http://hibernate.org/validator/`](http://hibernate.org/validator/)
+
+
+  '
+- '# 17. 新建聊天室
+
+
+  在本章中，我将说明在 Spring MVC 中使用 REST 端点是多么容易。
+
+
+  在客户端，你只需创建一个名为 `newChatRoom` 的 JavaScript 对象，将其转换为 JSON 格式，并向 `/chatroom` 端点发送一个
+  POST 请求。如果成功，则会调用 `success` 回调函数，并通过操作文档对象模型¹ (DOM) 将新的聊天室追加到网格中。
+
+
+  ```
+
+  function createNewChatRoom() {
+
+  var newChatRoom = {
+
+  ''name'' : txtNewChatRoomName.val(),
+
+  ''description'' : txtNewChatRoomDescription.val()
+
+  };
+
+  $.ajax({
+
+  type : "POST",
+
+  url : "/chatroom",
+
+  data : JSON.stringify(newChatRoom),
+
+  contentType : "application/json",
+
+  success : function(chatRoom) {
+
+  //将聊天室追加到网格
+
+  },
+
+  });
+
+  }
+
+  ```
+
+
+  ## 17.1 使用 Spring MVC 和 Spring Security 保护 REST 端点
+
+
+  Spring MVC 首先会将 HTTP 请求体中的 JSON（这就是你使用 `@RequestBody` 注解的原因）转换为 `chatroom` 对象，并调用
+  `createChatRoom` 方法。该方法将使用 `chatRoomService` 组件将 `chatroom` 对象保存到 Redis 中。之后，`createChatRoom`
+  方法会将新的 `chatroom` 对象转换为 JSON 表示形式，并将其连同 `HTTP 201 CREATED` 状态码一起附加到 HTTP 响应体中（这就是你使用
+  `@ResponseBody` 注解的原因）。
+
+
+  ![A453568_1_En_17_Figa_HTML.jpg](img/A453568_1_En_17_Figa_HTML.jpg) 请注意，通过使用 `@Secured("ROLE_ADMIN")`
+  注解，你告诉 Spring Security 只允许具有 `ROLE_ADMIN` 角色的已登录用户使用此端点。否则，它将自动向客户端发送 `403 FORBIDDEN`
+  状态码。
+
+
+  ```
+
+  @Controller
+
+  public class ChatRoomController {
+
+  @Autowired
+
+  private ChatRoomService chatRoomService;
+
+  @Secured("ROLE_ADMIN")
+
+  @RequestMapping(path = "/chatroom", method = RequestMethod.POST)
+
+  @ResponseBody
+
+  @ResponseStatus(code = HttpStatus.CREATED)
+
+  public ChatRoom createChatRoom(@RequestBody ChatRoom chatRoom) {
+
+  return chatRoomService.save(chatRoom);
+
+  }
+
+  }
+
+  @Service
+
+  public class RedisChatRoomService implements ChatRoomService {
+
+  @Autowired
+
+  private ChatRoomRepository chatRoomRepository;
+
+  @Override
+
+  public ChatRoom save(ChatRoom chatRoom) {
+
+  return chatRoomRepository.save(chatRoom);
+
+  }
+
+  }
+
+  ```
+
+
+  脚注 1
+
+
+  [`https://www.w3schools.com/js/js_htmldom.asp`](https://www.w3schools.com/js/js_htmldom.asp)
+
+
+
+
+  '
+- '# 18. 加入聊天室
+
+
+  当你加入聊天室时，一些 JavaScript 代码会在客户端执行。
+
+
+  ```
+
+  function connect() {
+
+  socket = new SockJS(''/ws'');
+
+  stompClient = Stomp.over(socket);
+
+  stompClient.connect({ ''chatRoomId'' : chatRoomId }, stompSuccess, stompFailure);
+
+  }
+
+  function stompSuccess(frame) {
+
+  enableInputMessage();
+
+  successMessage("Your WebSocket connection was successfully established!")
+
+  stompClient.subscribe(''/chatroom/connected.users'',updateConnectedUsers);
+
+  stompClient.subscribe(''/chatroom/old.messages'',  oldMessages);
+
+  stompClient.subscribe(''/topic/'' + chatRoomId + ''.public.messages'', publicMessages);
+
+  stompClient.subscribe(''/user/queue/'' + chatRoomId + ''.private.messages'', privateMessages);
+
+  stompClient.subscribe(''/topic/'' + chatRoomId + ''.connected.users'', updateConnectedUsers);
+
+  }
+
+  function stompFailure(error) {
+
+  errorMessage("Lost connection to WebSocket! Reconnecting in 10 seconds...");
+
+  disableInputMessage();
+
+  setTimeout(connect, 10000);
+
+  }
+
+  ```
+
+
+  首先，调用 `connect` 函数，并使用 STOMP 作为子协议启动一个新的 WebSocket 连接。请注意，在发送 `CONNECT` 帧时，你还需要添加头部
+  `''chatRoomId'' : chatRoomId`，因为服务器必须保留此信息以确保它操作的是正确的目标名称。
+
+
+  如果握手成功，则会调用 `stompSuccess` 函数，并且用户会订阅一些目标。实际上，前两个订阅仅在服务器端执行一次，用于获取一些初始数据，即用户的历史对话以及当前连接到该特定聊天室的用户。以下是这两个订阅发生时执行的
+  Java 代码：
+
+
+  ```
+
+  @Controller
+
+  public class ChatRoomController {
+
+  @Autowired
+
+  private ChatRoomService chatRoomService;
+
+  @Autowired
+
+  private InstantMessageService instantMessageService;
+
+  @SubscribeMapping("/connected.users")
+
+  public List listChatRoomConnectedUsersOnSubscribe(SimpMessageHeaderAccessor headerAccessor)
+  {
+
+  String chatRoomId = headerAccessor.getSessionAttributes().get("chatRoomId").toString();
+
+  return chatRoomService.findById(chatRoomId).getConnectedUsers();
+
+  }
+
+  @SubscribeMapping("/old.messages")
+
+  public List listOldMessagesFromUserOnSubscribe(Principal principal, SimpMessageHeaderAccessor
+  headerAccessor) {
+
+  String chatRoomId = headerAccessor.getSessionAttributes().get("chatRoomId").toString();
+
+  return instantMessageService.findAllInstantMessagesFor(principal.getName(), chatRoomId);
+
+  }
+
+  ...
+
+  }
+
+  ```
+
+
+  ![A453568_1_En_18_Figa_HTML.jpg](img/A453568_1_En_18_Figa_HTML.jpg) `List<ChatRoomUser>`
+  列表从 Redis 中获取，而 `List<InstantMessage>` 列表则从 Cassandra 中获取。
+
+
+  ![A453568_1_En_18_Figb_HTML.jpg](img/A453568_1_En_18_Figb_HTML.jpg) 当用户需要通过 WebSocket
+  连接获取初始数据时，`@SubscribeMapping` 注解非常有用。
+
+
+  JavaScript 代码中的最后三个订阅分别如下：
+
+
+  *   当新消息到达 `''/topic/'' + chatRoomId + ''.public.messages''` 目标时，执行 `publicMessages`
+  函数。此函数将在用户的消息面板中渲染一条公共消息。
+
+  *   当新消息到达 `''/user/queue/'' + chatRoomId + ''.private.messages''` 目标时，执行 `privateMessages`
+  函数。此函数将在用户的消息面板中渲染一条私有消息。
+
+  *   当新消息到达 `''/topic/'' + chatRoomId + ''.connected.users''` 目标时，执行 `updateConnectedUsers`
+  函数。此函数将更新用户连接用户面板中的在线用户列表。
+
+
+  ## 18.1 WebSocket 重连策略
+
+
+  当 WebSocket 连接丢失时，会执行 `stompFailure` 函数，该函数将每隔十秒尝试重新建立连接。如果重连成功，则之前解释的所有过程将再次发生。由于每条消息都存储在
+  Cassandra 中（无论是否通过 WebSocket 连接传递），即使有人在用户离线时向他发送了消息，当用户重新连接时，该消息也会出现在 `List<InstantMessage>`
+  列表中，并显示在用户的消息面板中。
+
+
+  ## 18.2 WebSocket 事件
+
+
+  一旦 WebSocket 连接建立或断开，服务器端就会触发一个事件，并向聊天室中的每个已连接用户发送一条系统消息，通知他们有人加入或离开了（图 18-1）。
+
+
+  ![A453568_1_En_18_Fig1_HTML.jpg](img/A453568_1_En_18_Fig1_HTML.jpg)
+
+
+  图 18-1.
+
+
+  来自管理员的系统消息
+
+
+  以下是服务器端处理这些事件的代码：
+
+
+  ```
+
+  @Component
+
+  public class WebSocketEvents {
+
+  @Autowired
+
+  private ChatRoomService chatRoomService;
+
+  @EventListener
+
+  private void handleSessionConnected(SessionConnectEvent event) {
+
+  SimpMessageHeaderAccessor headers = SimpMessageHeaderAccessor.wrap(event.getMessage());
+
+  String chatRoomId = headers.getNativeHeader("chatRoomId").get(0);
+
+  headers.getSessionAttributes().put("chatRoomId", chatRoomId);
+
+  ChatRoomUser joiningUser = new ChatRoomUser(event.getUser().getName());
+
+  chatRoomService.join(joiningUser, chatRoomService.findById(chatRoomId));
+
+  }
+
+  @EventListener
+
+  private void handleSessionDisconnect(SessionDisconnectEvent event) {
+
+  SimpMessageHeaderAccessor headers = SimpMessageHeaderAccessor.wrap(event.getMessage());
+
+  String chatRoomId = headers.getSessionAttributes().get("chatRoomId").toString();
+
+  ChatRoomUser leavingUser = new ChatRoomUser(event.getUser().getName());
+
+  chatRoomService.leave(leavingUser, chatRoomService.findById(chatRoomId));
+
+  }
+
+  }
+
+  ```
+
+
+  让我们以 `SessionConnected` 事件为例，跟踪整个流程。
+
+
+  当 WebSocket 连接建立时，会调用 `handleSessionConnected` 方法。然后，从 `CONNECT` 帧的头部获取 `chatRoomId`
+  值，并将其作为属性存储在用户的 WebSocket 会话中。这样做很方便，因为从现在开始，客户端发送的每条消息都不需要再提供 `chatRoomId` 值，因为它已经存储在用户的
+  WebSocket 会话中了。接着，调用 `join` 方法，并将 `joiningUser` 和 `chatRoom` 作为参数传入。
+
+
+  ```
+
+  @Service
+
+  public class RedisChatRoomService implements ChatRoomService {
+
+  @Autowired
+
+  private SimpMessagingTemplate webSocketMessagingTemplate;
+
+  @Autowired
+
+  private ChatRoomRepository chatRoomRepository;
+
+  @Autowired
+
+  private InstantMessageService instantMessageService;
+
+  @Override
+
+  public ChatRoom join(ChatRoomUser joiningUser, ChatRoom chatRoom) {
+
+  chatRoom.addUser(joiningUser);
+
+  chatRoomRepository.save(chatRoom);
+
+  sendPublicMessage(SystemMessages.welcome(chatRoom.getId(), joiningUser.getUsername()));
+
+  updateConnectedUsersViaWebSocket(chatRoom);
+
+  return chatRoom;
+
+  }
+
+  @Override
+
+  public ChatRoom leave(ChatRoomUser leavingUser, ChatRoom chatRoom) {
+
+  sendPublicMessage(SystemMessages.goodbye(chatRoom.getId(), leavingUser.getUsername()));
+
+  chatRoom.removeUser(leavingUser); chatRoomRepository.save(chatRoom);
+
+  updateConnectedUsersViaWebSocket(chatRoom);
+
+  return chatRoom;
+
+  }
+
+  @Override
+
+  public void sendPublicMessage(InstantMessage instantMessage) {
+
+  webSocketMessagingTemplate.convertAndSend(
+
+  Destinations.ChatRoom.publicMessages(instantMessage.getChatRoomId()), instantMessage);
+
+  instantMessageService.appendInstantMessageToConversations(instantMessage);
+
+  }
+
+  private void updateConnectedUsersViaWebSocket(ChatRoom chatRoom) {
+
+  webSocketMessagingTemplate.convertAndSend(
+
+  Destinations.ChatRoom.connectedUsers(chatRoom.getId()),
+
+  chatRoom.getConnectedUsers());
+
+  }
+
+  }
+
+  ```
+
+
+
+
+  ### 18.2.1 通过 WebSocket 发送公共系统消息
+
+
+  现在我们来分析 `join` 方法。首先，它将用户添加到 `chatRoom` 对象中，并将其持久化到 Redis；接着，它调用 `sendPublicMessage`
+  方法，该方法使用 `SimpMessagingTemplate`（你在本书中已经使用过）以 `admin` 用户的身份发送一条公共欢迎消息。所有已连接的用户都能收到这条消息，因为它被发送到了
+  `''/topic/'' + chatRoomId + ''.public.messages''` 目标地址，这是用户建立 WebSocket 连接时订阅的地址之一。然后，它调用
+  `InstantMessageService` 组件中的 `appendInstantMessageToConversations` 方法，该方法负责将消息存储到
+  Cassandra 中的用户会话记录中。以下是该方法的代码：
+
+
+  ```
+
+  @Service
+
+  public class CassandraInstantMessageService implements InstantMessageService {
+
+  @Autowired
+
+  private InstantMessageRepository instantMessageRepository;
+
+  @Autowired
+
+  private ChatRoomService chatRoomService;
+
+  @Override
+
+  public void appendInstantMessageToConversations(InstantMessage instantMessage) {
+
+  if (instantMessage.isFromAdmin() || instantMessage.isPublic()) {
+
+  ChatRoom chatRoom = chatRoomService.findById(instantMessage.getChatRoomId());
+
+  chatRoom.getConnectedUsers().forEach(connectedUser -> {
+
+  instantMessage.setUsername(connectedUser.getUsername());
+
+  instantMessageRepository.save(instantMessage);
+
+  });
+
+  } else {
+
+  instantMessage.setUsername(instantMessage.getFromUser());
+
+  instantMessageRepository.save(instantMessage);
+
+  instantMessage.setUsername(instantMessage.getToUser());
+
+  instantMessageRepository.save(instantMessage);
+
+  }
+
+  }
+
+  @Override
+
+  public List findAllInstantMessagesFor(String username, String chatRoomId) {
+
+  return instantMessageRepository.findInstantMessagesByUsernameAndChatRoomId(username,
+  chatRoomId);
+
+  }
+
+  }
+
+  ```
+
+
+  这段代码本质上是在 Cassandra 中为相关用户保存消息。例如，如果你向我发送一条私密消息，该方法会将消息追加到我的会话和你的会话中。但如果你发送一条公共消息，该方法会将消息追加到每个已连接用户的会话中。
+
+
+  最后，它调用 `updateConnectedUsersViaWebSocket` 方法，该方法也会向 `''/topic/'' + chatRoomId +
+  ''.connected.users''` 目标地址发送一条公共消息。由于所有用户都订阅了这个目标地址，他们能够收到消息并更新其已连接用户面板。
+
+
+  本质上，当用户离开聊天室时，也会发生相同的流程。
+
+
+  '
+- '# 19. 通过 WebSocket 发送用户的公共消息
+
+
+  当客户端在聊天室中发送公共消息时，会调用 `sendMessage` JavaScript 函数。本质上，它将 `instantMessage` JavaScript
+  对象转换为 JSON 表示形式，并将消息发送到应用目标地址 `/chatroom/send.message`。
+
+
+  ```
+
+  function sendMessage() {
+
+  var instantMessage;
+
+  if (spanSendTo.text() == "public") {
+
+  instantMessage = {
+
+  ''text'' : inputMessage.val()
+
+  }
+
+  } else {
+
+  instantMessage = {
+
+  ''text'' : inputMessage.val(),
+
+  ''toUser'' : spanSendTo.text()
+
+  }
+
+  }
+
+  stompClient.send("/chatroom/send.message",  {},  JSON.stringify(instantMessage));
+
+  inputMessage.val("").focus();
+
+  }
+
+  ```
+
+
+  ![A453568_1_En_19_Figa_HTML.jpg](img/A453568_1_En_19_Figa_HTML.jpg) 有关消息如何根据目标名称进行路由的详细信息，请参阅第
+  10 章的“使用简单代理的消息流”部分。
+
+
+  在 `ChatRoomController` Java 类中，会调用 `sendMessage` 方法，并且 `instantMessage` 对象已设置好 `fromUser`
+  和 `chatRoomId` 字段。然后，调用 `chatRoomService` 对象来发送私密或公共消息。在这种情况下，`instantMessage.isPublic()`
+  方法将返回 `true`，因此会发送一条公共消息。
+
+
+  ```
+
+  @Controller
+
+  public class ChatRoomController {
+
+  @Autowired
+
+  private ChatRoomService chatRoomService;
+
+  @MessageMapping("/send.message")
+
+  public void sendMessage(@Payload InstantMessage instantMessage, Principal principal,
+  SimpMessageHeaderAccessor headerAccessor) {
+
+  String chatRoomId = headerAccessor.getSessionAttributes().get("chatRoomId").toString();
+
+  instantMessage.setFromUser(principal.getName());
+
+  instantMessage.setChatRoomId(chatRoomId);
+
+  if (instantMessage.isPublic()) {
+
+  chatRoomService.sendPublicMessage(instantMessage);
+
+  } else {
+
+  chatRoomService.sendPrivateMessage(instantMessage);
+
+  }
+
+  }
+
+  }
+
+  ```
+
+
+  `ChatRoomService` 类中的 `sendPublicMessage` 方法已在第 18 章的“通过 WebSocket 发送公共系统消息”部分中解释过。
+
+
+
+
+  '
+- '# 20. 通过 WebSocket 发送用户的私密消息
+
+
+  发送私密消息可能比发送公开消息稍微复杂一些。让我们看看下面展示的 JavaScript 代码：
+
+
+  ```
+
+  function sendMessage() {
+
+  var instantMessage;
+
+  if (spanSendTo.text() == "public") {
+
+  instantMessage = {
+
+  ''text'' : inputMessage.val()
+
+  }
+
+  } else {
+
+  instantMessage = {
+
+  ''text'' : inputMessage.val(),
+
+  ''toUser'' : spanSendTo.text()
+
+  }
+
+  }
+
+  stompClient.send("/chatroom/send.message", {}, JSON.stringify(instantMessage));
+
+  inputMessage.val("").focus();
+
+  }
+
+  ```
+
+
+  当客户端在聊天室中发送私密消息时，会调用 `sendMessage` 这个 JavaScript 函数。本质上，它将 `instantMessage` JavaScript
+  对象转换为 JSON 表示形式，并将消息发送到应用目标地址 `/chatroom/send.message`，这与用于发送用户公开消息的目标地址相同。
+
+
+  ```
+
+  @Controller
+
+  public class ChatRoomController {
+
+  @Autowired
+
+  private ChatRoomService chatRoomService;
+
+  @MessageMapping("/send.message")
+
+  public void sendMessage(@Payload InstantMessage instantMessage, Principal principal,
+
+  SimpMessageHeaderAccessor headerAccessor) {
+
+  String chatRoomId = headerAccessor.getSessionAttributes().get("chatRoomId").toString();
+
+  instantMessage.setFromUser(principal.getName());
+
+  instantMessage.setChatRoomId(chatRoomId);
+
+  if (instantMessage.isPublic()) {
+
+  chatRoomService.sendPublicMessage(instantMessage);
+
+  } else {
+
+  chatRoomService.sendPrivateMessage(instantMessage);
+
+  }
+
+  }
+
+  }
+
+  ```
+
+
+  在 `ChatRoomController` Java 类中，调用了 `sendMessage` 方法，并且 `instantMessage` 对象设置了 `fromUser`
+  和 `chatRoomId` 字段。然后，调用 `chatRoomService` 来发送私密或公开消息。在这种情况下，`instantMessage.isPublic()`
+  方法返回 `false`，因此将发送一条私密消息。
+
+
+  ```
+
+  @Service
+
+  public class RedisChatRoomService implements ChatRoomService {
+
+  @Autowired
+
+  private SimpMessagingTemplate webSocketMessagingTemplate;
+
+  @Autowired
+
+  private InstantMessageService instantMessageService;
+
+  @Override
+
+  public void sendPrivateMessage(InstantMessage instantMessage) {
+
+  webSocketMessagingTemplate.convertAndSendToUser(
+
+  instantMessage.getToUser(),
+
+  Destinations.ChatRoom.privateMessages(instantMessage.getChatRoomId()), instantMessage);
+
+  webSocketMessagingTemplate.convertAndSendToUser(
+
+  instantMessage.getFromUser(),
+
+  Destinations.ChatRoom.privateMessages(instantMessage.getChatRoomId()), instantMessage);
+
+  instantMessageService.appendInstantMessageToConversations(instantMessage);
+
+  }
+
+  }
+
+  ```
+
+
+  如果你仔细看 `Destinations.ChatRoom.privateMessages(instantMessage.getChatRoomId())`，你会发现这个静态方法会返回一个
+  `String`，它代表了用户的私密消息目标地址。例如，对于一个 ID 为 `AG1XX5` 的聊天室，它可能类似于 `/queue/AG1XX5.private.messages`。
+
+
+  当调用 `convertAndSendToUser` 方法时，它会接收目标用户名（将接收私密消息的用户名）、目标地址以及 `instantMessage` 本身。现在的问题是，如果目标地址
+  `/queue/AG1XX5.private.messages` 没有指明目标用户，Spring 如何能够向特定用户发送消息呢？实际上，每个发送私密消息的不同用户都会有相同的目标地址名称，对吧？
+
+
+  嗯，Spring 很聪明，在幕后 `UserDestinationMessageHandler` 会向这个目标地址追加目标用户的 WebSocket 会话 ID。然后，如果目标用户的
+  WebSocket 会话 ID 是 `user123`，目标地址将转换为 `/queue/AG1XX5.private.messages-user123`，消息将被发送到该地址。
+
+
+  现在，为了让用户接收这条私密消息，用户必须订阅这个目标地址。让我们检查一下 JavaScript 订阅代码，看看用户是否订阅了 `/queue/AG1XX5.private.messages-user123`
+  这个目标地址。
+
+
+  ```
+
+  function connect() {
+
+  socket = new SockJS(''/ws'');
+
+  stompClient = Stomp.over(socket);
+
+  stompClient.connect({ ''chatRoomId'' : chatRoomId }, stompSuccess, stompFailure);
+
+  }
+
+  function stompSuccess(frame) {
+
+  ...
+
+  stompClient.subscribe(''/user/queue/'' + chatRoomId + ''.private.messages'', privateMessages);
+
+  ...
+
+  }
+
+  ```
+
+
+  不！没有订阅这个目标地址。这很奇怪！实际上，当 Spring 检测到带有前缀 `/user/` 的订阅时，`UserDestinationMessageHandler`
+  会再次将 WebSocket 会话 ID 追加到目标地址名称中，并移除 `/user`。所以，最终用户将订阅 `/queue/AG1XX5.private.messages-user123`
+  目标地址，而不是 `/user/queue/AG1XX5.private.messages`。
+
+
+  好吧，如果用户订阅了这个目标地址，那么他就能收到私密消息了。瞧！
+
+
+  现在的问题是，为什么 Spring 要为你施展这个魔法呢？嗯，如果你想向用户发送私密消息，你必须确切知道用户订阅的目标地址名称，对吧？此外，目标地址名称必须是唯一的，因此为了获得这种保证，使用了
+  WebSocket 会话 ID。为了向用户发送私密消息，必须知道用户的 WebSocket 会话 ID，这方便吗？我想你会同意我的看法……不方便！这就是为什么
+  Spring 为你做这个“转换”的原因。它能够从用户名中检索出 WebSocket 会话 ID。这允许你从系统的任何部分通过像这样的调用来向特定用户发送私密消息：
+
+
+  ```
+
+  simpMessagingTemplate.convertAndSendToUser(
+
+  "target_username_here",
+
+  "/queue/AG1XX5.private.messages"),
+
+  instantMessage);
+
+  ```
+
+
+  '
+- '# 第 4 部分
+
+  测试代码
+
+
+  测试代码
+
+
+  在本书的这一部分，你将了解测试应用程序的重要性，以及它对于实现持续交付的关键作用。此外，我将讨论单元测试和集成测试的测试代码。
+
+
+  ![A453568_1_En_4_Fig1a_HTML.jpg](img/A453568_1_En_4_Fig1a_HTML.jpg) 本书的目的不是教授 JUnit
+  的基础知识，也不是定义 mock、stub 等。相反，我将讨论聊天应用程序中编写的测试代码（就像我在第 3 部分“按功能编码”中所做的那样）。
+
+
+  ![A453568_1_En_4_Fig2a_HTML.jpg](img/A453568_1_En_4_Fig2a_HTML.jpg) 我只会展示单元测试和集成测试的几个示例。请克隆
+  GitHub 聊天应用程序仓库¹ 来阅读并运行所有已实现的测试。
+
+
+  脚注 1
+
+
+  `https://github.com/jorgeacetozi/ebook-chat-app-spring-websocket-cassandra-redis-rabbitmq`
+
+
+
+
+  '
+- '# 21. 懒部署 vs. 快速部署
+
+
+  也许你曾在一家生产环境部署流程非常“懒散”的公司工作过。也就是说，部署一次可能需要很多天，甚至好几个月。信不信由你，在实践中，这种情况并不难找到。
+
+
+  简而言之，这类问题往往是软件项目失败的根源。这是因为将新版本部署到生产环境需要如此长的时间，会带来诸多弊端。
+
+
+  *   客户不会乐意看到那些能为他们业务增值的功能，只停留在开发人员的机器上，而不是部署到生产环境。
+
+  *   新版本会包含大量新代码，因为开发人员长时间都在开发新功能，很可能一次性向应用程序引入许多错误。这使得修复这些（以及其他）错误变得更加困难。
+
+  *   由于部署间隔时间过长，团队将无法及时修复关键错误并交付软件。
+
+  *   开发人员辛勤工作，却看不到自己的代码上线运行。这真的很打击士气。
+
+
+  如你所见，不采用懒散部署流程的理由相当充分。
+
+
+  ![A453568_1_En_21_Figa_HTML.jpg](img/A453568_1_En_21_Figa_HTML.jpg) 我推荐 Jez Humble
+  和 David Farley 合著的《持续交付》（Addison-Wesley, 2010）一书，它是对持续交付精彩世界的极好入门介绍。
+
+
+  相比之下，能够在几小时甚至几分钟内将代码交付到生产环境，则带来了许多好处，包括：
+
+
+  *   客户会很高兴，因为他们每周（甚至每天）都能使用新功能，从而为他们的业务增加价值。
+
+  *   你得到的是低风险的发布。每个新版本只包含一个小功能。如果出现问题，查找和修复起来要容易得多。这显然也意味着更低的成本。
+
+  *   错误修复可以非常迅速地交付。
+
+  *   开心的开发人员能看到他们的工作为他人创造价值。
+
+
+  如你所见，有充分的理由尽快将新版本发布到生产环境。
+
+
+  '
+- '# 22. 持续交付
+
+
+  持续交付是指能够以可持续的方式，安全、快速地将变更（例如新功能、配置更改、错误修复等）交付到生产环境。
+
+
+  当然，实现这一点是有代价的。整个交付流程（从开发到生产）必须高度自动化。请记住，人类擅长创造性任务，但在重复性任务上表现糟糕。机器不擅长创造性任务，但在重复性任务上表现出色。为什么不充分利用人类和机器两者的优势呢？换句话说，让人类和机器各司其职，做他们最擅长的事！
+
+
+  测试是一项重复、困难且乏味的任务。人类无法在不出错的情况下测试成千上万个用例。但机器可以。而且，机器可以在几秒或几分钟内完成测试任务，而人类可能需要花费好几天。这也意味着，在这类任务上用机器替代人类成本更低。
+
+
+  让人类来测试你的软件，或者手动参与任何本可以自动化的任务，这与软件的持续交付理念格格不入。如果你想实现持续交付，自动化是关键！
+
+
+  现在你能明白为什么自动化测试如此重要了吗？我认为，它们是实现高质量发布、进行持续交付的一种先决条件。在没有良好自动化测试的情况下实施持续交付，只会导致快速地将质量糟糕的代码交付到生产环境。这是你想要的吗？绝对不是！
+
+
+  '
+- '# 23. 自动化测试的类型
+
+
+  可以编写的自动化测试有很多种类型。它们各有优缺点。以下是最常见的几种：
+
+
+  *   **单元测试**：提供快速反馈，但只测试代码中一个隔离的单元（例如，类中的一个方法）。例如，SQL 查询的问题不会被发现，因为单元测试不会访问数据库。单元测试通常只需几秒甚至几毫秒就能执行完毕。
+
+  *   **集成测试**：提供较慢的反馈，但会测试与数据库或 Web 服务等外部系统的集成。也就是说，它们比单元测试更全面。（但这并不意味着它们更好！这里要小心；记住，每种测试类型都有其自身的优缺点。）通常，集成测试需要几分钟才能执行完毕，但具体时间可能因运行的测试数量而有很大差异。
+
+  *   **验收测试**：提供的反馈比集成测试更慢，但它们实际上是在模拟系统中的用户，使用浏览器点击按钮和链接、填写并提交表单等操作。通常，它们需要几分钟才能执行完毕，但具体时间可能因运行的测试数量而有很大差异。
+
+  *   **压力测试**：包括向系统发送大量请求，以获取系统在这些条件下的行为反馈。
+
+
+  通常，单元测试和集成测试是最常用的。它们共同覆盖了许多场景，并避免了大量应用程序问题。此外，与其他类型的测试相比，它们也更容易编写（考虑到压力测试应在类似生产环境的环境中运行等）。
+
+
+  ![A453568_1_En_23_Figa_HTML.jpg](img/A453568_1_En_23_Figa_HTML.jpg) 实际上，还有更多类型的自动化测试，例如安全测试，可以添加到应用程序的自动化测试套件中。开放
+  Web 应用程序安全项目¹（OWASP）是一个在线社区，它在 Web 应用程序安全领域创建了免费的文章、方法论、文档、工具和技术。例如，OWASP Zed Attack
+  Proxy²（ZAP）是世界上最受欢迎的免费安全工具之一，由数百名国际志愿者积极维护。该工具可以帮助你自动发现 Web 应用程序中的安全漏洞，并且可以轻松集成到你的持续交付管道中（它甚至有一个可用的
+  Jenkins 插件³）。
+
+
+  脚注 1
+
+
+  [`https://www.owasp.org/index.php/Main_Page`](https://www.owasp.org/index.php/Main_Page)
+
+
+    2
+
+
+  [`https://github.com/zaproxy/zaproxy`](https://github.com/zaproxy/zaproxy)
+
+
+    3
+
+
+  [`https://wiki.jenkins.io/display/JENKINS/zap+plugin`](https://wiki.jenkins.io/display/JENKINS/zap+plugin)
+
+
+  '
+- '# 24. 单元测试
+
+
+  单元测试提供快速反馈，但只测试代码中一个隔离的单元（例如，类中的一个方法）。在聊天应用程序中，我使用 JUnit¹ 以及 Mockito² 和 Hamcrest³
+  来编写单元测试。
+
+
+
+
+  ## 24.1 InstantMessageBuilderTest.java
+
+
+  `InstantMessageBuilderTest.java` 类用于测试 `InstantMessageBuilder` 类，该类实现了建造者模式⁴，提供了一系列方法链，用于简化创建新
+  `InstantMessage` 对象的过程。
+
+
+  ```
+
+  public class InstantMessageBuilderTest {
+
+  private final String chatRoomId = "123";
+
+  private final String fromUser = "jorge_acetozi";
+
+  private final String toUser = "michael_romeo";
+
+  private final String publicMessageText = "Hello guys... I hope you are enjoying
+  my eBook!";
+
+  private final String privateMessageText = "I''m listening to Symphony X right now!";
+
+  private final String systemMessageText = "This is a system message from admin user!";
+
+  @Test
+
+  public void shouldCreatePublicInstantMessage() {
+
+  InstantMessage publicMessage = new InstantMessageBuilder()
+
+  .newMessage()
+
+  .withChatRoomId(chatRoomId)
+
+  .publicMessage()
+
+  .fromUser(fromUser)
+
+  .withText(publicMessageText);
+
+  assertThat(publicMessage.isPublic(), is(true));
+
+  assertThat(publicMessage.isFromAdmin(), is(false));
+
+  assertThat(publicMessage.getChatRoomId(), is(chatRoomId));
+
+  assertThat(publicMessage.getFromUser(), is(fromUser));
+
+  assertThat(publicMessage.getToUser(), is(nullValue()));
+
+  assertThat(publicMessage.getText(), is(publicMessageText));
+
+  }
+
+  @Test
+
+  public void shouldCreatePrivateInstantMessage() {
+
+  InstantMessage privateMessage = new InstantMessageBuilder()
+
+  .newMessage()
+
+  .withChatRoomId(chatRoomId)
+
+  .privateMessage()
+
+  .toUser(toUser)
+
+  .fromUser(fromUser).
+
+  withText(privateMessageText);
+
+  assertThat(privateMessage.isPublic(), is(false));
+
+  assertThat(privateMessage.isFromAdmin(), is(false));
+
+  assertThat(privateMessage.getChatRoomId(), is(chatRoomId));
+
+  assertThat(privateMessage.getFromUser(), is(fromUser));
+
+  assertThat(privateMessage.getToUser(), is(toUser));
+
+  assertThat(privateMessage.getText(), is(privateMessageText));
+
+  }
+
+  @Test
+
+  public void shouldCreateSystemInstantMessage() {
+
+  InstantMessage systemMessage = new InstantMessageBuilder()
+
+  .newMessage()
+
+  .withChatRoomId(chatRoomId)
+
+  .systemMessage()
+
+  .withText(systemMessageText);
+
+  assertThat(systemMessage.isPublic(), is(true));
+
+  assertThat(systemMessage.isFromAdmin(), is(true));
+
+  assertThat(systemMessage.getChatRoomId(), is(chatRoomId));
+
+  assertThat(systemMessage.getFromUser(), is(SystemUsers.ADMIN.getUsername()));
+
+  assertThat(systemMessage.getToUser(), is(nullValue()));
+
+  assertThat(systemMessage.getText(),  is(systemMessageText));
+
+  }
+
+  }
+
+  ```
+
+
+  使用 Hamcrest 匹配器后，测试代码变得非常易读。例如，在 `shouldCreatePublicInstantMessage` 中，你使用 `InstantMessageBuilder`
+  构建了一条公共消息。当 `toUser` 字段为 `null` 时，该消息被视为公共消息。然而，在 `shouldCreatePrivateInstantMessage`
+  中，`toUser` 字段不能为 `null`。
+
+
+  在 `shouldCreateSystemInstantMessage` 中，你验证了每条系统消息都是公开的，并且来自用户名为 admin 的用户。
+
+
+  ## 24.2 DestinationsTest.java
+
+
+  `DestinationsTest.java` 类用于测试 `Destinations` 类，该类提供了一些静态方法，用于返回订阅聊天室中公共消息、私有消息或已连接用户的目标名称。这些测试很重要，因为如果有人（即使是意外地）更改了
+  `Destination` 类，所有聊天室功能都将停止工作。
+
+
+  ```
+
+  public class DestinationsTest {
+
+  private final String chatRoomId = "123";
+
+  @Test
+
+  public void shouldGetPublicMessagesDestination() {
+
+  assertThat(Destinations.ChatRoom.publicMessages("123"), is("/topic/" + chatRoomId
+  + ".public.messages"));
+
+  }
+
+  @Test
+
+  public void shouldGetPrivateMessagesDestination() {
+
+  assertThat(Destinations.ChatRoom.privateMessages("123"), is("/queue/" + chatRoomId
+  + ".private.messages"));
+
+  }
+
+  @Test
+
+  public void shouldGetConnectedUsersDestination() {
+
+  assertThat(Destinations.ChatRoom.connectedUsers("123"), is("/topic/" + chatRoomId
+  + ".connected.users"));
+
+  }
+
+  }
+
+  ```
+
+
+  基本上，这个类仅测试对于给定的聊天室 ID（等于 123），其目标名称是否分别为 `/topic/123.public.messages`、`/queue/123.private.messages`
+  和 `/topic/123.connected.users`。
+
+
+  ## 24.3 RedisChatRoomServiceTest.java
+
+
+  `RedisChatRoomServiceTest.java` 类用于测试 `RedisChatRoomService` 类，该类提供了聊天室操作的方法。
+
+
+  ```
+
+  @RunWith(MockitoJUnitRunner.class)
+
+  public class RedisChatRoomServiceTest {
+
+  @InjectMocks private ChatRoomService chatRoomService = new RedisChatRoomService();
+
+  @Mock private SimpMessagingTemplate webSocketMessagingTemplate;
+
+  @Mock private InstantMessageService instantMessageService;
+
+  @Captor private ArgumentCaptor destinationCaptor;
+
+  @Captor private ArgumentCaptor instantMessageCaptor;
+
+  @Captor private ArgumentCaptor messageObjectCaptor;
+
+  @Test
+
+  public void shouldSendPublicMessage() {
+
+  ChatRoom chatRoom = new ChatRoom("123", "Dream Theater", "Discuss about best band
+  ever!");
+
+  ChatRoomUser user = new ChatRoomUser("jorge_acetozi");
+
+  chatRoom.addUser(user);
+
+  assertThat(chatRoom.getNumberOfConnectedUsers(), is(1));
+
+  InstantMessage publicMessage = new InstantMessageBuilder()
+
+  .newMessage()
+
+  .withChatRoomId(chatRoom.getId())
+
+  .publicMessage()
+
+  .fromUser(user.getUsername())
+
+  .withText("This is a public message!");
+
+  chatRoomService.sendPublicMessage(publicMessage);
+
+  verify(webSocketMessagingTemplate, times(1))
+
+  .convertAndSend(
+
+  destinationCaptor.capture(),
+
+  messageObjectCaptor.capture());
+
+  verify(instantMessageService, times(1))
+
+  .appendInstantMessageToConversations(instantMessageCaptor.capture());
+
+  String sentDestination = destinationCaptor.getValue();
+
+  InstantMessage sentMessage = (InstantMessage) messageObjectCaptor.getValue();
+
+  InstantMessage instantMessageToBeAppendedToConversations = instantMessageCaptor.getValue();
+
+  assertThat(sentDestination, is(Destinations.ChatRoom.publicMessages(chatRoom.getId())));
+
+  assertEquals(publicMessage, sentMessage);
+
+  assertEquals(publicMessage, instantMessageToBeAppendedToConversations);
+
+  }
+
+  }
+
+  ```
+
+
+  测试方法 `shouldSendPublicMessage` 首先创建一个新的聊天室，并向其中添加一个新用户（用户名为 jorge_acetozi）；然后创建一条将由
+  jorge_acetozi 发送的公共消息，并调用 `chatRoomService` 方法中的 `sendPublicMessage` 方法，而该方法正是你真正想要测试的方法。之后，它验证了
+  `webSocketMessagingTemplate` 和 `instantMessageService` 仅被调用了一次，并且发送的目标是“公共目标”。它还检查了发送的消息与之前传递给
+  `sendPublicMessage` 方法的消息相同，并且该公共消息与传递给 `appendInstantMessageToConversations` 方法调用的消息相同。
+
+
+  脚注 1
+
+
+  [`http://junit.org/junit4/`](http://junit.org/junit4/)
+
+
+    2
+
+
+  [`http://site.mockito.org/`](http://site.mockito.org/)
+
+
+    3
+
+
+  [`http://hamcrest.org/`](http://hamcrest.org/)
+
+
+    4
+
+
+  [`https://en.wikipedia.org/wiki/Builder_pattern`](https://en.wikipedia.org/wiki/Builder_pattern)
+
+
+
+
+  '
+- '# 25. 集成测试
+
+
+  集成测试的编码不像单元测试那样直接，因为它们确实需要测试完整的集成。例如，要测试数据库集成，你需要在运行测试之前设置好这个数据库。
+
+
+  为了解决这个问题，并避免仅仅为了执行一个简单测试而设置整个数据库的开销，许多人使用诸如 H2 之类的内存数据库来运行集成测试。¹
+
+
+  关键在于，集成测试在类似于生产环境的环境中运行时更有效。例如，内存数据库并不具备 MySQL 的所有功能。如果你没有运行 MySQL 实例，某些特定的 MySQL
+  函数将无法被测试，对吧？
+
+
+  因此，为了使环境尽可能接近生产环境，你可以使用一个名为 testcontainers² 的便捷库，它允许你在 JUnit 测试内部创建 Docker 容器。这非常好，因为测试将针对真实的
+  Cassandra、MySQL、Redis 和 RabbitMQ 的易失性实例运行。
+
+
+  ## 25.1 设置从 JUnit 启动 Docker 容器的依赖项
+
+
+  要使用 testcontainers，首先你需要在 `pom.xml` 中声明依赖。
+
+
+  ```
+
+  org.testcontainers
+
+  testcontainers
+
+  1.1.9
+
+
+  ```
+
+
+  以下代码在运行集成测试之前执行。基本上，它使用 testcontainers 库为 Cassandra、MySQL、Redis 和 RabbitMQ（支持 STOMP）设置
+  Docker 容器。请注意，`waitForMysqlContainerStartup` 方法确保只有在 MySQL 容器准备好接收连接后，才会执行集成测试。
+
+
+  ```
+
+  public class AbstractIntegrationTest {
+
+  @ClassRule
+
+  public static final GenericContainer cassandra = new FixedHostPortGenericContainer("cassandra:3.0")
+
+  .withFixedExposedPort(9042, 9042);
+
+  @ClassRule
+
+  public static final GenericContainer mysql = new FixedHostPortGenericContainer("mysql:5.7")
+
+  .withFixedExposedPort(3306, 3306)
+
+  .withEnv("MYSQL_DATABASE",  "ebook_chat")
+
+  .withEnv("MYSQL_ROOT_PASSWORD",  "root");
+
+  @ClassRule
+
+  public static final GenericContainer redis = new FixedHostPortGenericContainer("redis:3.0.6")
+
+  .withFixedExposedPort(6379, 6379);
+
+  @ClassRule
+
+  public static final GenericContainer rabbitmq = new FixedHostPortGenericContainer("jorgeacetozi/rabbitmq-stomp:3.6")
+
+  .withFixedExposedPort(61613,  61613)
+
+  .withExposedPorts(61613);
+
+  @BeforeClass
+
+  public static void waitForMysqlContainerStartup() throws InterruptedException, TimeoutException
+  {
+
+  WaitingConsumer consumer = new WaitingConsumer();
+
+  mysql.followOutput(consumer);
+
+  consumer.waitUntil(frame ->
+
+  frame.getUtf8String().contains("mysqld: ready for connections."), 90, TimeUnit.SECONDS);
+
+  }
+
+  }
+
+  ```
+
+
+  ## 25.2 JUnit 测试套件
+
+
+  在每次测试之前设置 Cassandra、MySQL、Redis 和 RabbitMQ 会产生大量开销并且非常耗时。为了只实例化这些依赖项一次，并将其用于所有执行的集成测试，你可以使用
+  [JUnit](https://github.com/junit-team/junit4/wiki/aggregating-tests-in-suites) 测试套件。³
+  基本上，JUnit 测试套件用于聚合测试。在聊天应用程序中，有两个测试套件：`UnitTestsSuite.java` 和 `IntegrationTestsSuite.java`。它们分别聚合了所有的单元测试和集成测试。
+
+
+  ```
+
+  @RunWith(Suite.class)
+
+  @Suite.SuiteClasses({
+
+  InstantMessageBuilderTest.class,
+
+  DestinationsTest.class,
+
+  SystemMessagesTest.class,
+
+  RedisChatRoomServiceTest.class
+
+  })
+
+  public class UnitTestsSuite {
+
+  }
+
+  @RunWith(Suite.class)
+
+  @Suite.SuiteClasses({
+
+  CassandraInstantMessageServiceTest.class,
+
+  RedisChatRoomServiceTest.class,
+
+  DefaultUserServiceTest.class,
+
+  AuthenticationControllerTest.class,
+
+  ChatRoomControllerTest.class
+
+  })
+
+  public class IntegrationTestsSuite extends AbstractIntegrationTest {
+
+  }
+
+  ```
+
+
+  这两个 JUnit 测试套件将帮助你分离单元测试和集成测试，以便你可以在不同的 Maven 阶段运行它们。⁴
+
+
+  ## 25.3 RedisChatRoomServiceTest.java
+
+
+  `RedisChatRoomServiceTest.java` 类测试了 `RedisChatRoomService` 类，该类提供了聊天室操作的方法。
+
+
+  ```
+
+  @RunWith(SpringRunner.class)
+
+  @EbookChatTest
+
+  public class RedisChatRoomServiceTest {
+
+  @Autowired private ChatRoomService chatRoomService;
+
+  @Autowired private ChatRoomRepository chatRoomRepository;
+
+  @Autowired private InstantMessageRepository instantMessageRepository;
+
+  private ChatRoom chatRoom;
+
+  @Before
+
+  public void setup() {
+
+  chatRoom = new ChatRoom("123", "Dream Theater", "Discuss about best band ever!");
+
+  chatRoomService.save(chatRoom);
+
+  }
+
+  @After
+
+  public void destroy() {
+
+  chatRoomRepository.delete(chatRoom);
+
+  instantMessageRepository.deleteAll();
+
+  }
+
+  @Test
+
+  public void shouldJoinUsersToChatRoom() {
+
+  assertThat(chatRoom.getNumberOfConnectedUsers(),  is(0));
+
+  ChatRoomUser jorgeAcetozi = new ChatRoomUser("jorge_acetozi");
+
+  ChatRoomUser johnPetrucci = new ChatRoomUser("john_petrucci");
+
+  chatRoomService.join(jorgeAcetozi,  chatRoom);
+
+  assertThat(chatRoom.getNumberOfConnectedUsers(),  is(1));
+
+  chatRoomService.join(johnPetrucci,  chatRoom);
+
+  assertThat(chatRoom.getNumberOfConnectedUsers(),  is(2));
+
+  ChatRoom dreamTheaterChatRoom = chatRoomService.findById(chatRoom.getId());
+
+  List connectedUsers = dreamTheaterChatRoom.getConnectedUsers();
+
+  assertThat(connectedUsers.contains(jorgeAcetozi), is(true));
+
+  assertThat(connectedUsers.contains(johnPetrucci), is(true));
+
+  }
+
+  @Test
+
+  public void shouldLeaveUsersFromChatRoom() {
+
+  ChatRoomUser jorgeAcetozi = new ChatRoomUser("jorge_acetozi");
+
+  ChatRoomUser johnPetrucci = new ChatRoomUser("john_petrucci");
+
+  chatRoomService.join(jorgeAcetozi, chatRoom);
+
+  chatRoomService.join(johnPetrucci, chatRoom);
+
+  assertThat(chatRoom.getNumberOfConnectedUsers(), is(2));
+
+  chatRoomService.leave(jorgeAcetozi, chatRoom);
+
+  chatRoomService.leave(johnPetrucci, chatRoom);
+
+  assertThat(chatRoom.getNumberOfConnectedUsers(), is(0));
+
+  }
+
+  }
+
+  ```
+
+
+  基本上，`shouldJoinUsersToChatRoom` 创建了两个用户，jorgeAcetozi 和 johnPetrucci；它将 jorgeAcetozi
+  加入聊天室；并验证聊天室现在有一个已连接的用户。之后，它将 johnPetrucci 加入，并验证聊天室现在有两个已连接的用户。这些 `join` 调用中的每一个实际上都会访问
+  Redis 实例。然后，它从 Redis 中获取聊天室，并验证 jorgeAcetozi 和 johnPetrucci 都已连接到该聊天室。
+
+
+  `shouldLeaveUsersFromChatRoom` 类具有非常相似的逻辑。
+
+
+
+
+  ## 25.4 ChatRoomControllerTest.java
+
+
+  `ChatRoomControllerTest.java` 类用于测试 `ChatRoomController` 类，该类提供了创建新聊天室的 REST 端点。基本上，在这两个测试中，你需要确保没有
+  `ROLE_ADMIN` 角色的用户无法创建聊天室。
+
+
+  ```
+
+  @RunWith(SpringRunner.class)
+
+  @EbookChatTest
+
+  @WebAppConfiguration
+
+  public class ChatRoomControllerTest {
+
+  @Autowired
+
+  private WebApplicationContext wac;
+
+  @Autowired
+
+  private FilterChainProxy springSecurityFilter;
+
+  private MockMvc mockMvc;
+
+  @Before
+
+  public void setup() {
+
+  this.mockMvc = MockMvcBuilders
+
+  .webAppContextSetup(this.wac)
+
+  .addFilter(springSecurityFilter)
+
+  .build();
+
+  }
+
+  @Test
+
+  public void shouldCreateChatRoomWhenUserHasRoleAdmin() throws Exception {
+
+  ChatRoom chatRoom = new ChatRoom("123",
+
+  "Dream Theater",
+
+  "Discuss about best band ever!");
+
+  this.mockMvc.perform(
+
+  post("/chatroom")
+
+  .with(user("admin").roles("ADMIN"))
+
+  .contentType(MediaType.APPLICATION_JSON)
+
+  .content(new ObjectMapper().writeValueAsString(chatRoom))
+
+  )
+
+  .andDo(print())
+
+  .andExpect(status().isCreated())
+
+  .andExpect(jsonPath("$.id",is(chatRoom.getId())))
+
+  .andExpect(jsonPath("$.name",  is(chatRoom.getName())))
+
+  .andExpect(jsonPath("$.description", is(chatRoom.getDescription())));
+
+  }
+
+  @Test
+
+  public void shouldNotCreateChatRoomWhenUserDoesntHaveRoleAdmin() throws Exception
+  {
+
+  ChatRoom chatRoom = new ChatRoom("123", "Dream Theater", "Discuss about best band
+  ever!");
+
+  this.mockMvc.perform(
+
+  post("/chatroom")
+
+  .with(user("xuxa").roles("USER"))
+
+  .contentType(MediaType.APPLICATION_JSON)
+
+  .content(new ObjectMapper().writeValueAsString(chatRoom))
+
+  )
+
+  .andDo(print())
+
+  .andExpect(status().isForbidden());
+
+  }
+
+  }
+
+  ```
+
+
+  在 `shouldCreateChatRoomWhenUserHasRoleAdmin` 测试中，使用管理员用户向 `/chatroom` 发送 POST 请求，并断言响应状态码为
+  `201 CREATED`，且 HTTP 响应体包含包含新聊天室的 JSON。
+
+
+  在 `shouldNotCreateChatRoomWhenUserDoesntHaveRoleAdmin` 测试中，使用具有 `ROLE_USER` 角色的用户向
+  `/chatroom` 发送 POST 请求，并断言响应状态码为 `403 FORBIDDEN`。
+
+
+  脚注 1
+
+
+  [`www.h2database.com/`](http://www.h2database.com/)
+
+
+    2
+
+
+  [`https://www.testcontainers.org/`](https://www.testcontainers.org/)
+
+
+    3
+
+
+  [`https://github.com/junit-team/junit4/wiki/aggregating-tests-in-suites`](https://github.com/junit-team/junit4/wiki/aggregating-tests-in-suites)
+
+
+    4
+
+
+  [`https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html`](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html)
+
+
+  '
+- '# 26. 使用 Maven 插件将单元测试与集成测试分离
+
+
+  还记得第 23 章中提到的不同类型的测试具有不同的反馈级别（因此性能也不同）吗？现在让我们在实践中验证这一点。
+
+
+  打开一个终端窗口，进入 `ebook-chat` 目录，并执行以下命令：
+
+
+  ```
+
+  $ mvn test
+
+  ```
+
+
+  这将执行 `UnitTestsSuite.java` 类，即所有单元测试。请注意执行这些单元测试的速度有多快。
+
+
+  现在执行以下命令：
+
+
+  ```
+
+  $ mvn verify
+
+  ```
+
+
+  这将同时执行 `UnitTestsSuite.java` 和 `IntegrationTestsSuite.java`。请注意集成测试运行所需的时间要长得多。
+
+
+  ![A453568_1_En_26_Figa_HTML.jpg](img/A453568_1_En_26_Figa_HTML.jpg) 只有当你按照第 2 章的步骤操作后，此操作才会生效。请注意，集成测试将启动
+  Cassandra、Redis、MySQL 和 RabbitMQ 的 Docker 容器，因此当你执行 `mvn verify` 命令时，你的机器上不能运行这些容器中的任何一个，否则会导致端口冲突。
+
+
+  ![A453568_1_En_26_Figb_HTML.jpg](img/A453568_1_En_26_Figb_HTML.jpg) 你也可以通过调用 `mvn
+  integration-test` 命令来运行集成测试。
+
+
+  在某些情况下，将单元测试与集成测试分开运行可能是个好主意。为了在编写代码时获得更快的反馈（例如，当某些东西崩溃时），你可以根据需要多次运行单元测试，而无需“浪费时间”等待集成测试。（只是在提交代码之前，别忘了至少同时运行一次单元测试和集成测试。）
+
+
+  ## 26.1 Maven Surefire 插件
+
+
+  当使用 Apache Maven 管理应用程序构建生命周期时，你可以使用插件来自定义行为。
+
+
+  ![A453568_1_En_26_Figc_HTML.jpg](img/A453568_1_En_26_Figc_HTML.jpg) Apache Maven
+  是可扩展的，因此如果需要，你甚至可以创建自己的 Maven 插件¹。
+
+
+  你可以在构建生命周期的 Maven 测试阶段使用 Maven Surefire 插件² 来执行应用程序的单元测试。以下是聊天应用 `pom.xml` 文件中使用的插件配置：
+
+
+  ```
+
+  org.apache.maven.plugins
+
+  maven-surefire-plugin
+
+
+  **/UnitTestsSuite.java
+
+
+  ```
+
+
+  请注意，配置非常简单。它只包含了 `UnitTestsSuite.java` JUnit 测试套件，以便在执行 `maven test` 命令时运行所有单元测试。单元测试的配置就这些！
+
+
+  ## 26.2 Maven Failsafe 插件
+
+
+  Maven Failsafe 插件³ 旨在管理集成测试。以下是其配置：
+
+
+  ```
+
+  org.apache.maven.plugins
+
+  maven-failsafe-plugin
+
+
+  **/UnitTestsSuite.java
+
+  **/IntegrationTestsSuite.java
+
+
+  ```
+
+
+  类似地，它包含了 `UnitTestsSuite.java` 和 `IntegrationTestsSuite.java` JUnit 测试套件，以便在执行 `mvn
+  integration-test` 或 `mvn verify` 命令时运行所有单元测试和集成测试。
+
+
+  脚注 1
+
+
+  [`https://maven.apache.org/plugin-developers/index.html`](https://maven.apache.org/plugin-developers/index.html)
+
+
+    2
+
+
+  [`http://maven.apache.org/surefire/maven-surefire-plugin/`](http://maven.apache.org/surefire/maven-surefire-plugin/)
+
+
+    3
+
+
+  [`http://maven.apache.org/surefire/maven-failsafe-plugin/`](http://maven.apache.org/surefire/maven-failsafe-plugin/)
+
+
+  '
+- '# 27. 持续集成服务器
+
+
+  随着聊天应用程序的增长，在开发者的机器上运行集成测试变成了一项乏味的任务，因为它开始消耗大量时间。你能看出可能出现的问题吗？应用程序有良好的测试覆盖率，但开发者因为测试耗时太长而不运行它们（开发者的机器不是强大的服务器，对吧？）。嗯，有测试却不运行，等同于没有测试，而你已经知道没有测试可不是个好主意！
+
+
+  每次版本控制系统中的源代码发生变化时，都运行所有应用程序测试是合理的，不是吗？但你已经看到，开发者的机器可能不是做这件事的最佳场所。那么，如果你启动一个专用服务器，每当版本控制系统中出现新的提交时，它自动为你完成这项工作，会怎么样？那将太棒了！这正是持续集成（CI）服务器的用途（而且还不止于此！）。有许多工具允许你在单台机器或机器集群上设置
+  CI 服务器。最著名的可能是 Jenkins¹，因为它拥有庞大的社区和大量的插件。
+
+
+  脚注 1
+
+
+  [`https://jenkins.io/`](https://jenkins.io/)
+
+
+  ## 附录
+
+
+  在这里，你将找到一些不完全适合本书主要内容的话题。
+
+
+  ### 资源包
+
+
+  聊天应用程序能够以英语和葡萄牙语两种语言显示文本。
+
+
+
+
+  #### messages.properties
+
+
+  这是默认的资源包，当用户未指定任何其他区域设置时将使用此文件。它显示英文文本。
+
+
+  ```
+
+  menu.language=Language
+
+  menu.language.english=English
+
+  menu.language.portuguese=Portuguese
+
+  menu.chatrooms=Chat Rooms
+
+  menu.new.chatrooms=New Chat Room
+
+  menu.logout=Logout
+
+  menu.leave.chatroom=Leave Chat Room
+
+  login.title=Login
+
+  login.your.username=Your username
+
+  login.your.password=Your password
+
+  login.username=Username
+
+  login.password=Password
+
+  login.signin=Sign In
+
+  login.create.account=Or create an account
+
+  login.badCredentials=Invalid username or password
+
+  new.account.title=New Account
+
+  new.account.name=Name
+
+  new.account.email=Email
+
+  new.account.username=Username
+
+  new.account.password=Password
+
+  new.account.your.name=Your name
+
+  new.account.your.email=Your email
+
+  new.account.your.username=Your username
+
+  new.account.your.password=Your password
+
+  new.account.create=Create
+
+  new.account.username.already.exists=Username already exists
+
+  chat.available.chatrooms=Available Chat Rooms
+
+  chat.chatrooms.name=Name
+
+  chat.chatrooms.description=Description
+
+  chat.chatrooms.connectedUsers=Connected Users
+
+  chat.chatrooms.join=Join
+
+  chat.new.chatroom.title=New Chat Room
+
+  chat.new.chatroom.name=Name
+
+  chat.new.chatroom.description=Description
+
+  chat.new.chatroom.close=Close
+
+  chat.new.chatroom.create=Create
+
+  chatroom.title=Chat Room
+
+  chatroom.users=Users
+
+  chatroom.public.messages=I want to send public messages
+
+  chatroom.message.placeholder=Type your message...
+
+  chatroom.send=Send
+
+  NotEmpty=May not be empty
+
+  Size.user.username=Must have between 5 and 15 characters
+
+  Size.user.password=Must have at least 5 characters
+
+  Email=Specify a valid email address
+
+  ```
+
+
+  #### messages_pt.properties
+
+
+  这是当用户将区域设置更改为 `pt` 时将使用的资源包。它显示葡萄牙语文本。
+
+
+  ```
+
+  menu.language=Idioma
+
+  menu.language.english=Inglês
+
+  menu.language.portuguese=Português
+
+  menu.chatrooms=Salas de Bate-Papo
+
+  menu.new.chatrooms=Nova Sala de Bate-Papo
+
+  menu.logout=Sair
+
+  menu.leave.chatroom=Sair da Sala de Bate-Papo
+
+  login.title=Entrar
+
+  login.your.username=Seu nome de usuário
+
+  login.your.password=sua senha
+
+  login.username=Nome de Usuário
+
+  login.password=Senha
+
+  login.signin=Entrar
+
+  login.create.account=Ou crie sua conta
+
+  login.badCredentials=Nome de usuário ou senha inválidos
+
+  new.account.title=Nova Conta
+
+  new.account.name=Nome
+
+  new.account.email=Email
+
+  new.account.username=Nome de Usuário
+
+  new.account.password=Senha
+
+  new.account.your.name=Seu nome
+
+  new.account.your.email=Seu email
+
+  new.account.your.username=Seu nome de usuário
+
+  new.account.your.password=Sua senha
+
+  new.account.create=Criar
+
+  new.account.username.already.exists=Nome de usuário já cadastrado
+
+  chat.available.chatrooms=Salas de Bate-Papo Disponíveis
+
+  chat.chatrooms.name=Nome
+
+  chat.chatrooms.description=Descrição
+
+  chat.chatrooms.connectedUsers=Usuários Conectados
+
+  chat.chatrooms.join=Entrar
+
+  chat.new.chatroom.title=Nova Sala de Bate Papo
+
+  chat.new.chatroom.name=Nome
+
+  chat.new.chatroom.description=Descrição
+
+  chat.new.chatroom.close=Fechar
+
+  chat.new.chatroom.create=Criar
+
+  chatroom.title=Sala de Bate Papo
+
+  chatroom.users=Usuários
+
+  chatroom.public.messages=Quero enviar mensagens públicas
+
+  chatroom.message.placeholder=Escreva sua mensagem...
+
+  chatroom.send=Enviar
+
+  NotEmpty=Não deve estar vazio
+
+  Size.user.username=Deve ter entre 5 e 15 caracteres
+
+  Size.user.password=Deve ter pelo menos 5 caracteres
+
+  Email=Especifique um endereço de email válido
+
+  ```
+
+
+  ## 后记：接下来做什么？
+
+
+  恭喜你，你已经读完了这本书！我希望你学到了很多，并且现在对本书涉及的 NoSQL、Cassandra、Redis、Spring、WebSocket 以及许多其他主题有了很好的理解。
+
+
+  现在的问题是，接下来做什么？我在本书中涵盖了许多主题，但如你所知，代码是在你本地机器上运行的。下一步是创建一整套自动化基础设施，以便实现持续交付流水线，并以快速可靠的方式将聊天应用发布到生产环境。
+
+
+  为了实现这一目标，需要涉及许多新概念，例如：
+
+
+  *   云计算
+
+  *   基础设施即代码
+
+  *   配置管理
+
+  *   安全性
+
+  *   容器化
+
+  *   虚拟化
+
+
+  此外，当应用部署到生产环境时，很多事情都可能出错，尤其是当它部署在互联网上（这并非一个受控环境）时。为了能够及时获知并快速响应生产环境中可能出现的问题，依赖一套实时监控工具至关重要。
+
+
+  如果你有兴趣深入学习这些主题，我邀请你查看我网站上提供的在线课程、电子书和文章。¹
+
+
+  非常感谢你阅读这本书。
+
+
+  ——Jorge Acetozi
+
+
+
+
+  索引 A, B 验收测试 账户创建 AuthenticationController BCryptPasswordEncoder 错误信息 User 类验证 ACID
+  属性 Ajax 亚马逊云服务 (AWS) Apache Maven 苹果 应用程序语言设置 C CAP 定理 Cassandra 聊天应用 一致性 CQL 键空间
+  NoSQL 集群键 列族 键空间概述 分区键 点对点架构 主键 二级索引 Spring Data Cassandra 3.0 Cassandra 查询语言 (CQL)
+  聊天室 Cassandra ChatRoomControllerTest.java 连接函数 创建 新建 新建账户 登录页面 私信 公共消息 接收消息 登录 Spring
+  Data JPA 仓库 stompSuccess 函数 存储的对话 updateConnectedUsers 集群键 列族 持续交付 持续集成 (CI) 服务器
+  D 数据持久化 Destination 类 Docker 制品 特性 命令 Compose 配置文件 Elasticsearch Hub 镜像标签 镜像 vs.
+  容器 安装 容器 运行命令 容器 环境变量 命名容器 端口 卷 E Eclipse 集成开发环境 (IDE) Apache Maven 导入项目 Elasticsearch
+  F, G, H 全双工双向 TCP 连接 I InstantMessageBuilderTest.java 集成测试 ChatRoomController Docker
+  容器 JUnit 测试套件 RedisChatRoomService 国际化 J Jar 文件 Java 持久化 API (JPA) JavaScript 对象表示法
+  (JSON) JUnit 设置依赖项 测试套件 K 键空间 L 懒部署 vs. 快速部署 登录 BCryptPasswordEncoder Spring Security
+  配置 UserRepository M 主从架构 Maven Failsafe 插件 Maven Surefire 插件 Memcached vs. Redis
+  消息流 使用简单代理 使用 STOMP 代理 messages.properties 多节点架构 聊天应用 在线商店 RabbitMQ STOMP 代理 两个聊天实例
+  MySQL 5.7 N, O Netflix 新建聊天室 Nginx 容器 非功能性需求 NoSQL 数据库 Cassandra 集群键 列族 键空间概述 分区键
+  主键 二级索引 列族设计 文档 图 键值 建模 Redis 使用场景 vs. Memcached 无模式 Spring Data P, Q 分区键 点对点架构
+  轮询 vs. WebSocket 主键 R RabbitMQ 3.6 (支持 STOMP) 原始 WebSocket 配置 vs. 基于 STOMP 的 WebSocket
+  读取一致性 Redis 集群 主从模型 vs. Memcached Spring Data 使用场景 Redis 3.0.6 RedisChatRoomService
+  关系型数据库 复制因子 S 无模式 二级索引 安全的 REST 端点 发送私信 发送公共消息 发送公共系统消息 简单代理方式 简单文本导向消息协议 (STOMP)
+  代理 连接函数 JavaScript 代码 使用代理的消息流 renderPublicMessages 函数 sendMessage 函数 sendPublicMessage
+  方法 服务器 WebSocket 基于配置 vs. 原始 WebSocket 单节点聊天架构 SINTER 命令 SockJS Spring Boot Spring
+  Data Cassandra 仓库 JPA 仓库方法 和 NoSQL Redis 仓库 Spring Security 配置 Spring Session 和
+  WebSocket 粘性会话策略 压力测试 T 传输控制协议 (TCP) U, V Uber 服务 单元测试 Destination 类 InstantMessageBuilder
+  RedisChatRoomService W, X, Y, Z WebSocket 和浏览器兼容性 事件 基于 STOMP 配置 轮询 vs. 原始配置 原始
+  vs. STOMP 重连策略 脚注 1
+
+
+  [`https://www.jorgeacetozi.com`](https://www.jorgeacetozi.com)
+
+  '

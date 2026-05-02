@@ -1,0 +1,9331 @@
+- '
+
+
+  ![](img/A978-1-4842-3108-1_CoverFigure.jpg)
+
+
+  ![A978-1-4842-3108-1_CoverFigure.jpg](img/A978-1-4842-3108-1_CoverFigure.jpg)托比·韦斯顿
+  著 《Java 开发者学 Scala》实用入门指南
+
+
+  ![A456960_1_En_BookFrontmatter_Figa_HTML.png](img/A456960_1_En_BookFrontmatter_Figa_HTML.png)
+
+
+  本书作者引用的任何源代码或其他补充材料，读者均可通过本书的产品页面在 GitHub 上获取，网址为 [`www.apress.com/9781484231074`](http://www.apress.com/9781484231074)
+  。如需更详细信息，请访问 [`http://www.apress.com/source-code`](http://www.apress.com/source-code)
+  。ISBN 978-1-4842-3107-4 电子版 ISBN 978-1-4842-3108-1 [`doi.org/10.1007/978-1-4842-3108-1`](https://doi.org/10.1007/978-1-4842-3108-1)
+  美国国会图书馆控制号：2017963118 © Toby Weston 2018 本作品受版权保护。出版商保留所有权利，无论涉及材料的全部或部分，特别是翻译、重印、重用插图、朗诵、广播、微缩胶片复制或任何其他物理方式，以及电子改编、计算机软件或现在已知或以后开发的类似或不同方法的传输或信息存储与检索。本书中可能出现商标名称、标识和图像。我们不以每次出现商标名称、标识或图像时都使用商标符号，而是仅以编辑方式使用这些名称、标识和图像，以利于商标所有者，无意侵犯商标权。本出版物中使用商品名称、商标、服务标志和类似术语，即使未明确标识，也不应被视为对其是否受专有权利保护的看法。尽管本书中的建议和信息在出版时被认为是真实准确的，但作者、编辑和出版商均不对可能出现的任何错误或遗漏承担法律责任。出版商对本书所含材料不作任何明示或暗示的保证。本书采用无酸纸印刷。本书通过
+  Springer Science+Business Media New York 在全球图书贸易中发行，地址：233 Spring Street, 6th Floor,
+  New York, NY 10013。电话：1-800-SPRINGER，传真：(201) 348-4505，电子邮件：orders-ny@springer-sbm.com，或访问
+  www.springeronline.com。Apress Media, LLC 是一家加利福尼亚有限责任公司，其唯一成员（所有者）是 Springer Science
+  + Business Media Finance Inc (SSBM Finance Inc)。SSBM Finance Inc 是一家特拉华州公司。谨以此书纪念
+  Félix Javier García López 前言
+
+
+  ## 目标读者
+
+
+  本书面向希望过渡到使用 Scala 编程的 Java 开发者。
+
+
+  ## 本书结构
+
+
+  本书分为四个部分：Scala 概览、Java 与 Scala 对比、深入探讨 Scala 特有特性与函数式编程惯用法，以及最后关于将 Scala 引入现有 Java
+  团队的讨论。
+
+
+  在第一部分，我们将对 Scala 进行高层概览。您将了解该语言的结构，以及 Scala 在许多方面与 Java 相似，但在其他方面又截然不同的特点。我们将介绍如何安装
+  Scala、使用交互式解释器，并讲解一些基本语法示例。
+
+
+  第二部分讨论 Java 与 Scala 之间的关键差异。我们将探讨 Scala 相比 Java 缺少什么，反之亦然，以及概念如何从一种语言转换到另一种语言。
+
+
+  然后在第三部分，我们将讨论 Scala 提供而 Java 中没有的一些语言特性。本部分还会稍微涉及函数式编程惯用法。
+
+
+  最后，我们将讨论如何将 Scala 引入遗留的 Java 项目和团队。这并非总是一个轻松的过渡，因此我们将探讨为何要这样做，以及您可能面临的一些挑战。
+
+
+  ## 编译代码片段
+
+
+  在本书后面，我将介绍 Scala REPL：一个用于处理 Scala 的交互式工具，相当于 Java 的 JShell 的 Scala 版本。您会看到以 `scala>`
+  为前缀的 REPL 会话。
+
+
+  当您看到时，可以逐字输入 `scala>` 后面的代码，按回车键，然后查看结果。示例如下。
+
+
+  ```
+
+  // 一个 REPL 会话示例
+
+  scala> val x = 6 * 9
+
+  x: Int = 54
+
+  ```
+
+
+  如果您没有看到 `scala>` 前缀，请假设该片段可能依赖于之前的代码示例。我尽量按逻辑顺序引入这些示例，在展示完整代码列表与避免冗长枯燥的代码列表之间取得平衡。
+
+
+  如果某些内容难以理解，请始终参考完整源代码。简而言之，您可能会发现在阅读时查阅完整源代码会很有帮助。
+
+
+  在 REPL 中处理较大片段
+
+
+  如果您想将一些较大的代码片段粘贴到 REPL 中，可能会在按回车键时遇到编译器错误。REPL 设计为逐行求值。粘贴较大片段或输入长示例需要您处于粘贴模式。
+
+
+  输入 `:paste` 进入粘贴模式，允许您输入多行代码。按 `Ctrl + D` 退出粘贴模式并编译代码。
+
+
+  ```
+
+  scala> : paste
+
+  // 进入粘贴模式 (按 ctrl-D 结束)
+
+  val x = 4
+
+  val y = 34
+
+  x + y * 2
+
+  // 按 Ctrl + D
+
+  res1: Int = 72
+
+  ```
+
+
+  偶尔，您可能会在代码片段中看到省略号（ `...` ）或三个问号（ `???` ）。当您看到时，表示该片段不完整，通常后面会有补充代码来填补空白。它可能无法编译。当我感觉补充代码会显得无趣、分散注意力，或者我正在逐步构建示例时，会使用这种方式。
+
+
+  ## 源代码
+
+
+  本书的源代码可在 GitHub 上获取：[`https://github.com/tobyweston/learn-scala-java-devs`](https://github.com/tobyweston/learn-scala-java-devs)
+  。您可以克隆仓库或直接从网站下载归档文件。
+
+
+  源代码根据 Apache 2.0 开源许可证授权。
+
+
+  ## 源代码附录
+
+
+  本书通常包含部分代码片段，以避免大量分散注意力的“脚手架”代码。代码可能引用之前的片段，这一点可能不会立即显现。请尝试将每个示例视为在前文基础上构建来阅读代码。
+
+
+  如果您不喜欢这种风格，我还提供了一个代码列表附录。该附录为更复杂的代码提供了完整列表，方便您在一个地方查看所有代码。这并非为了凑篇幅。真的。
+
+
+  致谢
+
+
+  感谢 James Maggs、Alex Luker、Rhys Keepence 和管学民对早期草稿的反馈，以及 Lee Benfield 构建了出色的 CFR
+  反编译器并与社区分享。
+
+
+  此外，感谢 Amy Brown 对本书进行了早期文字编辑。
+
+
+
+  目录 第一部分：Scala 导览 1 第 1 章：Scala 语言 3 作为函数式编程语言 3 过去 4 未来 5 第 2 章：安装 Scala 7 入门 7
+  Scala 解释器 7 Scala 脚本 8 scalac 9 第 3 章：一些基本语法 11 定义值和变量 11 定义函数 12 运算符重载与中缀表示法 14
+  集合 15 元组 17 Java 互操作性 18 基本类型 19 第 4 章：Scala 的类层次结构 21 AnyVal 22 Unit 23 AnyRef
+  24 底部类型 25 第 5 章：ScalaDoc 29 第 6 章：语言特性 33 处理源代码 33 使用方法 34 函数式编程 36 第 7 章：总结 37
+  第二部分：关键语法差异 39 第 8 章：类与字段 43 创建类 43 派生设置器和获取器 44 重新定义设置器和获取器 48 总结 52 第 9 章：类与对象
+  53 无构造函数参数的类 53 附加构造函数 55 使用默认值 57 单例对象 58 伴生对象 61 伴生对象的其他用途 63 第 10 章：类与函数 67 匿名函数
+  67 匿名类 68 一等函数 69 传递函数 70 返回函数 71 存储函数 72 函数类型 74 函数 vs. 方法 74 Lambda vs. 闭包 75
+  第 11 章：继承 79 子类型继承 79 匿名类 82 接口/特质 84 特质上的方法 87 将匿名类转换为 Lambda 94 特质上的具体字段 95 特质上的抽象字段
+  96 抽象类 97 多态 98 特质 vs. 抽象类 99 在选项之间做决定 103 第 12 章：控制结构 105 条件语句 105 If 与三元运算符 105
+  Switch 语句 108 循环结构：do、while 和 for 113 中断控制流（break 和 continue） 116 异常 117 第 13 章：泛型
+  121 参数化多态 121 类泛型 122 方法泛型 123 栈示例 123 有界类 126 上界（<U extends T>） 127 下界（<U super
+  T>） 128 通配符边界（<? extends T, <? super T>） 134 多重边界 136 型变 137 不变 138 协变 139 逆变 139
+  型变总结 139 第三部分：从 Java 到 Scala 的进阶 141 第 14 章：模拟函数调用 143 apply 方法 143 update 方法 145
+  多个 update 方法 146 update 的多个参数 147 总结 148 第 15 章：模拟语言构造 149 花括号（与函数字面量） 149 高阶函数
+  150 带花括号的高阶函数 152 按名调用 152 柯里化 154 Scala 对柯里化函数的支持 157 总结 158 第 16 章：模式匹配 159 切换
+  159 模式 160 字面量匹配 161 构造器匹配 162 类型查询 165 解构匹配与 unapply 166 为何要编写自己的提取器？ 168 守卫条件
+  169 第 17 章：Map 和 FlatMap 171 映射函数 171 它就像 foreach 172 FlatMap 173 不仅限于集合 176 第 18
+  章：Monad 177 基本定义 177 Option 177 map 函数 178 Option.get 181 Option.getOrElse 182 以
+  Monad 方式处理 Option 182 Option.flatMap 函数 183 更正式的定义 184 总结 186 第 19 章：For 推导式 187
+  我们上次讲到哪了 187 使用空值检查 188 将 flatMap 与 Option 结合使用 189 For 推导式的工作原理 191 最后，使用 For 推导式生成运单标签
+  194 总结 195 第四部分：在 Java 团队中采用 Scala 197 第 20 章：采用 Scala 199 避免不足 199 不要做得太多 199 纯函数式
+  FTW？ 200 第 21 章：预期什么 201 学习曲线 201 学习连续体 203 目标 204 第 22 章：技巧 205 清晰明了 205 获取指导 206
+  制定计划 206 第 23 章：转换你的代码库 209 第 24 章：管理你的代码库 211 约定 211 应避免什么 212 其他挑战 213 附录 A：代码清单
+  215 继承 215 Java 中的子类型继承 215 Java 中的匿名类 217 Scala 中的子类型继承 218 Scala 中的匿名类 219 泛型
+  219 Java 中的下界 219 Java 中的多重边界 223 Scala 中的下界 224 Scala 中的多重边界 226 模式匹配 227 构造器匹配
+  227 解构匹配与 Unapply 229 Map 229 映射函数 229 FlatMap 231 附录 B：语法速查表 233 索引 241 关于作者与技术审校者
+  关于作者 关于技术审校者
+
+
+
+
+  '
+- '# 第一部分
+
+  Scala 之旅
+
+
+  Scala 之旅
+
+
+  欢迎阅读《Java 开发者的 Scala 实用入门指南》。本书将帮助你从 Java 编程过渡到 Scala 编程。本书旨在帮助 Java 开发者入门 Scala，而无需完全掌握所有更高级的函数式编程范式。
+
+
+  Scala 既是一门面向对象语言，也是一门函数式语言。虽然我会讨论函数式编程的一些优势，但本书更侧重于使用命令式 Scala 高效编程，而非深入掌握函数式编程。如果你已经熟悉
+  Scala，但希望转向纯函数式编程，那么本书可能不适合你。建议阅读 Paul Chiusano 和 Rúnar Bjarnason 合著的优秀著作《Scala
+  函数式编程》¹。
+
+
+  本书经常在 Java 和 Scala 之间进行“同类对比”。因此，如果你熟悉用某种特定方式在 Java 中完成某项任务，我会展示如何在 Scala 中实现同样的功能。在此过程中，我将介绍
+  Scala 语言的语法。
+
+
+  脚注 1
+
+
+  [`http://amzn.to/1Aegnwj`](http://amzn.to/1Aegnwj)
+
+
+  '
+- '# 1. Scala 语言
+
+
+  Scala 既是一门函数式编程语言，也是一门面向对象编程语言。作为 Java 程序员，你会对面向对象的定义感到熟悉：Scala 拥有类、对象、继承、组合、多态——所有你在
+  Java 中习惯使用的特性。
+
+
+  事实上，Scala 在某些方面比 Java 更进一步。没有“非”对象。一切都是对象，因此没有像 `int` 这样的原始类型，也没有静态方法或字段。函数是对象，甚至值也是对象。
+
+
+  Scala 可以被准确地描述为一种函数式编程语言，因为它允许并推广函数式编程中重要的技术使用。它提供了语言级别的特性，用于实现不可变性以及无副作用的编程函数。
+
+
+  像 Lisp 或 Haskell 这样的传统函数式编程语言只允许你使用这些技术进行编程。这些语言通常被称为纯函数式编程语言。从这个意义上说，Scala 并非纯函数式语言；它是一种混合体。例如，你仍然可以处理可变数据，利用语言处理不可变数据，或者两者兼用。这对于灵活性和易采用性来说很棒，但对于设计的一致性和统一性来说则不太理想。
+
+
+  ## 作为函数式编程语言
+
+
+  通常，函数式编程语言支持：
+
+
+  1.  一等函数和高阶函数。  
+
+  2.  匿名函数（lambda 表达式）。  
+
+  3.  纯函数和不可变数据。  
+
+
+  可以说 Java 也支持这些特性，而且 Java 确实一直在努力提供更好的支持。然而，任何朝这个方向的进展都感觉像是事后才想到的，并且通常会导致语法冗长，或与现有习语和语言
+  API 产生冲突。
+
+
+  尽管 Java 有所进步，但人们不太可能将其描述为一种函数式编程语言。部分原因是它在这种风格下使用起来很笨拙，另一部分原因是它作为面向对象语言的悠久历史。
+
+
+  另一方面，Scala 从一开始就被设计为一种函数式编程语言。它拥有更好的语言结构和库支持，因此以函数式风格编码时感觉更自然。例如，它有定义不可变值的关键字，并且库集合类默认都是不可变的。
+
+
+  ## 历史
+
+
+  Scala 始于 2001 年，是瑞士洛桑联邦理工学院（EPFL）的一个研究项目。在 2003 年内部发布后，于 2004 年公开发布¹。该项目由 Martin
+  Odersky 领导，他之前曾在 Sun Microsystems 参与 Java 泛型和 Java 编译器的工作。
+
+
+  一门学术语言跨界进入工业界是相当罕见的，但 Odersky 和其他人创立了 Typesafe Inc.（后更名为 Lightbend Inc.），这是一家围绕
+  Scala 建立的商业企业。自那时起，Scala 已稳固地成为主流的开发语言。
+
+
+  Scala 提供了比 Java 更简洁的语法，但运行在 JVM 上。在 JVM 上运行（理论上）意味着可以轻松迁移到生产环境；如果你的生产环境中已经安装了 Oracle
+  JVM，那么字节码是由 Java 编译器还是 Scala 编译器生成的并无区别。
+
+
+  这也意味着 Scala 内置了 Java 互操作性，进而意味着 Scala 可以使用任何 Java 库。Java 相对于其竞争对手的优势之一始终是拥有大量可用的开源库和工具。这些几乎全部对
+  Scala 也可用。Scala 社区也拥有同样的开源精神，因此涌现出越来越多优秀的 Scala 库。
+
+
+  ## 未来
+
+
+  Scala 无疑已成为一种流行的主流语言。它已被许多大公司采用，包括 Twitter、eBay、Yahoo、汇丰银行、瑞银集团和摩根士丹利，并且短期内不太可能失宠。如果你对在生产环境中使用它感到不安，大可不必；它由一个国际组织支持，并且在流行度指数中经常名列前茅。
+
+
+  不过，工具支持仍然落后于 Java。像 IntelliJ IDEA 和 Eclipse 这样强大的 IDE 可以轻松重构 Java 代码，但对于 Scala 来说还不够完善。编译时间也是如此：Scala
+  的编译速度比 Java 慢得多。这些问题会随着时间推移而改善，总体而言，它们并不是我在开发中遇到的最大障碍。
+
+
+  Scala 的未来与 JVM 的未来息息相关，而 JVM 依然强劲。然而，各种其他函数式语言正在涌现；特别是 Kotlin 和 Clojure 很有趣，可能会形成竞争。如果你对基于
+  JVM 的语言不感兴趣，而只是看重函数式编程的优势，那么 Haskell 和 ELM 在工业界正得到越来越广泛的应用。
+
+
+  脚注 1
+
+
+  更多背景信息，请参见 Odersky 在 Artima 上发表的《Scala 简史》以及维基百科。
+
+
+  '
+- '# 2. 安装 Scala
+
+
+  ## 入门指南
+
+
+  有几种方法可以开始使用 Scala。
+
+
+  1.  通过解释器交互式运行 Scala。  
+
+  2.  将较短的程序作为 shell 脚本运行。  
+
+  3.  使用 `scalac` 编译器编译程序。
+
+
+
+
+  ## Scala 解释器
+
+
+  在使用集成开发环境（IDE）之前，熟悉一下 Scala 解释器（即 REPL）可能是值得的。
+
+
+  下载最新的 Scala 二进制文件（来自 [`http://scala-lang.org/downloads`](http://scala-lang.org/downloads)）并解压归档文件。假设你已经安装了
+  Java，就可以直接从命令提示符或终端窗口开始使用解释器。要启动解释器，请导航到解压后的文件夹并输入¹
+
+
+  ```
+
+  bin/scala
+
+  ```
+
+
+  你将看到 Scala 提示符。
+
+
+  ```
+
+  scala> _
+
+  ```
+
+
+  你可以输入命令后按 `enter` 键，解释器会计算表达式并打印结果。它在一个循环中读取、计算并打印，因此被称为 REPL。
+
+
+  如果你输入 `42*4` 并按 `enter` 键，REPL 会计算输入并显示结果。
+
+
+  ```
+
+  scala> 42*4
+
+  res0: Int = 168
+
+  ```
+
+
+  在这种情况下，结果被赋值给一个名为 `res0` 的变量。你可以继续使用这个变量，例如，计算 `res0` 的一半。
+
+
+  ```
+
+  scala> res0 / 2     res1: Int = 84
+
+  ```
+
+
+  新的结果被赋值给 `res1`。
+
+
+  注意 REPL 还会显示结果的类型：`res0` 和 `res1` 都是整数（`Int`）。Scala 根据值推断出了类型。
+
+
+  如果你将 `res1` 添加到字符串的末尾，没问题；新的结果对象是一个字符串。
+
+
+  ```
+
+  scala> "Hello Prisoner " + res1  res2: String = Hello Prisoner 84
+
+  ```
+
+
+  要退出 REPL，请输入
+
+
+  ```
+
+  :quit
+
+  ```
+
+
+  REPL 是一个非常实用的工具，可以让你无需费力创建常规项目文件就能试验 Scala。它非常有用，以至于社区早在 2013 年就提供了一个 Java REPL²。有趣的是，Oracle
+  也紧随其后，在 2017 年的 Java 9 中引入了名为 JShell 的官方 Java REPL。
+
+
+  ## Scala 脚本
+
+
+  Scala 的创造者最初试图推广在 Unix shell 脚本中使用 Scala。作为 Unix 环境下 Perl、Groovy 或 bash 脚本的竞争者，它并没有真正流行起来，但如果你愿意，可以创建一个
+  shell 脚本来封装 Scala。
+
+
+  ```
+
+  1   #!/bin/sh
+
+  2   exec scala "$0" "$@"
+
+  3   !#
+
+  4   object HelloWorld {
+
+  5     def main(args: Array[String]) {
+
+  6       println("Hello, " + args.toList)
+
+  7     }
+
+  8   }
+
+  9   HelloWorld.main(args)
+
+  ```
+
+
+  不必担心语法或脚本的功能（尽管我相信你已经有了相当清晰的概念）。需要注意的重要一点是，一些 Scala 代码被嵌入到了一个 shell 脚本中，而最后一行是运行命令。
+
+
+  你可以将其保存为一个 `.sh` 文件——例如 `hello.sh`——并像这样执行它：
+
+
+  ```
+
+  ./hello.sh World!
+
+  ```
+
+
+  第 2 行的 `exec` 命令会生成一个进程来调用 `scala` 并传入参数；第一个参数是脚本文件名本身（`hello.sh`），第二个参数是要传递给脚本的参数。整个过程等同于像这样运行
+  Scala，并将一个 shell 脚本作为参数传入：
+
+
+  ```
+
+  scala hello.sh World!
+
+  ```
+
+
+  ## `scalac`
+
+
+  如果你愿意，也可以使用 Scala 编译器来编译 `.scala` 文件。
+
+
+  `scalac` 编译器的工作方式与 `javac` 类似。它生成可以直接在 JVM 上执行的 Java 字节码。你可以使用 `scala` 命令来运行生成的字节码。不过，和
+  Java 一样，你不太可能想通过命令行来构建应用程序。
+
+
+  所有主流的 IDE 都支持 Scala 项目，因此你更可能继续使用你最喜欢的 IDE。我们不打算详细讨论如何在每个主流 IDE 中设置 Scala 项目；如果你熟悉在
+  IDE 中创建 Java 项目，那么过程会非常相似。
+
+
+  不过，作为参考，这里提供一些入门起点。
+
+
+  *   你可以使用 Maven 和 `maven-scala-plugin` 创建引导项目。
+
+  *   安装 `scala` 插件（可在 JetBrains 仓库中找到）后，你可以直接在 IntelliJ IDEA 中创建新的 Scala 项目。
+
+  *   类似地，安装 Scala IDE 插件后，你可以直接在 Eclipse 中创建新的 Scala 项目。Typesafe 创建了这个插件，可以从常规的更新站点获取。你也可以直接从
+  scala-lang 或 scala-ide.org 网站下载捆绑包。
+
+  *   你可以使用 SBT 并创建一个构建文件来编译和运行你的项目。SBT 代表 Simple Build Tool（简单构建工具），类似于 Ant 或 Maven，但专为
+  Scala 世界设计。
+
+  *   SBT 也有适用于 Eclipse 和 IDEA 的插件，因此你可以直接在 IDE 中使用它来创建和管理 IDE 项目文件。
+
+
+  脚注 1
+
+
+  如果你不想进入安装文件夹来运行 REPL，可以将 `bin` 文件夹添加到你的路径中。
+
+
+    2
+
+
+  [`http://www.javarepl.com/`](http://www.javarepl.com/)
+
+
+  '
+- '# 3. 一些基本语法
+
+
+  ## 定义值和变量
+
+
+  让我们来看一些语法。我们将从创建一个变量开始：
+
+
+  ```
+
+  val language: String = "Scala"
+
+  ```
+
+
+  我们定义了一个 `String` 类型的变量，并为其赋值为“Scala”。我说“变量”，但实际上我们创建的是一个不可变的值，而不是变量。`val` 关键字创建了一个常量，从此以后
+  `language` 就不能被修改了。不可变性是你在 Scala 中会反复遇到的一个关键主题。
+
+
+  如果我们以后想要修改 `language`，可以使用 `var` 而不是 `val`。这样，如果需要，我们可以重新赋值。
+
+
+  ```
+
+  var language: String = "Java"
+
+  language = "Scala"
+
+  ```
+
+
+  到目前为止，这与 Java 看起来没有太大区别。在变量定义中，类型和变量名的顺序与 Java 相反，但仅此而已。Scala 大量使用类型推断，因此即使我们不明确指定，Scala
+  也能推断出上面的 `var` 是一个 `String`。
+
+
+  ```
+
+  val language = "Scala"
+
+  ```
+
+
+  注意，行尾不需要分号。Scala 编译器通常能够判断表达式何时结束，无需显式告知。只有当你在同一行使用多个表达式时，才需要添加分号。
+
+
+  运算符优先级与你预期的 Java 中一样。在下面的例子中，乘法在减法之前执行。
+
+
+  ```
+
+  scala> val age = 35
+
+  scala> var maxHeartRate = 210 - age * .5
+
+  res0: Double = 192.5
+
+  ```
+
+
+
+  好的，作为一名高级文档工程师和翻译员，我将严格遵循您提供的注意事项和示例格式，将给定的英文文本翻译成中文。
+
+
+
+  ## 定义函数
+
+
+  函数和方法的定义以 `def` 关键字开头，后跟签名。该签名看起来类似于 Java 方法签名，但参数类型顺序相反，并且返回类型位于末尾而不是开头。
+
+
+  让我们创建一个函数来返回两个数字的最小值。
+
+
+  ```
+
+  def min(x: Int, y: Int): Int = {
+
+  if (x < y)
+
+  return x
+
+  else
+
+  return y
+
+  }
+
+  ```
+
+
+  我们可以通过在 REPL 中调用来测试它。
+
+
+  ```
+
+  scala> min(34, 3)
+
+  res3: Int = 3
+
+  scala> min(10, 50)
+
+  res4: Int = 10
+
+  ```
+
+
+  请注意，Scala 无法推断函数参数的类型。
+
+
+  另一个技巧是你可以省略 `return` 语句。函数中的最后一个语句将隐式地成为返回值。
+
+
+  ```
+
+  def min(x: Int, y: Int): Int = {
+
+  if (x < y)
+
+  x
+
+  else
+
+  y
+
+  }
+
+  ```
+
+
+  在 REPL 中运行它会显示以下内容：
+
+
+  ```
+
+  scala> min(300, 43)
+
+  res5: Int = 43
+
+  ```
+
+
+  在这个例子中，`else` 确保了最后一个语句与 `min` 函数一致。如果我忘记了 `else`，那么无论条件如何，最后一个语句都是相同的，这会在我们的实现中引入一个
+  bug：
+
+
+  ```
+
+  def min(x: Int, y: Int): Int = {
+
+  if (x < y)
+
+  x
+
+  y         // bug!  else 语句在哪？
+
+  }
+
+  ```
+
+
+  它总是返回 `y`：
+
+
+  ```
+
+  scala> min(10, 230)
+
+  res6: Int = 230
+
+  ```
+
+
+  如果你不使用任何 `return` 语句，返回类型通常可以被推断出来。
+
+
+  ```
+
+  // 返回类型可以省略
+
+  def min(x: Int, y: Int) = {
+
+  if (x < y)
+
+  x
+
+  else
+
+  y
+
+  }
+
+  ```
+
+
+  请注意，是等号表明此函数有返回值。如果我将此函数写在一行，省略返回类型，只保留等号，它看起来更像是一个真正的表达式，而不是一个函数。
+
+
+  ```
+
+  def min(x: Int, y: Int) = if (x < y) x else y
+
+  ```
+
+
+  不过要小心；如果你不小心省略了等号，该函数将不会返回任何内容。它将类似于 Java 中的 `void`。
+
+
+  ```
+
+  def min(x: Int, y: Int) {
+
+  if (x < y) x else y
+
+  }
+
+  ```
+
+
+  ```
+
+  <console>:8: warning: a pure expression does nothing in statement position;
+
+  you may be omitting necessary parentheses
+
+  if (x < y) x else y
+
+  ^
+
+  min: (x: Int, y: Int)Unit
+
+  ```
+
+
+  尽管这可以编译通过，但编译器会警告你可能遗漏了等号。
+
+
+  ## 运算符重载与中缀表示法
+
+
+  在 Scala 中需要注意的一个有趣的事情是，你可以重写运算符。实际上，算术运算符在 Scala 中只是方法。因此，你可以创建自己的运算符。之前，我们看到了整数
+  `age` 与乘数一起使用。
+
+
+  ```
+
+  val age: Int
+
+  age * .5
+
+  ```
+
+
+  值 `age` 是一个整数，并且在整数类上有一个名为 `*` 的方法。它具有以下签名：
+
+
+  ```
+
+  def *(x: Double): Double
+
+  ```
+
+
+  在 Scala 中，数字是对象，字面量也是对象。因此，你可以直接在变量或数字上调用 `*`。
+
+
+  ```
+
+  age.*(.5)
+
+  5.*(10)
+
+  ```
+
+
+  使用中缀表示法，你可以省略变量和字面量的点号表示法，并直接调用。
+
+
+  ```
+
+  age * .5
+
+  ```
+
+
+  ……或者，另一个例子：
+
+
+  ```
+
+  35 toString
+
+  ```
+
+
+  记住，`35` 是 `Int` 的一个实例。
+
+
+  具体来说，Scala 对中缀表示法的支持意味着，当一个方法接受零个或一个参数时，你可以省略点和括号；如果参数多于一个，你可以省略点。
+
+
+  例如：
+
+
+  ```
+
+  35 + 10
+
+  "aBCDEFG" replace("a", "A")
+
+  ```
+
+
+  不过这是可选的；如果你愿意，也可以使用点号表示法。
+
+
+  这意味着你可以在自己的类上定义自己的加号或减号方法，并使用中缀表示法自然地使用它们。例如，你可能有一个 `Passenger` 加入一个 `Train`。
+
+
+  ```
+
+  train + passenger
+
+  ```
+
+
+  对于你可以如何命名函数和方法，没有太多限制；你可以使用任何对你的领域有意义的符号。
+
+
+  ## 集合
+
+
+  Scala 提供了不可变集合类型（如 `Set`、`List` 和 `Map`），以及具有相同 API 的可变版本。Scala 的创建者（以及一般的函数式编程社区）倾向于不可变性，因此当你在
+  Scala 中创建集合时，默认选择是不可变版本。
+
+
+  因此，我们可以使用以下方式创建一个列表：
+
+
+  ```
+
+  val list = List("a", "b", "c")
+
+  ```
+
+
+  并使用以下方式创建一个映射：
+
+
+  ```
+
+  val map = Map(1 -> "a", 2 -> "b")
+
+  ```
+
+
+  ……其中箭头从键指向值。这些将是不可变的；你将无法添加或删除元素。
+
+
+  为什么偏爱不可变性？
+
+
+  通常，讨论不可变性是为了使并发系统更容易推理。这是因为如果共享数据可以被多个线程同时更新，那么推理和诊断意外行为（如竞态条件）就会变得困难。完全移除更新共享状态的能力可以缓解这个问题；不可变对象本质上是线程安全的。
+
+
+  但更普遍地说，即使在单线程系统中，不可变性也能使代码更容易推理。如果你从不可变状态开始，你的系统设计会受到很大影响，并且你消除了细微 bug 悄悄潜入的机会。
+
+
+  你可以用类似于 Java 的 `forEach` 和 lambda 语法的方式来处理它们。
+
+
+  ```
+
+  list.foreach(value => println(value))                  // scala
+
+  ```
+
+
+  这等同于 Java 中的以下代码：
+
+
+  ```
+
+  list.forEach(value -> System.out.println(value));      // java
+
+  ```
+
+
+  类似于 Java 的方法引用语法，你可以将 lambda 参数自动连接到方法调用。
+
+
+  ```
+
+  list.foreach(println)                                  // scala
+
+  ```
+
+
+  这大致等同于以下 Java 代码：
+
+
+  ```
+
+  list.forEach(System.out::println);                     // java
+
+  ```
+
+
+  还有很多其他 Scala 风格的处理集合的方式。我们稍后会介绍这些，但最常见的迭代方式是像这样编写的 `for` 循环：
+
+
+  ```
+
+  for (value <- list) println(value)
+
+  ```
+
+
+  这读作“对于列表中的每个值，打印该值”。你也可以反向操作：
+
+
+  ```
+
+  for (value <- list.reverse) println(value)
+
+  ```
+
+
+  或者你可能希望将其分成多行：
+
+
+  ```
+
+  for (value <- list) {
+
+  println(value)
+
+  }
+
+  ```
+
+
+  ## 元组
+
+
+  元组是一个有序的元素集合。这个名称源于我们日常用来描述事物倍数的语言：单数、一对、三个、四个、n 元组，等等。例如，我们熟悉的四元组是一个包含四个元素的集合。一个包含
+  n 个元素的元组就是一个 n 元组。1 元组称为单数，2 元组称为一对，3 元组称为三个，依此类推。更通俗地说，人们将 n 元组简称为元组。它的发音是 /tuːpəl/，而不是“tupple”。
+
+
+  在编程中，元组有助于以轻量级的方式捕获相关值，而无需使用完整的对象。要捕获一个 `String` 值及其相关的 `Int`，你可以编写以下代码：
+
+
+  ```
+
+  val example = ("load", 21)
+
+  ```
+
+
+  在这种情况下，元组的底层类型是 `Tuple2`，它捕获了 `String` 和 `Int` 的底层类型。而
+
+
+  ```
+
+  val tuple = ("save", 50, true)
+
+  ```
+
+
+  ……将产生一个 `Tuple3`，按顺序捕获 `String`、`Int` 和 `Boolean` 类型。
+
+
+  对值的访问是通过以下划线为前缀的编号方法进行的。
+
+
+  ```
+
+  val event = tuple._1      // "save"
+
+  val millis = tuple._2     // 50
+
+  val success = tuple._3    // true
+
+  ```
+
+
+  ……或者你可以像这样直接将值分配给变量：
+
+
+  ```
+
+  val (event, millis, success) = tuple
+
+  ```
+
+
+  由于元组是一种类型，因此在定义值和函数参数时，你可以像这样引用它。
+
+
+  ```
+
+  // 指定 val 的类型
+
+  val save: (String, Int, Boolean) = ("save", 50, true)
+
+  // 一个以元组作为类型参数的函数
+
+  def audit(event: (String, Int, Boolean)) = {
+
+  ...
+
+  }
+
+  ```
+
+
+
+
+  ## Java 互操作性
+
+
+  我之前提到过，你可以在 Scala 中使用任何 Java 类。例如，假设我们想创建一个 Java 的 `List`，而不是通常使用的 Scala 不可变 `List`。
+
+
+  ```
+
+  val list = new java.util.ArrayList[String]
+
+  ```
+
+
+  我们只是使用了类的全限定名（`java.util.ArrayList`）并用 `new` 来实例化它。注意到方括号了吗？Scala 使用 `[]` 而不是 `<>`
+  来表示泛型。我们也不必在构造函数上使用括号，因为没有参数需要传入。
+
+
+  我们可以像预期的那样调用方法——例如，添加一个元素：
+
+
+  ```
+
+  list.add("Hello")
+
+  ```
+
+
+  ……或者，使用中缀表示法：
+
+
+  ```
+
+  list add "World!"
+
+  ```
+
+
+  ## 原始类型
+
+
+  在 Java 中有两种整数类型：原始（非对象）类型 `int` 和 `Integer` 类。Scala 没有原始类型的概念——一切都是对象——因此，例如，Scala
+  的整数类型是 `Int`。类似地，你也会熟悉其他基本类型。
+
+
+  ```
+
+  Byte
+
+  Short
+
+  Int
+
+  Long
+
+  Char
+
+  String
+
+  Float
+
+  Double
+
+  Boolean
+
+  ```
+
+
+  尽管 Scala 有自己更丰富的类型，但它们通常只是对 Java 类型的包装。在使用这些基本类型时，十有八九你不需要担心自己使用的是 Scala 类型还是 Java
+  类型。事情非常无缝。例如，Scala 有一个带有 `+` 方法的 `BigDecimal` 类型，这意味着你可以用比 Java 少得多的代码来相加两个大十进制数。
+
+
+  比较以下 Scala 和 Java 代码：
+
+
+  ```
+
+  // scala
+
+  val total = BigDecimal(10000) + BigDecimal(200)
+
+  // java
+
+  BigDecimal total = new BigDecimal(10000).add(new BigDecimal(200));
+
+  ```
+
+
+  Scala 并没有重新实现 Java 的 `BigDecimal`；它只是委托给 Java，并省去了你输入所有那些样板代码的麻烦。
+
+
+  '
+- '# 4. Scala 的类层次结构
+
+
+  Scala 的类层次结构从 `scala` 包中的 `Any` 类开始。它包含诸如 `==`、`!=`、`equals`、`##`、`hashCode` 和 `toString`
+  等方法。
+
+
+  ```
+
+  abstract class Any {
+
+  final def ==(that: Any): Boolean
+
+  final def !=(that: Any): Boolean
+
+  def equals(that: Any): Boolean
+
+  def ##: Int
+
+  def hashCode: Int
+
+  def toString: String
+
+  // ...
+
+  }
+
+  ```
+
+
+  Scala 中的每个类都继承自抽象类 `Any`。它有两个直接子类：`AnyVal` 和 `AnyRef`，如图 4-1 所示。
+
+
+  ![A456960_1_En_4_Fig1_HTML.jpg](img/A456960_1_En_4_Fig1_HTML.jpg)
+
+
+  图 4-1
+
+
+  每个类都扩展了 `Any` 类
+
+
+  ## AnyVal
+
+
+  `AnyVal` 是所有值类型的超类型，而 `AnyRef` 是所有引用类型的超类型。
+
+
+  诸如 `Byte`、`Int`、`Char` 等基本类型被称为值类型。在 Java 中，值类型对应于原始类型，但在 Scala 中它们是对象。值类型都是预定义的，并且可以通过字面量来引用。它们通常分配在栈上，但在
+  Scala 中则分配在堆上。
+
+
+  Scala 中所有其他类型都被称为引用类型。引用类型是内存（堆）中的对象，这与 C 类语言中的指针类型不同，后者是内存中的地址，指向有用的东西，并且需要使用特殊语法（例如，C
+  语言中的 `*age = 64`）来解引用。引用对象实际上是自动解引用的。
+
+
+  Scala 中有九种值类型，如图 4-2 所示。
+
+
+  ![A456960_1_En_4_Fig2_HTML.jpg](img/A456960_1_En_4_Fig2_HTML.jpg)
+
+
+  图 4-2
+
+
+  Scala 的值类型
+
+
+  这些类相当直接；它们大多包装了底层的 Java 类型，并提供了与 Java 的 `equals` 方法一致的 `==` 方法实现。
+
+
+  这意味着，例如，你可以使用 `==` 比较两个数字对象并得到合理的结果，即使它们可能是不同的实例。
+
+
+  因此，Scala 中的 `42 == 42` 相当于在 Java 中创建两个 `Integer` 对象并使用 `equals` 方法进行比较：`new Integer(42).equals(new
+  Integer(42))`。你比较的不是对象引用（像 Java 中使用 `==` 那样），而是自然相等性。请记住，Scala 中的 `42` 是 `Int` 的一个实例，而
+  `Int` 又委托给 `Integer`。
+
+
+  ## Unit
+
+
+  `Unit` 值类型是 Scala 中用于表示无意义结果的一种特殊类型。它类似于 Java 的 `Void` 对象或用作返回类型时的 `void` 关键字。它只有一个值，写成一对空括号，如下所示：
+
+
+  ```
+
+  scala> val example: Unit = ()
+
+  example: Unit = ()
+
+  ```
+
+
+  一个以 `Void` 对象作为返回类型实现 `Callable` 的 Java 类看起来像这样：
+
+
+  ```
+
+  // java
+
+  public class DoNothing implements Callable {
+
+  @Override
+
+  public Void call() throws Exception {
+
+  return null;
+
+  }
+
+  }
+
+  ```
+
+
+  这与返回 `Unit` 的 Scala 类相同：
+
+
+  ```
+
+  // scala
+
+  class DoNothing extends Callable[Unit] {
+
+  def call: Unit = ()
+
+  }
+
+  ```
+
+
+  请记住，Scala 方法的最后一行就是返回值，而 `()` 代表 `Unit` 的唯一值。
+
+
+  ## AnyRef
+
+
+  `AnyRef` 实际上是 Java 的 `java.lang.Object` 类的别名。两者可以互换。它为所有引用类型提供了 `toString`、`equals`
+  和 `hashcode` 的默认实现。
+
+
+  曾经有一个名为 `ScalaObject` 的 `AnyRef` 子类，所有 Scala 引用类型都扩展了它（见图 4-3）。然而，它仅用于优化目的，并在 Scala
+  2.11 中被移除了。（我提到它是因为很多文档仍然引用它。）
+
+
+  ![A456960_1_En_4_Fig3_HTML.jpg](img/A456960_1_En_4_Fig3_HTML.jpg)
+
+
+  图 4-3
+
+
+  Scala `Any`。`ScalaObject` 类已不复存在。
+
+
+  Java 的 `String` 类以及从 Scala 中使用的其他 Java 类都扩展了 `AnyRef`。（记住它是 `java.lang.Object` 的同义词。）任何
+  Scala 特有的类，比如 Scala 的列表实现 `scala.List`，也扩展了 `AnyRef`。
+
+
+  ![A456960_1_En_4_Fig4_HTML.jpg](img/A456960_1_En_4_Fig4_HTML.jpg)
+
+
+  图 4-4
+
+
+  Scala 的引用类型
+
+
+  对于像这样的引用类型（如图 4-4 所示），`==` 会像之前一样委托给 `equals` 方法。对于像 `String` 这样的预先存在的类，`equals`
+  已经被重写以提供自然的相等性概念。对于你自己的类，你可以像在 Java 中一样重写 `equals`，但仍然可以在代码中使用 `==`。
+
+
+  例如，你可以在 Scala 中使用 `==` 比较两个字符串，它的行为就像在 Java 中使用 `equals` 方法一样：
+
+
+  ```
+
+  new String("A") == new String("A")        // 在 scala 中为 true，在 java 中为 false
+
+  new String("B").equals(new String("B"))   // 在 scala 和 java 中均为 true
+
+  ```
+
+
+  然而，如果你想在 Scala 中恢复 Java 的 `==` 语义并执行引用相等性比较，你可以调用 `AnyRef` 中定义的 `eq` 方法：
+
+
+  ```
+
+  new String("A") eq new String("A")        // 在 scala 中为 false
+
+  new String("B") == new String("B")        // 在 java 中为 false
+
+  ```
+
+
+
+
+  ## 底部类型
+
+
+  对于许多 Java 开发者来说，一个全新的概念是类层次结构可以拥有共同的底部类型。这些类型是所有类型的子类型。Scala 的 `Null` 和 `Nothing`
+  类型都是底部类型。
+
+
+  Scala 中的所有引用类型都是 `Null` 的超类型。`Null` 也是一个 `AnyRef` 对象；它是每个引用类型的子类（参见图 4-5）。
+
+
+  ![A456960_1_En_4_Fig5_HTML.jpg](img/A456960_1_En_4_Fig5_HTML.jpg)
+
+
+  图 4-5
+
+
+  `Null` 扩展了 `AnyRef`
+
+
+  值类型和引用类型都是 `Nothing` 的超类型。它位于类层次结构的底部，是所有类型的子类型，如图 4-6 所示。
+
+
+  ![A456960_1_En_4_Fig6_HTML.jpg](img/A456960_1_En_4_Fig6_HTML.jpg)
+
+
+  图 4-6
+
+
+  `Nothing` 扩展了 `Null`
+
+
+  请注意，`Null` 扩展了所有引用类型，而 `Nothing` 扩展了所有类型。值得注意的是，Scala 中的 `null` 是一个对象，并且是 `Null`
+  类型的唯一实例。因为 `Null` 是一个底部类型，所以 `null` 可以赋值给任何引用类型（`AnyRef`），但不能赋值给 `AnyVal` 的子类型。
+
+
+  以下代码是有效的：
+
+
+  ```
+
+  val x: String = null
+
+  ```
+
+
+  ……但尝试将 `null` 赋值给 `Double`（它扩展了 `AnyVal`）会导致编译器错误。
+
+
+  ```
+
+  val x: Double = null         // 编译器错误
+
+  ```
+
+
+  完整的层次结构如图 4-7 所示。
+
+
+  ![A456960_1_En_4_Fig7_HTML.jpg](img/A456960_1_En_4_Fig7_HTML.jpg)
+
+
+  图 4-7
+
+
+  包含底部类型 `Null` 和 `Nothing` 的完整层次结构
+
+
+  '
+- '# 5. ScalaDoc
+
+
+  Scala 借鉴了 JavaDoc 的概念，并创造性地将其命名为 ScalaDoc。为 Scala 源码添加 ScalaDoc 的方式与添加 JavaDoc 类似，都是通过在注释中使用标记来实现（参见图
+  5-1）。例如，源码中的以下片段
+
+
+  ```
+
+  /** 如果此值等于 x，则返回 `true`，否则返回 `false`。 **/
+
+  def ==(x: Byte): Boolean
+
+  ```
+
+
+  ……可以转换为 HTML 中的以下片段：
+
+
+  ![A456960_1_En_5_Fig1_HTML.jpg](img/A456960_1_En_5_Fig1_HTML.jpg)
+
+
+  图 5-1
+
+
+  嵌入的 ScalaDoc 标记在 HTML 中呈现
+
+
+  要查看 Scala 库 API 的文档，请访问 Scala 网站。¹ 你会注意到它与 JavaDoc 大体相似。你可以看到左侧的类；它们不像 JavaDoc 那样按包分组，但你可以点击它们以获取更多信息。
+
+
+  ![A456960_1_En_5_Fig2_HTML.jpg](img/A456960_1_En_5_Fig2_HTML.jpg)
+
+
+  图 5-2
+
+
+  `Char` 的基本 ScalaDoc
+
+
+  ScalaDoc 的一个巧妙之处在于，你还可以过滤内容。例如，你可以只显示从 `Any` 继承的方法。
+
+
+  如果你对某个类的层次结构感兴趣，可以查看它的超类型和子类型。你甚至可能看到一个可导航的类型层次结构图，尽管并非每个类都有此功能。图 5-3 中 `Source`
+  的类型层次结构图显示它是 `Iterable` 和 `Closable` 的子类型，你可以通过点击该图在层次结构中向上导航。
+
+
+  ![A456960_1_En_5_Fig3_HTML.jpg](img/A456960_1_En_5_Fig3_HTML.jpg)
+
+
+  图 5-3
+
+
+  显示类型层次结构图的 ScalaDoc 脚注 1
+
+
+  [`http://docs.scala-lang.org/api/all.html`](http://docs.scala-lang.org/api/all.html)
+
+
+  '
+- '# 6. 语言特性
+
+
+  在我们的探索之旅中，我们已经看到了一些示例语法，了解了类层次结构，并简要了解了 ScalaDoc，但 Scala 还提供了大量其他有趣的语言特性。
+
+
+  在本章中，我们不会真正讨论语法，而是会探讨一些使 Scala 在处理源代码、使用方法以及利用其函数式编程特性时，成为一门有趣且强大语言的因素。
+
+
+  ## 处理源代码
+
+
+  源文件。在 Scala 中，源文件的内容比 Java 灵活得多。在 Java 中，文件名必须与其包含的公共类名称相同，但对于 `.scala` 文件则没有这样的限制。一个名为
+  `Customer.scala` 的文件可能包含一个名为 `Customer` 的类，但并非必须如此。同样，它可能包含四个类，但没有一个叫 `Customer`。
+
+
+  包。虽然本质上与 Java 中的包相同，但 Scala 中包内的类不必像 Java 那样存放在同名的文件夹中。在作用域方面存在一些差异——例如，Scala 中没有
+  `protected` 关键字，但你可以使用特殊语法（`variable[package]`）来实现相同的效果。
+
+
+  包对象。Scala 还有包对象的概念。这些对象可以放置有用的代码块，以便在包作用域内重用。它们对包中的其他类可用，如果有人导入了该包，那么包对象中的所有内容对他们也是可用的。库经常使用这些对象，以便你可以一次性导入它们的所有类。
+
+
+  导入别名。导入与 Java 大致相同，但一旦你在 Scala 中导入了一个类，你就可以在你的类中重命名它。换句话说，你可以为你的类中的某个类创建别名。这在遇到名称冲突时非常有用——例如，在库之间。
+
+
+  类型别名。Scala 也支持类型别名。你可以为复杂的类型定义指定别名，以帮助阐明意图。这类似于 C 语言中无结构的 `typedef` 或 `#define`
+  宏，或者 Haskell 中所谓的类型同义词。
+
+
+  特质。虽然 Scala 有类和对象，但没有“接口”关键字。相反，它有 `trait`（特质）的概念，它类似于接口，但可以包含方法。它介于 Java 8 的默认方法和
+  Ruby 的混入（mixin）之间。
+
+
+
+
+  ## 使用方法
+
+
+  泛型。Scala 对泛型类型的协变和逆变提供了比 Java 更好的支持。这意味着当泛型类型作为参数使用时，你可以在方法签名中拥有更高的通用性和灵活性。暂时不必担心具体细节，后面会有专门一节来讲解变型。
+
+
+  变型简述
+
+
+  泛型类型的协变意味着，如果某个类型的泛型参数（尖括号中的部分，如 `<T>`）是某个类型的子类型，那么当该类型的参数是超类型时，该泛型类型本身也是另一个泛型类型的子类型。例如，假设
+  `Cat extends Animal`，那么 `List<Cat>` 也是 `List<Animal>` 的（子类型）。逆变也保持了这种关系，但方向相反。Java
+  不支持这种类型变型，但支持协变返回类型。在 Scala 和 Java 中，方法参数和变量也可以是协变或逆变的。
+
+
+  可变参数。在处理方法时，Scala 和 Java 一样支持可变参数或 `varargs`。
+
+
+  ```
+
+  public void add(String... names)   // java
+
+  def add(names: String*)            // scala
+
+  ```
+
+
+  命名方法参数。Java 不提供命名方法参数。在 Scala 中，只要你为参数命名，就可以不按顺序调用方法。因此，对于函数 `def swap(first: Int,
+  second: Int)`，你可以显式地调用它，并为其参数命名。由于参数已命名，编译器可以区分它们，无论其位置如何。所以，以下写法都是正确的：
+
+
+  ```
+
+  swap(first = 3, second = 1)
+
+  swap(second = 1, first = 3)
+
+  ```
+
+
+  默认值。你可以在参数声明后使用 `=` 添加默认值。例如，`def swap(first: Int, second: Int = 1)`。如果在调用函数时省略第二个值，它将默认为
+  `1`。你仍然可以提供值来覆盖默认值，并且仍然可以使用命名参数。
+
+
+  ```
+
+  swap(3)
+
+  swap(3, 2)
+
+  swap(first = 3)
+
+  swap(first = 3, second = 1)
+
+  ```
+
+
+  函数字面量。函数字面量只是一个创建匿名函数的表达式。你可以将它们存储为变量、传递它们，或将它们传入方法。即时创建它们意味着你可以创建简洁的功能片段，而无需样板代码。函数字面量是引用
+  lambda 的一种方式。
+
+
+  Lambda 表达式。Scala 支持 lambda 表达式或匿名函数。你可以将函数字面量作为参数传递给方法，并在方法签名中使用函数签名作为参数。因此，下面的
+  `test` 方法接受一个无参数、返回 `Boolean` 的函数。
+
+
+  ```
+
+  def test(f: () => Boolean) = ...
+
+  ```
+
+
+  当你调用它时，可以传入一个函数字面量作为参数。
+
+
+  ```
+
+  test(() => if (!tuesday) true else false)
+
+  ```
+
+
+  再举一个例子，你可以创建一个函数签名来表示一个从 `String` 值到 `Boolean` 的函数，如下所示：
+
+
+  ```
+
+  def test(f: String => Boolean): Boolean = ...
+
+  ```
+
+
+  ……然后像这样用一个函数字面量调用它：
+
+
+  ```
+
+  test(value => if (value == "tuesday") true else false)
+
+  ```
+
+
+  ## 函数式编程
+
+
+  还有一些 Scala 特性更侧重于函数式编程。
+
+
+  模式匹配。这是一个非常强大的特性，乍一看类似于 switch 语句，但用途远不止于此。
+
+
+  for 推导式。这与常规的 for 循环有细微差别，并且在处理函数式结构时非常有用。当你第一次遇到它们时，它们看起来像是 Java 的 `for` 循环的另一种语法。
+
+
+  柯里化。虽然你可以在任何语言中编写自己的柯里化函数，但 Scala 将柯里化作为语言特性来支持。如果你不确定什么是柯里化，现在不必担心。更多细节请参见柯里化部分。
+
+
+  函数字面量。该语言支持字面量来表示一些有用的类型，例如元组。流行的 Java 函数式库，如 totally-lazy¹ 或 functional-java²，都有这类东西；而
+  Scala 只是让它们更容易使用。
+
+
+  递归。大多数语言都支持递归，但 Scala 的编译器支持尾调用优化，这意味着它可以支持在 Java 等语言中会导致栈溢出的递归调用。如果你使用 `@tailrec`
+  注解，编译器甚至可以为你执行一些检查。
+
+
+  脚注 1
+
+
+  [`http://totallylazy.com/`](http://totallylazy.com/)
+
+
+    2
+
+
+  [`http://www.functionaljava.org/`](http://www.functionaljava.org/)
+
+
+  '
+- '# 7. 总结
+
+
+  在这次高层概览中，我们讨论了 Scala 如何既是一门面向对象语言，又是一门函数式语言。我提到 Scala 实际上只有对象；没有基本类型，一切都是对象。
+
+
+  我们讨论了 Scala 的背景，它如何从一门学术语言发展成为一门有商业支持的主流语言，以及它如何在 JVM 上运行。从理论上讲，这通过使其易于部署到现有服务器上，降低了采用的门槛。
+
+
+  在 JVM 上运行也意味着 Scala 有大量的库可用，因为 Java 互操作性是内建的。尽管一些工具相对落后，编译时间仍然较慢，但 Scala 已被广泛采用，我们看到许多大公司今天都在使用它。
+
+
+  我们了解了如何安装和运行 Scala。你看到了 Scala 程序通常运行的三种方式，并在此过程中介绍了 Scala REPL。
+
+
+  然后我们转向了语法概览，并查看了一些有趣的语言特性。
+
+
+  在语法概览中，我们看到了如何定义变量和值、函数和方法，并看到了 Scala 如何通过类型推断和自动识别终止条件（如 `return` 和分号）来减少样板代码的噪音。
+
+
+  我们看到了中缀表示法如何让你避免使用经典的点表示法，并且重要的是，我们看到了方法名可以包含符号。这就是我们能够在代码中自然地使用数学符号的原因；它们实际上是方法，所以我们可以重写它们，并使用中缀表示法，而无需使用嘈杂的点和括号。
+
+
+  我们还使用了一些集合类型，并看到了枚举它们的两种基本方式：`foreach` 和 `for` 循环语法。我们看到了处理 Java 对象是多么容易；像 `Int`
+  和 `Boolean` 这样的值类型在 Scala 和 Java 中基本相同。我们深入了解了 Scala 如何在其类层次结构中表示类型，并学习了如何在 ScalaDoc
+  中查找信息。
+
+
+  在语言特性方面，我们研究了在处理源文件和包、方法及方法参数时语言的一些有趣方面，以及一些面向函数式编程的特性。
+
+
+  '
+- '# 第二部分
+
+  关键语法差异
+
+
+  关键语法差异
+
+
+  本书的这一部分是关于 Java 和 Scala 语言语法之间的关键差异。给定一些典型的 Java 代码，我们将查看等效的 Scala 语法。在第三部分中，我们将更多地研究
+  Scala 中 Java 没有直接对应项的特性。
+
+
+  我们将研究以下内容：
+
+
+  *   许多与类和对象、创建类、字段和方法相关的内容。我们将进行从 Scala 生成的字节码回到 Java 的往返转换，以便让你了解 Scala 与 Java
+  的关系。
+
+  *   继承、接口、抽象类和混入。
+
+  *   常见的控制结构，如 `for` 循环。
+
+  *   泛型。
+
+
+
+
+  ## 灵活性
+
+
+  Scala 非常灵活。通常有多种方式可以实现同一目标。我指的不是使用 `while` 循环或 `for` 循环的区别；而是指该语言提供了不同的语法选项来表达相同的事物。这种灵活性带来了极大的自由度，但在阅读不同作者的代码时可能会令人困惑。
+
+
+  一个例子是我们之前看到的中缀表示法。调用方法时，你通常可以省略点和括号。Scala 没有强制规定；是否使用点号完全取决于你。
+
+
+  相比之下，Java 则非常严格；通常只有很少的方式来表达相同的事物。一眼识别出代码含义往往更容易。而在 Scala 中，你可能需要多花些功夫才能识别出某些更特殊的语法选项。
+
+
+  这一点同样适用于代码结构：你可以在函数内部创建函数，在类中间插入 import 语句，或者让一个类存在于一个名称不相关的文件中。当你习惯了 Java 的严谨性后，这一切可能会让你感到有些迷失方向。
+
+
+  ## 不可变性与声明式编程
+
+
+  由于 Scala 推崇不可变性，你可能会注意到解决问题的方式有所不同。例如，你可能会发现很少使用循环来操作可变变量。Scala 程序通常更倾向于使用函数式编程风格来实现相同目标。
+
+
+  这种更具声明性的做事方式说的是“告诉我做什么，而不是怎么做”。你可能更习惯于 Java/命令式的做事方式，它说的是“准确地告诉我怎么做”。最终，当你放弃命令式编程那种微观管理风格时，你就赋予了语言在处理事务时更多的自由。
+
+
+  例如，Java 中一个传统的命令式 for 循环如下所示：
+
+
+  ```
+
+  // java
+
+  for (int count = 0; count < 100; count++) {
+
+  System.out.println(count);
+
+  }
+
+  ```
+
+
+  这是一个典型的命令式循环。我们明确地告诉它要从零到一百按顺序枚举。相反，如果我们使用更具声明性的机制，如下所示：
+
+
+  ```
+
+  // scala
+
+  (0 to 100).foreach(println(_))
+
+  ```
+
+
+  ……枚举是在 `foreach` 方法内部完成的，而不是通过语言结构。我们说的是，“对于一个数字范围，对每个数字执行某个函数。”虽然只有细微差别，但我们并没有说明如何枚举这个序列。这意味着
+  Scala 可以自由地以它喜欢的任何方式实现枚举。例如，它可以选择并行执行。
+
+
+  有趣的是，Oracle 已经采纳了这些想法，自 Java 8 起提供了类似的 for 循环枚举。上述代码在 Java 中可以这样写：
+
+
+  ```
+
+  // java
+
+  IntStream.range(0, 100).forEach(System.out::println)
+
+  ```
+
+
+  '
+- '# 8. 类与字段
+
+
+  在本章中，我们将了解以下内容：
+
+
+  1.  创建类。
+
+  2.  Scala 如何简化定义字段的过程。
+
+  3.  当 Scala 为你自动生成方法时，幕后发生了什么。
+
+
+  ## 创建类
+
+
+  在 Java 中创建一个类意味着编写如下代码：
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  }
+
+  ```
+
+
+  为客户添加姓名和地址是合理的。因此，将它们添加为字段并通过构造函数进行初始化，会得到如下代码：
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  private final String name;
+
+  private final String address;
+
+  public Customer(String name, String address) {
+
+  this.name = name;
+
+  this.address = address;
+
+  }
+
+  }
+
+  ```
+
+
+  我们可以使用 `new` 关键字实例化一个对象，并创建一个名为 Eric 的新客户，如下所示：
+
+
+  ```
+
+  Customer eric = new Customer("Eric", "29 Acacia Road"); // java
+
+  ```
+
+
+  在 Scala 中，语法要简洁得多；我们可以将类和构造函数合并到一行中。
+
+
+  ```
+
+  class Customer(val name: String, val address: String)   // scala
+
+  ```
+
+
+  我们以相同的方式使用 new 创建实例，如下所示：
+
+
+  ```
+
+  val eric = new Customer("Eric", "29 Acacia Road")       // scala
+
+  ```
+
+
+  Scala 版本没有将字段定义为类内部的成员，而是将变量声明为类定义的一部分，这被称为主构造函数。在一行代码中，我们声明了 `Customer` 类，并且实际上声明了一个带有两个参数的构造函数。
+
+
+
+
+  ## 派生 Setter 和 Getter
+
+
+  类定义中的 `val` 关键字会告知编译器将参数视为字段，并为其创建字段和访问器方法。
+
+
+  我们可以通过获取生成的类文件并将其反编译为 Java 来证明这一点。这种往返转换是探索 Scala 在幕后实际生成内容的好方法。这里我使用了 Lee Benfield
+  编写的优秀 CFR 反编译器¹，但你也可以使用 Java 自带的 `javap` 程序来获取基本信息。
+
+
+  要对 Scala 为 `Customer` 生成的类文件运行反编译器，可以执行类似以下的操作：
+
+
+  ```
+
+  java -jar cfr_0_122.jar target/scala-2.12/classes/s4j/scala/chapter09/
+
+  Customer.class
+
+  ```
+
+
+  它会生成以下内容：
+
+
+  ```
+
+  1   // 从 Scala 反编译为 Java
+
+  2   public class Customer {
+
+  3       private final String name;
+
+  4       private final String address;
+
+
+  6       public String name() {
+
+  7           return this.name;
+
+  8       }
+
+
+  10       public String address() {
+
+  11           return this.address;
+
+  12       }
+
+
+  14       public Customer(String name, String address) {
+
+  15           this.name = name;
+
+  16           this.address = address;
+
+  17       }
+
+  18   }
+
+  ```
+
+
+  需要注意的重要一点是，Scala 在第 6 行和第 10 行生成了访问器方法，并在第 14 行生成了一个构造函数。这些访问器没有使用 Java 的 getter
+  约定，但我们得到了与 `getName` 和 `getAddress` 等效的方法。
+
+
+  你可能还想定义字段，但不通过构造函数来设置它们。例如，在 Java 中，我们可能想为客户添加一个 `id`，稍后通过 setter 方法进行设置。这是像 Hibernate
+  这类工具在从数据库填充对象时常用的模式。
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  private final String name;
+
+  private final String address;
+
+  private String id;
+
+  public Customer(String name, String address) {
+
+  this.name = name;
+
+  this.address = address;
+
+  }
+
+  public void setId(String id) {
+
+  this.id = id;
+
+  }
+
+  }
+
+  ```
+
+
+  在 Scala 中，你几乎可以做同样的事情。
+
+
+  ```
+
+  // scala
+
+  class Customer(val name: String, val address: String) {
+
+  var id = ""
+
+  }
+
+  ```
+
+
+  你定义一个字段（这里是一个 `var`），Scala 就会神奇地为你创建一个 setter 方法。它创建的 setter 方法名为 `id_=`，而不是通常的
+  `setId`。如果我们通过反编译器进行往返转换，会看到以下内容：
+
+
+  ```
+
+  1   // 从 Scala 反编译为 Java
+
+  2   public class Customer {
+
+  3       private final String name;
+
+  4       private final String address;
+
+  5       private String id;
+
+
+  7       public String name() {
+
+  8           return this.name;
+
+  9       }
+
+  10       public String address() {
+
+  11           return this.address;
+
+  12       }
+
+  13       public String id() {                      // 注意它是 public 的
+
+  14           return this.id;
+
+  15       }
+
+  16       public void id_$eq(String x$1) {          // 注意它是 public 的
+
+  17           this.id = x$1;
+
+  18       }
+
+  19       public Customer(String name, String address) {
+
+  20           this.name = name;
+
+  21           this.address = address;
+
+  22           this.id = null;
+
+  23       }
+
+  24   }
+
+  ```
+
+
+  注意，它在第 16 行创建了一个名为 `id_$eq` 的方法，而不是 `id_=`；这是因为等号符号在 JVM 的方法名中是不允许的，所以 Scala 对其进行了转义，并在需要时进行转换。你可以像这样直接调用
+  setter 方法：
+
+
+  ```
+
+  new Customer("Bob", "10 Downing Street").id_=("000001")
+
+  ```
+
+
+  不过，Scala 提供了一种简写方式；你可以直接使用常规赋值，Scala 会在底层调用自动生成的 `id_$eq` setter 方法：
+
+
+  ```
+
+  new Customer("Bob", "10 Downing Street").id = "000001"
+
+  ```
+
+
+  如果字段前没有访问修饰符，则该字段变为 public。因此，除了能够调用自动生成的 setter 之外，客户端也可以直接操作该字段，这可能会破坏封装性。我们希望能够将字段设为
+  private，并只允许在 `Customer` 类内部进行更新。
+
+
+  为此，只需在字段前使用 `private` 关键字即可。
+
+
+  ```
+
+  class Customer(val name: String, val address: String) {
+
+  private var id = ""
+
+  }
+
+  ```
+
+
+  反编译器显示，setter 和 getter 方法现在都是 private 的。
+
+
+  ```
+
+  1   // 从 Scala 反编译为 Java
+
+  2   public class Customer {
+
+  3       private final String name;
+
+  4       private final String address;
+
+  5       private String id;
+
+
+  7       public String name() {
+
+  8           return this.name;
+
+  9       }
+
+
+  11       public String address() {
+
+  12           return this.address;
+
+  13       }
+
+
+  15       private String id() {                 // 现在是 private 的
+
+  16           return this.id;
+
+  17       }
+
+
+  19       private void id_$eq(String x$1) {     // 现在是 private 的
+
+  20           this.id = x$1;
+
+  21       }
+
+
+  23       public Customer(String name, String address) {
+
+  24           this.name = name;
+
+  25           this.address = address;
+
+  26           this.id = "";
+
+  27       }
+
+  28   }
+
+  ```
+
+
+
+
+  ## 重定义 Setter 与 Getter
+
+
+  使用 setter 设置值的优势在于，我们可以通过该方法来维护不变式或执行特殊处理。在 Java 中，这很直接：你直接创建 setter 方法即可。但对于 Scala
+  来说则更为繁琐，因为编译器会生成这些方法，而你不得不重定义它们。
+
+
+  例如，一旦 `id` 被设置后，我们可能希望阻止它被更新。在 Java 中，我们可以这样做：
+
+
+  ```
+
+  // java
+
+  public void setId(String id) {
+
+  if (id.isEmpty())
+
+  this.id = id;
+
+  }
+
+  ```
+
+
+  而 Scala 会自动创建 setter 方法，那么我们该如何重定义它呢？如果我们尝试直接在 Scala 代码中替换 setter，就会遇到如下编译器错误：
+
+
+  ```
+
+  // scala 无法编译
+
+  class Customer(val name: String, val address: String) {
+
+  private var id = ""
+
+  def id_=(value: String) {
+
+  if (id.isEmpty)
+
+  this.id = value
+
+  }
+
+  }
+
+  ```
+
+
+  Scala 无法识别要替换该方法，因此它会创建第二个同名方法，编译器在发现重复时就会报错。
+
+
+  ```
+
+  对重载定义存在歧义引用，
+
+  类 Customer 中的方法 id_= 类型为 (value: String)Unit
+
+  与类 Customer 中的方法 id_= 类型为 (x$1: String)Unit
+
+  参数类型 (String) 匹配
+
+  this.id = value
+
+  方法 id_= 被定义了两次
+
+  冲突符号均源自文件 ''Customer.scala''
+
+  def id_=(value: String) {
+
+  ^      ^
+
+  ```
+
+
+  要重定义该方法，我们必须绕些弯路。首先，我们必须重命名字段（例如改为 `_id`），并将其设为私有，从而使 getter 和 setter 变为私有。然后，我们创建一个名为
+  `id` 的新 getter 方法和一个名为 `id_=` 的新 setter 方法，它们都是公有的，用于访问已重命名的私有字段。
+
+
+  ```
+
+  class Customer(val name: String, val address: String) {
+
+  private var _id: String = ""
+
+  def id = _id
+
+  def id_=(value: String) {
+
+  if (_id.isEmpty)
+
+  _id = value
+
+  }
+
+  }
+
+  ```
+
+
+  我们通过 `private` 修饰符隐藏了真正的字段 `_id`，并暴露了一个名为 `id_=` 的方法来充当 setter。由于不再存在名为 `id` 的字段，Scala
+  就不会尝试生成重复的方法，代码也就能编译通过了。
+
+
+  ```
+
+  // REPL 会话
+
+  scala> val bob = new Customer("Bob", "32 Bread Street")
+
+  bob: Customer = Customer@e955027
+
+  scala> bob.id = "001"
+
+  bob.id: String = 001
+
+  scala> println(bob.id)
+
+
+  scala> bob.id = "002"
+
+  bob.id: String = 001
+
+  scala> println(bob.id)
+
+
+  ```
+
+
+  查看反编译后的版本，你可以看到如何重定义该方法。我们隐藏了真正的字段，并暴露了公有方法，以字段名的形式来合成对其的访问。
+
+
+  ```
+
+  1   // 从 scala 反编译为 java
+
+  2   public class Customer {
+
+  3       private final String name;
+
+  4       private final String address;
+
+  5       private String _id;
+
+
+  7       public String name() {
+
+  8           return this.name;
+
+  9       }
+
+
+  11       public String address() {
+
+  12           return this.address;
+
+  13       }
+
+
+  15       private String _id() {                     // 私有
+
+  16           return this._id;
+
+  17       }
+
+
+  19       private void _id_$eq(String x$1) {         // 私有
+
+  20           this._id = x$1;
+
+  21       }
+
+
+  23       public String id() {                       // 公有
+
+  24           return this._id();
+
+  25       }
+
+
+  27       public void id_$eq(String value) {         // 公有
+
+  28           if (!this._id().isEmpty()) return;
+
+  29           this._id_$eq(value);
+
+  30       }
+
+
+  32       public Customer(String name, String address) {
+
+  33           this.name = name;
+
+  34           this.address = address;
+
+  35           this._id = "";
+
+  36       }
+
+  37   }
+
+  ```
+
+
+  为什么需要 Getter？
+
+
+  你可能想知道为什么我们要创建 getter 方法 `def id()`。除非该类同时定义了 setter (`id_=`) 和 getter 方法，否则 Scala
+  不允许我们使用简写的赋值语法来设置值。
+
+
+  在 Java 中重定义 setter 和 getter 相当常见，但在实践中，Scala 中则不那么常见。尽管本节内容可能看起来有些学术化，但如果你确实尝试在
+  Scala 中重定义这些方法并遇到意外的编译器错误时，你至少能理解其原因。
+
+
+  ## 总结
+
+
+  使用 Scala 创建类非常直接。你只需向类定义中添加参数即可为类添加字段，编译器会为你生成等价的 Java 构造函数、getter 和 setter。
+
+
+  类文件中的所有字段都生成为私有，但会生成关联的访问器方法。这些生成的方法会受到类定义中 `val` 或 `var` 的影响。
+
+
+  *   如果使用 `val`，则会创建公有的 getter，但不会创建 setter。该值只能通过构造函数设置。
+
+  *   如果使用 `var`，则会创建公有的 getter 和 setter。该值可以通过 setter 或构造函数设置。
+
+  *   如果既未使用 `val` 也未使用 `var`，则不会生成任何方法，该值只能在主构造函数的作用域内使用；在这种情况下，它实际上不是一个字段。
+
+  *   在类定义前加上 `private` 前缀不会改变这些规则，但会使所有生成的方法变为私有。
+
+
+  表 8-1 对此进行了总结。
+
+
+  表 8-1
+
+
+  生成的方法
+
+
+  | `class Foo(? x)` | `val x` | `var x` | `x` | `private val x` | `private var x`
+  |
+
+  | --- | --- | --- | --- | --- | --- |
+
+  | 创建 Getter (`x()`) | 是 (`公有`) | 是 (`公有`) | 否 | 是 (`私有`) | 是 (`私有`) |
+
+  | 创建 Setter (`x_=(y)`) | 否 | 是 (`公有`) | 否 | 否 | 是 (`私有`) |
+
+  | 生成的构造函数包含 `x` | 是 | 是 | 否 | 是 | 是 |
+
+
+  如果你需要覆盖生成的方法，则必须重命名字段并将其标记为私有。然后，使用原始名称重新创建 getter 和 setter 方法。在实践中，你并不需要经常这样做。
+
+
+  脚注 1
+
+
+  [`http://www.benf.org/other/cfr/`](http://www.benf.org/other/cfr/)
+
+
+  '
+- '# 9. 类与对象
+
+
+  在本章中，我们将探讨以下内容：
+
+
+  *   如何在类体内（而非类定义行）定义字段，以及这如何影响生成的方法。
+
+  *   如何创建额外的构造函数。
+
+  *   使用 `object` 关键字定义的 Scala 单例对象。
+
+  *   伴生对象，一种特殊的单例对象。
+
+
+
+
+  ## 无构造函数参数的类
+
+
+  首先，我们来看看如何在类中创建字段，而不在类定义行中定义它们。如果你在 Scala 中创建一个类，且类定义中没有定义任何字段，就像这样：
+
+
+  ```
+
+  // scala
+
+  class Counter
+
+  ```
+
+
+  ……Scala 编译器仍然会生成一个无参的主构造函数，这与 Java 的默认构造函数非常相似。因此，对应的 Java 代码看起来是这样的：
+
+
+  ```
+
+  // java
+
+  public class Counter {
+
+  public Counter() {
+
+  }
+
+  }
+
+  ```
+
+
+  在 Java 中，你可能会初始化一个变量并创建一些方法。
+
+
+  ```
+
+  // java
+
+  public class Counter {
+
+  private int count = 0;
+
+  public Counter() {
+
+  }
+
+  public void increment() {
+
+  count++;
+
+  }
+
+  public int getCount() {
+
+  return count;
+
+  }
+
+  }
+
+  ```
+
+
+  在 Scala 中你也可以做同样的事情。
+
+
+  ```
+
+  // scala
+
+  class Counter {
+
+  private var count = 0
+
+  def increment() {
+
+  count += 1
+
+  }
+
+  def getCount = count
+
+  }
+
+  ```
+
+
+  在主构造函数内部（即不在类定义中，而是在紧随其后的类体中），`val` 和 `var` 关键字可能会生成 getter 和 setter。它们的存在会影响字节码，如表
+  9-1 所示。
+
+
+  表 9-1
+
+
+  getter 和 setter 的存在如何影响字节码
+
+
+  | 在主构造函数中声明 | `val x` | `var x` | `x` | `private val x` | `private var x` |
+
+  | --- | --- | --- | --- | --- | --- |
+
+  | Getter (`x()`) | 是 (`public`) | 是 (`public`) | 无 | 是 (`private`) | 是 (`private`)
+  |
+
+  | Setter (`x_=(y)`) | 否 | 是 (`public`) | 无 | 否 | 是 (`private`) |
+
+
+  如你所见，这与表 8-1 是一致的。对于 `val` 和 `var` 类型，默认会生成 getter，并且都是公有的。在字段声明中添加 `private` 会使生成的字段变为私有，而
+  setter 仅为 `var` 生成（同样，默认是公有的）。
+
+
+  ## 附加构造函数
+
+
+  让我们创建一个 `Customer` 类的替代 Java 版本，这次带有附加构造函数。
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  private final String fullname;
+
+  public Customer(String forename, String initial, String surname) {
+
+  this.fullname =
+
+  String.format("%s %s. %s", forename, initial, surname);
+
+  }
+
+  public Customer(String forename, String surname) {
+
+  this(forename, "", surname);
+
+  }
+
+  }
+
+  ```
+
+
+  我们为客户的中间名首字母设置了默认值，并允许客户端选择是否提供它。
+
+
+  我们可能应该整理一下主构造函数，以反映变量可能以空字符串形式传入的情况。我们将添加一个 if 条件，并根据结果格式化字符串。
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  private final String fullname;
+
+  public Customer(String forename, String initial, String surname) {
+
+  if (initial != null && !initial.isEmpty())
+
+  this.fullname =
+
+  String.format("%s %s. %s", forename, initial, surname);
+
+  else
+
+  this.fullname = String.format("%s %s", forename, surname);
+
+  }
+
+  public Customer(String forename, String surname) {
+
+  this(forename, "", surname);
+
+  }
+
+  public static void main(String... args) {
+
+  System.out.println(new Customer("Bob", "J", "Smith").fullname);
+
+  System.out.println(new Customer("Bob", "Smith").fullname);
+
+  }
+
+  }
+
+  ```
+
+
+  在 Scala 中创建附加构造函数或辅助构造函数，只需创建名为 `this` 的方法即可。一个限制是，每个辅助构造函数必须在第一行使用 `this` 调用另一个构造函数。这样，构造函数将始终被链式调用，直至最顶层。
+
+
+  Scala 有主构造函数的概念；它就是类体中的代码。从类定义中传入的任何参数都可以被它使用。如果你不编写任何辅助构造函数，该类仍然会有一个构造函数；它就是隐式的主构造函数。
+
+
+  ```
+
+  // scala
+
+  class Customer(forename: String, initial: String, surname: String) {
+
+  // 主构造函数
+
+  }
+
+  ```
+
+
+  因此，如果我们在主构造函数中创建一个字段并为其赋值，
+
+
+  ```
+
+  // scala
+
+  class Customer(forename: String, initial: String, surname: String) {
+
+  val fullname = String.format("%s %s. %s", forename, initial, surname)
+
+  }
+
+  ```
+
+
+  ……它等同于以下 Java 代码：
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  private final String fullname;
+
+  public Customer(String forename, String initial, String surname) {
+
+  this.fullname =
+
+  String.format("%s %s. %s", forename, initial, surname);
+
+  }
+
+  }
+
+  ```
+
+
+  如果我们能为 Scala 版本添加另一个辅助构造函数，就可以引用 `this` 来链式调用主构造函数。
+
+
+  ```
+
+  // scala
+
+  class Customer(forename: String, initial: String, surname: String) {
+
+  val fullname = String.format("%s %s. %s", forename, initial, surname)
+
+  def this(forename: String, surname: String) {
+
+  this(forename, "", surname)
+
+  }
+
+  }
+
+  ```
+
+
+  ### 使用默认值
+
+
+  Scala 语言支持在方法签名中使用默认值，因此我们可以仅通过在类定义中使用参数来编写，从而避免使用额外的构造函数。我们只需将 `initial` 的默认值设为空字符串即可。为了使实现更好地处理空字符串，我们可以像之前的
+  Java 版本一样，在主构造函数中添加一些逻辑。
+
+
+  ```
+
+  class Customer(forename: String, initial: String = "", surname: String) {
+
+  val fullname = if (initial != null && !initial.isEmpty)
+
+  forename + " " + initial + "." + surname
+
+  else
+
+  forename + " " + surname
+
+  }
+
+  ```
+
+
+  在调用时，当我们没有按照声明顺序提供所有参数时，需要为默认值参数指定名称。例如：
+
+
+  ```
+
+  new Customer("Bob", "J", "Smith")
+
+  ```
+
+
+  `"Bob", "J", "Smith"` 是可以的，但如果我们跳过 `initial` 变量，则需要像这样为 `surname` 变量指定名称：
+
+
+  ```
+
+  new Customer("Bob", surname = "Smith")
+
+  ```
+
+
+
+
+  ## 单例对象
+
+
+  在 Java 中，你可以使用单例模式来强制一个类只有一个实例。Scala 将此思想作为语言本身的一个特性：除了类之外，你还可以定义（单例）对象。
+
+
+  缺点在于，当我们在 Scala 中谈论“对象”时，这个词被重载了。我们可能指的是一个类的实例（例如，一个 `new ShoppingCart()`，可以有多个），也可能指的是一个类的唯一实例；也就是单例对象。
+
+
+  在 Java 中，单例的一个典型用例是，我们需要在整个应用程序中使用一个单一的日志记录器实例。
+
+
+  ```
+
+  // java
+
+  Logger.getLogger().log(INFO, "Everything is fine.");
+
+  ```
+
+
+  我们可能会像这样实现单例：
+
+
+  ```
+
+  // java
+
+  public final class Logger {
+
+  private static final Logger INSTANCE = new Logger();
+
+  private Logger() { }
+
+  public static Logger getLogger() {
+
+  return INSTANCE;
+
+  }
+
+  public void log(Level level, String string) {
+
+  System.out.printf("%s %s%n", level, string);
+
+  }
+
+  }
+
+  ```
+
+
+  我们创建了一个 `Logger` 类，以及它的一个静态实例。我们通过使用私有构造器来阻止其他人创建实例。然后我们创建一个访问器来获取这个静态实例，最后给它一个基本的日志方法。我们会像这样调用它：
+
+
+  ```
+
+  // java
+
+  Logger.getLogger().log(INFO, "Singleton loggers say YEAH!");
+
+  ```
+
+
+  在 Java 中实现相同功能的一种更简洁的方法是使用枚举。
+
+
+  ```
+
+  // java
+
+  public enum LoggerEnum {
+
+  LOGGER;
+
+  public void log(Level level, String string) {
+
+  System.out.printf("%s %s%n", level, string);
+
+  }
+
+  }
+
+  ```
+
+
+  我们不需要使用访问器方法；Java 确保使用单个实例，我们会像这样调用它：
+
+
+  ```
+
+  // java
+
+  LOGGER.log(INFO, "An alternative example using an enum");
+
+  ```
+
+
+  无论哪种方式，它们都阻止客户端创建类的新实例，并提供一个单一的、全局的实例供使用。
+
+
+  Scala 中的等价写法如下：
+
+
+  ```
+
+  // scala
+
+  object Logger {
+
+  def log(level: Level, string: String) {
+
+  printf("%s %s%n", level, string)
+
+  }
+
+  }
+
+  ```
+
+
+  这里需要注意的一点是，单例实例由 `object` 关键字表示，而不是 `class`。所以，我们是在说“定义一个名为 `Logger` 的单一对象”，而不是“定义一个类”。
+
+
+  在底层，Scala 创建的基本上与我们单例模式示例中的 Java 代码相同。当我们反编译它时可以看到这一点。
+
+
+  ```
+
+  1   // 从 scala 反编译为 java
+
+  2   public final class Logger$ {
+
+  3       public static final Logger$ MODULE$;
+
+
+  5       public static {
+
+  6           new scala.demo.singleton.Logger$();
+
+  7       }
+
+
+  9       public void log(Level level, String string) {
+
+  10           Predef..MODULE$.printf("%s %s%n", (Seq)Predef..MODULE$
+
+  11           .genericWrapArray((Object)new Object[]{level, string}));
+
+  12       }
+
+
+  14       private Logger$() {
+
+  15           Logger$.MODULE$ = this;
+
+  16       }
+
+  17   }
+
+  ```
+
+
+  `log` 方法中有一些奇怪的地方，但那是反编译器在努力反编译字节码，以及 Scala 处理事务的一般方式。不过本质上，它是等价的；有一个像 Java 版本一样的私有构造器，以及一个单一的静态对象实例。类本身甚至是
+  `final` 的。
+
+
+  无需 `new` 一个新的 `Logger`；`Logger` 已经是一个对象，所以我们可以直接引用它。事实上，即使你想 `new` 一个也做不到，因为生成的构造器是私有的。
+
+
+  Scala 对象上的方法等价于 Java 中的静态方法。一个例子是 Java 类上可以被运行时执行的静态 `main` 方法。你在 Scala 单例对象中创建
+  `main` 方法，而不是在类中，以复制这种行为。
+
+
+  ## 伴生对象
+
+
+  你可以在 Scala 中组合对象和类。当你在同一个源文件中创建一个与类同名的对象时，该对象被称为伴生对象。
+
+
+  Scala 没有 `static` 关键字，但单例对象的成员实际上是静态的。记住，Scala 单例对象就是单例。因此，它包含的任何成员都将被所有使用该对象的客户端重用；它们就像静态成员一样是全局可用的。
+
+
+  你在需要混合使用 Java 中的静态和非静态成员的地方使用伴生对象。
+
+
+  Java 版本的 `Customer` 拥有客户姓名和地址的字段，以及一个用于唯一标识客户的 ID。
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  private final String name;
+
+  private final String address;
+
+  private Integer id;
+
+  public Customer(String name, String address) {
+
+  this.name = name;
+
+  this.address = address;
+
+  }
+
+  }
+
+  ```
+
+
+  现在，我们可能想要创建一个辅助方法来生成序列中的下一个 ID。为了全局地做到这一点，我们创建一个静态字段来保存 ID 的值，以及一个返回并递增它的方法。然后，我们可以在构造新实例时调用该方法，将其
+  ID 分配给刚刚递增的全局 ID。
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  private static Integer lastId;
+
+  private final String name;
+
+  private final String address;
+
+  private Integer id;
+
+  public Customer(String name, String address) {
+
+  this.name = name;
+
+  this.address = address;
+
+  this.id = Customer.nextId();
+
+  }
+
+  private static Integer nextId() {
+
+  return lastId++;
+
+  }
+
+  }
+
+  ```
+
+
+  它是静态的，因为我们希望在所有实例之间共享其实现，以便为每个实例创建全局唯一的 ID。
+
+
+  在 Scala 中，我们将静态成员与非静态成员分开，将静态成员放在单例对象中，其余的放在类中。这个单例对象就是 `Customer` 的伴生对象。
+
+
+  我们创建包含两个必需字段的类，并在单例对象中创建 `nextId` 方法。接下来，我们创建一个私有的 `var` 来保存当前值，将其赋值为零，以便 Scala
+  可以推断其类型为 `Integer`。在这里添加 `val` 意味着不会生成 setter，添加 `private` 修饰符意味着生成的 getter 将是私有的。最后，我们在
+  `nextId` 方法中实现递增，并从主构造器中调用它。
+
+
+  ```
+
+  // scala
+
+  class Customer(val name: String, val address: String) {
+
+  private val id = Customer.nextId()
+
+  }
+
+  object Customer {
+
+  private var lastId = 0
+
+  private def nextId(): Integer = {
+
+  lastId += 1
+
+  lastId
+
+  }
+
+  }
+
+  ```
+
+
+  这个单例对象是伴生对象，因为它与它的类同名，并且位于同一个源文件中。这意味着两者有特殊的关系，可以访问彼此的私有成员。这就是为什么 `Customer` 对象可以将
+  `nextId` 方法定义为私有的，但 `Customer` 类仍然可以访问它。
+
+
+  如果你给对象起一个不同的名字，就不会有这种特殊关系，也就无法调用该方法。例如，下面的 `CustomerX` 对象不是 `Customer` 的伴生对象，因此无法看到私有的
+  `nextId` 方法。
+
+
+  ```
+
+  // scala
+
+  class Customer(val name: String, val address: String) {
+
+  private val id = CustomerX.nextId()         // 编译失败
+
+  }
+
+  object CustomerX {
+
+  private var lastId = 0
+
+  private def nextId(): Integer = {
+
+  lastId += 1
+
+  lastId
+
+  }
+
+  }
+
+  ```
+
+
+
+  好的，作为一名高级文档工程师和翻译员，我将严格遵循您提供的注意事项和示例，将给定的英文文本翻译成中文。
+
+
+
+  ### 伴生对象的其他用途
+
+
+  当方法不依赖于类中的任何字段时，你可以更准确地将它们视为函数。函数通常属于单例对象而非类，因此，使用伴生对象的一个场景是，当你想要区分函数和方法，但又希望将相关函数保留在其关联类的附近时。
+
+
+  使用伴生对象的另一个原因是用于工厂模式方法——即创建伴生类实例的方法。例如，你可能想创建一个工厂方法，它能以更简洁的方式创建类的实例。如果我们想为 `Customer`
+  创建一个工厂，可以这样做：
+
+
+  ```
+
+  // scala
+
+  class Customer(val name: String, val address: String) {
+
+  val id = Customer.nextId()
+
+  }
+
+  object Customer {
+
+  def apply(name: String, address: String) = new Customer(name, address)
+
+  def nextId() = 1
+
+  }
+
+  ```
+
+
+  `apply` 方法为类或对象提供了一种简写形式。它有点像类的默认方法，因此，如果你没有直接调用实例上的方法，而是匹配了 `apply` 方法的参数，它就会为你调用该方法。例如，你可以这样调用：
+
+
+  ```
+
+  Customer.apply("Bob Fossil", "1 London Road")
+
+  ```
+
+
+  ……或者你可以省略 `apply`，Scala 会寻找一个与你参数匹配的 `apply` 方法。这两种写法是等价的。
+
+
+  ```
+
+  Customer("Bob Fossil", "1 London Road")
+
+  ```
+
+
+  你仍然可以使用主构造函数和 `new` 关键字来构造一个类，但将伴生类的 `apply` 方法实现为工厂，意味着如果你需要创建大量对象，代码可以更简洁。
+
+
+  你甚至可以通过将主构造函数设为私有，来强制客户端使用你的工厂方法而非构造函数。
+
+
+  ```
+
+  class Customer private (val name: String, val address: String) {
+
+  val id = Customer.nextId()
+
+  }
+
+  ```
+
+
+  Java 中的对应做法是使用一个静态工厂方法——例如 `createCustomer`——和一个私有构造函数，以确保所有人都被迫使用工厂方法。
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  private static Integer lastId;
+
+  private final String name;
+
+  private final String address;
+
+  private Integer id;
+
+  public static Customer createCustomer(String name, String address) {
+
+  return new Customer(name, address);
+
+  }
+
+  private Customer(String name, String address) {
+
+  this.name = name;
+
+  this.address = addres s;
+
+  this.id = Customer.nextId();
+
+  }
+
+  private static Integer nextId() {
+
+  return lastId++;
+
+  }
+
+  }
+
+  ```
+
+
+  '
+- '# 10. 类与函数
+
+
+  在本章中，我们将探讨以下内容：
+
+
+  *   匿名函数或 lambda。
+
+  *   匿名类与匿名函数的区别。
+
+  *   一等函数和高阶函数。
+
+  *   函数与方法之间的区别。
+
+  *   lambda 与闭包之间的区别。
+
+
+  ## 匿名函数
+
+
+  广义上的函数是为执行特定任务或计算而设计的代码片段。你可以将函数创建为 Java 方法或 Scala 的 `def`。两者本质上都是有名称的。而匿名函数则没有名称。
+
+
+  匿名函数也称为 lambda，在使用时可以被视为函数字面量。
+
+
+  Java lambda 语法以列出函数的参数开始，然后是箭头标记，接着是实现体。下面的例子是一个 lambda，它接受两个字符串参数，并比较它们的值以用于排序算法。
+
+
+  ```
+
+  // java
+
+  (String a, String b) -> {
+
+  int comparison = a.compareTo(b);
+
+  return comparison;
+
+  };
+
+  ```
+
+
+  如果编译器可以推断参数的类型，你可以省略类型；如果函数体是单行表达式，你可以省略 `return`。
+
+
+  ```
+
+  (a, b) -> a.compareTo(b);         // 缩写形式
+
+  ```
+
+
+  对于单参数 lambda，你甚至可以省略参数括号，但如果没有参数，则需要空括号。
+
+
+  ```
+
+  value -> value * 2;               // 单参数
+
+  () -> 2 + 2;                      // 无参数
+
+  ```
+
+
+  在 Scala 中，lambda 看起来非常相似。由于表达式中的最后一条语句被视为返回值，因此不需要 `return` 关键字。
+
+
+  ```
+
+  // scala
+
+  (a: String, b: String) => {
+
+  val comparison = a.compareTo(b)
+
+  comparison
+
+  }
+
+  ```
+
+
+  如果 Scala 可以推断参数类型，那么类型可以像 Java 一样省略，单行表达式也不需要花括号。
+
+
+  ```
+
+  // scala
+
+  (a, b) => a.compareTo(b)          // 缩写形式
+
+  ```
+
+
+  匿名类可以以类似于匿名函数的方式提供功能，但它们不能准确地被称为 lambda。
+
+
+  ## 匿名类
+
+
+  匿名类与匿名函数不是一回事。匿名类仍然需要通过 `new` 关键字实例化为一个对象。它可能没有名称，但只有作为实例对象时才是有用的。
+
+
+  另一方面，匿名函数没有与之关联的实例。函数与其所操作的数据是分离的。
+
+
+  Java 中一个典型的匿名类可能如下所示：
+
+
+  ```
+
+  // java
+
+  List list = Arrays.asList("A", "C", "B", "D");
+
+  list.sort(new Comparator() {
+
+  @Override
+
+  public int compare(String a, String b) {
+
+  return a.compareTo(b);
+
+  }
+
+  });
+
+  ```
+
+
+  你仍然可以在 Scala 中创建匿名类，但通常不需要这样做。在 Scala 中，更常见的是创建匿名函数或 lambda。实际上，自从 Java 8 引入 lambda
+  以来，Java 也是如此。
+
+
+  ```
+
+  // scala
+
+  val list = List("A", "C", "B", "D")
+
+  list.sorted(new Ordering[String] {
+
+  def compare(a: String, b: String): Int = a.compareTo(b)
+
+  })
+
+  ```
+
+
+  与 Java 一样，要在 Scala 中创建匿名类实例，你需要使用带花括号的 `new` 关键字，并在主体内定义实现。注意，你不需要添加构造函数的括号（`new
+  Ordering[String]()`）。
+
+
+  ## 一等函数
+
+
+  正如我们所见，匿名函数被称为 lambda。它是一种定义函数的紧凑方式。当你想要定义计算或转换，并在之后将其应用于不同的值时，匿名函数非常有用。例如，将函数作为参数传递给其他函数，或存储函数定义以供以后使用。
+
+
+  这种用法被称为将函数视为一等公民。具体来说，如果一种语言支持以下特性，则它支持一等函数：
+
+
+  1.  支持将函数作为参数传递给其他函数。
+
+  2.  能够从其他函数中返回函数作为值。
+
+  3.  能够将函数存储在变量或数据结构中。
+
+
+  ## 高阶函数
+
+
+  高阶函数是接受一个或多个函数作为参数，或者返回一个函数的函数。高阶函数往往比替代方案更灵活，也更容易重用。
+
+
+  Lambda 通过提供紧凑的语法以及编译器为 lambda 语法生成特殊字节码这一事实，促进了对一等函数的支持。¹
+
+
+  定义上述排序计算的 lambda 如下所示：
+
+
+  ```
+
+  (String a, String b) -> a.compareTo(b);     // java
+
+  (a: String, b: String) => a.compareTo(b)    // scala
+
+  ```
+
+
+  ### 传入函数
+
+
+  为什么你想要将一个函数传入另一个函数？简而言之：为了灵活性。前面给出的 `sort` 或 `sorted` 函数就是一个很好的例子。你可以创建一个函数来对列表进行排序，但允许调用者影响排序的方式。
+
+
+  例如，你可以通过传入不同的函数字面量，按升序或降序对列表进行排序。
+
+
+  ```
+
+  // java
+
+  List list = Arrays.asList("A", "C", "B", "D");
+
+  list.sort((a, b) -> a.compareTo(b));                     // 升序
+
+  list.sort((a, b) -> b.compareTo(a));                     // 降序
+
+  ```
+
+
+  Scala 也是如此：
+
+
+  ```
+
+  // scala
+
+  val list = List("A", "C", "B", "D")
+
+  list.sorted((a: String, b: String) => a.compareTo(b))    // 升序
+
+  list.sorted((a: String, b: String) => b.compareTo(a))    // 降序
+
+  ```
+
+
+
+
+  ### 返回函数
+
+
+  从函数中返回函数有助于将实现与行为解耦。你可能希望创建工厂风格的函数以便传递，或者进行计算但尚未获得所有值。
+
+
+  一个例子是，你想将美元金额转换为其他货币。编写一个简单的函数即可实现，该函数接收目标货币和美元金额。然而，假设你需要在许多地方调用这个函数，但不想到处传递目标货币。
+
+
+  如果你创建一个用于生成函数的函数，那么你只需调用一次（当你知道目标货币时），然后传递这个生成的函数即可。这省去了传递实现细节（本例中为目标货币）的麻烦，从而将调用方与细节解耦。
+
+
+  因此，与其采用如下命令式写法：
+
+
+  ```
+
+  // scala
+
+  def dollarTo(currency: String, dollar: Double) = {
+
+  if (currency == "GBP") dollar * 0.76
+
+  else if (currency == "EUR") dollar * 0.83
+
+  else dollar
+
+  }
+
+  ```
+
+
+  ……不如创建一个高阶函数，它接收目标货币，但返回一个待后续求值的函数。该函数将接收一个货币金额，并返回转换后的金额，如下所示。
+
+
+  ```
+
+  // scala
+
+  def dollarTo(currency: String): Double => Double = {
+
+  if (currency == "GBP") dollar => dollar * 0.76
+
+  else if (currency == "EUR") dollar => dollar * 0.83
+
+  else dollar => dollar
+
+  }
+
+  ```
+
+
+  这样一来，你就不必在调用命令式版本的任何地方（例如，在下面的 `''calculateTicketPrice''` 函数中）将自己锁定在实现中：
+
+
+  ```
+
+  // scala
+
+  def calculateTicketPrice(targetCurrency: String) = {
+
+  dollarTo(targetCurrency, 199.99)
+
+  // ...
+
+  }
+
+  ```
+
+
+  ……而是可以在任何需要转换的地方传入一个函数签名。
+
+
+  ```
+
+  def calculateTicketPrice(currencyConversion: Double=> Double) = {
+
+  currencyConversion(199.99)
+
+  // ...
+
+  }
+
+  ```
+
+
+  你可以将其视为一种非正式接口；任何将一个双精度浮点数转换为另一个双精度浮点数的函数都可以在此使用。除了使用上面的函数，你还可以传入一个调用网络服务获取最新汇率的函数，或者一个显示历史汇率的函数，而无需修改任何客户端代码。很巧妙。
+
+
+  ```
+
+  calculateTicketPrice(dollarTo("GBP"))
+
+  calculateTicketPrice(yahooFxRateFor("GBP"))
+
+  calculateTicketPrice(historicalRateFor("GBP"))
+
+  ```
+
+
+  ### 存储函数
+
+
+  以下是一个将两个数相加的 lambda 表达式示例：
+
+
+  ```
+
+  (Integer a, Integer b) -> a + b;        // java
+
+  ```
+
+
+  如果你想将其作为值存储，则需要一个类型。在底层，Java 将 lambda 视为单方法接口（SAM）的实例，并在 `java.util.function` 包中提供了合适的接口来实现这一点。
+
+
+  它定义了 `java.util.function.Function` 来表示单参数函数，以及 `java.util.function.BiFunction` 来表示双参数函数。
+
+
+  因此，你可以像这样赋值 lambda 表达式：
+
+
+  ```
+
+  // java
+
+  BiFunction plus = (Integer a, Integer b) -> a+b;
+
+  ```
+
+
+  `BiFunction` 定义了两个输入参数 `T` 和 `U` 以及返回值 `R`。因此，上述代码表示一个接收两个整数参数并返回另一个整数的函数。
+
+
+  ```
+
+  public interface BiFunction {
+
+  R apply(T t, U u);
+
+  }
+
+  ```
+
+
+  由于变量声明包含了类型信息，Java 允许你在 lambda 参数中省略重复的类型：
+
+
+  ```
+
+  // java
+
+  BiFunction plus = (a, b) -> a + b;
+
+  ```
+
+
+  要执行或应用该函数，你可以使用以下语法：
+
+
+  ```
+
+  // java
+
+  plus.apply(2, 2);                     // 4
+
+  plus.apply(plus.apply(2, 2), 2);      // 6
+
+  ```
+
+
+  Scala 版本的基本 lambda 表达式正如你所料：
+
+
+  ```
+
+  (a: Int, b: Int) => a + b             // scala
+
+  ```
+
+
+  尽管 Scala 在底层也使用相同的技巧将函数表示为类型，在本例中为 `scala.Function2[Int, Int, Int]`，但它也允许更简洁的表示方式。因此，虽然你可以像这样冗长地书写：
+
+
+  ```
+
+  val plus: Function2[Int, Int, Int] = (a: Int, b: Int) => a + b   // scala
+
+  ```
+
+
+  ……但使用函数类型 `(Int, Int) => Int` 更为简洁：
+
+
+  ```
+
+  val plus: (Int, Int) => Int = (a: Int, b: Int) => a + b          // scala
+
+  ```
+
+
+  同样，由于 `val` 上包含了额外的类型信息，你可以在 lambda 参数中省略重复的类型。
+
+
+  ```
+
+  val plus: (Int, Int) => Int = (a, b) => a + b                    // scala
+
+  ```
+
+
+  调用它更为简洁，因为 Scala 会自动调用 `apply` 方法。
+
+
+  ```
+
+  // scala
+
+  plus(2, 2)              // 4
+
+  plus(plus(2, 2), 4)     // 8
+
+  ```
+
+
+  ## 函数类型
+
+
+  Java 和 Scala 都支持将函数作为一等公民，因为它们都支持上述所有要点。然而，一个学术上有趣的区别是，Java 不支持函数类型，而 Scala 支持。
+
+
+  尽管你可以像下面这样在 Scala 中使用 `Function2` 定义 lambda 的类型：
+
+
+  ```
+
+  val f: Function2[String, String, Int] = (a, b) => a.compareTo(b)
+
+  ```
+
+
+  ……但你也可以使用函数类型来定义它。
+
+
+  ```
+
+  val f: (String, String) => Int = (a, b) => a.compareTo(b)
+
+  ```
+
+
+  赋值左侧的类型声明被称为函数类型。`(String, String) => Int` 是 Scala 中的一种完整类型，它声明了一个接收两个字符串参数并返回一个整数的函数。它可以用于任何普通类型声明可以使用的地方；用于描述值的类型（就像我们在这里所做的那样）、函数的参数或返回类型。
+
+
+  ## 函数 vs. 方法
+
+
+  在 Scala 中，`def` 既可以作为函数使用，也可以作为方法使用。Scala 开发者经常谈论函数，而避免谈论方法，那么它们之间有什么区别呢？
+
+
+  方法 `def` 会在 Scala 类中定义，它通常引用类中的实例数据。其命名法严格属于面向对象的世界；方法为实例对象定义行为。
+
+
+  函数 `def` 在 Scala 单例对象中定义（但如果定义在类中，在某些条件下可以转换为函数）。函数严格属于数学世界，它们接收输入并产生输出。在函数式编程世界中，它们不为实例对象定义行为，而是实现独立的、可重复的转换或应用计算。
+
+
+  因此，函数和方法之间的区别部分在于描述它们使用时的上下文；当你构建面向对象系统时，你会谈论方法；而当你谈论转换或函数式编程时，你会谈论函数。方法还与实例对象相关联，而函数则不会。
+
+
+  在 Scala 中，有几种创建函数的方法。
+
+
+  1.  单例对象中的 `def` 本质上就是一个函数。
+
+  2.  创建一个 lambda 表达式。
+
+  3.  在类中创建一个 `def`，当它被传递给高阶函数时，Scala 会将其转换为函数。
+
+
+  在 Java 中，只有两种创建函数的方法。
+
+
+  1.  创建静态类方法。
+
+  2.  创建一个 lambda 表达式。
+
+
+  有一种特殊的 lambda 表达式称为闭包。在 Java 和 Scala 中，它们在底层的创建方式不同。它们更接近于匿名类而非函数，因为当它们被定义时会创建一个新实例。因此，你可以认为它们并非我在此描述的“函数”意义上的函数。
+
+
+  匿名类 != 匿名函数
+
+
+  当你创建一个匿名类时，你“新建”了一个实例。函数没有与之关联的实例，因此，匿名类的实例不能被称为匿名函数，即使它可以像一等公民一样被使用和传递。
+
+
+
+
+  ## Lambda 表达式 vs. 闭包
+
+
+  闭包是一种特殊的 lambda 表达式。它是一个匿名函数，但在创建时会从环境中捕获某些内容。
+
+
+  每个闭包都是 lambda 表达式，但并非所有 lambda 表达式都是闭包！更令人困惑的是，匿名类在捕获某些数据时也可以被称为闭包。
+
+
+  让我们看一个例子。给定以下接口 `Condition`：
+
+
+  ```
+
+  // java
+
+  interface Condition {
+
+  Boolean isSatisfied();
+
+  }
+
+  ```
+
+
+  ……一个匿名类可以实现 `Condition` 来检查某个服务器是否已关闭（它调用 `waitFor` 持续轮询，直到 `isRunning` 方法返回 `false`）。
+
+
+  ```
+
+  // java
+
+  void anonymousClass() {
+
+  final Server server = new HttpServer();
+
+  waitFor(new Condition() {
+
+  @Override
+
+  public Boolean isSatisfied() {
+
+  return !server.isRunning();
+
+  }
+
+  });
+
+  }
+
+  ```
+
+
+  功能等效的闭包看起来像这样：
+
+
+  ```
+
+  // java
+
+  void closure() {
+
+  Server server = new HttpServer();
+
+  waitFor(() -> !server.isRunning());
+
+  }
+
+  ```
+
+
+  为了完整性，`waitFor` 方法可能被简单地实现如下：
+
+
+  ```
+
+  // java
+
+  class WaitFor {
+
+  static void waitFor(Condition condition) throws InterruptedException {
+
+  while (!condition.isSatisfied())
+
+  Thread.sleep(250);
+
+  }
+
+  }
+
+  ```
+
+
+  两种实现都是闭包；前者是匿名类和闭包，后者是 lambda 表达式和闭包。正如我们所说，闭包在运行时捕获其“环境”。在匿名类版本中，这意味着将 `server`
+  的值复制到 `Condition` 的匿名实例中。在 lambda 表达式中，`server` 变量也需要在运行时复制到函数中。
+
+
+  由于是复制，它必须被声明为 final，以确保在捕获和使用之间不会被更改。这两个时间点的值可能非常不同，因为闭包通常用于将执行推迟到稍后的某个时间点。
+
+
+  Java 使用了一个巧妙的技巧：如果它能推断出一个变量从未被更新，那么它就可以被视为 final，因此它将其视为“实际上的 final”，你不需要显式使用 `final`
+  关键字来声明。
+
+
+  另一方面，lambda 表达式不需要复制其环境或捕获任何项。这意味着它可以被视为一个真正的函数，而不是一个类的实例。
+
+
+  同一个例子，如果表示为 lambda 表达式而不是闭包，看起来像这样：
+
+
+  ```
+
+  // java
+
+  void lambda() {
+
+  Server httpServer = new HttpServer();
+
+  waitFor(server -> !server.isRunning(), httpServer);
+
+  }
+
+  void waitFor(ServerCondition condition, Server server) {
+
+  while (!condition.isSatisfied(server))
+
+  Thread.sleep(250);
+
+  }
+
+  interface ServerCondition {
+
+  Boolean isSatisfied(Server server);
+
+  }
+
+  ```
+
+
+  这里的技巧是，lambda 表达式将 `httpServer` 实例作为参数，因此不需要在构造时捕获它。它不引用其作用域之外的任何内容，因此没有复制任何内容。同一个
+  lambda 实例可以用于不同的服务器实例。
+
+
+  这是一个重要的区别，因为 lambda 表达式不需要被多次实例化。闭包必须被实例化，并且为它关闭的每个值分配内存。对于非闭包的 lambda 表达式，内存只需分配一次，然后
+  lambda 表达式可以被重用。这使得它更高效，至少在理论上是这样。
+
+
+  速查表
+
+
+  如果一个 lambda 表达式没有参数，并且引用了其作用域之外的内容，那么它也是一个闭包。如果一个 lambda 表达式只对作为参数传入的内容进行操作，那么它就不是闭包。
+
+
+  ```
+
+  (x) -> x * 2;     // lambda 表达式
+
+  () -> x * 2;      // 闭包
+
+  ```
+
+
+  脚注 1
+
+
+  Lambda 表达式使用 `invokedynamic` 字节码调用。这比生成新类并像匿名类那样实例化它们更高效。
+
+
+  '
+- '# 11. 继承
+
+
+  在本章中，我们将探讨 Scala 中的继承：如何创建子类并重写方法，Scala 中接口和抽象类的等效物，以及 Scala 提供的用于混入可重用行为的机制。最后，我们将讨论如何在所有选项中进行选择。
+
+
+  ## 子类型继承
+
+
+  创建另一个类的子类型与 Java 相同。你使用 `extends` 关键字，并且可以通过在类定义上使用 `final` 修饰符来防止子类化。
+
+
+  假设我们想扩展之前的基本 `Customer` 类，并创建一个特殊的子类型来表示 `DiscountedCustomer`。购物篮可能属于 `Customer`
+  超类，以及向购物篮添加商品和计算其总价值的方法。
+
+
+  ```
+
+  // java
+
+  public class Customer {
+
+  private final String name;
+
+  private final String address;
+
+  private final ShoppingBasket basket = new ShoppingBasket();
+
+  public Customer(String name, String address) {
+
+  this.name = name;
+
+  this.address = address;
+
+  }
+
+  public void add(Item item) {
+
+  basket.add(item);
+
+  }
+
+  public Double total() {
+
+  return basket.value();
+
+  }
+
+  }
+
+  ```
+
+
+  假设 `DiscountedCustomer` 有权享受所有购买商品 10% 的折扣。我们可以扩展 `Customer`，创建一个与 `Customer` 匹配的构造函数，并从中调用
+  `super`。然后我们可以重写 `total` 方法来应用折扣。
+
+
+  ```
+
+  // java
+
+  public class DiscountedCustomer extends Customer {
+
+  public DiscountedCustomer(String name, String address) {
+
+  super(name, address);
+
+  }
+
+  @Override
+
+  public Double total() {
+
+  return super.total() * 0.90;
+
+  }
+
+  }
+
+  ```
+
+
+  我们在 Scala 中做完全相同的事情。这是基本的 `Customer` 类：
+
+
+  ```
+
+  // scala
+
+  class Customer(val name: String, val address: String) {
+
+  private final val basket: ShoppingBasket = new ShoppingBasket
+
+  def add(item: Item) {
+
+  basket.add(item)
+
+  }
+
+  def total: Double = {
+
+  basket.value
+
+  }
+
+  }
+
+  ```
+
+
+  当涉及到将 `Customer` 扩展为 `DiscountedCustomer` 时，需要考虑一些事情。首先，我们将创建 `DiscountedCustomer`
+  类。
+
+
+  ```
+
+  class DiscountedCustomer
+
+  ```
+
+
+  如果我们尝试扩展 `Customer` 来创建 `DiscountedCustomer`，我们会得到一个编译器错误。
+
+
+  ```
+
+  class DiscountedCustomer extends Customer        // 编译器错误
+
+  ```
+
+
+  我们收到编译器错误，因为我们需要使用其参数的值调用 `Customer` 构造函数。在 Java 中，当我们在新构造函数中调用 `super` 时，也必须做同样的事情。
+
+
+  Scala 有一个主构造函数和辅助构造函数。辅助构造函数必须被链接起来，最终调用主构造函数，而在 Scala 中，只有主构造函数可以调用超类构造函数。我们可以像这样向主构造函数添加参数：
+
+
+  ```
+
+  class DiscountedCustomer(name: String, address: String) extends Customer
+
+  ```
+
+
+  但我们不能像在 Java 中那样直接调用 `super`。
+
+
+  ```
+
+  class DiscountedCustomer(name: String, address: String) extends Customer {
+
+  super(name, address)                        // 编译器错误
+
+  }
+
+  ```
+
+
+  在 Scala 中，要调用超类构造函数，你需要将主构造函数的参数传递给超类。请注意，`DiscountedCustomer` 的参数没有设置为 `val`。它们不是字段；相反，它们的作用域局限于主构造函数，并直接传递给超类，如下所示：
+
+
+  ```
+
+  class DiscountedCustomer(name: String, address: String)
+
+  extends Customer(name, address)
+
+  ```
+
+
+  最后，我们可以在子类中实现打折后的 `total` 方法。
+
+
+  ```
+
+  override def total: Double = {
+
+  super.total * 0.90
+
+  }
+
+  ```
+
+
+  这里需要注意两点：`override` 关键字是必需的，并且要调用超类的 `total` 方法，我们使用 `super` 加一个点，就像在 Java 中一样。
+
+
+  `override` 关键字类似于 Java 中的 `@Override` 注解。它允许编译器检查错误，例如拼错方法名称或提供错误的参数。Java 注解和 Scala
+  的 `override` 之间唯一的真正区别是，在 Scala 中，当你重写非抽象方法时，它是强制性的。
+
+
+
+
+  ## 匿名类
+
+
+  你可以用与 Java 类似的方式创建匿名子类。
+
+
+  在 Java 版本的 `ShoppingBasket` 类中，`add` 方法接受一个 `Item` 接口。因此，要向购物篮中添加商品，你可以创建一个 `Item`
+  的匿名子类型。下面是一个程序，用于向 Joe 的购物篮中添加两个固定价格的商品。每个商品都是 `Item` 的一个匿名子类。折扣后的购物篮总价为 5.40 美元。
+
+
+  ```
+
+  // java
+
+  public class ShoppingBasket {
+
+  private final Set basket = new HashSet();
+
+  public void add(Item item) {
+
+  basket.add(item);
+
+  }
+
+  public Double value() {
+
+  return basket.stream().mapToDouble(Item::price).sum();
+
+  }
+
+  }
+
+  public class AnonymousCLass {
+
+  public static void main(String... args) {
+
+  Customer joe = new DiscountedCustomer("Joe", "128 Bullpen Street");
+
+  joe.add(new Item() {
+
+  @Override
+
+  public Double price() {
+
+  return 2.5;
+
+  }
+
+  });
+
+  joe.add(new Item() {
+
+  @Override
+
+  public Double price() {
+
+  return 3.5;
+
+  }
+
+  });
+
+  System.out.println("Joe’s basket will cost $ " + joe.total());
+
+  }
+
+  }
+
+  ```
+
+
+  在 Scala 中，情况几乎相同。在实例化 `Item` 时，可以省略类名上的括号，以及 `price` 方法签名中的类型。`price` 方法前的 `override`
+  关键字也是可选的。
+
+
+  ```
+
+  // scala
+
+  object DiscountedCustomer {
+
+  def main(args: Array[String]) {
+
+  val joe = new DiscountedCustomer("Joe", "128 Bullpen Street")
+
+  joe.add(new Item {
+
+  def price = 2.5
+
+  })
+
+  joe.add(new Item {
+
+  def price = 3.5
+
+  })
+
+  println("Joe’s basket will cost $ " + joe.total)
+
+  }
+
+  }
+
+  ```
+
+
+  你可以用完全相同的方式创建类、抽象类或 Scala 特质（trait）的匿名实例。
+
+
+  ## 接口/特质
+
+
+  Java 中的接口与 Scala 中的特质类似。你可以像使用接口一样使用特质。你可以在实现类中实现特定的行为，同时在代码中以多态方式对待它们。然而：
+
+
+  *   特质可以为方法提供默认实现。这类似于 Java 的虚拟扩展方法（Java 8 中的新特性，也称为默认方法），但在 Java 8 之前没有等效功能。
+
+  *   特质还可以拥有字段，甚至可以为这些字段提供默认值，这是 Java 接口无法做到的。因此，特质可以同时拥有抽象方法和具体方法，并且可以拥有状态。
+
+  *   一个类可以实现任意数量的特质，就像一个类可以实现任意数量的接口一样，不过在 Scala 中扩展带有默认实现的特质，更像是混入（mixin）行为，而非 Java
+  中传统的接口继承。
+
+  *   与 Java 8 存在交叉，因为你可以通过 Java 8 混入行为，尽管在语义以及如何处理重复方法方面存在一些差异。
+
+
+  在本节中，我们将更详细地探讨这些差异。
+
+
+  在 Java 中，我们可能会创建一个名为 `Readable` 的接口，用于读取一些数据并将其复制到字符缓冲区中。每个实现可能会将不同的内容读入缓冲区。例如，一个实现可能通过
+  HTTP 读取网页内容，而另一个实现可能读取文件。
+
+
+  ```
+
+  // java
+
+  public interface Readable {
+
+  public int read(CharBuffer buffer);
+
+  }
+
+  ```
+
+
+  在 Scala 中，Java 接口将变成一个特质，看起来像这样：
+
+
+  ```
+
+  // scala
+
+  trait Readable {
+
+  def read(buffer: CharBuffer): Int
+
+  }
+
+  ```
+
+
+  定义时只需使用 `trait` 而不是 `class`。无需将方法声明为 `abstract`，因为任何未实现的方法都会自动成为抽象方法。
+
+
+  在 Java 中实现接口使用 `implements` 关键字。例如，如果我们实现一个文件读取器，我们可能会将一个 `File` 对象作为构造函数参数，并重写
+  `read` 方法来消费文件内容。`read` 方法将返回读取的字节数。
+
+
+  ```
+
+  // java
+
+  public class FileReader implements Readable {
+
+  private final File file;
+
+  public FileReader(File file) {
+
+  this.file = file;
+
+  }
+
+  @Override
+
+  public int read(CharBuffer buffer) {
+
+  int read = 0;
+
+  // ...
+
+  return read;
+
+  }
+
+  }
+
+  ```
+
+
+  在 Scala 中，你使用 `extends`，就像扩展常规类一样。当重写现有的具体方法时，必须使用 `override` 关键字，但在重写抽象方法时则不需要。
+
+
+  ```
+
+  // scala
+
+  class FileReader(file: File) extends Readable {
+
+  override def read(buffer: CharBuffer): Int = {    // override 可选
+
+  val linesRead: Int = 0
+
+  return linesRead
+
+  }
+
+  }
+
+  ```
+
+
+  在 Java 中，如果你想实现多个接口，可以将接口名称附加到 Java 类定义中，因此我们可以为 `FileReader` 添加 `AutoClosable`
+  行为。
+
+
+  ```
+
+  // java
+
+  public class FileReader implements Readable, AutoCloseable {
+
+  private final File file;
+
+  public FileReader(File file) {
+
+  this.file = file;
+
+  }
+
+  @Override
+
+  public int read(CharBuffer buffer) {
+
+  int read = 0;
+
+  // ...
+
+  return read;
+
+  }
+
+  @Override
+
+  public void close() throws Exception {
+
+  // close
+
+  }
+
+  }
+
+  ```
+
+
+  在 Scala 中，你使用 `with` 关键字来添加额外的特质。当你想要扩展一个常规类、抽象类或特质时，可以这样做。只需对第一个使用 `extends`，然后对其余的每个使用
+  `with`。不过，与 Java 一样，你只能有一个超类。
+
+
+  ```
+
+  // scala
+
+  class FileReader(file: File) extends Readable with AutoCloseable {
+
+  def read(buffer: CharBuffer): Int = {
+
+  val linesRead: Int = 0
+
+  // ...
+
+  return linesRead
+
+  }
+
+  def close(): Unit = ???
+
+  }
+
+  ```
+
+
+  这是什么问题？
+
+
+  这里的 `???` 实际上是一个方法。它是一个很方便的方法，可以用来表示“我还不知道”。如果你调用它，它会抛出一个运行时异常，有点像 Java 中的 `UnsupportedOperationException`。当你确实还不知道需要什么时，它能让代码编译通过。
+
+
+
+
+  ### 特质中的方法
+
+
+  Java 8 引入了默认方法，允许在接口中创建默认实现。在 Scala 中，你也可以实现同样的功能，并且还附带了一些额外特性。
+
+
+  让我们看看 Java 接口在哪些场景下可以从默认实现中受益。我们可以先创建一个 `Sortable` 接口，用于描述任何可排序的类。更具体地说，任何实现都应该能够对泛型类型
+  `A` 的元素进行排序。这意味着它只对集合类有用，因此我们将让该接口继承 `Iterable`，以使这一点更加明确。
+
+
+  ```
+
+  // java
+
+  interface Sortable extends Iterable {
+
+  public List sort();
+
+  }
+
+  ```
+
+
+  如果许多类实现了这个接口，它们很可能都希望有相似的排序行为。有些类则希望对实现进行更精细的控制。借助 Java 8，我们可以为常见情况提供一个默认实现。我们将接口方法标记为
+  `default`，表明它有一个默认实现，然后继续提供具体的实现代码。
+
+
+  下面，我们利用了对象是可迭代的这一事实，将其内容复制到一个新的 `ArrayList` 中。然后，我们可以使用 `List` 内置的 `sort` 方法。`sort`
+  方法接受一个 lambda 表达式来描述排序规则，如果我们规定要比较的对象必须是 `Comparable` 类型，就可以走捷径，重用对象的自然顺序。通过对签名稍作调整来强制执行这一点，我们就可以使用比较器的
+  `compareTo` 方法。这意味着我们必须让类型 `A` 成为 `Comparable` 类型，但这仍然符合 `Sortable` 接口的意图。
+
+
+  ```
+
+  // java
+
+  public interface Sortable extends Iterable {
+
+  default public List sort() {
+
+  List list = new ArrayList();
+
+  for (A elements: this)
+
+  list.add(elements);
+
+  list.sort((first, second) -> first.compareTo(second));
+
+  return list;
+
+  }
+
+  }
+
+  ```
+
+
+  这里的 `default` 关键字意味着该方法不再是抽象的，任何没有重写该方法的子类都将默认使用它。为了验证这一点，我们可以创建一个类 `NumbersList`，让它继承
+  `Sortable`，用于包含一个数字列表，并使用默认的排序行为对这些数字进行排序。由于我们乐于使用提供的默认实现，因此无需实现 `sort` 方法。
+
+
+  ```
+
+  // java
+
+  public class NumbersUsageExample {
+
+  private static class NumberList implements Sortable {
+
+  private Integer[] numbers;
+
+  private NumberList(Integer... numbers) {
+
+  this.numbers = numbers;
+
+  }
+
+  @Override
+
+  public Iterator iterator() {
+
+  return Arrays.asList(numbers).iterator();
+
+  }
+
+  }
+
+  public static void main(String... args) {
+
+  Sortable numbers = new NumberList(1, 34, 65, 23, 0, -1);
+
+  System.out.println(numbers.sort());
+
+  }
+
+  }
+
+  ```
+
+
+  我们可以将同样的思路应用到我们的 `Customer` 示例中，创建一个 `Customers` 类来收集客户。我们所要做的就是确保 `Customer` 类是
+  `Comparable` 类型，这样我们就能在不自己实现 `sort` 方法的情况下对客户列表进行排序。
+
+
+  ```
+
+  // java
+
+  // 如果 Customer 不是 Comparable 类型，将会出现编译错误
+
+  public class Customers implements Sortable {
+
+  private final Set customers = new HashSet();
+
+  public void add(Customer customer) {
+
+  customers.add(customer);
+
+  }
+
+  @Override
+
+  public Iterator iterator() {
+
+  return customers.iterator();
+
+  }
+
+  }
+
+  ```
+
+
+  在我们的 `Customer` 类中，如果我们实现了 `Comparable` 接口和 `compareTo` 方法，默认的自然顺序将按名称的字母顺序排列。
+
+
+  ```
+
+  // java
+
+  public class Customer implements Comparable {
+
+  // ...
+
+  @Override
+
+  public int compareTo(Customer other) {
+
+  return name.compareTo(other.name);
+
+  }
+
+  }
+
+  ```
+
+
+  如果我们以随机顺序向列表中添加一些客户，就可以按 `name`（在 `compareTo` 方法中定义）打印排序后的结果。
+
+
+  ```
+
+  // java
+
+  public class CustomersUsageExample {
+
+  public static void main(String... args) {
+
+  Customers customers = new Customers();
+
+  customers.add(new Customer("Velma Dinkley", "316 Circle Drive"));
+
+  customers.add(new Customer("Daphne Blake", "101 Easy St"));
+
+  customers.add(new Customer("Fred Jones", "8 Tuna Lane,"));
+
+  customers.add(new DiscountedCustomer("Norville Rogers", "1 Lane"));
+
+  System.out.println(customers.sort());
+
+  }
+
+  }
+
+  ```
+
+
+  在 Scala 中，我们可以执行相同的步骤。首先，创建基本的特质。
+
+
+  ```
+
+  // scala
+
+  trait Sortable[A] {
+
+  def sort: Seq[A]         // 没有方法体意味着是抽象的
+
+  }
+
+  ```
+
+
+  这创建了一个抽象方法 `sort`。任何继承该特质的类都必须提供一个实现，但我们也可以通过提供一个常规的方法体来提供默认实现。
+
+
+  ```
+
+  // scala
+
+  trait Sortable[A <: Ordered[A]] extends Iterable[A] {
+
+  def sort: Seq[A] = {
+
+  this.toList.sorted     // 内置的排序方法
+
+  }
+
+  }
+
+  ```
+
+
+  我们继承了 `Iterable`，并给泛型类型 `A` 添加了一个约束，即它必须是 `Ordered` 的子类型。`Ordered` 类似于 Java 中的 `Comparable`，并与内置的排序方法一起使用。`<:`
+  关键字表示 `A` 的上界。我们在这里使用它，就像在 Java 示例中一样，是为了约束泛型类型必须是 `Ordered` 的子类型。
+
+
+  在 Scala 中重新创建 `Customers` 集合类如下所示：
+
+
+  ```
+
+  // scala
+
+  import scala.collections._
+
+  class Customers extends Sortable[Customer] {
+
+  private val customers = mutable.Set[Customer]()
+
+  def add(customer: Customer) = customers.add(customer)
+
+  def iterator: Iterator[Customer] = customers.iterator
+
+  }
+
+  ```
+
+
+  我们必须让 `Customer` 继承 `Ordered` 以满足上界约束，就像我们必须让 Java 版本实现 `Comparable` 一样。完成这一步后，我们就从特质中继承了默认的排序行为。
+
+
+  ```
+
+  // scala
+
+  object Customers {
+
+  def main(args: Array[String]) {
+
+  val customers = new Customers()
+
+  customers.add(new Customer("Fred Jones", "8 Tuna Lane,"))
+
+  customers.add(new Customer("Velma Dinkley", "316 Circle Drive"))
+
+  customers.add(new Customer("Daphne Blake", "101 Easy St"))
+
+  customers.add(new DiscountedCustomer("Norville Rogers", "1 Lane"))
+
+  println(customers.sort)
+
+  }
+
+  }
+
+  ```
+
+
+  默认方法的美妙之处在于，如果需要，我们可以重写它并使其专门化。例如，如果我们想为我们的客户创建另一个可排序的集合类，但这次是按客户购物篮的价值进行排序，我们可以重写
+  `sort` 方法。
+
+
+  在 Java 中，我们会创建一个继承 `Customers` 的新类，并重写默认的 sort 方法。
+
+
+  ```
+
+  // java
+
+  public class CustomersSortableBySpend extends Customers {
+
+  @Override
+
+  public List sort() {
+
+  List customers = new ArrayList();
+
+  for (Customer customer: this)
+
+  customers.add(customer);
+
+  customers.sort((first, second) ->
+
+  second.total().compareTo(first.total()));
+
+  return customers;
+
+  }
+
+  }
+
+  ```
+
+
+  总体方法与默认方法相同，但我们使用了不同的排序实现。现在我们根据客户购物篮的总价值进行排序。在 Scala 中，我们也会做几乎相同的事情。
+
+
+  ```
+
+  // scala
+
+  class CustomersSortableBySpend extends Customers {
+
+  override def sort: List[Customer] = {
+
+  this.toList.sorted(new Ordering[Customer] {
+
+  def compare(a: Customer, b: Customer) = b.total.compare(a.total)
+
+  })
+
+  }
+
+  }
+
+  ```
+
+
+  我们继承 `Customers` 并重写 `sort` 方法，以提供我们自己的替代实现。我们再次使用了内置的 sort 方法，但这次使用了不同的 `Ordering`
+  匿名实例；同样是比较客户的购物篮价值。
+
+
+  如果你想将比较器创建为一个 Scala 对象而不是匿名类，可以像下面这样做：
+
+
+  ```
+
+  class CustomersSortableBySpend extends Customers {
+
+  override def sort: List[Customer] = {
+
+  this.toList.sorted(BasketTotalDescending)
+
+  }
+
+  }
+
+  object BasketTotalDescending extends Ordering[Customer] {
+
+  def compare(a: Customer, b: Customer) = b.total.compare(a.total)
+
+  }
+
+  ```
+
+
+
+  好的，作为一名高级文档工程师和翻译员，我将严格遵循您提供的注意事项和示例格式，将给定的英文文本翻译成中文。
+
+
+
+  为了看到效果，我们可以编写一个小型测试程序。我们可以向 `CustomersSortableBySpend` 中添加一些客户，并向他们的购物篮中添加一些商品。我使用
+  `PricedItem` 类来表示商品，这省去了我们像之前那样为每个商品创建桩类的麻烦。执行时，我们应该会看到客户按购物篮价值排序，而不是按客户姓名排序。
+
+
+  ```
+
+  // scala
+
+  object CustomersUsageExample {
+
+  def main(args: Array[String]) {
+
+  val customers = new CustomersSortableBySpend()
+
+  val fred = new Customer("Fred Jones", "8 Tuna Lane,")
+
+  val velma = new Customer("Velma Dinkley", "316 Circle Drive")
+
+  val daphne = new Customer("Daphne Blake", "101 Easy St")
+
+  val norville = new DiscountedCustomer("Norville Rogers", "1 Lane")
+
+  daphne.add(PricedItem(2.4))
+
+  daphne.add(PricedItem(1.4))
+
+  fred.add(PricedItem(2.75))
+
+  fred.add(PricedItem(2.75))
+
+  norville.add(PricedItem(6.99))
+
+  norville.add(PricedItem(1.50))
+
+  customers.add(fred)
+
+  customers.add(velma)
+
+  customers.add(daphne)
+
+  customers.add(norville)
+
+  println(customers.sort)
+
+  }
+
+  }
+
+  ```
+
+
+  输出结果如下所示：
+
+
+  ```
+
+  Norville Rogers $ 7.641
+
+  Daphne Blake $ 3.8
+
+  Fred Jones $ 2.75
+
+  Velma Dinkley $ 0.0
+
+  ```
+
+
+  ### 将匿名类转换为 Lambda
+
+
+  在 Java 版本的 `sort` 方法中，我们可以使用 lambda 来有效地创建 `Comparable` 的实例。这是 Java 8 中的新语法，在这种情况下，它是内联创建匿名实例的一种替代方案。
+
+
+  ```
+
+  // java
+
+  customers.sort((first, second) -> second.total().compareTo(first.total()));
+
+  ```
+
+
+  为了使 Scala 版本更像 Java 版本，我们需要传入一个 lambda，而不是 `Ordering` 的匿名实例。Scala 支持 lambda，因此我们可以将匿名函数直接传递给其他函数，但
+  `sort` 方法的签名需要的是一个 `Ordering`，而不是一个函数。
+
+
+  幸运的是，我们可以强制 Scala 使用隐式转换将 lambda 转换为 `Ordering` 的实例。¹ 我们需要做的就是创建一个转换方法，该方法接受一个 lambda
+  或函数并返回一个 `Ordering`，并将其标记为 `implicit`。`implicit` 关键字告诉 Scala，如果代码无法编译，则尝试使用此方法进行类型转换。
+
+
+  ```
+
+  // scala
+
+  implicit def functionToOrderingA => Int): Ordering[A] = {
+
+  new Ordering[A] {
+
+  def compare(a: A, b: A) = f.apply(a, b)
+
+  }
+
+  }
+
+  ```
+
+
+  该签名接受一个函数并返回一个 `Ordering[A]`。该函数本身有两个参数并返回一个 `Int`。因此，我们的转换方法期望一个具有两个类型为 `A` 的参数并返回一个
+  `Int` 的函数（`(A, A) => Int`）。
+
+
+  现在，我们可以向 `sorted` 方法提供一个函数字面量，而之前这会导致编译错误。只要该函数符合 `(A, A) => Int` 签名，编译器就会检测到它可以被转换为可编译的类型，并调用我们的
+  `implicit` 方法来执行转换。因此，我们可以像这样修改 `CustomersSortableBySpend` 的 `sort` 方法：
+
+
+  ```
+
+  // scala
+
+  this.toList.sorted((a: Customer, b: Customer) => b.total.compare(a.total))
+
+  ```
+
+
+  ……传入一个 lambda 而不是一个匿名类。这类似于下面的等效 Java 版本，并且意味着我们不再需要 `BasketTotalDescending` 对象。
+
+
+  ```
+
+  // java
+
+  list.sort((first, second) -> first.compareTo(second));
+
+  ```
+
+
+  ### 特质上的具体字段
+
+
+  我们已经了解了特质上的默认方法，但 Scala 还允许你提供默认值。你可以在特质中指定字段。
+
+
+  ```
+
+  // scala
+
+  trait Counter {
+
+  var count = 0
+
+  def increment()
+
+  }
+
+  ```
+
+
+  这里，`count` 是特质上的一个字段。所有扩展了 `Counter` 的类都将拥有它们自己复制的 `count` 实例。它不是继承来的——它是特质指定的一个独特值，并由编译器为你提供。子类型由编译器提供该字段，并在构造时（基于特质中的值）进行初始化。
+
+
+  例如，`count` 神奇地可用于以下类，并且我们能够在 `increment` 方法中递增它。
+
+
+  ```
+
+  // scala
+
+  class IncrementByOne extends Counter {
+
+  override def increment(): Unit = count += 1
+
+  }
+
+  ```
+
+
+  在这个例子中，`increment` 被实现为在每次调用时将值乘以某个其他值。
+
+
+  ```
+
+  // scala
+
+  class ExponentialIncrementer(rate: Int) extends Counter {
+
+  def increment(): Unit = if (count == 0) count = 1 else count *= rate
+
+  }
+
+  ```
+
+
+  顺便提一下，我们可以在 `Counter` 中的 `var` 上使用 `protected`，它的作用机制与 Java 中的 `protected` 类似。它允许子类访问，但与
+  Java 不同的是，它不允许同一包中的其他类型访问。它比 Java 的限制稍严格一些。例如，如果我们更改它并尝试从同一包中的非子类型访问 `count`，是不被允许的。
+
+
+  ```
+
+  // scala
+
+  trait Counter {
+
+  protected var count = 0
+
+  def increment()
+
+  }
+
+  class NotASubtype {
+
+  val counter = new IncrementByOne()            // Counter 的子类型，但
+
+  counter.count                                 // count 现在不可访问
+
+  }
+
+  ```
+
+
+  ### 特质上的抽象字段
+
+
+  你也可以通过省略初始化值来在特质上拥有抽象值。这会强制子类型提供一个值。
+
+
+  ```
+
+  // scala
+
+  trait Counter {
+
+  protected var count: Int                     // 抽象
+
+  def increment()
+
+  }
+
+  class IncrementByOne extends Counter {
+
+  override var count: Int = 0                  // 强制提供一个值
+
+  override def increment(): Unit = count += 1
+
+  }
+
+  class ExponentialIncrementer(rate: Int) extends Counter {
+
+  var count: Int = 1
+
+  def increment(): Unit = if (count == 0) count = 1 else count *= rate
+
+  }
+
+  ```
+
+
+  请注意，`IncrementByOne` 使用了 `override` 关键字，而 `ExponentialIncrementer` 没有。对于字段和抽象方法，`override`
+  都是可选的。
+
+
+  ## 抽象类
+
+
+  在 Java 中，使用 `abstract` 关键字创建普通的抽象类。例如，我们可以编写另一个版本的 `Customer` 类，但这次将其设为抽象类。我们还可以添加一个计算客户购物篮价值的方法，并将其标记为
+  `abstract`。
+
+
+  ```
+
+  // java
+
+  public abstract class AbstractCustomer {
+
+  public abstract Double total();
+
+  }
+
+  ```
+
+
+  在子类中，我们可以像这样实现打折后的购物篮：
+
+
+  ```
+
+  // java
+
+  public class DiscountedCustomer extends AbstractCustomer {
+
+  private final ShoppingBasket basket = new ShoppingBasket();
+
+  @Override
+
+  public Double total() {
+
+  return basket.value() * 0.90;
+
+  }
+
+  }
+
+  ```
+
+
+  在 Scala 中，你仍然使用 `abstract` 关键字来表示一个不能被实例化的类。但是，你不需要用它来限定方法；你只需省略方法的实现即可。
+
+
+  ```
+
+  // scala
+
+  abstract class AbstractCustomer {
+
+  def total: Double         // 没有实现意味着它是抽象的
+
+  }
+
+  ```
+
+
+  然后，我们可以像之前看到的那样创建子类。我们像以前一样使用 `extends`，并简单地为 `total` 方法提供一个实现。任何实现了抽象方法的方法都不需要在方法前加上
+  `override` 关键字，尽管允许这样做。
+
+
+  ```
+
+  // scala
+
+  class HeavilyDiscountedCustomer extends AbstractCustomer {
+
+  private final val basket = new ShoppingBasket
+
+  def total: Double = {
+
+  return basket.value * 0.90
+
+  }
+
+  }
+
+  ```
+
+
+
+
+  ## 多态
+
+
+  在 Java 中你可能使用继承的地方，在 Scala 中则有更多选择。Java 中的继承通常意味着子类型化类，以继承超类的行为和状态。你也可以将实现接口视为一种继承，即继承行为但不继承状态。
+
+
+  在这两种情况下，其好处都围绕着可替换性：即可以用一种类型替换另一种类型来改变系统行为，而无需改变代码结构。这被称为包含多态。
+
+
+  Scala 通过以下方式支持包含多态：
+
+
+  *   没有默认实现的特质。
+
+  *   有默认实现的特质（由于它们用于“混入”行为，通常被称为混入特质）。
+
+  *   抽象类（可以包含字段，也可以不包含）。
+
+  *   传统的类扩展。
+
+  *   结构类型，一种 Ruby 开发者熟悉的鸭子类型，但使用了反射。
+
+
+  ### 特质 vs. 抽象类
+
+
+  特质和抽象类之间有几个区别。最明显的是特质不能有构造器参数。特质还提供了一种解决多重继承问题的方法，而如果你被允许直接扩展多个类，就会遇到这个问题。与 Java
+  类似，Scala 类只能有一个超类，但可以混入任意数量的特质。因此，尽管有这个限制，Scala 确实支持多重继承。某种程度上是这样。
+
+
+  当子类从多个超类继承行为或字段时，多重继承可能会引发问题。在这种情况下，由于方法在多个地方定义，很难判断应该使用哪个实现。当一个类型有多个超类时，“是一个”关系就会失效。
+
+
+  Scala 通过区分类层次结构和特质层次结构来实现一种多重继承。虽然你不能扩展多个类，但可以混入多个特质。Scala 使用一种称为线性化的过程来解决特质中的重复方法。具体来说，Scala
+  将所有特质排成一条线，并沿着这条线从右到左解析对 `super` 的调用。
+
+
+  Scala 支持多重继承吗？
+
+
+  如果“继承”指的是经典的类扩展，那么 Scala 不支持多重继承。Scala 只允许“扩展”一个类。在这方面它与 Java 相同。然而，如果你的意思是行为能否通过其他方式被继承，那么答案是肯定的，Scala
+  确实支持多重继承。
+
+
+  一个 Scala 类可以从任意数量的特质中混入行为，就像 Java 8 可以从多个带有默认方法的接口中混入行为一样。区别在于它们解决冲突的方式。Scala 使用线性化在运行时可预测地解析方法调用，而
+  Java 8 则依赖于编译失败。
+
+
+  线性化意味着特质在类定义中定义的顺序很重要（见图 11-1）。例如，我们可以有以下代码：
+
+
+  ![A456960_1_En_11_Fig1_HTML.jpg](img/A456960_1_En_11_Fig1_HTML.jpg)
+
+
+  图 11-1
+
+
+  基本的 Animal 类层次结构
+
+
+  ```
+
+  class Animal
+
+  trait HasWings extends Animal
+
+  trait Bird extends HasWings
+
+  trait HasFourLegs extends Animal
+
+  ```
+
+
+  如果我们添加一个具体类，它扩展了 `Animal`，同时也扩展了 `Bird` 和 `HasFourLegs`，我们就得到了一个拥有层次结构中所有行为的生物（`FlyingHorse`）（见图
+  11-2）。
+
+
+  ![A456960_1_En_11_Fig2_HTML.jpg](img/A456960_1_En_11_Fig2_HTML.jpg)
+
+
+  图 11-2
+
+
+  具体类 `FlyingHorse` 扩展了所有内容
+
+
+  ```
+
+  class Animal
+
+  trait HasWings extends Animal
+
+  trait Bird extends HasWings
+
+  trait HasFourLegs extends Animal
+
+  class FlyingHorse extends Animal with Bird with HasFourLegs
+
+  ```
+
+
+  问题出现在当任何一个类可以实现一个方法，并可能在其超类上调用该方法时。假设有一个名为 `move` 的方法。对于有腿的动物，`move` 可能意味着向前移动，而有翅膀的动物可能除了向前移动外还能向上移动，如图
+  11-3 所示。如果你在我们的 `FlyingHorse` 上调用 `move`，你期望调用哪个实现？如果它又调用了 `super.move` 呢？
+
+
+  ![A456960_1_En_11_Fig3_HTML.jpg](img/A456960_1_En_11_Fig3_HTML.jpg)
+
+
+  图 11-3
+
+
+  对 `move` 的调用应如何解析？
+
+
+  Scala 使用线性化技术解决了这个问题。将层次结构从右到左扁平化会得到 `FlyingHorse`、`HasForLegs`、`Bird`、`HasWings`，最后是
+  `Animal`（见图 11-4）。因此，如果任何类调用了超类的方法，它将按此顺序解析。
+
+
+  ![A456960_1_En_11_Fig4_HTML.jpg](img/A456960_1_En_11_Fig4_HTML.jpg)
+
+
+  图 11-4
+
+
+  类 `FlyingHorse` 扩展了 `Animal with Bird with HasFourLegs`
+
+
+  如果我们改变特质的顺序，将 `HasFourLegs` 与 `Bird` 交换，如图 11-5 所示，线性化会改变，我们得到不同的求值顺序。
+
+
+  ![A456960_1_En_11_Fig5_HTML.jpg](img/A456960_1_En_11_Fig5_HTML.jpg)
+
+
+  图 11-5
+
+
+  类 `FlyingHorse` 扩展了 `Animal with HasFourLegs with Bird`
+
+
+  图 11-6 展示了这些示例并排比较的样子。
+
+
+  ![A456960_1_En_11_Fig6_HTML.jpg](img/A456960_1_En_11_Fig6_HTML.jpg)
+
+
+  图 11-6
+
+
+  两个层次结构的线性化
+
+
+  在 Java 8 中，使用默认方法时没有线性化过程：任何潜在的冲突都会导致编译器报错，程序员必须围绕它进行重构。
+
+
+  除了允许多重继承之外，特质还可以堆叠或分层放置，以提供调用链，类似于面向切面编程或使用装饰器。如果你想了解更多，Cay S. Horstmann 的《Scala
+  for the Impatient》² 中有一个关于分层特质的好章节。
+
+
+  ## 在选项之间做决定
+
+
+  以下是一些提示，可帮助你选择何时使用不同的继承选项。
+
+
+  当你在 Java 中会使用接口时，使用无状态的特质；即，当你定义一个类应扮演的角色，并且可以替换不同的实现时。例如，当你想在测试时使用测试替身，而在生产环境中使用“真实”实现时。这里的“角色”意味着没有可重用的具体行为，只有可替换性的概念。
+
+
+  当你的类有行为，并且该行为可能被相同类型的事物重写时，使用常规类并进行扩展。这两者都是包含多态的类型。
+
+
+  当你更关心重用而不是面向对象的“是一个”关系时，使用抽象类。例如，数据结构可能是重用抽象类的好地方，但我们之前的 `Customer` 层次结构可能更适合实现为非抽象类。
+
+
+  如果你正在创建可能被不相关的类重用的可重用行为，请将其设为混入特质，因为与抽象类相比，它们对哪些类可以使用它们的限制更少。
+
+
+  Odersky 在《Programming in Scala》³ 中也谈到了其他一些因素，比如性能和 Java 互操作性。
+
+
+  脚注 1
+
+
+  自 Scala 2.12 起，匿名类可以自动转换为 Java SAM。
+
+
+    2
+
+
+  [`http://amzn.to/1yskLc7`](http://amzn.to/1yskLc7)
+
+
+    3
+
+
+  [`http://www.artima.com/pins1ed/traits.html#12.7`](http://www.artima.com/pins1ed/traits.html#12.7)
+
+
+  '
+- '# 12. 控制结构
+
+
+  本章全部关于控制结构，例如 `if` 语句、switch 块、循环和 break。具体来说，我们将研究以下内容：
+
+
+  *   条件语句，如 `if` 语句、三元表达式和 switch。
+
+  *   循环结构：`do`、`while` 和 `for`。
+
+  *   中断控制流。
+
+  *   异常，简要介绍。
+
+
+  ## 条件语句
+
+
+
+
+  ### If 语句与三元运算符
+
+
+  条件语句非常直观。
+
+
+  ```
+
+  // java
+
+  if (age > 55) {
+
+  retire();
+
+  } else {
+
+  carryOnWorking();
+
+  }
+
+  ```
+
+
+  Java 中的 `if` 语句在 Scala 中看起来完全一样。
+
+
+  ```
+
+  // scala
+
+  if (age > 55) {
+
+  retire()
+
+  } else {
+
+  carryOnWorking()
+
+  }
+
+  ```
+
+
+  你经常会看到 Scala 开发者对于简单的 `if` 块省略花括号。例如：
+
+
+  ```
+
+  if (age > 55)
+
+  retire()
+
+  else
+
+  carryOnWorking()
+
+  ```
+
+
+  ……甚至将其全部写在一行上。
+
+
+  ```
+
+  if (age > 55) retire() else carryOnWorking()
+
+  ```
+
+
+  这种风格之所以受欢迎，是因为在 Scala 中，if/else 实际上是一个**表达式**，而不是一个**语句**，而更简洁的语法使其看起来更像一个表达式。区别是什么？嗯，表达式会返回一个值，而语句则执行一个动作。
+
+
+  表达式 vs. 语句
+
+
+  表达式会返回一个值，而语句则执行一个动作。语句本质上通常具有副作用，而表达式则不太可能如此。
+
+
+  例如，让我们为 `Customer` 类添加一个创建方法，该方法将根据客户成为客户的时间长短来创建一个 `DiscountedCustomer` 或一个普通的
+  `Customer`。
+
+
+  ```
+
+  // java
+
+  public static Customer create(String name, String address,
+
+  Integer yearsOfCustom) {
+
+  if (yearsOfCustom > 2) {
+
+  return new DiscountedCustomer(name, address);
+
+  } else {
+
+  return new Customer(name, address);
+
+  }
+
+  }
+
+  ```
+
+
+  在 Java 中，我们被迫从方法中返回新的 `Customer`。这些条件是语句，是执行的东西，而不是返回值的表达式。我们可以用冗长的方式创建一个变量，设置它然后返回它，但要点是一样的；这里的语句必须引起副作用。
+
+
+  ```
+
+  public static Customer create(String name, String address,
+
+  Integer yearsOfCustom) {
+
+  Customer customer = null;
+
+  if (yearsOfCustom > 2) {
+
+  customer = new DiscountedCustomer(name, address);
+
+  } else {
+
+  customer = new Customer(name, address);
+
+  }
+
+  return customer;
+
+  }
+
+  ```
+
+
+  因为在 Scala 中条件语句是表达式，你不需要经历这些麻烦。在等价的 Scala 代码中，我们可以直接创建 `if`，两个分支都会返回一个客户。由于整个表达式是方法中的最后一条语句，它将成为方法的返回值。
+
+
+  ```
+
+  // scala
+
+  object Customer {
+
+  def create(name: String, address: String, yearsOfCustom: Int) = {
+
+  if (yearsOfCustom > 2)
+
+  new DiscountedCustomer(name, address)
+
+  else
+
+  new Customer(name, address)
+
+  }
+
+  }
+
+  ```
+
+
+  用冗长的方式，我们可以将 `if`（记住它是一个表达式而不是语句）的结果赋值给一个 `val`，然后在最后一行返回该值。
+
+
+  ```
+
+  object Customer {
+
+  def create(name: String, address: String, yearsOfCustom: Int) = {
+
+  val customer = if (yearsOfCustom > 2)
+
+  new DiscountedCustomer(name, address)
+
+  else
+
+  new Customer(name, address)
+
+  customer
+
+  }
+
+  }
+
+  ```
+
+
+  另一个简单的例子可能是这样的：
+
+
+  ```
+
+  val tall = if (height > 190) "tall" else "not tall"     // scala
+
+  ```
+
+
+  你可能已经注意到，这类似于 Java 中的三元表达式。
+
+
+  ```
+
+  String tall = height > 190 ? "tall" : "not tall";       // java
+
+  ```
+
+
+  所以，三元运算符在 Java 中是表达式，但 `if` 语句不是。Scala 没有条件运算符（`?:`），因为常规的 Scala `if` 就是一个表达式；它等同于
+  Java 的条件运算符。事实上，为 `if` 生成的字节码使用了三元运算符。
+
+
+  你不必像使用三元运算符那样在 Scala 中使用 `if` 并将其赋值给任何东西，但认识到它是一个表达式并且具有值是很重要的。事实上，Scala 中的一切都是表达式。即使是一个简单的代码块（用花括号表示）也会返回一些东西。
+
+
+  ### Switch 语句
+
+
+  Scala 中没有像 switch 这样的语句。Scala 使用**模式匹配表达式**来代替。它们看起来像是在进行 switch，但不同之处在于整个结构是一个表达式而不是一个语句。因此，正如我们在
+  `if` 中看到的，Scala 的类 switch 结构具有一个值。它还使用了称为**模式匹配**的东西，这要强大得多，因为它允许你选择不仅仅是相等性。
+
+
+  在 Java 中，你可能会编写一个 switch 来确定特定月份属于哪个季度。因此，一月、二月和三月在第一季度，四月、五月和六月在第二季度，依此类推。
+
+
+  ```
+
+  // java
+
+  public class Switch {
+
+  public static void main(String... args) {
+
+  String month = "August";
+
+  String quarter;
+
+  switch (month) {
+
+  case "January":
+
+  case "February":
+
+  case "March":
+
+  quarter = "1st quarter";
+
+  break;
+
+  case "April":
+
+  case "May":
+
+  case "June":
+
+  quarter = "2nd quarter";
+
+  break;
+
+  case "July":
+
+  case "August":
+
+  case "September":
+
+  quarter = "3rd quarter";
+
+  break;
+
+  case "October":
+
+  case "November":
+
+  case "December":
+
+  quarter = "4th quarter";
+
+  break;
+
+  default:
+
+  quarter = "unknown quarter";
+
+  break;
+
+  }
+
+  System.out.println(quarter);
+
+  }
+
+  }
+
+  ```
+
+
+  需要 `break` 来阻止语句执行穿透。当 Java 选择一个 case 时，它必须有一个副作用才能有用。在这种情况下，它将一个值赋给一个变量。
+
+
+  在 Scala 中，我们会从类似这样的代码开始：
+
+
+  ```
+
+  // scala
+
+  object BrokenSwitch extends App {
+
+  val month = "August"
+
+  var quarter = "???"
+
+  month match {
+
+  case "January"   =>
+
+  case "February"  =>
+
+  case "March"     => quarter = "1st quarter"
+
+  case "April"     =>
+
+  case "May"       =>
+
+  case "June"      => quarter = "2nd quarter"
+
+  case "July"      =>
+
+  case "August"    =>
+
+  case "September" => quarter = "3rd quarter"
+
+  case "October"   =>
+
+  case "November"  =>
+
+  case "December"  => quarter = "4th quarter"
+
+  case _           => quarter = "unknown quarter"
+
+  }
+
+  println(month + " is " + quarter)
+
+  }
+
+  ```
+
+
+  以上是直接的语法翻译。然而，Scala 不支持 `break` 关键字，所以我们必须省略它。我们使用 `match` 而不是 `switch`，并且我们在说“`month`
+  是否匹配这些 case 子句中的任何一个？”
+
+
+  我们使用 `=>` 而不是冒号，底部的下划线是通配符，与 Java 中的 `default` 相同。下划线在 Scala 中经常用来表示一个未知值。
+
+
+  所以，尽管这是一个直接的翻译，但当我们运行它时，出了问题。结果没有被设置。
+
+
+  输出显示：
+
+
+  ```
+
+  August is ???
+
+  ```
+
+
+  与 Java 不同，如果一个 case 匹配，break 是隐式的——不会穿透到下一个 case。因此，我们必须向空的代码块中添加一些代码。
+
+
+  ```
+
+  // scala
+
+  object Switch extends App {
+
+  val month = "August"
+
+  var quarter = "???"
+
+  month match {
+
+  case "January"   => quarter = "1st quarter"
+
+  case "February"  => quarter = "1st quarter"
+
+  case "March"     => quarter = "1st quarter"
+
+  case "April"     => quarter = "2nd quarter"
+
+  case "May"       => quarter = "2nd quarter"
+
+  case "June"      => quarter = "2nd quarter"
+
+  case "July"      => quarter = "3nd quarter"
+
+  case "August"    => quarter = "3rd quarter"
+
+  case "September" => quarter = "3rd quarter"
+
+  case "October"   => quarter = "4th quarter"
+
+  case "November"  => quarter = "4th quarter"
+
+  case "December"  => quarter = "4th quarter"
+
+  case _           => quarter = "unknown quarter"
+
+  }
+
+  println(month + " is " + quarter)
+
+  }
+
+  ```
+
+
+  这次它起作用了，但我们重复了不少代码。
+
+
+  为了消除一些重复，我们可以将一月、二月和三月合并到一行，用 `or` 分隔它们。这意味着月份可以匹配一月、二月或三月。在所有这三种情况下，`=>` 后面的内容都将被执行。
+
+
+  ```
+
+  case "January" | "February" | "March" => quarter = "1st quarter"
+
+  ```
+
+
+  对其余的 case 也这样做，我们会得到以下结果：
+
+
+
+
+  ```
+
+  // scala
+
+  object SwitchWithLessDuplication extends App {
+
+  val month = "August"
+
+  var quarter = "???"
+
+  month match {
+
+  case "January" | "February" | "March"    => quarter = "1st quarter"
+
+  case "April" | "May" | "June"            => quarter = "2nd quarter"
+
+  case "July" | "August" | "September"     => quarter = "3rd quarter"
+
+  case "October" | "November" | "December" => quarter = "4th quarter"
+
+  case _ => quarter = "unknown quarter"
+
+  }
+
+  println(month + " is " + quarter)
+
+  }
+
+  ```
+
+
+  我们通过在 case 子句内部直接编写表达式，精简了上述代码。当我们将这些 case 子句视为模式，并利用它们为 match 构建越来越富有表现力的条件时，这种写法会变得更加强大。
+
+
+  Java 只能对基本类型、枚举以及（从 Java 7 开始）字符串值进行 switch 操作。得益于模式匹配，Scala 几乎可以对任何内容进行匹配，包括对象。我们将在第三部分进一步探讨模式匹配。
+
+
+  另一点需要注意的是，Scala 版本的 switch 是一个表达式。我们不必处理副作用，可以去掉临时变量，直接返回一个 `String` 来表示月份所属的季度。然后，我们可以将
+  `quarter` 变量从 `var` 改为 `val`。
+
+
+  ```
+
+  // scala
+
+  object SwitchExpression extends App {
+
+  val month = "August"
+
+  val quarter = month match {
+
+  case "January" | "February" | "March"    => "1st quarter"
+
+  case "April" | "May" | "June"            => "2nd quarter"
+
+  case "July" | "August" | "September"     => "3rd quarter"
+
+  case "October" | "November" | "December" => "4th quarter"
+
+  case _ => "unknown quarter"
+
+  }
+
+  println(month + " is " + quarter)
+
+  }
+
+  ```
+
+
+  我们甚至可以内联实现。只需在 match 表达式周围加上一些括号，如下所示：
+
+
+  ```
+
+  // scala
+
+  object SwitchExpression extends App {
+
+  val month = "August"
+
+  println(month + " is " + (month match {
+
+  case "January" | "February" | "March"    => "1st quarter"
+
+  case "April" | "May" | "June"            => "2nd quarter"
+
+  case "July" | "August" | "September"     => "3rd quarter"
+
+  case "October" | "November" | "December" => "4th quarter"
+
+  case _
+
+  }))
+
+  }
+
+  ```
+
+
+  ## 循环结构：`do`、`while` 和 `for`
+
+
+  Scala 和 Java 在 `do` 和 `while` 循环的语法上相同。例如，以下代码使用 `do` 和 `while` 打印数字 0 到 9：
+
+
+  ```
+
+  // java
+
+  int i = 0;
+
+  do {
+
+  System.out.println(i);
+
+  i++;
+
+  } while (i < 10);
+
+  ```
+
+
+  Scala 版本如下所示（没有 `++` 递增运算符，因此我们使用 `+=` 代替）：
+
+
+  ```
+
+  // scala
+
+  var i: Int = 0
+
+  do {
+
+  println(i)
+
+  i += 1
+
+  } while (i < 10)
+
+  ```
+
+
+  `while` 循环也是如此。
+
+
+  ```
+
+  // java
+
+  int i = 0;
+
+  while (i < 10) {
+
+  System.out.println(i);
+
+  i++;
+
+  }
+
+  // scala
+
+  var i: Int = 0
+
+  while (i < 10) {
+
+  println(i)
+
+  i += 1
+
+  }
+
+  ```
+
+
+  当我们查看 `for` 循环时，情况变得更有趣。Scala 没有像 Java 那样的 `for` 循环；它拥有所谓的“基于生成器的 for 循环”以及相关的“for
+  推导式”。实际上，它们可以像 Java 的 `for` 循环结构一样使用，因此在大多数情况下，您不必担心技术上的差异。
+
+
+  Java 的 `for` 循环分三个阶段控制迭代，如图 12-1 所示：初始化、检查和更新。
+
+
+  ![A456960_1_En_12_Fig1_HTML.jpg](img/A456960_1_En_12_Fig1_HTML.jpg)
+
+
+  图 12-1
+
+
+  典型的 for 循环迭代阶段
+
+
+  Scala 中没有直接对应的结构。您已经看到了一种替代方案——使用 `while` 循环来初始化变量、检查条件，然后更新变量——但您也可以在 Scala 中使用基于生成器的
+  `for` 循环。因此，Java 中的以下 `for` 循环：
+
+
+  ```
+
+  // java
+
+  for (int i = 0; i < 10; i++) {
+
+  System.out.println(i);
+
+  }
+
+  ```
+
+
+  ……在 Scala 中使用基于生成器的 `for` 循环将如下所示：
+
+
+  ```
+
+  // scala
+
+  for (i <- 0 to 9) {
+
+  println(i)
+
+  }
+
+  ```
+
+
+  `i` 变量已被创建，并在每次迭代时被赋予一个值。箭头表示其后是一个生成器。生成器是可以向循环提供值的东西。这很像 Java 的增强型 `for` 循环，其中任何
+  `Iterable` 的对象都可以使用。同样，在 Scala 中，任何可以生成迭代的东西都可以用作生成器。
+
+
+  在这个例子中，`0 to 9` 就是生成器。`0` 是一个 `Int` 字面量，`Int` 类有一个名为 `to` 的方法，它接受一个 `Int` 并返回一个可枚举的数字范围。该示例使用了中缀简写，但我们也可以像这样完整地写出来：
+
+
+  ```
+
+  for (i <- 0.to(9)) {
+
+  println(i)
+
+  }
+
+  ```
+
+
+  这与 Java 中使用数字列表的以下增强型 `for` 循环非常相似：
+
+
+  ```
+
+  // java
+
+  List numbers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+  for (Integer i : numbers) {
+
+  System.out.println(i);
+
+  }
+
+  ```
+
+
+  ……它本身可以在 Java 中重写为以下形式：
+
+
+  ```
+
+  numbers.forEach(i -> System.out.println(i));             // java
+
+  ```
+
+
+  ……或使用方法引用。
+
+
+  ```
+
+  numbers.forEach(System.out::println);                    // java
+
+  ```
+
+
+  毫不奇怪，Scala 有自己的 `foreach` 方法。
+
+
+  ```
+
+  (0 to 9).foreach(i => println(i))                        // scala
+
+  ```
+
+
+  我们再次使用 `to` 方法来创建一个数字序列。这个序列拥有 `foreach` 方法，我们调用它并传入一个 lambda。这个 lambda 函数接受一个 `Int`
+  并返回 `Unit`。
+
+
+  我们甚至可以使用 Scala 的简写，就像我们使用 Java 的方法引用一样，如下所示：
+
+
+  ```
+
+  (0 to 10).foreach(println(_))                            // scala
+
+  ```
+
+
+  For 循环与 For 推导式
+
+
+  基于生成器的 for 循环和 for 推导式有什么区别？
+
+
+  基于生成器的 for 循环会被编译器转换为对集合的 `foreach` 调用。而 for 推导式会被转换为对集合的 `map` 调用。for 推导式在语法中增加了关键字
+  `yield`。
+
+
+  ```
+
+  for (i <- 0 to 5) yield i * 2       // 结果为 (0, 2, 4, 6, 8, 10)
+
+  ```
+
+
+  更多细节请参见第 19 章“For 推导式”。
+
+
+  ## 中断控制流（`break` 和 `continue`）
+
+
+  Scala 没有 `break` 或 `continue` 语句，并且通常不鼓励您跳出循环。但是，您可以使用库方法来实现相同的效果。在 Java 中，您可能会编写如下代码来提前跳出循环：
+
+
+  ```
+
+  // java
+
+  for (int i = 0; i < 100; i++) {
+
+  System.out.println(i);
+
+  if (i == 10)
+
+  break;
+
+  }
+
+  ```
+
+
+  在 Scala 中，您需要导入一个名为 `Breaks` 的 Scala 库类。然后，您可以将要跳出的代码包含在一个“breakable”块中，并调用 `break`
+  方法来跳出。这是通过抛出异常并捕获它来实现的。
+
+
+  ```
+
+  // scala
+
+  import scala.util.control.Breaks._
+
+  breakable {                             // breakable 块
+
+  for (i <- 0 to 100) {
+
+  println(i)
+
+  if (i == 10)
+
+  break()                           // 跳出循环
+
+  }
+
+  }
+
+  ```
+
+
+
+
+  ## 异常
+
+
+  Scala 中的异常处理方式与 Java 相同。它们在中断控制流和未处理时中止程序方面具有完全相同的机制。
+
+
+  Scala 中的异常与 Java 中的异常一样，都继承自 `java.lang.Throwable`，但 Scala 没有受检异常的概念。从现有 Java 库中抛出的所有受检异常都会被转换为
+  `RuntimeExceptions`。你抛出的任何异常都不需要处理就能让编译器满意；Scala 中的所有异常都是运行时异常（见图 12-2）。
+
+
+  ![A456960_1_En_12_Fig2_HTML.jpg](img/A456960_1_En_12_Fig2_HTML.jpg)
+
+
+  图 12-2
+
+
+  Java 异常层次结构。Scala 不使用受检异常。
+
+
+  捕获异常使用模式匹配，就像我们之前看到的 match 表达式一样。在 Java 中，你可能会这样做来获取网页内容：
+
+
+  ```
+
+  // java
+
+  try {
+
+  URL url = new URL("http://baddotrobot.com");
+
+  BufferedReader reader = new BufferedReader(
+
+  new InputStreamReader(url.openStream()));
+
+  try {
+
+  String line;
+
+  while ((line = reader.readLine()) != null)
+
+  System.out.println(line);
+
+  } finally {
+
+  reader.close();
+
+  }
+
+  } catch (MalformedURLException e) {
+
+  System.out.println("Bad URL");
+
+  } catch (IOException e) {
+
+  System.out.println("Problem reading data: " + e.getMessage());
+
+  }
+
+  ```
+
+
+  我们从一个要尝试下载的 URL 开始。这可能会抛出 `MalformedURLException`。由于它是一个受检异常，我们被迫处理它。然后我们创建一个 `Reader`
+  并从 URL 打开一个流准备读取。这可能会抛出另一个异常，所以我们也被迫处理它。
+
+
+  当我们开始读取时，`readLine` 方法也可能抛出异常，但这由现有的 catch 处理。为了确保在发生异常时正确清理资源，我们在 `finally` 块中关闭
+  reader。
+
+
+  如果我们想使用 Java 7 的 try-with-resources 结构，就可以避免使用 `finally` 子句。try-with-resources 语法会自动调用
+  reader 的 `close` 方法。
+
+
+  ```
+
+  // java
+
+  try {
+
+  URL url = new URL("http://baddotrobot.com");
+
+  try (BufferedReader reader = new BufferedReader(
+
+  new InputStreamReader(url.openStream()))) {
+
+  String line;
+
+  while ((line = reader.readLine()) != null)
+
+  System.out.println(line);
+
+  }
+
+  } catch (MalformedURLException e) {
+
+  System.out.println("Bad URL");
+
+  } catch (IOException e) {
+
+  System.out.println("Problem reading data: " + e.getMessage());
+
+  }
+
+  ```
+
+
+  在 Scala 中，情况看起来几乎一样。
+
+
+  ```
+
+  // scala
+
+  try {
+
+  val url = new URL("http://baddotrobot.com")
+
+  val reader = new BufferedReader(new InputStreamReader(url.openStream))
+
+  try {
+
+  var line = reader.readLine
+
+  while (line != null) {
+
+  line = reader.readLine
+
+  println(line)
+
+  }
+
+  } finally {
+
+  reader.close()
+
+  }
+
+  } catch {
+
+  case e: MalformedURLException => println("Bad URL")
+
+  case e: IOException => println(e.getMessage)
+
+  }
+
+  ```
+
+
+  我们像之前一样创建 URL。虽然它可能抛出异常，但我们并不强制捕获它。这是一个 Java 受检异常，但 Scala 将其转换为运行时异常。
+
+
+  虽然我们不是必须捕获，但我们确实想要处理这些异常。因此，我们使用熟悉的 `try` 和 `catch` 语句。在 catch 中，使用 match 表达式处理异常。如果我们实际上不需要代码块中的异常，可以通过将变量名替换为下划线来调整模式。这意味着我们只关心类，而不关心变量。
+
+
+  ```
+
+  case _: MalformedURLException => println("Bad URL")
+
+  ```
+
+
+  我们只需要把 `finally` 块加回来。`finally` 与 Java 中的完全一样。Scala 中没有与 try-with-resources 等价的结构，尽管你可以编写自己的方法来实现相同的效果。（提示：使用类似
+  Loan 模式的东西。）
+
+
+  '
+- "# 13. 泛型\n\n在本章中，我们将学习 Scala 中的泛型，也称为类型参数化或泛型编程。我们将学习以下内容：\n\n*   泛型的语法：定义类型和方法。\n\
+  *   有界类型，`extends` 和 `super`。\n*   Java 和 Scala 中的通配符。\n*   协变和逆变。\n\n## 参数化多态\n\
+  \n我们简要讨论过子类型多态或包含多态；其思想是子类型可以替代其超类型。这些替代品可以在不改变代码结构的情况下提供不同的行为。多态的类型包括：\n\n*   包含多态（见第\
+  \ 11 章，继承）。\n*   特设多态（基本上就是方法重载）。\n*   参数化多态。\n\n参数化多态允许我们编写不依赖于特定类型的通用代码，同时仍然保持类型安全。当我们使用适用于多种类型的类时，我们一直在使用它。例如：\n\
+  \n```\nList customers = new ArrayList();       // java\n```\n\n如果你曾经在 Java 中创建过某种对象的列表，那么你对参数化多态应该很熟悉。它通常被称为泛型；通过为泛型类型（如\
+  \ `List`）提供一个参数化类型，我们可以将其视为一个列表，同时以类型安全的方式引用其内容。即使在 Java 中不指定参数化类型，泛型也在起作用。因此，尽管你可以编写以下代码：\n\
+  \n```\nList collection = new ArrayList();                  // java\n```\n\n……实际上你创建的是一个类型为\
+  \ `Object` 的泛型 `List`。\n\n```\nList collection = new ArrayList();        // java\n\
+  ```\n\n菱形运算符\n\n你可以在 Java 中像这样创建一个 `Object` 列表：\n\n```\nList collection = new ArrayList();\n\
+  ```\n\n赋值右侧的菱形运算符（<>）是 Java 7 中的新特性，在 Java 7 之前，你必须在右侧重复泛型类型声明。\n\n### 类泛型\n\n当你创建一个特定类型的列表时，Java\
+  \ 会在接受参数和返回该类型对象的 `List` 方法上提供类型安全。例如，创建一个客户列表，然后尝试添加一个不是客户的对象会导致编译失败。\n\n```\n\
+  List customers = new ArrayList();\ncustomers.add(new HockeyPuck());            \
+  \    // 编译失败\n```\n\nScala 的基本语法对 Java 开发者来说会很熟悉；我们只需将尖括号替换为方括号。\n\n```\nList customers\
+  \ = new ArrayList();   // java\n```\n\n对比\n\n```\nval customers: List[Customer]\
+  \ = List()          // scala\n```\n\n像这样在 Scala 中创建列表也表明它具有与菱形运算符等价的功能。Scala 的类型推断可以推断出\
+  \ `customers` 的类型是 `Customer`，而无需在右侧重复泛型。\n\n```\nval customers: List[Customer]\
+  \ = List[Customer]()\n^\n// 无需重复类型\n```\n\n### 方法泛型\n\n你可以以类似的方式为方法定义泛型参数。要为方法定义一个泛型参数而不为整个类定义泛型类型，在\
+  \ Java 中你可以这样做，其中泛型类型紧跟在 `public` 关键字之后定义，并用作参数 `a` 的类型。\n\n```\npublic  void add(A\
+  \ a)                 // java\n```\n\n……而在 Scala 中则是这样：\n\n```\ndef addA        \
+  \                 // scala\n```\n\n\n\n### 栈示例\n\n作为一个稍加扩展的示例，在 Java 中，我们可以泛化一个\
+  \ `Stack` 类。我们可以创建一个带有泛型类型 `T` 的接口 `Stack`，并确保 `push` 方法接受一个 `T` 类型参数，而 `pop` 方法返回一个\
+  \ `T` 类型值。\n\n```\n// java\npublic interface Stack {\nvoid push(T t);\nT pop();\n\
+  }\n```\n\n在 Scala 中\n\n```\n// scala\ntrait Stack[T] {\ndef push(t: T)\ndef pop:\
+  \ T\n}\n```\n\n为了演示，我们可以像这样在 Java 中使用列表实现 `Stack`：\n\n```\n// java\npublic class\
+  \ ListStack implements Stack {\nprivate final List elements = new ArrayList();\n\
+  @Override\npublic void push(T t) {\nelements.add(0, t);\n}\n@Override\npublic T\
+  \ pop() {\nif (elements.isEmpty())\nthrow new IndexOutOfBoundsException();\nreturn\
+  \ elements.remove(0);\n}\n}\n```\n\n当我们向编译器提供一个具体类型时，我们就将具体类型“绑定”到了泛型类型上。将 `String`\
+  \ 添加到以下声明（第 3 行）中，就将原本的泛型类型 `T` “绑定”到了 `String`。编译器知道将 `T` 替换为 `String`，我们就可以开始使用字符串作为参数和返回类型。如果我们在示例中尝试向栈中添加一个数字，就会收到编译器错误。\n\
+  \n```\n1   // java\n2   public static void main(String... args) {\n3       Stack\
+  \ stack = new ListStack();\n4       stack.push(\"C\");\n5       stack.push(\"B\"\
+  );\n6       stack.push(\"A\");\n7       stack.push(12);                        \
+  \ // 编译失败\n8       String element = stack.pop();\n9   }\n```\n\n在 Scala 中创建 `ListStack`\
+  \ 很简单。它看起来像这样：\n\n```\n// scala\nclass ListStack[T] extends Stack[T] {\nprivate\
+  \ var elements: List[T] = List()\noverride def push(t: T): Unit = {\nelements =\
+  \ t +: elements\n}\noverride def pop: T = {\nif (elements.isEmpty) throw new IndexOutOfBoundsException\n\
+  val head = elements.head\nelements = elements.tail\nhead\n}\n}\n```\n\n我们仍然使用 `List`\
+  \ 来存储元素，但由于 Scala 的 `List` 是不可变的，在 `push` 方法中，我们用一个新的列表实例替换原有实例，该新列表在开头添加了元素。\n\n\
+  类似地，当我们执行 `pop` 操作时，必须使用 `tail` 方法将元素替换为除第一个元素之外的所有元素。我们使用 `head` 方法获取并返回第一个元素。在\
+  \ Scala 和函数式编程中，你会经常遇到 head（第一个元素）和 tail（剩余部分）的概念。\n\n绑定到具体类型的方式完全相同。在下面的示例中，我没有为\
+  \ `stack` 变量声明类型，因此我们需要通过在第 3 行添加参数化类型来给编译器一个关于它将是哪种 `List` 的提示。\n\n```\n1   //\
+  \ scala\n2   def main(args: String*) {\n3       val stack = new ListStack[String]\n\
+  4       stack.push(\"C\")\n5       stack.push(\"B\")\n6       stack.push(\"A\")\n\
+  7       val element: String = stack.pop\n8   }\n```\n\n为了演示方法级别的泛型，我们可以添加一个将 `Stack`\
+  \ 转换为数组的方法。这里需要注意的是，泛型完全是针对该方法定义的。`A` 与类定义上的泛型类型无关。\n\n```\n// java\npublic interface\
+  \ Stack {\nstatic  A[] toArray(Stack stack) {\nthrow new UnsupportedOperationException();\n\
+  }\n}\n```\n\n在 Scala 中，你以完全相同的方式定义方法级别的泛型。下面，`A` 纯粹是在该方法的作用域内定义的。\n\n```\n// scala\n\
+  object Stack {\ndef toArrayA: Array[A] = {\n???\n}\n}\n```\n\n## 有界类型\n\n让我们回到泛型类型为\
+  \ `Customer` 的列表示例。\n\n```\nList customers = new ArrayList();         // java\n\
+  ```\n\n列表的内容可以是任何 `Customer` 或 `Customer` 的子类型，因此我们可以向列表中添加一个 `DiscountedCustomer`。\n\
+  \n```\nList customers = new ArrayList();\ncustomers.add(new Customer(\"Bob Crispin\"\
+  , \"15 Fleetwood Mack Road\"));\ncustomers.add(new DiscountedCustomer(\"Derick Jonar\"\
+  , \"23 Woodland Way\"));\n```\n\n类型擦除会将集合视为仅包含 `Object`。编译器将确保只有正确类型的对象才能进入集合，并在取出时使用强制类型转换。这意味着，从我们的示例中取出的任何内容都只能被视为\
+  \ `Customer`。\n\n如果你所做的只是在 `DiscountedCustomer` 中重写了 `Customer` 的行为，那么你可以多态地处理这些对象，并且不会看到问题。但是，如果你向\
+  \ `DiscountedCustomer` 添加了方法，那么在没有未经检查的强制类型转换的情况下，你就无法调用它们。\n\n```\nfor (Customer\
+  \ customer : customers) { // 有些可能是 DiscountedCustomer\n// 对于任何 DiscountedCustomer，total\
+  \ 将是折扣后的总额\nSystem.out.println(customer.getName() + \" : \" + customer.total());\n\
+  }\nDiscountedCustomer customer = (DiscountedCustomer) customers.get(0);\nSystem.out.println(customer.getDiscountAmount());\n\
+  ```\n\n为了克服这个限制，你可以强制泛型类型绑定到类层次结构中的特定类型。这些被称为有界类型。\n\n### 上界 (<U extends T>)\n\n\
+  在 Java 中，你可以使用 `extends` 或 `super` 来限制泛型类型。这些将类型的边界设置为子类型或超类型。你使用 `extends` 来设置上界，使用\
+  \ `super` 来设置下界。它们可以引用类或接口。\n\n实际上，我们在第 11 章“继承”中编写的 `Sortable` 接口中已经看到了一个设置上界的示例。我们创建了一个接口，泛型地描述了事物可以是可排序的。\n\
+  \n```\n// java\npublic interface Sortable> extends Iterable {\ndefault public List\
+  \ sort() {\nList list = new ArrayList();\nfor (A elements: this)\nlist.add(elements);\n\
+  list.sort((first, second) -> first.compareTo(second));\nreturn list;\n}\n// 等等\n\
+  }\n```\n\n这在泛型方面做了几件事。它既定义了一个泛型类型 `A`，该类型必须是 `Comparable` 的子类，又说明了实现类必须能够迭代 `A`。`Comparable`\
+  \ 是 `A` 的上界。\n\n这是一个很好的例子，说明了为什么有界类型很有用；因为我们想要定义一个通用算法，同时又足够约束类型，以便我们可以在该算法中调用已知的方法。在这个例子中，除非该类具有来自\
+  \ `Comparable` 的 `compareTo` 方法并且也是可迭代的，否则我们无法实现 `sort` 方法。\n\n当我们实现接口时，我们绑定类型参数。\n\
+  \n```\npublic class Customers implements Sortable { ... }     // java\n```\n\n正是在这一点上，编译器可以开始将\
+  \ `A` 视为 `Customer`，并检查 `Customer` 是否实现了 `Comparable`，以及 `Customers` 是否实现了 `Iterable`。\n\
+  \n在 Scala 中，它看起来像这样：\n\n```\n// scala\ntrait Sortable[A <: Ordered[A]] extends Iterable[A]\
+  \ {\ndef sort: Seq[A] = {\nthis.toList.sorted\n}\n}\nclass Customers extends Sortable[Customer]\
+  \ { ... }\n```\n\n上界告诉你可以从数据结构中获取什么。在我们的示例中，排序算法需要从中获取一些东西并将其用作 `Comparable`；它强制执行类型安全。在\
+  \ Java 中使用 `extends` 设置，在 Scala 中使用 `<:` 设置。\n\n\n\n### 下界（<U super T>）\n\n设置下界意味着在\
+  \ Java 中使用 `super` 关键字，示例如下：\n\n```\npublic class Example { }             // java\n\
+  ```\n\n它表示 `U` 必须是 `T` 的超类型。当我们希望在 API 设计中保持灵活性时，这非常有用；你会在 Java 库代码或像 Hamcrest 这样的库中经常看到它。例如，假设我们有一个表示动物的类层次结构。\n\
+  \n```\n// java\nstatic class Animal {}\nstatic class Lion extends Animal {}\nstatic\
+  \ class Zebra extends Animal {}\n```\n\n我们可能想把狮子们收集到一个围栏里。\n\n```\n// java\nList\
+  \ enclosure = new ArrayList();\nenclosure.add(new Lion());\nenclosure.add(new Lion());\n\
+  ```\n\n假设我们想要对狮子进行排序，并且我们已经有一个类似于 `Sortable` 接口的辅助方法，可以对任何实现 `Comparable` 的对象进行排序。\n\
+  \n```\n// java\npublic static > void sort(List list) {\nCollections.sort(list);\n\
+  }\n```\n\n为了对狮子进行排序，我们只需让它们实现 `Comparable` 接口，然后调用 `sort` 方法。\n\n```\n// java\n\
+  static class Lion extends Animal implements Comparable {\n@Override\npublic int\
+  \ compareTo(Lion other) {\nreturn this.age.compareTo(other.age);\n}\n}\nsort(enclosure);\n\
+  ```\n\n很好，但如果我们扩大围栏并创建一个动物园呢？请注意，`List` 现在的类型是 `Animal` 而不是 `Lion`。\n\n```\n// java\n\
+  List zoo = new ArrayList();\nzoo.add(new Lion());\nzoo.add(new Lion());\nzoo.add(new\
+  \ Zebra());\nsort(zoo);                     // 编译错误\n```\n\n这段代码无法编译，因为我们无法比较斑马和狮子。我们需要在超类型而不是子类型上进行比较。因此，我们需要将\
+  \ `Comparable` 的实现从 `Lion` 移到 `Animal`。这样，我们就可以比较斑马和狮子，并大概能让它们彼此远离。\n\n如果我们让 `Lion`\
+  \ 和 `Zebra` 通过 `Animal` 实现 `Comparable`，理论上我们应该能够将它们相互比较以及与自身比较。然而，如果我们将 `Comparable`\
+  \ 的实现上移到超类型（即 `Animal implements Comparable` 并从 `Lion` 中移除），就像这样：\n\n```\n// java\n\
+  static class Animal implements Comparable {\n@Override\npublic int compareTo(Animal\
+  \ o) {\nreturn 0;\n}\n}\nstatic class Lion extends Animal { }\nstatic class Zebra\
+  \ extends Animal { }\nList enclosure = new ArrayList();\nenclosure.add(new Lion());\n\
+  enclosure.add(new Lion());\nenclosure.sort();                 // 编译器失败\nList zoo\
+  \ = new ArrayList();\nzoo.add(new Lion());\nzoo.add(new Lion());\nzoo.add(new Zebra());\n\
+  sort(zoo);                        // 现在编译通过\n```\n\n……当我们重新编译原始的 `Lion` 围栏时，会得到一个编译器错误。我们无法再对\
+  \ `Lion` 的 `enclosure` 进行排序。\n\n```\njava: method sort in class Zoo cannot be applied\
+  \ to given types;\nrequired: java.util.List\nfound: java.util.List\nreason: inferred\
+  \ type does not conform to equality constraint(s)\ninferred: Animal\nequality constraints(s):\
+  \ Lion\n```\n\n也就是：\n\n```\nInferred type ’Lion’ for type parameter ’A’ is not within\
+  \ its bounds;\nshould implement ’Lion’\n```\n\n这是因为 `sort` 方法（`public static <A\
+  \ extends Comparable<A>> void sort(List<A> list)`）期望一个与自身可比较的类型，而我们却试图将其与类层次结构中更高层的类型进行比较。当\
+  \ `A` 绑定到一个具体类型（例如 `Lion`）时，`Lion` 也必须能够与 `Lion` 自身进行 `Comparable` 比较。问题在于我们刚刚让它只能与\
+  \ `Animal` 进行比较。\n\n```\nstatic class Lion extends Animal implements Comparable\
+  \ { }\n```\n\n动物园（一个 `List<Animal>`）可以被排序，因为集合的泛型类型是 `Animal`。\n\n我们可以通过在 `sort`\
+  \ 的签名中添加 `? super A` 来修复这个问题。这意味着当 `A` 仍然绑定到一个具体类型（比如 `Lion`）时，我们现在要求它必须能够与 `Lion`\
+  \ 的某个超类型进行比较。由于 `Animal` 是 `Lion` 的超类型，它符合要求，整个代码就又能编译了。\n\n```\npublic static >\
+  \ void sort(List list) { }\n```\n\n这一切的结果是，我们的 API 方法 `sort` 通过使用下界变得更加灵活；没有它，我们将无法对不同种类的动物进行排序。\n\
+  \n在 Scala 中，我们可以执行相同的步骤并创建 `Animal` 层次结构。\n\n```\n// scala\nclass Animal extends\
+  \ Comparable[Animal] {\ndef compareTo(o: Animal): Int = 0\n}\nclass Lion extends\
+  \ Animal\nclass Zebra extends Animal\n```\n\n然后我们可以再次创建我们的 `sort` 方法并重新创建围栏。\n\n\
+  ```\n// scala\ndef sort[A <: Comparable[A]](list: List[A]) = { }\n// scala\ndef\
+  \ main(args: String*) {\nvar enclosure = List[Lion]()\nenclosure = new Lion +: enclosure\n\
+  enclosure = new Lion +: enclosure\nsort(enclosure)                             \
+  \    // 编译器失败\nvar zoo = List[Animal]()\nzoo = new Zebra +: zoo\nzoo = new Lion\
+  \ +: zoo\nzoo = new Lion +: zoo\nsort(zoo)                                     \
+  \  // 编译通过\n}\n```\n\n和之前一样，我们遇到了编译失败。\n\n```\nError:(30, 5) inferred type arguments\
+  \ [Lion] do not conform to method\nsort’s type parameter bounds [A <: Comparable[A]]\
+  \ sort(enclosure)\n^\n```\n\n它正确地强制要求 `A` 必须是相同类型，但我们却将 `A` 同时视为 `Lion` 和 `Animal`。所以，和之前一样，我们需要用下界来约束泛型类型。\n\
+  \n你可能会想尝试一个直接的等价写法：使用带 `>: A` 的下划线：\n\n```\ndef sort[A : A]](a: List[A]) = { } //\
+  \ 编译器失败\n```\n\n但不幸的是，这会导致编译失败：\n\n```\nfailure: illegal cyclic reference involving\
+  \ type A\n```\n\n它无法处理对 `A` 的引用；将其视为循环引用。因此，你必须尝试保持与边界的关系，同时消除循环引用。答案是定义一个新的泛型类型\
+  \ `U`，并编写如下代码：\n\n```\ndef sortA : A = { }\n```\n\n所以，`A` 必须扩展 `Comparable`，其中 `Comparable`\
+  \ 的泛型类型 `U` 本身必须是 `A` 的超类型。这解决了循环问题，但编译器仍然会报错。\n\n```\ninferred type arguments [Lion,Lion]\
+  \ do not conform to method sort’s\ntype parameter bounds [A : A] sort(enclosure)\n\
+  ^\n```\n\n它表示围栏的推断类型不符合我们设置的约束条件。它将两个类型都推断为 `Lion`，因为推断引擎没有足够的信息。如果我们指定我们知道为真的类型，就可以给它一个提示。因此，就像\
+  \ Java 中的类型见证一样，我们可以明确表示我们希望类型是 `Lion` 和 `Animal`。\n\n```\nvar enclosure = List[Lion]()\n\
+  enclosure = new Lion +: enclosure\nenclosure = new Lion +: enclosure\nsortLion,\
+  \ Animal                       // 添加类型提示\n```\n\n当你对字节码进行往返转换时，最终版本看起来像这样：\n\n```\n\
+  // java\npublic , U> void sort(List a) { }\n```\n\n这基本上等同于以下代码：\n\n```\n// java\n\
+  public > void sort(List a) { }\n```\n\n这与 Scala 版本基本相同：\n\n```\ndef sort[A <: Comparable[_]](list:\
+  \ List[A]) { }    // scala\n```\n\n所以，它在底层将其视为无界类型。这并不完全准确，因为 Scala 编译器在这里做了所有繁重的工作，并且由于它负责所有类型检查，所以将\
+  \ `U` 保留为无界。在这个例子中，从字节码往返转换到 Java 并不完全合理，因为这不是一一对应的，但了解幕后发生的事情还是很有趣的。\n\n下界告诉你可以在数据结构中放入什么。在我们的\
+  \ `Lion` 示例中，使用下界意味着你可以在动物园中放入不仅仅是狮子。你在 Java 中使用 `super`，在 Scala 中使用大于冒号（`>: `）。\n\
+  \n\n\n### 通配符边界（`<? extends T>`、`<? super T>`）\n\n我们已经见过一些通配符的例子：Java 中的 `?` 和 Scala\
+  \ 中的 `_`。\n\n带有上界的通配符如下所示：\n\n```\n// java\nvoid printAnimals(List<? extends Animal>\
+  \ animals) {\n    for (Animal animal : animals) {\n        System.out.println(animal);\n\
+  \    }\n}\n// scala\ndef printAnimals(animals: List[_ <: Animal]) {\n    for (animal\
+  \ <- animals) {\n        println(animal)\n    }\n}\n```\n\n带有下界的通配符如下所示：\n\n```\n\
+  // java\nstatic void addNumbers(List<? super Integer> numbers) {\n    for (int i\
+  \ = 0; i < 100; i++) {\n        numbers.add(i);\n    }\n}\n// scala\ndef addNumbers(numbers:\
+  \ List[_ >: Int]) {\n    for (i <- 0 to 99) {\n        // ...\n    }\n}\n```\n\n\
+  无界通配符在 Java 中如下所示：\n\n```\nList<?> list             // java\n```\n\n……在 Scala 中如下所示：\n\
+  \n```\nList[_]                  // scala\n```\n\n无界通配符表示一个未知的泛型类型。例如，打印未知类型列表的元素适用于所有列表。只需添加上界或下界约束来限制选项。\n\
+  \n```\n// java\nvoid printUnknown(List<?> list) {\n    for (Object element : list)\
+  \ {\n        System.out.println(element);\n    }\n}\n// scala\ndef printUnknown(list:\
+  \ List[_]) {\n    for (e <- list) {\n        val f: Any = e\n        println(f)\n\
+  \    }\n}\n```\n\n尽管实现可以将元素视为 `Object`，因为一切都是对象，但你不能向未知类型的列表中添加任何内容。\n\n```\n//\
+  \ java\nList<?> list = new ArrayList<Object>();\nlist.add(new Object()); // 编译器错误\n\
+  ```\n\n唯一的例外是 `null`。\n\n```\nlist.add(null);\n```\n\n在 Scala 中你会得到相同的效果，甚至无法在没有有效类型的情况下创建列表。\n\
+  \n```\nscala> val list = mutable.MutableList[_]()\n<console>:7: error: unbound wildcard\
+  \ type\nval list = mutable.MutableList[_]()\n^\n```\n\n当你确实不关心类型参数，只关心上界或下界的任何约束，或者当你可以将类型视为\
+  \ `Object` 或 `Any` 的实例时，主要使用通配符。\n\n### 多重边界\n\n在 Java 和 Scala 中，类型也可以有多个边界。\n\n\
+  *   Java 仅限于多个上界。\n*   Java 不能对类型同时设置下界和上界（因此你不能让一个泛型类型继承一个类，同时又成为另一个类的超类型）。\n*\
+  \   与 Java 不同，Scala 可以设置单个下界和上界。\n*   然而，Scala 不能设置多个上界或下界。相反，它可以通过强制你扩展特质来约束边界。\n\
+  \n使用多重边界，另一种表达对 `Animal` 排序方法约束的方式是明确声明 `A` 必须扩展 `Animal` 并且可与 `Animal` 比较，在 Java\
+  \ 中使用 `&` 符号。\n\n```\n// java\npublic static <A extends Animal & Comparable<Animal>>\
+  \ void sort(List<A> l)\n```\n\n这在 Java 中为泛型类型 `A` 设置了两个上界。你不能在 Scala 中为 `A` 设置两个上界，但你可以通过指定你的边界也必须扩展某些特质来达到相同的效果。\n\
+  \n```\n// scala\ndef sort[A <: Animal with Comparable[Animal]](list: List[A]) =\
+  \ { }\n```\n\n因为我们更加明确，所以在调用 `sort` 方法时可以移除类型提示。事实上，如果你不这样做，你会得到一个编译器错误。\n\n```\n\
+  var enclosure = List[Lion]()\nenclosure = new Lion +: enclosure\nenclosure = new\
+  \ Lion +: enclosure\n// sortLion, Animal     // 编译器错误\nsort(enclosure)\n```\n\n\
+  在 Scala 中，你也可以使用 `>:` 和 `<:` 同时设置下界和上界，如下所示：\n\n```\ndef exampleA >: Lion <: Animal\
+  \ = ()                     // scala\n^         ^\nlower     upper\n```\n\n……其中 `A`\
+  \ 必须是 `Lion` 的超类型且是 `Animal` 的子类型。\n\n## 变型\n\n在不涉及泛型的情况下，一个简单的类 `B` 继承自 `A`（见图\
+  \ 13-1）可以赋值给一个 `A` 的实例；毕竟，它既是 `A` 也是 `B`。显然，子类型化只是单向的；反过来，你会得到一个编译器错误。\n\n![A456960_1_En_13_Fig1_HTML.jpg](img/A456960_1_En_13_Fig1_HTML.jpg)\n\
+  \n图 13-1\n\n`B extends A`\n\n```\n// java\nA a = new A();\nB b = new B();\na = b;\n\
+  b = a;                    // 编译器错误\n```\n\n然而，泛型类本身并不是子类，仅仅因为它们的参数化类型可能是。那么，如果 `B`\
+  \ 是 `A` 的子类，`List<B>` 应该是 `List<A>` 的子类吗？在 Java 中，`B` 的 `List` 不是 `A` 的 `List` 的子类型，即使它们的参数化类型是（见图\
+  \ 13-2）。\n\n![A456960_1_En_13_Fig2_HTML.jpg](img/A456960_1_En_13_Fig2_HTML.jpg)\n\
+  \n图 13-2\n\n在 Java 中 `List<B>` 不能扩展 `List<A>`\n\n```\n// java\nList<A> a = new ArrayList<A>();\n\
+  List<B> b = new ArrayList<B>();\na = b;  // 编译器错误\n```\n\n这就是变型的用武之地。变型描述了泛型类型（如列表或“容器”类型）的子类型化如何与其参数化类型的子类型化相关联。\n\
+  \n变型描述了三种子类型关系。\n\n1.  不变型。\n2.  协变型。\n3.  逆变型。\n\n### 不变型\n\nJava 对其泛型类型只支持这三种中的一种：Java\
+  \ 中的所有泛型类型都是不变的，这就是为什么我们不能将 `List<B>` 赋值给 `List<A>`。不变泛型类型不保留其参数化类型的子类型关系。\n\n然而，当你对方法和变量使用通配符时，你可以改变参数化类型。\n\
+  \n泛型类型之间的不变关系表明，即使它们的内容具有子类型关系，它们之间也没有关系。你不能用一个替换另一个。Java 和 Scala 在这里共享语法，因为在尖括号（Java）或方括号（Scala）中定义任何泛型类型都将其描述为不变型。\n\
+  \n```\npublic class List<T> { }         // java\nclass List[T] { }             \
+  \   // scala\n```\n\n### 协变型\n\n协变泛型类型在其参数化类型是子类型时，保留两个泛型类型之间的子类型关系。因此，当泛型类型被设置为协变时，`List<B>`\
+  \ 是 `List<A>` 的子类型。Java 不支持类型的协变。Scala 通过在定义泛型类时使用 `+` 来支持协变泛型类型。\n\n```\nclass\
+  \ List[+T] { }\n```\n\n### 逆变型\n\n逆变反转了子类型关系。因此，如果 `A` 是逆变的，那么 `List<A>` 也是 `List<B>`；它是一个子类型。参数化类型的关系对其泛型类型来说是反转的。Java\
+  \ 不支持类型的逆变，但在 Scala 中，你只需在泛型类型定义中添加一个 `-`。\n\n```\nclass List[-T] { }\n```\n\n###\
+  \ 变型总结\n\n总之，不变泛型类型是不相关的，无论其参数化类型的关系如何。协变类型保持其参数化类型的子类型关系，而逆变类型则反转它（见表 13-1）。\n\n\
+  表 13-1\n\n变型总结\n\n|   | 描述 | Scala 语法 |\n| --- | --- | --- |\n| 不变型 | `List<A>`\
+  \ 和 `List<B>` 不相关 | `[T]` |\n| 协变型 | `List<B>` 是 `List<A>` 的子类 | `[+T]` |\n| 逆变型\
+  \ | `List<A>` 是 `List<B>` 的子类 | `[-T]` |\n\n每种语法的总结见表 13-2。\n\n表 13-2\n\n语法总结\n\n\
+  |   | 不变型 | 协变型 | 逆变型 |\n| --- | --- | --- | --- |\n| Java | `<T>` | `<? extends\
+  \ T>` | `<? super T>` |\n| Scala | `[T]` | `[+T]` | `[-T]` |\n| Scala（通配符） | `[T]`\
+  \ | `[_ <: T]` | `[_ >: T]` |\n\nJava 的限制\n\n在 Java 中，所有泛型类型都是不变的，这意味着你不能将 `List<Foo>`\
+  \ 赋值给 `List<Object>`。你可以在使用它们的地方通过通配符改变类型，但仅限于方法和变量定义，而不是类。\n\n\n\n"
+- '# 第三部分
+
+  从 Java 到 Scala
+
+
+  从 Java 到 Scala
+
+
+  本书的这一部分主要探讨 Scala 与 Java 之间的差异。Scala 中有大量语言特性在 Java 中没有明显的对应物。在本部分中，我们将深入探讨其中一些特性，并探索
+  Scala 相较于 Java 能为我们带来什么。
+
+
+  具体来说，我们将探索许多使编写 Scala 代码更具表现力的语言特性，并研究一些 Scala 广为人知的函数式编程惯用法。
+
+
+  ## 富有表现力的 Scala
+
+
+  Scala 提供了若干特性，使编写代码更加简洁。除了我们已经见过的一些特性外，它还提供了以下机制：
+
+
+  *   使用特殊方法 `apply` 让方法看起来像函数。
+
+  *   使用特殊方法 `update` 为赋值操作符提供默认行为。
+
+  *   让常规的方法调用看起来像语言结构，这实际上意味着你可以定义自己的控制结构。
+
+
+  Scala 还提供了模式匹配；我们将研究 `unapply` 方法及其在模式匹配中的作用。
+
+
+  ## 函数式编程惯用法
+
+
+  我们还将研究 Scala 的一些函数式编程方面。
+
+
+  *   用于映射值的内置方法（`map`、`flatMap`）。
+
+  *   什么是单子（monad）以及为什么你应该关注它。
+
+  *   `Option` 类作为避免空值检查的一种方式。
+
+  *   链式单子调用。
+
+  *   for 推导式及其底层工作原理。
+
+
+  这仅仅是函数式编程的冰山一角，但我希望本书的这一部分能让你在接触 Scala 和函数式编程时，有一个有用的先发优势。
+
+
+  '
+- '# 14. 模拟函数调用
+
+
+  Scala 提供了使方法调用看起来像常规函数调用的机制。它使用特殊方法 `apply` 和 `update` 来实现一种简写调用符号，可以减少代码的杂乱。
+
+
+  ## `apply` 方法
+
+
+  `apply` 方法提供了一种在类上调用方法的简写方式。因此，正如我们所见，你可以将它们用作工厂风格的创建方法，例如，给定某个类，比如我们的老朋友 `Customer`：
+
+
+  ```
+
+  class Customer(name: String, address: String)
+
+  ```
+
+
+  ……你可以向其伴生对象添加一个 `apply` 方法。
+
+
+  ```
+
+  object Customer {
+
+  def apply(name: String, address: String) = new Customer(name, address)
+
+  }
+
+  ```
+
+
+  然后，你可以直接调用该方法，或者省略 `apply` 部分，此时 Scala 会查找与你参数列表匹配的 `apply` 方法并调用它。
+
+
+  ```
+
+  Customer.apply("Bob Fossil", "1 London Road")
+
+  Customer("Rob Randal", "14 The Arches")
+
+  ```
+
+
+  你也可以有多个 `apply` 方法。例如，我们可以创建另一个方法来为我们的客户设置默认地址字段。
+
+
+  ```
+
+  def apply(name: String) = new Customer(name, "No known address")
+
+  Customer("Cuthbert Colbert")
+
+  ```
+
+
+  不过，你不必非得将 `apply` 方法用作工厂方法。大多数人最终使用它们是为了使类的 API 更简洁。这是 Scala 如何帮助使 API 更具表现力的关键。如果让你的类的默认行为是创建一个实例是有意义的，那很好，但你也可以使用
+  `apply` 让其他方法看起来像函数调用。
+
+
+  到目前为止，我们一直在单例对象（`object Customer`）上使用 `apply` 方法并省略 `apply`，但你也可以在类上定义 `apply` 方法，并在实例变量上调用它。
+
+
+  例如，我们可以创建一个名为 `Adder` 的类，并在一个实例上调用 `apply` 方法来将两个数字相加。
+
+
+  ```
+
+  // scala
+
+  class Adder {
+
+  def apply(a: Int, b: Int) = a + b
+
+  }
+
+  val add = new Adder()
+
+  add.apply(1, 3)
+
+  ```
+
+
+  但我们同样可以轻松地省略它，看起来就像我们在调用一个函数，尽管我们实际上是在调用一个实例变量上的方法。
+
+
+  ```
+
+  val add = new Adder()
+
+  add(1, 3)
+
+  ```
+
+
+  另一个例子是访问数组值。假设我们有一个罗马数字数组。
+
+
+  ```
+
+  val numerals = Array("I", "II", "III", "IV", "V", "VI", "VII")
+
+  ```
+
+
+  要使用索引访问数组，语法是使用圆括号而不是方括号。
+
+
+  ```
+
+  numerals(5)               // 得到 "VI"
+
+  ```
+
+
+  因此，在循环中使用索引，我们可以这样做来打印整个数组：
+
+
+  ```
+
+  for (i <- 0 to numerals.length - 1)
+
+  println(i + " = " + numerals(i))
+
+  ```
+
+
+  这里有趣的是，数组上有一个接受 `Int` 的 `apply` 方法。我们本可以这样写：
+
+
+  ```
+
+  numerals.apply(5) // 得到 "VI"
+
+  for (i <- 0 to numerals.length - 1)
+
+  println(i + " = " + numerals.apply(i))
+
+  ```
+
+
+  看起来像是访问数组的语言语法，实际上只是一个常规的方法调用。Scala 模拟了它。
+
+
+  ## `update` 方法
+
+
+  赋值的工作方式完全相同。例如，`numerals(2) = "ii"` 实际上调用了 `Array` 类上一个名为 `update` 的特殊方法（`def update(i:
+  Int, x: T)`）。
+
+
+  ```
+
+  numerals(2) = "ii"
+
+  ```
+
+
+  如果 Scala 看到赋值操作符并且能找到带有适当参数的 `update` 方法，它就会将赋值转换为方法调用。
+
+
+  我们可以将这个想法应用到我们自己的类上，使 API 感觉更像语言语法。假设我们从事电话业务，该业务的一部分是维护客户电话号码的目录。
+
+
+  我们可以创建一个集合类来包含我们的目录，并初始化它以保存四个火枪手的电话号码，如下所示：
+
+
+  ```
+
+  class Directory {
+
+  val numbers = scala.collection.mutable.Map(
+
+  "Athos"      -> "7781 456782",
+
+  "Aramis"     -> "7781 823422",
+
+  "Porthos"    -> "1471 342383",
+
+  "D`Artagnan" -> "7715 632982"
+
+  )
+
+  }
+
+  ```
+
+
+  如果我们决定目录的简写或默认行为应该是返回客户的电话号码，我们可以按如下方式实现 `apply` 方法：
+
+
+  ```
+
+  def apply(name: String) = {
+
+  numbers.get(name)
+
+  }
+
+  ```
+
+
+  这样，在创建目录实例后，我们可以像这样打印 Athos 的号码：
+
+
+  ```
+
+  val yellowPages = new Directory()
+
+  println("Athos''s telephone number : " + yellowPages("Athos"))
+
+  ```
+
+
+  然后，如果我们想更新一个号码，我们可以实现一个更新方法并直接调用它。Scala 的赋值简写意味着，如果我们实际上将方法命名为 `update`，我们就可以使用赋值操作符，它会为我们调用
+  `update` 方法。
+
+
+  因此，我们添加一个 update 方法。
+
+
+  ```
+
+  def update(name: String, number: String) = {
+
+  numbers.update(name, number)
+
+  }
+
+  ```
+
+
+  然后我们可以像这样调用它来更新一个号码：
+
+
+  ```
+
+  yellowPages.update("Athos", "Unlisted")
+
+  ```
+
+
+  利用简写符号，你也可以使用赋值。
+
+
+  ```
+
+  yellowPages("Athos") = "Unlisted"
+
+  ```
+
+
+
+
+  ### 多个 `update` 方法
+
+
+  我们还可以添加第二个 update 方法，这次将 `Int` 作为第一个参数。
+
+
+  ```
+
+  def update(areaCode: Int, newAreaCode: String) = {
+
+  ???
+
+  }
+
+  ```
+
+
+  假设我们希望它能更新所有条目中的区号。我们可以枚举每个条目，找出哪些号码以第一个参数中的区号开头。对于匹配的条目，我们返回原始映射并更新该条目。
+
+
+  ```
+
+  def update(areaCode: Int, newAreaCode: String) = {
+
+  numbers.foreach(entry => {
+
+  if (entry._2.startsWith(areaCode.toString))
+
+  numbers(entry._1) = entry._2.replace(areaCode.toString, newAreaCode)
+
+  })
+
+  }
+
+  ```
+
+
+  `_1` 和 `_2` 是 Scala 中用于访问所谓元组（tuple）的符号。这是一种简单的数据结构，我们用它来将（在本例中）Java 中的 `Map.Entry`
+  视为单个变量。`_1` 和 `_2` 是方法调用，分别让我们访问键和值。实际上，元组的用途比这更广泛，并不仅限于映射。我们这里使用的是包含两个元素的元组（`Tuple2`），但你可以拥有最多包含
+  22 个元素的元组（`Tuple22`）。
+
+
+  我们可以使用简写的赋值语法来调用新的 `update` 方法，如下所示：
+
+
+  ```
+
+  object DirectoryExampleAlternativeUpdateMethod extends App {
+
+  val yellowPages = new Directory
+
+  println(yellowPages)
+
+  yellowPages(7781) = "7555"
+
+  println(yellowPages)
+
+  }
+
+  ```
+
+
+  这样做的结果是，Athos 和 Aramis 的区号都会被更新。
+
+
+  ### `update` 的多个参数
+
+
+  你可以在 `update` 方法中拥有任意数量的参数，但只有最后一个参数会被用作更新后的值。这很合理，因为赋值运算符的右侧只能有一个值。
+
+
+  参数列表的其余部分用于选择合适的 update 方法。因此，如果你有另一个包含三个参数（`areaCode`、`anotherArgument` 和 `newAreaCode`）的方法，如下所示：
+
+
+  ```
+
+  def update(areaCode: Int, another: String, newAreaCode: String) = ???
+
+  ```
+
+
+  ……那么类型将用于确定在赋值时应调用哪个 `update` 方法。
+
+
+  ```
+
+  yellowPages(7998) = "7668"
+
+  yellowPages(7998, "another argument") = "???"
+
+  ```
+
+
+  ## 总结
+
+
+  在本章中，我们进一步了解了 `apply` 方法：它不仅用于工厂风格的创建方法，还可用于构建丰富的 API。通过让方法调用看起来像函数调用，你可以使客户端代码更加简洁。
+
+
+  我们还了解了相关的 `update` 方法是如何工作的，以及如何利用赋值运算符编写 API 并实现自定义的更新行为。
+
+
+  '
+- "# 15. 模拟语言结构\n\nScala 允许你以这样一种方式编写代码，使其看起来像是在使用原生语言结构，而实际上你只是在使用常规方法。\n\n本章将涵盖以下内容：\n\
+  \n*   Scala 如何允许你在调用方法时使用花括号代替常规圆括号。\n*   Scala 如何支持高阶函数：即以函数作为参数并返回函数作为结果的函数。\n\
+  *   Scala 如何原生支持柯里化。\n\n这些特性听起来并不惊人，但结合起来却能提供令人惊讶的灵活性。我们将看到这些技术如何帮助你编写更灵活、更易读的代码。\n\
+  \n本章中的所有代码示例均使用 Scala 编写。\n\n## 花括号（与函数字面量）\n\nScala 中有一条简单的规则。\n\n*   任何只接受一个参数的方法调用，都可以使用花括号代替圆括号来包围参数。\n\
+  \n因此，与其这样写：\n\n```\nnumerals.foreach(println(_))\n```\n\n……不如这样写：\n\n```\nnumerals.foreach{println(_)}\n\
+  ```\n\n我们只是将方括号换成了花括号。这并不令人印象深刻，但当我们引入一些换行时，情况就开始变得有趣了。\n\n```\nnumerals.foreach\
+  \ {\nprintln(_)\n}\n```\n\n现在它看起来像一个内置的控制结构。开发者习惯于将花括号解释为语言语法的分界符。因此，这看起来更像内置的 `for`\
+  \ 循环，尽管它只是一个方法调用。\n\n这样做的主要原因是允许客户端以一种自然且简洁的方式将函数作为参数传递。当你编写可以接受函数作为参数的函数时，你就是在创建高阶函数。这提供了更大的灵活性和复用性。\n\
+  \n例如，假设我们想要执行一些工作并更新一个 UI 元素，比如进度条或客户购物车。最好的方法是在一个新线程中执行此操作，这样我们就不会拖慢主 UI 线程并导致用户界面卡顿。\n\
+  \n### 高阶函数\n\n如果每次更新 UI 元素的调用都必须在其自己的线程上执行，我们可能会得到一个像这样简陋的实现：\n\n```\nobject Ui\
+  \ {\ndef updateUiElements() {\nnew Thread() {\noverride def run(): Unit = updateCustomerBasket(basket)\n\
+  }.start()\nnew Thread() {\noverride def run(): Unit = updateOffersFor(customer)\n\
+  }.start()\n}\n}\n```\n\n`Ui` 对象依次执行一系列更新，每个更新都在一个新线程上。`Ui` 对象既管理线程策略，又管理更新行为。更好的做法是让其他东西负责协调线程，而\
+  \ `Ui` 对象只负责更新行为。这样，我们可以避免重复，并且如果线程策略发生变化，我们也不必找到所有分散在各处的用法。\n\n解决方案是定义一个函数，该函数可以在一个线程上运行另一个函数。我们可以创建一个名为\
+  \ `runInThread` 的函数，其中包含样板线程代码。\n\n```\ndef runInThread() {\nnew Thread() {\noverride\
+  \ def run(): Unit = ???\n}.start()\n}\n```\n\n它会创建并启动一个新线程，但不会做任何有意义的事情。我们如何传入一个函数？在\
+  \ Java 中，你可能会传入一个 `Runnable` 或 `Callable` 的匿名实例，或者一个 lambda 表达式。\n\n在 Scala 中也是如此，但你不是传入一个函数式接口作为参数，而是传入一个表示函数参数的简写签名。你像往常一样定义一个变量（下面的例子中是\
+  \ `function`），但冒号后面的类型表示一个函数。我们的例子没有参数，并返回一个 `Unit` 类型的值。它相当于 Java 中 lambda 表达式的签名：`()\
+  \ -> Void`。\n\n```\ndef runInThread(function: () => Unit) {\nnew Thread() {\noverride\
+  \ def run(): Unit = ???\n}.start()\n}\n```\n\n然后我们只需在线程体中执行该函数。记住，括号表示执行 `apply`\
+  \ 方法的简写。\n\n```\ndef runInThread(function: () => Unit) {\nnew Thread() {\noverride\
+  \ def run(): Unit = function()       // 即 function.apply()\n}.start()\n}\n```\n\n\
+  有了新的 `runInThread` 方法，我们可以像这样重写 UI 代码：\n\n```\ndef updateUiElements() {\nrunInThread(()\
+  \ => updateCustomerBasket(basket))\nrunInThread(() => updateOffersFor(customer))\n\
+  }\n```\n\n我们通过将函数传递给 `runInThread` 消除了重复代码。\n\n### 使用花括号的高阶函数\n\n这并没有真正实现让客户端能够“以一种自然且简洁的方式”将函数作为参数传递的承诺。它看起来很像\
+  \ Java 的 lambda 语法，但如果我们使用花括号，可以使其看起来更自然，更像语言语法。\n\n如果我们只是将圆括号替换为花括号，情况并没有真正改善。\n\
+  \n```\n// 真难看！\ndef updateUiElements() {\nrunInThread { () =>\nupdateCustomerBasket(basket)\n\
+  }\nrunInThread { () =>\nupdateOffersFor(customer)\n}\n}\n```\n\n但我们可以使用另一个技巧来去掉空的圆括号和箭头。我们可以使用所谓的按名参数（call-by-name\
+  \ parameter）。\n\n\n\n### 按名传参\n\n在 Java 中，你无法对空的 lambda 参数列表（例如 `() -> Void`）做任何处理，但在\
+  \ Scala 中，你可以从函数签名中省略括号，以表明该参数是按名传参的。调用时，你不再需要调用 `apply` 方法，只需直接引用它即可。\n\n```\n\
+  def runInThread(function: => Unit) {         // 按名传参\nnew Thread() {\noverride def\
+  \ run(): Unit = function      // 不是 function()\n}.start()\n}\n```\n\n按名参数表达式直到实际使用时才会被求值，而不是在定义时。它的行为与长格式函数完全一致，尽管看起来我们像是在将函数传入\
+  \ `runInThread` 方法时就已经调用了它。\n\n```\ndef updateUiElements() {\nrunInThread {\nupdateCustomerBasket(basket)\n\
+  }\nrunInThread {\nupdateOffersFor(customer)\n}\n}\n```\n\n这让代码看起来自然得多，尤其是当我们在一个运行线程中想做更多操作时。例如，假设我们想在更新客户购物车之前应用一个折扣。花括号和缩进清晰地表明，这些操作与更新发生在同一个线程中。\n\
+  \n```\ndef updateUiElements() {\nrunInThread {\napplyDiscountToBasket(basket)\n\
+  updateCustomerBasket(basket)\n}\nrunInThread {\nupdateOffersFor(customer)\n}\n}\n\
+  ```\n\n你可以将其视为创建无参 lambda 的简写形式。\n\n### 按名传参 ≠ 惰性求值\n\n人们常常认为按名参数与惰性值是一回事，但这在技术上并不准确。没错，它们都是在运行时遇到时才被求值，但与真正的惰性值不同，它们每次被遇到时都会被求值。\n\
+  \n真正的惰性值在第一次遇到时被求值并存储，因此第二次请求该值时，它会被直接返回，而不会再次求值。\n\n所以，按名参数并非惰性。\n\n## 柯里化\n\n\
+  使用 `apply` 方法和花括号，我们可以创建出表达力强且使用自然的 API。它让我们能够创建符合语言语法预期的控制抽象。\n\n但请记住我们之前关于花括号规则的说明。\n\
+  \n*   任何接受恰好一个参数的方法调用，都可以使用花括号来包围参数，而不是圆括号。\n\n我们只能对单参数方法使用花括号。如果我们想为 `runInThread`\
+  \ 方法添加一个参数，同时仍然使用优雅的语法，该怎么办？好消息是，这完全可行；我们可以采用一种称为柯里化的技术。\n\n让我们扩展 `runInThread`\
+  \ 方法，添加一个新参数来指定线程组。\n\n```\ndef runInThread(group: String, function: => Unit) {\n\
+  new Thread(new ThreadGroup(group), new Runnable() {\ndef run(): Unit = function\n\
+  }).start()\n}\n```\n\n由于只有单参数列表才能使用花括号，我们不得不让 `Ui` 对象回归到使用圆括号。\n\n```\n// 真难看！\n\
+  def updateUiElements() {\nrunInThread(\"basket\", {\napplyDiscountToBasket(basket)\n\
+  updateCustomerBasket(basket)\n})\nrunInThread(\"customer\",\nupdateOffersFor(customer)\n\
+  )\n}\n```\n\n如果我们能将这个双参数函数转换为一个单参数函数，就能再次使用花括号了。幸运的是，这正是柯里化的作用。柯里化是将一个具有两个或更多参数的函数转换为一系列函数的过程，每个函数只接受一个参数。\n\
+  \n对于一个双参数函数，柯里化会产生一个接受一个参数并返回另一个函数的函数。这个返回的函数也只有一个参数（对应原函数的第二个参数）。有点困惑？让我们通过一个例子来理解。\n\
+  \n假设我们有一个函数 f，它接受两个参数 a 和 b，并返回 a + b。\n\nf (a, b) = a + b\n\n要将其转换为两个各带一个参数的函数，首先我们创建一个函数来接受\
+  \ a 并返回一个新函数（f′）。\n\nf (a) → f  ′\n\n这个新函数本身应该接受一个参数 b。\n\nf (a) → f  ′ (b)\n\n\
+  整个函数应该返回结果 a + b。\n\nf (a) → f  ′ (b) → a + b\n\n我们最终得到两个函数（f 和 →f  ′），每个都接受一个参数。\n\
+  \n在使用了类似的伪数学符号后，有必要重申我最初的定义，并将原始函数与其柯里化形式进行比较（见图 15-1）。\n\n![A456960_1_En_15_Fig1_HTML.jpg](img/A456960_1_En_15_Fig1_HTML.jpg)\n\
+  \n图 15-1\n\n原始函数及其柯里化形式的推导步骤\n\n*   对于一个双参数函数，柯里化会产生一个接受一个参数并返回另一个函数的函数。这个返回的函数也只有一个参数（对应原函数的第二个参数）。\n\
+  \n要计算柯里化形式的函数，我们先计算第一个函数（例如，传入值 1）。\n\nf (1)\n\n这会返回一个捕获了该值的函数，并且由于返回的是一个函数，我们可以直接计算它，为最后一个参数提供值（2）。\n\
+  \nf (1)(2)\n\n此时，两个值都在作用域内，任何计算都可以进行，从而得到最终结果。\n\n我在这里使用了一种有点“大猩猩”式的符号¹来阐明我的观点。使用更符合数学规范的符号，我们可以通过创建一个新函数来展示函数的柯里化形式，该函数接受\
+  \ a 并将 b 映射到 a + b。\n\nf (a) = (b → a + b)\n\n如果你熟悉 lambda 演算²，你就会知道 λab.a + b 是其柯里化形式\
+  \ λa. (λb.(a + b)) 的简写。\n\n### 闭包\n\n有趣的是，像这样捕获一个值并使其可供第二个函数使用的过程被称为闭包。这就是我们在提及匿名函数或捕获值的\
+  \ lambda 时，术语“闭包”的来源。\n\n### Scala 对柯里化函数的支持\n\n一个常规的非柯里化函数，用于将两个数相加，可能如下所示：\n\n\
+  ```\ndef add(x: Int, y: Int): Int = x + y\n```\n\nScala 原生支持柯里化函数，因此我们无需手动转换；要将其转换为柯里化版本，只需用圆括号将参数分开即可。\n\
+  \n```\ndef add(x: Int)(y: Int): Int = x + y\n```\n\nScala 为我们创建了两个单参数列表。要计算该函数，我们可以这样做：\n\
+  \n```\nscala> add(1)(2)\nres1: Int = 3\n```\n\n要分步查看，我们可以只计算前半部分，如下所示：\n\n```\n\
+  scala> val f = add(1) _\nf: Int => Int = \n```\n\n下划线向 REPL 提示了我们想要做什么。结果 `f` 是一个从\
+  \ `Int` 到 `Int` 的函数。值 `1` 已被捕获，并可供该函数使用。因此，我们现在可以执行返回的函数，并提供第二个值。\n\n```\nscala>\
+  \ f(2)\nres2: Int = 3\n```\n\n那么，这对我们的 `runInThread` 方法意味着什么呢？如果我们创建该函数的柯里化版本，就可以重新使用我们喜爱的花括号了。\n\
+  \n我们首先将参数拆分为两个，以创建原函数的柯里化形式。\n\n```\ndef runInThread(group: String)(function: =>\
+  \ Unit) {\nnew Thread(new ThreadGroup(group), new Runnable() {\ndef run(): Unit\
+  \ = function\n}).start()\n}\n```\n\n注意，函数内部无需其他更改。在 `runInThread` 内部，一切照旧。然而，我们现在可以将\
+  \ `Ui` 对象改回使用花括号来包围第二个参数。\n\n```\ndef updateUiElements() {\nrunInThread(\"basket\"\
+  ) {\napplyDiscountToBasket(basket)\nupdateCustomerBasket(basket)\n}\nrunInThread(\"\
+  customer\",\nupdateOffersFor(customer)\n)\n}\n```\n\n\n\n## 摘要\n\n借助一些内置特性，Scala\
+  \ 允许我们编写出看起来像语言结构的方法。我们可以使用高阶函数来创建控制抽象：这些函数抽象了复杂的行为，减少了重复代码，同时仍为调用它们的代码提供了灵活性。\n\
+  \n我们可以在任何使用单参数方法的地方使用花括号。我们可以利用这一点来提供一目了然的视觉提示和模式。借助内置的柯里化支持，我们不仅限于在单参数函数中使用这一特性；通过将多参数函数转换为多个单参数函数，我们可以创建更丰富的\
+  \ API。\n\n脚注 1\n\n关于所用符号的讨论，请参见 [`http://bit.ly/1Q2bU6s`](http://bit.ly/1Q2bU6s)\n\
+  \n  2\n\n关于 Lambda 演算的一些说明，请参见 [`http://bit.ly/1G4OdVo`](http://bit.ly/1G4OdVo)\n\
+  \n"
+- '# 16. 模式匹配
+
+
+  除了提供类似 switch 的功能（比 Java 的版本更强大）之外，模式匹配还提供了一组丰富的“模式”用于匹配。在本章中，我们将研究模式的构成，并通过一些示例进行讲解，包括字面量模式、构造器模式和类型查询模式。
+
+
+  模式匹配还提供了解构匹配对象的能力，使你可以访问数据结构的各个部分。我们将探讨解构的机制：提取器，它本质上是实现了特殊方法 `unapply` 的对象。
+
+
+  ## 切换
+
+
+  让我们从之前看过的模式匹配表达式开始。
+
+
+  ```
+
+  val month = "August"
+
+  val quarter = month match {
+
+  case "January" | "February" | "March"    => "1st quarter"
+
+  case "April" | "May" | "June"            => "2nd quarter"
+
+  case "July" | "August" | "September"     => "3rd quarter"
+
+  case "October" | "November" | "December" => "4th quarter"
+
+  case _                                   => "unknown quarter"
+
+  }
+
+  ```
+
+
+  Java 的 `switch` 和 Scala 的 `match` 表达式有几个关键区别。
+
+
+  *   在 Scala 中，case 之间没有穿透行为。Java 使用 `break` 来避免穿透，但 Scala 会在每个 case 之间自动中断。
+
+  *   在 Scala 中，模式匹配是一个表达式；它会返回一个值。Java 的 switch 必须依赖副作用才能发挥作用。
+
+  *   使用 Scala，我们可以在更多类型上进行切换，不仅仅是基本类型、枚举和字符串。我们可以在对象以及符合我们自己设计的“模式”的事物上进行切换。在示例中，我们使用“或”来构建更丰富的匹配条件。
+
+
+  模式匹配还为我们提供了以下功能：
+
+
+  *   能够守卫匹配条件；通过使用 `if`，我们可以丰富一个 case，使其不仅匹配模式（`case` 之后紧跟的部分），还能匹配某个二元条件。
+
+  *   匹配失败的异常；当某个值在运行时没有匹配任何 case 时，Scala 会抛出一个 `MatchError` 异常来通知我们。
+
+  *   可选的编译时检查：你可以进行设置，这样如果你忘记编写一个能匹配所有可能组合的 case，就会收到编译器警告。这是通过使用所谓的密封特质来实现的。
+
+
+  ## 模式
+
+
+  一个匹配表达式的结构如下所示：
+
+
+  ```
+
+  value match {
+
+  case pattern guard => expression
+
+  ...
+
+  case _             => default
+
+  }
+
+  ```
+
+
+  我们有一个值，然后是 `match` 关键字，接着是一系列匹配 case。这个值本身可以是一个表达式、一个字面量，甚至是一个对象。
+
+
+  每个 case 由一个模式、一个可选的守卫条件，以及在匹配成功时要计算的表达式组成。
+
+
+  你可以在末尾添加一个默认的、捕获所有情况的模式。下划线是我们遇到的第一个实际模式的例子。它是通配符模式，意思是“匹配任何东西”。
+
+
+  一个模式可以是以下形式：
+
+
+  *   通配符匹配 (`_`)。
+
+  *   字面量匹配，即相等性比较，用于诸如 `101` 或 `RED` 这样的值。
+
+  *   构造器匹配，意味着如果一个值可以使用特定的构造器创建，那么它就会匹配。
+
+  *   解构匹配，也称为提取器模式。
+
+  *   基于特定类型的匹配，称为类型查询模式。
+
+  *   带有备选项的模式（使用 `|` 指定）。
+
+
+  模式还可以包含一个变量名，在匹配成功后，该变量名将可用于右侧的表达式。在语言规范中，这被称为变量标识符。
+
+
+  还有一些其他模式我没有列出；如果你感兴趣，请参阅 Scala 语言规范中的模式匹配部分。¹
+
+
+  ## 字面量匹配
+
+
+  字面量匹配是针对任何 Scala 字面量的匹配。以下示例使用了字符串字面量，其语义类似于 Java 的 switch 语句。
+
+
+  ```
+
+  val language = "French"
+
+  value match {
+
+  case "french" => println("Salut")
+
+  case "French" => println("Bonjour")
+
+  case "German" => println("Guten Tag")
+
+  case _        => println("Hi")
+
+  }
+
+  ```
+
+
+  该值必须与 case 中的字面量完全匹配。在示例中，结果将是打印“Bonjour”而不是“Salut”，因为匹配值中的 `F` 是大写的。匹配基于相等性 (`==`)。
+
+
+
+
+  ## 构造器匹配
+
+
+  构造器模式允许你根据对象的构造方式来匹配案例。假设我们有一个如下所示的 `SuperHero` 类：
+
+
+  ```
+
+  case class
+
+  SuperHero(heroName: String, alterEgo: String, powers: List[String])
+
+  ```
+
+
+  这是一个包含三个构造器参数的常规类，但开头的关键字 `case` 将其指定为样例类。目前，这意味着 Scala 会自动为我们提供一系列有用的方法，例如 `hashCode`、`equals`
+  和 `toString`。
+
+
+  给定该类及其字段，我们可以创建如下匹配表达式：
+
+
+  ```
+
+  1   object BasicConstructorPatternExample extends App {
+
+  2     val hero =
+
+  3       new SuperHero("Batman", "Bruce Wayne", List("Speed", "Agility"))
+
+
+  5     hero match {
+
+  6       case SuperHero(_, "Bruce Wayne", _) => println("I''m Batman!")
+
+  7       case SuperHero(_, _, _)             => println("???")
+
+  8     }
+
+  9   }
+
+  ```
+
+
+  使用构造器模式，它将匹配任何 `alterEgo` 字段值为“Bruce Wayne”的 `hero`，并打印“I''m Batman!”。对于其他所有情况，它将打印问号。
+
+
+  下划线用作构造器参数的占位符；第二个 case（第 7 行）需要三个下划线，因为构造器有三个参数。下划线表示你不关心它们的值是什么。在第 6 行放入值“Bruce
+  Wayne”表示你确实关心，并且构造器的第二个参数必须与之匹配。
+
+
+  使用构造器模式时，值还必须匹配类型。假设 `SuperHero` 是 `Person` 的子类型，如图 16-1 所示。
+
+
+  ![A456960_1_En_16_Fig1_HTML.jpg](img/A456960_1_En_16_Fig1_HTML.jpg)
+
+
+  图 16-1
+
+
+  `SuperHero` 是 `Person` 的子类型
+
+
+  如果 `hero` 变量实际上是 `Person` 的实例而不是 `SuperHero`，则不会有任何匹配。在没有匹配的情况下，你会在运行时看到 `MatchError`
+  异常。为了避免 `MatchError`，你需要允许非 `SuperHero` 类型也能匹配。为此，你可以使用通配符作为默认情况。
+
+
+  ```
+
+  object BasicConstructorPatternExample extends App {
+
+  val hero = new Person("Joe Ordinary")
+
+  hero match {
+
+  case SuperHero(_, "Bruce Wayne", _) => println("I''m Batman!")
+
+  case SuperHero(_, _, _)             => println("???")
+
+  case _                              => println("I''m a civilian")
+
+  }
+
+  }
+
+  ```
+
+
+  模式还可以将匹配的值绑定到变量。我们不仅可以匹配字面量（例如“Bruce Wayne”），还可以使用变量作为占位符，并在右侧的表达式中访问匹配的值。例如，我们可以提出以下问题：
+
+
+  *   “一个身份未知的人，如果他是化名为 Bruce Wayne 的超级英雄，他拥有哪些超能力？”
+
+
+  ```
+
+  1   def superPowersFor(person: Person) = {
+
+  2     person match {
+
+  3       case SuperHero(_, "Bruce Wayne", powers) => powers
+
+  4       case _                                   => List()
+
+  5     }
+
+  6   }
+
+
+  8   println("Bruce has the following powers " + superPowersFor(person))
+
+  ```
+
+
+  我们仍然只匹配 `SuperHero` 类型，并对其化名进行字面量匹配，但这次第 3 行最后一个位置的下划线被替换为变量 `powers`。这意味着我们可以在右侧使用该变量。在这个例子中，我们直接返回它来回答问题。
+
+
+  变量绑定是模式匹配的关键优势之一。在实践中，使用像“Bruce Wayne”这样的字面量值意义不大，因为它限制了应用范围。相反，你更可能将其替换为变量或通配符模式。
+
+
+  ```
+
+  object HeroConstructorPatternExample extends App {
+
+  def superPowersFor(person: Person) = {
+
+  person match {
+
+  case SuperHero(_, _, powers) => powers
+
+  case _                       => List()
+
+  }
+
+  }
+
+  }
+
+  ```
+
+
+  然后，你将使用匹配对象中的值作为输入。要找出 Bruce Wayne 拥有哪些能力，你需要传入一个 Bruce 的 `SuperHero` 实例。
+
+
+  ```
+
+  val bruce =
+
+  new SuperHero("Batman", "Bruce Wayne", List("Speed", "Agility"))
+
+  println("Bruce has the following powers: " + superPowersFor(bruce))
+
+  ```
+
+
+  这个例子有点刻意，因为我们使用匹配表达式来返回我们已经知道的内容。但既然我们已经使 `superPowersFor` 方法更加通用，我们也可以找出任何超级英雄或普通人的能力。
+
+
+  ```
+
+  val steve =
+
+  new SuperHero("Capt America", "Steve Rogers", List("Tactics", "Speed"))
+
+  val jayne = new Person("Jayne Doe")
+
+  println("Steve has the following powers: " + superPowersFor(steve))
+
+  println("Jayne has the following powers: " + superPowersFor(jayne))
+
+  ```
+
+
+  构造器模式
+
+
+  请注意，构造器模式开箱即用地适用于样例类。从技术上讲，这是因为它们自动实现了一个名为 `unapply` 的特殊方法。我们稍后将看到如何实现你自己的 `unapply`
+  方法，并为非样例类实现同样的功能。
+
+
+  ## 类型查询
+
+
+  使用构造器模式，你可以隐式地匹配类型并访问其字段。如果你不关心字段，可以使用类型查询仅匹配类型。
+
+
+  例如，我们可以创建一个 `nameFor` 方法来获取一个人或超级英雄的名字，并用一个人列表来调用它。我们将得到他们的名字，或者如果他们是超级英雄，则得到他们的化名。
+
+
+  ```
+
+  1   object HeroTypePatternExample extends App {
+
+
+  3     val batman =
+
+  4       new SuperHero("Batman", "Bruce Wayne", List("Speed", "Agility"))
+
+  5     val cap =
+
+  6       new SuperHero("Capt America", "Steve Rogers", List("Tactics", "Speed"))
+
+  7     val jayne = new Person("Jayne Doe")
+
+
+  9     def nameFor(person: Person) = {
+
+  10       person match {
+
+  11         case hero: SuperHero => hero.alterEgo
+
+  12         case person: Person => person.name
+
+  13       }
+
+  14     }
+
+
+  16     // 超级英雄的化名是什么？
+
+  17     println("Batman''s Alter ego is " + nameFor(batman))
+
+  18     println("Captain America''s Alter ego is " + nameFor(cap))
+
+  19     println("Jayne''s Alter ego is " + nameFor(jayne))
+
+  20   }
+
+  ```
+
+
+  你可以指定一个变量和类型，而不是使用一系列 `instanceOf` 检查后跟强制类型转换。在箭头后面的表达式中，该变量可以作为该类型的实例使用。因此，在第 11
+  行，`hero` 神奇地成为了 `SuperHero` 的实例，并且无需强制类型转换即可使用 `SuperHero` 特有的方法（例如 `alterEgo`）。
+
+
+  当你在 `try` 和 `catch` 中使用模式匹配来处理异常时，实际上就是在使用类型查询。
+
+
+  ```
+
+  try {
+
+  val url = new URL("http://baddotrobot.com")
+
+  val reader = new BufferedReader(new InputStreamReader(url.openStream))
+
+  var line = reader.readLine
+
+  while (line != null) {
+
+  line = reader.readLine
+
+  println(line)
+
+  }
+
+  } catch {
+
+  case _: MalformedURLException => println("Bad URL")
+
+  case e: IOException => println("Problem reading data : " + e.getMessage)
+
+  }
+
+  ```
+
+
+  `MalformedURLException` 匹配中的下划线表明，如果你对使用该值不感兴趣，可以在类型查询中使用通配符。
+
+
+
+
+  ## 解构匹配与 `unapply`
+
+
+  通常，`apply` 方法被实现为一种工厂风格的创建方法：它接收参数并返回一个新实例。你可以将特殊的 `unapply` 方法视为其对立面。它接收一个实例并从中提取值，通常是那些用于构造该实例的值。
+
+
+  apply (a, b) → object (a, b)
+
+
+  unapply (object (a, b))) → a, b
+
+
+  由于它们提取值，因此实现了 `unapply` 的对象被称为提取器。
+
+
+  *   给定一个对象，提取器通常会提取出创建该对象时所用的参数。
+
+
+  因此，如果我们想在匹配表达式中使用 `Customer` 类，就需要在其伴生对象中添加一个 `unapply` 方法。让我们开始构建它。
+
+
+  ```
+
+  class Customer(val name: String, val address: String)
+
+  object Customer {
+
+  def unapply(???) = ???
+
+  }
+
+  ```
+
+
+  `unapply` 方法总是接收一个你想要解构的对象实例，在我们的例子中就是 `Customer`。
+
+
+  ```
+
+  object Customer {
+
+  def unapply(customer: Customer) = ???
+
+  }
+
+  ```
+
+
+  它应该返回提取出的对象部分，或者返回某些信息以表明无法解构。在 Scala 中，我们不会返回 `null` 来表示这种情况，而是返回一个结果的可选值（Option）。这与
+  Java 中的 `Optional` 类概念相同。
+
+
+  ```
+
+  object Customer {
+
+  def unapply(customer: Customer): Option[???] = ???
+
+  }
+
+  ```
+
+
+  最后一块拼图是确定可以从对象中可选地提取出什么：即放入 `Option` 参数中的类型。如果你只想提取客户姓名，返回值应为 `Option[String]`，但我们希望同时提取姓名和地址（从而能够在匹配表达式中同时匹配姓名和地址）。
+
+
+  答案是使用元组，这是我们之前见过的数据结构。它是一种在单一类型中返回多个数据片段的方式。
+
+
+  ```
+
+  object Customer {
+
+  def unapply(customer: Customer): Option[(String, String)] = {
+
+  Some((customer.name, customer.address))
+
+  }
+
+  }
+
+  ```
+
+
+  现在我们可以对客户使用模式匹配了。
+
+
+  ```
+
+  val customer = new Customer("Bob", "1 Church street")
+
+  customer match {
+
+  case Customer(name, address) => println(name + " " + address)
+
+  }
+
+  ```
+
+
+  你会注意到，这看起来像我们之前的构造器模式示例。这是因为它们本质上是同一回事；我们之前使用了样例类，它自动为我们添加了 `unapply` 方法。而这次是我们自己创建的。它既是一个提取器，又因为与构造器存在对称性，所以也是一种构造器模式。
+
+
+  更具体地说，模式中要提取的值列表必须与类的主构造器中的参数列表相匹配，才能被称为构造器模式。详情请参阅语言规范²。
+
+
+  ### 为什么编写自己的提取器？
+
+
+  既然样例类已经自带了 `unapply` 方法，为什么还要自己实现提取器方法呢？原因可能很简单：你无法或不想使用样例类，或者你不想要样例类的匹配行为；你可能想要自定义的提取行为（例如，从
+  `unapply` 返回 `Boolean` 来表示匹配成功但无需提取任何值）。
+
+
+  也可能是你无法修改某个类，但希望从中提取部分信息。你可以为任何东西编写提取器。例如，你无法修改 `String` 类，但仍然可能希望从中提取信息，比如电子邮件地址或
+  URL 的组成部分。
+
+
+  例如，下面例子中的独立对象，当字符串是一个有效的 URL 时，会从中提取协议和主机名。它与 `String` 类没有关系，但仍然允许我们编写匹配表达式，将字符串“解构”为协议和主机名。
+
+
+  ```
+
+  object UrlExtractor {
+
+  def unapply(string: String): Option[(String, String)] = {
+
+  try {
+
+  val url = new URL(string)
+
+  Some((url.getProtocol, url.getHost))
+
+  } catch {
+
+  case _: MalformedURLException => None
+
+  }
+
+  }
+
+  }
+
+  val url = "http://baddotrobot.com" match {
+
+  case UrlExtractor(protocol, host) => println(protocol + " " + host)
+
+  }
+
+  ```
+
+
+  这种模式与其所操作的数据类型之间的解耦被称为表示独立性（参见《Scala 编程》第 24.6 节）。³
+
+
+  ## 守卫条件
+
+
+  你可以用 `if` 条件来补充我们见过的模式。
+
+
+  ```
+
+  customer.yearsACustomer = 3
+
+  val discount = customer match {
+
+  case YearsACustomer(years) if years >= 5 => Discount(0.50)
+
+  case YearsACustomer(years) if years >= 2 => Discount(0.20)
+
+  case YearsACustomer(years) if years >= 1 => Discount(0.10)
+
+  case _ if blackFriday(today)             => Discount(0.10)
+
+  case _                                   => Discount(0)
+
+  }
+
+  ```
+
+
+  模式后面的条件称为守卫。你可以根据需要引用变量，因此我们可以说，对于超过五年的客户，享受 50% 的折扣；两年，20%，以此类推。如果不需要变量，那也没问题。例如，我们有一个情况是，如果之前没有适用任何折扣，且今天是黑色星期五，则给予
+  10% 的折扣。
+
+
+  脚注 1
+
+
+  [`http://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html`](http://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html)
+
+
+    2
+
+
+  [`http://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html`](http://www.scala-lang.org/files/archive/spec/2.12/08-pattern-matching.html)
+
+
+    3
+
+
+  [`http://www.artima.com/pins1ed/extractors.html`](http://www.artima.com/pins1ed/extractors.html)
+
+
+  '
+- '# 17. Map 与 FlatMap
+
+
+  在本章中，我们将探讨 Scala 的一些函数式编程特性，特别是无处不在的 `map` 和 `flatMap` 函数。我们关注它们，是因为它们与函数式编程的一个关键特性——单子（monad）的概念密切相关。
+
+
+  ## 映射函数
+
+
+  你会在 Scala 的无数类中看到 `map` 函数。它经常在集合的上下文中被描述。像 `List`、`Set` 和 `Map` 这样的类都有它。对于这些类，`map`
+  会将给定的函数应用于集合中的每个元素，并根据该函数的结果返回一个新的集合。你将某个函数“映射”到集合的每个元素上。
+
+
+  例如，你可以创建一个函数，根据一个人的出生年份计算出他今天的年龄。
+
+
+  ```
+
+  import java.util.Calendar
+
+  def age(birthYear: Int) = {
+
+  val currentYear = Calendar.getInstance.get(Calendar.YEAR)
+
+  currentYear - birthYear
+
+  }
+
+  ```
+
+
+  我们可以在一个出生年份列表上调用 `map` 函数，传入这个函数来创建一个新的年龄列表。
+
+
+  ```
+
+  val birthdays = List(1990, 1977, 1984, 1961, 1973)
+
+  birthdays.map(age)
+
+  ```
+
+
+  结果将是一个年龄列表。假设在 2017 年运行，我们可以将 1990 年转换为 27 岁，例如。
+
+
+  ```
+
+  res0: List[Int] = List(25, 38, 31, 54, 42)
+
+  ```
+
+
+  作为一个高阶函数，你也可以将函数内联写成 lambda 表达式，像这样：
+
+
+  ```
+
+  birthdays.map(year => Calendar.getInstance.get(Calendar.YEAR) - year)
+
+  ```
+
+
+  使用下划线作为 lambda 参数的简写，它看起来像这样：
+
+
+  ```
+
+  birthdays.map(Calendar.getInstance.get(Calendar.YEAR) - _)
+
+  ```
+
+
+
+
+  ### 它就像 `foreach`
+
+
+  所以，`map` 是一个转换函数。对于集合而言，它会遍历集合并应用某个函数，就像 `foreach` 所做的那样。区别在于，与 `foreach` 不同，`map`
+  会将函数的返回值收集到一个新集合中，然后返回该集合。
+
+
+  手动实现一个映射函数是微不足道的。例如，我们可以创建一个类 `Mappable`，它接收一些类型为 `A` 的元素，并创建一个 `map` 函数。
+
+
+  ```
+
+  class MappableA {
+
+  def mapB: List[B] = {
+
+  ???
+
+  }
+
+  }
+
+  ```
+
+
+  `map` 的参数是一个将类型 `A` 转换为类型 `B` 的函数；它接收一个 `A` 并返回一个 `B`。我将其完整写成了 `Function1` 类型，这等价于
+  Java 的 `java.util.function.Function` 类。我们也可以使用 Scala 的简写语法来编写它，编译器会为我们进行转换。
+
+
+  ```
+
+  def mapB: List[B] = ...
+
+  ```
+
+
+  然后，问题就简化为创建一个新集合，将每个元素作为参数调用该函数（使用 `apply`）。我们将结果存储到新集合中，最后返回它。
+
+
+  ```
+
+  class MappableA {
+
+  def mapB: List[B] = {
+
+  val result = collection.mutable.MutableList[B]()
+
+  elements.foreach {
+
+  result += f.apply(_)
+
+  }
+
+  result.toList
+
+  }
+
+  }
+
+  ```
+
+
+  我们可以通过创建一个数字列表来测试它，通过创建 `Mappable` 的新实例使其变得“可映射”，并调用一个简单的匿名函数（将输入加倍）作为 `map` 的参数。
+
+
+  ```
+
+  object Example extends App {
+
+  val numbers: List[Int] = List(1, 2, 54, 4, 12, 43, 54, 23, 34)
+
+  val mappable: Mappable[Int] = new Mappable(numbers)
+
+  val result = mappable.map(_ * 2)
+
+  println(result)
+
+  }
+
+  ```
+
+
+  输出结果如下：
+
+
+  ```
+
+  List(2, 4, 108, 8, 24, 86, 108, 46, 68)
+
+  ```
+
+
+  ### 递归
+
+
+  这是一个相当典型的迭代实现；更符合 Scala 风格的实现会使用递归。有关一些示例，请参见附录 A 中的代码清单。
+
+
+  ## FlatMap
+
+
+  你经常会在看到 `map` 函数的地方看到 `flatMap` 函数。对于集合而言，它非常相似，都是将一个函数映射到集合上，并将结果存储在新集合中，但有几个不同之处。
+
+
+  *   它仍然进行转换，但这次函数应用的是**一对多**的转换。它像之前一样接收单个参数，但返回多个值。
+
+  *   因此，结果最终会成为一个集合的集合，所以 `flatMap` 还会将结果**扁平化**，得到一个单一的集合。
+
+
+  所以，
+
+
+  *   对于给定的 `A` 类型集合，`map` 函数对每个元素应用一个函数，将 `A` 转换为 `B`。结果是 `B` 类型的集合（即 `List[B]`）。
+
+  *   对于给定的 `A` 类型集合，`flatMap` 函数对每个元素应用一个函数，将 `A` 转换为 `B` 类型的集合。这会产生一个 `B` 类型集合的集合（即
+  `List[List[B]]`），然后将其扁平化为一个单一的 `B` 类型集合（即 `List[B]`）。
+
+
+  假设我们想要一个映射函数，返回一个人的年龄上下浮动一岁。所以，如果我们认为一个人是 38 岁，我们会返回一个包含 37、38、39 的列表。
+
+
+  ```
+
+  import java.util.Calendar
+
+  def ageEitherSide(birthYear: Int): List[Int] = {
+
+  val today = Calendar.getInstance.get(Calendar.YEAR)
+
+  List(today - 1 - birthYear, today - birthYear, today + 1 - birthYear)
+
+  }
+
+  ```
+
+
+  与之前的示例相比，签名已更改为返回 `List[Int]` 而不是仅仅一个 `Int`。如果我们将生日年份列表传递给 `map` 函数，我们会得到一个列表的列表（下面的
+  `res0`）。
+
+
+  ```
+
+  val birthdays = List(1990, 1977, 1984)
+
+  birthdays.map(ageEitherSide)
+
+  scala> birthdays.map(ageEitherSide)
+
+  res0: List[List[Int]] =
+
+  List(List(26, 27, 28), List(39, 40, 41), List(32, 33, 34))
+
+  ```
+
+
+  然而，如果我们将其传递给 `flatMap` 函数，我们会得到一个扁平化的列表。它先映射，然后扁平化。
+
+
+  ```
+
+  scala> birthdays.flatMap(ageEitherSide)
+
+  res1: List[Int] = List(26, 27, 28, 39, 40, 41, 32, 33, 34)
+
+  ```
+
+
+  如果你想编写自己的 `flatMap` 版本，它可能看起来像这样（注意函数的返回类型）：
+
+
+  ```
+
+  class FlatMappableA {
+
+  def flatMapB: List[B] = {
+
+  val result = collection.mutable.MutableList[B]()
+
+  elements.foreach {
+
+  f.apply(_).foreach {
+
+  result += _
+
+  }
+
+  }
+
+  result.toList
+
+  }
+
+  }
+
+  ```
+
+
+  第一个循环将枚举集合中的元素，并对每个元素应用该函数。因为这个函数本身返回一个列表，所以需要另一个循环来枚举这些列表中的每一个，将它们添加到结果集合中。这就是将函数结果扁平化的部分。
+
+
+  为了测试它，让我们首先创建一个函数，该函数从 `Int` 转换为 `Int` 的集合。它返回零到参数之间的所有奇数。
+
+
+  ```
+
+  def oddNumbersTo(end: Int): List[Int] = {
+
+  val odds = collection.mutable.MutableList[Int]()
+
+  for (i <- 0 to end) {
+
+  if (i % 2 != 0) odds += i
+
+  }
+
+  odds.toList
+
+  }
+
+  ```
+
+
+  然后，我们只需用几个数字创建我们类的一个实例。调用 `flatMap`，你会看到从 0 到 1、0 到 2 和 0 到 10 的所有奇数都被收集到一个列表中。
+
+
+  ```
+
+  object Example {
+
+  def main(args: Array[String]) {
+
+  val mappable = new FlatMappable(1, 2, 10)
+
+  val result = mappable.flatMap(oddNumbersTo)
+
+  println(result)
+
+  }
+
+  }
+
+  ```
+
+
+  输出结果如下：
+
+
+  ```
+
+  List(1, 1, 1, 3, 5, 7, 9)
+
+  ```
+
+
+  ## 不仅限于集合
+
+
+  我们已经了解了 `map` 和 `flatMap` 如何用于集合，但它们也存在于许多其他类上。更一般地说，`map` 和 `flatMap` 作用于所谓的**单子**（monads）上。事实上，拥有
+  `map` 和 `flatMap` 行为是单子的定义性特征之一。
+
+
+  那么，单子到底是什么？我们接下来会探讨。
+
+
+  '
+- '# 18. 单子
+
+
+  单子是人们喜欢谈论但依然难以捉摸和神秘的事物之一。如果你读过任何关于函数式编程的资料，你一定会遇到这个术语。
+
+
+  尽管文献众多，但这个主题往往没有被很好地理解，部分原因是单子源于抽象数学领域的范畴论，部分原因是在编程语言中，Haskell 在文献中占主导地位。Haskell
+  和范畴论都与主流开发者关系不大，并且两者都带来了可能难以理解的概念和术语。
+
+
+  好消息是，你完全不必担心这些东西。你不需要理解范畴论来进行函数式编程。你也不需要理解 Haskell 就能用 Scala 编程。
+
+
+  ## 基本定义
+
+
+  单子的一个通俗定义可能是：
+
+
+  *   拥有 `map` 和 `flatMap` 函数的东西。
+
+
+  这并非完整的定义，但可以作为我们的起点。
+
+
+  我们已经看到，Scala 中的集合都是单子。使用 `map` 转换它们，并使用 `flatMap` 扁平化一对多的转换非常有用。但是 `map` 和 `flatMap`
+  在不同类型的单子上执行不同的操作。
+
+
+
+
+  ## Option 类
+
+
+  让我们以 `Option` 类为例。你可以使用 `Option` 来避免空值，但它究竟是如何避免空值的，又与单子（monad）有何关联？答案包含两部分。
+
+
+  1.  通过返回 `Option` 的子类型来表示“无值”（`None`）或值的包装（`Some`），从而避免返回 `null`。由于“无值”和“有值”都属于
+  `Option` 类型，你可以一致地处理它们。你永远不需要说“if not null”。
+
+  2.  一致地处理 `Option` 的实际方法是使用单子方法 `map` 和 `flatMap`。因此，`Option` 就是一个单子。
+
+
+  空对象模式
+
+
+  如果你曾了解过空对象模式，你会发现这是一个类似的概念。空对象模式允许你用某个子类型替换原类型来表示无值。你可以像对待真实值一样在该实例上调用方法，但它本质上什么也不做。它可以替代真实值，但通常没有副作用。
+
+
+  主要区别在于，你可以调用的方法（由实例的超类型定义）通常是业务方法。而单子的常见方法是 `map` 和 `flatMap`，它们是更低层次的函数式编程抽象。
+
+
+  我们知道 `map` 和 `flatMap` 对集合的作用，但它们对 `Option` 又有什么作用呢？
+
+
+  ### `map` 函数
+
+
+  `map` 函数仍然用于转换对象，但这是一次可选转换。如果选项有值，它会将映射函数应用于该值。有值和无值的选项分别作为 `Option` 的子类 `Some`
+  和 `None` 实现（见图 18-1）。
+
+
+  ![A456960_1_En_18_Fig1_HTML.jpg](img/A456960_1_En_18_Fig1_HTML.jpg)
+
+
+  图 18-1
+
+
+  `Option` 类
+
+
+  映射仅在选项是 `Some` 的实例时应用。如果它没有值（即它是 `None` 的实例），它将简单地返回另一个 `None`。
+
+
+  当你想要转换某些内容但又不想担心检查它是否为 null 时，这非常有用。例如，我们可能有一个带有仓库方法 `add` 和 `find` 的 `Customers`
+  特质。当客户不存在时，在 `find` 的实现中我们应该怎么做？
+
+
+  ```
+
+  trait Customers extends Iterable[Customer] {
+
+  def add(Customer: Customer)
+
+  def find(name: String): Customer
+
+  }
+
+  ```
+
+
+  典型的 Java 实现可能会返回 `null` 或抛出某种 `NotFoundException`。例如，以下基于 `Set` 的实现，如果找不到客户，则返回
+  `null`：
+
+
+  ```
+
+  import scala.collections._
+
+  class CustomerSet extends Customers {
+
+  private val customers = mutable.Set[Customer]()
+
+  def add(customer: Customer) = customers.add(customer)
+
+  def find(name: String): Customer = {
+
+  for (customer <- customers) {
+
+  if (customer.name == name)
+
+  return customer
+
+  }
+
+  null
+
+  }
+
+  def iterator: Iterator[Customer] = customers.iterator
+
+  }
+
+  ```
+
+
+  返回 `null` 和抛出异常都有类似的缺点。
+
+
+  两者都不能很好地传达意图。如果你返回 `null`，客户端需要知道这种可能性，以便避免 `NullPointerException`。但向客户端传达这一信息的最佳方式是什么？ScalaDoc？让他们查看源代码？这两种方式客户端都很容易忽略。异常可能更清晰一些，但由于
+  Scala 异常是非受检的，客户端同样容易忽略。
+
+
+  你还会将非正常路径的处理强加给客户端。假设使用者确实知道要检查 null，你是在要求多个客户端为非正常路径实现防御性策略。你是在强制人们进行 null 检查，并且无法确保一致性，甚至无法确保人们会费心去做。
+
+
+  将 `find` 方法定义为返回 `Option` 可以改善这种情况。在下面的代码中，如果找到匹配项，我们返回 `Some` 客户，否则返回 `None`。这在
+  API 层面传达了返回类型是可选的这一信息。类型系统强制了一种一致的方式来处理非正常路径。
+
+
+  ```
+
+  trait Customers extends Iterable[Customer] {
+
+  def add(Customer: Customer)
+
+  def find(name: String): Option[Customer]
+
+  }
+
+  ```
+
+
+  然后，我们的 `find` 实现可以返回 `Some` 或 `None`。
+
+
+  ```
+
+  def find(name: String): Option[Customer] = {
+
+  for (customer <- customers) {
+
+  if (customer.name == name)
+
+  return Some(customer)
+
+  }
+
+  None
+
+  }
+
+  ```
+
+
+  假设我们想找到一个客户并获取其购物篮总价值。使用可能返回 `null` 的方法，客户端必须执行类似以下的操作，因为 Albert 可能不在仓库中。
+
+
+  ```
+
+  val albert = customers.find("Albert")           // 可能返回 null
+
+  val basket = if (albert != null) albert.total else 0D
+
+  ```
+
+
+  如果我们使用 `Option`，我们可以使用 `map` 从 `Customer` 的选项转换为其购物篮价值的选项。
+
+
+  ```
+
+  val basketValue: Option[Double] =
+
+  customers.find("A").map(customer => customer.total)
+
+  ```
+
+
+  注意，这里的返回类型是 `Option[Double]`。如果找不到 Albert，`map` 将返回 `None` 来表示没有购物篮价值。请记住，`Option`
+  上的 `map` 是一个可选转换。
+
+
+  当你想要实际获取值时，需要将其从 `Option` 包装器中取出。`Option` 的 API 只允许你调用 `get`、`getOrElse`，或者使用 `map`
+  和 `flatMap` 继续以单子方式处理。
+
+
+  ### `Option.get`
+
+
+  要获取原始值，你可以使用 `get` 方法，但如果对无值调用它，它会抛出异常。调用它有点代码坏味道，因为它大致相当于忽略了 `NullPointerException`
+  的可能性。只有当你确定选项是 `Some` 时，才应该调用它。
+
+
+  ```
+
+  // 可能抛出异常
+
+  val basketValue = customers.find("A").map(customer => customer.total).get
+
+  ```
+
+
+  为了确保值是 `Some`，你可以像下面这样进行模式匹配，但这实际上不过是一种复杂的 null 检查。
+
+
+  ```
+
+  val basketValue: Double = customers.find("Missing") match {
+
+  case Some(customer) => customer.total          // 避免异常
+
+  case None => 0D
+
+  }
+
+  ```
+
+
+  ### `Option.getOrElse`
+
+
+  调用 `getOrElse` 通常是更好的选择，因为它强制你提供一个默认值。它的效果与模式匹配版本相同，但代码更少。
+
+
+  ```
+
+  val basketValue =
+
+  customers.find("A").map(customer => customer.total).getOrElse(0D)
+
+  ```
+
+
+
+
+  ### 对 `Option` 进行单子式处理
+
+
+  如果你想避免使用 `get` 或 `getOrElse`，可以使用 `Option` 上的单子方法。为了演示这一点，我们需要一个稍微复杂一点的例子。假设我们想计算一部分客户的购物车总价值。我们可以创建感兴趣客户姓名的列表，并通过将客户姓名转换（映射）为
+  `Customer` 对象的集合来找到每个客户。
+
+
+  在下面的例子中，我们创建了一个客户数据库，并在映射之前添加了一些示例数据。
+
+
+  ```
+
+  val database = new CustomerSet()
+
+  val address1 = Some(Address("1a Bridge St", None))
+
+  val address2 = Some(Address("2 Short Road", Some("AL1 2PY")))
+
+  val address3 = Some(Address("221b Baker St", Some("NW1")))
+
+  database.add(Customer("Albert", address1))
+
+  database.add(Customer("Beatriz", None))
+
+  database.add(Customer("Carol", address2))
+
+  database.add(Customer("Sherlock", address3))
+
+  val customers = Set("Albert", "Beatriz", "Carol", "Dave", "Erin")
+
+  customers.map(database.find(_))
+
+  ```
+
+
+  然后，我们可以再次将这些客户转换为其购物车总价的集合。
+
+
+  ```
+
+  customers.map(database.find(_).map(_.total))
+
+  ```
+
+
+  现在，有趣的部分来了。如果这个转换是针对一个可能为 `null` 的值（而不是 `Option`）进行的，那么我们在继续之前必须进行空值检查。然而，由于它是一个
+  `Option`，如果客户没有被找到，`map` 就不会进行转换，而是返回另一个“无值”的 `Option`。
+
+
+  最后，当我们想要对所有购物车价值求和并得到总金额时，我们可以使用内置函数 `sum`。
+
+
+  ```
+
+  customers.map(database.find(_).map(_.total)).sum       // 错误！
+
+  ```
+
+
+  然而，这并不完全正确。链式调用两个 `map` 函数会得到返回类型 `Set[Option[Double]]`，而我们无法对其求和。我们需要在求和之前将其展平为
+  `Double` 序列。
+
+
+  ```
+
+  customers.map(database.find(_).map(_.total)).flatten.sum
+
+  ^
+
+  注意这里的位置，我们立即对 Option 进行映射
+
+  ```
+
+
+  展平操作会丢弃所有 `None`，因此之后的集合大小将为 3。只有 Albert、Carol 和 Beatriz 的购物车被求和。
+
+
+  ### `Option.flatMap` 函数
+
+
+  在前面的例子中，我们通过先映射再展平来模拟了 `flatMap` 的行为，但我们也可以直接在 `Option` 上使用 `flatMap`。
+
+
+  第一步是在姓名上调用 `flatMap` 而不是 `map`。由于 `flatMap` 会先进行映射然后展平，我们立即就能得到一个 `Customer` 的集合。
+
+
+  ```
+
+  val r: Set[Customer] = customers.flatMap(name => database.find(name))
+
+  ```
+
+
+  展平部分会丢弃所有 `None`，因此结果保证只包含我们仓库中存在的客户。然后，我们可以在求和之前，简单地将这些客户转换为其购物车总价。
+
+
+  ```
+
+  customers
+
+  .flatMap(name => database.find(name))
+
+  .map(customer => customer.total)
+
+  .sum
+
+  ```
+
+
+  丢弃无值的 `Option` 是这里 `flatMap` 的一个关键行为。例如，比较以下对列表的列表进行展平的操作：
+
+
+  ```
+
+  scala> val x = List(List(1, 2), List(3), List(4, 5))
+
+  x: List[List[Int]] = List(List(1), List(2), List(3))
+
+  scala> x.flatten
+
+  res0: List[Int] = List(1, 2, 3, 4, 5)
+
+  ```
+
+
+  ……与对 `Option` 列表进行展平的操作：
+
+
+  ```
+
+  scala> val y = List(Some("A"), None, Some("B"))
+
+  y: List[Option[String]] = List(Some(A), None, Some(B))
+
+  scala> y.flatten
+
+  res1: List[String] = List(A, B)
+
+  ```
+
+
+  ## 更正式的定义
+
+
+  作为更正式的定义，一个单子必须：
+
+
+  *   操作于参数化类型，这意味着它是另一种类型的“容器”（这被称为类型构造器）。
+
+  *   有一种从其底层类型构造单子的方法（unit 函数）。
+
+  *   提供一个 `flatMap` 操作（有时称为 bind）。
+
+
+  `Option` 和 `List` 都满足这些条件，如表 18-1 所示。
+
+
+  表 18-1
+
+
+  Option 和 List 满足的单子条件
+
+
+  |   | Option | List |
+
+  | --- | --- | --- |
+
+  | 参数化（类型构造器） | `Option[A]` | `List[T]` |
+
+  | 构造（unit） | `Option.apply(x)` | `List(x, y, z)` |
+
+  |   | `Some(x)` |   |
+
+  |   | `None` |   |
+
+  | `flatMap`（bind） | `def flatMapB: Option[B]` | `def flatMapB: List[B]` |
+
+
+  不过，这个定义并没有提到 `map`，而我们之前对单子的通俗定义是：
+
+
+  *   拥有 `map` 和 `flatMap` 函数的东西。
+
+
+  我想通过 `map` 来介绍 `flatMap`，因为它总是在展平之前应用一个映射函数。诚然，要成为一个单子，你只需要提供 `flatMap`，但在实践中，单子也提供
+  `map` 函数。这是因为所有单子同时也是函子；更正式地说，是函子必须提供 `map`。
+
+
+  所以，技术上的答案是：提供 `flatMap`、参数化类型和 unit 函数，就能使某物成为单子。但所有单子都是函子，而 `map` 来自函子（见图 18-2）。
+
+
+  ![A456960_1_En_18_Fig2_HTML.jpg](img/A456960_1_En_18_Fig2_HTML.jpg)
+
+
+  图 18-2
+
+
+  `Functor` 和 `Monad` 的行为
+
+
+  ## 总结
+
+
+  在本章中，我解释了当人们谈论单子行为时，他们实际上只是在谈论 `map` 和 `flatMap` 函数。`map` 和 `flatMap` 的语义可能因单子类型而异，但它们共享一个正式（尽管抽象）的定义。
+
+
+  我们看了一些关于 `List` 和 `Option` 上单子函数的具体例子，以及如何将它们与 `Option` 结合使用以避免空值检查。然而，单子的真正威力在于将这些函数“链式”组合，将行为编排成一系列简单的步骤。为了真正理解这一点，我们将在第
+  19 章中看一些更复杂的例子，并了解 for 推导式在底层是如何工作的。
+
+
+  '
+- '# 19. For 推导式
+
+
+  上一章重点介绍了单子以及 `map` 和 `flatMap` 函数。在本章中，我们将重点放在 `flatMap` 行为上。具体来说，我们将研究如何在最终产生结果之前链式调用
+  `flatMap` 函数。For 推导式实际上在底层使用了 `flatMap`，因此我们将详细研究它们之间的关系，并解释 for 推导式是如何工作的。
+
+
+  ## 我们上次讲到哪了
+
+
+  希望你现在已经熟悉了 `flatMap` 的概念。我们在集合类和 `Option` 上都看过它的用法。回想一下，我们使用 `flatMap` 来映射那些可能存在于数据库中也可能不存在的客户姓名。通过这样做，我们可以对客户的购物车价值求和。
+
+
+  ```
+
+  customers
+
+  .flatMap(name => database.find(name))
+
+  .map(customer => customer.total)
+
+  .sum
+
+  ```
+
+
+  现在，假设我们想为客户生成一个运输标签。我们可以在仓库中查找一个客户，如果他们有街道地址和邮政编码，我们就可以生成一个运输标签。
+
+
+  注意事项如下：
+
+
+  1.  客户可能存在于仓库中，也可能不存在。
+
+  2.  给定的客户可能有地址对象，也可能没有。
+
+  3.  地址对象必须包含 `street`，但可能包含也可能不包含 `postcode`。
+
+
+  因此，要生成一个标签，我们需要：
+
+
+  1.  按姓名查找客户（可能存在也可能不存在）。
+
+  2.  获取客户的地址（也可能存在也可能不存在）。
+
+  3.  根据地址，从中获取运输信息。（我们可以预期一个 `Address` 对象包含街道地址，但它可能有也可能没有邮政编码。）
+
+
+
+
+  ## 使用空值检查
+
+
+  如果我们通过返回空值来表达可选性来实现此功能，我们将被迫进行大量的空值检查。我们有四位客户：Albert、Beatriz、Carol 和 Sherlock。Albert
+  有地址但没有邮政编码，Beatriz 没有提供地址，而最后两位拥有完整的地址信息。
+
+
+  ```
+
+  val customers = new CustomerSet()
+
+  val address1 = Some(Address("1a Bridge St", None))
+
+  val address2 = Some(new Address("2 Short Road", Some("AL1 2PY")))
+
+  val address3 = Some(new Address("221b Baker St", Some("NW1")))
+
+  customers.add(new Customer("Albert", address1))
+
+  customers.add(new Customer("Beatriz", None))
+
+  customers.add(new Customer("Carol", address2))
+
+  customers.add(new Customer("Sherlock", address3))
+
+  ```
+
+
+  给定一个客户列表，我们可以尝试创建运输标签。如你所见，以下列表包含数据库中不存在的人员。
+
+
+  ```
+
+  val all = Set("Albert", "Beatriz", "Carol", "Dave", "Erin", "Sherlock")
+
+  ```
+
+
+  接下来，我们创建一个函数来返回运输标签列表，并将它们收集到一个可变集合中。对于列表中的每个名字，我们尝试在数据库中查找该客户（使用 `customers.find`）。由于这可能返回
+  `null`，我们必须在获取其地址之前检查返回值是否为 `null`。
+
+
+  获取地址可能返回 `null`，因此我们必须在获取邮政编码之前再次检查 `null`。一旦我们检查了邮政编码不为 `null`，我们最终可以调用一个方法（`shippingLabel`）来创建标签并将其添加到集合中。如果运行此代码，只有
+  Carol 和 Sherlock 能通过所有的空值检查。
+
+
+  ```
+
+  import scala.collections._
+
+  val all = Set("Albert", "Beatriz", "Carol", "Dave", "Erin", "Sherlock")
+
+  def generateShippingLabels() = {
+
+  val labels = mutable.Set[String]()
+
+  all.foreach { name =>
+
+  val customer: Customer = customers.find(name)
+
+  if (customer != null) {
+
+  val address: Address = customer.address
+
+  if (address != null) {
+
+  val postcode: String = address.postcode
+
+  if (postcode != null) {
+
+  labels.add(
+
+  shippingLabel(customer.name, address.street, postcode))
+
+  }
+
+  }
+
+  }
+
+  }
+
+  labels
+
+  }
+
+  def shippingLabel(name: String, street: String, postcode: String) = {
+
+  "Ship to:\n" + "========\n" + name + "\n" + street + "\n" + postcode
+
+  }
+
+  ```
+
+
+  ## 将 `FlatMap` 与 `Option` 结合使用
+
+
+  如果我们将 `Option` 作为返回类型，而不是为不存在的客户返回 `null`，那么我们可以使用 `flatMap` 来简化代码。
+
+
+  ```
+
+  1   def generateShippingLabel(): Set[String] = {
+
+  2     all.flatMap {
+
+  3       name => customers.find(name).flatMap {
+
+  4         customer => customer.address.flatMap {
+
+  5           address => address.postcode.map {
+
+  6             postcode => {
+
+  7               shippingLabel(customer.name, address.street, postcode)
+
+  8             }
+
+  9           }
+
+  10         }
+
+  11       }
+
+  12     }
+
+  13   }
+
+
+  15   def shippingLabel(name: String, street: String, postcode: String) = {
+
+  16     "Ship to:\n" + "========\n" + name + "\n" + street + "\n" + postcode
+
+  17   }
+
+  ```
+
+
+  我们以与之前相同的方式开始，枚举列表中的每个名字，并对每个名字在数据库上调用 `find`。我们使用 `flatMap` 来执行此操作，因为我们正在从单个客户名称（`String`）转换为一个单子（`Option`）。
+
+
+  你可以将 Option 视为一个包含一个元素的列表（要么是 `Some`，要么是 `None`），因此我们正在进行一种“一对多”的转换。正如我们在第 17 章的
+  `flatMap` 部分所见，这意味着我们稍后需要将“多个”结果展平回“一个”，因此使用了 `flatMap`。
+
+
+  在初始的 `flatMap`（我们在数据库中查找客户）之后，我们对结果进行 `flatMap`。如果没有找到客户，则不会继续执行。因此，在第 4 行，我们可以确信客户确实存在，并可以继续获取其地址。由于地址是可选的，我们可以再次进行
+  `flatMap`，如果客户没有地址则退出。
+
+
+  在第 5 行，我们可以请求客户的邮政编码。邮政编码是可选的，因此只有当我们有邮政编码时，我们才将其（以及地址详细信息）转换为运输标签。`map` 调用为我们处理了这一点；请记住，这里的
+  `map` 仅在我们有值（即邮政编码是 `Some` 的实例）时才应用函数（`shippingLabel`）。
+
+
+  请注意，我们不需要创建一个可变集合来存储运输标签。任何像 `map` 或 `flatMap` 这样的转换函数都会生成一个包含转换结果的新集合。因此，第 7 行对
+  `map` 的最终调用会将运输标签放入一个新创建的集合中。最后一点说明：结果集合的类型是 `String`，因为 `generateShippingLabel`
+  方法返回一个 `String`。
+
+
+
+
+  ## For 推导式的工作原理
+
+
+  当你执行一个常规的 for 循环时，编译器会将其转换（或脱糖）为对 `foreach` 的方法调用。
+
+
+  ```
+
+  for (i <- 0 to 5) {
+
+  println(i)
+
+  }
+
+  // 脱糖后为
+
+  (0 to 5).foreach(println)
+
+  ```
+
+
+  嵌套循环的脱糖形式如下：
+
+
+  ```
+
+  for (i <- 0 to 5; j <- 0 to 5) {
+
+  println(i + " " + j)
+
+  }
+
+  // 脱糖后为
+
+  (0 to 5).foreach { i =>
+
+  (0 to 5).foreach { j =>
+
+  println(i + " " + j)
+
+  }
+
+  }
+
+  ```
+
+
+  如果你使用带 `yield` 的 `for`（即 for 推导式），编译器会进行不同的处理。
+
+
+  ```
+
+  for (i <- 0 to 5) yield {
+
+  i + 2
+
+  }
+
+  ```
+
+
+  `yield` 用于返回值。不带 `yield` 的 `for`，虽然是一个表达式，但会返回 `Unit`。这是因为 `foreach` 方法返回 `Unit`。而带
+  `yield` 的 `for` 会返回 `yield` 块中的内容。它会被转换为对 `map` 的调用，而不是 `foreach`。因此，上述代码的脱糖形式如下：
+
+
+  ```
+
+  // "for (i <- 0 to 5) yield i + 2" 的脱糖形式
+
+  (0 to 5).map(i => i + 2)
+
+  ```
+
+
+  它将一个数字序列（0 到 5）映射为另一个数字序列（2 到 7）。
+
+
+  重要的是要认识到，`yield` 块中的内容代表了传递给 `map` 的函数。`map` 本身操作的是 `for` 部分中的内容（即 `for (i <- 0
+  to 5)`）。当我们像下面这样重新格式化示例时，可能更容易理解：
+
+
+  ```
+
+  for {
+
+  i <- 0 to 5           // map 操作在这个集合上
+
+  } yield {
+
+  i + 2                 // 传递给 map 的函数
+
+  }
+
+  ```
+
+
+  当我们在括号和 `yield` 之间出现嵌套时，情况会变得更有趣。
+
+
+  ```
+
+  val x: Seq[(Int, Int)] = for {
+
+  i <- 0 to 5
+
+  j <- 0 to 5
+
+  } yield {
+
+  (i, j)
+
+  }
+
+  ```
+
+
+  花括号还是圆括号？
+
+
+  注意到我在一些示例中使用了花括号而不是圆括号吗？对于嵌套的 for 循环或带有 `yield` 块的循环，使用花括号是一种更常见的风格。
+
+
+  这将像之前一样执行嵌套循环，但不会转换为嵌套的 `foreach` 调用，而是转换为 `flatMap` 调用后跟一个 `map`。同样，最后的 `map` 用于使用
+  `yield` 块中的内容来转换结果。
+
+
+  ```
+
+  // 脱糖后
+
+  val x: Seq[(Int, Int)] = (0 to 5).flatMap {
+
+  i => (0 to 5).map {
+
+  j => (i, j)
+
+  }
+
+  }
+
+  ```
+
+
+  这与之前完全相同；`yield` 块提供了要应用于映射函数的函数，而它映射的内容由 `for` 表达式决定。在这个例子中，我们将两个 0 到 5 的列表映射到一个元组集合，表示它们的笛卡尔积。
+
+
+  ```
+
+  Seq((0,0), (0,1), (0,2), (0,3), (0,4), (0,5),
+
+  (1,0), (1,1), (1,2), (1,3), (1,4), (1,5),
+
+  (2,0), (2,1), (2,2), (2,3), (2,4), (2,5),
+
+  (3,0), (3,1), (3,2), (3,3), (3,4), (3,5),
+
+  (4,0), (4,1), (4,2), (4,3), (4,4), (4,5),
+
+  (5,0), (5,1), (5,2), (5,3), (5,4), (5,5))
+
+  ```
+
+
+  如果我们分解这个过程并逐步进行，我们可以看到是如何得到脱糖形式的。我们从两个数字序列开始：`a` 和 `b`。
+
+
+  ```
+
+  val a = (0 to 5)
+
+  val b = (0 to 5)
+
+  ```
+
+
+  当我们映射这些集合时，会得到一个集合的集合。最后的 `map` 返回一个元组，因此返回类型是元组的序列的序列。
+
+
+  ```
+
+  val x: Seq[Seq[(Int, Int)]] = a.map(i => b.map(j => (i, j)))
+
+  ```
+
+
+  要将这些扁平化为一个元组集合，我们必须展平这两个集合，这正是 `flatMap` 所做的。因此，尽管我们可以执行以下操作，但直接调用 `flatMap` 要简单得多。
+
+
+  ```
+
+  val x: Seq[(Int, Int)] = a.map(i => b.map(j => (i, j))).flatten
+
+  // 等价于
+
+  val x: Seq[(Int, Int)] = a.flatMap(i => b.map(j => (i, j)))
+
+  ```
+
+
+  ## 最后，使用 For 推导式生成货运标签
+
+
+  所有这些对我们的货运标签示例意味着什么？我们可以将链式的 `flatMap` 调用转换为使用 for 推导式，从而使整个代码更整洁。我们从一系列链式的 `flatMap`
+  调用开始。
+
+
+  ```
+
+  def generateShippingLabel_FlatMapClosingOverVariables(): Set[String] = {
+
+  all.flatMap {
+
+  name => customers.find(name).flatMap {
+
+  customer => customer.address.flatMap {
+
+  address => address.postcode.map {
+
+  postcode => shippingLabel(name, address.street, postcode)
+
+  }
+
+  }
+
+  }
+
+  }
+
+  }
+
+  ```
+
+
+  转换为 for 推导式后，每个 `flatMap` 调用都作为嵌套表达式放在 `for` 中。最后一个表达式代表 `map` 调用。它的参数（映射函数）就是 `yield`
+  块中的内容。
+
+
+  ```
+
+  def generateShippingLabel_ForComprehension(): Set[String] = {
+
+  for {
+
+  name     <- all                               // <- flatMap
+
+  customer <- customers.find(name)              // <- flatMap
+
+  address  <- customer.address                  // <- flatMap
+
+  postcode <- address.postcode                  // <- map
+
+  } yield {
+
+  shippingLabel(name, address.street, postcode) // <- map 的参数
+
+  }
+
+  }
+
+  ```
+
+
+  这简洁得多。以这种方式呈现时，更容易推理条件语义；如果没有找到 `customer`，它就不会继续执行下一行。如果你想扩展嵌套，只需添加另一行，而不会被噪音或缩进所困扰。
+
+
+  这种语法是声明式的，但模仿了命令式风格。它不会强制你使用特定的实现。也就是说，对于命令式的 `for` 循环，你无法选择循环的执行方式。例如，如果你想并行执行，就必须自己实现并发。
+
+
+  使用这样的声明式方法意味着底层对象负责它们的执行方式，这为你提供了更大的灵活性。请记住，这只是调用了 `flatMap`，而类可以自由地以任何方式实现 `flatMap`。
+
+
+  For 推导式适用于任何单子（monad），如果你实现了单子方法，也可以使用你自己的类。
+
+
+  ## 总结
+
+
+  在本章中，我们研究了在打印货运标签的上下文中链式调用 `flatMap`。我们探讨了 for 推导式的工作原理，以及它们如何作为常规 Scala 方法调用的语法糖。具体来说，我们研究了循环和嵌套循环，它们如何等价于调用
+  `foreach`，带 `yield` 块的 `for` 循环如何转换为映射函数，以及带 `yield` 块的嵌套循环如何转换为 `flatMap` 后跟 `map`
+  函数。
+
+
+  最后一点正是我们能够将冗长的货运标签示例转换为简洁的 `for` 推导式的原因。
+
+
+  '
+- '# 第四部分
+
+  在 Java 团队中采用 Scala
+
+
+  在 Java 团队中采用 Scala
+
+
+  你可能想知道如何在你现有的团队中采用 Scala。好消息是，你不需要等待那个全新项目启动。通过一些规划，你可以将 Scala 集成到你现有的 Java 项目中。
+
+
+  在本书的这一部分，我将分享一些将现有 Java 项目迁移到 Scala 的经验。我们将讨论如果你尝试这样做可能会遇到的情况。我将概述典型的学习曲线，并给你一两个需要注意的事项，一些你应该具体做的事情，以及你应该避免的事情。
+
+
+  '
+- '# 20. 采用 Scala
+
+
+
+
+  ## 避免投入不足
+
+
+  在我开始认真研究 Scala 之前，我已经使用 Java 开发了十多年。我的第一次尝试只是浅尝辄止。团队自然持怀疑态度，因此我们决定将现有代码库的一部分划分出来尝试
+  Scala。我们将测试代码转换为 Scala，而主线开发仍保留在 Java 中。
+
+
+  事后看来，这是一个糟糕的主意。由于只处理测试代码，缺乏足够的规模或动力来推动改进。我们在测试代码中解决的问题类型已经相当成熟，现有的测试框架（如 JUnit）已经为我们解决了大部分问题。
+
+
+  似乎没有太多空间来真正使用语言特性。我们基本上只是用另一个恰好是 Scala 的测试框架重写了测试。我们几乎什么也没学到，最终将所有内容都回退到了 Java。这完全是浪费时间和精力。
+
+
+  我从中学到的一点是，要探索一门新语言，你需要解决真正的问题：设计问题、领域问题、业务问题。将代码库的一部分划分出来会限制你能探索的问题类型，从而限制你的学习。
+
+
+  ## 避免用力过猛
+
+
+  下一次我有机会尝试 Scala 时，我走向了另一个极端。我直接跳入深水区，完全使用 Scala 进行开发，并极力尝试采用函数式编程、新模式、新架构设计……凡是与
+  Scala 相关的，我几乎都尝试了。
+
+
+  我之前没有做过太多函数式编程，所以很快就碰壁了。我面对的是完全陌生的概念和思想。我挣扎着，因为我试图在太短的时间内学习太多东西：新的框架、库和技术，以及一门新语言。我还没学会走就想跑。
+
+
+  我花了一段时间才意识到，尽管我是一名经验丰富的开发者，但在 Scala 和函数式编程方面，我实际上是个新手。我没有认识到这一点，事后看来，承诺以这种方式构建软件是不负责任的。我因专业知识而被聘用，却给自己设置了障碍，无法运用这些专业知识。
+
+
+  ## 纯函数式编程是王道？
+
+
+  后来，我有幸与一些经验丰富的开发者共事，他们都精通函数式编程，且大多有 Haskell 背景。这很棒，因为我得以从他人的经验中受益，学习曲线也稍微平缓了一些。过了一段时间，团队开始采用非常高级的理念，很快我们就发现还有另一道坎要过。我们开始讨论更深层次的应用问题，以及是否能用函数式方法解决这些问题。
+
+
+  我在这里想说的是，对于不习惯函数式编程的团队来说，重量级的函数式编程理念可能相当陌生。即使在业界，我认为公平地说，完全拥抱这种风格的团队也寥寥无几。
+
+
+  我觉得，我们整体上还无法判断这种极端方式是否有助于解决现实世界的业务问题。它只是另一种做事方式。它确实代表了一种与主流截然不同的构建软件的方法，对我们来说，这可能有点过头了。它在团队中造成了一些分歧，有些人乐于尝试这种方法，而另一些人则不然。
+
+
+  '
+- '# 21. 可以期待什么
+
+
+  ## 学习曲线
+
+
+  如果你刚开始学习 Scala，并想知道可以期待什么，典型的体验是技能快速提升，随后对更复杂特性的掌握会慢下来。在本章中，我将讨论我认为典型的学习曲线。
+
+
+  根据我的经验以及与多个 Scala 团队的交流，我们可以绘制出一条典型的 Scala 学习曲线，如图 21-1 所示，其中 `x` 轴代表经验（或时间），`y`
+  轴代表某种“学习”度量。
+
+
+  ![A456960_1_En_21_Fig1_HTML.jpg](img/A456960_1_En_21_Fig1_HTML.jpg)
+
+
+  图 21-1
+
+
+  典型的 Scala 采用学习曲线
+
+
+  ### 里程碑 1：Scala 中的面向对象编程
+
+
+  刚开始时，你可以预期语言的学习曲线会相当陡峭。
+
+
+  “陡峭”但也“短暂”。达到第一个平台期并不困难，因此你可以预期学习会有相对较快的增长。
+
+
+  你可能会在这个阶段停留一段时间，应用你所学到的东西。我认为这是第一个里程碑：能够使用语言特定的结构和特性构建面向对象或命令式应用程序，但不一定采用函数式编程。这就像学习
+  Java/C 家族中的任何其他语言一样。
+
+
+  ### 里程碑 2：小范围函数式编程，大范围面向对象编程
+
+
+  下一个里程碑涉及采用函数式编程技术。
+
+
+  这是一个更具挑战性的步骤，曲线可能会更平缓。通常，这涉及使用传统的架构设计，但在小范围内实现函数式编程技术。你可以将这种方法视为“小范围函数式，大范围面向对象”。开始接受一种新的函数式思维方式，并摒弃一些传统技术，可能很困难，因此曲线更平缓。
+
+
+  这里的具体例子不仅仅是语言语法：比如高阶函数和纯函数、引用透明性、不可变性、无副作用、更具声明性的编码；这些都是纯函数式语言通常提供的特性。关键在于，它们被应用于小而孤立的区域。
+
+
+  ### 里程碑 3：大范围函数式编程
+
+
+  下一个挑战是朝着更具凝聚力的函数式设计努力；这实际上意味着在系统级别采用函数式风格；将整个应用程序架构为函数，并完全放弃面向对象风格。因此，目标是构建类似 Haskell
+  的应用程序。
+
+
+  这里提到的所有具体函数式编程机制都适用，但这次是贯穿整个系统；不是应用于孤立区域，而是提升到应用程序级别的关注点。采用像 Scalaz 这样的高级库与曲线这一部分密切相关。
+
+
+  ## 学习连续体
+
+
+  你也可以将 Scala 的采用视为一个连续体，左侧是传统的命令式编程，右侧是纯函数式编程（见图 21-2）。
+
+
+  ![A456960_1_En_21_Fig2_HTML.jpg](img/A456960_1_En_21_Fig2_HTML.jpg)
+
+
+  图 21-2
+
+
+  命令式（Java）到纯函数式编程（Haskell）连续体
+
+
+  你可以将最右侧视为 JVM 上的 Haskell。Haskell 是一种纯函数式语言，因此你别无选择，只能以函数式方式设计应用程序。Scala 是一种面向对象/函数式混合语言；它只能为你提供工具。它不能强制进行函数式编程；你需要纪律和
+  Scala 经验来避免，例如，改变状态，而 Haskell 实际上会阻止你。
+
+
+  当你从使用 Java 开始沿着连续体向右移动时，像 Functional Java、¹ Totally Lazy、² 甚至 Java 8 特性³ 这样的库将帮助你采用更具函数式的风格。到了某个点，切换语言会更有帮助。函数式惯用法成为语言特性而非库特性。`for`
+  推导式的语法糖就是一个很好的例子。
+
+
+  随着你继续前进，使用像 Scalaz⁴ 这样的库可以更容易地向纯函数式编程迈进，但请记住，达到最右侧，或学习曲线的右上象限，本身并不是目标。有许多团队在整个连续体上高效运作。
+
+
+  当你采用 Scala 时，要深思熟虑地决定你想在连续体上处于什么位置，明确原因，并使用我的学习曲线来衡量你的进展。
+
+
+
+
+  ### 目标
+
+
+  达成纯函数式编程的里程碑将会很困难。这对你的团队来说甚至可能并非正确的选择。纯函数式系统并不一定更好；我建议大多数尝试采用 Scala 的 Java 团队应将目标设定在里程碑
+  1 和 2 之间，即这个连续谱系的中间位置。
+
+
+  我认为这是在体验语言优势与避免过度承压之间取得的一个良好平衡。如果你在商业环境中工作，你仍然需要交付软件。请记住，随着你向右端（指更函数式的方向）移动，你可能会用经验丰富的开发者来换取新手。在交付承诺与学习之间取得平衡可能更好，因为随着你向右移动，交付风险也会增加。
+
+
+  脚注 1
+
+
+  [`http://www.functionaljava.org/`](http://www.functionaljava.org/)
+
+
+    2
+
+
+  [`https://code.google.com/p/totallylazy/`](https://code.google.com/p/totallylazy/)
+
+
+    3
+
+
+  [`https://leanpub.com/whatsnewjava8`](https://leanpub.com/whatsnewjava8)
+
+
+    4
+
+
+  [`http://eed3si9n.com/learning-scalaz/index.html`](http://eed3si9n.com/learning-scalaz/index.html)
+
+
+  '
+- '# 22. 技巧
+
+
+  回顾我的经验，我有三个主要技巧。
+
+
+  1.  明确你想从 Scala 中得到什么。  
+
+  2.  寻求指导并分享经验。  
+
+  3.  深思熟虑并制定计划。
+
+
+  ## 明确目标
+
+
+  *   明确你想从中获得什么。你应该问自己，它对你有什么好处。如果你打算使用 Scala，你应该能够解释原因。你认为更简洁的代码会帮助你吗？是因为函数式编程的好处吗？不可变性？你打算如何衡量它？整个团队是否要追求像
+  Haskell 那样的纯函数式编程风格？还是面向对象风格？提前决定好。达成共识。
+
+  *   了解团队动态。了解你的团队以及他们的需求和愿望。评估团队的意愿和目标。最终，每个人都需要认同这个想法并朝着同一个方向前进。如果有一两个人感到被冷落或朝着另一个方向努力，你以后会遇到问题。
+
+  *   设定期望。与团队和管理层沟通。解释风险，并分享你的动机和期望。设定你的期望：全面学习函数式编程（想想 Haskell）是困难的。做好准备。
+
+  *   回顾。一旦开始，要持续回顾你所处的阶段。你是否从中得到了你预期的收获？你能证明或反驳你最初持有的任何假设吗？业务是否受益？如果你能更量化并使用度量标准，你就可以更客观。并且不要害怕改变你的想法。也许你会发现这对团队来说并非正确的选择。你随时可以退出。
+
+
+  ## 寻求指导
+
+
+  *   聘请专家。这是我最重要的一个技巧。如果团队中有一位真正的专家，他们可以指导你掌握语法和特性，更重要的是，指导你完成采纳过程。当你还不应该加速时，他们可以拉住你；当你准备好时，他们可以为你打开新技术的大门。找到真正的专家可能很难，但他们可能价值连城。
+
+  *   积极参与社区。参加活动、会议和聚会。创建一个社区。向他人学习并分享你自己的经验。
+
+  *   查看开源项目。但不要看得太多。看看别人是怎么做的很好——我确实通过开源项目接触到了一些更奇特的语法——但请记住，适合他们的不一定适合你。要带着批判性思维去看待。利用别人的代码来激发学习，但不要照搬。
+
+
+  ## 制定计划
+
+
+  *   制定计划。不要只是用 Scala 开始你的下一个项目；要深思熟虑并制定计划。
+
+  *   思考你的目标。把它们写下来，然后勾勒出能让你更接近目标的步骤。例如，如果目标是快速上手，你可能想和你的团队举办一些午餐时间的知识分享会。
+
+  *   决定你想在函数式编程连续谱系中处于什么位置。你是想直接跳入深水区，还是稍后再采用函数式习惯用法？一个最小化学习曲线的技巧是避免一开始就使用原生的 Scala
+  库。它们常常会引导你走向函数式风格，而且说到底，这又是一个需要学习的 API。你完全可以坚持使用你熟悉的 Java 库，至少一开始可以这样。
+
+  *   做出承诺。致力于你的目标；不要像我一样把 Scala 边缘化到测试中。主动决定使用 Scala，并做出个人承诺去实现它。
+
+
+  如果你遵循这些技巧，你应该能清楚自己的目标和期望，知道从哪里获得指导，并规划好下一步。你将面临使用 Scala 代码库的前景，很可能需要转换 Java 代码，并使用新的工具和库。
+
+
+  在接下来的章节中，我们将探讨一些关于如何进行的实用技巧，包括转换 Java 代码和管理你的代码库。
+
+
+  '
+- '# 23. 转换你的代码库
+
+
+  此时，你很可能已经有一个现有的 Java 代码库，并且可能在想是否应该尝试将 Java 转换为 Scala。
+
+
+  这可能需要很多努力，但我认为，如果你认真考虑采用 Scala，那么投资将整个代码库转换为 Scala 绝对是值得的。不要试图留下一半。要接受这需要一些时间和精力，但要致力于实现它。如果你没有完成这项工作，冷漠情绪可能会滋生，更不用说旧的
+  Java 和 Scala 之间的互操作会变得非常尴尬。如果你坚持完成这项工作，你的生活会轻松很多。
+
+
+  IntelliJ IDEA 有一个转换功能，这是一个很好的起点。它可以让你快速地将一个 Java 类转换为 Scala，但要做好准备：它通常不符合惯用写法，甚至可能不经强制转换就无法编译。将任何自动转换视为一次学习练习。不要只看表面就接受转换结果，而要审视结果并运用你的判断力进行整理。例如，IntelliJ
+  通常会在 Scala 类中创建字段，而不是创建一个 case class。你通常可以用更符合 Scala 风格的方式重新表述逐字转换的结果。
+
+
+  考虑你的构建工具。这些工具需要更新。SBT 和 Maven 都支持 Java/Scala 混合项目，所以没有理由不继续运行你的持续集成和测试环境。你可能还想考虑是否值得将你现有的构建迁移到
+  SBT。
+
+
+  '
+- "# 24. 管理你的代码库\n\n一旦你拥有了新转换的 Scala 代码库，你将使用它一段时间。以下是一些你应该注意的实际问题，以及一些帮助你管理代码库的通用技巧。\n\
+  \n## 约定\n\n*   语法变体和约定如此之多，以至于可用的语法选项数量本身就令人望而生畏。确定你自己的约定。\n*   找到一种适合你团队的工作方式并坚持下去。一开始要避免在语法模式之间切换上下文。这可能意味着一开始使用模式匹配而不是使用\
+  \ `map`。等到每个人都感到舒适后再切换。\n*   定期重新审视这些选择，因为一旦你开始运行，你不想被它们拖后腿。\n*   以 Twitter 的努力¹为例。他们成功地将自己的经验浓缩成了一份非常实用的指南。非常值得一读。\n\
+  *   Typesafe 有一个风格指南，²值得一读，但应带着批判性思维去看待。\n\n\n\n## 应避免的事项\n\n了解初学时应该避免什么也很有帮助。我真希望自己在开始之前就知道其中一些事情。\n\
+  \n*   SBT 可能会让你的工作更困难。SBT 一开始非常简单，但如果你想做任何复杂的事情，它就会变得相当费力。要做好学习的准备；SBT 不是那种你从网上复制粘贴示例就能轻松驾驭的工具。你确实需要一些理解。我认为你会有更重要的事情要担心，所以我的建议是，一开始坚持使用你熟悉的构建工具。在\
+  \ Maven 中支持 Scala 项目非常容易。\n*   Scalaz 不是入门之选。这是给 Scala 的 Haskell 程序员用的库。它非常硬核，如果你没有多年纯函数式编程的经验，就直接避开它。你不需要知道什么是应用函子，或者为什么要使用\
+  \ Kleisli。至少，一开始不需要。\n*   “花哨的” Scala 库可能帮不上忙。当 Scala 刚出现时，一大批开源库涌现出来。人们变得忘乎所以，事后回想起来可能会承认他们在语法上有点过头了。结果就是，有很多\
+  \ API 设计得并不好。\n    *   Dispatch HTTP 库就是一个很好的例子。向请求添加查询参数的方法是 `<<?`。这远不如 `addRequestParameter`\
+  \ 直观。公平地说，Dispatch 提供了两种变体，但要点是，要警惕那些过度使用运算符重载的库。\n    *   Anorm 是另一个例子，它提供了一个解析器\
+  \ API 来提取 SQL 结果。它基本上解析了 `ResultSet`，但它的 DSL 非常不直观，以至于你会怀疑手动处理有什么问题。\n*   Java 库完全没问题。你总是可以在\
+  \ Scala 中使用你熟悉和喜爱的 Java 库。\n*   缺乏一致性是危险的。我们已经提到过这一点：不要试图同时使用所有的语法变体。在继续之前，先彻底掌握一种。保持一致性。\n\
+  \n## 其他挑战\n\n你还会面临许多其他挑战。\n\n*   编译速度很慢。这可能会也可能不会让你担心，但要知道：它不太可能在短期内赶上 Java 的速度。部分原因是\
+  \ Scala 编译器非常复杂；它做了大量的工作，这是有代价的。\n*   让你的 IDE 构建配置与外部构建工具保持同步可能是一个挑战。Maven 现在已经非常成熟，它的\
+  \ IDE 插件几乎可以为你处理所有事情，但另一方面，IDEA 的 SBT 插件存在一些问题。有一些第三方工具可以生成 IDE 项目文件，但效果可能因人而异。我能提供的最好建议是，为你的\
+  \ IDE 选择那些看起来最受支持的工具。\n*   我们已经讨论过函数式编程的连续谱，但值得再次提及的是，清楚自己想要达到什么位置是个好主意。我建议一开始以“小处函数式，大处面向对象”为目标。你需要持续监控自己的进度，并在感觉准备好时迎接下一个学习挑战。突破界限，不断学习。\n\
+  \n脚注 1\n\n[`http://twitter.github.io/effectivescala/`](http://twitter.github.io/effectivescala/)\n\
+  \n  2\n\n[`http://docs.scala-lang.org/style/`](http://docs.scala-lang.org/style/)\n\
+  \n## 附录 A：代码清单\n\n完整源代码请参见 [`https://github.com/tobyweston/learn-scala-java-devs`](https://github.com/tobyweston/learn-scala-java-devs)\
+  \ 。以下是文中选取的一些示例，并进行了扩展，以便为您提供更完整的参考上下文。\n\n### 继承\n\n#### Java 中的子类型继承\n\n```\n\
+  package s4j.java.chapter12 ;\npublic class Customer implements Comparable {\nprivate\
+  \ final String name;\nprivate final String address;\nprivate final ShoppingBasket\
+  \ basket = new ShoppingBasket();\npublic Customer(String name, String address) {\n\
+  this .name = name;\nthis .address = address;\n}\npublic void add(Item item) {\n\
+  basket.add(item);\n}\npublic Double total() {\nreturn basket.value();\n}\n}\npackage\
+  \ s4j.java.chapter12 ;\npublic class DiscountedCustomer extends Customer {\npublic\
+  \ DiscountedCustomer(String name, String address) {\nsuper (name, address);\n}\n\
+  @Override\npublic Double total() {\nreturn super .total() * 0.90;\n}\npublic Double\
+  \ getDiscountAmount() {\nreturn 10.0;\n}\n}\npackage s4j.java.chapter12 ;\npublic\
+  \ interface Item {\nDouble price();\n}\npackage s4j.java.chapter12 ;\nimport java.util.HashSet\
+  \ ;\nimport java.util.Set ;\npublic class ShoppingBasket {\nprivate final Set basket\
+  \ = new HashSet();\npublic void add(Item item) {\nbasket.add(item);\n}\npublic Double\
+  \ value() {\nreturn basket.stream().mapToDouble(Item::price).sum();\n}\n}\n```\n\
+  \n#### Java 中的匿名类\n\n```\npackage s4j.java.chapter12 ;\nclass AnonymousClass {\n\
+  public static void main(String... args) {\nCustomer joe = new DiscountedCustomer(\"\
+  Joe\", \"128 Bullpen Street\");\n// example of anonymous class\njoe.add( new Item()\
+  \ {\n@Override\npublic Double price() {\nreturn 2.5;\n}\n});\njoe.add( new Item()\
+  \ {\n@Override\npublic Double price() {\nreturn 3.5;\n}\n});\n// which can be replaced\
+  \ with lambdas\njoe.add(() -> 2.5);\njoe.add(() -> 3.5);\nSystem.out.println(\"\
+  Joe's basket will cost $ \" + joe.total());\n}\n}\n```\n\n#### Scala 中的子类型继承\n\n\
+  ```\npackage s4j.scala.chapter12\nclass Customer ( val name : String , val address\
+  \ : String ) extends Ordered [ Custom\ner ] {\nprivate final val basket : ShoppingBasket\
+  \ = new ShoppingBasket\ndef add(item : Item ) {\nbasket.add(item)\n}\ndef total\
+  \ : Double = {\nbasket.value\n}\n}\npackage s4j.scala.chapter12\nclass DiscountedCustomer\
+  \ (name : String , address : String ) extends Customer (nam\ne, address) {\noverride\
+  \ def total : Double = {\nsuper .total * 0.9\n}\n}\npackage s4j.scala.chapter12\n\
+  trait Item {\ndef price : Double\n}\npackage s4j.scala.chapter12\nimport scala.collection.mutable\n\
+  class ShoppingBasket {\nprivate val basket = mutable. HashSet [ Item ]()\ndef add(items\
+  \ : Item* ) {\nfor (item <- items)\nbasket.add(item)\n}\ndef value : Double = {\n\
+  basket.map( _ .price).sum\n}\n}\n```\n\n#### Scala 中的匿名类\n\n```\npackage s4j.scala.chapter12\n\
+  object AnonymousClass extends App {\nval joe = new DiscountedCustomer (\"Joe\",\
+  \ \"128 Bullpen Street\")\n// example of anonymous class\njoe.add( new Item {\n\
+  def price = 2.5\n})\njoe.add( new Item {\ndef price = 3.5\n})\nprintln(\"Joe's basket\
+  \ will cost $ \" + joe.total)\n}\n```\n\n### 泛型\n\n\n\n#### Java 中的下界\n\n##### 示例\
+  \ 1\n\n```\npackage s4j.java.chapter14 ;\nimport java.util.ArrayList ;\nimport java.util.Collections\
+  \ ;\nimport java.util.List ;\n/**\n* 创建一个基本的狮子围栏，并按年龄对狮子进行排序。\n*/\npublic class\
+  \ LowerBounds1 {\npublic static > void sort(List list) {\nCollections.sort(list);\n\
+  }\npublic static void main(String... args) {\nList enclosure = new ArrayList();\n\
+  enclosure.add( new Lion());\nenclosure.add( new Lion());\nsort(enclosure);\n}\n\
+  static class Animal { }\nstatic class Lion extends Animal implements Comparable\
+  \ {\nprivate Integer age;\n@Override\npublic int compareTo(Lion other) {\nreturn\
+  \ this .age.compareTo(other.age);\n}\n}\nstatic class Zebra extends Animal { }\n\
+  }\n```\n\n##### 示例 2\n\n```\npackage s4j.java.chapter14 ;\nimport java.util.ArrayList\
+  \ ;\nimport java.util.Collections ;\nimport java.util.List ;\n/**\n* 扩展 @{@link\
+  \ LowerBounds1} 以创建一个动物园（一个包含\n* 不同类型动物（狮子和斑马）的围栏）\n*/\npublic class LowerBounds2\
+  \ {\npublic static > void sort(List list) {\nCollections.sort(list);\n}\npublic\
+  \ static void main(String... args) {\nList enclosure = new ArrayList();\nenclosure.add(\
+  \ new Lion());\nenclosure.add( new Lion());\nsort(enclosure);                 //\
+  \ 编译器错误\nList zoo = new ArrayList();\nzoo.add( new Lion());\nzoo.add( new Lion());\n\
+  zoo.add( new Zebra());\nsort(zoo);                       // 如果 Animal 没有实现 Comparable，则无法编译\n\
+  }\nstatic class Animal implements Comparable {\n@Override\npublic int compareTo(Animal\
+  \ o) {\nreturn 0;\n}\n}\nstatic class Lion extends Animal { }\nstatic class Zebra\
+  \ extends Animal { }\n}\n```\n\n##### 示例 3\n\n```\npackage s4j.java.chapter14 ;\n\
+  import java.util.ArrayList ;\nimport java.util.Collections ;\nimport java.util.List\
+  \ ;\n/**\n* 扩展 @{@link LowerBounds2}，在比较器中添加 ? super A，\n* 从而允许对狮子围栏进行排序\n*/\npublic\
+  \ class LowerBounds3 {\npublic static > void sort(List list) {\nCollections.sort(list);\n\
+  }\npublic static void main(String... args) {\nList enclosure = new ArrayList();\n\
+  enclosure.add( new Lion());\nenclosure.add( new Lion());\nsort(enclosure);     \
+  \         // 不再出现编译器错误\nList zoo = new ArrayList();\nzoo.add( new Lion());\nzoo.add(\
+  \ new Lion());\nzoo.add( new Zebra());\nsort(zoo);\n}\nstatic class Animal implements\
+  \ Comparable {\n@Override\npublic int compareTo(Animal o) {\nreturn 0;\n}\n}\nstatic\
+  \ class Lion extends Animal { }\nstatic class Zebra extends Animal { }\n}\n```\n\
+  \n#### Java 中的多重边界\n\n##### Java 示例 1\n\n```\npackage s4j.java.chapter14 ;\nimport\
+  \ java.util.ArrayList ;\nimport java.util.Collections ;\nimport java.util.List ;\n\
+  public class MultipleBounds {\n// 为泛型类型 A 设置两个上界\npublic static >\nvoid sort(List\
+  \ list) {\nCollections.sort(list);\n}\npublic static void main(String... args) {\n\
+  List enclosure = new ArrayList();\nenclosure.add( new Lion());\nenclosure.add( new\
+  \ Lion());\nsort(enclosure);\nList zoo = new ArrayList();\nzoo.add( new Lion());\n\
+  zoo.add( new Lion());\nzoo.add( new Zebra());\nsort(zoo);\n}\nstatic class Animal\
+  \ implements Comparable {\n@Override\npublic int compareTo(Animal o) {\nreturn 0;\n\
+  }\n}\nstatic class Lion extends Animal { }\nstatic class Zebra extends Animal {\
+  \ }\n}\n```\n\n#### Scala 中的下界\n\n##### 示例 1\n\n```\npackage s4j.scala.chapter14\n\
+  object LowerBounds1 {\ndef sort[ A <: Comparable [ A ]](list : List [ A ]) : Unit\
+  \ = { ??? }\ndef main(args : String* ) {\nvar enclosure = List [ Lion ]()\nenclosure\
+  \ = new Lion +: enclosure\nenclosure = new Lion +: enclosure\nsort(enclosure)\n\
+  }\nclass Animal\nclass Lion extends Animal with Comparable [ Lion ] {\ndef compareTo(o\
+  \ : Lion ) : Int = 0\n}\nclass Zebra extends Animal\n}\n```\n\n##### 示例 2\n\n```\n\
+  package s4j.scala.chapter14\nobject LowerBounds2 {\ndef sort[ A <: Comparable [\
+  \ A ]](list : List [ A ]) : Unit = { ??? }\ndef main(args : String* ) {\nvar enclosure\
+  \ = List [ Lion ]()\nenclosure = new Lion +: enclosure\nenclosure = new Lion +:\
+  \ enclosure\nsort(enclosure)              // 编译器失败\nvar zoo = List [ Animal ]()\n\
+  zoo = new Zebra +: zoo\nzoo = new Lion +: zoo\nzoo = new Lion +: zoo\nsort(zoo)\
+  \                    // 如果 Animal 没有实现 Comparable，则无法编译\n}\nclass Animal extends\
+  \ Comparable [ Animal ] {\ndef compareTo(o : Animal ) : Int = 0\n}\nclass Lion extends\
+  \ Animal\nclass Zebra extends Animal\n}\n```\n\n##### 示例 3\n\n```\npackage s4j.scala.chapter14\n\
+  object LowerBounds3 {\n// 虽然是对 Java 代码的直接翻译，但这会导致\n// \"illegal cyclic reference\
+  \ involving type A\" 错误：\n// def sort[A : A]](a: List[A]) = { ??? }\n// 相反，我们使用这个（并在下面的\
+  \ sort 方法中提供一个类型提示）\ndef sort A : A  = { }\ndef main(args : String* ) {\nvar enclosure\
+  \ = List [ Lion ]()\nenclosure = new Lion +: enclosure\nenclosure = new Lion +:\
+  \ enclosure\nsort Lion , Animal  // 不再出现编译器失败\nvar zoo = List [ Animal ]()\nzoo\
+  \ = new Zebra +: zoo\nzoo = new Lion +: zoo\nzoo = new Lion +: zoo\nsort(zoo)\n\
+  }\nclass Animal extends Comparable [ Animal ] {\ndef compareTo(o : Animal ) : Int\
+  \ = 0\n}\nclass Lion extends Animal\nclass Zebra extends Animal\n}\n```\n\n####\
+  \ Scala 中的多重边界\n\n##### 示例 1\n\n```\npackage s4j.scala.chapter14\nclass MultipleBounds\
+  \ {\n// 我们不能像在 Java 中那样设置两个上界，但我们可以规定\n// 边界类型还必须扩展某些特质\ndef sort[ A <: Lion with\
+  \ Comparable [ Animal ]](list : List [ A ]) = { }\ndef main(args : String* ) {\n\
+  var enclosure = List [ Lion ]()\nenclosure = new Lion +: enclosure\nenclosure =\
+  \ new Lion +: enclosure\n// sortLion, Animal         // 编译器错误\nsort(enclosure) \
+  \                          // 必须移除类型提示\n}\nclass Animal extends Comparable [ Animal\
+  \ ] {\ndef compareTo(o : Animal ) : Int = 0\n}\nclass Lion extends Animal\nclass\
+  \ Zebra extends Animal\n}\n```\n\n### 模式匹配\n\n#### 构造器匹配\n\n##### 示例 1\n\n```\n\
+  package s4j.scala.chapter18\nobject BasicConstructorPatternExample1 extends App\
+  \ {\nval hero = new SuperHero (\"Batman\", \"Bruce Wayne\", List (\"Speed\", \"\
+  Agility\"))\nhero match {\ncase SuperHero ( _ , \"Bruce Wayne\", _ ) => println(\"\
+  I'm Batman!\")\ncase SuperHero ( _ , _ , _ )              => println(\"???\")\n\
+  }\n}\n```\n\n##### 示例 2\n\n```\npackage s4j.scala.chapter18\nobject BasicConstructorPatternExample2\
+  \ extends App {\n// Joe 是一个 Person，而不是 SuperHero\nval hero = new Person (\"Joe Ordinary\"\
+  )\n// 产生一个 'MatchError'，因为 Person 不匹配任何模式\nhero match {\ncase SuperHero ( _ , \"\
+  Bruce Wayne\", _ ) => println(\"I'm Batman!\")\ncase SuperHero ( _ , _ , _ )   \
+  \           => println(\"???\")\n}\n}\n```\n\n##### 示例 3\n\n```\npackage s4j.scala.chapter18\n\
+  object BasicConstructorPatternExample3 extends App {\nval hero = new Person (\"\
+  Joe Ordinary\")\n// 添加通配符 _ 意味着 Joe 匹配最后一个 case\nhero match {\ncase SuperHero (\
+  \ _ , \"Bruce Wayne\", _ ) => println(\"I'm Batman!\")\ncase SuperHero ( _ , _ ,\
+  \ _ )              => println(\"???\")\ncase _                              => println(\"\
+  I'm a civilian\")\n}\n}\n```\n\n##### 示例 4\n\n```\npackage s4j.scala.chapter18\n\
+  object HeroConstructorPatternExample extends App {\nval bruce = new SuperHero (\"\
+  Batman\", \"Bruce Wayne\", List (\"Speed\", \"Agility\"\n))\nval steve = new SuperHero\
+  \ (\"Captain America\", \"Steve Rogers\", List (\"Tactics\n\", \"Speed\"))\nval\
+  \ jane = new Person (\"Jane Doe\")\ndef superPowersFor(person : Person ) = {\nperson\
+  \ match {\ncase SuperHero ( _ , _ , powers) => powers\ncase _ => List ()\n}\n}\n\
+  // 如果一个身份不明的人，其秘密身份是 Bruce Wayne，那么他拥有什么超能力？\nprintln(\"Bruce has the powers: \"\
+  \ + superPowersFor(bruce).mkString(\", \"))\nprintln(\"Steve has the powers: \"\
+  \ + superPowersFor(steve).mkString(\", \"))\nprintln(\"Jane has the powers: \" +\
+  \ superPowersFor(jane).mkString(\", \"))\n// 注意 mkString 以用户友好的格式输出列表\n}\n```\n\n\
+  \n\n#### 解构匹配与 unapply\n\n##### Scala 最终示例\n\n```\npackage s4j.scala.chapter18\n\
+  class Customer ( val name : String , val address : String )\nobject Customer {\n\
+  def unapply(customer : Customer ) : Option [( String , String )] = {\nSome ((customer.name,\
+  \ customer.address))\n}\n}\n```\n\n### Map\n\n#### 映射函数\n\n```\npackage s4j.scala.chapter19\n\
+  class Mappable  A  {\ndef map B  : List [ B ] = {\nval result = collection.mutable.\
+  \ MutableList [ B ]()\nelements.foreach {\nresult += f( _ )\n}\nresult.toList\n\
+  }\n// 递归版本（使用嵌套 def）\ndef recur_map B  : List [ B ] = {\ndef recur(head : A , tail\
+  \ : List [ A ]) : List [ B ] = {\ntail match {\ncase Nil => List (f(head))\ncase\
+  \ _ => f(head) +: recur(tail.head, tail.tail)\n}\n}\nrecur(elements.head, elements.tail)\n\
+  }\n// 尾递归版本\ndef tail_recur_map B  : List [ B ] = {\ndef recur(accumulator : List\
+  \ [ B ], elements : List [ A ]) : List [ B ] = {\nelements match {\ncase Nil =>\
+  \ accumulator\ncase head :: tail => recur(accumulator :+ f(head), tail)\n}\n}\n\
+  recur( List [ B ](), elements)\n}\n}\npackage map {\nobject Example extends App\
+  \ {\nval numbers = List (1, 2, 54, 4, 12, 43, 54, 23, 34)\nval mappable = new Mappable\
+  \ (numbers)\nprintln(mappable.map( _ * 2))\nprintln(mappable.recur_map( _ * 2))\n\
+  println(mappable.tail_recur_map( _ * 2))\n}\n}\n```\n\n#### FlatMap\n\n```\npackage\
+  \ s4j.scala.chapter19\nclass FlatMappable  A  {\ndef flatMap B  : List [ B ] = {\n\
+  val result = collection.mutable. MutableList [ B ]()\nelements.foreach(element =>\
+  \ {\nf(element).foreach(subElement => {\nresult += subElement\n})\n})\nresult.toList\n\
+  }\n// 缩写/替代语法（如书中所示）\ndef flatMapAbbr B  : List [ B ] = {\nval result = collection.mutable.\
+  \ MutableList [ B ]()\nelements.foreach {\nf( _ ).foreach {\nresult += _\n}\n}\n\
+  result.toList\n}\n}\npackage flatmap {\nobject Example extends App {\ndef oddNumbersTo(end\
+  \ : Int ) : List [ Int ] = {\nval odds = collection.mutable. MutableList [ Int ]()\n\
+  for (i <- 0 to end) {\nif (i % 2 != 0) odds += i\n}\nodds.toList\n}\nval mappable\
+  \ = new FlatMappable (1, 2, 10)\nprintln(mappable.flatMap(oddNumbersTo))\nprintln(mappable.flatMapAbbr(oddNumbersTo))\n\
+  }\n}\n```\n\n## 附录 B：语法速查表\n\n### 值\n\n```\nval x : Int = 42\nvar y : String = \"\
+  mutable\"\nval z = \"Scala FTW!\"                             // 使用类型推断\n```\n\n\
+  ### 函数\n\n```\ndef add(x : Int , y : Int ) : Int = x + y             // 单个表达式\n\
+  def add(x : Int , y : Int ) {                        // 没有 =，返回 Unit\nx + y\n}\n\
+  def min(x : Int , y : Int ) : Int = {                 // 最后一行 = 返回值\nif (x < y)\
+  \ x else y\n}\n(x : Int , y : Int ) => x + y              // 匿名函数\nadd(4, 2)   \
+  \                                     // 像往常一样调用\n// 将匿名类（此处为 Ordering）转换为 lambda\n\
+  implicit def functionToOrdering A  => Int ) : Ordering [ A ] = {\nnew Ordering [\
+  \ A ] {\ndef compare(a : A , b : A ) = f.apply(a, b)\n}\n}\n```\n\n### 按名调用\n\n\
+  ```\ndef runInThread(task : => Int ) {\nnew Thread () {\noverride def run() : Unit\
+  \ = task\n}.start()\n}\n```\n\n### 运算符重载与中缀表示法\n\n```\n5 * 10                  \
+  \                         // 等同于 5.*(10)\n\"Scala\" replace(\"a\", \"*\")\n```\n\
+  \n### 类\n\n```\nclass Customer                                    // 创建一个公有类\nclass\
+  \ Customer (name : String )                     // 带有主构造函数\nclass Customer private\
+  \ (name : String )             // 私有构造函数\nprivate class Customer               \
+  \             // 一个私有类\nprivate class Customer private (name : String )     // 带有私有构造函数\n\
+  val c = new Customer (\"Bob\")                      // 创建一个实例\n// 带有主构造函数和辅助构造函数的类\n\
+  class Customer (forename : String , surname : String ) {\ndef this (surname : String\
+  \ ) {\nthis (\"Unknown\", surname)\n}\n}\n```\n\n### 样例类\n\n```\ncase class Customer\
+  \ (name : String )                // 一个样例类\ncase class Customer ( val name : String\
+  \ )            // 这里的 val 是多余的\n// 使用样例类时无需使用 \"new\" 来创建新实例\nCustomer (\"Bob\"\
+  )\n// 样例类自动提供相等性和哈希码：\nnew Customer (\"Bob\") == new Customer (\"Bob\")       //\
+  \ 返回 true\n```\n\n### 单例对象\n\n```\n// 一个单例实例\n// 当与类配对时，该对象成为\"伴生\"对象\nobject Customer\n\
+  ```\n\n### 继承\n\n```\nclass B extends A                       // 子类型继承\nclass C\
+  \ (x : Int )\nclass D (value : Int ) extends A(value)    // 调用父类构造函数\n// 重写方法（重写非抽象方法需要\
+  \ \"override\"）\nclass E {\ndef position : Int = 5\n}\nclass F extends E {\noverride\
+  \ position : Int = super .position + 1\n}\n// 你可以混入多个特质，但只能混入一个类（A）\ntrait SelfDescribing\n\
+  trait Writable\nclass B extends A with SelfDescribing with Writable\nclass B extends\
+  \ SelfDescribing with A with Writable       // 编译器报错\n```\n\n### 字段\n\n```\n// name\
+  \ 不是字段，仅对主构造函数可用\nclass Customer (name : String )\n// name 是公有字段（生成 getter，不生成 setter）\n\
+  class Customer ( val name : String )\n// name 是公有字段（生成 getter 和 setter）\nclass Customer\
+  \ ( var name : String )\n// name 是私有字段（生成私有 getter，不生成 setter）\nclass Customer (\
+  \ private val name : String )\n// name 是私有的（生成私有 getter 和 setter）\nclass Customer\
+  \ ( private var name : String )\ncustomer.name_=(\"Bob\")       // 你可以直接调用 setter\
+  \ 方法\ncustomer.name = \"Bob\"        // 或使用中缀表示法\n```\n\n### 集合\n\n```\nval list\
+  \ = List (1, 4, 234, 12)                   // 创建一个列表\nval map = Map (1 -> \"a\"\
+  , 2 -> \"b\")                // 创建一个映射\nlist.foreach(value => println(value))\n\
+  list.foreach(println)\nfor (value <- list) println(value)\n```\n\n### 字符串格式化\n\n\
+  ```\n// 字符串插值将 '$' 标记替换为值\ns\"Customer name: $name USD\"                    // Customer\
+  \ name: Bob\n// 表达式需要额外的括号\ns\"Customer basket value is $(customer.basket.value)\
+  \ USD\"\n// 'f' 前缀类似于 String.format\nf\"Square of 42 is ${ math.sqrt(42) } %1.2f\"\
+  \        // Square of 42 is 6.48\n\"Escaping \\\"quotes\\\" is the same as in Java\"\
+  \n// 三引号允许跨行并包含未转义的引号\n\"\"\"\"vCard\": {\n\"id\" : \"007\",\n\"name\" : \"bond\"\
+  ,\n\"address\" : \"MI5\"\n}\"\"\"\n// 'raw' 字符串插值器不会转义通常的转义字符\nraw\"a\\nb\"    \
+  \                                  // a\\nb\n```\n\n### Apply 方法\n\n```\nval bob\
+  \ = Customer .apply(\"Bob\")                   // 用作工厂方法\nval bob = Customer (\"\
+  Bob\")                         // 无需显式调用\nval array = Array (1, 54, 23, 545, 23)\n\
+  array.apply(0)                                    // 对数组应用 apply 是\"getter\"\narray(0)\
+  \                                          // 结果是 \"1\"\n```\n\n### Update 方法\n\n\
+  ```\nval array = Array (1, 54, 23, 545, 23)\narray(0)                          \
+  \                // 结果是 \"1\"\narray.update(0, 34)\narray(0)                   \
+  \                       // 结果是 \"34\"\narray(0) = 55                           \
+  \          // = 是 update 的快捷方式\narray(0)                                       \
+  \   // 结果是 \"55\"\n```\n\n\n\n### 模式匹配\n\n```\nvalue match {\ncase 'R'         \
+  \     => ...    // 字面量匹配\ncase Customer (name)   => ...    // 构造器匹配（样例类）\ncase x\
+  \ : Int           => ...    // 类型查询匹配（即 instanceof）\ncase x : Int if x > 5 => ...\
+  \    // 带守卫条件\ncase (x, y)           => ...    // 使用 unapply 进行解构\ncase _      \
+  \         => ...    // 默认情况\n}\n// 相同的语法也用于 try/catch 和异常处理\ntry {\n// ...\n} catch\
+  \ {\ncase e : MalformedURLException => println(\"错误的 URL\")\ncase e : IOException\
+  \ => println(e.getMessage)\n}\n```\n\n### 协变类型\n\n保持 `Stack[Human]` 和 `Stack[Man]`（其中\
+  \ Man 是 `Human` 的子类型）之间的子类型关系。\n\n```\nclass Stack [ +A ] {\n...\n}\n```\n\n####\
+  \ 示例\n\n```\nclass Human\nclass Man extends Human\nclass Woman extends Human\nval\
+  \ people : Stack [ Human ] = Stack [ Human ]()\nval men : Stack [ Human ] = Stack\
+  \ [ Man ]()            // 正确\nval women : Stack [ Woman ] = Stack [ Human ]()  \
+  \      // 编译错误\n```\n\n### 上界（extends）\n\n```\nA <: B 表示类型变量 A 继承自 B。\n```\n\n###\
+  \ 逆变类型\n\n```\nclass Stack [ -A ] {\n...\n}\n```\n\n### 下界（super）\n\n`B >: A` 表示\
+  \ B 是 `A` 的超类型。通常 A 是类的类型参数，而 B 是方法的类型参数。\n\n```\nclass Stack [ +A ] {\ndef push\
+  \ B >: A  : Stack [ B ] = ...\n}\n```\n\n索引 A 抽象类 匿名类 转换为 lambda 创建 vs. 函数 匿名函数\
+  \ 参见 Lambda/匿名函数 AnyVal 类型 AnyRef 类型 Apply 方法 辅助构造器 B 绑定 底类型 有界类 有界类型 打破控制流 C 按名调用\
+  \ 类 抽象类 匿名类 vs. 匿名函数 转换为 lambda 有界类 栈类 无构造器参数的类 类泛型 闭包 vs. lambda 伴生对象 条件语句 if 和三元运算符\
+  \ switch 语句 构造器 附加/辅助构造器 模式 主构造器 泛型类型的逆变 协变泛型类型 花括号与函数字面量 柯里化 D 解构匹配 默认值 菱形运算符 (<>)\
+  \ Do 和 while 循环 E 表达式 vs. 语句 富有表现力的 Scala 提取器方法 F 伪函数调用 apply 方法 update 方法 多个参数传递给多个方法\
+  \ 一等函数 传入函数 返回函数 存储函数 flatMap 函数 For 推导式 foreach 嵌套 for 循环，花括号在发货标签中 foreach 方法\
+  \ For 循环 函数调用 函数字面量 参见递归 参见 Lambda/匿名函数 函数 按名调用 柯里化 一等函数 参见一等函数 高阶函数 映射函数 flatMap\
+  \ 函数 map 函数 null 检查 类型 函子 G 泛型 类 方法 类型 协变 逆变 不变 变型 get 方法 getOrElse 方法 守卫条件 H 高阶函数\
+  \ I If 和三元运算符 不可变性 不可变集合类型 导入别名 中缀表示法 继承 多重继承 子类型继承 互操作性 不变性，泛型类型 J, K Java 互操作性\
+  \ L Lambda/匿名函数 vs. 匿名类 vs. 闭包 将匿名类转换为 语言构造，模拟 按名调用 花括号与函数字面量 柯里化 高阶函数 字面量匹配 循环结构\
+  \ do 和 while 循环 for 循环 下界 M Map 函数 匹配表达式 方法泛型 方法 vs. 函数 单子 准则 定义 函子 单子方法 在 Option\
+  \ 上 Option 类 get 方法 getOrElse 方法 map 函数 Option.flatMap 函数 多重边界 多重继承 N 命名方法参数 Nothing\
+  \ 类型 Null 检查 Null 对象模式 Null 类型 O 对象 伴生 单例 运算符重载 Option 类 get 方法 getOrElse 方法 map\
+  \ 函数 Option.flatMap 函数 P, Q 包对象 参数多态 模式匹配 构造器模式 解构匹配 提取器方法 守卫条件 字面量匹配 模式 切换 类型查询\
+  \ unapply 方法 多态 主构造器 原始类型 R 递归 REPL S Scala 附加/辅助构造器 采用 匿名类 vs. 匿名函数 转换为 lambda\
+  \ Any 类 AnyVal AnyRef 底类型 类创建 类，无构造器参数 伴生对象 泛型类型的逆变 泛型类型的协变 默认值 定义值和变量 派生 setter\
+  \ 和 getter 方法 一等函数 传入函数 返回函数 存储函数 函数式编程特性 惯用法 语言 函数字面量 函数 vs. 方法 函数类型 高阶函数 历史 不可变和声明式\
+  \ 不可变集合类型 导入别名 中缀表示法 安装 解释器 Java 代码库转换 lambda/匿名函数 学习连续体 学习曲线 下界 多重边界 命名方法参数 面向对象语言和函数式语言特性\
+  \ 运算符重载 包对象 多态 主构造器 重新定义 setter 和 getter 方法 引用类型 脚本 setter, getter 方法和字节码 单例对象 源文件\
+  \ 启动 使用 特质 vs. 抽象类 抽象字段 在匿名类上 转换为 lambda 具体字段 在默认方法上 类型别名 单元 值类型 上界 可变参数 通配符边界 scalac\
+  \ 编译器 Scala 代码库管理 挑战 约定 注意事项 ScalaDoc 用于 Char HTML 标记 类型层次结构图 密封特质 Setter 和 getter\
+  \ 方法 和字节码 派生 重新定义 Shell 脚本 单例对象 栈类 语句 vs. 表达式 子类型继承 Switch 语句 T 特质 vs. 抽象类 抽象字段\
+  \ 在匿名类上 转换为 lambda 具体字段 在默认方法上 元组 类型别名 类型构造器 类型层次结构图 类型查询 U Unapply 方法 无界通配符 单元\
+  \ 值类型 Update 方法 多个参数传递给多个方法 上界 V 可变参数 变型，泛型类型 W, X, Y, Z 通配符边界\n"
